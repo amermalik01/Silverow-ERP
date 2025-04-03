@@ -1,0 +1,177 @@
+<div class="modal fade" id="modal_add_pop">
+  <div class="modal-dialog modal-lg" dragable>
+    <!-- <div ng-class="{'whirl no-overlay':showLoader}"></div> -->
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">G/L No.</h4>
+      </div>
+      <div class="modal-body clearfix">
+          <div class="col-md-5">
+            <div class="form-group">
+              <label class="col-md-4 control-label ">Category <span class="required">*</span></label>
+              <div class="col-md-8">
+                <ui-select 
+                  ng-disabled="check_gl_readonly" 
+                  ng-model="formData.catgeory" 
+                  ng-change="getSubCategoriesByParentID(formData.catgeory.id)">
+                  <ui-select-match placeholder="Select Category">{{$select.selected.name}}</ui-select-match>
+                  <ui-select-choices repeat="opt in category_list | filter: $select.search">
+                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                  </ui-select-choices>
+                </ui-select><!--  || formData.id>0 -->
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label ">Sub Category 
+                <span class="required" ng-if="category_sub_list.length>0">*</span>
+              </label>
+              <div class="col-md-8">
+                <ui-select 
+                    ng-disabled="check_gl_readonly || !(category_sub_list.length>0)" 
+                    ng-model="formData.subCatgegory" 
+                    ng-change="getGlHeading()">
+                  <ui-select-match placeholder="Select Sub Category">{{$select.selected.name}}</ui-select-match>
+                  <ui-select-choices repeat="opt in category_sub_list | filter: $select.search">
+                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                  </ui-select-choices>
+                </ui-select><!--  || formData.id>0 -->
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label ">Heading</label>
+              <div class="col-md-8">
+                <ui-select 
+                  ng-disabled="check_gl_readonly || !(category_sub_list.length>0) || !(headingList.length>0) "
+                  ng-model="formData.heading"><!-- || formData.id>0 -->
+                  <ui-select-match placeholder="Select Heading">{{$select.selected.name}}</ui-select-match>
+                  <ui-select-choices repeat="opt in headingList | filter: $select.search">
+                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label ">Account Type <span class="required">*</span></label>
+              <div class="col-md-8">
+                <ui-select 
+                  ng-disabled="check_gl_readonly" required
+                  ng-model="formData.account_type"
+                  ng-change="select_posting_option(formData.account_type.id)">
+                  <ui-select-match placeholder="Select Account Type">{{$select.selected.name}}</ui-select-match>
+                  <ui-select-choices repeat="opt in account_list_type | filter: $select.search">
+                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>         
+
+            <div class="form-group" ng-if="total_code_ranges>0">
+              <label class="col-md-4 control-label" style="padding-top: 0;line-height: 14px;">Sum of Range <br>Start G/L No.</label>
+
+              <div class="col-md-8">
+                <input type="text" required min="1" step="100" id="range_start" class="form-control input_text" 
+                  data-parsley-trigger="keyup" 
+                  data-parsley-minlength="1" 
+                  ng-model="formData.startRangeCode"                   
+                  data-parsley-minlength-message="only Decimal" 
+                  data-parsley-type="number"
+                  ng-blur="checkCodeRange('startRangeCode')"
+                  data-parsley-type-message="only Decimal" >
+              </div>
+            </div>
+            <div class="form-group" ng-if="total_code_ranges>0">
+              <label class="col-md-4 control-label" style="padding-top: 0;line-height: 14px;">Sum of Range <br>End G/L No.</label>
+
+              <div class="col-md-8">
+                <input type="text" required min="1" step="100" id="range_end" class="form-control input_text"
+                  data-parsley-trigger="keyup" 
+                  data-parsley-minlength="1" 
+                  ng-model="formData.endRangeCode" 
+                  ng-blur="checkCodeRange('endRangeCode')"
+                  data-parsley-minlength-message="only Decimal" 
+                  data-parsley-type="number"
+                  data-parsley-type-message="only Decimal" >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-5 col-md-offset-2">
+            <div class="form-group">
+              <label class="col-md-4 control-label">Name<span class="required">*</span> </label>
+
+              <div class="col-md-8">
+                <input class="form-control" required type="text" 
+                  ng-readonly="check_gl_readonly" 
+                  ng-model="formData.name"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label ">G/L No.<span class="required">*</span></label>
+
+              <div class="col-md-8"><!-- placeholder="0" -->
+                <input type="text" required min="1" step="100" id="number" class="form-control input_text"
+                  ng-model="formData.number"  
+                  ng-blur="checkCodeRange('actualCode')">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-md-4 control-label ">G/L No. Display As</label>
+
+              <div class="col-md-8">
+                <input type="text" id="glNumberDisplayAs" class="form-control input_text"
+                  ng-model="formData.glNumberDisplayAs">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label ">VAT Rate <span class="required">*</span></label>
+
+              <div class="col-md-8">
+                <ui-select ng-disabled="check_gl_readonly"
+                  ng-model="formData.vat_list_ids" required>
+                  <ui-select-match placeholder="Select VAT Rate">{{$select.selected.name}}</ui-select-match>
+                  <ui-select-choices repeat="opt in arr_vat | filter: $select.search">
+                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label ">Status<span class="required">*</span></label>
+
+              <div class="col-md-8">
+                <select class="select2me form-control" required
+                  ng-disabled="check_gl_readonly || formData.gl_account_ref_id>0"  
+                  ng-model="formData.statuss" 
+                  ng-options="opt as opt.name for opt in status_data">
+                  <option value="" disabled selected>Select Status</option>
+                </select>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <div class="col-md-12">
+          <div class="pull-right">
+            <button class="btn btn-submit" type="submit" 
+              ng-if="perreadonly">
+              <i class="fa fa-check fa_display"></i>Save
+            </button>
+            <button class="btn btn_blue width_80" type="button" 
+              ng-click="gotoEdit()" 
+              ng-if="check_gl_readonly">
+              <i class="fa fa-edit fa_display"></i> Edit
+            </button>
+            <button class="btn btn-cancel" type="button" data-dismiss="modal">
+              <i class="fa fa-undo fa_display"></i> Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

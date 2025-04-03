@@ -1,0 +1,416 @@
+<style>
+    .letter12 {
+        font-size: 18px;
+        color: white;
+    }
+
+    .recform .form-control {
+        position: relative !important;
+        height: 29px;
+    }
+
+    .modal- .table>tbody>tr>td {
+        border: 1px solid #d6d6d6;
+    }
+
+    .-area b {
+        width: 14%;
+    }
+
+    .highlightrecord {
+        background-color: red;
+    }
+</style>
+
+
+<toaster-container toaster-options="{'toaster-id': 4,'position-class': 'toast-top-right', 'close-button':true}">
+</toaster-container>
+
+<span class="mbri-align-left letter12"
+      ng-click="openModal()"></span>
+<span ng-show="total > 0 && moduleTracker.module.record"
+      ng-click="openModal()"
+      class="sidebarNotification">{{total}}</span>
+
+<div id="sidebar-tasks"
+     class="modal fade recform"
+     role="dialog">
+    <div class="modal-dialog modal-lg2 increase_width leftsidebar-container leftsidebar-tasks"
+         style="    margin-top: 50px;">
+        <div class="modal-content">
+            <div ng-class="{'whirl no-overlay':showLoader}"></div>
+            <div class="modal-header">
+                <button type="button"
+                        ng-click="clearVars()"
+                        class="close"
+                        data-dismiss="modal">&times;</button>
+                <a class="btn btn-default2 pull-left"
+                   style="margin: -4px 0 !important;"
+                   ng-click="clearVars(); compose = false;"
+                   ng-show="compose">
+                    <i style="font-size: 14px;"
+                       class="fa fa-angle-left"
+                       aria-hidden="true"></i>
+                </a>
+                <h4 class="modal-title">{{formData.id ? "Edit": ""}} {{name}}</h4>
+            </div>
+            <div class="modal-body"
+                 style="padding-bottom: 8px;">
+                <div ng-show="!compose"
+                     style="margin-bottom: 0 !important;">
+                    <div class="col-md-4">
+                        <div class="row"
+                             style="margin-bottom: 0 !important;">
+                            <input type="text"
+                                   ng-model="localSearch"
+                                   placeholder="Search"
+                                   class="form-control pull-left search_media_ipad"
+                                   style="width: calc(100% - 92px);margin-right: 3px;" />
+                            <div class="dropdown ib">
+                                <button class="btn btn-default2 dropdown-toggle openfilter"
+                                        type="button"
+                                        data-toggle="dropdown">
+                                    <i class="fa fa-filter"></i>
+                                </button>
+                                <ul class="dropdown-menu filter-area">
+                                    <li>
+                                        <a href="#"
+                                           ng-click="searchKeyword.condition = ''">All</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                           ng-click="searchKeyword.condition = 'old'">Completed</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                           ng-click="searchKeyword.condition = 'due'">Due</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                           ng-click="searchKeyword.condition = 'overdue'">Over Due</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                           ng-click="searchKeyword.condition = 'recur'">Recurrence</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                           ng-click="searchKeyword.condition = 'lowPriority'">Low Priority</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                           ng-click="searchKeyword.condition = 'highPriority'">High Priority</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a ng-click="getRecordNames(); compose = true; showCompose();"
+                               class="pull-right btn btn_add2">Add
+                            </a>
+                            <div class="input-symbol">
+                                <input jqdatepicker
+                                       style="width: 49%;margin-top: 5px;float: left;"
+                                       id="task_start_date"
+                                       ng-change="verifyRangeFilters('task_start_date','task_end_date','From date is later than To date', 'date')"
+                                       placeholder="From"
+                                       class="2date-picker ib form-control "
+                                       ng-model="searchDate.start">
+                                <i class="fa fa-calendar"
+                                   style="    position: absolute;
+                                                                            left: 43%;
+                                                                            top: 15px;
+                                                                            right: 0 !important;
+                                                                            color: #b1b1b1;"></i>
+                            </div>
+                            <div class="input-symbol">
+                                <input jqdatepicker
+                                       style="width: 49%;float: right;margin-top: 5px;"
+                                       id="task_end_date"
+                                       ng-change="verifyRangeFilters('task_start_date','task_end_date','To date is earlier than From date', 'date')"
+                                       placeholder="To"
+                                       class="2date-picker ib form-control "
+                                       ng-model="searchDate.end">
+                                <i class="fa fa-calendar"
+                                   style="position: absolute;
+                                        top: 14px;
+                                        right: 10px !important;
+                                        color: #b1b1b1;"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div ng-if="searchKeyword.condition == 'old'"
+                                 class="animated fadeIn"
+                                 style="margin-top: 3px;
+                                        background-color: #f3f3f3;
+                                        border-radius: 2px;
+                                        padding: 0 9px;
+                                        text-align: center;
+                                        font-weight: bold;">Completed
+                                Tasks
+                            </div>
+                            <div ng-if="searchKeyword.condition == 'due'"
+                                 class="animated fadeIn"
+                                 style="margin-top: 3px;
+                                        background-color: #f3f3f3;
+                                        border-radius: 2px;
+                                        padding: 0 9px;
+                                        text-align: center;
+                                        font-weight: bold;">Due
+                                Tasks
+                            </div>
+                            <div ng-if="searchKeyword.condition == 'overdue'"
+                                 class="animated fadeIn"
+                                 style="margin-top: 3px;
+                                        background-color: #f3f3f3;
+                                        border-radius: 2px;
+                                        padding: 0 9px;
+                                        text-align: center;
+                                        font-weight: bold;">Over
+                                Due
+                                Tasks
+                            </div>
+                            <div ng-if="searchKeyword.condition == 'recur'"
+                                 class="animated fadeIn"
+                                 style="margin-top: 3px;
+                                        background-color: #f3f3f3;
+                                        border-radius: 2px;
+                                        padding: 0 9px;
+                                        text-align: center;
+                                        font-weight: bold;">Recurrence
+                                Tasks
+                            </div>
+                            <div ng-if="searchKeyword.condition == 'highPriority'"
+                                 class="animated fadeIn"
+                                 style="margin-top: 3px;
+                                        background-color: #f3f3f3;
+                                        border-radius: 2px;
+                                        padding: 0 9px;
+                                        text-align: center;
+                                        font-weight: bold;">High
+                                Priority Tasks
+                            </div>
+                            <div ng-if="searchKeyword.condition == 'lowPriority'"
+                                 class="animated fadeIn"
+                                 style="margin-top: 3px;
+                                        background-color: #f3f3f3;
+                                        border-radius: 2px;
+                                        padding: 0 9px;
+                                        text-align: center;
+                                        font-weight: bold;">Low
+                                Priority Tasks
+                            </div>
+
+                            <tabset class="modaltabs">
+                                <tab active="tabArr[4]"
+                                     ignore-mt
+                                     ng-click="bringRecords()"
+                                     ng-if="moduleTracker.module.tabId"
+                                     heading="Current Tab Record">
+                                    <div class="mydocs"
+                                         ng-click="updateFocused(record)"
+                                         ng-if="!searchKeyword.condition || searchKeyword.condition == 'all' || ((searchKeyword.condition && record.condition ==
+                                        searchKeyword.condition) || (searchKeyword.condition == 'recur' && record.recurrence > 0 && record.recurrenceUnit) || (searchKeyword.condition == 'highPriority' && record.priority == 'high') || (searchKeyword.condition == 'lowPriority' && record.priority == 'low'))"
+                                         ng-repeat="record in filteredRecords | filter:localSearch"
+                                         ng-class="{'highlightdoc':focused.id == record.id,'strike':record.status == 3}">
+                                        <div class="mynotessubject padleft15">
+                                            <div class="checktask animated fadeIn">
+                                                <input type="checkbox"
+                                                       ng-checked="record.status == 3"
+                                                       ng-click="markCompleted(record);" />
+                                            </div>
+                                            <b>
+                                                <span ng-if="record.priority == 'high'"
+                                                      class="high"> !</span>
+                                                <span ng-if="record.priority == 'low'"
+                                                      class="low"> &darr;</span>{{record.subject}}
+                                            </b>
+                                        </div>
+                                        <div class="mynotescomment">{{record.comments}}</div>
+                                        <div class="createdby">{{record.tempDate}} - {{record.time}}
+                                            <i class="fa fa-repeat recurrence"
+                                               ng-if="record.recurrence > 0 && record.recurrenceUnit"
+                                               aria-hidden="true"></i>
+                                        </div>
+                                        <div class="mynotesmodule">{{conditionalUpperCase(record.module, 3)}}</div>
+                                    </div>
+
+                                </tab>
+                                <tab active="tabArr[3]"
+                                     ignore-mt
+                                     ng-click="bringRecords()"
+                                     ng-if="moduleTracker.module.tab"
+                                     heading="Current Tab">
+                                    <div class="mydocs"
+                                         ng-click="updateFocused(record)"
+                                         ng-if="!searchKeyword.condition || searchKeyword.condition == 'all' || ((searchKeyword.condition && record.condition ==
+                                        searchKeyword.condition) || (searchKeyword.condition == 'recur' && record.recurrence > 0 && record.recurrenceUnit)|| (searchKeyword.condition == 'highPriority' && record.priority == 'high') || (searchKeyword.condition ==
+                                        'lowPriority' && record.priority == 'low'))"
+                                         ng-repeat="record in filteredRecords | filter:localSearch"
+                                         ng-class="{'highlightdoc':focused.id == record.id,'strike':record.status == 3}">
+                                        <div class="mynotessubject padleft15">
+                                            <div class="checktask animated fadeIn">
+                                                <input type="checkbox"
+                                                       ng-checked="record.status == 3"
+                                                       ng-click="markCompleted(record);" />
+                                            </div>
+                                            <b>
+                                                <span ng-if="record.priority == 'high'"
+                                                      class="high"> !</span>
+                                                <span ng-if="record.priority == 'low'"
+                                                      class="low"> &darr;</span>{{record.subject}}
+                                            </b>
+                                        </div>
+                                        <div class="mynotescomment">{{record.comments}}</div>
+                                        <div class="createdby">{{record.datetime * 1000| date:'dd/MM/yyyy h:mm a'}}
+                                            <i class="fa fa-repeat recurrence"
+                                               ng-if="record.recurrence > 0 && record.recurrenceUnit"
+                                               aria-hidden="true"></i>
+                                        </div>
+                                        <div class="mynotesmodule">{{conditionalUpperCase(record.module, 3)}}</div>
+                                    </div>
+                                </tab>
+                                <tab active="tabArr[2]"
+                                     ignore-mt
+                                     ng-click="bringRecords()"
+                                     ng-if="moduleTracker.module.record"
+                                     heading="{{moduleTracker.module.recordName}}">
+                                    <div class="mydocs"
+                                         ng-click="updateFocused(record)"
+                                         ng-if="!searchKeyword.condition || searchKeyword.condition == 'all' || ((searchKeyword.condition && record.condition ==
+                                        searchKeyword.condition) || (searchKeyword.condition == 'recur' && record.recurrence > 0 && record.recurrenceUnit)|| (searchKeyword.condition == 'highPriority' && record.priority == 'high') || (searchKeyword.condition ==
+                                        'lowPriority' && record.priority == 'low'))"
+                                         ng-repeat="record in filteredRecords | filter:localSearch"
+                                         ng-class="{'highlightdoc':focused.id == record.id,'strike':record.status == 3}">
+                                        <div class="mynotessubject padleft15">
+                                            <div class="checktask animated fadeIn">
+                                                <input type="checkbox"
+                                                       ng-checked="record.status == 3"
+                                                       ng-click="markCompleted(record);" />
+                                            </div>
+                                            <b>
+                                                <span ng-if="record.priority == 'high'"
+                                                      class="high"> !</span>
+                                                <span ng-if="record.priority == 'low'"
+                                                      class="low"> &darr;</span>{{record.subject}}
+                                            </b>
+                                        </div>
+                                        <div class="mynotescomment">{{record.comments}}</div>
+                                        <div class="createdby">{{record.datetime * 1000| date:'dd/MM/yyyy h:mm a'}}
+                                            <i class="fa fa-repeat recurrence"
+                                               ng-if="record.recurrence > 0 && record.recurrenceUnit"
+                                               aria-hidden="true"></i>
+                                        </div>
+                                        <div class="mynotesmodule">{{conditionalUpperCase(record.module, 3)}}</div>
+                                    </div>
+                                </tab>
+                                <tab active="tabArr[1]"
+                                     ignore-mt
+                                     ng-click="bringRecords()"
+                                     ng-if="moduleTracker.module.name && !moduleTracker.module.record"
+                                     heading="{{conditionalUpperCase(moduleTracker.module.name,3)}}">
+                                    <div class="mydocs"
+                                         ng-click="updateFocused(record)"
+                                         ng-if="!searchKeyword.condition || searchKeyword.condition == 'all' || ((searchKeyword.condition && record.condition ==
+                                        searchKeyword.condition) || (searchKeyword.condition == 'recur' && record.recurrence > 0 && record.recurrenceUnit)|| (searchKeyword.condition == 'highPriority' && record.priority == 'high') || (searchKeyword.condition ==
+                                        'lowPriority' && record.priority == 'low'))"
+                                         ng-repeat="record in filteredRecords | filter:localSearch"
+                                         ng-class="{'highlightdoc':focused.id == record.id,'strike':record.status == 3}">
+                                        <div class="mynotessubject padleft15">
+                                            <div class="checktask animated fadeIn">
+                                                <input type="checkbox"
+                                                       ng-checked="record.status == 3"
+                                                       ng-click="markCompleted(record);" />
+                                            </div>
+                                            <b>
+                                                <span ng-if="record.priority == 'high'"
+                                                      class="high"> !</span>
+                                                <span ng-if="record.priority == 'low'"
+                                                      class="low"> &darr;</span>{{record.subject}}
+                                            </b>
+                                        </div>
+                                        <div class="mynotescomment">{{record.comments}}</div>
+                                        <div class="createdby">{{record.datetime * 1000| date:'dd/MM/yyyy h:mm a'}}
+                                            <i class="fa fa-repeat recurrence"
+                                               ng-if="record.recurrence > 0 && record.recurrenceUnit"
+                                               aria-hidden="true"></i>
+                                        </div>
+                                        <div class="mynotesmodule">{{conditionalUpperCase(record.module, 3)}}</div>
+                                    </div>
+                                </tab>
+                                <tab active="tabArr[0]"
+                                     ignore-mt
+                                     ng-click="bringRecords()"
+                                     ng-if="!(moduleTracker.module.record || moduleTracker.module.name)"
+                                     heading="All Modules">
+                                    <div class="mydocs"
+                                         ng-click="updateFocused(record)"
+                                         ng-if="!searchKeyword.condition || searchKeyword.condition == 'all' || ((searchKeyword.condition && record.condition ==
+                                        searchKeyword.condition) || (searchKeyword.condition == 'recur' && record.recurrence > 0 && record.recurrenceUnit)|| (searchKeyword.condition == 'highPriority' && record.priority == 'high') || (searchKeyword.condition ==
+                                        'lowPriority' && record.priority == 'low'))"
+                                         ng-repeat="record in filteredRecords | filter:localSearch"
+                                         ng-class="{'highlightdoc':focused.id == record.id,'strike':record.status == 3}">
+                                        <div class="mynotessubject padleft15">
+                                            <div class="checktask animated fadeIn">
+                                                <input type="checkbox"
+                                                       ng-checked="record.status == 3"
+                                                       ng-click="markCompleted(record);" />
+                                            </div>
+                                            <b>
+                                                <span ng-if="record.priority == 'high'"
+                                                      class="high"> !</span>
+                                                <span ng-if="record.priority == 'low'"
+                                                      class="low"> &darr;</span>{{record.subject}}
+                                            </b>
+                                        </div>
+                                        <div class="mynotescomment">{{record.comments}}</div>
+                                        <div class="createdby">{{record.datetime * 1000| date:'dd/MM/yyyy h:mm a'}}
+                                            <i class="fa fa-repeat recurrence"
+                                               ng-if="record.recurrence > 0 && record.recurrenceUnit"
+                                               aria-hidden="true"></i>
+                                            <i class="fa fa-bell-o recurrence "
+                                               ng-if="record.reminder"
+                                               aria-hidden="true"></i>
+                                        </div>
+                                        <div class="mynotesmodule">{{conditionalUpperCase(record.module, 3)}}</div>
+                                    </div>
+                                </tab>
+                            </tabset>
+                            <div ng-if="allRecords.length"
+                                 style="margin-top: 8px;">{{(allRecords | filter:localSearch).length}} Record(s) </div>
+
+                            <div class="text-center norecordmessage"
+                                 ng-if="allRecords.length == 0">
+                                <span class="mbri-align-left"></span>
+                                <div>No Tasks found! Add one now!</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-8">
+                        <div ng-include="focusedTemplate"></div>
+                    </div>
+
+                </div>
+                <div ng-show="compose" style=" height:420px;">
+                    <div ng-include="addTemplate"></div>
+                </div>
+            </div>
+            <div class="modal-footer"
+                 style="border-top: 1px solid #eaeaea;">
+                <span ng-if="compose && formData.oldTask && !check_task_readonly">Only comments can be added/edited in
+                    old tasks.</span>
+
+                <a class="btn btn-delete"
+                   ng-click="deleteThis(formData.id)"
+                   ng-show="formData.id">Delete</a>
+                <a class="btn btn-submit2 "
+                   ng-click="prepareToSubmit()"
+                   ng-show="compose">Save</a>
+                <!-- <button type="button"
+                        ng-click="clearVars();"
+                        class="btn btn-default"
+                        data-dismiss="modal">Close</button> -->
+            </div>
+        </div>
+    </div>
+</div>

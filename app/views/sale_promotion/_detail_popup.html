@@ -1,0 +1,100 @@
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Promotion Detail</h4>
+      </div>
+      <div class="modal-body">
+       <!-- Filter -->
+       <div class="col-md-12">
+        <form class="form-horizontal no-margin" ng-submit=""  >
+          <div class="col-md-6 ">
+            <div class="form-group ">
+            <div class="input-symbol">
+            <input type="text"
+              Placeholder="Search" class="form-control ng-valid ng-dirty"  id="searchKeyword"ng-model="searchKeyword">
+            <span  id="date_msg_4" > <i class="fa fa-search"></i></span> </div>
+            </div>
+          </div>
+          </form>
+        </div>
+       <!--  ==>>{{temp_rec}} -->
+        <!-- Filter End -->
+            <div class="row">
+              <div class="col-md-12 col-md-12">
+                <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+                    <div class="panel-body" style="  overflow-x: scroll;    height: 325px;">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr class="bg-col">
+                                  <th>Category</th>
+                                  <th>Brand</th>
+                                  <th>Product Code</th>
+                                  <th>Product Description</th>
+                                  <th>Territory</th>
+                                  <th>Buying Group</th>
+                                  <th>Segment</th>
+                                  <th>Alt. Location</th>
+                                  <th>Customer Code</th>
+                                  <th>Customer</th>
+                                  <th>U.O.M</th>
+                                  <th>Sales Price</th>
+                                  <th>Cust. Specific price</th>
+                                  <th>Discount</th>
+                                  <th>Promotion Discount</th>
+                                  <th>Standard Vol. Disc.</th>
+                                  <th>Specific Vol. Disc.</th>
+                                  <th>Min. Price</th>
+                                  <th>Final Disc. Price</th>
+                                  <th>Pricing Strategy</th>
+                                </tr>
+                            </thead>
+                            <tbody class="courser table-body">
+                               <tr ng-repeat="detail in arr_detail | filter:searchKeyword">
+                                  <td ng-class="{'hilight': detail.cat_name === temp_rec.cat_name}">{{detail.cat_name}}</td>
+                                  <td ng-class="{'hilight': detail.brandname === temp_rec.brandname}">{{detail.brandname}}</td>
+                                  <td ng-class="{'hilight': detail.product_code === temp_rec.product_code}">{{detail.Product_Code}}</td>
+                                  <td>{{detail.Product_Description}}</td>
+                                  <td ng-class="{'hilight': detail.region === temp_rec.region}">{{detail.region}}</td>
+                                  <td ng-class="{'hilight': detail.buying_group === temp_rec.buying_group}">{{detail.buying_grp}}</td>
+                                  <td ng-class="{'hilight': detail.segment === temp_rec.segment}">{{detail.segment}}</td>
+                                  <td ng-class="{'hilight': detail.alt_location === temp_rec.alt_location}">{{detail.alt_location}}</td>
+                                  <td ng-class="{'hilight': detail.Customer_Code === temp_rec.customer_code}">{{detail.Customer_Code}}</td>
+                                  <td>{{detail.Customer_Name}}</td>
+                                  <td>{{detail.unit_measur}}</td>
+                                  <td>{{detail.standard_price | numberNoDecimalsIfZeroFilter:2:detail.currency_name}}</td>
+                                  <td>{{detail.price_offered | numberNoDecimalsIfZeroFilter:2:detail.currency_name}}</td>
+                                  <td>{{detail.discount}}</td>
+                                  <td>{{detail.promotion_discount | numberNoDecimalsIfZeroFilter:2:detail.currency_name}}</td>
+                                  <td>{{detail.standard_vol_discount | numberNoDecimalsIfZeroFilter:2:detail.currency_name}}</td>
+                                  <td>{{detail.specific_vol_discount | numberNoDecimalsIfZeroFilter:2:detail.currency_name}}</td>
+
+                                  <td>{{detail.absolute_minimum_price | numberNoDecimalsIfZeroFilter:2:detail.currency_name}}</td>
+                                  <td ng-class="{'font-red':detail.show_red}">{{detail.final_disc_price | numberNoDecimalsIfZeroFilter:2:detail.currency_name}}</td>
+                                  <td>{{detail.strategy}}</td>
+                                </tr>
+                            </tbody>
+                         </table>
+                        </div>
+
+                </div>
+
+
+              </div>
+
+            </div>
+          <!-- Row ends -->
+
+      </div>
+
+      <div class="modal-footer">
+        <!-- {{selectedCustomers}} -->
+        <!-- <button type="button" class="btn btn-default btn_blue"_blue>Add</button> -->
+        <!--  -->
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Ends

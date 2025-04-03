@@ -1,0 +1,280 @@
+table.table-no-padding td {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+table.table-no-padding2{
+  padding-top: 3px;
+  padding-bottom: 3px;
+  width:100%;
+}
+
+.template-text-right {
+  text-align: right;
+}
+
+.temp-main-table {
+  width: 100%;
+  margin-top: 17px;
+  float: left;
+}
+
+.temp-left-area {
+  float: left;
+  width: 50%;
+  margin: 0 0 6px;
+}
+
+.temp-right-area {
+  float: right;
+  width: 50%;
+  text-align: right;
+}
+
+.template-name {
+  font-size: 19px;
+  font-weight: bold;
+  padding-bottom: 30px !important;
+  color: #2196F3;
+  text-align: right;
+}
+
+.template-bottom-pad {
+  padding-bottom: 10px;
+}
+
+.temp-box {
+  padding: 2px !important;
+}
+
+.temp-logo {
+  margin-bottom: 10px;
+}
+
+.temp-address-container {
+  float: left;
+  width: 37%;
+}
+
+.temp-body{
+  position: relative;
+    width: 100%;
+    float: left;
+}
+
+.temp-no-pad {
+  padding-left: 0 !important;
+}
+
+.temp-highlight {
+    color: #2196F3;
+    font-weight: bold;
+    padding-bottom: 0 !important;
+}
+
+.temp-total {
+  text-align: right;
+  color: #2196F3;
+  border-top: 1px solid #2196F3;
+}
+
+.temp-termscond td {
+  font-size: 10px;
+  vertical-align: top !important;
+}
+
+.temp-header {
+  border-left: 1px solid #03A9F4;
+  color: #03A9F4;
+  padding-left: 9px !important;
+}
+
+.temp-head {
+  clear: both;float:left;width:100%;
+}
+
+
+/* --------Report Css-------------- */
+
+.makeBold td {
+  font-weight: bold !important;
+  color: black;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.makeBold2 td {
+  font-weight: bold !important;
+  color: black;
+}
+
+.reportHeading {
+  clear: both;
+}
+
+.reportHeading__left {
+  float: left;
+  width: 54%;
+}
+
+.reportHeading__right {
+  float: right;
+  width: 38%;
+  text-align: right;
+}
+
+.reportHeading__left__reportname {
+    font-size: 16px;
+    margin-bottom: 4px;
+    color: #2196F3;
+}
+
+.reportHeading__left__reportfilter {
+    float: left;
+    font-size: 12px !important;
+    font-weight: bold;
+    width: 100%;
+}
+
+.reportHeading__right__img {
+  width: 114px;
+  margin-bottom: 10px;
+}
+
+.reportHeading__right__companyname {
+    font-size: 12px;
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #25a0f5;
+}
+
+.solid-border-left {
+  border-left: 1px solid #d6d6d6 !important;
+}
+
+.solid-border-right {
+  border-right: 1px solid #d6d6d6 !important;
+}
+
+.padding-num-right {
+  padding-right: 38px !important;
+  text-align: right;
+}
+
+.clearthis {
+  clear: both;
+}
+
+.reportHeading__right__img_resized {
+    max-width: 100px !important;
+}
+
+.smallWidth {
+  width: 80% !important;
+  margin: 0 auto;
+  float: left;
+}
+
+.rightAlign {
+  text-align: right !important;
+}
+
+.moveright {
+  display: block;
+  float: right;
+  text-align: right;
+}
+
+.reportHeading2 {
+  margin-top: 23px;
+  border-radius: 3px;
+  margin-bottom: 150px;
+}
+
+.addMarginTop {
+  margin-top: 180px;
+}
+
+.border-bot td {
+  border-bottom: 1px solid whitesmoke;
+}
+
+.fa {
+  font-family: fontawesome;
+  font-size: 9px;
+}
+
+.mytable1234 th:last-child, .mytable1234 td:last-child {
+    text-align: center !important;
+}
+
+.mytable1234 {
+  width: 100% !important;
+}
+
+.centerAlign {
+  text-align: center !important;
+}
+
+.padTopBot td {
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
+}
+
+.reportHeading__left table tbody  td{
+  padding: 2px 0 !important;
+}
+
+.tableBorder {
+  border: 1px solid #dadada;
+}
+
+.border-right-dash {
+  border-right: 1px dotted #8e8989;
+}
+
+.centerAlign {
+  text-align: center !important;
+}
+
+.font10 {
+  font-size: 10px !important;
+}
+
+.border-top-grey2 td {
+  border-bottom: 1px solid #D7D6D6 !important;
+}
+
+.border-bottom-grey {
+  border-bottom: 1px solid #D7D6D6 !important;
+}
+
+.equalwidth {
+  width: 10%;
+}
+
+.equalwidth2 th,.equalwidth2 td{
+  width: 10%;
+}
+
+.equalwidth9 {
+  width: 11.11%;
+}
+
+table.alternateRowColor tr:nth-child(even) td{
+  background: #f9f9f9 !important;
+}
+
+.totalFont td {
+  padding-bottom: 10px;
+}
+
+div.termsandCond{
+  font-size: 7px !important;
+  line-height: 7px !important;
+  visibility: hidden;
+}
+
+table td.termsandCondFooter{
+  line-height: 15px !important;
+}

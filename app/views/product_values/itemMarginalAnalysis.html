@@ -1,0 +1,135 @@
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="panel panel-default no-bd"
+                 style="padding-bottom: 0;">
+                <div class="panel-heading no-bg"
+                     style="display:none;">
+                    <h3 class="panel-title"
+                        style="padding-left:14px;">Standard Item Price</h3>
+                </div>
+                <div class="panel-body" style="padding: 1px 0 17px !important;">
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <div class="col-md-5 ">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12"
+                         style="    margin-bottom: 20px;">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="fixit">
+                                <tr class="bg-col">
+                                    <th style="width: 10%;"> Item </th>
+                                    <th style="width: 25%;"> Description </th>
+                                    <th> U.O.M </th>
+                                    <th style="    width: 15%;"> Additional Cost </th>
+                                    <th> Currency </th>
+                                    <th class="text-right"> Amount </th>
+                                    <th class="text-center"
+                                        style="    width: 6%;">
+
+                                        <a class="ib add-dis-btn"
+                                           title="Add Item">
+                                            <i class="material-icons"
+                                               ng-class="{'disable-el dont-click':checkitemMarginalAnalysisReadonly}"
+                                               ng-click="pushNewMarginalAnalysis()">&#xE147;</i>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="fixit"
+                                   style="max-height: 60vh;">
+
+                                <tr ng-repeat="item in marginal_analysis"
+                                    ng-class="{'selectedItem':$index == selectedRow}">
+                                    <td style="width: 10%;"> {{formData.product_code}} </td>
+                                    <td style="width: 25%;"> {{formData.description}} </td>
+                                    <td>
+                                        <!--  ng-change="addItemSalesInfo(1)" -->
+                                        <select class="form-control"
+                                                ng-model="item.uom_id"
+                                                ng-disabled="checkitemMarginalAnalysisReadonly"
+                                                ng-options="opt as opt.title for opt in refUOMList">
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control"
+                                                ng-model="item.marginal_analysis_id"
+                                                ng-change="OnChangeMarginAnalysis(item.marginal_analysis_id, $index);"
+                                                ng-disabled="checkitemMarginalAnalysisReadonly"
+                                                ng-options="opt as opt.name for opt in marginal_analysis_arr">
+                                        </select>
+                                    </td>
+                                    <td style="    width: 15%;">
+
+                                        <select class="form-control"
+                                                ng-model="item.currency_id"
+                                                ng-disabled="checkitemMarginalAnalysisReadonly"
+                                                ng-options="opt as opt.name for opt in arr_currency">
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="number"
+                                               step="any"
+                                               ng-model="item.amount"
+                                               ng-if="!checkitemMarginalAnalysisReadonly"
+                                               ng-readonly="checkitemMarginalAnalysisReadonly"
+                                               class="form-control text-right" />
+                                        <span class="readonlydiv form-control text-right" ng-if="checkitemMarginalAnalysisReadonly">{{item.amount | currency:""}}</span>
+                                    </td>
+                                    <td class="text-center"
+                                        style="    width: 6%;">
+                                        <a class="btn">
+                                            <i class="fa fa-times"
+                                               aria-hidden="true"
+                                               ng-click="deleteItemMarginAnalysis(item.id, $index)"
+                                               ng-class="{'disable-el dont-click':checkitemMarginalAnalysisReadonly || (allowdeleteitem_margin_analysis == 0)}"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div>
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                <!-- <button class="btn  btn-default" type="button" title="Documents" ng-show="salesFormData.id>0 &&  item_sale_tab_module>0"
+                                    ng-click="set_document_internal(item_sale_tab_module)">
+                                    {{document_title}} <img src="app/img/infile.png" style="width:16px;"
+                                                            class="doc-icon">
+                                </button> -->
+                                <button class=" picc_block btn btn-submit no-width"
+                                        type="submit"
+                                        ng-show="!checkitemMarginalAnalysisReadonly"
+                                        ng-click="addItemMarginalAnalysis()">
+                                    Save
+                                </button>
+                                <button class="btn btn-edit no-width"
+                                        ng-if="allowedititem_margin_analysis"
+                                        ng-class="{'dont-click': allowedititem_margin_analysis == 0}"
+                                        type="button"
+                                        ng-click="showEditItemMarginalAnalysisForm()"
+                                        ng-show="checkitemMarginalAnalysisReadonly">Edit
+                                </button>
+                                <button type="button"
+                                        class="btn btn-cancel "
+                                        ui-sref="{{btnCancelUrl}}"
+                                        data-dismiss="modal">Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- <div ng-include="'app/views/sale_item_info/_margin_date_popup.html'"></div> -->
+<!-- <div ng-include="'app/views/product_values/_sale_item_gl_account_modal.html'"></div> -->

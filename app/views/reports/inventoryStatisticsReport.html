@@ -1,0 +1,323 @@
+<div ng-controller="inventoryStatisticsController as table">
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+
+  <style>
+    body {
+      background-image: url(app/css/report-BG.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      padding-bottom: 10px;
+    }
+  </style>
+
+
+  <div class="a-content">
+    <div class="a-label-container">
+
+      <b class="a-title"
+         style="width: 120px;">Date <span class="required"> *</span></b>
+      <div class="input-symbol a-date">
+        <input jqdatepicker
+               class="form-control"
+               id="dateFrom"
+               placeholder="From"
+               readonly
+               ng-model="filterReport.dateFrom"
+               style="background-color: white;">
+        <span>
+          <i class="fa fa-calendar"></i>
+        </span>
+      </div>
+      <div class="input-symbol a-date">
+        <input jqdatepicker
+               class="form-control"
+               id="dateTo"
+               placeholder="To"
+               readonly
+               ng-model="filterReport.dateTo"
+               style="background-color: white;">
+        <span>
+          <i class="fa fa-calendar"></i>
+        </span>
+      </div>
+
+      <b class="ib a-margin-left add-filter collapsed"
+         ng-hide="reportType == 'ECSalesList'"
+         data-toggle="collapse"
+         data-target="#demo">Add Filter(s)</b>
+
+      <div class="pull-right">
+        <button class="btn report-generate no-margin"
+                type="button"
+                ng-click="generateReport()">Generate Report</button>
+        <button class="btn report-clearfilter"
+                type="button"
+                ng-click="clearReport()">Clear Filter</button>
+        <!-- <button class="btn btn-default2" type="button" ng-click="showPdfModal()"> Print Preview</button> -->
+        <div class="dropdown report-excel">
+          <button class="btn report-default dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown">Export As
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a ng-click="generateReport('xlsx')">Excel</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-filter-panel collapse in"
+         id="demo">
+
+      <div class="report-box"
+           >
+        <b class="a-title"
+           style="    width: 120px;">Filter 1 </b>
+        <select class="select2me form-control a-date"
+                ng-model="filterReport.division_1" ng-change="clear_filter_one()" ng-disabled="filterReport.report_by==2">
+          <option value="1">Territory</option>
+          <option value="2">Buying Group</option>
+          <option value="3">Segment</option>          
+          <option value="4">Customer</option>
+        </select>
+      </div>
+
+      <div class="report-box"
+           style="margin-bottom: 0;"
+           ng-if="filterReport.division_1==1">
+        <b class="a-title a-title-relative"
+           style="    width: 120px;">Select Territory(s)</b>
+        <div class="panel-info pi2 a-form-control"
+             style="width: 334px;"
+             ng-click="clearFiltersAndSelectTerritory()">
+          <div class="panel-body"
+               style="background-color: #fff;">
+            <span ng-repeat="sp in territories track by $index">
+              <span ng-if="territories.length == 1">{{sp.title}}</span>
+              <span ng-if="territories.length > 1">{{sp.title}}<span ng-if="$index < territories.length && $index!=0">;&nbsp;</span></span>
+            </span>
+            <aside></aside>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-box"
+           ng-if="filterReport.division_1==2">
+        <b class="a-title a-title-relative"
+           style="    width: 120px;">Select Buying Group(s)</b>
+        <div class="panel-info pi2 a-form-control"
+             style="width: 334px;"
+             ng-click="clearFiltersAndSelectBuyingGroup()">
+          <div class="panel-body"
+               style="background-color: #fff;">
+            <span ng-repeat="sp in buyingGroups track by $index">
+              <span ng-if="buyingGroups.length == 1">{{sp.title}}</span>
+              <span ng-if="buyingGroups.length > 1">{{sp.title}}<span ng-if="$index < buyingGroups.length && $index!=0">;&nbsp;</span></span>
+            </span>
+            <aside></aside>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-box"
+           ng-if="filterReport.division_1==3">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;">Select Segment(s)</b>
+        <div class="panel-info pi2 a-form-control"
+             style="width: 334px;"
+             ng-click="clearFiltersAndSelectSegment()">
+          <div class="panel-body"
+               style="background-color: #fff;">
+            <span ng-repeat="sp in segments track by $index">
+              <span ng-if="segments.length == 1">{{sp.title}}</span>
+              <span ng-if="segments.length > 1">{{sp.title}}<span ng-if="$index < segments.length && $index!=0">;&nbsp;</span></span>
+            </span>
+            <aside></aside>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-box"
+           ng-if="filterReport.division_1==4">
+        <b class="a-title a-title-relative"
+           style="width: 120px;">Select Customer(s)</b>
+        <div title="{{SelcustomersTooltip}}"
+             class="a-form-control"
+             style="width: 334px;">
+          <div class="panel-info pi2"
+               ng-click="clearFiltersAndSelectCustomer()">
+            <div class="panel-body"
+                 style="background-color: #fff;">
+              <span ng-repeat="sp in customers track by $index">
+                <span ng-if="customers.length == 1">{{sp.title}}</span>
+                <span ng-if="customers.length > 1">{{sp.title}}<span ng-if="$index < customers.length && $index!=0">;&nbsp;</span></span>
+              </span>
+              <aside></aside>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span><hr/></span>
+      
+      <div class="report-box"
+          >
+        <b class="a-title"
+           style="width: 120px;">Filter 2 </b>
+        <select class="select2me form-control a-date"
+                ng-model="filterReport.division_2" ng-change="clear_filter_two()" ng-disabled="filterReport.report_by==1">
+          <option value="1"> Brand </option>
+          <option value="2"> Category </option>
+          <option value="3"> Item </option>
+        </select>
+      </div>
+
+      <div class="report-box"
+           ng-if="filterReport.division_2==1">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;">Select Brand(s)</b>
+        <div class="panel-info pi2 a-form-control"
+             style="width: 334px;"
+             ng-click="clearFiltersAndSelectBrand()">
+          <div class="panel-body"
+               style="background-color: #fff;">
+            <span ng-repeat="sp in brands track by $index">
+              <span ng-if="brands.length == 1">{{sp.name}}</span>
+              <span ng-if="brands.length > 1">{{sp.name}}<span ng-if="$index < brands.length && $index!=0">;&nbsp;</span></span>
+            </span>
+            <aside></aside>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-box"
+           ng-if="filterReport.division_2==2">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;">Select Category(s)</b>
+        <div class="panel-info pi2 a-form-control"
+             style="width: 334px;"
+             ng-click="clearFiltersAndSelectCategory()">
+          <div class="panel-body"
+               style="background-color: #fff;">
+            <span ng-repeat="sp in categories track by $index">
+              <span ng-if="categories.length == 1">{{sp.name}}</span>
+              <span ng-if="categories.length > 1">{{sp.name}}<span ng-if="$index < categories.length && $index!=0">;&nbsp;</span></span>
+            </span>
+            <aside></aside>
+          </div>
+        </div>
+      </div>     
+
+    <div class="report-box"
+           ng-if="filterReport.division_2==3">
+        <b class="a-title a-title-relative"
+           style="width: 120px;">Select Item(s)</b>
+        <div title="{{SelItemsTooltip}}"
+             class="a-form-control"
+             style="width: 334px;">
+          <div class="panel-info pi2"
+               ng-click="clearFiltersAndSelectItems()">
+            <div class="panel-body"
+                 style="background-color: #fff;">
+              <span ng-repeat="sp in items track by $index">
+                <span ng-if="items.length == 1">{{sp.title}}</span>
+                <span ng-if="items.length > 1">{{sp.title}}<span ng-if="$index < items.length && $index!=0">;&nbsp;</span></span>
+              </span>
+              <aside></aside>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <span><hr/></span>
+      <div class="report-box"
+           >
+        <b class="a-title"
+           style="width: 120px;">Report Type</b>
+        <select class="select2me form-control a-date"
+                ng-model="filterReport.report_type">
+          <option value="1">Detailed</option>
+          <option value="2">Summary</option>
+        </select>
+      </div>
+      <div class="report-box"
+           >
+        <b class="a-title"
+           style="    width: 120px;">Show Results </b>
+        <select class="select2me form-control a-date"
+                ng-model="filterReport.report_by" ng-change="clear_result_by()">
+          <option value="1">By Filter 1</option>
+          <option value="2">By Filter 2</option>
+        </select>
+      </div>
+
+
+    </div>
+
+  </div>
+
+  <!-- <div class="a-table"
+     ng-if="columns.length > 0">
+  <h5 class="a-report-title">{{reportTitle}}</h5>
+  <table class="table table-condensed table-striped table-hover report-spacing"
+         id="data-table">
+    <thead class="fixit">
+      <tr class="bg-col">
+        <th ng-repeat="column in columns"
+            ng-if="column.title!= 'Id'">
+          <span ng-if="column.title == 'Custno'">Customer No.</span>
+          <span ng-if="column.title == 'Cust Order_no'">Cust Order No.</span>
+          <span ng-if="column.title == 'Supp Ref_no'">Supp. Ref. No.</span>
+          <span ng-if="column.title == 'Order'">Order No.</span>
+          <span ng-if="column.title == 'Eu Country_code'">EU Country Code</span>
+          <span ng-if="column.title == 'Vat Registernumber'">VAT Registration No.</span>
+          <span ng-if="column.title == 'Total Value_of_supplies'">Total Value of Supplies</span>
+          <span ng-if="column.title == 'Amount Incl_vat'">Amount Incl. VAT(LCY)</span>
+          <span ng-if="column.title == 'Amount Excl_vat'">Amount(LCY)</span>
+          <span ng-if="column.title == 'Link To So'">Link to SO No.</span>
+
+          <span
+                ng-if="column.title != 'Vat Amount' && column.title != 'Amount Excl_vat' && column.title != 'Custno' &&
+                                     column.title != 'Supp Ref_no' && column.title != 'Cust Order_no' &&
+                                     column.title != 'Eu Country_code' && column.title != 'Vat Registernumber' &&
+                                     column.title != 'Total Value_of_supplies' && column.title != 'Link To So' &&
+                                     column.title != 'Sale Order_no' && column.title != 'Amount Incl_vat'">{{column.title}}</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody class="fixit">
+      <tr ng-repeat="rec in reportsDataArr"
+          ng-if="columns.length > 0">
+        <td ng-repeat="column in columns"
+            ng-if="column.title != 'Id'">
+          <span ng-if="column.title != 'Amount Excl_vat' && column.title != 'Amount Incl_vat' && 
+                                     column.title != 'Amount' && column.title != 'Total Value_of_supplies' && 
+                                     column.title != 'Stock Value'">{{rec[column.field]}}</span>
+          <span ng-if="column.title == 'Amount Excl_vat' || column.title == 'Amount Incl_vat' || 
+                                     column.title == 'Amount' || column.title == 'Total Value_of_supplies' || 
+                                     column.title == 'Stock Value'">{{rec[column.field]
+                          | currency : "" : decimal_range }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div> -->
+
+
+
+
+  <div ng-include="'app/views/reports/_listingCustomerDetailModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingSalepersonModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingSupplierDetailModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingEuCountriesModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingItemDetailModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingGLDetailModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingTerritoryModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingBuyingGroupModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingSegmentModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingBrandModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingCategoryModal.html'"></div>
+
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

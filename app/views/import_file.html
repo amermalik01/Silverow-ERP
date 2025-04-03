@@ -1,0 +1,110 @@
+<div class="modal fade"
+     id="model_file_migration{{uploadModalId?uploadModalId:''}}">
+    <div class="modal-dialog" style="    margin-top: 50px;">
+        <div class="modal-content">
+            <div ng-class="{'whirl no-overlay':showLoader}"></div>
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Import {{title}}</h4>
+            </div>
+            <div class="modal-body" style="max-height: 60vh;overflow: auto;">
+                <div class="row"
+                     style="margin-bottom: 0 !important;">
+                    <div class="col-md-12">
+                        <div style="margin-bottom: 10px;float: left;">
+                            <h5 style="font-weight: bold;margin-bottom: 4px;"><span class="migrationCounter">1</span>Download
+                                the sample document</h5>
+                            <p style="margin-left: 31px;">The sample file has the correct column headings Silverow
+                                needs
+                                to import your data.</p>
+                            <a target="_blank"
+                               style="margin-left: 31px !important;"
+                               class="btn btn-default2 pull-left"
+                               href="{{sampledownload}}">Download Sample File
+                            </a>
+                        </div>
+                        <div style="float: left;">
+                            <h5 style="font-weight: bold;margin-bottom: 4px;"><span class="migrationCounter">2</span>Copy
+                                the details into the downloaded sample document</h5>
+                            <p style="margin-left: 31px;">
+                                Do not change the column headings in the template file. These need to be unchanged
+                                for the import to work in the next step.
+                            </p>
+                        </div>
+                        <div style="margin-bottom: 10px;float: left;">
+                            <h5 style="font-weight: bold;"><span class="migrationCounter">3</span>Import
+                                the updated document file</h5>
+                            <div class="fileUpload btn btn-default2"
+                                 style="margin-left: 31px !important;">
+                                <span>Select File</span>
+                                <input type="file"
+                                       ngf-select="uploadFiles_xl($file, $invalidFiles)"
+                                       name="file"
+                                       multiple=""
+                                       class="upload"
+                                       ng-accept=".xlsx, .xls"
+                                       accept=".xlsx, .xls"
+                                       ngf-max-size="2MB" />
+                            </div>
+                            <div ng-show="file_data.name.length>0"
+                                 style="display: inline-block;
+                                        margin-left: 8px;
+                                        background: whitesmoke;
+                                        padding: 1px 7px;
+                                        border-radius: 2px;">{{file_data.name}}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-12"
+                         ng-if="errorLog != 0">
+                        <div class="well cursorPointer" data-toggle="collapse" data-target="#errorLog" style="padding: 10px;">
+                            <h5 style="margin-top: 0;font-weight: bold;">Error Log</h5>
+                            <table class="table table-condensed table-striped table-hover table-bordered " id="errorLog" class="collapse">
+                                <thead class="fixit">
+                                    <tr>
+                                        <th style="width: 33%;">
+                                            (Cell Location) &amp Field Header
+                                        </th>
+                                        <th>
+                                            Error Message
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="fixit">
+                                    <tr ng-repeat="(key,error) in errorLog">
+                                        <td style="width: 33%;">
+                                            {{key}}</td>
+                                        <td>{{error}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div ng-show="errorfiledownload.length>0"
+                     class="pull-left no-margin">
+                    <a target="_blank"
+                       href="{{errorfiledownload}}"
+                       download
+                       ng-show="errorfiledownload.length>0"
+                       class="btn btn-delete no-margin">Download Error Log</a>
+                </div>
+                <button type="submit"
+                        class="btn btn_add2"
+                        ng-click="add_migration()"
+                        ng-disabled="!(file_data.name.length>0)">Upload</button>
+                <button type="button"
+                        class="btn btn-cancel "
+                        data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<!-- <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container> -->

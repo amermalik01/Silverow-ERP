@@ -1,0 +1,154 @@
+<div ng-controller="OppCycleTabsController as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <!-- Row starts -->
+    <div class="row">
+
+        <div class="col-md-12 col-md-12">
+            <div>
+                <form>
+                    <div class="nav nav-tabs"
+                         style="    margin-bottom: 9px;">
+                        <div class="col-md-2">
+                            <div class="search-wrapper">
+                                <input type="text"
+                                       style="font-size: 13px;"
+                                       Placeholder="Search"
+                                       class="form-control"
+                                       ng-model="searchKeyword.search">
+                                <i class="fa fa-search search-icon"
+                                   aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <label class="col-md-2 control-label2">Opp. Cycle Stage Limit</label>
+                        <div class="col-md-1">
+                            <input maxlength="3"
+                                   type="text"
+                                   min="1"
+                                   max="9"
+                                   data-parsley-trigger="keyup"
+                                   ng-model="oct.opp_cycle_limit"
+                                   class="form-control"
+                                   data-parsley-minlength-message="Invalid Value"
+                                   ng-change="showMainSaveBtn()"
+                                   data-parsley-type-message="Invalid Value"
+                                   data-parsley-error-message="Invalid Value"
+                                   data-parsley-pattern="^[0-9\-_]{0,50}$">
+                        </div>
+                        <label class="col-md-2 control-label2">Freq. Start Month</label>
+                        <div class="col-md-1 no-padding">
+                            <ui-select ng-model="oct.freqstartmonth"
+                                       ng-change="showMainSaveBtn()">
+                                <ui-select-match placeholder="Start Month">{{$select.selected.title}}</ui-select-match>
+                                <ui-select-choices repeat="opt in startMonthArr | filter: $select.search">
+                                    <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+
+                        <label class="col-md-2"
+                               title="Opportunity Cycle Stage Probability Editable">
+                            <input type="checkbox"
+                                   id="oop_cycle_edit_role"
+                                   ng-click="showMainSaveBtn()"
+                                   ng-model="oct.oop_cycle_edit_role"
+                                   ng-checked="oct.oop_cycle_edit_role > 0"
+                                   style="margin-top: 10px;margin-right: 4px;">
+                            Opp. Cycle Stage Prob. Editable
+                        </label>
+
+                        <!--{{active_counter}}-->
+                        <div class="col-md-1 pl0">
+                            <a class="btn btn-submit2 pull-right"
+                               type="submit"
+                               ng-click="addGeneralOppCycle(oct)"
+                               ng-show="!check_readonly"
+                               ng-if="MainSaveBtn">
+                                <!--<i class="fa fa-check"></i>-->Save
+                            </a>
+                        </div>
+                        <div class="col-md-1">
+                            <a id="prompt"
+                               ui-sref="app.add-opportunity-cycle-tabs"
+                               class="btn btn_add pull-right">Add</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <div id="dt_example"
+                     class="example_alt_pagination">
+                    <table class="table table-condensed table-striped table-hover table-bordered"
+                           id="data-table"
+                           show-filter="true"
+                           ng-show="columns.length > 0">
+                        <thead class="fixit">
+                            <tr class="bg-col">
+                                <!-- <th ng-repeat="column in columns" ng-show="column.visible" class="sortable sort-asc" ng-if="column.field != 'id' && column.field != 'rank' && column.field != 'module_id' && column.field != 'edit_percentage' && column.field != 'percentage' && column.field != 'start_end'">
+                                    {{column.title}}
+                                </th>
+                                <th ng-show="columns.length > 0" class="sortable sort-asc" style="text-align: center;">
+                                    Action
+                                </th> -->
+                                <th> Name </th>
+                                <th> Probability </th>
+                                <th> Status </th>
+                                <th style="text-align: center;"> Action </th>
+                            </tr>
+                        </thead>
+                        <!--  <tr >
+                        <td ng-repeat="column in columns"
+                        ng-show="column.visible"
+                        class="sortable"
+                        > <input type="text" class="form-control"
+                        ng-model="MyCustomeFilters[column.field] "/>
+                        </td>
+                        </tr> -->
+                        <tbody class="fixit ">
+                            <tr ng-repeat="rec in data | filter:searchKeyword.search">
+                                <!-- <td ng-repeat="column in columns" ng-show="column.visible" ng-if="column.field != 'id' && column.field != 'rank' && column.field != 'module_id' && column.field != 'edit_percentage' && column.field != 'percentage' && column.field != 'start_end'"
+                                    ui-sref="app.view-opportunity-cycle-tabs({id:rec.id})">
+                                    {{rec[column.field]}}
+                                    <span ng-if="column.title == 'Probability'"></span>
+                                </td>
+                                <td> -->
+                                <td ui-sref="app.view-opportunity-cycle-tabs({id:rec.id})"> {{rec.name}} </td>
+                                <td ui-sref="app.view-opportunity-cycle-tabs({id:rec.id})">
+                                    <span ng-if="rec.start_end != 2"> {{rec.Probability}} % </span>
+                                </td>
+                                <td ui-sref="app.view-opportunity-cycle-tabs({id:rec.id})"> {{rec.status}} </td>
+                                <td ng-show="columns.length > 0"
+                                    style="    text-align: center;">
+                                    <!-- <a ui-sref="app.edit-opportunity-cycle-tabs({id:rec.id})" class="btn btn-primary icon_square" title="Edit">
+                                                <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a ng-click="delete(rec.id,$index,data)" class="btn btn-primary icon_square" title="Delete">
+                                                <i class="fa fa-times"></i>
+                                                </a> -->
+                                    <span ng-if="rec.start_end == 1.1">
+                                        <a class="btn "
+                                           title="Move Up"
+                                           ng-click="moveUp($index)"
+                                           ng-if="$index>0">
+                                            <i class="fa fa-arrow-up"></i>
+                                        </a>
+                                        <a class="btn "
+                                           title="Move Down"
+                                           ng-click="moveDown($index)"
+                                           ng-if="$index<data.length-1">
+                                            <i class="fa fa-arrow-down"></i>
+                                        </a>
+                                    </span>
+                                </td>
+                            </tr>
+                            <div ng-show="!columns.length > 0"
+                                 class="no-record"></div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

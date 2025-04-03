@@ -1,0 +1,64 @@
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="widget animated fadeIn">
+            <div class="widget-body nobg-widget-body" style="margin-top:10px;">
+                <div class="row">
+                    <form autocomplete="off" class="form-horizontal no-margin" role="form" name="editForm" ng-submit="editForm.$valid && update(rec)"
+                        validate-form="" novalidate="">
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-12">
+      <div class="col-md-5">
+        
+        <div class="form-group">
+          <label class="col-md-4 control-label">Name<span class="required">*</span></label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.title" id="title" name="title" class="form-control" ng-readonly="check_readonly"
+              required/>
+          </div>
+        </div>
+
+         <div class="form-group">
+          <label class="col-md-4 control-label">Status<span class="required">*</span></label>
+          <div class="col-md-8">
+            <select ng-model="rec.status" ng-options="opt as opt.label for opt in arr_status" class="select2me form-control" required
+              ng-disabled="check_readonly" id="status">
+                  <option style="display:none" ></option>
+                </select>
+          </div>
+        </div> 
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="col-md-12" ng-show="!showLoader">
+                            <div class="pull-right">
+                                <!-- <button class="btn btn-delete active-btns" type="button" 
+                                    ng-if="rec.deletePerm>0" 
+                                    ng-click="delete(rec.id)" 
+                                    ng-show="rec.id>0"> Delete
+                                </button>  && rec.is_used == 0"  -->
+                                <button class="btn btn-delete active-btns" type="button" 
+                                    ng-if="!(rec.ref_id > 0) && !check_readonly"
+                                    ng-click="delete(rec.id)" 
+                                    ng-show="rec.id>0 "> Delete
+                                </button>
+                                <input type="hidden" name="update_id" ng-model="rec.update_id" />
+                                <button class="btn btn-submit date_block pic_block" type="submit" ng-if="!check_readonly">Save</button>
+                                <button class="btn btn-edit date_block pic_block" type="button" ng-click="gotoEdit()"
+                                     ng-if="check_readonly"><i class="fa fa-edit fa_display"></i> Edit</button>
+                                <button class="btn btn-cancel" type="button" ui-sref="{{btnCancelUrl}}">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

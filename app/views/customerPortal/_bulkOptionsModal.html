@@ -1,0 +1,45 @@
+<!--Supplier listing for General order tab-->
+<div class="modal fade"
+     id="_bulkOptionsModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog"
+         dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Options</h4>
+            </div>
+            <div class="modal-body text-center">
+                <div class="row"
+                     style="margin-bottom: 0 !important;">
+                    <div class="col-md-12"
+                         style="margin-top: 23px;">
+                        <label class="saveAsDesign"
+                               ng-click="bulkOptionConfirm('saveAsPdf')"
+                               ng-if="!animateBulkEmail">
+                            <i class="material-icons"
+                               style="display: block;font-size: 56px;color: #e23e3e;margin-bottom: 4px;">
+                                picture_as_pdf
+                            </i>
+                            Download as Pdf
+                        </label>
+                        <label class="saveAsDesign"
+                               ng-if="animateBulkEmail">
+                           {{animateBulkEmailText}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-default"
+                        data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

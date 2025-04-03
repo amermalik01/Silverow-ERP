@@ -1,0 +1,49 @@
+<div class="row">
+<div class="col-lg-6">
+<div class="form-group">
+  <label class="col-lg-4 control-label">Conversion Rate <span class="required">*</span></label>
+  <div class="col-lg-8">
+    <input type="text" ng-model="rec.conversion_rate" id="conversion_rate" name="conversion_rate" class="form-control" tabindex="1" 
+                            required="1" ng-readonly="check_readonly" data-parsley-type="number" />
+    <input type="hidden" ng-model="rec.update_id" id="update_id" name="update_id" />
+  </div>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-6">
+  <div class="form-group">
+    <label class="col-lg-4 control-label">Start Date<span class="required">*</span></label>
+    <div class="col-lg-8">
+      <input jqdatepicker class="2date-picker form-control" id="ck_sdate" ng-model="rec.start_date" ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_start_currency')"  required readonly >
+        <span id="date_msg_start_currency" style="color:#F00; display: none;"  >Start Date Required</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-6">
+  <div class="form-group">
+    <label class="col-lg-4 control-label">End Date<span class="required">*</span></label>
+    <div class="col-lg-8">
+       <input jqdatepicker class="2date-picker form-control" id="ck_edate" ng-model="rec.end_date" ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_end_currency')" required readonly >
+       <span id="date_msg_end_currency" style="color:#F00; display: none;"  >Leaving Date is earlier  then Start Date</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-6">
+<div class="form-group">
+  <label class="col-lg-4 control-label">Status<span class="required">*</span></label>
+  <div class="col-lg-8">
+    <select ng-model="rec.status" ng-options="opt as opt.label for opt in arr_status" class="select2me form-control" ng-readonly="check_readonly" id="status" tabindex="4" required ><option value=""></option> </select>
+  </div>
+</div>
+</div>
+</div> 
+
+

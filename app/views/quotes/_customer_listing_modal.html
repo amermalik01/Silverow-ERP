@@ -1,0 +1,49 @@
+<div id="custModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{title}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <!-- <div class="form-group"><a id="prompt"  class="btn btn-info btn_blue margin_bottom"><i class="fa fa-search"></i>Search</a>
+    <div class="col-md-7">
+      <input type="text" Placeholder="Search" class="form-control ng-valid ng-dirty" ng-model="searchKeyword">
+    </div>
+  </div> -->
+          <div class="col-md-12">
+            <!-- START panel-->
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <!-- START table-responsive-->
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                      <tr class="bg-col">
+                        <th ng-repeat="column in columns" ng-hide="column.field == 'id'">{{column.title}}</th>
+                      </tr>
+                    </thead>
+                    <tbody class="courser table-body">
+                      <tr ng-repeat="rec in record  | filter: searchKeyword  " ng-click="checkCreditLimit(rec.id)">
+                        <td ng-repeat="column in columns" ng-hide="column.field == 'id'">{{rec[column.field]}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- END table-responsive-->
+              </div>
+            </div>
+            <!-- END panel-->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>

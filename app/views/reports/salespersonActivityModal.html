@@ -1,0 +1,292 @@
+<div class="modal fade template-design"
+     id="salespersonActicityModal">
+    <div class="modal-dialog modal-md"
+         style=" width: 28cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 2cm;">
+
+                <htmlpageheader name="MyCustomHeader">
+                    <div class="reportHeading">
+                        <div class="reportHeading__left">
+                            <div class="reportHeading__left__reportname">Salesperson Activity Report</div>
+                            <div class="reportHeading__left__reportfilter">
+                                From
+                                <span ng-if="!(printPdfVals.dateFrom.length > 0)">--</span>
+                                <span ng-if="printPdfVals.dateFrom.length > 0">{{printPdfVals.dateFrom}}</span>
+                                To {{printPdfVals.dateTo}}
+                            </div>
+                        </div>
+                        <div class="reportHeading__right">
+                            <img ng-src="{{imagePath+defaultLogo}}"
+                                 class="reportHeading__right__img "
+                                 ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            <div class="reportHeading__right__companyname">{{company_name}}</div>
+                        </div>
+                    </div>
+                </htmlpageheader>
+
+                <sethtmlpageheader name="MyCustomHeader"
+                                   page="ALL"
+                                   value="on"
+                                   show-this-page="1" />
+
+                <pagefooter name="MyFooter4"
+                            content-right="{DATE j-m-Y}"
+                            content-center="Page {PAGENO} of {nb}"
+                            content-left="{{known_as}}"
+                            footer-style="color:#00000;font-size: 11px"
+                            footer-style-left="font-weight:bold;" />
+
+
+
+                <setpagefooter name="MyFooter4"
+                               page="ALL"
+                               value="on"
+                               show-this-page="1" />
+                <style ng-if="toggleLandscape">
+                    @page {
+                        sheet-size: A4-L;
+                        margin: 5mm 5mm 5mm 5mm;
+                        header: html_MyCustomHeader;
+                        footer: MyFooter4;
+                    }
+                </style>
+                <div style="clear: both; margin: 0pt; padding: 0pt; "></div>
+
+                <div class="row">
+                    <div class="col-md-12 col-md-12"
+                         style="margin-top: 8px;">
+                        <div ng-repeat="record in printPdfVals.reportsDataArr"
+                             style="    padding: 10px;
+                                        border: 1px solid #e8e8e8;
+                                        border-radius: 2px;
+                                        margin-bottom: 11px;">
+                            <h5 style="margin: 4px 0 12px;font-size: 13px">
+                                <b style="font-size: 13px">Salesperson:</b> {{record.summary.name}}</h5>
+                            <table style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 18%;">
+                                            Date & Time Created
+                                            <!-- <a href="javascript:void(0)"
+                                               ng-click="orderByField='AddedTimestamp'; reverseSort = !reverseSort"> Date & Time Created
+                                                <div ng-show="orderByField == 'AddedTimestamp'"
+                                                     class="ib">
+                                                    <span class="fa fa-angle-down"
+                                                          ng-show="!reverseSort"></span>
+                                                    <span class="fa fa-angle-up"
+                                                          ng-show="reverseSort"></span>
+                                                </div>
+                                            </a> -->
+                                        </th>
+                                        <th style="text-align:center;width: 13%;">Notes</th>
+                                        <th style="text-align:center;width: 13%;">Added CRM</th>
+                                        <th style="text-align:center;width: 17%;">Converted to Customer</th>
+                                        <th style="text-align:center;width: 15%;">Tasks</th>
+                                        <th style="width: 10%;">No.</th>
+                                        <th style="width: 24%;">Name</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody
+                                       ng-repeat="salesperson in record.customers | orderBy:'AddedTimestamp':reverseSort">
+                                    <tr ng-if="salesperson.listtype=='notes'"
+                                        class="border-bot">
+                                        <td>{{salesperson.AddedOn}}</td>
+                                        <td style="text-align:center;">
+                                            <span class="fa"
+                                                  style="font-size: 7px;">&#xf111;</span>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td ng-if="salesperson.ctype==1">{{salesperson.crm_code}}</td>
+                                        <td ng-if="salesperson.ctype==2 || salesperson.ctype==3">
+                                            {{salesperson.customer_code}}</td>
+                                        <td>{{salesperson.name}}</td>
+
+                                    </tr>
+                                    <tr ng-if="salesperson.listtype=='crm'"
+                                        class="border-bot">
+                                        <td>{{salesperson.AddedOn}}</td>
+                                        <td></td>
+                                        <td style="text-align:center;">
+                                            <span class="fa"
+                                                  style="font-size: 7px;">&#xf111;</span>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{salesperson.crm_code}}</td>
+                                        <td>{{salesperson.name}}</td>
+
+                                    </tr>
+                                    <tr ng-if="salesperson.listtype=='customer'"
+                                        class="border-bot">
+                                        <td>{{salesperson.AddedOn}}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td style="text-align:center;">
+                                            <span class="fa"
+                                                  style="font-size: 7px;">&#xf111;</span>
+                                        </td>
+                                        <td></td>
+                                        <td>{{salesperson.customer_code}}</td>
+                                        <td>{{salesperson.name}}</td>
+
+
+                                    </tr>
+                                    <tr ng-if="salesperson.listtype=='tasks'"
+                                        class="border-bot">
+                                        <td>{{salesperson.AddedOn}}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td style="text-align:center;">
+                                            <div ng-if="salesperson.taskStatus=='Completed'">
+                                                <span class="fa"
+                                                      style="color:green;font-size: 7px;">&#xf111;</span>
+                                            </div>
+                                            <div ng-if="salesperson.taskStatus=='Future'">
+                                                <span class="fa"
+                                                      style="color:orange;font-size: 7px;">&#xf111;</span>
+                                            </div>
+                                            <div ng-if="salesperson.taskStatus=='Overdue'">
+                                                <span class="fa"
+                                                      style="color:red;font-size: 7px;">&#xf111;</span>
+                                            </div>
+
+                                        </td>
+                                        <td ng-if="salesperson.ctype==1">{{salesperson.crm_code}}</td>
+                                        <td ng-if="salesperson.ctype==2 || salesperson.ctype==3">
+                                            {{salesperson.customer_code}}</td>
+                                        <td>{{salesperson.name}}</td>
+
+                                    </tr>
+
+                                </tbody>
+                                <tbody>
+                                    <tr style="background-color: #f7f7f7;">
+                                        <td>
+                                            <b>Total</b>
+                                        </td>
+                                        <td style="text-align:center;">
+                                            <b>{{record.summary.totalNotes}}</b>
+                                        </td>
+                                        <td style="text-align:center;">
+                                            <b>{{record.summary.totalCrm}}</b>
+                                        </td>
+                                        <td style="text-align:center;">
+                                            <b>{{record.summary.totalCustomer}}</b>
+                                        </td>
+                                        <td style="text-align:center;">
+                                            <b>{{record.summary.totalTask}}</b>
+                                        </td>
+                                        <td colspan="2"></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- {{printPdfVals.grandTotalArray}} -->
+
+                        <div ng-if="printPdfVals.grandTotalArray"
+                             style=" padding: 10px; border: 1px solid #e8e8e8; border-radius: 2px; margin-bottom: 11px;">
+                            <table style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 18%;">&nbsp;</th>
+                                        <th style="text-align:center;width: 13%;">Notes</th>
+                                        <th style="text-align:center;width: 13%;">Added CRM</th>
+                                        <th style="text-align:center;width: 17%;">Converted to Customer</th>
+                                        <th style="text-align:center;width: 15%;">Tasks</th>
+                                        <th style="width: 10%;">&nbsp;</th>
+                                        <th style="width: 24%;">&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <b>Grand Total</b>
+                                        </td>
+                                        <td class="text-center">
+                                            <b>{{printPdfVals.grandTotalArray.totalNotes}}</b>
+                                        </td>
+                                        <td class="text-center">
+                                            <b>{{printPdfVals.grandTotalArray.totalCrm}}</b>
+                                        </td>
+                                        <td class="text-center">
+                                            <b>{{printPdfVals.grandTotalArray.totalCustomer}}</b>
+                                        </td>
+                                        <td class="text-center">
+                                            <b>{{printPdfVals.grandTotalArray.totalTask}}</b>
+                                        </td>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            ng-click="destroyPdfModal('salespersonActicityModal')">Cancel</button>
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <!-- data-dismiss="modal" -->
+                    <!-- <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-disabled="generatingPDF"
+                       ng-click="generatePdf(printPdfVals.reportName)">
+                        <i class="fa fa-download"
+                           aria-hidden="true"
+                           style="color:#444444;"></i>
+                    </a>
+                    <a href="app/views/invoice_templates_pdf/{{printPdfVals.reportName}}.pdf"
+                       target="_blank"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       id="displayPdf"
+                       style="display:none">
+                   ng-if="printinvoiceFlag"
+                    <i class="fa fa-download"
+                       aria-hidden="true"></i>
+                    </a>
+                    <span class='generatingPDF'
+                          ng-if="generatingPDF">
+                        <i class='fa-spin fa fa-spinner'></i>Generating PDF
+                    </span> -->
+                    <!-- jsreport download button -->
+                    <a type="button"
+                       class="btn btn-default2"
+                       ng-if="!jsreportLoading"
+                       title="Download PDF"
+                       ng-click="downloadReportSalesPersonActivity(printPdfVals)">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

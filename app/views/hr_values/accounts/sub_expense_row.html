@@ -1,0 +1,212 @@
+<style>
+#no-display {
+	display: none
+}
+</style>
+<script type="text/javascript">
+   
+
+// submit employees basic  page: admineditemployee  
+/*jQuery('#ajaxform').click(function(e) {
+   
+    //formURL = 'http://'+window.location.hostname+window.location.pathname;
+	console.log($formURL);
+	//  var formURL = $scope.$root.hr+"hr_values/update-tab-col-val";
+	 var formURL = "http://localhost/navson/api/hr/hr_values/update-tab-col-val";
+	 
+    //  var formURL =  baseURL + "hr_values/update-tab-col-val"",
+	 var postData = $(this).serializeArray(); 
+	
+   	  $.ajax({ 
+        type: "post",
+		 url:formURL,
+        data: postData,
+		//type: 'GET', 
+        dataType: "text json",
+		
+       // dataType: "json",
+        success: function(dat)
+        {
+            if (dat.status == 'success')
+            {
+             		  alert('add');
+        
+            }
+            else
+            { 
+			 alert('error');
+			}
+        },  error: ajaxFailed
+    });
+});
+*/
+
+ 			 
+				
+  
+</script>
+
+<!-- Row ends -->
+
+<div class="row">
+  <div class="col-md-12 col-md-12">
+    <div class="widget">
+      <div class="widget-header" style="background:#EDF1F2 !important">
+        <div class="title"> Expences Details </div>
+        <span class="tools"> </span> </div>
+      <div class="widget-body">
+        <div id="dt_example" class="example_alt_pagination">
+          <table class="table table-condensed table-striped   table-bordered pull-left">
+            <thead>
+              <tr>
+                <th> Category </th>
+                <th> Description </th>
+                <th> Currency </th>
+                <th> Amount </th>
+                <th> Exchange rate </th>
+                <th> Total Amount </th>
+                <th> Image </th>
+                <th style="width:7%"> Actions </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="formData in  resultValue=(users)"   ng-show="columns.length > 0  "  >
+                <td><span class="{{'new_button_' + formData.id}}">{{formData.catype}} </span>
+                  <div  id="no-display" class="replace_reload {{'replace_button_' + formData.id}}">
+                    <select   style="width:150px"  
+          	 ng-model="formData.category"
+            ng-options="opt as opt.name for opt in category_expense"
+              class="select2me form-control  {{'new_' + formData.id}}"    disabled="true"   id="category" >
+                      
+                    </select>
+                  </div></td>
+                <td><span class="{{'new_button_' + formData.id}}">{{formData.exchange_description}} </span>
+                  <div  id="no-display"class="{{'replace_button_' + formData.id}}">
+                    <input    id="exchange_description"  type="text" ng-model="formData.exchange_description"  
+           class="form-control" />
+                  </div></td>
+                <td><span class="{{'new_button_' + formData.id}}">{{formData.crtype}} </span>
+                  <div  id="no-display"class="{{'replace_button_' + formData.id}}">
+                    <select     style="width:100px"   
+           ng-model="formData.currency" ng-options="opt as opt.name for opt in currency_list"
+              class="select2me form-control {{'new_' + formData.id}}"  disabled="true"  id="currency"  >
+                      
+                    </select>
+                  </div></td>
+                <td><span class="{{'new_button_' + formData.id}}">{{formData.amount}} </span>
+                  <div  id="no-display"class="{{'replace_button_' + formData.id}}">
+                    <input type="text"  placeholder="0"  disabled="true"  id="amount"
+                   min="1"  max="1000" step="100"   data-parsley-trigger="keyup" 
+           data-parsley-minlength="1"  ng-model="formData.amount"    
+           class="form-control input_text {{'new_' + formData.id}}"
+           data-parsley-minlength-message="only Decimal" data-parsley-type="number" 
+           data-parsley-type-message="only Decimal"  required  >
+                  </div></td>
+                <td><span class="{{'new_button_' + formData.id}}">{{formData.exchange_rate}} </span>
+                  <div  id="no-display"class="{{'replace_button_' + formData.id}}">
+                    <input type="text"     placeholder="0"     min="1"  max="1000" step="100"   data-parsley-trigger="keyup" disabled="true" 
+           data-parsley-minlength="1"  ng-model="formData.exchange_rate"  id="exchange_rate"    class="form-control input_text {{'new_' + formData.id}}"
+           data-parsley-minlength-message="only Decimal" data-parsley-type="number" 
+           data-parsley-type-message="only Decimal"  required  >
+                  </div></td>
+                <td   > {{   total_sub	= 	formData.amount *  formData.exchange_rate | number:2 }} </td>
+                <td class="text-center"><span class="{{'new_button_' + formData.id}}">
+                  <div   ng-if="formData.exp_image">  
+                  
+                     <a target="_blank" href="{{imagePath+formData.exp_image}}">
+                <em  style="font-size: 20px !important;"class="fa fa-file-image-o"></em></a>
+                
+                
+                
+                 </div>
+                  </span>
+                  <div  id="no-display"class="{{'replace_button_' + formData.id}}">
+                    <div  ng-controller="DocUploadDocument_single">
+                      <div class="col-sm-7">
+                        <div class="fileUpload btn btn-primary" style="    margin-bottom: 2px;" > <span ng-if="!formData.exp_image">Image</span><span ng-if="formData.exp_image">image</span>
+                          <input    type="file"  disabled
+            ngf-select="uploadFiles($file, $invalidFiles)" name="file" 
+            multiple accept="image/*" class="upload {{'new_' + formData.id}}" 
+            ngf-max-height="1000" ngf-max-size="1MB"  />
+                          <input  ng-readonly="check_hrvalues_readonly"  type="hidden"  ng-model="formData.exp_image">
+                          <input  ng-readonly="check_hrvalues_readonly"  type="hidden"  ng-init="formData.exp_image = formData.exp_image"    
+           ng-model="formData.exp_image">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group" ng-if="formData.exp_image">
+                      <div class="col-sm-7"> <img  ng-src="{{imagePath+formData.exp_image}}" 
+      style="width:50px; height:50px;" /> </div>
+                    </div>
+                  </div></td>
+                <td   class="text-center" ng-show="users.length > 0" ><input type="hidden"   ng-model="formData.id"  value="formData.id" id="sub_expense_id"/>
+                  <input type="hidden"   ng-model="formData.expense_id" />
+                  <input type="hidden"   ng-model="expense_id" />
+                  <input type="hidden"   ng-model="sub_expense_id" id="sub_expense_idss" />
+                  <input type="hidden"   ng-model="exp_id" />
+                  <input type="hidden"   ng-model="formData.tab_id_2"   value="7"/>
+                  <a ng-click="shownew(formData.id )"  title="Edit" 
+              class="btn  {{'new_button_' + formData.id}}"> <i class="fa fa-edit"> </i></a> <a ng-click="submitnew(formData)" title="submit"    style="display:none"
+              class="btn  {{'replace_button_' + formData.id}}"> Submit</a> <a ng-click="submitcancel(formData.id)"    style="display:none; margin-top:5px"
+              class="btn  {{'replace_button_' + formData.id}}"> Cancel</a> <a  title="Delete" ng-click="deletesubexpenses(formData.id,$index,users)"
+             class="btn  {{'new_button_' + formData.id}}"> <i class="fa fa-times "> </i></a></td>
+              </tr>
+              <!--  <tr class="text-center"   ng-show="columns.length > 0 > 0"  >
+                <td colspan="5">&nbsp;</td>
+                <td   style="    border: solid 1px black !important;"><strong> Total Sum: {{   total_final| number:2 }} 
+                  
+                  Total Sum {{ totalPrice()    }} 
+                  
+                  </strong></td>
+                <td colspan="2">&nbsp;</td>
+              </tr>-->
+              <tr  ng-show="columns.length > 0 == 0 && !showLoader" >
+                <td class="text-center"  colspan="8" >No Record found agaist this entity! Please add.</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="clearfix"> </div>
+        </div>
+        <!--  <form>-->
+        <div class="row">
+          <div class="col-md-9"></div>
+          <!--<div class="col-md-3">
+            <div class="input-group"> <span id="basic-addon1" class="input-group-addon bg_blue"><strong>Vat Total</strong></span>
+              <input type="text"  readonly aria-describedby="basic-addon1" placeholder="Vat Total" class="form-control">
+            </div>
+          </div>--> 
+        </div>
+        <div class="vertical_space"></div>
+        <div class="row">
+          <div class="col-md-9"></div>
+          <div class="col-md-3" >
+            <div class="input-group"> <span id="basic-addon1" class="input-group-addon bg_blue"><strong>Grand Total</strong></span> 
+              <input type="text" readonly aria-describedby="basic-addon1"
+       class="form-control"    value="{{total_grand }} {{  formData.basecurrency.code}}" >
+              <!--    Total Sum: {{   total_final| number:2 }} --> 
+              <!--    <div ng-app="sampleApp" >--> 
+              <!-- {{resultValue | sumOfValue:'exchange_rate'}}    {{resultValue | sumOfValue:'amount'}}    
+      {{  resultValue }}  {{resultValue | totalSumPriceQty:'exchange_rate':'amount'}}
+       --> 
+              
+            </div>
+          </div>
+        </div>
+        
+        <!--   </form>--> 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<tr ng-repeat="record in users"  ng-show="users.length > 0" >
+             
+             <td 
+                  ng-click="showEdit_final(record.id)" 
+                  ng-repeat="column in columns" 
+             		  ng-if=" column.field != 'exp_image' && column.field != 'id' "
+               > {{record[column.field]}} </td> 
+              <td  ng-show="users.length > 0"><a ng-click="showEdit_final(record.id)" 
+              class="  btn"> <i class="fa fa-edit"><span>Edit</span></i></a> <a ng-click="deletesubexpenses(record.id,$index,users)"
+                   class="  btn"><i class="fa fa-times"><span>Delete</span></i></a></td>
+            </tr>--> 

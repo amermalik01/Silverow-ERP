@@ -1,0 +1,236 @@
+<div ng-show="showdocumentlist">
+    <div class="modal fade"
+         id="dcoument_oop">
+        <div class="modal-dialog modal-lg"
+             dragable>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{rec_oop.current_status.name}} {{document_title_new}} </h4>
+                </div>
+                <div class="modal-body ">
+
+
+                    <div class="row"
+                         ng-if="flag_history">
+                        <input type="hidden"
+                               ng-model="formData.document_id" />
+                        <input type="hidden"
+                               ng-model="document_id" />
+                        <input type="hidden"
+                               ng-model="formData.eid" />
+                        <input type="hidden"
+                               ng-model="formData.employee_id" />
+                        <input type="hidden"
+                               ng-model="formData.tab_id_2"
+                               value="4" />
+                        <div class="col-md-12">
+
+                            <div class="col-md-4 pr0  ">
+                                <div class="form-group">
+                                    <div ng-class="{'whirl no-overlay':showLoader}"></div>
+                                    <!--  <div ng-class="{'loader_pop':loader_pop}"></div>-->
+                                    <label class="col-sm-4 control-label  ">Upload Document</label>
+                                    <div class="col-sm-7 form-group"
+                                         ng-show="uploadConShow"
+                                         ng-controller="DocUploadControllerMulti"
+                                         ng-class="{'whirl no-overlay':showLoader}">
+                                        <div class="fileUpload btn btn_blue col-sm-7"><span>Select File</span>
+                                            <input type="file"
+                                                   ng-required="uploadConShow"
+                                                   ngf-select="uploadFiles($file, $invalidFiles)"
+                                                   name="file"
+                                                   accept=".gif, .jpg, .png, .doc, .docx,.pdf"
+                                                   class="upload"
+                                                   ngf-max-size="2MB" />
+                                            <span ng-show="image_error"
+                                                  style="color:#F00">Error in files uploading Please check Size & Format
+                                                JPG, Word or PDF</span>
+                                        </div>
+                                        <div class="form-group col-sm-5"
+                                             ng-if="formData_images_data_opp_cycle">
+                                            <div class="col-sm-7">
+                                                <div class="row"
+                                                     style="float: right; width: 88%; font-size: 14px; line-height: 12px; padding: 10px 0px; border-radius: 2px;">
+                                                    <div class="col-md-12"
+                                                         style="padding-left: 0px;">
+                                                        <div class="form-group no-margin"> <span
+                                                                  ng-repeat="attachment in formData_images_data_opp_cycle"
+                                                                  style="margin-left: 5px;"
+                                                                  class="tag">
+                                                                <!--ng-if="formData.document_path==1"-->
+                                                                <!--<a target="_blank" href="{{imagePath}}/{{attachment.document_path}}">{{attachment.document_path}}</a>-->
+                                                                <a target="_blank"
+                                                                   href="{{imagePath + attachment.response}}"> <em
+                                                                        style="font-size: 30px !important;"
+                                                                        class="fa fa-file-image-o"></em></a> </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ng-required="display_error_doc" -->
+                                    <div ng-show="uploadConShow_defult"
+                                         class="col-sm-7 form-group">
+                                        <div class="fileUpload btn btn_blue col-sm-7"><span>Select File</span>
+                                            <input type="file"
+                                                   ng-required="uploadConShow_defult"
+                                                   ngf-select="uploadFiles($file, $invalidFiles)"
+                                                   name="file"
+                                                   accept=".gif, .jpg, .png, .doc, .docx,.pdf"
+                                                   class="upload"
+                                                   ngf-max-size="2MB" />
+                                            <span ng-show="image_error"
+                                                  style="color:#F00">Error in files uploading Please check Size & Format
+                                                JPG, Word or PDF</span>
+                                        </div>
+                                        <div class="form-group col-sm-5"
+                                             ng-if="formData_images_data">
+                                            <div class="col-sm-7">
+                                                <div class="row"
+                                                     style="float: right; width: 88%; font-size: 14px; line-height: 12px; padding: 10px 0px; border-radius: 2px;">
+                                                    <div class="col-md-12"
+                                                         style="padding-left: 0px;">
+                                                        <div class="form-group no-margin"> <span
+                                                                  ng-repeat="attachment in formData_images_data"
+                                                                  style="margin-left: 5px;"
+                                                                  class="tag">
+                                                                <!--ng-if="formData.document_path==1"-->
+                                                                <!--<a target="_blank" href="{{imagePath}}/{{attachment.document_path}}">{{attachment.document_path}}</a>-->
+                                                                <a target="_blank"
+                                                                   href="{{imagePath + attachment.response}}"> <em
+                                                                        style="font-size: 30px !important;"
+                                                                        class="fa fa-file-image-o"></em></a> </span>
+                                                        </div>
+
+                                                        <!--<span   ng-if=" formData.document_path !='' "  >
+                                                  <a target="_blank" href="{{imagePath+formData.document_path}}">
+                                                  <em  style="font-size: 30px !important;"class="fa fa-file-image-o"></em></a> </span>-->
+
+                                                        <!--  href="{{$rootScope.basePath}}upload/mail_attachments/{{attachment.newFileName}}" -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4  ">
+
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">Description <span
+                                              class="required">*</span></label>
+                                    <div class="col-sm-7">
+                                        <input ng-readonly="check_doc_readonly"
+                                               type="text"
+                                               ng-model="formData.document_title"
+                                               class="form-control"
+                                               required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="pull-right">
+                                    <button class="btn btn_add2"
+                                            type="button"
+                                            ng-show="!check_doc_readonly"
+                                            ng-click="adddocument_opp(formData,rec_oop.current_status.id)">
+                                        Add
+                                    </button>
+                                    <button class="btn btn-edit2"
+                                            type="button"
+                                            ng-click="showdocEditForm_opp_opp()"
+                                            ng-show="check_doc_readonly"> Edit
+                                    </button>
+                                    <!--   <button class="btn btn-cancel" type="button" ng-click="getDocuments()"> Cancel</button>-->
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-md-12">
+                            <div class="widget">
+                                <div class="widget-body ">
+                                    <div id="dt_example"
+                                         class="example_alt_pagination"
+                                         ng-show="columnsoop.length > 0">
+                                        <div class="table-responsive">
+                                            <table class="table table-condensed table-striped table-hover table-bordered"
+                                                   id="data-table">
+                                                <thead>
+                                                    <tr class="bg-col">
+                                                        <th ng-repeat="column in columnsoop"
+                                                            ng-if="	column.title != 'Id' && column.title != 'Image'">
+                                                            {{column.title}}
+                                                        </th>
+                                                        <th style="width: 11%;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="courser table-body">
+                                                    <span us-spinner="{radius:30, width:8, length: 16}"
+                                                          spinner-key="spinner-1"></span>
+                                                    <tr ng-repeat="record in documentlist"
+                                                        ng-show="columnsoop.length > 0">
+                                                        <td ng-repeat="column in columnsoop"
+                                                            ng-click="showdocEditForm_opp_opp(record.id)"
+                                                            ng-if="column.title != 'Id' && column.title != 'Image'">
+                                                            {{record[column.field]}}
+
+                                                            <!--   <span ng-if="column.title != 'image' "  >  {{record[column.field]}} </span>  <span ng-if="column.title == 'image'" >
+                                                        <a  style="font-size:14px"target="_blank"
+                                                      href="{imagePath+column.title.image}}"> <i class="fa fa-file-word-o ng-binding"> </i> </a>
+                                                      </span>
+                                                        -->
+                                                        </td>
+                                                        <td>
+                                                            <!--  {{imagePath+record.image}}{{imagePath }}   {{record.image}}  {{record.document_code}}
+                                    --> <a ng-if="flag_history"
+                                                               title="Edit"
+                                                               ng-click="showdocEditForm_opp(record.id)"
+                                                               class="tooltips_clss btn"> <i class="fa fa-edit">
+                                                                </i></a> <a ng-if="flag_history"
+                                                               title="Delete"
+                                                               ng-click="delete_document_opp(record.id, $index, documentlist)"
+                                                               class="tooltips_clss btn"><i class="fa fa-times">
+                                                                </i></a>
+
+
+                                                            <span ng-if=" record.image != ''"> <a title="View"
+                                                                   target="_blank"
+                                                                   href="{{imagePath + record.image}}"
+                                                                   class="tooltips_clss btn"> <i class="fa fa-eye">
+                                                                    </i></a> </span>
+
+
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-cancel"
+                            data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

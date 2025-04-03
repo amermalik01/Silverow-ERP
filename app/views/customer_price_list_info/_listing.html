@@ -1,0 +1,61 @@
+<div class="row" ng-controller="CRMPricelistInfoAddController"><!---->
+  <div class="col-lg-12"> <a id="prompta" ng-click="addForm()" class="btn btn_add pull-right margin_bottom"> Add New</a> </div>
+</div>
+<div class="row" ng-controller="CRMPricelistInfoController as table">
+<div class="clearfix"></div>
+<div class="panel-body">
+  <div id="dt_example" class="example_alt_pagination">
+    <div class="panel panel-default">
+      <!--<table ng-table="table.tableParams5"
+                       class="table table-condensed table-striped table-hover table-bordered" show-filter="true"
+                       ng-show="$data.length > 0" ng-if="allowview_crm_price_tab==1 || allowview_cust_price_tab==1">-->
+        <table  class="table table-condensed table-striped table-hover table-bordered" id="data-table"
+                show-filter="true" ng-if="allowview_crm_price_tab==1 || allowview_cust_price_tab==1">
+        <thead>
+          <tr class="bg-col">
+            <th>Item Code</th>
+            <th>Item Name</th>
+            <th>Unit Of Measure</th>
+            <th>Price</th>
+            <th>Currency</th>
+            <th>Alt Location</th>
+            <!--<th>Vol. Disc</th>
+                        <th>Exclud. Customer</th>-->
+            <th>Start Date</th>
+            <th>End Date</th>
+            <!--<th>Action</th>-->
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          <!--<tr ng-repeat="rec in $data | filter:searchKeyword">-->
+          <tr ng-repeat="rec in record_data  | filter:searchKeyword" ng-class="{'whirl traditional':showLoader}">
+            <td ng-class="{'dont-click':allowview_crm_price_tab==0 || 'dont-click':allowview_cust_price_tab==0}" ng-click="getGroupOfCustomers(rec)">{{rec.Item_Code}}</td>
+            <td ng-class="{'dont-click':allowview_crm_price_tab==0 || 'dont-click':allowview_cust_price_tab==0}" ng-click="getGroupOfCustomers(rec)">{{rec.Item_Description}}</td>
+            <td ng-class="{'dont-click':allowview_crm_price_tab==0 || 'dont-click':allowview_cust_price_tab==0}" ng-click="getGroupOfCustomers(rec)">{{rec.Unit_Of_Measure}}</td>
+            <td  ng-class="{'dont-click':allowview_crm_price_tab==0 || 'dont-click':allowview_cust_price_tab==0}" ng-click="getGroupOfCustomers(rec)">{{rec.Price | numberNoDecimalsIfZeroFilter:2:''}}</td>
+            <td ng-class="{'dont-click':allowview_crm_price_tab==0 || 'dont-click':allowview_cust_price_tab==0}" ng-click="getGroupOfCustomers(rec)">{{rec['Code']}}</td>
+            <td ng-class="{'dont-click':allowview_crm_price_tab==0 || 'dont-click':allowview_cust_price_tab==0}" ng-click="getGroupOfCustomers(rec)">{{rec.Alt_Location}}</td>
+            <!--<td ng-click="getGroupOfCustomers(rec)">
+                            <span ng-if="rec.is_vol_disc > 0">Yes</span>
+                            <span ng-if="rec.is_vol_disc == 0">No</span>
+                        </td>
+                        <td>
+                            <span ng-if="rec.is_exclud_cust > 0"><a style="color:#5bc0de;"
+                                                                    ng-click="getExcCustomers(rec.id)">Yes</a></span>
+                            <span ng-if="rec.is_exclud_cust == 0" ng-click="getGroupOfCustomers(rec)">No</span>
+                        </td>-->
+            <td ng-class="{'dont-click':allowview_crm_price_tab==0 || 'dont-click':allowview_cust_price_tab==0}" ng-click="getGroupOfCustomers(rec)">{{ rec.Start_Date | date:
+              dateFormats[defaultDateFormat]}} </td>
+            <td ng-class="{'dont-click':allowview_crm_price_tab==0 || 'dont-click':allowview_cust_price_tab==0}" ng-click="getGroupOfCustomers(rec)">{{ rec.End_Date | date:
+              dateFormats[defaultDateFormat]}} </td>
+            <!--<td  class="text-left " ng-show="$data.length > 0"><a ng-class="{'dont-click':allowview_crm_price_tab==0 || 'dont-click':allowview_cust_price_tab==0}" ng-click="editForm(rec.id)" title="Edit"
+                               class="btn"><i class="fa fa-edit"></i></a></td>-->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--  <div ng-include="'app/views/sale_item_info/_customer_popup3.html'"></div>
+        <div ng-include="'app/views/sale_item_info/_detail_popup.html'"></div>--> 
+</div>
+</div>

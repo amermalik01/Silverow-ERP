@@ -1,0 +1,127 @@
+<div ng-controller="FinanceInsuranceChargesController">
+    <div class="row">
+        <div ng-include="'app/views/_breadcrumb.html'"
+             class="col-lg-12"></div>
+    </div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="widget">
+                <!-- <div class="widget-header">
+                    <div class="title"> Add Finance Insurance Charges</div>
+                </div> -->
+                <div class="widget-body nobg-widget-body remove-left-pad remove-right-pad">
+                    <form autocomplete="off"
+                          class="form-horizontal no-margin"
+                          role="form"
+                          name="addForm"
+                          validate-form=""
+                          novalidate=""
+                          ng-submit="updateFinInsCharges(rec);">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-12"
+                                     style="margin-bottom: 5px;">
+                                    <label class="col-md-2 control-label">&nbsp;</label>
+                                    <label class="col-md-1 control-label"
+                                           style="margin-bottom: 6px;">Charge Type</label>
+                                    <label class="col-md-2 control-label">&nbsp;</label>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="col-md-2 control-label">
+                                        <input type="checkbox"
+                                               ng-model="rec.finChargesChk"
+                                               ng-disabled="chkReadonly"
+                                               ng-click="selectFinCharges(rec.finChargesChk)"
+                                               ng-checked="rec.finChargesChk"> Finance Charge</label>
+                                    <div class="col-md-2">
+                                        <select id="finChargesType"
+                                                name="finChargesType"
+                                                class="form-control"
+                                                ng-model="rec.finChargesType"
+                                                ng-disabled="chkReadonly || !rec.finChargesChk">
+                                            <option value="1">Percentage</option>
+                                            <option value="2">Value</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input-symbol">
+                                            <input type="number"
+                                                   step="any"
+                                                   id="finCharges"
+                                                   name="finCharges"
+                                                   class="form-control"
+                                                   oninput="validateDecimalPoints(this, 2)"
+                                                   ng-readonly="chkReadonly || !rec.finChargesChk"
+                                                   ng-model="rec.finCharges" />
+                                            <span ng-if="rec.finChargesType==1">&#37;</span>
+                                            <span ng-if="rec.finChargesType==2">{{defaultCurrencyCode}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12"
+                                     style="height:5px;">
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="col-md-2 control-label">
+                                        <input type="checkbox"
+                                               ng-model="rec.insChargesChk"
+                                               ng-disabled="chkReadonly"
+                                               ng-click="selectInsCharges(rec.insChargesChk)"
+                                               ng-checked="rec.insChargesChk"> Insurance Charge</label>
+                                    <div class="col-md-2">
+                                        <select id="insChargesType"
+                                                name="insChargesType"
+                                                class="form-control"
+                                                ng-model="rec.insChargesType"
+                                                ng-disabled="chkReadonly || !rec.insChargesChk">
+                                            <option value="1">Percentage</option>
+                                            <option value="2">Value</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input-symbol">
+                                            <input type="number"
+                                                   step="any"
+                                                   id="insCharges"
+                                                   name="insCharges"
+                                                   oninput="validateDecimalPoints(this, 2)"
+                                                   class="form-control"
+                                                   ng-readonly="chkReadonly || !rec.insChargesChk"
+                                                   ng-model="rec.insCharges" />
+                                            <span ng-if="rec.insChargesType==1">&#37;</span>
+                                            <span ng-if="rec.insChargesType==2">{{defaultCurrencyCode}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <div class="pull-right"
+                                         style="    margin-right: 14px;">
+                                        <button class="btn btn-submit2 date_block pic_block"
+                                                type="submit"
+                                                ng-if="!chkReadonly">Save</button>
+                                        <button class="btn btn-edit date_block pic_block"
+                                                type="button"
+                                                ng-click="gotoEdit()"
+                                                ng-if="chkReadonly">Edit</button>
+                                        <button class="btn btn-cancel"
+                                                type="button"
+                                                ui-sref="app.setup">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

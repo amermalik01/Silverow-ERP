@@ -1,0 +1,110 @@
+<style>
+#no-display {
+	display: none
+}
+
+tbody.addclasshere tr td {
+padding: 9px !important;
+padding-left: 10px !important;
+padding-right: 10px !important;
+}
+</style>
+
+<div class="row expenses_font" id="personelVehicle">
+  <div class="col-md-12 col-md-12">
+    <div class="widget">
+      <div class="widget-body">
+        <div id="dt_example" class="example_alt_pagination">
+					<div class="table-responsive">
+          <table class="table table-condensed table-striped table-bordered pull-left">
+            <thead>
+              <tr>
+                <th> Date of Travel </th>
+                <th> Description </th>
+                <th> Postcode From </th>
+                <th> Via </th>
+                <th> Postcode To </th>
+                <th> Miles </th>
+                <th> Mileage Rate </th>
+                <th> Amount </th>
+                
+                <th> Action </th>
+              </tr>
+            </thead>
+            <tbody class="addclasshere">
+              <!--ng-repeat="personelVehical in  resultValue=(users)" -->
+              <tr   data-ng-repeat="personelVehical in arr_personal_expense" >
+                <td style="width:17%"><span  id="no-display"  class="{{'new_button_' + personelVehical.pid}}">{{personelVehical.pdate_of_travel}} </span>
+                  <div class="{{'replace_button_' + personelVehical.pid}}">
+                  <input ng-model="personelVehical.pdate_of_travel"  id="pdate_of_travel{{$index}}" jqdatepicker class="2date-picker form-control  {{'new_' + personelVehical.pid}}" readonly >
+                 <!-- <span class="fa fa-calendar  new_ca  form-control-feedback"></span>-->
+                  </div></td>
+                <td style="width:14%"><span  id="no-display"  class="{{'new_button_' + personelVehical.pid}}">{{personelVehical.pdescription}} </span>
+                  <div  class="{{'replace_button_' + personelVehical.pid}}">
+                    <input    id="description"  type="text" ng-model="personelVehical.pdescription" 
+           class="form-control" />
+                  </div></td>
+                <td style="width:14%"><span  id="no-display"  class="{{'new_button_' + personelVehical.pid}}">{{personelVehical.ppostcodeFrom}} </span>
+                  <div  class="{{'replace_button_' + personelVehical.pid}}">
+                 <input id="postcodeFrom"  type="text" ng-model="personelVehical.ppostcodeFrom"
+           class="form-control" />
+                 </div></td>
+                 <td style="width:14%"><span  id="no-display"  class="{{'new_button_' + personelVehical.pid}}">{{personelVehical.pvia}} </span>
+                  <div  class="{{'replace_button_' + personelVehical.pid}}">
+                 <input id="via"  type="text" ng-model="personelVehical.pvia"
+           class="form-control" />
+                 </div></td>
+                 <td style="width:14%"><span  id="no-display"  class="{{'new_button_' + personelVehical.pid}}">{{personelVehical.ppostcodeTo}} </span>
+                  <div  class="{{'replace_button_' + personelVehical.pid}}">
+                 <input id="postcodeTo"  type="text" ng-model="personelVehical.ppostcodeTo"
+           class="form-control" />
+                 </div></td>
+                <td style="width:10%"><span  id="no-display"  class="{{'new_button_' + personelVehical.pid}}">{{personelVehical.pmiles}} </span>
+                  <div  class="{{'replace_button_' + personelVehical.pid}}">
+                    <input type="text"  placeholder="0"   id="miles"  data-parsley-trigger="keyup"   ng-model="personelVehical.pmiles"  class="form-control {{'new_' + personelVehical.pid}}"  data-parsley-type="number"  required  >
+                  </div></td>
+                <td style="width:10%"><span  id="no-display"  class="{{'new_button_' + personelVehical.pid}}">{{personelVehical.pmileage_rate}} </span>
+                  <div  class="{{'replace_button_' + personelVehical.pid}}">
+                    <input type="text"     placeholder="0" data-parsley-trigger="keyup"
+           data-parsley-minlength="1"  ng-model="personelVehical.pmileage_rate"  id="mileage_rate"  class="form-control input_text {{'new_' + personelVehical.pid}}"  data-parsley-type="number"  required  >
+                  </div></td>
+                <td style="width:16%"><input type="text" id="pamount" value="{{   total_sub	= 	personelVehical.pmiles *  personelVehical.pmileage_rate | number:2 }} "  class="form-control" readonly="">
+
+                  <!--   ng-change="net_total_amount()" -->
+                  <!--  <td>{{personelVehical.ptotal_sub = row_amount(personelVehical) | number:2}}&nbsp{{defaultCurrencyCode}}</td>--></td>
+                
+                <td><!-- <input type="text"   ng-model="personelVehical.psort_id" />   -->
+
+                  <input type="hidden"   ng-model="formData.expense_id" />
+                  <input type="hidden"   ng-model="personelVehical.pid" />
+                  <a title="Delete" ng-click="" class="tooltips_clss btn"><i class="fa fa-times"> </i></a>
+                <!--  <a title="Ticked" ng-click="tickedPersonalExpense($index)" class="tooltips_clss btn"><i class="fa fa-times"> </i></a>-->
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+				</div>
+        </div>
+        <div class="row">
+          <div class="col-md-9"></div>
+          <div class="col-md-3">
+            <span id="basic-addon1" class="grandtotal">GRAND TOTAL</span>
+              <!--   <input type="text" value="{{total_grand}}" ng-model="total_grand"  class="form-control" aria-describedby="basic-addon1" readonly="">-->
+
+              <input type="text" value="{{net_total_amount_personal() | number:2}}" ng-model="total_grand_personal"  class="form-control bluecolr" aria-describedby="basic-addon1" readonly="">
+          </div>
+        </div>
+      </div>
+      <div class="vertical_space"></div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="pull-right">
+            <button type="submit" class="btn btn-submit" ng-click="submitPersonal_all(personelVehical)"><i class="fa fa-check fa_display"></i> Save</button>
+            <a href="#">
+            <button type="button" class="btn btn-cancel"><i class="fa fa-undo fa_display"></i> Cancel</button>
+            </a> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

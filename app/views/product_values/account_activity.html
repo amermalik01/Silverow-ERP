@@ -1,0 +1,16 @@
+<!-- Row starts -->
+<div class="row">
+    <div class="col-md-12">
+        <div ng-if="tableData.data.ack"
+             style="margin-top: 18px;">
+            <div class="flexiTable"
+                 x-generate-table
+                 x-data="tableData.data"
+                 x-forget-filters="true"
+                 x-table-name="ItemActivity"
+                 x-filter-function="account_activity()"
+                 x-filter-object="searchKeyword">
+            </div>
+        </div>
+    </div>
+</div>

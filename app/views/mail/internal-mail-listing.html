@@ -1,0 +1,69 @@
+<div class="row ng-scope">
+  <div class="col-md-3">
+    <div class="input-symbol">
+      <input type="text" placeholder="Search Email" class="in-t-1">
+      <span id="date_msg_4"> <i class="fa fa-search" aria-hidden="true"></i></span></div>
+  </div>
+  <div class="col-md-9">
+    <a class="btn btn-default" style="background: white;margin-left: 4px;"><i class="fa fa-refresh"></i></a>
+    <a class="btn btn_add pull-right">Compose</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="int-mail-list">
+      <a data-toggle="collapse" data-target="#collapseOne" class="collapsed gmlh">
+        <div class="ib"><b class="email-from">Farhan Afzal</b><small>farhan.afzal@silverow.com</small></div>
+        <b class="email-subject ib">Meeting on Friday morning</b>
+        <div class="if-replied-icon ib"><i class="fa fa-reply"></i></div>
+        <div class="email-date pull-right">10-10-2019</div>
+        <div class="email-attachment"><span>Dubai Trip</span></div>
+      </a>
+      <div id="collapseOne" class="collapse gmlho" aria-expanded="false">
+        <div class="email-isent">
+          At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia
+          animi, id est laborum et dolorum fuga.
+        </div>
+        <div class="email-replied">
+          <div class="name">Kamran Danish <small>kamran@yahoo.com</small>
+            <div class="if-replied">Reply</div>
+          </div>
+          <div class="date">10-10-2009</div>
+          At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia
+          animi, id est laborum et dolorum fuga.
+          <div class="attachments">
+            <div class="attachname">Attachments</div>
+            <span>Dubai</span>
+            <span>Dubai</span>
+            <span>Dubai</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('b.email-from').each(function() {
+    var str = $(this).text();
+    var matches = str.match(/\b(\w)/g);
+    var acronym = matches.join('');
+    $(this).prepend('<span>' + acronym + '</span>')
+  })
+</script>
+
+<style>
+  b.email-from span {
+    background: cornflowerblue;
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    display: inline-block;
+    font-size: 12px;
+    padding: 5px;
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+  }
+</style>

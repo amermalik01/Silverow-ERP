@@ -1,0 +1,47 @@
+<style>
+
+
+.ngdialog-content {
+	padding: 0px !important;
+}
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+	width: 600px !important;
+}
+
+
+</style>
+<div class="modal-content">
+  <div class="modal-header">
+      <h4 style="text-align:center;">Add {{popup_title}}</h4>
+  </div>
+
+  <div class="modal-body">
+    <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="addForm.$valid && add(pedefined)" name="addChargesForm" validate-form="" novalidate="">
+    <div class="row" style="margin:22px auto; width:75%;">
+     <div class="col-md-12">
+      <div class="form-group">
+      <label class="col-md-4 control-label">Charge<span class="required">*</span></label>
+      <div class="col-md-8">
+        <div class="input-symbol">
+         <input type="number" ng-model="pedefined.value" data-parsley-type="number" id="value" required name="value" class="form-control" ng-readonly="check_readonly" tabindex="1"/>
+         <span ng-show="1">&#37;</span>
+       </div>
+      </div>
+      </div>
+    </div>
+    </div>
+
+    </form>
+  </div>
+
+
+  <div class="modal-footer">
+    <div class="col-md-12">
+                <div class="pull-right">
+                <button class="btn btn-submit" ng-class="{'btn-submit':addChargesForm.value.$valid,'btn-submit dont-click':!addChargesForm.value.$valid}" type="button" ng-click="confirm(pedefined)">Save</button>
+                <button class="btn btn-cancel" type="button" ng-click="closeThisDialog()">Cancel</button>
+                </div>
+    </div>
+  </div>
+
+</div>

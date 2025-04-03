@@ -1,0 +1,324 @@
+<div ng-controller="EmpReportController as table">
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+  <style>
+    body {
+      background-image: url(app/css/report-BG.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      padding-bottom: 10px;
+    }
+  </style>
+
+  <div class="a-content">
+    <div class="a-label-container">
+
+      <b class="a-title"
+         ng-if="module=='AbsencesList' || module=='EmployeeBenefits'"
+         style="width: 120px;">Date <span class="required"> *</span>
+      </b>
+      <div class="input-symbol a-date"
+           ng-if="module=='AbsencesList' || module=='EmployeeBenefits' ">
+        <input jqdatepicker
+               class="form-control"
+               id="dateFrom"
+               placeholder="From"
+               readonly
+               ng-model="filterReport.dateFrom"
+               style="background-color: white;">
+        <span>
+          <i class="fa fa-calendar"></i>
+        </span>
+      </div>
+      <div class="input-symbol a-date"
+           ng-if="module=='AbsencesList' || module=='EmployeeBenefits' ">
+        <input jqdatepicker
+               class="form-control"
+               id="dateTo"
+               readonly
+               ng-model="filterReport.dateTo"
+               style="background-color: white;">
+        <span>
+          <i class="fa fa-calendar"></i>
+        </span>
+      </div>
+
+      <b class="a-title a-title-relative"
+         ng-if="module=='Employee'">Employee(s)</b>
+
+      <div class="panel-info pi2 a-form-control"
+           style="background-color: white;"
+           ng-click="selectEmployees()"
+           ng-if="module=='Employee'">
+        <div class="panel-body">
+          <span ng-repeat="sp in employeesArr track by $index">
+            <span ng-if="employeesArr.length == 1">{{sp.name}}</span>
+            <span ng-if="employeesArr.length > 1">{{sp.name}}<span
+                    ng-if="$index < employeesArr.length && $index!=0">;&nbsp;</span></span>
+          </span>
+          <aside></aside>
+        </div>
+      </div>
+
+      <b class="ib a-margin-left add-filter collapsed"
+         ng-if="module=='AbsencesList'"
+         data-toggle="collapse"
+         data-target="#demo">Add Filter(s)</b>
+
+      <div class="pull-right">
+        <button class="btn report-generate"
+                type="button"
+                ng-if="module!='AbsencesList' && module!='EmployeeBenefits'"
+                ng-click="generateReport()">Generate Report</button>
+        <button class="btn report-generate"
+                type="button"
+                ng-if="module=='AbsencesList'"
+                ng-click="generateEmpAbsenceReport()">Generate Report</button>   
+         <button class="btn report-generate"
+                type="button"
+                ng-if="module=='EmployeeBenefits'"
+                ng-click="generateEmpBenefitReport()">Generate Report</button>             
+        <button class="btn report-clearfilter"
+                type="button"
+                ng-click="clearReport()">Clear Filter</button>
+        <button class="btn report-default"
+                type="button"
+                ng-if="module!='AbsencesList'  && module!='EmployeeBenefits'"
+                ng-click="showPdfModal()">Print Preview</button>
+
+        <div class="dropdown report-excel">
+          <button class="btn report-default dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown">Export As
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li ng-if="module!='AbsencesList' && module!='EmployeeBenefits'"><a ng-click="showPdfModal('xlsx')">Excel</a></li>
+            <li ng-if="module=='AbsencesList'"><a ng-click="generateEmpAbsenceReport('xlsx')">Excel</a></li>
+            <li ng-if="module=='EmployeeBenefits'"><a ng-click="generateEmpBenefitReport('xlsx')">Excel</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-filter-panel collapse in"
+         id="demo">
+      <div class="report-box"
+           ng-if="module=='AbsencesList'">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;position: relative;top: -1px;">Filter By</b>
+
+        <div class="a-date">
+          <select class="form-control"
+                  ng-model="filterReport.filter_by"
+                  ng-change="change_emp_dpt(filterReport.filter_by)">
+            <option value="1">Employee</option>
+            <option value="2">Department</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="report-box"
+           ng-if="module=='EmployeeBenefits'">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;">Select Employee(s)</b>
+        <div class="panel-info pi2 a-form-control"
+             style="width: 334px;"
+             ng-click="selectEmployees()">
+          <div class="panel-body"
+               style="background-color: white;">
+            <span ng-repeat="sp in employeesArr track by $index">
+              <span ng-if="employeesArr.length == 1">{{sp.name}}</span>
+              <span ng-if="employeesArr.length > 1">{{sp.name}}<span
+                      ng-if="$index < employeesArr.length && $index!=0">;&nbsp;</span></span>
+            </span>
+            <aside></aside>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-box"
+           ng-if="module=='EmployeeBenefits'">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;">Select Benefit Type(s)</b>       
+        <style>
+          .acg .col-md-8 {
+            padding: 0;
+            width: 334px;
+          }
+        
+          .acg .col-md-8 .panel-info {
+            width: 334px;
+            background: white;
+            max-height: 29px !important;
+            overflow: hidden;
+          }
+        </style>
+        <div class="acg  a-form-control">
+          <x-flexi-select x-flexi-select-title="' Benefits'"
+                          x-flexi-select-modal-id="'BenefitSelectModal'"
+                          x-flexi-select-output='filterReport.benefit_type'
+                          x-flexi-select-data="benefitType_arr">
+          </x-flexi-select>
+        </div>
+      </div>
+
+      <div class="report-box"
+           ng-if="module=='EmployeeBenefits'">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;position: relative;top: -1px;">If Fule Card</b>
+
+        <div class="a-form-control"
+             style="width: 334px;">
+          <label style="margin-right: 3px;">
+            <input type="checkbox"
+                   name="fuel_card"
+                   ng-model="filterReport.fuel_card"
+                   id="fuel_card"
+                   ng-true-value="1">
+          </label>
+        </div>
+      </div>
+
+      
+
+      <div class="report-box"
+           ng-if="module=='AbsencesList' && filterReport.filter_by==1">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;">Select Employee(s)</b>
+        <div class="panel-info pi2 a-form-control"
+             style="width: 334px;"
+             ng-click="selectEmployees()">
+          <div class="panel-body"
+               style="background-color: white;">
+            <span ng-repeat="sp in employeesArr track by $index">
+              <span ng-if="employeesArr.length == 1">{{sp.name}}</span>
+              <span ng-if="employeesArr.length > 1">{{sp.name}}<span
+                      ng-if="$index < employeesArr.length && $index!=0">;&nbsp;</span></span>
+            </span>
+            <aside></aside>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-box"
+           ng-if="module=='AbsencesList' && filterReport.filter_by==2">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;">Select Department(s)</b>
+        <!-- <div class="panel-info pi2 a-form-control"
+             style="width: 334px;"
+             ng-click="selectDepartment()">
+          <div class="panel-body"
+               style="background-color: white;">
+            <span ng-repeat="sp in departmentsArr track by $index">
+              <span ng-if="departmentsArr.length == 1">{{sp.name}}</span>
+              <span ng-if="departmentsArr.length > 1">{{sp.name}}<span
+                      ng-if="$index < departmentsArr.length && $index!=0">;&nbsp;</span></span>
+            </span>
+            <aside></aside>
+          </div>
+        </div> -->
+        <style>
+          .acg .col-md-8 {
+            padding: 0;
+            width: 334px;
+          }
+        
+          .acg .col-md-8 .panel-info {
+            width: 334px;
+            background: white;
+            max-height: 29px !important;
+            overflow: hidden;
+          }
+        </style>
+        <div class="acg  a-form-control">
+          <x-flexi-select x-flexi-select-title="'Department'"
+                          x-flexi-select-modal-id="'DepartmentSelectModal'"
+                          x-flexi-select-output='filterReport.departments'
+                          x-flexi-select-data="tableDataDpt">
+          </x-flexi-select>
+        </div>
+      </div>
+
+      <div class="report-box"
+           ng-if="module=='AbsencesList'">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;position: relative;top: -1px;">Select Holiday Type</b>
+
+        <div class="a-form-control"
+             style="width: 334px;">
+          <label style="margin-right: 3px;"
+                 ng-repeat="ht in holidayType_arr">
+            <input type="checkbox"
+                   name="holiday_type"
+                   ng-model="filterReport.holiday[ht.id]"
+                   id="holiday_type_{{ht.id}}"
+                   ng-true-value="{{ht.id}}">
+            {{ht.title}}
+          </label>
+        </div>
+      </div>
+
+      <div class="report-box"
+           ng-if="module=='AbsencesList'">
+        <b class="a-title a-title-relative"
+           style=" width: 120px;position: relative;top: -1px;">Report Type</b>
+
+        <div class="a-date">
+          <select class="form-control"
+                  ng-model="filterReport.reporttype">
+            <option>Summary</option>
+            <option>Detailed</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="a-table"
+       ng-if="columns.length > 0">
+    <h5 class="a-report-title">{{reportTitle}}</h5>
+    <small class="a-report-date">As at {{filterReport.dateTo}}</small>
+    <small ng-if="filterReport.dateFrom"
+           class="a-report-date">From {{filterReport.dateFrom}} to {{filterReport.dateTo}}
+    </small>
+    <div>
+      <div id="dt_example"
+           class="example_alt_pagination">
+        <table class="table table-condensed table-striped table-hover report-spacing"
+               id="data-table"
+               style="    margin-top: 8px;">
+          <thead class="fixit">
+            <tr class="bg-col">
+              <th ng-repeat="column in columns"
+                  ng-if="column.title!= 'Id'"
+                  x-col="{{column.title}}">
+                <span ng-if="column.title == 'Employee Type'">Employment Type</span>
+                <span ng-if="column.title == 'No'">Emp. No.</span>
+                <span ng-if="column.title == 'Name'">Name</span>
+                <span
+                      ng-if="column.title != 'Employee Type' && column.title != 'No' && column.title != 'Name'">{{column.title}}</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="fixit">
+            <tr ng-repeat="rec in reportsDataArr | filter: searchKeyword.search"
+                ng-if="columns.length > 0">
+              <td ng-repeat="column in columns"
+                  title="{{rec[column.field]}}"
+                  ng-if="column.title != 'Id'">
+                <span>{{rec[column.field]}}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <div ng-include="'app/views/reports/empListingModal.html'"></div>
+  <!-- <div ng-include="'app/views/reports/deptListingModal.html'"></div> -->
+
+
+
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

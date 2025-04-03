@@ -1,0 +1,6 @@
+
+<div ng-controller="DashboardSetupController">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <x-roles array="setupWidgets" module="setupModule" readonly="show_widget_readonly"></x-roles>
+</div>

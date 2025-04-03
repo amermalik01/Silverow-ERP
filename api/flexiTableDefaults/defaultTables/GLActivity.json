@@ -1,0 +1,145 @@
+[
+    {
+        "title": "Posting Date",
+        "field_name": "posting_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    },
+    {
+        "title": "Document Type",
+        "field_name": "docType",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "Document No.",
+        "field_name": "invoice_code",
+        "event": {
+            "name": "openDocumentLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "G/L No.",
+        "field_name": "gl_account_code",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Source No.",
+        "field_name": "source_no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Name",
+        "field_name": "description",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Posting Group",
+        "field_name": "posting_grp",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "Debit",
+        "field_name": "debit_amount",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "120",
+        "data_type": "number"
+    },
+    {
+        "title": "Credit",
+        "field_name": "credit_amount",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "120",
+        "data_type": "number"
+    },
+    {
+        "title": "Amount",
+        "field_name": "amount",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "number"
+    },
+    {
+        "title": "Balancing Account Type",
+        "field_name": "account_type",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Balancing Account No.",
+        "field_name": "bal_account_number",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Balancing Account Name",
+        "field_name": "bal_account_name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "160",
+        "data_type": "string"
+    },
+    {
+        "title": "Posted By",
+        "field_name": "posted_by",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Entry No.",
+        "field_name": "entry_no",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "number2"
+    }
+]

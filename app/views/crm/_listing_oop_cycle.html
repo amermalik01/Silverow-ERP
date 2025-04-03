@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-md-3">
+        <div class="input-symbol">
+            <input type="text"
+                   ng-model="Serachkeywordoop"
+                   placeholder="Search"
+                   class="in-t-1" />
+            <!-- <input type="submit"  style="display:none"   />-->
+            <span id="date_msg_4">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <a id="prompt"
+           ng-if="addOppCyclePermission"
+           ng-click="showOppCycleForm()"
+           class="btn pull-right btn_add">Add </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body1 ">
+                <!-- ng-controller="CrmOpportunityCycleController as table"-->
+                <div id="dt_example"
+                     class="example_alt_pagination">
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-striped table-hover table-bordered"
+                               id="data-table"
+                               ng-show="viewOppCyclePermission == 1"
+                               ng-if="columns_oop.length > 0">
+                            <thead class="fixit">
+                                <tr class="bg-col">
+                                    <th ng-repeat="column in columns_oop"
+                                        x-col="{{column.title}}"
+                                        ng-class="{'text-right':column.title == 'Forecast Amount' || column.title == 'Probability' }"
+                                        ng-if="	column.title != 'Id' && column.title != 'Value' && column.field != 'child_id' && column.title != 'Stage Id' && column.field != 'is_complete' && column.field != 'history'">
+                                        <span ng-if="column.title == 'Name'">Name</span>
+                                        <span ng-if="column.title != 'Name'">{{column.title}}</span>
+                                        
+                                    </th>
+                                    <th class="ShowHideAction">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-body fixit">
+                                <tr ng-repeat="record in record_data_oop| filter:Serachkeywordoop"
+                                    ng-show="columns_oop.length > 0">
+                                    <td ng-repeat="column in columns_oop"
+                                        ng-class="{'text-right':column.title == 'Forecast Amount' || column.title == 'Probability' }"
+                                        ng-click="editForm_oop(record, record.current_status,1)"
+                                        ng-if="	column.title != 'Id' && column.title != 'Value' && column.title != 'Stage Id' && column.field != 'child_id'&& column.field != 'history' && column.field != 'is_complete'">
+                                        <span ng-class="{'dont-click':viewOppCyclePermission == 0}" ng-if="column.title != 'Forecast Amount'">
+                                            {{record[column.field]}}
+                                        </span>
+                                        <span ng-if="column.title == 'Forecast Amount'">{{record[column.field] | currency:""}}</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <div ng-show="!columns_oop.length > 0"
+                                 class="no-record"></div>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

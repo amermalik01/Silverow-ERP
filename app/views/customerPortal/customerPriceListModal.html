@@ -1,0 +1,154 @@
+<div class="modal fade template-design"
+     id="customerPriceListPDF">
+    <div class="modal-dialog modal-md"
+         style=" width: 24cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 2cm;">
+
+                <div ng-repeat="rec in printPdfVals.reportsDataArr track by $index"
+                     style="clear: both;"
+                     class="mystyle2">
+
+                    <div class='reportHeading'>
+                        <div class='reportHeading__left'>
+                            <div class='reportHeading__left__reportname'
+                                 style="margin-bottom: 12px;">Customer Price List</div>
+
+                            <div class='reportHeading__left__reportfilter'
+                                 style="margin-top: 5px;">
+                                <b>Customer:</b> {{printPdfVals.custName}} ({{printPdfVals.custCode}}) 
+                            </div>
+                            <div class='reportHeading__left__reportfilter'
+                                 style="margin-bottom: 16px;margin-top: 5px;">
+                                From {{printPdfVals.dateFrom}} to {{printPdfVals.dateTo}}
+                            </div>
+                        </div>
+                        <div class='reportHeading__right margin-bottomreport'>
+                            <img ng-src='{{imagePath+defaultLogo}}'
+                                 class='reportHeading__right__img '
+                                 ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                        </div>
+                    </div>
+
+                <div class="a-table" style="width: 100%;display: inline-block;"
+                    ng-if="printPdfVals.reportsDataArr.length > 0">
+
+                    <!-- <h5 class="a-report-title">{{reportTitle}}</h5> -->
+                    <!-- <small ng-if="filterReport.dateFrom"
+                        class="a-report-date">From {{filterReport.dateFrom}} to {{filterReport.dateTo}}
+                    </small> -->
+
+                    <div ng-repeat="record in printPdfVals.reportsDataArr">
+                    <div ng-repeat="rec in record">
+                        <!-- <h6 style="margin: 24px 10px 11px;font-size: 14px;"
+                            ng-if="rec.rank == 1">
+                         <b>Customer:</b> {{rec.Customer_Name}} ({{rec.Customer_Code}}) 
+                        </h6> -->
+                        <table class="table table-condensed table-striped table-hover "
+                            id="data-table"
+                            ng-if="rec.rank == 2">
+                        <thead ng-if="record[$index-1].rank ==3 || record[$index-1].rank ==1">
+                            
+                            <tr class="bg-col">
+                            <th style="width:12.5%">Item No.</th>
+                            <th style="width:12.5%">Description</th>
+                            <th style="width:12.5%">Start Date</th>
+                            <th style="width:12.5%">End Date</th>
+                            <th style="width:12.5%"
+                                class="text-right">Price</th>
+                            <th style="width:12.5%">U.O.M</th>
+                            <th style="width:12.5%"
+                                class="text-right">Min. Order Qty.</th>
+                            <th style="width:12.5%"
+                                class="text-right">Max. Order Qty.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-if="rec.rank == 2"
+                                style="cursor: default !important;background: white !important;">
+                            <td style="width:12.5%">{{rec.Item_Code}}</td>
+                            <td style="width:12.5%">{{rec.Item_Description }}</td>
+                            <td style="width:12.5%">{{rec.start_date}}</td>
+                            <td style="width:12.5%">{{rec.end_date}}</td>
+                            <td style="width:12.5%"
+                                class="text-right">{{rec.itemOfferPrice | currency : "" : 3 }}</td>
+                            <td style="width:12.5%">{{rec.UOM}}</td>
+                            <td style="width:12.5%"
+                                class="text-right">{{rec.minQty | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                            <td style="width:12.5%"
+                                class="text-right">{{rec.maxQty | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                            </tr>
+                        </tbody>
+                        </table>
+
+                        <table class="table table-condensed table-striped table-hover "
+                            id="data-table"
+                            ng-if="rec.rank == 3">
+                        <thead ng-if="record[$index-1].rank !=3">
+                            <tr>
+                            <th colspan="6"
+                                style="background-color: white !important;">Volume Discount for ({{record[$index-1].Item_Code}})
+                                {{record[$index-1].Item_Description }}</th>
+                            <th style="width:12.5%;background-color: white !important;"
+                                class="text-right">Min. Order Qty.</th>
+                            <th style="width:12.5%;background-color: white !important;"
+                                class="text-right">Disc. Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="cursor: default !important;background: white !important;">
+                            <td style="width:12.5%"></td>
+                            <td style="width:12.5%"></td>
+                            <td style="width:12.5%"></td>
+                            <td style="width:12.5%"></td>
+                            <td style="width:12.5%"></td>
+                            <td style="width:12.5%"></td>
+                            <td style="width:12.5%"
+                                class="text-right">{{rec.minQty | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                            <td style="width:12.5%"
+                                class="text-right">{{rec.discount | currency : "" : 3 }}</td>
+
+                            </tr>
+                        </tbody>
+                        </table>
+
+                    </div>
+                    </div>
+                </div>
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right"
+                            ng-click="destroyPdfModalCustPortal('customerPriceListPDF')">Cancel</button>
+
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <button type="button"
+                            class="btn btn-cancel pull-right"
+                            ng-if="!jsreportLoading"
+                            ng-click="generateReportPriceListPDF(printPdfVals)">Download PDF</button>
+                            <!-- downloadCustPortalReport(printPdfVals) -->
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

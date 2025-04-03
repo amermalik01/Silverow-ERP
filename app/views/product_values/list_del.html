@@ -1,0 +1,53 @@
+<div class="modal fade" id="model_record_list_delete">
+    <div class="modal-dialog modal-lg" ng-show="columns_del.length > 0">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"> List of Deleted Item(s) </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover"
+                                           ng-table="table.tableParams5" id="data-table" show-filter="true">
+                                        <thead>
+                                        <!--ng-if="  column.field == 'checked' "-->
+                                        <tr class="bg-col" ng-show="columns_del.length > 0">
+                                            <th ng-repeat="column in columns_del"
+                                                ng-if="  column.field != 'id' "> {{column.title}}
+                                            </th>
+                                            <th style=" width:10% !important; ">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="courser table-body">
+                                        <tr ng-repeat="item in selection_record_del " ng-show="columns_del.length > 0">
+                                            <td ng-repeat="column in columns_del"
+                                                ng-if="  column.field != 'id' "> {{item[column.field]}}
+                                            </td>
+                                            <td><a title="Delete"
+                                                   ng-click="delete_del_product(item.rec_id,$index,selection_record_del)"
+                                                   class="tooltips_clss btn "> <i class="fa fa-times"> </i></a></td>
+                                        </tr>
+                                        <tr ng-show="columns_del.length == 0">
+                                            <td>No Record found .</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-12 ">
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

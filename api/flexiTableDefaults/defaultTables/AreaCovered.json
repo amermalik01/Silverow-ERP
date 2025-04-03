@@ -1,0 +1,25 @@
+{
+    "tblMeta": {
+        "autoAdjust": true
+    },
+    "colMeta": [
+        {
+            "title": "Area Code",
+            "field_name": "area_code",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "0",
+            "data_type": "string"
+        },
+        {
+            "title": "Area Covered",
+            "field_name": "area_covered",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "0",
+            "data_type": "string"
+        }
+    ]
+}

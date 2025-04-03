@@ -1,0 +1,54 @@
+<div id="empListingModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" dragable>
+<!-- ng-class="{'modal-lg':empListingModalTitle == 'Employee','modal-md':empListingModalTitle == 'Purchaser'}" -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Select {{empListingModalTitle}}(s)<!-- Employee --><!-- Purchaser --></h4>
+            </div>
+            <div class="modal-body" style="overflow:hidden !important;">
+                <div class="row" style="margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+
+                         <!-- <div ng-if="tempEmployeesArr2.ack && filterReport.listingType != 'EmployeeDetail'">
+                            <div class="flexiTable makeModalFixed" x-generate-table2 
+                                x-data="tempEmployeesArr2" 
+                                x-table-name="EmployeesModal" 
+                                x-select-flexi-chk-box="false"
+                                x-updated-object-arr="PendingSelectedEmployeesArr" 
+                                x-filter-function="getCUSTlist()" 
+                                x-filter-object="searchKeyword"></div>
+                        </div> 
+                            
+                        
+                        <div ng-if="tempEmployeesArr2.ack && filterReport.listingType == 'EmployeeDetail'">
+                            <div class="flexiTable makeModalFixed" x-generate-table2 
+                                x-data="tempEmployeesArr2" 
+                                x-table-name="EmployeesDetailModal" 
+                                x-select-flexi-chk-box="false"
+                                x-updated-object-arr="PendingSelectedEmployeesArr" 
+                                x-filter-function="getCUSTlist()" 
+                                x-filter-object="searchKeyword"></div>
+                        </div> -->
+
+                        <div ng-if="moduleType == 'EmpDetail'">
+                            <div class="flexiTable" x-report-modal="'true'" x-generate-table x-data="tableData.data" 
+                                 x-forget-filters="true" x-table-name="EmployeesDetailModal" x-filter-function="selectEmployees()" x-controller-initiate
+                                x-checked-records="selectedRecFromModalsEmp" x-selected-record-preview="user_code" x-filter-object="searchKeywordEmp"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left"><!-- Selected:&nbsp;{{PendingSelectedEmployeesArr.length}} --></span>
+                <div class="pull-right">
+                    <button class="btn btn_add" type="button" 
+                        ng-click="addEmp()">Add</button>
+                    <button type="button" class="btn btn-cancel" 
+                        ng-click="clearPendingEmp()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+[01-May-2022 15:44:04 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Setup::getpostingGrp(), 0 passed in /home/customer/www/mode2.co.uk/public_html/api/classes/Setup.php on line 6359 and exactly 1 expected in /home/customer/www/mode2.co.uk/public_html/api/classes/Setup.php:6057
+Stack trace:
+#0 /home/customer/www/mode2.co.uk/public_html/api/classes/Setup.php(6359): Setup->getpostingGrp()
+#1 /home/customer/www/mode2.co.uk/public_html/api/modules/setup/ledger-group.php(654): Setup->getInventorySetupByID(Array)
+#2 [internal function]: {closure}()
+#3 /home/customer/www/mode2.co.uk/public_html/api/Slim/Route.php(468): call_user_func_array(Object(Closure), Array)
+#4 /home/customer/www/mode2.co.uk/public_html/api/Slim/Slim.php(1357): Slim\Route->dispatch()
+#5 /home/customer/www/mode2.co.uk/public_html/api/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#6 /home/customer/www/mode2.co.uk/public_html/api/Slim/Middleware/MethodOverride.php(92): Slim\Middleware\Flash->call()
+#7 /home/customer/www/mode2.co.uk/public_html/api/Slim/M in /home/customer/www/mode2.co.uk/public_html/api/classes/Setup.php on line 6057

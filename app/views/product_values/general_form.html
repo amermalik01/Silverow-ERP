@@ -1,0 +1,549 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel-title2">Item</div>
+                        <div class="col-md-5 ">
+                            <input type="hidden"
+                                   ng-model="formData.product_id"
+                                   class="form-control" />
+                            <input type="hidden"
+                                   ng-model="fortmData.id"
+                                   class="form-control" />
+                            <input type="hidden"
+                                   ng-model="formData.product_unique_id"
+                                   class="form-control" />
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"> Item No. <span ng-if="!product_type"
+                                          class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           class="form-control"
+                                           ng-if="product_type && itemModuleCode != 'external' "
+                                           ng-model="formData.product_code"
+                                           ng-readonly="product_type" />
+                                    <input type="text"
+                                           class="form-control"
+                                           ng-model="formData.product_code"
+                                           required
+                                           ng-if="!product_type || itemModuleCode == 'external'" />
+                                    <input type="hidden"
+                                           ng-model="formData.code_type" />
+                                    <input type="hidden"
+                                           ng-model="formData.product_no"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Description
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           required
+                                           class="form-control"
+                                           ng-readonly="check_item_readonly"
+                                           ng-model="formData.description" />
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label class="col-md-4 control-label ">Category </label>
+
+                                <div class="col-md-8">
+                                    <!-- disable_unit_check -->
+                                    <ui-select ng-model="formData.category_id"
+                                               ng-disabled="check_item_readonly"
+                                               ng-change="updateBrandList(formData.category_id)">
+                                        <ui-select-match placeholder="Select Category">{{$select.selected.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in cat_prodcut_arr | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Brand </label>
+
+                                <div class="col-md-8">
+                                    <!-- disable_unit_check -->
+                                    <!-- {{brandarray}} -->
+                                    <ui-select ng-model="formData.brand_id"
+                                               ng-disabled="check_item_readonly"
+                                               ng-change="chkForBrand(formData.brand_id.id)">
+                                        <ui-select-match placeholder="Select Brand">{{$select.selected.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in brandarray | filter: $select.search">
+                                            <!--  track by $index -->
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                            <label class="col-md-4 control-label ">Brand </label>
+
+                            <div class="col-md-8">
+                            <ui-select 
+                            ng-disabled="disable_unit_check" 
+                            ng-model="formData.brand_id">
+                            <ui-select-match placeholder="Select Brand ">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="opt in brand_prodcut_arr | filter: $select.search">
+                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                            </ui-select>
+                            </div>
+                            </div> -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Item Code</label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-model="formData.old_code"
+                                           ng-readonly="check_item_readonly"
+                                           class="form-control" />
+                                    <!-- check_item_readonly -->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Item Commodity Code</label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           class="form-control"
+                                           ng-readonly="check_item_readonly"
+                                           ng-model="formData.prd_comidity_code" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Country of Origin</label>
+
+                                <div class="col-md-8">
+                                    <ui-select ng-disabled="check_item_readonly"
+                                               ng-model="formData.prd_country_origin">
+                                        <ui-select-match placeholder="Select Country">{{$select.selected.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in country_type_arr | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"
+                                       title="Link To Substitute Items">Link To Substitute Items </label>
+                                <div class="col-md-8">
+                                    <div>
+                                        <!-- !check_item_readonly &&  -->
+                                        <!-- ng-click="get_all_substitute_product()" ng-keypress="handleKeyPress($event)" tabindex="0"-->
+                                        <div class="panel-info pi2"
+                                             ng-class="{'dont-click readonly':check_item_readonly,'max-height':selectedSubItemsArr.length>5 }">
+                                            <div class="panel-body "                                                 
+                                                 
+                                                 id="display_sub_onc"
+                                                 
+                                                 ng-click="clearAndSearchItems()">
+                                                <!-- <aside>
+                                                </aside>
+                                                {{selectedsubitems}} -->
+
+                                                <span ng-repeat="sp in selectedRecFromModalsItem track by $index">
+                                                    <span
+                                                          ng-if="selectedRecFromModalsItem.length == 1">{{sp.record.description}}({{sp.record.product_code}})</span>
+                                                    <span
+                                                          ng-if="selectedRecFromModalsItem.length > 1">{{sp.record.description}}({{sp.record.product_code}})
+                                                        <span
+                                                              ng-if="$index < selectedRecFromModalsItem.length && $index!=0">;&nbsp;</span>
+                                                    </span>
+                                                </span>
+                                                <aside></aside>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-2  adj-btn">
+                                <button ng-disabled="check_item_readonly" class="btn btn-icon pull-right"
+                                type="button" ng-click="get_substitute_product(1)"
+                                title="List of Substitute Items">
+                                <i class="fa fa-bars"aria-hidden="true"></i></button>
+                                </div> -->
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Status
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="col-md-8">
+                                    <!-- ng-change="delete_product()" -->
+                                    <ui-select required
+                                               ng-disabled="check_item_readonly"
+                                               ng-model="formData.status">
+                                        <ui-select-match placeholder="Select Status">{{$select.selected.title}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in status_data | filter: $select.search">
+                                            <div ng-bind-html="opt.title| highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <!-- <div class="col-md-2 adj-btn">
+                                   
+                                    <button class="btn btn-icon pull-right" type="button" title="Status History" ng-click="historytype(formData.product_id)" ng-disabled="check_item_readonly">
+                                        <i class="fa fa-history" aria-hidden="true"></i>
+                                    </button>
+                                </div> -->
+                            </div>
+                            <div class="form-group"
+                                 ng-if="formData.product_id>0"
+                                 ng-show="formData.status.title != 'Active'"
+                                 ng-hide="formData.status.title=='Active'">
+                                <label class="col-md-4 control-label ">Reason for Status Change</label>
+
+                                <div class="col-md-8  ">
+                                    <input type="text"
+                                           maxlength="150"
+                                           data-parsley-trigger="keyup"
+                                           class="form-control input_text"
+                                           ng-readonly="check_item_readonly"
+                                           ng-model="formData.status_message">
+                                </div>
+                            </div>
+                            <div class="form-group"
+                                 ng-if="formData.product_id>0"
+                                 ng-show="formData.status.label != 'Active'"
+                                 ng-hide="formData.status.label=='Active'">
+                                <label class="col-md-4 control-label">Date of Status</label>
+                                <div class="col-md-8">
+                                    <input jqdatepicker
+                                           class="2date-picker form-control"
+                                           ng-model="formData.ChangedOn"
+                                           readonly
+                                           ng-disabled="check_item_readonly"
+                                           ng-class="{'pickdate':!check_item_readonly}">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Base Unit of Measure
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="col-md-6 pr0 adj-field ">
+                                    <ui-select required
+                                               ng-model="formData.unit_id"
+                                               ng-disabled="disable_unit_check"
+                                               class="disable_unit_check"
+                                               ng-change="onChangUnittype(0)">
+                                        <ui-select-match placeholder="Select U.O.M">{{$select.selected.title}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in uni_prooduct_arr | filter: $select.search">
+                                            <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-md-2  adj-btn">
+                                    <button class="btn btn-icon pull-right"
+                                            type="button"
+                                            title="Hierarchy of Unit of Measure"
+                                            ng-disabled="check_item_readonly"
+                                            ng-click="onChangUnittype(1)"
+                                            ng-class="{'setshow3':showdatac==1}">
+                                        <i class="fa fa-sitemap"
+                                           aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Barcode (Base U.O.M)
+                                </label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-disabled="1"
+                                           ng-model="unit_measures_category_record.data[0].barcode"
+                                           class="form-control"
+                                           readonly />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Reorder Point Quantity </label>
+
+                                <div class="col-md-8  ">
+                                    <div class="input-symbol">
+                                        <input type="number"
+                                               class="form-control"
+                                               ng-readonly="check_item_readonly"
+                                               ng-model="formData.reorder_quantity" />
+                                        <span>{{formData.unit_id.title}} </span>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-3  pl0">
+                            <select ng-model="formData.reoder_point_unit_id"
+                            ng-options="opt as opt.name for opt in list_category"
+                            disabled class="  trans-in">
+                            <option style="display:block" value=""></option>
+                            </select>
+                            </div> -->
+                            </div>
+                            <!-- <div class="form-group">
+                                <label class="col-md-4 control-label ">Min. Order Quantity<span
+                                    class="required">*</span></label>
+
+                                <div class="col-md-8  ">
+                                    <div class="input-symbol">
+                                        <input required type="number" data-parsley-trigger="keyup" id="min_quantity" 
+                                            ng-readonly="check_item_readonly"
+                                            ng-model="formData.min_quantity" 
+                                            ng-change="check_min_max_order(1)"
+                                            class="form-control input_text"
+                                            data-parsley-minlength-message="Invalid Value"
+                                            data-parsley-type-message="Invalid Value"
+                                            data-parsley-error-message="This field is required."
+                                            data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                                         <span>{{formData.unit_id.title}}</span> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Max. Order Quantity<span
+                                    class="required">*</span></label>
+
+                                <div class="col-md-8  ">
+                                    <div class="input-symbol">
+                                        <input required type="number" data-parsley-trigger="keyup" id="max_quantity"
+                                            ng-readonly="check_item_readonly"
+                                            ng-model="formData.max_quantity" 
+                                            ng-change="check_min_max_order(1)"
+                                            class="form-control input_text"
+                                            data-parsley-minlength-message="Invalid Value"
+                                            data-parsley-type-message="Invalid Value"
+                                            data-parsley-error-message="This field is required."
+                                            data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                                            <span>{{formData.unit_id.title}}</span> 
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">VAT Rate
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="col-md-8">
+                                    <ui-select required
+                                               ng-disabled="check_item_readonly"
+                                               ng-model="formData.vat_rate_id">
+                                        <ui-select-match placeholder="Select VAT Rate">{{$select.selected.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in arr_vat | filter: $select.search">
+                                            <!-- vat_method -->
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="form-group"
+                                 style="margin-bottom: 0 !important;">
+                                <div ng-repeat="field in itemAdditionalDetail track by $index">
+                                    <label class="col-md-4 control-label">Name {{$index+1}}</label>
+                                    <div ng-class="{'col-md-8':check_item_readonly,'col-md-6':!check_item_readonly}">
+                                        <input type="text"
+                                               class="form-control"
+                                               maxlength="250"
+                                               style="margin-bottom: 6px;padding-right: 21px;"
+                                               ng-model="field.value"                                               
+                                               ng-disabled="check_item_readonly || !itemAdditionalDetail[$index]">
+                                    </div><!-- ng-required="!(check_item_readonly || !itemAdditionalDetail[$index])" -->
+                                    <div class="col-md-1 text-center"
+                                         ng-if="(!check_item_readonly) && (itemAdditionalDetail.length > 1)">
+                                        <a ng-click="deleteField($index);"
+                                           class="plusminus">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ib text-center"
+                                     ng-if="!check_item_readonly && itemAdditionalDetail.length < 5">
+                                    <a ng-click="setNewField()"
+                                       class="plusminus">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                    <label class="col-md-4 control-label ">Raw Material Item</label>
+                                    <div class="col-md-5">
+                                        <div class="pure-checkbox"
+                                            style=" margin-top: 4px;">
+                                            <input type="checkbox"
+                                                name="rawMaterialProduct"
+                                                id="rawMaterialProduct"
+                                                ng-model="formData.rawMaterialProduct"
+                                                ng-disabled="check_item_readonly "
+                                                ng-checked="formData.rawMaterialProduct > 0 ">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Stock Allocation Required</label>
+                                <div class="col-md-5">
+                                    <!-- <input type="checkbox" id="stock_check" name="stock_check" style="margin-top:13px !important;" 
+                                         class="check ng-pristine ng-valid ng-touched"    
+                                            ng-model="formData.stock_check" 
+                                            ng-checked="formData.stock_check>0"> -->
+                                    <!-- title="{{ (!check_item_readonly && formData.warehouseCount>0) ? 'To uncheck the Stock Allocation Required delete the attached
+                                            warehouse locations to item' : ''}}" -->
+                                    <div class="pure-checkbox"
+                                         style=" margin-top: 4px;">
+                                        <input type="checkbox"
+                                               name="stock_check"
+                                               id="stock_check"
+                                               ng-model="formData.stock_check"
+                                               ng-disabled="check_item_readonly "
+                                               ng-checked="formData.stock_check > 0 "
+                                               class=""><!-- || formData.warehouseCount>0 -->
+                                        <!--  || formData.warehouseCount>0 -->
+                                    </div>
+                                    <!-- <label for="genis_invoice_address">Payment</label> -->
+                                </div>
+                            </div>
+                                                        
+                            <div class="form-group"  ng-if="defaultCompany == 133">
+                                <label class="col-md-4 control-label ">GTİP No
+                                </label>
+
+                                <div class="col-md-8 ">
+                                    <input type="text" class="form-control"
+                                        ng-readonly="check_item_readonly"
+                                        ng-model="formData.gtipNo" />
+                                </div>
+                            </div>
+
+
+                            <!-- <div class="form-group">
+                                <label class="col-md-4 control-label ">Raw Material Item</label>
+                                <div class="col-md-5">
+                                    <div class="pure-checkbox"
+                                         style=" margin-top: 4px;">
+                                        <input type="checkbox"
+                                               name="rawMaterialProduct"
+                                               id="rawMaterialProduct"
+                                               ng-model="formData.rawMaterialProduct"
+                                               ng-disabled="check_item_readonly "
+                                               ng-checked="formData.rawMaterialProduct > 0 ">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-if="formData.rawMaterialProduct > 0">
+                                <label class="col-md-4 control-label " title="G/L No. for Raw Material Product">G/L No. for... </label>
+
+                                <div class="col-md-8">
+                                    <div class="input-symbol">
+                                        <input type="text" title="{{formData.raw_material_gl}}" readonly 
+                                            ng-model="formData.raw_material_gl" class="form-control"
+                                            ng-disabled="check_item_readonly" 
+                                            ng-class="{'pickdate':!check_item_readonly}" 
+                                            ng-click="getGL_account_code('raw_material_item_gl_id')"/>
+                                        <span><i class="fa fa-external-link"></i></span>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <!-- <div class="form-group" ng-if="formData.rawMaterialProduct > 0">
+                                <label class="col-md-4 control-label"
+                                       title="Link To Substitute Items">Link To End Items </label>
+                                <div class="col-md-8">
+                                    <div>
+                                        <div class="panel-info pi2"
+                                             ng-class="{'dont-click readonly':check_item_readonly,'max-height':selectedRawMaterialItemsArr.length>5 }">
+                                            <div class="panel-body" id="display_sub_onc"                                                 
+                                                 ng-click="clearAndSearchItems('endItems')">
+                                                <span ng-repeat="sp in selectedRawMaterialItemsArr track by $index">
+                                                    <span
+                                                          ng-if="selectedRawMaterialItemsArr.length == 1">{{sp.description}}({{sp.product_code}})</span>
+                                                    <span
+                                                          ng-if="selectedRawMaterialItemsArr.length > 1">{{sp.description}}({{sp.product_code}})
+                                                        <span
+                                                              ng-if="$index < selectedRawMaterialItemsArr.length && $index!=0">;&nbsp;</span>
+                                                    </span>
+                                                </span>
+                                                <aside></aside>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="form-group" ng-if="lowStock">
+                                <div class="alert alert-warning" style="margin-left: 15px;margin-right: 15px;position: relative;padding-left: 44px;">
+                                    <i class="material-icons" style="position: absolute;top: 12px;color: #d4bc3d;left: 13px;">warning</i> Limited stock available.
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- ng-if="user_type==formData.user_id"-->
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                <div class="dropdown ib"
+                                     ng-if="formData.product_code">
+                                    <button class="dte-btn dropdown-toggle"
+                                            type="button"
+                                            data-toggle="dropdown">
+                                        <i class="dte-ico"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dte animated fadeIn">
+                                        <span ng-click="set_document_internal(item_gneral_tab_module)">
+                                            <i class="fa fa-file-text-o"
+                                               aria-hidden="true"></i> Add Document</span>
+                                        <span>
+                                            <i class="fa fa-check"
+                                               aria-hidden="true"></i> Add Task</span>
+                                        <span>
+                                            <i class="fa fa-envelope-o"
+                                               aria-hidden="true"></i> Compose Email</span>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-delete active-btns"
+                                        type="button"
+                                        ng-show="!hideDelete && formData.id>0 &&  allowdelete_item_gneral_tab==1 && !check_item_readonly"
+                                        ng-click="delete_product()">
+                                    Delete
+                                </button>
+                                <button class="btn btn-submit picc_block"
+                                        type="submit"
+                                        ng-show="!check_item_readonly && (allowadd_item_gneral_tab || allowedit_item_gneral_tab)">
+                                    <i class="fa fa-check fa_display"></i> Save
+                                </button>
+                                <button class="btn btn-edit"
+                                        type="button"
+                                        ng-click="showEditForm()"
+                                        ng-show="check_item_readonly && allowedit_item_gneral_tab">
+                                    <i class="fa fa-edit fa_display"></i> Edit
+                                </button>
+                                <button class="btn btn-cancel "
+                                        type="button"
+                                        ui-sref="{{btnCancelUrl}}">
+                                    <i class="fa fa-undo fa_display"></i> Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

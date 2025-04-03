@@ -1,0 +1,365 @@
+<style>
+    @media print {
+        table {
+            page-break-after: always !important;
+        }
+    }
+</style>
+
+<div class="modal fade template-design"
+     id="salespersonCommissionModal">
+    <div class="modal-dialog modal-md"
+         style=" width: 24cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 2cm;">
+
+                <div ng-repeat="rec in printPdfVals.reportsDataArr track by $index"
+                     ng-if="printPdfVals.report_type == 'detail'"
+                     style="clear: both;margin-bottom: 72px;">
+
+                    <sethtmlpageheader name='MyCustomHeader{{$index}}'
+                                       page='ALL'
+                                       value='on'
+                                       show-this-page='1' />
+
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+
+                    <setpagefooter name='MyFooter3'
+                                   page='ALL'
+                                   value='on'
+                                   show-this-page='1' />
+
+                    <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter3;
+                        }
+                    </style>
+
+                    <htmlpageheader name='MyCustomHeader{{$index}}'>
+                        <div class='reportHeading'>
+                            <div class='reportHeading__left'>
+                                <div class='reportHeading__left__reportname'
+                                     style="margin-bottom: 12px;">{{printPdfVals.reportTitle}}
+                                </div>
+                                <div class="font10">
+                                    <b>Employee No. : </b>
+                                    <span ng-if="rec.empCode">{{rec.empCode}}</span>
+                                </div>
+                                <div class="font10">
+                                    <b>Employee Name : </b>
+                                    <span ng-if="rec.saleperson">{{rec.saleperson}}</span>
+                                </div>
+                                <div class="font10">
+                                    <b><!-- Saleperson -->Commission Rate : </b>
+                                    <span ng-if="rec.salepersonCommissionRate">{{rec.salepersonCommissionRate}}%</span>
+                                </div>
+                                <div class='reportHeading__left__reportfilter'
+                                     style="width: 100%;margin-bottom: 5px;">
+                                     <span ng-if="printPdfVals.report_type1 == 1">Order Date</span> <span ng-if="printPdfVals.report_type1 == 2">Posting Date</span> From {{printPdfVals.dateFrom}} to {{printPdfVals.dateTo}}
+                                </div>
+                            </div>
+                            <div class='reportHeading__right'>
+                                <img ng-src='{{imagePath+defaultLogo}}'
+                                     class='reportHeading__right__img '
+                                     ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                                <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                            </div>
+                        </div>
+                    </htmlpageheader>
+
+                    <div style="display: inline-block;height: 17px;width: 100%"></div>
+                    <h4 ng-if="rec.posted.invoices.length > 0"
+                        style=" margin: 0;
+                                margin-bottom: 10px;
+                                font-size: 16px;
+                                font-weight: bold">
+                        Posted </h4>
+                    <table style="width: 100%;"
+                           ng-if="rec.posted.invoices.length > 0">
+                        <thead>
+                            <tr>
+                                <th ng-if="printPdfVals.reportOrderByID == '2'">Posting Date</th>
+                                <th ng-if="!(printPdfVals.reportOrderByID == '2')">Order Date</th>
+                                <th> Document Type </th>
+                                <th> Document No. </th>
+                                <th style="text-align: right;"> Commission Rate</th>
+                                <th style="text-align: right;"> Sales</th>
+                                <th style="text-align: right;"> Commission</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="inv in rec.posted.invoices">
+                                <td ng-if="printPdfVals.reportOrderByID == '2'">{{inv.posting_date}}</td>
+                                <td ng-if="!(printPdfVals.reportOrderByID == '2')">{{inv.order_date}}</td>
+                                <td> {{inv.document_type}} </td>
+                                <td> {{inv.document_no}} </td>
+                                <td style="text-align: right;"> 
+                                    <span ng-if="inv.salepersonCommissionRate">{{inv.salepersonCommissionRate | currency:""}}%</span>
+                                </td>
+                                <td style="text-align: right;"> {{inv.amount_ex_vat | currency:""}} </td>
+                                <td style="text-align: right;"> {{inv.commission| currency:""}} </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: right;"><b>Total Posted</b></td>
+                                <td style="text-align: right;"><b>{{rec.posted.total_amount_ex_vat |
+                                        currency:""}}</b></td>
+                                <td style="text-align: right;">
+                                    <b>{{rec.posted.total_commission | currency:""}}</b>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h4 ng-if="rec.unposted.invoices.length > 0"
+                        style=" margin: 0;
+                                margin-bottom: 10px;
+                                font-size: 16px;
+                                font-weight: bold">
+                        Unposted </h4>
+                    <table style="width: 100%;"
+                           ng-if="rec.unposted.invoices.length > 0">
+                        <thead>
+                            <tr>
+                                <th ng-if="printPdfVals.reportOrderByID == '2'">Posting Date</th>
+                                <th ng-if="!(printPdfVals.reportOrderByID == '2')">Order Date</th>
+                                <th> Document Type </th>
+                                <th> Document No. </th>
+                                <th style="text-align: right;"> Commission Rate</th>
+                                <th style="text-align: right;"> Sales </th>
+                                <th style="text-align: right;"> Commission </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="inv in rec.unposted.invoices">
+                                <td ng-if="printPdfVals.reportOrderByID == '2'">{{inv.posting_date}}</td>
+                                <td ng-if="!(printPdfVals.reportOrderByID == '2')">{{inv.order_date}}</td>
+                                <td> {{inv.document_type}} </td>
+                                <td> {{inv.document_no}} </td>
+                                <td style="text-align: right;"> 
+                                    <span ng-if="inv.salepersonCommissionRate">{{inv.salepersonCommissionRate | currency:""}}%</span>
+                                </td>
+                                <td style="text-align: right;"> {{inv.amount_ex_vat | currency:""}} </td>
+                                <td style="text-align: right;"> {{inv.commission | currency:""}} </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: right;"><b>Total Unposted</b></td>
+                                <td style="text-align: right;"><b>{{rec.unposted.total_amount_ex_vat |
+                                        currency:""}}</b></td>
+                                <td style="text-align: right;">
+                                    <b>{{rec.unposted.total_commission | currency:""}}</b>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <b style="font-size: 14px;margin-bottom: 6px;display: block;">Total For {{rec.saleperson}}</b>
+                    <table style="width:100%;">
+                        <tr style="background-color: whitesmoke;">
+                            <td style="text-align: right;width:20%;"><b>Posted</b></td>
+                            <td style="text-align: right;width:20%;"><b>Unposted</b></td>
+                            <td style="text-align: right;width:20%;"><b>Total</b></td>
+                            <td style="text-align: right;width:20%;"><b>Commission</b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;width:20%;">
+                                <span
+                                      ng-if="rec.posted.invoices.length > 0">{{rec.posted.total_amount_ex_vat | currency:""}}
+                                    {{defaultCurrencyCode}}</span>
+                                <span ng-if="!(rec.posted.invoices.length > 0)">0.00 {{defaultCurrencyCode}}</span>
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                <span
+                                      ng-if="rec.unposted.invoices.length > 0">{{rec.unposted.total_amount_ex_vat | currency:""}}
+                                    {{defaultCurrencyCode}}</span>
+                                <span ng-if="!(rec.unposted.invoices.length > 0)">0.00 {{defaultCurrencyCode}}</span>
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{rec.unposted.total_amount_ex_vat + rec.posted.total_amount_ex_vat | currency:""}}
+                                {{defaultCurrencyCode}}
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{rec.unposted.total_commission + rec.posted.total_commission | currency:""}}
+                                {{defaultCurrencyCode}}
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div style="page-break-after: always;"
+                         ng-if="printPdfVals.total_records.length - 1 != $index">
+                    </div>
+                    <div style="height: 100px;"
+                         ng-if="printPdfVals.total_records.length - 1 != $index && toggleLandscape">
+                    </div>
+                </div>
+
+                <div ng-if="printPdfVals.report_type == 'detail'">
+
+                    <b style="font-size: 14px;margin-bottom: 6px;display: block;">Grand Total</b>
+                    <table style="width:100%;">
+                        <tr style="background-color: whitesmoke;">
+                            <td style="text-align: right;width:20%;"><b>Posted</b></td>
+                            <td style="text-align: right;width:20%;"><b>Unposted</b></td>
+                            <td style="text-align: right;width:20%;"><b>Total</b></td>
+                            <td style="text-align: right;width:20%;"><b>Commission</b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;width:20%;">
+                                {{printPdfVals.posted_grand_total_amount_ex_vat | currency:""}} {{defaultCurrencyCode}}
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{printPdfVals.unposted_grand_total_amount_ex_vat | currency:""}} {{defaultCurrencyCode}}
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{printPdfVals.posted_grand_total_amount_ex_vat + printPdfVals.unposted_grand_total_amount_ex_vat | currency:""}} {{defaultCurrencyCode}}
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{printPdfVals.posted_grand_total_commission + printPdfVals.unposted_grand_total_commission | currency:""}}
+                                {{defaultCurrencyCode}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div ng-if="printPdfVals.report_type == 'summary'"
+                     style="clear: both;margin-bottom: 72px;">
+
+                    <sethtmlpageheader name='MyCustomHeader'
+                                       page='ALL'
+                                       value='on'
+                                       show-this-page='1' />
+
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+                    <setpagefooter name='MyFooter3'
+                                   page='ALL'
+                                   value='on'
+                                   show-this-page='1' />
+
+                    <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter3;
+                        }
+                    </style>
+                    <div class='reportHeading'>
+                        <div class='reportHeading__left'>
+                            <div class='reportHeading__left__reportname'
+                                 style="margin-bottom: 12px;">{{printPdfVals.reportTitle}}</div>
+                            <div class='reportHeading__left__reportfilter'
+                                 style="width: 100%;margin-bottom: 5px;">
+                                 <span ng-if="printPdfVals.report_type1 == 1">Order Date</span> <span ng-if="printPdfVals.report_type1 == 2">Posting Date</span> From {{printPdfVals.dateFrom}} to {{printPdfVals.dateTo}}
+                            </div>
+                        </div>
+                        <div class='reportHeading__right'>
+                            <img ng-src='{{imagePath+defaultLogo}}'
+                                 class='reportHeading__right__img '
+                                 ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                        </div>
+                    </div>
+
+                    <div style="width: 70%;margin: 0 auto">
+                        <table style="width: 100%;margin-top: 33px;float: left;">
+                            <thead>
+                                <tr>
+                                    <th ng-repeat="column in printPdfVals.columns"
+                                        ng-if="column.title != 'Nettotal'"
+                                        x-col={{column.title}}
+                                        ng-class="{'rightAlign':  column.title == 'Nettotalconverted' || column.title == 'Salepersoncommissionrate' || column.title == 'Commission'}">
+                                        <span ng-if="column.title == 'Empcode'">Employee No.</span>
+                                        <span ng-if="column.title == 'Saleperson'">Name</span>
+                                        <span ng-if="column.title == 'Salepersoncommissionrate'">Commission Rate</span>
+                                        <span ng-if="column.title == 'Nettotalconverted'">Amount Excl. VAT</span>
+                                        <span
+                                            ng-if="column.title != 'Empcode' && column.title != 'Saleperson' && 
+                                                    column.title != 'Nettotalconverted' && 
+                                                    column.title != 'Salepersoncommissionrate'">{{column.title}}</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="rec in printPdfVals.reportsDataArr track by $index">
+                                    <td ng-repeat="column in printPdfVals.columns"
+                                        ng-if="column.title != 'Nettotal'"
+                                        ng-class="{'rightAlign': column.title == 'Nettotalconverted' || column.title == 'Salepersoncommissionrate' || column.title == 'Commission'}">
+                                        <span
+                                            ng-if="column.title != 'Nettotalconverted' && column.title != 'Salepersoncommissionrate' && column.title != 'Commission'">
+                                            {{rec[column.field]}}
+                                        </span>
+                                        <span ng-if="column.title == 'Salepersoncommissionrate' && rec[column.field]">
+                                            {{rec[column.field] | currency:""}} %</span>
+                                        <span ng-if="column.title == 'Nettotalconverted' || column.title == 'Commission'">
+                                            {{rec[column.field] | currency : "" : decimal_range }}
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- <table style="width:100%;">
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: right;"><b>Total:
+                                            {{printPdfVals.total_salesperson |
+                                            currency:""}} {{defaultCurrencyCode}}</b>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table> -->
+                    </div>
+                    <div style="display: inline-block;height: 17px;width: 100%"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            ng-click="destroyPdfModal('salespersonCommissionModal')">Cancel</button>
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <!-- jsreport download button -->
+                    <a type="button"
+                       class="btn btn-default2"
+                       ng-if="!jsreportLoading"
+                       title="Download PDF"
+                       ng-click="downloadReportSalespersonCommission(printPdfVals)">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

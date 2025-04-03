@@ -1,0 +1,488 @@
+<style type="text/css">
+  .featured-articles-container .articles a {
+    display: block !important;
+    margin-left: 3px !important;
+  }
+
+  .tab-content {
+    padding: 10px 0px 0px 0px !important;
+    margin-left: 30px;
+  }
+
+  ul.name-in li a {
+    color: black !important;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .add-btn {
+    float: right;
+    padding: 2px;
+    border-radius: 50%;
+    width: 27px;
+    color: #8a8a8a;
+    margin-top: 2px;
+  }
+
+  .add-btn:hover {
+    cursor: pointer;
+    color: black;
+  }
+</style>
+
+<div ng-controller="ContactController" ng-init="showAddForm();">
+  <div class="row">
+    <div class="col-lg-2">
+      <div class="d-wi2" style="    width: 19.3%;">
+        <h4 style="display:inline-block;font-size: 15px;font-weight: 600;">Contacts</h4>
+        <a ng-click="showAddForm()" class="add-btn"><i class="material-icons">&#xE145;</i></a>
+        <div class="input-symbol" style="    margin-top: 9px;">
+            <input type="text" Placeholder="Search" class="form-control"
+                   ng-model="searchKeyword.search">
+            <span><i class="fa fa-search"></i></span>
+        </div>
+        <div ng-init="getContacts();">
+          <div id="vertical-tab" class="ssg">
+            <ul class="pull-left text-center name-in">
+              <li id="all_li" class="active litab"><a data-toggle="tab" onclick="showVerTab('all');" href="javascript: void(0);"><strong><i style="margin: 0px;" class="fa fa-sort-alpha-asc"></i></strong></a></li>
+              <li class="litab" id="a_li"><a href="javascript: void(0);" onclick="showVerTab('a');" data-toggle="tab"><strong>A</strong></a></li>
+              <li class="litab" id="b_li"><a href="javascript: void(0);" onclick="showVerTab('b');" data-toggle="tab"><strong>B</strong></a></li>
+              <li class="litab" id="c_li"><a href="javascript: void(0);" onclick="showVerTab('c');" data-toggle="tab"><strong>C</strong></a></li>
+              <li class="litab" id="d_li"><a href="javascript: void(0);" onclick="showVerTab('d');" data-toggle="tab"><strong>D</strong></a></li>
+              <li class="litab" id="e_li"><a href="javascript: void(0);" onclick="showVerTab('e');" data-toggle="tab"><strong>E</strong></a></li>
+              <li class="litab" id="f_li"><a href="javascript: void(0);" onclick="showVerTab('f');" data-toggle="tab"><strong>F</strong></a></li>
+              <li class="litab" id="g_li"><a href="javascript: void(0);" onclick="showVerTab('g');" data-toggle="tab"><strong>G</strong></a></li>
+              <li class="litab" id="h_li"><a href="javascript: void(0);" onclick="showVerTab('h');" data-toggle="tab"><strong>H</strong></a></li>
+              <li class="litab" id="i_li"><a href="javascript: void(0);" onclick="showVerTab('i');" data-toggle="tab"><strong>I</strong></a></li>
+              <li class="litab" id="j_li"><a href="javascript: void(0);" onclick="showVerTab('j');" data-toggle="tab"><strong>J</strong></a></li>
+              <li class="litab" id="k_li"><a href="javascript: void(0);" onclick="showVerTab('k');" data-toggle="tab"><strong>K</strong></a></li>
+              <li class="litab" id="l_li"><a href="javascript: void(0);" onclick="showVerTab('l');" data-toggle="tab"><strong>L</strong></a></li>
+              <li class="litab" id="m_li"><a href="javascript: void(0);" onclick="showVerTab('m');" data-toggle="tab"><strong>M</strong></a></li>
+              <li class="litab" id="n_li"><a href="javascript: void(0);" onclick="showVerTab('n');" data-toggle="tab"><strong>N</strong></a></li>
+              <li class="litab" id="o_li"><a href="javascript: void(0);" onclick="showVerTab('o');" data-toggle="tab"><strong>O</strong></a></li>
+              <li class="litab" id="p_li"><a href="javascript: void(0);" onclick="showVerTab('p');" data-toggle="tab"><strong>P</strong></a></li>
+              <li class="litab" id="q_li"><a href="javascript: void(0);" onclick="showVerTab('q');" data-toggle="tab"><strong>Q</strong></a></li>
+              <li class="litab" id="r_li"><a href="javascript: void(0);" onclick="showVerTab('r');" data-toggle="tab"><strong>R</strong></a></li>
+              <li class="litab" id="s_li"><a href="javascript: void(0);" onclick="showVerTab('s');" data-toggle="tab"><strong>S</strong></a></li>
+              <li class="litab" id="t_li"><a href="javascript: void(0);" onclick="showVerTab('t');" data-toggle="tab"><strong>T</strong></a></li>
+              <li class="litab" id="u_li"><a href="javascript: void(0);" onclick="showVerTab('u');" data-toggle="tab"><strong>U</strong></a></li>
+              <li class="litab" id="v_li"><a href="javascript: void(0);" onclick="showVerTab('v');" data-toggle="tab"><strong>V</strong></a></li>
+              <li class="litab" id="w_li"><a href="javascript: void(0);" onclick="showVerTab('w');" data-toggle="tab"><strong>W</strong></a></li>
+              <li class="litab" id="x_li"><a href="javascript: void(0);" onclick="showVerTab('x');" data-toggle="tab"><strong>X</strong></a></li>
+              <li class="litab" id="y_li"><a href="javascript: void(0);" onclick="showVerTab('y');" data-toggle="tab"><strong>Y</strong></a></li>
+              <li class="litab" id="z_li"><a href="javascript: void(0);" onclick="showVerTab('z');" data-toggle="tab"><strong>Z</strong></a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active no-padding" style="    margin-top: -10px;" id="all">
+                <a ng-repeat="contact in contacts.a | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.b | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.c | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.d | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.e | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.f | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.g | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.h | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.i | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.j | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.k | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.l | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.m | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.n | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.o | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.p | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.q | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.r | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.s | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.t | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.u | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.v | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.w | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.x | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.y | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts.z | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="a">
+                <a ng-repeat="contact in contacts.a | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="b">
+                <a ng-repeat="contact in contacts.b | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="c">
+                <a ng-repeat="contact in contacts.c | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="d">
+                <a ng-repeat="contact in contacts.d | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="e">
+                <a ng-repeat="contact in contacts.e | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="f">
+                <a ng-repeat="contact in contacts.f | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="g">
+                <a ng-repeat="contact in contacts.g | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="h">
+                <a ng-repeat="contact in contacts.h | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="i">
+                <a ng-repeat="contact in contacts.i | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="j">
+                <a ng-repeat="contact in contacts.j | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="k">
+                <a ng-repeat="contact in contacts.k | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="l">
+                <a ng-repeat="contact in contacts.l | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="m">
+                <a ng-repeat="contact in contacts.m | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="n">
+                <a ng-repeat="contact in contacts.n | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="o">
+                <a ng-repeat="contact in contacts.o | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="p">
+                <a ng-repeat="contact in contacts.p | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="q">
+                <a ng-repeat="contact in contacts.q | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="r">
+                <a ng-repeat="contact in contacts.r | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="s">
+                <a ng-repeat="contact in contacts.s | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="t">
+                <a ng-repeat="contact in contacts.t | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="u">
+                <a ng-repeat="contact in contacts.u | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="v">
+                <a ng-repeat="contact in contacts.v | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="w">
+                <a ng-repeat="contact in contacts.w | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="x">
+                <a ng-repeat="contact in contacts.x | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="y">
+                <a ng-repeat="contact in contacts.y | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="z">
+                <a ng-repeat="contact in contacts.z | filter:searchKeyword.search track by $index" href="javascript: void(0);" class="ng-scope" style="">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-pane no-padding" id="digits">
+                <a ng-repeat="contact in contacts._0 | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts._1 | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts._2 | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts._3 | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts._4 | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts._5 | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts._6 | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts._7 | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts._8 | filter:searchKeyword.search track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+                <a ng-repeat="contact in contacts._9 track by $index" href="javascript: void(0);">
+                  <div class="checkbox no-margin">
+                    <label style="width: 100%;" class="no-padding contact-names">   <strong   style="width: 100%;" ng-click="showViewForm(contact.id, $index);">{{contact.saveas}}  </strong> </label>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <!-- /tab-content -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-10">
+      <div ng-include="'app/views/contact/_form.html'"></div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="modal fade" id="modaldeletecontact">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Delete Contact</h4>
+        </div>
+        <div class="modal-body">
+          <p ng-bind="deleteEvent.errorMessage" style="text-align: center; color: #FF0000;"></p>
+          <p ng-bind="deleteEvent.successMessage" style="text-align: center; color: #00FF00;"></p>
+          <p>Are you sure you want to delete this contact?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-delete" data-dismiss="modal" ng-click="deleteContact();">Confirm</button>
+          <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<script type="text/javascript">
+  function showVerTab(tabid) {
+    $('.tab-pane').removeClass('active');
+    $('.litab').removeClass('active');
+    $('#' + tabid).addClass('active');
+    $('#' + tabid + '_li').addClass('active');
+  }
+</script>

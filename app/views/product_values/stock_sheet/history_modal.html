@@ -1,0 +1,124 @@
+
+<div class="modal fade" id="model_status_product"  >
+  <div class="modal-dialog "    style=" width:85% !important" ><!--modal-lg   style=" width:65% !important" -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close"  data-dismiss="modal"  aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{pcode}}-{{title}}  History </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 ">
+
+
+
+
+
+            <form class="form-horizontal no-margin">
+
+                  <div class="col-sm-2">
+              <div class="input-symbol">
+              <input type="text"
+                Placeholder="Search" class="form-control ng-valid ng-dirty"  id="searchKeyword"ng-model="searchKeyword">
+              <span  id="date_msg_4" > <i class="fa fa-search"></i></span> </div>
+             </div>
+                    <div class="col-sm-2">
+                      <select ng-model="rec.type" ng-options="opt as opt.name for opt in type_array"  class="form-control">
+                        <option value="">All Status</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-2">
+                      <select ng-model="rec.warehouse" ng-options="opt as opt.name for opt in arr_warehouse"  class="form-control">
+                        <option value="">All Warehouses</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-2">
+                      <input jqdatepicker class="2date-picker form-control" placeholder="From" ng-model="rec.date_from" readonly >
+                    </div>
+                    <div class="col-sm-2">
+                      <input jqdatepicker class="2date-picker form-control" placeholder="To" ng-model="rec.date_to" readonly >
+                    </div>
+                    <div class="col-sm-2">
+                      <select ng-model="rec.by" ng-options="opt as opt.name for opt in arr_by"  class="form-control">
+                        <option value="">All Dates</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-12" style="    margin-top: 10px;
+    margin-bottom: 10px;">
+                        <a id="prompt" ng-click="getProduct(rec.product_id,title,0,22,pcode)" class="btn btn_blue pull-right">Search</a>
+                         <a id="prompt" ng-click="getProduct(rec.product_id,title,0,11,pcode)" class="btn btn_blue pull-right">Show All</a>
+
+                  </div>
+
+
+                  </div>
+
+            </form>
+              <div class="col-md-12 ">
+                    <table class="table table-striped table-bordered table-hover" ng-init="rec.total = {}">
+                      <thead >
+                        <tr class="bg-col"    ng-show="columns_general.length > 0">
+                          <th ng-repeat="column in columns_general" ng-if="column.field != 'id' &&   column.field!= 'Action'
+                &&  column.field != 'sale_return' && column.field != 'purchase_return'&& column.field!='order_id' && column.field !='ptq' && column.field != 'code' && column.field != 'description'&& column.field != 't' && column.field !='remaining_stock' "> {{column.title}} </th>
+                        </tr>
+                      </thead>
+                      <tbody class="courser table-body">
+                        <tr ng-repeat="rec in general | filter:searchKeyword"  ng-show="columns_general.length > 0" >
+
+                          <td ng-repeat="column in columns_general"  sortable="column.title"
+
+ng-if="column.field != 'id' &&   column.field!= 'Action'
+&&  column.field != 'sale_return' && column.field != 'purchase_return' && column.field!='order_id' && column.field != 'ptq' && column.field != 'code' && column.field != 'description'&& column.field != 't'  && column.field !='remaining_stock'"
+
+><span ng-if="column.field == 'doc._no.'"   > <span ng-if="rec.t == 'so'"> <a class="hilight" ui-sref="app.viewOrder({id:rec.order_id})" target="_blank" >{{rec[column.field]}}</a> </span> <span ng-if="rec.t == 'sr'" > <a class="hilight" ui-sref="app.viewReturnOrder({id:rec.order_id})" target="_blank" >{{rec[column.field]}}</a> </span> <span ng-if="rec.t == 'si'" > <a class="hilight" ui-sref="app.viewSaleInvoice({id:rec.order_id})" target="_blank" >{{rec[column.field]}}</a> </span> <span ng-if="rec.t == 'pr'" > <a class="hilight" ui-sref="app.viewsrminvoice({id:rec.order_id})" target="_blank" >{{rec[column.field]}}</a> </span> <span ng-if="rec.t == 'po'" > <a class="hilight" ui-sref="app.viewsrmorder({id:rec.order_id})" target="_blank" >{{rec[column.field]}}</a> </span> <span ng-if="rec.t == 'pi'"   > <a   class="hilight"  ui-sref="app.viewsrminvoice({id:rec.order_id})" target="_blank" >{{rec[column.field]}}</a> </span> </span> <span ng-if="column.field != 'date_received' && column.field != 'use by date' && column.field != 'quantity'
+                  && column.field != 'remaining_stock' && column.field != 'doc._no.' ">{{rec[column.field]}}</span>
+
+                            <!--  <span ng-if="  column.field == 'remaining_stock'||   column.field == 'qty._allocated'">
+                   {{rec[column.field] |  numberNoDecimalsIfZeroFilter:2:''}} </span>
+                  -->
+
+                            <span ng-if="column.field == 'quantity' ">
+                            <!--     <span ng-if="rec.sale_return == 1 && column.field != 'remaining_stock' &&  column.field != 'qty._allocated'">&plus;</span>
+
+
+<span ng-if="rec.sale_return == 0 && rec.purchase_return == 0 && column.field != 'remaining_stock' &&  column.field != 'qty._allocated'">&minus;</span>
+-->
+
+                            <span ng-if="rec.sale_return == 0 && column.field != 'remaining_stock' &&  column.field != 'qty._allocated'">&minus;</span> <span ng-if=" rec.purchase_return == 0">&plus;</span> <span ng-if=" rec.purchase_return == 1">&minus;</span> <span ng-if=" rec.sale_return == 1">&plus;</span> {{rec[column.field] |  numberNoDecimalsIfZeroFilter:2:''}} <span ng-if="rec.ptq == 'Pcs'">Pcs</span> </span>
+
+                            <!--
+
+                             <span  ng-if="column.field == 'qty._allocated' ">
+                             {{rec[column.field] |  numberNoDecimalsIfZeroFilter:2:''}}
+ 							</span>
+                        -->
+
+                            <!--   <span ng-if=" column.field = 'remaining_stock' ">
+                        {{rec[column.field] |  numberNoDecimalsIfZeroFilter:2:''}} </span>
+                          <span ng-if="   column.field == 'qty._allocated'">
+                        {{rec[column.field] |  numberNoDecimalsIfZeroFilter:2:''}} </span>
+                        -->
+                            <!-- <span ng-if="column.field == 'sale_order'">{{getCode(SalePrefix,rec[column.field])}}</span>
+                    <span ng-if="column.field == 'purchase_order'">{{getCode(PurchasePrefix,rec[column.field])}}</span> -->
+
+                            <span ng-if="column.field == 'date_received'
+                    || (column.field == 'use by date' && rec[column.field] != 0)"> {{rec[column.field]}}</span></td>
+                        </tr>
+                        <tr ng-show="columns_general.length > 0">
+                          <td colspan="9"><strong>Total</strong></td>
+                          <td>{{getTotalSold('QTY._sold')}}</td>
+                          <td>{{getTotalRemaining('qty._allocated')}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancel" data-dismiss="modal" >Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

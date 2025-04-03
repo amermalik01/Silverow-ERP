@@ -1,0 +1,46 @@
+<div ng-controller="OrdersController as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <a ng-if="allowadd_sale_order_module && show_sales_add_btn == 1"
+       id="prompt"
+       ui-sref="app.addOrder"
+       class="btn btn_add pull-right oval">
+       <i class="fa fa-plus"></i></a>
+
+    <style>
+        .hideAdd {
+            margin-top: -6px;
+        }
+        .hideAdd2 {
+                margin-top: 20px;
+        }
+    </style>
+
+    <div class="row">
+        <div class="col-md-12 col-md-12">
+            <div class="widget">
+                <div class="widget-body ">
+                    <div id="dt_example"
+                         class="example_alt_pagination  ">
+                        <!--    View    permision for Company User /superadmin 2 -->
+                        <div>
+                            <div class="flexiTable"
+                                 ng-class="{'hideAdd': allowadd_sale_order_module && show_sales_add_btn == 1,'hideAdd2': !(show_sales_add_btn == 1)}"
+                                 x-generate-table
+                                 x-data="tableData.data"
+                                 x-table-name="SalesOrder"
+                                 x-filter-function="getOrderListing()"
+                                 x-checked-records="selectedRecBulkEmail"
+                                 x-filter-object="searchKeyword"
+                                 x-selected-record-preview="sale_order_code"
+                                 x-bulk-email-function="bulkEmailOption()"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div ng-include="'app/views/orders/_PurchaseOrdersModal.html'"></div> -->
+    <div ng-include="'app/views/_confirm_modal.html'"></div>
+    <div ng-include="'app/views/_bulkOptionsModal.html'"></div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

@@ -1,0 +1,103 @@
+<div ng-controller="SaleForcastListController as table">
+  <div ng-include="'app/views/_breadcrumb.html'"
+       class="col-lg-12"></div>
+  <div class="row"
+       style="    margin-bottom: 0 !important;">
+    <div class="col-md-12">
+      <div class="nav nav-tabs">
+        <div class="col-sm-6">
+          <div class="search-wrapper">
+            <input type="text"
+                   ng-model="searchKeyword"
+                   placeholder="Search in Forecast"
+                   class="form-control" />
+            <!--,Salesperson(s)-->
+            <i class="fa fa-search search-icon"
+               aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"
+         style="float:right;">
+      <div class="widget">
+        <select class="form-control"
+                ng-change="getSalesForecast(rec.saleperson_id, rec.year)"
+                ng-model="rec.saleperson_id">
+          <option ng-repeat="opt in sales_persons"
+                  ng-selected="{{opt.id == rec.saleperson_id}}"
+                  value="{{opt.id}}"> {{opt.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-1"
+         style="float:right;">
+      <div class="widget">
+        <select class="form-control" ng-model="rec.year" ng-change="getSalesForecast(rec.saleperson_id, rec.year)">
+          <option value="{{previous_year}}" ng-selected="rec.year == previous_year">{{previous_year}}</option>
+          <option value="{{current_year}}" ng-selected="rec.year == current_year">{{current_year}}</option>
+          <option value="{{next_year}}" ng-selected="rec.year == next_year"> {{next_year}}</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-md-12">
+      <div class="widget">
+        <div class="widget-body1 ">
+          <div id="dt_example"
+               class="example_alt_pagination">
+
+            <!--  View permision for Company User /superadmin    "-->
+            <table class="table table-condensed table-striped table-hov er table-bordered"
+                   id="data-table">
+              <thead class="fixit">
+                <tr class="bg-col">
+                  <th></th>
+                  <th style="text-align: right">Target ({{defaultCurrencyCode}})</th>
+                  <th style="text-align: right">Forecast ({{defaultCurrencyCode}})</th>
+                  <th style="text-align: right">Order ({{defaultCurrencyCode}})</th>
+                  <th style="text-align: right">Invoiced ({{defaultCurrencyCode}})</th>
+                  <th style="text-align: right">Target Achieved % </th>
+                  <th style="text-align: right">Forecast Achieved % </th>
+                </tr>
+              </thead>
+              <tbody class="fixit">
+                <tr ng-repeat="fd in forcast_data | filter:searchKeyword">
+                  <td>{{fd.month_name}} {{rec.year}}</td>
+                  <td style="color:blue; text-align: right;" ng-click="getTarget(fd)">{{fd.target | currency:""}}</td>
+                  <td style="color:blue; text-align: right" ng-click="getForecast(fd)">{{fd.forecast | currency:""}} &nbsp;<span ng-if="fd.status == 0"><i style="font-size: 12px; color:balck;" class="material-icons">lock</i></span></td>
+                  <td style="color:blue; text-align: right;" ng-click="getFilteredOrders(fd, 1)">{{fd.orders | currency:""}}</td>
+                  <td style="color:blue; text-align: right;" ng-click="getFilteredOrders(fd, 2)">{{fd.acheived | currency:""}}</td>
+                  <td style="text-align: right">{{fd.target_acheived_percentage | currency:""}}%</td>
+                  <td style="text-align: right">{{fd.forecast_acheived_percentage | currency:""}}%</td>
+
+                </tr>
+              </tbody>
+              <thead class="fixit">
+                <tr class="bg-col">
+                  <th>Total</th>
+                  <th style="text-align: right">{{forcast_data_total.target_total | currency:""}}</th>
+                  <th style="text-align: right">{{forcast_data_total.forecast_total | currency:""}}</th>
+                  <th style="text-align: right">{{forcast_data_total.orders_total | currency:""}}</th>
+                  <th style="text-align: right">{{forcast_data_total.acheived_total | currency:""}}</th>
+                  <th style="text-align: right">{{forcast_data_total.target_acheived_percentage_total | currency:""}}%</th>
+                  <th style="text-align: right">{{forcast_data_total.forecast_acheived_percentage_total | currency:""}}%</th>
+                </tr>
+
+              </thead>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-include="'app/views/sales_forcast/_sales_target.html'"></div>
+  <div ng-include="'app/views/sales_forcast/_sales_forecast.html'"></div>  
+
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

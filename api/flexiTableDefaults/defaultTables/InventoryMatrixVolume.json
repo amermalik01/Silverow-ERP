@@ -1,0 +1,237 @@
+[
+    {
+        "title": "Item No.",
+        "field_name": "product_code",
+        "event": {
+            "name": "openInventoryLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "85",
+        "data_type": "string"
+    },
+    {
+        "title": "Item Name",
+        "field_name": "product_name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Brand",
+        "field_name": "brand_name",
+        "visible": "1",
+        "pinned": "0",
+        "db_table": "brand",
+        "db_field": "brandname",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Category",
+        "field_name": "category_name",
+        "db_table": "category",
+        "db_field": "name",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Unit of Measure",
+        "field_name": "unit_name",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Sales TY",
+        "field_name": "sales_current_year",
+        "classes": "tooltips_clsshilight padright10",
+        "event": {
+            "name": "show_inventory_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:1"
+            ]
+        },
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Purchases TY",
+        "field_name": "purchases_current_year",
+        "classes": "tooltips_clsshilight padright10",
+        "event": {
+            "name": "show_inventory_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:2"
+            ]
+        },
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Avg Cost Price TY",
+        "field_name": "profit_current_year",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Avg Selling Price TY",
+        "field_name": "profit_percentage_current_year",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Sales",
+        "field_name": "sales_period",
+        "classes": "tooltips_clsshilight padright10",
+        "event": {
+            "name": "show_inventory_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:3"
+            ]
+        },
+        "visible": "1",
+        "custom_classes": "highlightColBoth ",
+        "custom_classesHeader": "highlightTh",
+        "pinned": "0",
+        "color": "#fffbdb",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Purchases",
+        "field_name": "purchases_period",
+        "classes": "tooltips_clsshilight padright10",
+        "event": {
+            "name": "show_inventory_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:4"
+            ]
+        },
+        "visible": "1",
+        "custom_classes": "highlightColBoth ",
+        "custom_classesHeader": "highlightTh",
+        "pinned": "0",
+        "color": "#fffbdb",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Avg Cost Price",
+        "custom_classes": "highlightColBoth ",
+        "custom_classesHeader": "highlightTh",
+        "field_name": "profit_period",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#fffbdb",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Avg Selling Price",
+        "field_name": "profit_percentage_period",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#fffbdb",
+        "width": "130",
+        "data_type": "number",
+        "custom_classes": "highlightColBoth ",
+        "custom_classesHeader": "highlightTh"
+    },
+    {
+        "title": "Prev. Sales",
+        "field_name": "sales_prev_period",
+        "classes": "tooltips_clsshilight padright10",
+        "event": {
+            "name": "show_inventory_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:5"
+            ]
+        },
+        "visible": "1",
+        "custom_classes": "highlightColBoth ",
+        "custom_classesHeader": "highlightTh",
+        "pinned": "0",
+        "color": "#f1f9ff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Prev. Purchases",
+        "field_name": "purchases_prev_period",
+        "classes": "tooltips_clsshilight padright10",
+        "event": {
+            "name": "show_inventory_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:6"
+            ]
+        },
+        "visible": "1",
+        "custom_classes": "highlightColBoth ",
+        "custom_classesHeader": "highlightTh",
+        "pinned": "0",
+        "color": "#f1f9ff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Prev. Avg Cost Price",
+        "custom_classes": "highlightColBoth ",
+        "custom_classesHeader": "highlightTh",
+        "field_name": "profit_prev_period",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#f1f9ff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Prev. Avg Selling Price",
+        "field_name": "profit_percentage_prev_period",
+        "custom_classes": "highlightColBoth ",
+        "custom_classesHeader": "highlightTh",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#f1f9ff",
+        "width": "0",
+        "data_type": "number"
+    }
+]

@@ -1,0 +1,125 @@
+<div class="clearfix"></div>
+
+<div class="widget">
+    <div class="widget-body" style="padding-top: 7px !important;">
+        <div id="dt_example" class="example_alt_pagination">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="panel-title2"> Volume Rebate </h3>
+                </div>
+                <!--{{Rebate_rec}}-->
+                <!-- {{RebateVolumeDetailData}}-->
+                <!--{{isAdded}}&&&{{RebateVolumeFormData.id}}&&&{{PriceOffer_rec.id}}-->
+                <!--<div class="col-sm-5">
+                    <div class="  form-group">
+                        <label class=" control-label col-sm-4 "> Volume<span class="required">*</span></label>
+                        <div class="col-sm-8">
+                            <button type="button" id="model_btn_vol_1"
+                                    class="btn btn-info btn_blue pull-left margin_bottom"
+                                    data-toggle="modal" data-target="#model_vol_1" style="display:none"> Add New
+                            </button>
+                            <select ng-model="RebateVolumeFormData.volume_1"
+                                    ng-show="isAdded && !RebateVolumeFormData.id && !Rebate_rec.id"
+                                    multiple=""
+                                    ng-class="{'dont-click':isAdded && RebateVolumeDetailData.length > 1 && !RebateVolumeFormData.id && isFristTime}"
+                                    ng-options="opt as opt.name for opt in RebateVolumeDetailData"
+                                    class="select2me form-control"
+                                    ng-disabled="check_volume_readonly"
+                                    ng-required="isAdded && RebateVolumeDetailData.length > 1 && !RebateVolumeFormData.id"
+                                    ng-change="onChange_vol_revenue_rebate(RebateVolumeFormData.volume_1.id,1)"
+                                    id="vol_1_id">
+                                <option style="display:none" value=""></option>
+                            </select>
+                            <select ng-model="RebateVolumeFormData.volume_1"
+                                    ng-show="RebateVolumeFormData.id || Rebate_rec.id > 0"
+                                    ng-class="{'dont-click':isAdded && RebateVolumeDetailData.length > 1 && !RebateVolumeFormData.id}"
+                                    ng-options="opt as opt.name for opt in RebateVolumeDetailData"
+                                    class="select2me form-control"
+                                    ng-disabled="check_volume_readonly"
+                                    ng-required="RebateVolumeFormData.id || Rebate_rec.id > 0"
+                                    ng-change="onChange_vol_revenue_rebate(RebateVolumeFormData.volume_1.id,1)"
+                                    id="vol_2_id">
+                                <option style="display:none" value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="col-md-12">
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 "> <!--Volume-->Quantity From<span class="required">*</span></label>
+
+                            <div class="col-sm-8 ">
+                                <div class="input-symbol">
+                                    <input ng-model="RebateVolumeFormData.revenue_volume_from" type="text"
+                                           class="form-control input_text" required data-parsley-type="number">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 "> <!--Volume-->Quantity To<span class="required">*</span></label>
+
+                            <div class="col-sm-8 ">
+                                <div class="input-symbol">
+                                    <input ng-model="RebateVolumeFormData.revenue_volume_to" type="text"
+                                           class="form-control input_text" required data-parsley-type="number">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 "> Unit of Measure:</label>
+                            <span class="col-sm-4 control-label ng-binding" style="font-weight: normal !important;"> {{Rebate_rec.uoms.title}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 "> Rebate Type<span class="required">*</span></label>
+
+                            <div class="col-sm-8 ">
+                                <select required ng-model="RebateVolumeFormData.rebate_types"
+                                        ng-options="opt as opt.name for opt in list_type"
+                                        class="select2me form-control">
+                                    <option style="display:none"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 "> Rebate<span
+                                    ng-if="RebateVolumeFormData.rebate_types.id==1">&#37;</span><span
+                                    class="required">*</span></label>
+
+                            <div class="col-sm-8 ">
+                                <div class="input-symbol">
+                                    <input ng-model="RebateVolumeFormData.rebate" id="purchase_price_1"
+                                           type="text" class="form-control input_text" required
+                                           data-parsley-type="number">
+                                    <span ng-if="RebateVolumeFormData.rebate_types.id==1">&#37;</span>
+                                    <span ng-if="RebateVolumeFormData.rebate_types.id==2"> {{drp.currency.code}} </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <button class="btn btn-submit" type="submit" ng-show="!check_volume_readonly">Save
+                        </button>
+                        <!-- <button class="btn btn-info btn_blue" type="button" ng-click="showCustItemInfoEditForm()"
+                        ng-show="check_volume_readonly"><i class="fa fa-edit"></i> Edit</button> -->
+                        <button class="btn btn-cancel" type="button" ng-click="getVolRevenueRebate(Rebate_rec.id,1)">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

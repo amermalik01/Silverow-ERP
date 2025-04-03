@@ -1,0 +1,30 @@
+<div ng-controller="SaleReturnInvoiceController as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+
+    <div class="row">
+        <div class="col-md-12 col-md-12">
+            <div class="widget">
+                <div class="widget-body ">
+                    <div id="dt_example" class="example_alt_pagination">
+                        <!--    View    permision for Company User /superadmin -->
+                        <div>
+                            <div class="flexiTable" style="margin-top: 20px;" 
+                                x-generate-table 
+                                x-data="tableData.data" 
+                                x-table-name="PostedCreditNotes" 
+                                x-filter-function="getReturnInvoiceListing()" 
+                                x-checked-records = "selectedRecBulkEmail"
+                                x-filter-object="searchKeyword" 
+                                x-selected-record-preview="return_invoice_code"
+                                x-bulk-email-function = "bulkEmailOption()"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-include="'app/views/_confirm_modal.html'"></div>
+    <div ng-include="'app/views/_bulkOptionsModal.html'"></div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

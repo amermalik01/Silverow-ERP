@@ -1,0 +1,10 @@
+<script type="text/ng-template" id="checkCreditLimit">
+      <div class="ngdialog-message"><h3>Warning!</h3>
+	  <p>The customer's credit limit has been exceeded. Do you still want to record the amount?</p>
+	  <p><strong>Balance:</strong>&nbsp;&nbsp;{{balance}}<br>
+	  <strong>Credit Limit:</strong>&nbsp;{{credit_limit}}</p>
+	  <button type="button" ng-click="closeThisDialog(no)" class="btn btn-default pull-right">No</button>
+	  <button type="button" ng-click="confirm(1)" class="btn btn-primary mr pull-right">Yes</button>
+	  <div class="clearfix"></div>
+	  </div>
+   </script>

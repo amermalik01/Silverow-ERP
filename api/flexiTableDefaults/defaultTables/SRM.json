@@ -1,0 +1,193 @@
+[
+    {
+        "title": "SRM No.",
+        "field_name": "srm_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Name",
+        "field_name": "name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Address Line 1",
+        "field_name": "address_1",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Address Line 2",
+        "field_name": "address_2",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "City",
+        "field_name": "primary_city",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    },
+    {
+        "title": "County",
+        "field_name": "county",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Postcode",
+        "field_name": "primary_postcode",
+        "visible": "0",
+        "pinned": "0",
+        "custom_classes": "text-uppercase",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Country",
+        "field_name": "country_name",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Website",
+        "field_name": "web_address",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Email",
+        "field_name": "email",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Primary Contact",
+        "field_name": "primaryc_name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Primary Contact Email",
+        "field_name": "primaryc_email",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Telephone",
+        "field_name": "phone",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Purchaser",
+        "field_name": "Purchaser",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Territory",
+        "field_name": "region",
+        "db_table": "region",
+        "db_field": "title",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Segment",
+        "field_name": "segment",
+        "db_table": "crm_segment",
+        "db_where": " segment_type = 2 ",
+        "db_field": "title",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Classification",
+        "field_name": "srm_classification_name",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Selling Group",
+        "field_name": "selling_group",
+        "db_table": "crm_buying_group",
+        "db_field": "title",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Status",
+        "field_name": "statusp",
+        "default_filter": true,
+        "filter_type": "Exact",
+        "filter_value": "Active",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Currency",
+        "field_name": "currency",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+      }
+]

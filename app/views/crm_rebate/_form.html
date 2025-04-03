@@ -1,0 +1,303 @@
+<div class="row animated fadeIn">
+
+<div class="col-md-12 col-md-12">
+<div class="widget" style="background:none;">
+<!-- <div class="widget-header">
+  <div class="title">
+    Add Company General Information
+  </div>
+
+</div> -->
+
+<div class="widget-body" style="background:none;">
+<div class="col-md-12">
+  <div class="row" >
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="col-md-4 control-label">Rebate Type<span class="required">*</span></label>
+      <div class="col-md-8">
+        <select ng-model="rec.types" ng-change="onChangeRebateType()"  ng-options="opt as opt.name for opt in arr_rebate_types" required   ng-disabled ="rec.id > 0" class="form-control"><option style="display:none" value=""></option></select>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+<div class="col-md-12">
+<div class="row" ng-show="rec.types.id == 1">
+<div class="col-md-6">
+    <div class="form-group">
+      <label class="col-md-4 control-label">Universal Type<span class="required">*</span></label>
+      <div class="col-md-8">
+        <select ng-model="rec.universal_types" ng-change="resetItems()" ng-required="rec.types.id == 1" ng-options="opt as opt.name for opt in arr_rebate_universal"   ng-disabled ="rec.id > 0" class="form-control"><option style="display:none" value=""></option></select>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="col-md-12">
+<div class="row" ng-show="(rec.types.id == 3 || rec.universal_types.id == 2 || rec.universal_types.id == 3) && rec.types.id != 2 ">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="col-md-4 control-label"><span ng-show="rec.item_type != 2">Item(s)</span><span ng-show="rec.item_type == 2">Service(s)</span><span class="required">*</span></label>
+      <div class="col-md-8">
+        <div style="  overflow-y: scroll;    max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click':check_readonly}" >
+                  <div class="panel-body" ng-click="getItems()" id="display_record" style="padding:10px !important; min-height:30px;">
+                      <!-- <ul style="padding:0 !important; margin-left:20px;"><li style="list-style-type:disc;" ng-repeat="item in items" ng-if="item.chk">{{item.description}}</li></ul> -->
+
+                      <span ng-repeat="item in selectedItems track by $index">
+                        <span ng-if="$index == 0">{{item.description}}</span>
+                        <span ng-if="$index > 0">,&nbsp;{{item.description}}</span>
+                      </span>
+                  </div>
+
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="col-md-12">
+<div class="row" ng-show="rec.types.id == 2">
+  <div class="col-md-6" >
+    <div class="form-group">
+      <label class="col-md-4 control-label"><span ng-show="rec.category_type != 2">Item</span><span ng-show="rec.category_type == 2">Service</span> Category(ies)<span class="required">*</span></label>
+      <div class="col-md-8">
+        <div style="  overflow-y: scroll;    max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click':check_readonly}" >
+                  <div class="panel-body" ng-click="getCategories()" id="display_record" style="padding:10px !important; min-height:30px;">
+                      <!-- <ul style="padding:0 !important; margin-left:20px;"><li style="list-style-type:disc;" ng-repeat="cat in categories" ng-if="cat.chk">{{cat.name}}</li></ul> -->
+                      <span ng-repeat="cat in selectedCats track by $index">
+                        <span ng-if="$index == 0">{{cat.name}}</span>
+                        <span ng-if="$index > 0">,&nbsp;{{cat.name}}</span>
+                      </span>
+                  </div>
+                </div>
+             </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="col-md-12">
+<div class="row" ng-show="rec.universal_types.id == 1 || rec.types.id == 2 || rec.types.id == 3">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="col-md-4 control-label">Rebate<span>&#37;</span></label>
+      <div class="col-md-8">
+        <div class="input-symbol">
+        <input type="text" ng-model="rec.price_offered" id="volume_1_price" class="form-control"  ng-readonly="check_readonly"  tabindex="4" />
+        <span>&#37;</span>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="volume_based_rebate" ng-show="rec.universal_types.id == 2 && rec.types.id == 1">
+  <div class="col-md-12">
+  <div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label class="col-md-6 control-label">Volume 1<span class="required">*</span> </label>
+      <div class="col-md-6">
+        <select ng-model="rec.volume_1s" ng-options="opt as opt.name for opt in arr_rebt_volume_1" class="select2me form-control" ng-change="onChange_vol_1(1,'sale')"  ng-disabled ="check_readonly" ng-required="rec.universal_types.id == 2 && rec.types.id == 1">
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+  <div class="form-group">
+      <label class="col-md-4 control-label">Rebate<span>&#37;</span><span class="required">*</span></label>
+      <div class="col-md-8">
+        <div class="input-symbol">
+        <input type="text" ng-model="rec.volume_rebate_1" id="volume_rebate_1" class="form-control" ng-required="rec.universal_types.id == 2 && rec.types.id == 1"  ng-readonly="check_readonly"  />
+        <span>&#37;</span>
+      </div>
+      </div>
+    </div>
+  </div>
+ </div>
+ </div>
+ <div class="col-md-12">
+ <div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label class="col-md-6 control-label">Volume 2</label>
+      <div class="col-md-6">
+        <select ng-model="rec.volume_2s" ng-change="onChange_vol_1(2,'sale')" ng-options="opt as opt.name for opt in arr_rebt_volume_2" class="select2me form-control"  ng-disabled ="check_readonly">
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+  <div class="form-group">
+      <label class="col-md-4 control-label">Rebate<span>&#37;</span></label>
+      <div class="col-md-8">
+        <div class="input-symbol">
+        <input type="text" ng-model="rec.volume_rebate_2" id="volume_rebate_2" class="form-control"  ng-readonly="check_readonly"  />
+        <span>&#37;</span>
+      </div>
+      </div>
+    </div>
+  </div>
+ </div>
+ </div>
+  <div class="col-md-12">
+ <div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label class="col-md-6 control-label">Volume 3</label>
+      <div class="col-md-6">
+        <select ng-model="rec.volume_3s" ng-change="onChange_vol_1(3,'sale')" ng-options="opt as opt.name for opt in arr_rebt_volume_3" class="select2me form-control"  ng-disabled ="check_readonly" >
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+  <div class="form-group">
+      <label class="col-md-4 control-label">Rebate<span>&#37;</span></label>
+      <div class="col-md-8">
+        <div class="input-symbol">
+        <input type="text" ng-model="rec.volume_rebate_3" id="volume_rebate_3" class="form-control"  ng-readonly="check_readonly"  />
+        <span>&#37;</span>
+      </div>
+      </div>
+    </div>
+  </div>
+ </div>
+ </div>
+</div>
+
+<div id="revenue_based_rebate" ng-show="rec.universal_types.id == 3 && rec.types.id == 1">
+ <div class="col-md-12">
+  <div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label class="col-md-6 control-label">Revenue 1<span class="required">*</span> </label>
+      <div class="col-md-6">
+        <select ng-model="rec.revenue_1s" ng-change="addNewRevenuePopup(rec.revenue_1s,'1','Add Revenue')" ng-options="opt as opt.name for opt in arr_revenue_1" class="select2me form-control"  ng-disabled ="check_readonly" ng-required="rec.universal_types.id == 3 && rec.types.id == 1">
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+  <div class="form-group">
+      <label class="col-md-4 control-label">Rebate<span>&#37;</span><span class="required">*</span></label>
+      <div class="col-md-8">
+        <div class="input-symbol">
+        <input type="text" ng-model="rec.revenue_rebate_1" id="revenue_rebate_1" class="form-control" ng-required="rec.universal_types.id == 3 && rec.types.id == 1"  ng-readonly="check_readonly"  />
+        <span>&#37;</span>
+      </div>
+      </div>
+    </div>
+  </div>
+ </div>
+ </div>
+  <div class="col-md-12">
+ <div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label class="col-md-6 control-label">Revenue 2</label>
+      <div class="col-md-6">
+        <select ng-model="rec.revenue_2s" ng-change="addNewRevenuePopup(rec.revenue_2s,'2','Add Revenue')" ng-options="opt as opt.name for opt in arr_revenue_2" class="select2me form-control"  ng-disabled ="check_readonly" >
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+  <div class="form-group">
+      <label class="col-md-4 control-label">Rebate<span>&#37;</span></label>
+      <div class="col-md-8">
+        <div class="input-symbol">
+        <input type="text" ng-model="rec.revenue_rebate_2" id="revenue_rebate_1s" class="form-control"  ng-readonly="check_readonly"  />
+        <span>&#37;</span>
+      </div>
+      </div>
+    </div>
+  </div>
+ </div>
+ </div>
+  <div class="col-md-12">
+ <div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label class="col-md-6 control-label">Revenue 3 </label>
+      <div class="col-md-6">
+        <select ng-model="rec.revenue_3s" ng-change="addNewRevenuePopup(rec.revenue_3s,'3','Add Revenue')" ng-options="opt as opt.name for opt in arr_revenue_3" class="select2me form-control"  ng-disabled ="check_readonly" required>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+  <div class="form-group">
+      <label class="col-md-4 control-label">Rebate<span>&#37;</span></label>
+      <div class="col-md-8">
+        <div class="input-symbol">
+        <input type="text" ng-model="rec.revenue_rebate_3" id="revenue_rebate_2s" class="form-control"  ng-readonly="check_readonly"  />
+        <span>&#37;</span>
+      </div>
+      </div>
+    </div>
+  </div>
+ </div>
+ </div>
+</div>
+ <div class="col-md-12">
+<div class="row" ng-show="rec.universal_types.id > 0 || rec.types.id > 1">
+ <div class="col-md-6">
+    <div class="form-group">
+      <label class="col-md-4 control-label">Start Date <span class="required">*</span></label>
+      <div class="col-md-8">
+        <input jqdatepicker class="2date-picker form-control" ng-model="rec.offer_date" ng-change="checkDate(rec.offer_date,rec.offer_valid_date,'offer_date')" required readonly >
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+ <div class="col-md-12">
+<div class="row" ng-show="rec.universal_types.id > 0 || rec.types.id > 1">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="col-md-4 control-label">End Date <span class="required">*</span></label>
+      <div class="col-md-8">
+        <input jqdatepicker class="2date-picker form-control" ng-model="rec.offer_valid_date" ng-change="checkDate(rec.offer_date,rec.offer_valid_date,'offer_valid_date')" required readonly >
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+ <div class="col-md-12">
+ <div class="row" ng-show="rec.universal_types.id > 0 || rec.types.id > 1">
+ <div class="col-md-6">
+    <div class="form-group">
+      <label class="col-md-4 control-label">Rebate Date</label>
+      <div class="col-md-8">
+        <input readonly="readonly" type="text" class="form-control" ng-model="rebate_date">
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+          <div class="pull-right">
+          <button class="btn btn-submit " type="submit" ng-show="!check_readonly"> Save</button>
+          <button class="btn btn-edit " type="button" ng-click="showCrmRebateEditForm()" ng-show="check_readonly">Edit</button>
+          <button class="btn btn-cancel" type="button" ng-click="showCrmRebateListing()">Cancel</button>
+          </div>
+    </div>
+    </div>
+</div>
+</div>
+</div>
+<div ng-include="'app/views/crm_rebate/_item_services_popup.html'"></div>
+<div ng-include="'app/views/crm_rebate/_item_services_cats_popup.html'"></div>

@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-12"> <a id="prompt" ng-click="showCustItemInfoForm()" class="btn btn-info btn_blue pull-right margin_bottom"><i class="fa fa-plus"></i> Add New</a> </div>
+</div>
+<div class="row">
+  <div class="col-md-12 col-md-12" >
+    <div class="widget">
+      <div class="widget-body ">
+        <div id="dt_example" class="example_alt_pagination">
+          <div class="panel panel-default" >
+            <table ng-table="table.tableParams5" class="table table-bordered table-striped" show-filter="true" ng-show="$data.length > 0">
+              <thead>
+                <tr class="bg-col">
+                  <th ng-repeat="column in columns" 
+                    class="sortable sort-asc" ng-class="{
+                    'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),
+                    'sort-desc': !table.tableParams5.isSortBy(column.field, 'desc')
+                  }"
+                    ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')" ng-if="column.field != 'id' && column.field != 'is_sales_vol_disc'"> {{column.title}} </th>
+                  <th>Sales Vol. Discount</th>
+                  <th class="text-center" ng-if="columns.length > 0"  style=" width: 15%;">Action</th>
+                </tr>
+                <!-- <tr>
+          <th ng-repeat="column in columns"
+                    
+                    class="sortable"
+                        > <input type="text" class="form-control"
+                           ng-model="MyCustomeFilters[column.title] "/>
+          </th>
+        </tr> -->
+              </thead>
+              <tbody class="table-body">
+                <tr ng-repeat="rec in $data">
+                  <td ng-repeat="column in columns"  ng-click="detail(rec.id)" sortable="column.field" ng-if="column.field != 'id' && column.field != 'is_sales_vol_disc'"><span ng-if="column.field !='Start Date' && column.field !='End Date'">{{rec[column.title]}}</span> <span ng-if="column.field =='Start Date' || column.field =='End Date'"> {{ rec[column.title] | date: dateFormats[defaultDateFormat]}}</span></td>
+                  <td><span ng-if="rec.is_sales_vol_disc == 1">Yes</span> <span ng-if="rec.is_sales_vol_disc == 0">No</span></td>
+                  <td class="text-left "   ng-show="columns.length > 0"><a ng-click="editForm(rec.id)" title="Edit" class="btn "><i class="fa fa-edit"></i></a> <a ng-click="delete_customer(rec.id,$index,$data)" title="Delete" class="btn "><i class="fa fa-times"></i></a></td>
+                </tr>
+                <!-- <tr ng-show="!$data"><td class="text-center" colspan="{{columns.length+1}}">No record found!</td></tr> -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

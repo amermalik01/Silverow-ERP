@@ -1,0 +1,170 @@
+
+<div class="widget">
+  <div class="widget-body">
+    <div class="row" >
+      <div class="col-md-12">
+      <div class="col-md-3 col-md-3">
+        <div class="form-group">
+          <label class="col-md-4 control-label">Depot Name<span class="required">*</span></label>
+          <div class="col-md-8">
+            <input type="text" id="ship_to_name" ng-model="rec.ship_to_name" ng-click="getAltDepot()" class="form-control" ng-readonly="check_readonly"  required />
+            <input type="hidden" id="alt_depo_id" ng-model="rec.alt_depo_id" class="form-control"/>
+            <!-- <input type="hidden" id="order_id" ng-model="rec.id" class="form-control"/> -->
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">Address<span class="required">*</span></label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.ship_to_address" id="ship_to_address" class="form-control" ng-readonly="check_readonly"  />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">Address 2</label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.ship_to_address2" id="ship_to_address2" class="form-control" ng-readonly="check_readonly"  />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">City</label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.ship_to_city" id="ship_to_city" class="form-control" ng-readonly="check_readonly"  />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">County</label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.ship_to_county" id="ship_to_county" class="form-control" ng-readonly="check_readonly"  />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-md-3">
+        <div class="form-group">
+          <label class="col-md-4 control-label">Postcode</label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.ship_to_post_code" id="ship_to_post_code" class="form-control" ng-readonly="check_readonly"  />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">Contact</label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.ship_to_contact" id="ship_to_contact" class="form-control" ng-readonly="check_readonly"  />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">Book In Tel</label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.book_in_tel" id="book_in_tel" class="form-control" ng-readonly="check_readonly"  />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">Location</label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.location_code" id="location_code" class="form-control" ng-readonly="check_readonly"  />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" title="Customer Warehouse Ref.">Cust. W/H Ref.</label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.customer_warehouse_ref" id="customer_warehouse_ref" class="form-control" ng-readonly="check_readonly"  />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-md-3">
+        <div class="form-group">
+          <label class="col-md-4 control-label" title="Shipment Method">Ship. Method</label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.shipment_method_code" id="shipment_method_code"  ng-click="getShipmentMethods()" class="form-control" ng-readonly="check_readonly"  />
+            <input type="hidden" ng-model="rec.shipment_method_id" id="shipment_method_id" class="form-control" ng-readonly="check_readonly" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" title="Shipping Agent">Ship. Agent</label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.shipping_agent_code" id="shipping_agent_code"  ng-click="getShippingAgents()" class="form-control" ng-readonly="check_readonly"  />
+            <!-- <input type="text" ng-model="rec.shipping_agent_id" id="shipping_agent_id" class="form-control" ng-readonly="check_readonly"/> -->
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" title="Freight Charges">Freight Charg.</label>
+          <div class="col-md-8">
+            <input type="number" ng-model="rec.freight_charges" id="freight_charges" class="form-control" ng-readonly="check_readonly"  />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">Container No.</label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.container_no" id="container_no" class="form-control" ng-readonly="check_readonly"  />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" title="Shipment Date">Ship. Date</label>
+          <div class="col-md-8">
+            <input jqdatepicker class="2date-picker form-control" ng-model="rec.shipment_date" readonly >
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-md-3">
+        <div class="form-group">
+          <label class="col-md-4 control-label">Delivery Time</label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.ship_delivery_time" id="ship_delivery_time" class="form-control" ng-readonly="check_readonly"  />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" title="Warehouse Booking Ref.">W/H Book. Ref.</label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.warehouse_booking_ref" id="warehouse_booking_ref" class="form-control" ng-readonly="check_readonly"  />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" title="Book In Contact">Book In Cont.</label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.comm_book_in_contact" id="comm_book_in_contact" class="form-control" ng-readonly="check_readonly"  />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">Book In No.</label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.comm_book_in_no" id="comm_book_in_no" class="form-control" ng-readonly="check_readonly"  />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">Book In Email.</label>
+          <div class="col-md-8">
+            <input type="text" ng-model="rec.book_in_email" id="book_in_email" class="form-control" ng-readonly="check_readonly"  />
+          </div>
+        </div>
+      </div>
+      
+      <!-- <div class="row">
+                <div class="col-md-12 panel-footer">
+                    <div class="form-group">
+                  <label class="col-md-4 control-label">&nbsp;</label>
+                      <div class="col-md-offset-2 col-md-10">
+                         <button type="submit" class="btn btn-sm btn-success">Submit</button>&nbsp;
+                         <button type="button" class="btn btn-sm btn-default">Cancel</button>
+                      </div>
+                  </div>
+           </div>
+            </div> -->
+
+      <div class="col-md-12">
+        <div class="pull-right">
+          <button class="btn btn-submit" type="submit" ng-show="!check_readonly">Save</button>
+          <button class="btn btn-edit" type="button" ng-click="gotoEdit()" ng-show="check_readonly">Edit</button>
+          <button class="btn btn-cancel" type="button" ui-sref="app.quotes()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+<!-- <div class="row">
+            	<div class="col-md-6">
+                <button class="mb-sm btn btn-success" type="button">Ship Email</button>
+                <button class="mb-sm btn btn-success" type="button">Shipment Print</button>
+                <button class="mb-sm btn btn-danger" type="button">Whse Email</button>
+                <button class="mb-sm btn btn-danger" type="button"><i class="fa fa-icon-envelope"></i>Whse Print</button>
+                </div>
+            </div> -->

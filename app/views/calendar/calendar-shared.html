@@ -1,0 +1,516 @@
+<div id="" role="main" ng-controller="CalendarController" ng-init="getSmartContacts();getEmployeeSmartContacts();"
+     >
+    <style type="text/css">
+        .dropdown-menu > li > a, li.active span {
+            text-transform: capitalize;
+        }
+
+        .selectize-control.contacts .selectize-input > div {
+            padding: 1px 10px;
+            font-size: 13px;
+            font-weight: normal;
+            -webkit-font-smoothing: auto;
+            color: #FFF;
+            background: #88d2dd;
+            border: 1px solid #88d2dd;
+            -webkit-border-radius: 999px;
+            -moz-border-radius: 999px;
+            border-radius: 999px;
+        }
+
+        .selectize-control.contacts .selectize-input > div.active {
+            background: #88d2dd;
+            border-color: #88d2dd;
+        }
+
+        .selectize-control.contacts .selectize-input > div .email {
+            opacity: 0.8;
+        }
+
+        .selectize-control.contacts .selectize-input > div .name + .email {
+            margin-left: 5px;
+        }
+
+        .selectize-control.contacts .selectize-input > div .email:before {
+            content: '<';
+        }
+
+        .selectize-control.contacts .selectize-input > div .email:after {
+            content: '>';
+        }
+
+        .selectize-control.contacts .selectize-dropdown .caption {
+            font-size: 12px;
+            display: block;
+            color: #000;
+        }
+
+        .selectize-dropdown-content .label {
+            color: #000 !important;
+            float: left;
+            line-height: 18px !important;
+        }
+
+        .selectize-dropdown-content .caption {
+            float: left;
+            margin-left: 3px;
+        }
+
+        .selectize-input span {
+            color: #000 !important;
+        }
+
+        .selectize-input {
+            overflow-y: scroll !important;
+            overflow-x: hidden !important;
+            height: 50px !important;
+        }
+
+        .demo {
+            border-bottom: 0px !important;
+        }
+    </style>
+    <input type="hidden" id="contacts123" value="{{contacts}}">
+    <input type="hidden" id="employeecontacts" value="{{employeecontacts}}">
+    <input type="hidden" id="clearadd" value="">
+    <input type="hidden" id="clearedit" value="">
+
+    <div ng-include="'app/views/_breadcrumb.html'" class="col-lg-12 no-padding"></div>
+    <div id="eventcalendar" class="">
+        <style type="text/css">
+            /*            whirl no-overlay*/
+            .container {
+                width: auto;
+            }
+
+            .datetimepicker table tr td span {
+                height: 18px !important;
+                line-height: 18px !important;
+            }
+
+            #yearCalendar td.event {
+                color: #FF0000;
+                font-weight: bold;
+            }
+
+            #yearCalendar .sat, #yearCalendar .sun {
+                color: #378D93;
+            }
+
+            .datepick-popup {
+                z-index: 2000;
+            }
+
+            .event-date {
+                font-weight: bold;
+            }
+
+            .hide-repeat {
+                display: none;
+            }
+
+            .show-repeat {
+
+            }
+
+            .fc-mon div div, .fc-tue div div, .fc-wed div div, .fc-thu div div, .fc-fri div div, .fc-sat div div, .fc-sun div div, .dayevent {
+                margin-left: 1px !important;
+                padding-left: 3px;
+                padding-right: 5px;
+                width: 100%;
+            }
+
+            tr.ng-scope {
+                cursor: default !important;
+            }
+
+            .featured-articles-container .articles i {
+                color: #000 !important;
+            }
+
+            .currentMonth {
+                color: #378D93 !important;
+            }
+
+            .fc-day-content {
+                position: relative;
+            }
+
+            .selectize-input {
+                cursor: default;
+            }
+        </style>
+
+        <input type="hidden" name="sharecalcond" id="sharecalcond" value="0"/>
+
+    </div>
+    <div id="sharedCalendars" style="overflow-x: scroll; width: 100%;">
+
+        <table class="table table-responsive" ng-init="monthCalendar('', ''); sharedCalendars('', ''); hideLoader();">
+            <tbody>
+            <tr>
+                <td id="mycalinsh">
+                    <div class="col-lg-12 col-md-12 remove-left-pad">
+                        <div class="panel panel-default" style="width:600px;">
+                            <div class="panel-heading">
+                                <h4 class="panel-title text-center">My Calendar&nbsp;<a class="no-margin pull-right"
+                                                                                        href=""
+                                                                                        ng-click="hideSharedCalendar('mycalinsh');"><i
+                                        title="" data-original-title="" class="fa fa-times"></i></a></h4>
+                            </div>
+                            <div class="panel-body" style="min-height: 400px;">
+                                <table class="fc-header" style="width:100%;margin-bottom: 5px;">
+                                    <tbody>
+                                    <tr>
+                                        <td class="fc-header-center bg_grey_calendar pad_top_c" colspan="3">
+                                                    <span class="fc-button fc-corner-left no-margin" ng-click="monthCalendar(previousMonthInfo.monthNumber, previousMonthInfo.year);
+                                                          "><i class="fa fa-caret-left"></i></span>
+                                                    <span class="fc-header-title">
+                                                        <h5>{{selectedMonthInfo.monthTitle + " " +
+                                                            selectedMonthInfo.year}}</h5>
+                                                    </span>
+                                                    <span class="fc-button fc-corner-right no-margin" ng-click="monthCalendar(nextMonthInfo.monthNumber, nextMonthInfo.year);
+                                                          "><i class="fa fa-caret-right"></i></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div style="" class="fc-content">
+                                    <div class="fc-view fc-view-month fc-grid">
+                                        <div class="fc-event-container"
+                                             style="position:absolute;z-index:8;top:0;left:0"></div>
+                                        <table class="fc-border-separate"
+                                               style="width: 100%; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;"
+                                               cellspacing="0">
+                                            <thead>
+                                            <tr class="fc-first fc-last">
+                                                <th style="width: 141px;"
+                                                    class="fc-day-header fc-mon fc-widget-header fc-first bg_grey_calendar">
+                                                    MON
+                                                </th>
+                                                <th style="width: 141px;"
+                                                    class="fc-day-header fc-tue fc-widget-header bg_grey_calendar">TUE
+                                                </th>
+                                                <th style="width: 141px;"
+                                                    class="fc-day-header fc-wed fc-widget-header bg_grey_calendar">WED
+                                                </th>
+                                                <th style="width: 141px;"
+                                                    class="fc-day-header fc-thu fc-widget-header bg_grey_calendar">THU
+                                                </th>
+                                                <th style="width: 141px;"
+                                                    class="fc-day-header fc-fri fc-widget-header bg_grey_calendar">FRI
+                                                </th>
+                                                <th style="width: 141px;"
+                                                    class="fc-day-header fc-sat fc-widget-header bg_grey_calendar">SAT
+                                                </th>
+                                                <th style="width: 141px;"
+                                                    class="fc-day-header fc-sun fc-widget-header fc-last bg_grey_calendar">
+                                                    SUN
+                                                </th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody style="">
+                                            <tr class="fc-week" ng-repeat="week in dates">
+                                                <td ng-repeat="day in week" id="{{day.day + day.monthNumber}}"
+                                                    class="fc-day fc-sun fc-widget-content" ng-class="{
+                                                    'fc-past fc-other-month'
+                                                            : day.status == - 1, 'fc-today': day.status == 0, 'fc-future fc-other - month
+                                                            ': day.status == 1, 'fc - state - highlight': day.isToday == 1 }"
+                                                    data-date="{{day.year + " -
+                                                " + day.monthNumber + "-" + day.day}}" >
+                                                <div style="min-height: 118px; ">
+                                                    <div class="fc-day-number"
+                                                         ng-class="{'event-date': day.isEvent == 1}" ng-bind="day.day"
+                                                         style="cursor: pointer;"
+                                                         ng-click="showCustomRightClickMenu(0, day.day + day.monthNumber, day.date, 0);">
+                                                        &nbsp;</div>
+                                                    <div class="fc-day-content" ng-show="day.isEvent"
+                                                         style="cursor: pointer;">
+                                                        <!-- openEvent(event.id, event.title, event.content, event.fromDate, event.toDate, event.fromTime, event.toTime, event.id + day.day + day.monthNumber, event.inviteEmails, event.location, event.allDay, event.eventcolor, event.showMeAs, event.reoccurance, event.notificationType, event.remind, event.daysOrWeeks, event.hours, event.minutes, event.attachedFiles, event.repeats, event.repeat_every, event.repeat_on_mon, event.repeat_on_tue, event.repeat_on_wed, event.repeat_on_thu, event.repeat_on_fri, event.repeat_on_sat, event.repeat_on_sun, event.repeat_by, event.start_on, event.ends, event.ends_after, event.ends_on); -->
+                                                        <div id="dayevent_{{day.year + '-' + day.monthNumber + '-' + day.day}}">
+                                                            <div id="event_{{event.id}}"
+                                                                 ng-repeat="event in day.events.events"
+                                                                 ng-click="showCustomRightClickMenu(1, '', event.id, 0);">
+                                                                <div title="{{event.title+' &#13;From: '+event.fromDate+' '+event.fromTime+', To: '+event.toDate+' '+event.toTime+' &#13;Location: ' + event.location }}"
+                                                                     class="eventdiv {{event.eventcolor}}"
+                                                                     id="{{event.id + day.day + day.monthNumber}}"
+                                                                     ng-hide="day.eventCount > 4 && event.eventNumber > 4">
+                                                                    <div class="event-title no-padding"
+                                                                         style="height: auto; float: left !important; padding-left: 7px;"
+                                                                         ng-bind="event.title"></div>
+                                                                    <div class="event-time"
+                                                                         style="float: left; margin-left: 10px; display: none;"
+                                                                         ng-bind="event.fromTime"></div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div ng-show="day.eventCount > 4"
+                                                                 ng-click="viewAllEvents(day.year + '-' + day.monthNumber + '-' + day.day);"
+                                                                 style="cursor: pointer; color: #5ab1b9; font-weight: bold;">
+                                                                + See More
+                                                            </div>
+                                                        </div>
+                                                        <div class="allevents"
+                                                             id="allevents_{{day.year + '-' + day.monthNumber + '-' + day.day}}"
+                                                             style="display: none;">
+                                                            <div style="text-align: right;"
+                                                                 ng-click="hideAllEvents(day.year + '-' + day.monthNumber + '-' + day.day);">
+                                                                <i class="fa fa-close"></i></div>
+                                                            <div id="event_mod_{{event.id}}"
+                                                                 ng-repeat="event in day.events.events"
+                                                                 ng-click="showCustomRightClickMenu(1, '', event.id, 0);"
+                                                                 style="cursor: pointer;">
+                                                                <div title="{{event.title+' &#13;From: '+event.fromDate+' '+event.fromTime+', To: '+event.toDate+' '+event.toTime+' &#13;Location: ' + event.location }}"
+                                                                     class="eventdiv {{event.eventcolor}}">
+                                                                    <div class="event-title no-padding"
+                                                                         style="height: auto; float: left !important; padding-left: 7px;"
+                                                                         ng-bind="event.title"></div>
+                                                                    <div class="event-time"
+                                                                         style="float: left; margin-left: 10px; display: none;"
+                                                                         ng-bind="event.fromTime"></div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="fc-cell-overlay"
+                                             style="position: absolute; z-index: 3; top: 257.6px; left: 282px; width: 141px; height: 118px; display: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td ng-repeat="sharedCal in sharedcalendarsData" id="{{sharedCal.info.id}}" style="display: none;">
+                    <div class="col-lg-12 col-md-12 remove-left-pad">
+                        <div class="panel panel-default" style="width:600px;">
+                            <div class="panel-heading" style="background-color: {{sharedCal.info.color}} !important;">
+                                <h4 class="panel-title text-center">{{sharedCal.sharedInfo.ownerName}}&nbsp;<a
+                                        class="no-margin pull-right" href="javascript: void(0);"
+                                        ng-click="hideSharedCalendar(sharedCal.info.id);"><i title=""
+                                                                                             data-original-title=""
+                                                                                             class="fa fa-times"></i></a>
+                                </h4>
+                            </div>
+                            <div class="panel-body" style="min-height: 400px;">
+                                <table class="fc-header" style="width:100%;margin-bottom: 5px;">
+                                    <tbody>
+                                    <tr>
+                                        <td class="fc-header-center bg_grey_calendar pad_top_c" colspan="3">
+                                                    <span class="fc-button fc-corner-left no-margin" ng-click="sharedCalendars(sharedCal.previousMonthInfo.monthNumber, sharedCal.previousMonthInfo.year);
+                                                          "><i class="fa fa-caret-left"></i></span>
+                                                    <span class="fc-header-title">
+                                                        <h5>{{sharedCal.selectedMonthInfo.monthTitle + " " +
+                                                            sharedCal.selectedMonthInfo.year}}</h5>
+                                                    </span>
+                                                    <span class="fc-button fc-corner-right no-margin" ng-click="sharedCalendars(sharedCal.nextMonthInfo.monthNumber, sharedCal.nextMonthInfo.year);
+                                                          "><i class="fa fa-caret-right"></i></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div style="" class="fc-content">
+                                    <div class="fc-view fc-view-month fc-grid">
+                                        <div class="fc-event-container"
+                                             style="position:absolute;z-index:8;top:0;left:0"></div>
+                                        <table class="fc-border-separate"
+                                               style="width: 100%; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;"
+                                               cellspacing="0">
+                                            <thead>
+                                            <tr class="fc-first fc-last">
+                                                <th style="width: 141px;"
+                                                    class="fc-day-header fc-mon fc-widget-header fc-first bg_grey_calendar">
+                                                    MON
+                                                </th>
+                                                <th style="width: 141px;"
+                                                    class="fc-day-header fc-tue fc-widget-header bg_grey_calendar">TUE
+                                                </th>
+                                                <th style="width: 141px;"
+                                                    class="fc-day-header fc-wed fc-widget-header bg_grey_calendar">WED
+                                                </th>
+                                                <th style="width: 141px;"
+                                                    class="fc-day-header fc-thu fc-widget-header bg_grey_calendar">THU
+                                                </th>
+                                                <th style="width: 141px;"
+                                                    class="fc-day-header fc-fri fc-widget-header bg_grey_calendar">FRI
+                                                </th>
+                                                <th style="width: 141px;"
+                                                    class="fc-day-header fc-sat fc-widget-header bg_grey_calendar">SAT
+                                                </th>
+                                                <th style="width: 141px;"
+                                                    class="fc-day-header fc-sun fc-widget-header fc-last bg_grey_calendar">
+                                                    SUN
+                                                </th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody style="">
+                                            <tr class="fc-week" ng-repeat="week in sharedCal.dates">
+                                                <td ng-repeat="day in week" id="{{day.day + day.monthNumber}}"
+                                                    class="fc-day fc-sun fc-widget-content" ng-class="{
+                                                                            'fc-past fc-other-month'
+                                                                                    : day.status == - 1, 'fc-today': day.status == 0, 'fc-future fc-other - month
+                                                                                    ': day.status == 1, 'fc - state - highlight': day.isToday == 1 }"
+                                                    data-date="{{day.year + " -
+                                                " + day.monthNumber + "-" + day.day}}" >
+                                                <div style="min-height: 118px;">
+                                                    <div class="fc-day-number"
+                                                         ng-show="sharedCal.sharedInfo.level == 2 || sharedCal.sharedInfo.level == 4 || sharedCal.sharedInfo.level == 6"
+                                                         ng-class="{'event-date': day.isEvent == 1}" ng-bind="day.day"
+                                                         style="cursor: pointer;"
+                                                         ng-click="showCustomRightClickMenu(0, day.day + day.monthNumber, day.date, 0); setOwnerId(sharedCal.sharedInfo.ownerId);"></div>
+                                                    <div class="fc-day-number"
+                                                         ng-show="sharedCal.sharedInfo.level == 1 || sharedCal.sharedInfo.level == 3 || sharedCal.sharedInfo.level == 5"
+                                                         ng-class="{'event-date': day.isEvent == 1}" ng-bind="day.day"
+                                                         style="cursor: default;"></div>
+                                                    <div class="fc-day-content"
+                                                         ng-show="day.isEvent && sharedCal.sharedInfo.level != 2"
+                                                         style="cursor: pointer;">
+                                                        <div id="dayevent_{{sharedCal.sharedInfo.ownerId + '_' + day.year + '-' + day.monthNumber + '-' + day.day}}">
+                                                            <div ng-show="sharedCal.sharedInfo.level == 5 || sharedCal.sharedInfo.level == 6"
+                                                                 id="event_{{event.id}}"
+                                                                 ng-repeat="event in day.events.events"
+                                                                 ng-click="showCustomRightClickMenu(1, '', event.id, 0); setEditOwnerId(sharedCal.sharedInfo.ownerId);">
+                                                                <div title="{{event.title+' &#13;From: '+event.fromDate+' '+event.fromTime+', To: '+event.toDate+' '+event.toTime+' &#13;Location: ' + event.location }}"
+                                                                     class="eventdiv {{event.eventcolor}}"
+                                                                     id="{{event.id + day.day + day.monthNumber}}"
+                                                                     style="cursor: pointer;"
+                                                                     ng-hide="day.eventCount > 4 && event.eventNumber > 4">
+                                                                    <div class="event-title no-padding"
+                                                                         style="height: auto; float: left !important; padding-left: 7px;"
+                                                                         ng-bind="event.title"></div>
+                                                                    <div class="event-time"
+                                                                         style="float: left; margin-left: 10px; display: none;"
+                                                                         ng-bind="event.fromTime"></div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div ng-show="sharedCal.sharedInfo.level == 1 || sharedCal.sharedInfo.level == 4"
+                                                                 id="event_{{event.id}}"
+                                                                 ng-repeat="event in day.events.events"
+                                                                 ng-click="openEvent(event.id, event.title, event.content, event.fromDate, event.toDate, event.fromTime, event.toTime, event.id + day.day + day.monthNumber, event.inviteEmails, event.location, event.allDay, event.eventcolor, event.showMeAs, event.reoccurance, event.notificationType, event.remind, event.daysOrWeeks, event.hours, event.minutes, event.attachedFiles, event.repeats, event.repeat_every, event.repeat_on_mon, event.repeat_on_tue, event.repeat_on_wed, event.repeat_on_thu, event.repeat_on_fri, event.repeat_on_sat, event.repeat_on_sun, event.repeat_by, event.start_on, event.ends, event.ends_after, event.ends_on);">
+                                                                <div title="{{event.title+' &#13;From: '+event.fromDate+' '+event.fromTime+', To: '+event.toDate+' '+event.toTime+' &#13;Location: ' + event.location }}"
+                                                                     class="eventdiv {{event.eventcolor}}"
+                                                                     id="{{event.id + day.day + day.monthNumber}}"
+                                                                     ng-hide="day.eventCount > 4 && event.eventNumber > 4">
+                                                                    <div class="event-title no-padding"
+                                                                         style="height: auto; float: left !important; padding-left: 7px;"
+                                                                         ng-bind="event.title"></div>
+                                                                    <div class="event-time"
+                                                                         style="float: left; margin-left: 10px; display: none;"
+                                                                         ng-bind="event.fromTime"></div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div ng-show="day.eventCount > 4"
+                                                                 ng-click="viewAllEvents(sharedCal.sharedInfo.ownerId + '_' + day.year + '-' + day.monthNumber + '-' + day.day);"
+                                                                 style="cursor: pointer; color: #5ab1b9; font-weight: bold;">
+                                                                + See More
+                                                            </div>
+                                                        </div>
+                                                        <div class="allevents"
+                                                             id="allevents_{{sharedCal.sharedInfo.ownerId + '_' + day.year + '-' + day.monthNumber + '-' + day.day}}"
+                                                             style="display: none;">
+                                                            <div style="text-align: right;"
+                                                                 ng-click="hideAllEvents(sharedCal.sharedInfo.ownerId + '_' + day.year + '-' + day.monthNumber + '-' + day.day);">
+                                                                <i class="fa fa-close"></i></div>
+                                                            <div ng-show="sharedCal.sharedInfo.level == 5 || sharedCal.sharedInfo.level == 6"
+                                                                 id="event_{{event.id}}"
+                                                                 ng-repeat="event in day.events.events"
+                                                                 ng-click="showCustomRightClickMenu(1, '', event.id, 0); setEditOwnerId(sharedCal.sharedInfo.ownerId);">
+                                                                <div title="{{event.title+' &#13;From: '+event.fromDate+' '+event.fromTime+', To: '+event.toDate+' '+event.toTime+' &#13;Location: ' + event.location }}"
+                                                                     class="eventdiv {{event.eventcolor}}"
+                                                                     id="{{event.id + day.day + day.monthNumber}}"
+                                                                     style="cursor: pointer;">
+                                                                    <div class="event-title no-padding"
+                                                                         style="height: auto; float: left !important; padding-left: 7px;"
+                                                                         ng-bind="event.title"></div>
+                                                                    <div class="event-time"
+                                                                         style="float: left; margin-left: 10px; display: none;"
+                                                                         ng-bind="event.fromTime"></div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div ng-show="sharedCal.sharedInfo.level == 1 || sharedCal.sharedInfo.level == 4"
+                                                                 id="event_{{event.id}}"
+                                                                 ng-repeat="event in day.events.events"
+                                                                 ng-click="openEvent(event.id, event.title, event.content, event.fromDate, event.toDate, event.fromTime, event.toTime, event.id + day.day + day.monthNumber, event.inviteEmails, event.location, event.allDay, event.eventcolor, event.showMeAs, event.reoccurance, event.notificationType, event.remind, event.daysOrWeeks, event.hours, event.minutes, event.attachedFiles, event.repeats, event.repeat_every, event.repeat_on_mon, event.repeat_on_tue, event.repeat_on_wed, event.repeat_on_thu, event.repeat_on_fri, event.repeat_on_sat, event.repeat_on_sun, event.repeat_by, event.start_on, event.ends, event.ends_after, event.ends_on);">
+                                                                <div title="{{event.title+' &#13;From: '+event.fromDate+' '+event.fromTime+', To: '+event.toDate+' '+event.toTime+' &#13;Location: ' + event.location }}"
+                                                                     class="eventdiv {{event.eventcolor}}"
+                                                                     id="{{event.id + day.day + day.monthNumber}}">
+                                                                    <div class="event-title no-padding"
+                                                                         style="height: auto; float: left !important; padding-left: 7px;"
+                                                                         ng-bind="event.title"></div>
+                                                                    <div class="event-time"
+                                                                         style="float: left; margin-left: 10px; display: none;"
+                                                                         ng-bind="event.fromTime"></div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="fc-day-content" ng-show="!day.isEvent"
+                                                         style="cursor: default !important;">
+                                                        &nbsp;
+                                                    </div>
+                                                </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="fc-cell-overlay"
+                                             style="position: absolute; z-index: 3; top: 257.6px; left: 282px; width: 141px; height: 118px; display: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-include="'app/views/calendar/calendar-modals.html'"></div>
+    <div ng-include="'app/views/calendar/eventDialogTemplate.html'"></div>
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        setTimeout(function () {
+//    $('#addEventFromDate').datepick({dateFormat: 'dd/mm/yyyy'});
+//    $('#addEventToDate').datepick({dateFormat: 'dd/mm/yyyy'});
+//    $('#editEventFromDate').datepick({dateFormat: 'dd/mm/yyyy'});
+//    $('#editEventToDate').datepick({dateFormat: 'dd/mm/yyyy'});
+//    $('#editEventToDate').datepick({dateFormat: 'dd/mm/yyyy'});
+//    $('#repeatEventEndOnDate1').datepick({dateFormat: 'dd/mm/yyyy', onSelect: function() {
+//    $(this).change();
+//    }});
+//    $('#editRepeatEventEndOnDate1').datepick({dateFormat: 'dd/mm/yyyy', onSelect: function() {
+//    $(this).change();
+//    }
+//    });
+            $('#repeatEventEndOnDate1').attr('disabled', 'disabled');
+            $('#editRepeatEventEndOnDate1').attr('disabled', 'disabled');
+            $("#weekcalendarscroll").animate({scrollTop: 400});
+            $("#daycalendarscroll").animate({scrollTop: 400});
+            $('#calendarleft').click();
+            if ($('#sharecalcond').val() == 1) {
+                $('#modalsharecalbtn').click();
+            }
+        }, 2000);
+    });
+    $(document).ready(function () {
+        $('#eventcalendar').attr('class', '');
+        $('#rowEventCalendar').show();
+    });
+
+</script>
+

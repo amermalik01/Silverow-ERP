@@ -1,0 +1,59 @@
+<div id="_supplierModal"
+     class="modal fade"
+     role="dialog">
+    <div class="modal-dialog  modal-lg"
+         draggable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Select Supplier(s)</h4>
+            </div>
+            <div class="modal-body">
+                <!-- style="overflow:hidden !important;" -->
+                <div class="row"
+                     style="margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                        <!-- <div ng-if="tempSuppliersArr2.ack">
+                            <div class="flexiTable makeModalFixed"
+                                 x-generate-table2
+                                 x-data="tempSuppliersArr2"
+                                 x-table-name="SuppModal"
+                                 x-select-flexi-chk-box="false"
+                                 x-updated-object-arr="PendingSelectedSuppliers"
+                                 x-filter-function="getCUSTlist()"
+                                 x-filter-object="searchKeyword"></div>
+                        </div> -->
+                        <div ng-if="moduleType == 'SuppDetail'">
+                            <div class="flexiTable makeModalFixed"
+                                 x-report-modal="'true'"
+                                 x-generate-table
+                                 x-controller-initiate 
+                                 x-forget-filters="true"
+                                 x-data="tableData.data"
+                                 x-table-name="SuppModal"
+                                 x-filter-function="selectSuppliers()"
+                                 x-selected-record-preview="supplier_code"
+                                 x-checked-records="selectedRecFromModalsSupp"
+                                 x-filter-object="searchKeywordSupp"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left">
+                    <!-- Selected:&nbsp;{{PendingSelectedSuppliers.length}} -->
+                </span>
+                <div class="pull-right">
+                    <button class="btn btn_add"
+                            type="button"
+                            ng-click="addSuppliers()">Add</button>
+                    <button type="button"
+                            class="btn btn-cancel"
+                            ng-click="clearSuppliers()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

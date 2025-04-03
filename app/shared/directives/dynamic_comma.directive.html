@@ -1,0 +1,15 @@
+<div id="center">
+    <input
+        type="number"
+        ng-show="!editStatus" 
+        ng-model="numberField" 
+        ng-keyup="$event.keyCode == 13 ? insertCommas(): null;"/>
+
+    <span class="span" ng-show="editStatus">
+        {{numberWithCommas}}
+    </span>  
+    <br />
+    <button class="btn btn-primary button" ng-model="numberField" ng-click="insertCommas()">
+        Submit
+    </button>    
+</div>

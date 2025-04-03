@@ -1,0 +1,212 @@
+<div class="modal fade template-design"
+     id="agedReportModal">
+    <div class="modal-dialog modal-md"
+         style=" width: 26cm;margin-top: 11px;">
+        <div class="modal-content">
+
+
+            <div class="modal-body" id="{{printPdfVals.reportName}}"
+                 ng-if="printPdfVals.reportName != 'CustomerAgeingReportSummary'"
+                 style="max-height: 80vh;overflow: auto;padding: 2cm;">
+                <div class="row">
+                    <div class="col-md-12 col-md-12">
+                        <div ng-bind-html="customerAgingReportHtml"></div>
+                    </div>
+                </div>
+            </div> 
+
+
+
+            <div class="modal-body" id="{{printPdfVals.reportName}}"
+                ng-if="printPdfVals.reportName == 'CustomerAgeingReportSummary'"
+                style="max-height: 80vh;overflow: auto;padding: 2cm;">
+                <htmlpageheader name='MyCustomHeader'>
+                    <div class='reportHeading'>
+                        <div class='reportHeading__left'>
+                            <div class='reportHeading__left__reportname'
+                                ng-if='printPdfVals.reportName == "CustomerAgeingReportSummary" '>Customer Ageing Report
+                                Summary</div>
+                            <div class='reportHeading__left__reportname'
+                                ng-if='printPdfVals.reportName == "SupplierAgingReportSummary" '>Supplier Ageing Report
+                                Summary</div>
+                            <div class='reportHeading__left__reportname'
+                                ng-if='printPdfVals.reportName == "CreditorsAgeingReportSummary" '>Creditors Ageing Report
+                                Summary</div>
+                            <div class='reportHeading__left__reportname'
+                                ng-if='printPdfVals.reportName == "customerAgingReportDetail" '>Customer Ageing
+                                Detailed Report</div>
+                            <div class='reportHeading__left__reportname'
+                                ng-if='printPdfVals.reportName == "supplierAgingReportDetail" '>Supplier Ageing
+                                Detailed Report</div>
+                            <div class='reportHeading__left__reportname'
+                                ng-if='printPdfVals.reportName == "creditorsAgingReportDetail" '>Creditors Ageing
+                                Detailed Report</div>
+                            <div class='reportHeading__left__reportfilter'>
+                                As at {{printPdfVals.upToDate}}
+                            </div>
+
+                            <div class='reportHeading__left__reportfilter' style="width: 100%;"
+                                ng-if='printPdfVals.reportName == "CustomerAgeingReportSummary" '>
+                                Finance - {{printPdfVals.finance}}
+                            </div>
+                            <div class='reportHeading__left__reportfilter' style="width: 100%;"
+                                ng-if='printPdfVals.reportName == "CustomerAgeingReportSummary" '>
+                                Insurance - {{printPdfVals.insurance}}
+                            </div>
+
+                        </div>
+                        <div class='reportHeading__right'>
+                            <img ng-src='{{imagePath+defaultLogo}}' class='reportHeading__right__img '
+                                ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                        </div>
+                    </div>
+                </htmlpageheader>
+                <sethtmlpageheader name='MyCustomHeader' page='ALL' value='on' show-this-page='1' />
+                <pagefooter name='MyFooter3' content-right='{DATE j-m-Y}' content-center='Page {PAGENO} of {nb}'
+                    content-left='{{known_as}}' footer-style='color:#00000;font-size: 11px'
+                    footer-style-left='font-weight:bold;' />
+                <setpagefooter name='MyFooter3' page='ALL' value='on' show-this-page='1' />
+                <style ng-if="toggleLandscape">
+                    @page {
+                        sheet-size: A4-L;
+                        margin: 5mm 5mm 5mm 5mm;
+                        header: html_MyCustomHeader;
+                        footer: MyFooter3;
+                    }
+                </style>
+                <table style="width: 100%;float: left" ng-class="{'addMarginTop':!toggleLandscape}"
+                    class="tabletopmargin">
+                    <thead>
+                        <tr class="bg-col">
+                            <th ng-class="{'rightAlign border-right-dash': column.title == 'S0to30days' || column.title == 'S31to60days' || column.title == 'S61to90days' || column.title == 'S91to120days' || column.title == 'Over120days' || column.title == 'Total','equalwidth9':toggleLandscape}"
+                                ng-repeat="column in printPdfVals.columns" 
+                                ng-if=" column.title!= 'Id' && column.title!= 'Invlink' && 
+                                        column.title != 'Module' && column.title!= 'Invlinkid' && 
+                                        column.title != 'Link' && column.field != 's30DaysStartDate' && 
+                                        column.field != 's30DaysEndDate' && column.field != 's60DaysStartDate' && 
+                                        column.field != 's60DaysEndDate' && column.field != 's90DaysEndDate' && column.field != 's90DaysStartDate' && column.field != 's120DaysEndDate' && column.field != 's120DaysStartDate' && column.field != 'over120DaysStartDate' && column.field != 'over120DaysEndDate' && column.title != 'Rank'">
+                                <span ng-if="column.title == 'Custno'">CUST. No.</span>
+                                <span ng-if="column.title == 'Suppno'">Supplier No.</span> 
+                                <span ng-if="column.title == 'Salepersonname'">Salesperson</span>
+                                <span ng-if="column.title == 'Currency'">Cur.</span>
+                                <span ng-if="column.title == 'Order'">Order No.</span>
+                                <span ng-if="column.title == 'Invoice'">Invoice No.</span>
+                                <span ng-if="column.title == 'S0to30days'">
+                                    0 - 30 Days
+                                    <!-- <br>{{printPdfVals.StartDate30Days}} - {{printPdfVals.EndDate30Days}} -->
+                                </span>
+                                <span ng-if="column.title == 'S31to60days'">31 - 60 Days
+                                 <!-- <br>{{printPdfVals.StartDate60Days}} - {{printPdfVals.EndDate60Days}}-->
+                                </span> 
+                                <span ng-if="column.title == 'S61to90days'">61 - 90 Days
+                                    <!-- <br>{{printPdfVals.StartDate90Days}} - {{printPdfVals.EndDate90Days}} -->
+                                </span>
+                                <span ng-if="column.title == 'S91to120days'">91 - 120 Days
+                                    <!-- <br>{{printPdfVals.StartDate120Days}} - {{printPdfVals.EndDate120Days}} -->
+                                </span>
+                                <span ng-if="column.title == 'Over120days'">Over 120 Days
+                                    <!-- <br>{{printPdfVals.EndDateover120}} & Older -->
+                                </span>
+                                <span
+                                    ng-if="column.title != 'Custno' && column.title != 'Suppno' && 
+                                            column.title != 'Order' && column.title != 'Invoice' && 
+                                            column.title != 'S0to30days' && column.title != 'S31to60days' && column.title != 'S61to90days' && column.title != 'S91to120days' && column.title != 'Over120days' && column.title != 'Salepersonname' && column.title != 'Currency'">{{column.title}}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="rec in printPdfVals.reportsDataArr"
+                            ng-class="{'makeBold': rec.rank == '2' || rec.rank == '3','equalwidth9':toggleLandscape}">
+                            
+                            <td ng-class="{'rightAlign border-right-dash': column.title == 'S0to30days' || column.title == 'S31to60days' || column.title  == 'S61to90days' || column.title == 'S91to120days' || column.title == 'Over120days' || column.title == 'Total'}"
+                                ng-repeat="column in printPdfVals.columns" 
+                                ng-if=" column.title != 'Id' && column.title != 'Totalstartdate' && 
+                                        column.title != 'Totalenddate' && column.field != 's30DaysStartDate' &&  
+                                        column.field != 's30DaysEndDate' && column.field != 's60DaysStartDate' && column.field != 's60DaysEndDate' && column.field != 's90DaysEndDate' && column.field != 's90DaysStartDate' &&  column.field != 's120DaysEndDate' &&
+                                        column.field != 's120DaysStartDate' && column.field != 'over120DaysStartDate' && column.field != 'over120DaysEndDate' && 
+                                        column.title != 'Rank'">
+                                <span
+                                    ng-if="column.field != 'total' && column.field != 's0to30days' &&
+                                             column.field != 's31to60days' && column.field != 's61to90days' &&
+                                             column.field != 's91to120days' && column.field != 'over120days'">{{rec[column.field]}}</span>
+
+                                <span
+                                    ng-if="(column.field == 'total' || column.field == 's0to30days' ||
+                                             column.field == 's31to60days' || column.field == 's61to90days' ||
+                                             column.field == 's91to120days' || column.field == 'over120days') && rec[column.field] != '333333333'">
+                                    {{rec[column.field]| currency : "" : decimal_range }}
+                                </span>
+                                <span
+                                    ng-if="(column.field == 'total' || column.field == 's0to30days' ||
+                                              column.field == 's31to60days' || column.field == 's61to90days' ||
+                                              column.field == 's91to120days' || column.field == 'over120days') && rec[column.field] == '333333333'">
+                                    -
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> 
+
+
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            ng-click="destroyPdfModal('agedReportModal')">Cancel</button>
+                    <!-- data-dismiss="modal" -->
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+
+                    <!-- mpdf download button -->
+                    <!-- <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-disabled="generatingPDF"
+                       ng-click="generatePdf(printPdfVals.reportName)">
+                        <i class="fa fa-download"
+                           aria-hidden="true"
+                           style="color:#444444;"></i>
+                    </a>
+                    <span class='generatingPDF'
+                          ng-if="generatingPDF">
+                        <i class='fa-spin fa fa-spinner'></i>Generating PDF</span> -->
+
+                    <!-- jsreport download button -->
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-click="downloadReportCustomerAging(printPdfVals)"
+                       ng-if='!jsreportLoading && printPdfVals.reportName == "CustomerAgeingReportSummary" '>
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-click="downloadReportSupplierAging(printPdfVals)"
+                       ng-if='!jsreportLoading && (printPdfVals.reportName == "SupplierAgeingReportSummary" || printPdfVals.reportName == "CreditorsAgeingReportSummary") '>
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

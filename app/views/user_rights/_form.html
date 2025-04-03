@@ -1,0 +1,115 @@
+
+<div ng-controller="UserRightsEditController as table">
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+  <div ng-include="'app/views/_breadcrumb.html'" ></div> 
+    <form autocomplete="off"  class="form-horizontal no-margin" role="form"  validate-form="" novalidate=""
+ng-submit="update_main(rec);">
+      <div class="widget">
+        <div class="widget-body">
+          <div class="row">
+            <div class="col-md-6">
+              <input type="hidden"  ng-model="rec.update_id" />
+              <input type="hidden" ng-model="rec.id"    />
+              <div class="form-group">
+                <label class="col-md-4 control-label">Select Module </label>
+                <div class="col-md-7">
+                  <select ng-model="rec.role" ng-options="opt as opt.role for opt in role_arry"
+                class=" form-control"    ng-disabled="check_permison_readonly" >
+                    <option style="display:block" value=""></option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label "> Name <span class="required">*</span></label>
+                <div class="col-md-7">
+                  <input  ng-readonly="check_permison_readonly"  type="text"   ng-model="rec.name"
+          required class="form-control" />
+                </div>
+              </div>
+            </div> 
+           
+            <div class="col-md-12"> 
+            
+            
+            
+            <div  ng-show="show_tree">
+            <table  class="table table-condensed table-striped table-hover table-bordered"   style="border: none !important;">
+              <thead>
+                <tr>
+                  <th   style="border: none !important;width: 78%;"></th>
+                  <th  style="border: none !important;">Add</th>
+                  <th style="border: none !important;" >Edit </th>
+                  <th style="border: none !important;" >View</th>
+                  <th style="border: none !important;" > Delete</th>
+                   <th style="border: none !important;" > Allow All</th>
+                </tr>
+              </thead>
+            </table>
+            <!--   collapse out  or collapse in is used for + and -     -->
+            <div class="tree" ng-init="counter_parent = 0"> 
+              <!--	Level Zero   list_data_all-->
+              <div ng-repeat="formFields in category_list track by $index"  >
+                <div class="tree-item "   > <i class="fa fa-plus pls_mins_sign "
+              id="pls_mins_sign_{{formFields.name}}_{{formFields.id}}"
+              href=".demo_{{formFields.name}}_{{formFields.id}}" data-toggle="collapse"></i> &nbsp; {{formFields.name}} </div>
+                 
+                  
+                  <!-- Level One-->
+                  
+                  <div  id="" class="collapse in demo_{{formSelData.parent_id+'_'+formSelData.id}}"
+                       style="padding-left: 11px;"
+                      ng-repeat="formSelone in category_list_data_one"
+                       ng-if="formSelone.parent_id == formSelData.id">
+                    <div class="tree-item "> <i class="fa fa-plus pls_mins_sign_third"
+                   href=".demo_{{formSelone.parent_id+'_'+formSelData.id+'_'+formSelone.parent_id}}"
+                   
+                    data-toggle="collapse"></i> <a   ng-click="show_add_pop(formFields.id,formSelData.id,formSelone.id,0,2,formSelone.id,'')"> &nbsp; {{formSelone.name}} </a> <span ng-if="formSelone.VAT_Rate!=''" class="pull-right"  > <span > {{formSelone.VAT_Rate}}  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> 
+                      
+                    
+                      
+                      <span ng-if="formSelone.net_change!='0' "> {{formSelone.net_change}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <span ng-if="formSelone.date_balance!='0' "> {{formSelone.date_balance}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <span ng-if="formSelone.balance!='0' "> {{formSelone.balance}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> </span> </div>
+                    
+                    <!-- Level Two-->
+                    <div    class="collapse in demo_{{formSelone.parent_id+'_'+formSelData.id+'_'+formSelone.parent_id}}"  style="padding-left: 11px;"
+                          ng-repeat="formSec in category_list_data_second"
+                           ng-if="formSec.parent_id == formSelone.id">
+                      <div class="tree-item"> <i class="fa fa-plus pls_mins_sign_fourth"
+                              href=".demo_{{formSec.parent_id+'_'+formSelone.id+'_'+formSelone.id+'_'+formSec.id}}" data-toggle="collapse"></i> &nbsp; <a> &nbsp; {{formSec.name}} </a> <span ng-if="formSec.VAT_Rate!=''" class="pull-right"  > <span > {{formSec.VAT_Rate}}  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <span ng-if="formSec.net_change!='0' "> {{formSec.net_change}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <span ng-if="formSec.date_balance!='0' "> {{formSec.date_balance}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <span ng-if="formSec.balance!='0' "> {{formSec.balance}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> </span> </div>
+                      
+                      <!-- Level Three-->
+                      <div  id="" class="collapse in demo_{{formSec.parent_id+'_'+formSelone.id+'_'+formSelone.id+'_'+formSec.id}}" 		  style="padding-left: 11px;"
+                          ng-repeat="formthird in category_list_data_third"
+                           ng-if="formthird.parent_id == formSec.id">
+                        <div class="tree-item"> &nbsp; <a > &nbsp; {{formthird.name}} </a> <span ng-if="formthird.VAT_Rate!=''" class="pull-right"  > <span > {{formthird.VAT_Rate}}  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <span ng-if="formthird.net_change!='0' "> {{formthird.net_change}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <span ng-if="formthird.date_balance!='0' "> {{formthird.date_balance}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <span ng-if="formthird.balance!='0' "> {{formthird.balance}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> </span> </div>
+                      </div>
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+           
+            
+            
+            
+            
+            
+            </div>
+        </div>
+            <div class="col-md-12">
+              <div class="pull-right">
+                <button class="btn btn-delete active-btns" ng-show="rec.id>0 && !check_permison_readonly"    type="button"    ng-click="delete()"
+       > Delete</button>
+                <button class="btn btn-submit"
+                    type="submit"    ng-show="!check_permison_readonly"
+                    > Save</button>
+                <button class="btn btn-edit" type="button"  ng-click="showEditForm()"
+      ng-show="check_permison_readonly">Edit</button>
+                <button class="btn btn-cancel" type="button" ui-sref="{{btnCancelUrl}}"> <i class="fa fa-undo fa_display"></i> Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+ 

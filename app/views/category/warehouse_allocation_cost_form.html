@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget animated fadeIn" style="background:none;">
+
+            <div class="widget-body" style="background:none;">
+                <div class="vertical_space"></div>
+                <div class="row form-horizontal" >
+
+                    <div class="col-md-4">
+                        <div class="col-md-5 ">
+                            <label class="control-label">Warehouse <span
+                                    class="required">*</span></label>
+                        </div>
+
+                        <div class="col-md-7">
+                            <select ng-model="rec3.warehouse" required
+                                    ng-change="get_loc_in_warehouse(rec2.warehouse.id)"
+                                    ng-options="opt as opt.name for opt in arr_warehouse"
+                                    class="select2me form-control" ng-disabled="check_item_readonly">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-md-3 ">
+                            <label class="control-label">Cost <span
+                                    class="required">*</span> </label>
+                        </div>
+
+                        <div class="col-md-4">
+                            <input type="text" ng-model="rec3.cost" id="cost" required
+                                   class="form-control" ng-disabled="check_readonly"/>
+                        </div>
+                        <div class="col-md-5">
+                            <select ng-disabled="check_readonly " ng-model="rec3.cost_type"
+                                    ng-options="opt as opt.title for opt in cost_types"
+                                    class="form-control">
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-md-6 ">
+                            <label class="control-label ">Currency </label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <select ng-disabled="check_item_readonly " ng-model="rec3.currency"
+                                    ng-options="opt as opt.code for opt in arr_currency"
+                                    class="form-control"><!--+' - '+ opt.name-->
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-horizontal">
+                    <div class="col-md-4">
+                        <div class="col-md-5">
+                            <label class="control-label">Status</label>
+                        </div>
+
+                        <div class="col-md-7">
+                            <select required ng-model="rec3.status_ids"
+                                    ng-options="opt as opt.value for opt in status_list"
+                                    class="select2me form-control" ng-disabled="check_readonly">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,332 @@
+<style>
+        #stockReportModal .modal-body {
+            max-height: 80vh;
+            overflow: auto;
+            padding: 1.5cm;
+    
+        }
+    </style>
+    <div class="modal fade template-design"
+         id="stockReportModal">
+        <div class="modal-dialog modal-md"
+             style=" width: 1200px !important;margin-top: 11px;">
+            <div class="modal-content">
+                <div class="modal-body"
+                     id="{{printPdfVals.reportName}}" ng-if="printPdfVals.reporttype == 'Summary'">
+    
+                    <htmlpageheader name='MyCustomHeader'>
+                        <div class='reportHeading'>
+                            <div class='reportHeading__left'>
+                                <div class='reportHeading__left__reportname'
+                                     >{{printPdfVals.reportTitle}}
+                                </div>
+                                <div class='reportHeading__left__reportfilter'>
+                                    From {{printPdfVals.dateFrom}} To {{printPdfVals.dateTo}}
+                                </div>
+                            </div>
+                            <div class='reportHeading__right'>
+                                <img ng-src='{{imagePath+defaultLogo}}'
+                                     class='reportHeading__right__img '
+                                     ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                                <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                            </div>
+                        </div>
+                    </htmlpageheader>
+                    <sethtmlpageheader name='MyCustomHeader'
+                                       page='ALL'
+                                       value='on'
+                                       show-this-page='1' />
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+                    <setpagefooter name='MyFooter3'
+                                   page='ALL'
+                                   value='on'
+                                   show-this-page='1' />
+                    <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter3;
+                        }
+                    </style>
+                    <div style="clear: both; margin: 0pt; padding: 0pt; "></div>
+    
+                    <!-- posted Sale Order -->
+    
+                    <table style="width: 100%;float: left;"
+                           class="tabletopmargin report-spacing-table"
+                           >
+                        <thead>
+                            <tr>
+                                <th style="width: 20%;" ng-if="printPdfVals.reporttype != 'Summary'">Start Date</th>
+                                <th style="width: 15%;" ng-if="printPdfVals.reporttype != 'Summary'">End Date</th>
+                                <th style="width: 20%;" ng-if="printPdfVals.reporttype != 'Summary'">Employee No.</th>
+                                <th style="width: 15%;" ng-if="printPdfVals.reporttype != 'Summary'">Employee Name</th>
+                                <th style="width: 20%;" >Holiday Type</th>
+                                <th style="width: 15%;">Total Holidays</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="rec in printPdfVals.reportsDataArr"
+                                ng-class="{'bg-gray':rec.RecordType == 'Head'}">
+                                <td ng-if="rec.RecordType == 'Head' && printPdfVals.filter_by ==1"
+                                    colspan="2"
+                                    style="width: 20%;"
+                                    >
+                                    <b>{{rec.emp_name}}</b></td>
+                                    <td ng-if="rec.RecordType == 'Head' && printPdfVals.filter_by ==2"
+                                    colspan="2"
+                                    style="width: 20%;"                                     >
+                                    <b>{{rec.department}}</b></td>
+                               <td ng-if="rec.RecordType == 'Detail' && printPdfVals.reporttype != 'Summary'"
+                                    style="width: 20%;">{{rec.holiday_from}}</td>
+                                <td ng-if="rec.RecordType == 'Detail' && printPdfVals.reporttype != 'Summary'"
+                                    style="width: 20%;">{{rec.holiday_to}}</td>
+                                <td ng-if="rec.RecordType == 'Detail' && printPdfVals.reporttype != 'Summary'"
+                                    style="width: 20%;">{{rec.emp_code}}</td>
+                                <td ng-if="rec.RecordType == 'Detail' && printPdfVals.reporttype != 'Summary'"
+                                    style="width: 20%;">{{rec.emp_name}}</td>
+                                <td ng-if="rec.RecordType == 'Detail'"
+                                    style="width: 20%;">{{rec.leave_type}}</td>
+                                <td ng-if="rec.RecordType == 'Detail'"
+                                    style="width: 15%;">{{rec.holidays  | numberNoDecimalsIfZeroFilter:2:''}}</td>                               
+    
+                                <!-- total  -->
+                                <td ng-if="rec.RecordType == 'Total' && printPdfVals.reporttype == 'Summary'"><b>Total Absence</b></td>
+                                <td ng-if="rec.RecordType == 'Total' && printPdfVals.reporttype != 'Summary'" colspan="5"><b>Total Absence</b></td>
+                                <td ng-if="rec.RecordType == 'Total'">
+                                    <b>{{rec.holidays  | numberNoDecimalsIfZeroFilter:2:''}}</b></td>                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="modal-body" id="{{printPdfVals.reportName}}"
+                     ng-if="printPdfVals.reporttype == 'Summary'"
+                    style="max-height: 80vh;overflow: auto;padding: 2cm;">
+
+                    <div ng-repeat="rec in printPdfVals.reportsDataArr track by $index"
+                        ng-if="printPdfVals.report_type == 'detail'"
+                        style="clear: both;margin-bottom: 72px;">
+
+                        <sethtmlpageheader name='MyCustomHeader{{$index}}'
+                                        page='ALL'
+                                        value='on'
+                                        show-this-page='1' />
+
+                        <pagefooter name='MyFooter3'
+                                    content-right='{DATE j-m-Y}'
+                                    content-center='Page {PAGENO} of {nb}'
+                                    content-left='{{known_as}}'
+                                    footer-style='color:#00000;font-size: 11px'
+                                    footer-style-left='font-weight:bold;' />
+
+                        <setpagefooter name='MyFooter3'
+                                    page='ALL'
+                                    value='on'
+                                    show-this-page='1' />
+
+                        <style ng-if="toggleLandscape">
+                            @page {
+                                sheet-size: A4-L;
+                                margin: 5mm 5mm 5mm 5mm;
+                                header: html_MyCustomHeader;
+                                footer: MyFooter3;
+                            }
+                        </style>
+
+                        <htmlpageheader name='MyCustomHeader{{$index}}'>
+                            <div class='reportHeading'>
+                                <div class='reportHeading__left'>
+                                    <div class='reportHeading__left__reportname'
+                                        style="margin-bottom: 12px;">{{printPdfVals.reportTitle}}
+                                    </div>
+                                    <div class="font10">
+                                        <b>Employee No. : </b>
+                                        <span ng-if="rec.empCode">{{rec.empCode}}</span>
+                                    </div>
+                                    <div class="font10">
+                                        <b>Employee Name : </b>
+                                        <span ng-if="rec.employee">{{rec.employee}}</span>
+                                    </div>
+                                    <div class="font10">
+                                        <b>Department : </b>
+                                        <span ng-if="rec.department">{{rec.department}</span>
+                                    </div>
+                                </div>
+                                <div class='reportHeading__right'>
+                                    <img ng-src='{{imagePath+defaultLogo}}'
+                                        class='reportHeading__right__img '
+                                        ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                                    <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                                </div>
+                            </div>
+                        </htmlpageheader>
+
+                        <div style="display: inline-block;height: 17px;width: 100%"></div>
+                        <!-- <h4 ng-if="rec.leaves.length > 0"
+                            style=" margin: 0;
+                                    margin-bottom: 10px;
+                                    font-size: 16px;
+                                    font-weight: bold">
+                            Posted </h4> -->
+                        <table style="width: 100%;"
+                            ng-if="rec.leaves.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Holiday Type</th>
+                                    <th>Total Holidays</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="inv in rec.leaves">
+                                    <td>{{inv.posting_date}}</td>
+                                    <td>{{inv.order_date}}</td>
+                                    <td>{{inv.document_type}}</td>
+                                    <td>{{inv.document_no}}</td>
+                                </tr>
+                                <!-- <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td style="text-align: right;"><b>Total Posted</b></td>
+                                    <td style="text-align: right;"><b>{{rec.posted.total_amount_ex_vat |
+                                            currency:""}}</b></td>
+                                    <td style="text-align: right;">
+                                        <b>{{rec.posted.total_commission | currency:""}}</b>
+                                    </td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+
+                        <b style="font-size: 14px;margin-bottom: 6px;display: block;">Total For {{rec.employee}}</b>
+                        <table style="width:100%;">
+                            <tr style="background-color: whitesmoke;">
+                                <td style="text-align: right;width:20%;"><b>Posted</b></td>
+                                <td style="text-align: right;width:20%;"><b>Unposted</b></td>
+                                <td style="text-align: right;width:20%;"><b>Total</b></td>
+                                <td style="text-align: right;width:20%;"><b>Commission</b></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;width:20%;">
+                                    <span
+                                        ng-if="rec.leaves.length > 0">{{rec.posted.total_amount_ex_vat | currency:""}}
+                                        {{defaultCurrencyCode}}</span>
+                                    <span ng-if="!(rec.leaves.length > 0)">0.00 {{defaultCurrencyCode}}</span>
+                                </td>
+                                <td style="text-align: right;width:20%;">
+                                    <span
+                                        ng-if="rec.unposted.invoices.length > 0">{{rec.unposted.total_amount_ex_vat | currency:""}}
+                                        {{defaultCurrencyCode}}</span>
+                                    <span ng-if="!(rec.unposted.invoices.length > 0)">0.00 {{defaultCurrencyCode}}</span>
+                                </td>
+                                <td style="text-align: right;width:20%;">
+                                    {{rec.unposted.total_amount_ex_vat + rec.posted.total_amount_ex_vat | currency:""}}
+                                    {{defaultCurrencyCode}}
+                                </td>
+                                <td style="text-align: right;width:20%;">
+                                    {{rec.unposted.total_commission + rec.posted.total_commission | currency:""}}
+                                    {{defaultCurrencyCode}}
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div style="page-break-after: always;"
+                            ng-if="printPdfVals.total_records.length - 1 != $index">
+                        </div>
+                        <div style="height: 100px;"
+                            ng-if="printPdfVals.total_records.length - 1 != $index && toggleLandscape">
+                        </div>
+                    </div>
+
+                    <div ng-if="printPdfVals.report_type == 'detail'">
+
+                        <b style="font-size: 14px;margin-bottom: 6px;display: block;">Grand Total</b>
+                        <table style="width:100%;">
+                            <tr style="background-color: whitesmoke;">
+                                <td style="text-align: right;width:20%;"><b>Posted</b></td>
+                                <td style="text-align: right;width:20%;"><b>Unposted</b></td>
+                                <td style="text-align: right;width:20%;"><b>Total</b></td>
+                                <td style="text-align: right;width:20%;"><b>Commission</b></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;width:20%;">
+                                    {{printPdfVals.posted_grand_total_amount_ex_vat | currency:""}} {{defaultCurrencyCode}}
+                                </td>
+                                <td style="text-align: right;width:20%;">
+                                    {{printPdfVals.unposted_grand_total_amount_ex_vat | currency:""}} {{defaultCurrencyCode}}
+                                </td>
+                                <td style="text-align: right;width:20%;">
+                                    {{printPdfVals.posted_grand_total_amount_ex_vat + printPdfVals.unposted_grand_total_amount_ex_vat | currency:""}} {{defaultCurrencyCode}}
+                                </td>
+                                <td style="text-align: right;width:20%;">
+                                    {{printPdfVals.posted_grand_total_commission + printPdfVals.unposted_grand_total_commission | currency:""}}
+                                    {{defaultCurrencyCode}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+    
+                <div class="modal-footer">
+                    <div class="pull-right">
+                        <button type="button"
+                                class="btn btn-cancel pull-right"
+                                ng-click="destroyPdfModal('stockReportModal')">Cancel</button>
+                        <!-- <label class="ib"
+                               style="margin-right: 4px;">
+                            <input type="checkbox"
+                                   ng-change="updatePageOrientation(toggleLandscape)"
+                                   ng-model="toggleLandscape">Print in Landscape Orientation
+                        </label> -->
+                        <!-- data-dismiss="modal" -->
+                        <!-- <a type="button"
+                           class="btn btn-default2"
+                           title="Download PDF"
+                           ng-disabled="generatingPDF"
+                           ng-click="generatePdf(printPdfVals.reportName)">
+                            <i class="fa fa-download"
+                               aria-hidden="true"
+                               style="color:#444444;"></i>
+                        </a>
+                        <a href="app/views/invoice_templates_pdf/{{printPdfVals.reportName}}.pdf"
+                           target="_blank"
+                           class="btn btn-default2"
+                           title="Download PDF"
+                           id="displayPdf"
+                           style="display:none">
+                            <i class="fa fa-download"
+                               aria-hidden="true"></i>
+                        </a>
+                        <span class='generatingPDF'
+                              ng-if="generatingPDF">
+                            <i class='fa-spin fa fa-spinner'></i>Generating PDF</span> -->
+                        <!-- jsreport download button -->
+                        <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-click="downloadReportAbsence(printPdfVals)"
+                       ng-if="!jsreportLoading">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>

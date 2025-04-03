@@ -1,0 +1,329 @@
+<div ng-controller="TrialBalncReportController">
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+
+  <style>
+    body {
+      background-image: url(app/css/report-BG.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      padding-bottom: 10px;
+    }
+  </style>
+
+
+  <div class="a-content">
+    <div class="a-label-container">
+      <b class="a-title">Date <span class="required"> *</span></b>
+      <div class="input-symbol a-date">
+        <input jqdatepicker
+               class="form-control"
+               id="dateFrom"
+               readonly
+               placeholder="From"
+               style="background-color: white;"
+               ng-model="filterReport.dateFrom"
+               ng-change="testdate_by_id('dateFrom','dateTo','date_msg')">
+        <span>
+          <i class="fa fa-calendar"></i>
+        </span>
+      </div>
+      <div class="input-symbol a-date ">
+        <input jqdatepicker
+               class="form-control"
+               id="dateTo"
+               placeholder="To"
+               readonly
+               style="background-color: white;"
+               ng-model="filterReport.dateTo"
+               ng-change="testdate_by_id('dateFrom','dateTo','date_msg');trialBalncSummaryReportEndDate(filterReport.dateTo)">
+        <span>
+          <i class="fa fa-calendar"></i>
+        </span>
+        <span id="date_msg"
+              style="color:#F00; display: none;top: 38px !important;">Date To is earlier then Date From
+        </span>
+      </div>
+      <b class="ib a-margin-left add-filter collapsed"
+         data-toggle="collapse"
+         data-target="#demo">Add Filter(s)</b>
+      <div class="pull-right"
+           ng-if="reportType == 'summary' || reportType == 'detail'">
+        <button style="  margin-left: 0;"
+                class="btn report-generate"
+                type="button"
+                ng-click="generateReport()">Generate Report</button>
+        <button class="btn report-clearfilter"
+                type="button"
+                ng-click="clearReport()">Clear Filter</button>
+        <button class="btn report-default"
+                type="button"
+                ng-hide="showCSVBtn"
+                ng-click="showPdfModal()"> Print Preview</button>
+        <!-- <a class="btn btn-default2"
+           type="button"
+           style="background-color: #63bf77;color: white;box-shadow: none;border: 1px solid #63bf77;"
+           ng-if="showCSVBtn"
+           target="_blank"
+           href="{{CSVfilePath}}"
+           download> Export as CSV</a> -->
+
+          <!-- <a class="btn btn-default2"
+             type="button"
+             style="background-color: #63bf77;color: white;box-shadow: none;border: 1px solid #63bf77;"
+             ng-if="showCSVBtn"
+             target="_blank"
+             href="{{CSVfilePath}}"
+             download> Export as CSV</a> -->
+          
+          <div class="dropdown report-excel" ng-if="showCSVBtn">
+            <button class="btn report-default dropdown-toggle"
+                    type="button"
+                    data-toggle="dropdown">Export As
+              <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="{{CSVfilePath}}">Excel</a></li>
+            </ul>
+          </div>
+        <div class="dropdown report-excel"
+             ng-if="reportType == 'summary' ">
+          <button class="btn report-default dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown">Export As
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a ng-click="showPdfModal('xlsx')">Excel</a></li>
+          </ul>
+        </div>
+        <div class="dropdown report-excel"
+             ng-if="reportType == 'detail' && !showCSVBtn">
+          <button class="btn report-default dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown">Export As
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a ng-click="showPdfModal('xlsx')">Excel</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-filter-panel collapse in"
+         id="demo">
+
+      <div class="report-box"
+           ng-if="reportType == 'summary' || reportType == 'detail'">
+        <b class="a-title a-title-relative">G/L No.</b>
+        <div class="a-form-control">
+          <ui-select ng-model="filterReport.glNoFrom">
+            <ui-select-match placeholder="Select G/L No. From">{{$select.selected.gl_no}} -
+              {{$select.selected.name}}</ui-select-match>
+            <ui-select-choices repeat="opt in glAccountArr | filter: $select.search">
+              <div ng-bind-html="opt.gl_no+' - '+ opt.name | highlight: $select.search"></div>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+        <div class="a-form-control a-margin-left">
+          <ui-select ng-model="filterReport.glNoTo">
+            <ui-select-match placeholder="Select G/L No. To">{{$select.selected.gl_no}} -
+              {{$select.selected.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="opt in glAccountArr | filter: $select.search">
+              <div ng-bind-html="opt.gl_no+' - '+ opt.name | highlight: $select.search"></div>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+      <div class="report-box"
+           ng-if="reportType == 'summary' || reportType == 'customerSummary' || reportType == 'supplierSummary'">
+        <label>
+          <input type="checkbox" id="showOpenBalnc"
+                 ng-model="filterReport.showOpenBalnc"
+                 ng-checked="filterReport.showOpenBalnc">
+          Show Opening & Closing Balance
+        </label>
+      </div>
+
+    </div>
+  </div>
+
+  <div ng-if="reportType == 'summary' && account_list.length > 0"
+       class="a-table">
+    <h5 class="a-report-title">{{reportTitle}}</h5>
+    <small ng-if="filterReport.dateFrom"
+           class="a-report-date">From {{filterReport.dateFrom}} to {{filterReport.dateTo}}</small>
+    <div id="dt_example"
+         class="example_alt_pagination">
+      <table class="table table-condensed table-striped table-hover report-spacing"
+             show-filter="true"
+             id="data-table">
+        <thead>
+          <tr class="bg-col">
+            <th style="    width: 8%;">G/L No.</th>
+            <th>Name</th>
+            <!-- <th>VAT</th> -->
+            <th colspan="2"
+                ng-if="filterReport2.showOpenBalnc==true"
+                style="text-align: center;"
+                class="solid-border-right">Opening Balance </th>
+            <th colspan="2"
+                style="text-align: center;"
+                class="solid-border-left"
+                ng-class="{'solid-border-right':filterReport2.showOpenBalnc==true}">Selected Period</th>
+            <th colspan="2"
+                ng-if="filterReport2.showOpenBalnc==true"
+                style="text-align: center;"
+                class="solid-border-left">Closing Balance</th>
+          </tr>
+          <tr>
+            <th style="    width: 8%;">&nbsp;</th>
+            <th>&nbsp;</th>
+            <th ng-if="filterReport2.showOpenBalnc==true"
+                class="padding-num-right">Debit</th>
+            <th ng-if="filterReport2.showOpenBalnc==true"
+                class="solid-border-right padding-num-right ">Credit</th>
+            <th class="solid-border-left padding-num-right">Debit</th>
+            <th class="padding-num-right"
+                ng-class="{'solid-border-right':filterReport2.showOpenBalnc==true}">Credit</th>
+            <th ng-if="filterReport2.showOpenBalnc==true"
+                class="solid-border-left padding-num-right">Debit</th>
+            <th ng-if="filterReport2.showOpenBalnc==true"
+                class="padding-num-right">Credit</th>
+          </tr>
+        </thead>
+
+        <tbody style="max-height:400px;">
+
+          <tr ng-repeat="formFields in account_list  | filter:Serachkeyword">
+            <td style="width: 6%;">
+              <span ng-if="formFields.code != ''">
+                <strong>{{formFields.gl_no}}</strong>
+              </span>
+            </td>
+            <td>
+              <span ng-if="formFields.typeID ==1 || formFields.typeID ==2">
+                {{formFields.categoryDisplayName}}
+              </span>
+              <span ng-if="formFields.typeID ==5">
+                <strong>{{formFields.categoryDisplayName}} </strong>
+              </span>
+              <span ng-if="formFields.typeID ==3">{{formFields.categoryDisplayName}}
+              </span>
+              <span ng-if="formFields.typeID ==4">
+                <strong>{{formFields.categoryDisplayName}}</strong>
+              </span>
+            </td>
+            <!-- <td>{{formFields.vat_Rate}}</td> -->
+
+            <td ng-if="filterReport2.showOpenBalnc==true"
+                class="padding-num-right">
+              <span ng-if="formFields.total_openBalnc >0 && formFields.total_openBalnc_type=='Debit'">
+                {{formFields.total_openBalnc| currency : "" : decimal_range }}
+              </span>
+            </td>
+            <td ng-if="filterReport2.showOpenBalnc==true"
+                class="solid-border-right padding-num-right">
+              <span ng-if="formFields.total_openBalnc >0 && formFields.total_openBalnc_type=='Credit'">
+                {{formFields.total_openBalnc| currency : "" : decimal_range }}
+              </span>
+            </td>
+
+
+
+            <td class="solid-border-left padding-num-right">
+              <span ng-if="formFields.total_balance >0 && formFields.total_balance_type=='Debit'">
+                {{formFields.total_balance| currency : "" : decimal_range }}
+              </span>
+            </td>
+            <td class="padding-num-right"
+                ng-class="{'solid-border-right':filterReport2.showOpenBalnc==true}">
+              <span ng-if="formFields.total_balance >0 && formFields.total_balance_type=='Credit'">
+                {{formFields.total_balance| currency : "" : decimal_range }}
+              </span>
+            </td>
+
+            <td ng-if="filterReport2.showOpenBalnc==true"
+                class="solid-border-left padding-num-right">
+              <span ng-if="formFields.total_SelPeriodBalnc >0 && formFields.total_SelPeriodBalnc_type=='Debit'">
+                {{formFields.total_SelPeriodBalnc| currency : "" : decimal_range }}
+              </span>
+            </td>
+            <td ng-if="filterReport2.showOpenBalnc==true"
+                class="padding-num-right">
+              <span ng-if="formFields.total_SelPeriodBalnc >0 && formFields.total_SelPeriodBalnc_type=='Credit'">
+                {{formFields.total_SelPeriodBalnc| currency : "" : decimal_range }}
+              </span>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div ng-if="reportType == 'detail' && account_list.length > 0"
+       class="a-table">
+    <h5 class="a-report-title">{{reportTitle}}</h5>
+    <small ng-if="filterReport.dateFrom"
+           class="a-report-date">From {{filterReport.dateFrom}} to {{filterReport.dateTo}}</small>
+    <table class="table table-condensed table-striped table-hover report-spacing">
+      <thead>
+        <tr>
+          <th>Posting Date</th>
+          <th>G/L No.</th>
+          <th>Name</th>
+          <th title="Document Type">Doc. Type</th>
+          <th title="Document Number">Doc. No.</th>
+          <th title="Source Number">Source No.</th>
+          <th title="Source Name">Source Name</th>
+          <th class="rightAlign"> Debit</th>
+          <th class="rightAlign"> Credit</th>
+          <th class="rightAlign"> Amount </th>
+          <th class="rightAlign"> Entry No.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="formFields in account_list">
+          <td>{{formFields.posting_date}}</td>
+          <td>{{formFields.gl_account_no}}</td>
+          <td>{{formFields.name}}</td>
+          <td>
+            <span ng-if="formFields.doctype == 'Opening Balance'"
+                  style="font-size: 11px;">{{formFields.doctype}}</span>
+            <span ng-if="formFields.doctype == 'Closing Balance'"
+                  style="font-size: 11px;">{{formFields.doctype}}</span>
+            <span ng-if="formFields.docType != 'Closing Balance' && formFields.doctype != 'Opening Balance'">{{formFields.docType}}</span>
+          </td>
+          <td>
+            <span title="{{formFields.docType}}">{{formFields.invoice_code}}</span>
+          </td>
+          <td>{{formFields.source_no}}</td>
+          <td>{{formFields.source_name}}</td>
+          <td class="rightAlign">
+            <span ng-if="formFields.debit_amount != 0">
+              {{formFields.debit_amount| currency : "" : decimal_range }}
+            </span>
+          </td>
+          <td class="rightAlign">
+            <span ng-if="formFields.credit_amount != 0">
+              {{formFields.credit_amount| currency : "" : decimal_range }}
+            </span>
+          </td>
+          <td class="rightAlign">{{formFields.totalAmountBalance | currency : "" : decimal_range}}</td>
+          <td class="rightAlign">{{formFields.entry_no}}</td>
+        </tr>
+        <tr ng-if="account_details_rec.length ==0">
+          <td colspan="7"
+              align="center"> No record found !</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+<div ng-include="'app/views/reports/_listingCustomerModal.html'"></div>
+<div ng-include="'app/views/reports/_listingSupplierModal.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

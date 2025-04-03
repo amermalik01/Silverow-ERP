@@ -1,0 +1,306 @@
+Code 	Name 	Parent Category	Sub-Category 	Account Type	Allow Posting	Sum of Ranges	VAT Rate	Transaction	 Error Status
+1020	Intangible Assets	1	2	3	0				
+1030	Goodwill	1	2	1	1		7	3	
+1090	Total Intangible Assets	1	2	2	0	1020;1090			
+1100	Tangible Assets	1	2	3	0				
+1110	Land & Buildings	1	2	3	0				
+1120	Land & Buildings	1	2	1	1		7	3	
+1130	Property Revaluation	1	2	1	1		6	3	
+1140	Additions	1	2	1	1		7	3	
+1150	Disposals	1	2	1	1		7	3	
+1160	Accum. Depreciation, Buildings	1	2	1	1		6	3	
+1170	Total Land & Buildings	1	2	2	0	1110;1170			
+1180	Furniture and Fixtures	1	2	3	0				
+1190	Furniture and Fixtures	1	2	1	1		7	3	
+1200	Additions	1	2	1	1		7	3	
+1220	Disposals	1	2	1	1		7	3	
+1230	Accum. Depreciation, Furniture	1	2	1	1		6	3	
+1240	Total Furniture and Fixtures	1	2	2	0	1180;1240			
+1250	Office & IT Equipment	1	2	3	0				
+1260	Office & IT Equipment	1	2	1	1		7	3	
+1270	Additions	1	2	1	1		7	3	
+1280	Disposals	1	2	1	1		7	3	
+1290	Accum. Depr., Office. Equip.	1	2	1	1		6	3	
+1300	Total Office & IT Equipment	1	2	2	0	1250;1300			
+1500	Total Tangible Assets	1	2	2	0	1100;1500			
+1550	Total Fixed Assets	1	2	2	0	1005;1550			
+1600	Stock	1	3	3	0				
+1620	Opening Stock	1	3	1	1		7	3	
+1650	Stock Adjust/Damages	1	3	1	1		7	3	
+1670	Closing Stock	1	3	1	1		7	3	
+1699	Total Stock	1	3	2	0	1600;1699			
+1700	Trade & Other Debtors	1	3	3	0				
+1710	Trade Debtors UK	1	3	1	1		7	3	
+1720	Trade Debtors Overseas	1	3	1	1		2	3	
+1730	Other Debtors	1	3	1	1		7	3	
+1750	Total Trade & Other Debtors	1	3	2	0	1700;1750			
+1770	Prepayments	1	3	3	0				
+1790	Prepayments	1	3	1	1		7	3	
+1799	Total Prepayments	1	3	2	0	1770;1799			
+1800	Liquid Assets	1	3	3	0				
+1810	Petty Cash	1	3	1	1		7	3	
+1820	Natwest Current Account	1	3	1	1		7	3	
+1830	Natwest Savings Account	1	3	1	1		7	3	
+1840	Natwest Euro Account	1	3	1	1		7	3	
+1850	Natwest USD Account	1	3	1	1		7	3	
+1860	Currency Exchange Account	1	3	1	1		6	3	
+1870	Lloyds Account	1	3	1	1		7	3	
+1890	Total Liquid Assets	1	3	2	0	1800;1890			
+1999	Total Current Assets	1	3	2	0	1600;1999			
+2499	Total Assets	1	3	2	0	1000;2499			
+2510	Trade & Other Creditors	4	8	3	0				
+2530	Trade Creditors UK	4	8	1	1		7	3	
+2540	Trade Creditors Overseas	4	8	1	1		1	3	
+2550	Other Creditors	4	8	1	1		7	3	
+2560	Accruals	4	8	1	1		7	3	
+2570	Lloyds Factoring	4	8	1	1		7	3	
+2590	Total Trade & Other Creditors	4	8	2	0	2510;2590			
+2600	VAT	4	8	3	0				
+2610	Sales VAT 20%	4	8	1	1		7	3	
+2620	Sales VAT EU 0%	4	8	1	1		2	3	
+2630	Sales VAT Export 0%	4	8	1	1		8	3	
+2640	VAT Bad Debt Relief Full VAT	4	8	1	1		7	3	
+2650	Import VAT Full VAT	4	8	1	1		6	3	
+2660	Purchase VAT 20%	4	8	1	1		7	3	
+2670	Purchase VAT EU 0%	4	8	1	1		2	3	
+2680	Purchase VAT Export 0%	4	8	1	1		8	3	
+2690	VAT Liability / Receivable	4	8	1	1		6	3	
+2699	Total VAT	4	8	2	0	2600;2699			
+2700	Personnel	4	8	3	0				
+2710	P.A.Y.E	4	8	1	1		6	3	
+2720	NEST Pensions	4	8	1	1		6	3	
+2740	Salary Control Account	4	8	1	1		6	3	
+2760	Total Personnel	4	8	2	0	2700;2760			
+2990	Total Current Liabilities	4	8	2	0	2510;2990			
+2999	NET Current Assets /(NET Current Liabilities)	4	8	2	0	1005;2999			
+3010	Directors Loans -NA	4	9	1	1		6	3	
+3020	Directors Loans -SK	4	9	1	1		6	3	
+3199	Total Long-term Liabilities	4	9	2	0	3010;3199			
+3200	Other Liabilities	4	9	3	0				
+3210	Dividends for the Fiscal Year	4	9	1	1		6	3	
+3220	Corporation Taxe Payable	4	9	1	1		6	3	
+3230	Suspense Account	4	9	1	1		7	3	
+3299	Total Other Liabilities	4	9	2	0	3200;3299			
+3400	Total Liabilities	4	9	2	0	2520;3400			
+3499	NET Assets / (NET Liabilities)	4	9	2	0	1005;3499			
+3520	Share Capital	5		1	1		6	3	
+3540	Revalutation Reserve	5		1	1		6	3	
+3560	Retained Earnings	5		1	1		6	3	
+3580	Net Profit for the Year	5		1	1		6	3	
+3999	Total Shareholders\' Equity	5		2	0	3500;3999	6		
+4020	Sales - UK	6	7	1	1		7	3	
+4030	Sales - EU	6	7	1	1		2	3	
+4050	Sales - Export	6	7	1	1		8	3	
+4099	Total Sales	6	7	2	0	4020;4399	8	3	
+4420	Interest on Bank Balances	6	10	1	1		6	3	
+4440	Interest Income Recievables	6	10	1	1		6	3	
+4460	Other Interest Recieved -Gross	6	10	1	1		6	3	
+4480	Other Interest Recieved -Net	6	10	1	1		6	3	
+4490	Total Interest & Other Income	6	10	2	0	4400;4490		3	
+4499	Total Sales & Other Income	6	10	2	0	4400;4499			
+4500	Direct Expenses	11	12	3	0				Code Number Not Exits in GL Category!
+4510	Purchases	11	12	3	0				
+4520	Purchases - UK	11	12	1	1		7	3	
+4530	Purchases - EU	11	12	1	1		2	3	
+4540	Purchases - Export	11	12	1	1		8	3	
+4599	Total Purchases	11	12	1	1	4510;4599		3	
+4600	Cost of Shipment	11	12	3	0				
+4620	Shipment - Non-EU (Imports)	11	12	1	1		8	3	
+4640	Shipment - EU (Imports)	11	12	1	1		2	3	
+4660	Road Haulage to Port (TR)	11	12	1	1		8	3	
+4680	Pallet Cost - EU Imports	11	12	1	1		2	3	
+4700	Shunting	11	12	1	1		7	3	
+4720	Rail Shunting	11	12	1	1		7	3	
+4740	RH&D (Devan)	11	12	1	1		7	3	
+4760	Demurrage	11	12	1	1		7	3	
+4780	Quay Rent	11	12	1	1		7	3	
+4800	Customs Clearance	11	12	1	1		6	3	
+4820	Import Duty	11	12	1	1		6	3	
+4840	Damaged Stock In Transit	11	12	1	1		6	3	
+4899	Total Cost of Shipment	11	12	2	0	4600;4899	7	3	
+4900	Stock	11	12	3	0				
+4910	Opening Stock	11	12	1	1			3	
+4950	Closing Stock	11	12	1	1		7	3	
+4990	Total Stock	11	12	2	0	4900:4990	7	3	
+4999	Total Direct Expenses	11	12	2	0	4500;4999			
+5000	Cost of Distribution	11	13	3	0				
+5020	Inland Distribution	11	13	1	1		7	3	
+5040	Pallet Storage	11	13	1	1		7	3	
+5060	Other Warehouse Charges & PP	11	13	1	1		7	3	
+5080	POD Charges	11	13	1	1		7	3	
+5100	Pallet Cost	11	13	1	1		7	3	
+5120	Shipment Exports	11	13	1	1		7	3	
+5140	Warehouse Charges	11	13	1	1		7	3	
+5160	Total Cost of Distribution	11	13	2	0	5000;5160	7	3	
+5199	Total Cost of Goods Sold	11	13	3	0	4500;5199			
+5200	Cost of Production	11	13	3	0				
+5210	Label Cost	11	13	1	1		7	3	
+5250	Set-up Cost (Development Cost)	11	13	1	1		7	3	
+5270	Packaging & Packaging Design	11	13	1	1		7	3	
+5299	Total Cost of Production	11	13	2	0	5200;5299	7	3	
+5300	Operating Expenses	11	13	3	0				
+5320	Building Maintenance Expenses	11	13	3	0				
+5340	Cleaning	11	13	1	1		7	3	
+5360	Electricity / Heating / Water	11	13	1	1		7	3	
+5380	Repairs and Maintenance	11	13	1	1		7	3	
+5400	Rent	11	13	1	1		7	3	
+5420	Rates	11	13	1	1		6	3	
+5440	Service Charge	11	13	1	1		6	3	
+5460	Building Insurance	11	13	1	1		6	3	
+5480	Internet	11	13	1	1		6	3	
+5499	Total Bldg. Maint. Expenses	11	13	2	0	5320;5499	7	3	
+5500	Administrative Expenses	11	13	3	0				
+5520	Office Supplies	11	13	1	1		7	3	
+5540	Printing/Stationary	11	13	1	1		7	3	
+5560	Phone and Fax	11	13	1	1		7	3	
+5580	Mobile	11	13	1	1		7	3	
+5600	Postage	11	13	1	1		7	3	
+5620	Product Liability Insurance	11	13	1	1		7	3	
+5640	Environment Agency	11	13	1	1		7	3	
+5660	Equipment Leasing/Rent/Service	11	13	1	1		7	3	
+5699	Total Administrative Expenses	11	13	2	0	5500;5699	7	3	
+5700	IT Expenses	11	13	3	0				
+5720	Software	11	13	1	1		7	3	
+5740	Domain Hosting & Registration	11	13	1	1		7	3	
+5760	IT Consultant Services	11	13	1	1		7	3	
+5780	Website Development	11	13	1	1		7	3	
+5800	Misc IT Expenses	11	13	1	1		7	3	
+5820	IT Hardware	11	13	1	1		7	3	
+5899	Total IT Expenses	11	13	2	0	5700;5899	7	3	
+5900	Selling Expenses	11	13	3	0				
+5920	Listing Fees	11	13	1	1		7	3	
+5940	Consultancy Charges	11	13	1	1		7	3	
+5960	Customer Rebate	11	13	1	1		7	3	
+5980	Membership/Subscription	11	13	1	1		7	3	
+6000	Misc Sales Expense	11	13	1	1		7	3	
+6020	Saka - POS	11	13	1	1		7	3	
+6040	élan - POS	11	13	1	1		7	3	
+6060	Mount Clear - POS	11	13	1	1		7	3	
+6080	Peela - POS	11	13	1	1		7	3	
+6100	Swift - POS	11	13	1	1		7	3	
+6120	Bloom - POS	11	13	1	1		7	3	
+6140	Delfini - POS	11	13	1	1		7	3	
+6160	Saka - Customer Advert/Supt	11	13	1	1		7	3	
+6180	élan - Customer Advert/Supt	11	13	1	1		7	3	
+6200	Mount Clear - Customer Advert/Supt	11	13	1	1		7	3	
+6220	Peela - Customer Advert/Supt	11	13	1	1		7	3	
+6240	Swift - Customer Advert/Supt	11	13	1	1		7	3	
+6260	Bloom - Customer Advert/Supt	11	13	1	1		7	3	
+6280	Delfini - Customer Advert/Supt	11	13	1	1		7	3	
+6300	Saka - Damaged Stock	11	13	1	1		7	3	
+6320	élan - Damaged Stock	11	13	1	1		7	3	
+6340	Mount Clear - Damaged Stock	11	13	1	1		7	3	
+6360	Peela - Damaged Stock	11	13	1	1		7	3	
+6380	Swift - Damaged Stock	11	13	1	1		7	3	
+6400	Bloom - Damaged Stock	11	13	1	1		7	3	
+6420	Delfini - Damaged Stock	11	13	1	1		7	3	
+6500	Hotels	11	13	1	1		7	3	
+6520	Entertainment - UK	11	13	1	1		7	3	
+6540	Entertainment-O/seas	11	13	1	1		8	3	
+6560	Travel and Subsistance - UK	11	13	1	1		7	3	
+6580	Travel and Subsistance -O/seas	11	13	1	1		8	3	
+6600	Saka Product Promotion	11	13	3	0			3	
+6620	Saka - Promo-330ml	11	13	1	1		7	3	
+6640	Saka - Promo-330ml SP	11	13	1	1		7	3	
+6660	Saka - Promo-500ml	11	13	1	1		7	3	
+6680	Saka - Promo-500ml Multi	11	13	1	1		7	3	
+6700	Saka - Promo-500ml SP Multi	11	13	1	1		7	3	
+6720	Saka - Promo-1,5L	11	13	1	1		7	3	
+6740	Saka - Promo-5L	11	13	1	1		7	3	
+6760	Saka - Promo-Flavoured 500ml	11	13	1	1		7	3	
+6780	Saka - Promo-Flavoured 1,5L (unactive)	11	13	1	1		7	3	
+6899	Total Saka Product Promotion	11	13	2	0	6600;6899			
+6900	élan Product Promotion	11	13	3	0				
+6920	élan - PET Promo 500ml	11	13	1	1		7	3	
+6940	élan - PET Promo 500ml SP	11	13	1	1		7	3	
+6960	élan - PET Promo 1,5L	11	13	1	1		7	3	
+6980	élan - Glass Promo-330ml	11	13	1	1		7	3	
+7000	élan - Glass Promo-750ml	11	13	1	1		7	3	
+7099	Total élan Product Promotion	11	13	2	0	6900;7099	7	3	
+7100	Mount Clear Product Promotion	11	13	3	0				
+7120	Mount Clear - Promo 500ml	11	13	1	1		7	3	
+7140	Mount Clear - Promo 1,5L	11	13	1	1		7	3	
+7199	Total Mount Clear Product Promotion	11	13	2	0	7100;7199	6	3	
+7200	Peela Product Promotion	11	13	3	0				
+7220	Peela - Promo	11	13	1	1		7	3	
+7249	Total Peela Product Promotion	11	13	2	0	7200;7249	7	3	
+7250	Swift Product Promotion	11	13	3	0				
+7270	Swift - 30x30 Serviettes Promo	11	13	1	1		7	3	
+7300	Swift - 40x40 Serviettes Promo	11	13	1	1		7	3	
+7320	Swift - 33x33 Serviettes Promo	11	13	1	1		7	3	
+7400	Swift - Centrefeed Prem Promo	11	13	1	1		7	3	
+7420	Swift - Centrefeed Prof Promo	11	13	1	1		7	3	
+7499	Total Swift Product Promotion	11	13	2	0	7250;7499	7	3	
+7500	Bloom Product Promotion	11	13	3	0				
+7520	Bloom - 2ply 4x10 Promo	11	13	1	1		7	3	
+7540	Bloom - 3ply 9x5 Promo	11	13	1	1		7	3	
+7699	Total Bloom Product Promotion	11	13	2	0	7500;7699	7	3	
+7700	Delfini Product Promotion	11	13	3	0				
+7750	Delfini - Promo	11	13	1	1		7	3	
+7799	Total Delfini Product Promotion	11	13	2	0	7700;7799	7	3	
+8199	Total Selling Expenses	11	13	2	0	5900;8199			
+8200	Marketing Expenses	11	13	3	0				
+8220	TV&Cinema&Buses Advertising	11	13	1	1		7	3	
+8240	Marketing Printing	11	13	1	1		7	3	
+8260	Exhibitions & Events	11	13	1	1		7	3	
+8280	PR	11	13	1	1		7	3	
+8300	Design	11	13	1	1		7	3	
+8320	Internet Marketing/Website	11	13	1	1		7	3	
+8340	General Marketing (Misc)	11	13	1	1		7	3	
+8360	Product Free Giveaways/Samples	11	13	1	1		7	3	
+8380	Courier Expenses/PO Box	11	13	1	1		7	3	
+8400	Sponsorship	11	13	1	1		7	3	
+8420	Saka Mineral Water Advertising Marketing	11	13	1	1		7	3	
+8699	Total Marketing Expenses	11	13	2	0	8200;8699	7	3	
+8700	Vehicle Expenses	11	13	3	0				
+8720	Fuel	11	13	1	1		7	3	
+8740	Mileage	11	13	1	1		7	3	
+8760	Motor Insurance	11	13	1	1		7	3	
+8780	Road Tax	11	13	1	1		6	3	
+8800	Repairs and Maintenance	11	13	1	1		7	3	
+8820	Misc Motor Expenses	11	13	1	1		7	3	
+8840	Parking & Tolls	11	13	1	1		7	3	
+8860	Vehicle Tracking	11	13	1	1		7	3	
+8880	Vehicle Leasing	11	13	1	1		7	3	
+8899	Total Vehicle Expenses	11	13	2	0	8700;8899	7	3	
+8900	Other Operating Expenses	11	13	3	0				
+8920	Bad Debt Expenses	11	13	1	1		7	3	
+8940	Debt Collection	11	13	1	1		7	3	
+8960	Legal and Professional Service	11	13	1	1		7	3	
+8980	Accountancy	11	13	1	1		7	3	
+9000	Trade Mark	11	13	1	1		7	3	
+9020	Miscellaneous	11	13	1	1		7	3	
+9090	Total Other Operating Expenses	11	13	2	0	8900;9090	7	3	
+9099	Total Operating Expenses	11	13	2	0	5300;9099			
+9100	Personnel Expenses	11	13	3	0				
+9120	Salaries	11	13	1	1		6	3	
+9140	Directors Rem	11	13	1	1		6	3	
+9160	P11D	11	13	1	1		6	3	
+9180	NEST Pensions	11	13	1	1		6	3	
+9200	Life Insurance	11	13	1	1		6	3	
+9220	Maternity &  Paternity Leave	11	13	1	1		6	3	
+9240	Employers NIC	11	13	1	1		6	3	
+9260	Recruitment Cost	11	13	1	1		7	3	
+9280	Employer\'s Liability Insurance	11	13	1	1		7	3	
+9300	Staff Welfare&Training	11	13	1	1		7	3	
+9320	Redundancy Cost	11	13	1	1		7	3	
+9399	Total Personnel Expenses	11	13	2	0	9100;9399		3	
+9400	Depreciation of Fixed Assets	11	14	3	0				
+9420	Depreciation, Building	11	14	1	1		6	3	
+9440	Depreciation,Furniture&Fixt	11	14	1	1		6	3	
+9460	Depreciation,Office Equipment	11	14	1	1		6	3	
+9490	Profit/Loss Sale of Fixed Asst	11	14	1	1		7	3	
+9500	Total Fixed Assets Depreciation	11	14	2	0	9400;9500	7	3	
+9550	Net Operating Profit	11	14	2	0	4000;9550			
+9600	Interest/Finance Charges	11	14	3	0				
+9620	Bank Charges	11	14	1	1		6	3	
+9640	Credit Card Fees	11	14	1	1		6	3	
+9660	Factoring Charges	11	14	1	1		7	3	
+9680	Exchange Rate Roundings	11	14	1	1		6	3	
+9799	Total Interest/Finance Charges	11	14	2	0	9600;9799		3	
+9800	Unrealized FX (Gains) / Losses	11	14	1	1		6	3	
+9850	Realized FX (Gains) / Losses	11	14	1	1		6	3	
+9900	NET Profit BEFORE TAXES	11	14	2	0	4000;9900	6	3	Code Number Not Exits in GL Category!
+9910	Corporate Tax	11	14	1	1		6	3	Code Number Not Exits in GL Category!
+9920	Dividend Paid	11	14	1	1		6	3	Code Number Not Exits in GL Category!
+9999	NET Profit	11	15	2	0	4000;9999	6	3	

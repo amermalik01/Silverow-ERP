@@ -1,0 +1,314 @@
+<div ng-controller="UnPostedOrderReportController as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+<style>
+    body {
+        background-image: url(app/css/report-BG.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        padding-bottom: 10px;
+    }
+</style>
+
+<div class="a-content">
+    <div class="a-label-container">
+        <b class="a-title" style="width: 120px">Date <span class="required"> *</span></b>
+        <div class="input-symbol a-date">
+            <input jqdatepicker
+                   class="form-control"
+                   id="dateFrom"
+                   placeholder="From"
+                   readonly
+                   ng-model="filterReport.dateFrom"
+                   style="background-color: white;">
+            <span>
+                <i class="fa fa-calendar"></i>
+            </span>
+        </div>
+        <div class="input-symbol a-date">
+            <input jqdatepicker
+                   class="form-control"
+                   id="dateTo"
+                   placeholder="To"
+                   readonly
+                   ng-model="filterReport.dateTo"
+                   style="background-color: white;">
+            <span>
+                <i class="fa fa-calendar"></i>
+            </span>
+        </div>
+
+        <b class="ib a-margin-left add-filter collapsed"
+           data-toggle="collapse"
+           data-target="#demo">Add Filter(s)</b>
+
+        <div class="pull-right">
+            <button class="btn report-generate no-margin"
+                    type="button"
+                    ng-click="generatePostedPurchaseOrderReport()">Generate
+                Report</button>
+            <button class="btn report-clearfilter"
+                    type="button"
+                    ng-click="clearReport()">Clear
+                Filter</button>
+            <button class="btn report-default"
+                    type="button"
+                    ng-click="PostedPurchaseOrders_PdfModal()">
+                Print Preview
+            </button>
+            <div class="dropdown report-excel">
+                <button class="btn report-default dropdown-toggle"
+                        type="button"
+                        data-toggle="dropdown">Export As
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="PostedPurchaseOrders_PdfModal('xlsx')"> Excel</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="report-filter-panel collapse in"
+         id="demo">
+        <div class="report-box">
+            <b class="a-title a-title-relative"
+               style="    width: 120px;">Select Purchaser(s)</b>
+            <div class="panel-info pi2 a-form-control" style="width: 334px"
+                 ng-click="selectEmployees()">
+                <div class="panel-body"
+                     style="background-color: #fff;">
+                    <span ng-repeat="sp in employeesArr">
+                        <span ng-if="employeesArr.length == 1">{{sp.title}}</span>
+                        <span ng-if="employeesArr.length > 1">{{sp.title}}<span
+                                  ng-if="$index < employeesArr.length && $index!=0">;&nbsp;</span></span>
+                    </span>
+                    <aside></aside>
+                </div>
+            </div>
+        </div>
+        <div class="report-box">
+            <b class="a-title a-title-relative"
+               style="    width: 120px;">Select Supplier(s)</b>
+            <div class="panel-info pi2 a-form-control" style="width: 334px"
+                 ng-click="clearFiltersAndSelectSuppliers()">
+                <div class="panel-body"
+                     style="background-color: #fff;">
+                    <span ng-repeat="sp in suppliers">
+                        <span ng-if="suppliers.length == 1">{{sp.name}}</span>
+                        <span ng-if="suppliers.length > 1">{{sp.name}}<span
+                                  ng-if="$index < suppliers.length && $index!=0">;&nbsp;</span></span>
+                    </span>
+                    <aside></aside>
+                </div>
+            </div>
+        </div>
+        <div class="report-box">
+            <b class="a-title"
+               style="    width: 120px;">Document Type</b>
+            <select class="select2me form-control a-date"
+                    ng-model="filterReport.docType"
+                    ng-options="opt as opt.title for opt in docTypeArr">
+                <option value=""
+                        disabled
+                        selected>Select Document Type</option>
+            </select>
+        </div>
+        <div class="report-box">
+            <label style="margin-right: 10px;">
+                <input ng-model="filterReport.reporttype"
+                       value="summary"
+                       ng-checked="filterReport.reporttype=='summary'"
+                       type="radio" /> Summary
+            </label>
+            <label style="margin-right: 10px;">
+                <input ng-model="filterReport.reporttype"
+                       value="detail"
+                       ng-checked="filterReport.reporttype=='detail'"
+                       type="radio" /> Detailed
+            </label>
+
+        </div>
+    </div>
+</div>
+
+<div class="a-table " ng-show="reportsDataArr.length>0 " ng-if="filterReport.reporttype=='summary'">
+    <h5 class="a-report-title">{{reportTitle}}</h5>
+    <small ng-if="filterReport.dateFrom"
+           class="a-report-date">From {{filterReport.dateFrom}} to {{filterReport.dateTo}}
+    </small>
+    <table
+           class="table table-condensed table-striped table-hover report-spacing"
+           style="margin-bottom: 10px;width: 100%;">
+        <thead>
+            <tr>
+                <th>Order Date</th>
+
+                <th ng-if="filterReport.docType.id == 1">PO No.</th>
+                <th ng-if="filterReport.docType.id == 1">PI No.</th>
+
+                <th ng-if="filterReport.docType.id == 2">DN No.</th>
+                <th ng-if="filterReport.docType.id == 2">P. DN No.</th>
+
+                <th ng-if="filterReport.docType.id == 3 || !(filterReport.docType.id)">PO/DN No.</th>
+                <th ng-if="filterReport.docType.id == 3 || !(filterReport.docType.id)">PI/P. DN No.</th>
+
+                <th>Doc. Type</th>
+                <th>Supplier No.</th>
+                <th>Supplier Name</th>
+
+                <th ng-if="filterReport.docType.id == 1">Req. Rcpt. Date</th>
+                <th ng-if="filterReport.docType.id == 1">Receipt Date</th>
+
+                <th ng-if="filterReport.docType.id == 2">Delivery Date</th>
+                <th ng-if="filterReport.docType.id == 2">Dispatch Date</th>
+
+                <th ng-if="filterReport.docType.id == 3 || !(filterReport.docType.id)">Req. Rcpt./Delivery Date</th>
+                <th ng-if="filterReport.docType.id == 3 || !(filterReport.docType.id)">Receipt/Dispatch Date</th>
+
+                <th style="text-align: right">Amount (LCY)</th>
+                <th style="text-align: right">Amount Incl.VAT(LCY)</th>
+                <th>Shipping City</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="po in reportsDataArr"
+                ng-class="{'makeBold':po.rank == 2 || po.rank == 4}">
+                <td>{{po.order_date}}</td>
+                <td>{{po.order_no}}</td>
+                <td>{{po.invoice_code}}</td>
+                <td>{{po.docType}}</td>
+                <td>{{po.supplier_no}}</td>
+                <td>{{po.supplier_name}}</td>
+                <td>{{po.requested_delivery_date}}</td>
+                <td>{{po.reciept_date}}</td>
+                <td style="text-align: right">{{po.amount_excl_vat | currency : "" : decimal_range}}</td>
+                <td style="text-align: right">{{po.amount_incl_vat | currency : "" : decimal_range}}</td>
+                <td>{{po.ship_to_city}}</td>
+
+            </tr>
+            <tr>
+                <!-- <td><b>No. Of Orders</b></td>
+                                    <td>
+                                        <b ng-if="filterReport.docType == 1 || filterReport.docType == 2">{{reportsDataArr.length-1}}</b>
+                                        <b ng-if="filterReport.docType != 1 || filterReport.docType != 2">{{reportsDataArr.length-2}}</b>
+                                    </td> -->
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>Total (LCY)</b></td>
+                <td style="text-align: right"><b>{{reportsDataArr.totalExclVat | currency : "" :
+                                                decimal_range}}</b></td>
+                <td style="text-align: right"><b>{{reportsDataArr.totalInclVat | currency : "" :
+                                                decimal_range}}</b></td>
+                <td></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="a-table" ng-show="reportsDataArrDetail.length>0 " ng-if="filterReport.reporttype=='detail'">
+    <h5 class="a-report-title">{{reportTitle}}</h5>
+    <small ng-if="filterReport.dateFrom"
+           class="a-report-date">From {{filterReport.dateFrom}} to {{filterReport.dateTo}}
+    </small>
+    <table  ng-repeat="po in reportsDataArrDetail | orderBy:'id' "
+           class="table table-condensed table-striped table-hover report-spacing"
+           style="margin-bottom: 40px;">
+
+        <thead>
+            <tr>
+                <th style="width: 10%;">Order Date</th>
+                <th style="width: 10%;"
+                    ng-if="po.rank == 1 || po.rank == 2">PO No.</th>
+                <th style="width: 10%;"
+                    ng-if="po.rank == 1 || po.rank == 2">PI No.</th>
+                <th style="width: 10%;"
+                    ng-if="po.rank == 3 || po.rank == 4">DN No. </th>
+                <th style="width: 10%;"
+                    ng-if="po.rank == 3 || po.rank == 4">P. DN No.</th>
+                <th style="width: 10%;">Doc. Type</th>
+                <th>Supplier No.</th>
+                <th>Supplier Name</th>
+                <th ng-if="po.rank == 1 || po.rank == 2">Req. Rcpt. Date</th>
+                <th ng-if="po.rank == 1 || po.rank == 2">Receipt Date</th>
+                <th ng-if="po.rank == 3 || po.rank == 4">Delivery Date</th>
+                <th ng-if="po.rank == 3 || po.rank == 4">Dispatch Date</th>
+                <!-- <th>Amount Excl.VAT(LCY)</th>
+                                                <th>Amount Incl.VAT(LCY)</th> -->
+                <th style="width: 11%;">Shipping City</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="width: 10%;">{{po.order_date}}</td>
+                <td style="width: 10%;">{{po.order_no}}</td>
+                <td style="width: 10%;">{{po.invoice_code}}</td>
+                <td style="width: 10%;">{{po.docType}}</td>
+                <td>{{po.supplier_no}}</td>
+                <td>{{po.supplier_name}}</td>
+                <td>{{po.requested_delivery_date}}</td>
+                <td>{{po.reciept_date}}</td>
+                <!-- <td>{{po.amount_excl_vat | currency : "" : decimal_range}}</td>
+                                                <td>{{po.amount_incl_vat | currency : "" : decimal_range}}</td> -->
+                <td style="width: 11%;">{{po.ship_to_city}}</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr ng-if="po.products.length>0">
+                <th style="width: 10%;">No.</th>
+                <th style="width: 20%;">Description</th>
+                <th style="text-align: right">Quantity</th>
+                <th style="text-align: right"
+                    colspan="2">Unit Price</th>
+                <th style="text-align: right"
+                    colspan="2">Amount (LCY)</th>
+                <th style="text-align: right"
+                    colspan="2">Amount Incl. VAT(LCY)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="od in po.products">
+                <td style="width: 10%;">{{od.product_code}}</td>
+                <td style="width: 20%;">{{od.product_name}}</td>
+                <td style="text-align: right">{{od.qty | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                <td style="text-align: right"
+                    colspan="2">{{od.unit_price | currency : "" : decimal_range}}</td>
+                <td style="text-align: right"
+                    colspan="2">{{od.item_amount_excl_vat | currency : "" : decimal_range}}
+                    {{defaultCurrencyCode}}</td>
+                <td style="text-align: right"
+                    colspan="2">{{od.item_amount_incl_vat | currency : "" : decimal_range}}
+                    {{defaultCurrencyCode}}</td>
+            </tr>
+            <tr ng-if="po.products.length>0">
+                <td style="width: 10%;"></td>
+                <td style="width: 20%;"></td>
+                <td></td>
+                <td style="text-align: right"
+                    colspan="2"><b>Total<b></td>
+                <td style="text-align: right"
+                    colspan="2"><b>{{po.itemExclVat | currency : "" : decimal_range}}
+                        {{defaultCurrencyCode}}</b></td>
+                <td style="text-align: right"
+                    colspan="2"><b>{{po.itemInclVat | currency : "" : decimal_range}}
+                        {{defaultCurrencyCode}}</b></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+    <div ng-include="'app/views/reports/_listingCustomerDetailModal.html'"></div>
+    <!-- <div ng-include="'app/views/reports/_listingSupplierModal.html'"></div> -->
+    <div ng-include="'app/views/reports/_listingSupplierDetailModal.html'"></div>
+    <div ng-include="'app/views/reports/empListingModal.html'"></div>
+
+
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

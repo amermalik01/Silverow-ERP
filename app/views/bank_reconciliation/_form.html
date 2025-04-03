@@ -1,0 +1,131 @@
+<div class="row">
+  <input type="hidden" ng-model="rec.id"  class="form-control"   ng-readonly="check_readonly" />
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Name <span class="required">*</span></label>
+      <div class="col-lg-7">
+        <input type="hidden" ng-model="rec.id">
+        <input type="text" ng-model="rec.name" id="name" name="name" class="form-control"    ng-readonly="check_readonly" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Address </label>
+      <div class="col-lg-7">
+        <input type="text" ng-model="rec.address" id="address" name="address" class="form-control" ng-readonly="check_readonly" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Address2 </label>
+      <div class="col-lg-7">
+        <input type="text" ng-model="rec.address_2" id="address_2" name="address_2" class="form-control"    ng-readonly="check_readonly" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">City </label>
+      <div class="col-lg-7">
+        <input type="text" ng-model="rec.city" id="city" name="city" class="form-control" ng-readonly="check_readonly"   />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">County </label>
+      <div class="col-lg-7">
+        <input type="text" ng-model="rec.county" id="county" name="county" class="form-control"    ng-readonly="check_readonly" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Post Code </label>
+      <div class="col-lg-7">
+        <input type="text" ng-model="rec.postcode" id="postcode" name="postcode" class="form-control" ng-readonly="check_readonly"  />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Country <span class="required">*</span> </label>
+      <div class="col-sm-7">
+        <select ng-model="rec.country" ng-options="opt as opt.name for opt in countries" class=" form-control" ng-disabled="check_readonly" required  >
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Telephone No</label>
+      <div class="col-lg-7">
+        <input type="text" ng-model="rec.phone_no" id="phone_no" name="phone_no" class="form-control" ng-readonly="check_readonly"   />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Contact </label>
+      <div class="col-lg-7">
+        <input type="text" ng-model="rec.contact" id="contact" name="contact" class="form-control"  ng-readonly="check_readonly" = />
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Sort Code<span class="required">*</span></label>
+      <div class="col-lg-7">
+        <input type="text" ng-model="rec.sort_code" required id="sort_code" name="sort_code" class="form-control" ng-readonly="check_readonly"  />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Account No </label>
+      <div class="col-lg-7"> 
+        <!-- <input type="text" ng-model="rec.account_no" id="account_no" name="account_no" class="form-control"  ng-readonly="check_readonly" />-->
+        
+        <select ng-model="rec.account_nos" ng-options="opt as opt.name for opt in account_list" class=" form-control"  ng-disabled="check_readonly"   >
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">FAX</label>
+      <div class="col-lg-7">
+        <input type="text" ng-model="rec.fax" id="fax" name="fax" class="form-control" ng-readonly="check_readonly"  />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Currency <span class="required">*</span> </label>
+      <div class="col-sm-7">
+        <select ng-model="rec.currency" ng-options="opt as opt.name for opt in currencies" class="select2me form-control" ng-disabled="check_readonly"  required  >
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">GPL Posting</label>
+      <div class="col-lg-7">
+        <input type="text" ng-model="rec.gl_posting" id="gpl_posting" name="gpl_posting" class="form-control" ng-readonly="check_readonly"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">IBAN </label>
+      <div class="col-lg-7">
+        <input type="text" ng-model="rec.iban" id="ibn" name="ibn" class="form-control" ng-readonly="check_readonly" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Swift Code</label>
+      <div class="col-lg-7">
+        <input type="text" ng-model="rec.swift_code" id="swift_code" name="swift_code" class="form-control" ng-readonly="check_readonly" =  />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Email </label>
+      <div class="col-lg-7">
+        <input type="text" ng-model="rec.email" id="email" name="email" class="form-control"  ng-readonly="check_readonly"  />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Status <span class="required">*</span></label>
+      <div class="col-lg-7">
+        <select ng-model="rec.status" ng-options="opt as opt.label for opt in arr_status"required class=" form-control"  ng-disabled="check_readonly" id="status"  >
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div class="col-md-12">
+      <div class="pull-right">
+        <button class="btn btn-info btn_blue" type="submit" ng-show="!check_readonly"><i class="fa fa-check"></i> Submit</button>
+        <button class="btn btn-info btn_blue" type="button" ng-click="showBankEditForm()" ng-show="check_readonly"><i class="fa fa-edit"></i> Edit</button>
+        <button class="btn btn-info btn_blue" type="button" ng-click="delete(id)" ng-show="check_readonly"><i class="fa fa-times"></i> Delete</button>
+        <button class="btn default" type="button" ng-click="showBankListing()"><i class="fa fa-undo"></i> Cancel</button>
+      </div>
+    </div>--> 

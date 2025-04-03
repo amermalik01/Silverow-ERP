@@ -1,0 +1,180 @@
+[
+    {
+        "title": "Document Type",
+        "field_name": "docType",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Date",
+        "field_name": "posting_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "date"
+    },
+    {
+        "title": "Document No.",
+        "field_name": "code",
+        "event": {
+            "name": "openDocumentLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Invoice No.",
+        "field_name": "invoice_code",
+        "event": {
+            "name": "openDocumentLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Consignment No.",
+        "field_name": "container_no2",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Batch No.",
+        "field_name": "batch_no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Production Date",
+        "field_name": "prod_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "date"
+    },
+    {
+        "title": "Use by Date",
+        "field_name": "use_by_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "date"
+    },
+    {
+        "title": "Received Date",
+        "field_name": "date_received",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "date"
+    },
+    {
+        "title": "Dispatch Date",
+        "field_name": "o_dispatch_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "date"
+    },
+    {
+        "title": "Warehouse",
+        "field_name": "warehousename",
+        "db_table": "warehouse",
+        "db_field": "name",
+        "db_where": " status = 1 ",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Storage Location",
+        "field_name": "location_name",
+        "db_table": "warehouse_bin_location",
+        "db_field": "title",
+        "db_where": " status = 1 ",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Qty.",
+        "field_name": "qty2",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "numberWithCommaRightAlign"
+    },
+    {
+        "title": "Sold Qty.",
+        "field_name": "sold_qty",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "numberWithCommaRightAlign"
+    },
+    {
+        "title": "Allocated Qty.",
+        "field_name": "allocatedQty",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "numberWithCommaRightAlign"
+    },
+    {
+        "title": "Available Qty.",
+        "field_name": "availableQty",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "numberWithCommaRightAlign"
+    },
+    {
+        "title": "U.O.M",
+        "field_name": "uom_name",
+        "db_table": "units_of_measure",
+        "db_field": "title",
+        "db_where": " status = 1 ",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "drop_down"
+    }
+]

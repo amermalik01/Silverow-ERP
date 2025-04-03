@@ -1,0 +1,21 @@
+<span style="display: block;" 
+    ng-if="(cellConf.data_type == 'string' || cellConf.data_type == 'drop_down' ||cellConf.data_type == 'number') && !cellData[cellConf.field_name].trim()">--</span>
+
+<span style="display: block;" title="{{cellData[cellConf.field_name]}}"
+    ng-if="(cellConf.data_type == 'string' || cellConf.data_type == 'drop_down' || cellConf.data_type == 'number') && cellData[cellConf.field_name] ">{{cellData[cellConf.field_name]}}</span>
+
+<span style="display: block" title="{{convert_unix_date_to_angular(cellData[cellConf.field_name])}}"
+    ng-if="cellConf.data_type == 'date'">
+    {{convert_unix_date_to_angular(cellData[cellConf.field_name])}}
+</span>
+
+<span style="display: block" 
+    ng-if="cellConf.data_type == 'select'">
+    <input type="checkbox" 
+        ng-model='cellData[cellConf.field_name]'
+        name="checkbox_{{cellData.id}}"
+        id="checkbox_{{cellData.id}}" 
+        ng-click="selectSingleRec({ac:cellData})"        
+        ng-checked="cellData[cellConf.field_name]" />
+</span>
+    <!--  ng-click="selectSingleRec(data.response,cellData.id,cellData[cellConf.field_name])" -->

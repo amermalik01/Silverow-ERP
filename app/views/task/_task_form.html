@@ -1,0 +1,23 @@
+<div >
+ 
+  <div class="modal fade" id="model_btn_task"  >
+     <div class="modal-dialog modal-lg"  ><!--modal-lg   style=" width:65% !important" -->
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="row">
+            <div class="row">
+              <div class="col-md-12 col-md-12 col-md-12 col-md-12"     ng-show="add_task_new" >
+                <form autocomplete="off"  class="no-margin" role="form" ng-submit="submit_add_task(formData)"  
+       validate-form=""   novalidate=""      ng-hide="showLoader" >
+                  <div ng-include="'app/views/task/_form.html'"    ></div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div ng-include="'app/views/_confirm_modal.html'"></div>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content --> 
+  </div>
+</div>

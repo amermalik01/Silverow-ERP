@@ -1,0 +1,60 @@
+<style type="text/css">
+    .ngdialog.ngdialog-theme-default .ngdialog-content{width: 600px !important;}
+</style>
+<div class="row">
+  <div class="col-md-12">
+    <h4 class="text-center">
+    Add {{popup_title}}</4>
+  </div>
+  <div class="col-lg-12 col-md-12" style="    margin-top: 26px;">
+    <form autocomplete="off"  class="form-horizontal no-margin" role="form" ng-submit="addForm.$valid && add(pedefined)" name="addForm" validate-form="" novalidate="">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Charge<span class="required">*</span></label>
+            <div class="col-lg-9">
+              <div class="input-symbol">
+                <input type="text" ng-model="pedefined.value" data-parsley-type="number" id="value" required name="value" class="form-control" ng-readonly="check_readonly" tabindex="1"/>
+                <span ng-show="1">&#37;</span> </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="col-lg-6">
+ <div class="form-group">
+  <label class="col-lg-4 control-label">Description <span class="required">*</span></label>
+  <div class="col-lg-8">
+     <input type="text" ng-model="pedefined.name" id="name" name="name" class="form-control" ng-readonly="check_readonly" required tabindex="1"/>
+  </div>
+  </div>
+ </div> -->
+
+      </div>
+
+      <!--<div class="row">
+   <div class="col-lg-6">
+  <div class="form-group">
+    <label class="col-lg-4 control-label">Discount Type <span class="required">*</span></label>
+     <div class="col-lg-8">
+     <select ng-model="rec.discount_type_id" tabindex="4"  ng-options="opt as opt.name for opt in arr_discount_type"   ng-disabled ="check_readonly" class="form-control" ng-change="setSymbol()"></select>
+  </div>
+  </div>
+</div> -->
+      <!-- <div class="col-lg-6">
+ <div class="form-group">
+  <label class="col-lg-4 control-label">Description <span class="required">*</span></label>
+  <div class="col-lg-8">
+     <input type="text" ng-model="rec.name" id="name" name="name" class="form-control" ng-readonly="check_readonly" required tabindex="1"/>
+  </div>
+  </div>
+ </div>
+</div>-->
+      <div class="col-md-12" style="padding:0px;">
+        <div class="pull-right">
+          <button class="btn btn-submit" type="button" ng-click="confirm(pedefined)"><i class="fa fa-check fa_display"></i> Save</button>
+          <button class="btn btn-cancel" type="button" ng-click="closeThisDialog()"><i class="fa fa-undo fa_display"></i> Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

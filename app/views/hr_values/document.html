@@ -1,0 +1,86 @@
+<div class="row">
+    <!--    <div class="col-md-12"> <a id="prompt" ng-click="fnDocForm()" class="btn btn_add pull-right"><i class="fa  fa_display"> </i> Add</a> </div>-->
+    <button style="visibility:hidden" id="reclickdoc_all" type="button"
+            ng-click="itemselectPage(1); getDocuments_all()">clickdocall
+    </button>
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body ">
+                <div id="dt_example" class="example_alt_pagination"
+                     ng-show="columns.length > 0">
+                    <div class="table-responsive" style="    margin-top: -96px;">
+                        <table class="table table-condensed table-striped table-hover table-bordered" id="data-table">
+                            <thead>
+                            <tr class="bg-col">
+                                <th ng-repeat="column in columns"
+
+
+                                    ng-if="	column.title != 'Id' && column.title != 'Image'"
+                                        > {{column.title}}
+                                </th>
+                                <th style="width: 11%;">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody class="courser table-body">
+                            <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+                            <tr ng-repeat="record in documentlist" ng-show="columns.length > 0">
+                                <td ng-repeat="column in columns" ng-click="showdocEditForm(record.id)"
+                                    ng-if="column.title != 'Id' && column.title != 'Image'"> {{record[column.field]}}
+
+                                    <!--   <span ng-if="column.title != 'image' "  >  {{record[column.field]}} </span>  <span ng-if="column.title == 'image'" >    <a  style="font-size:14px"target="_blank"
+                                  href="{imagePath+column.title.image}}"> <i class="fa fa-file-word-o ng-binding"> </i> </a>
+                                  </span>
+                                    --></td>
+                                <td><!--  {{imagePath+record.image}}{{imagePath }}   {{record.image}}  {{record.document_code}}
+                                    --> <a title="Edit" ng-click="showdocEditForm(record.id)"
+                                           class="tooltips_clss btn"> <i class="fa fa-edit"> </i></a> <a title="Delete"
+                                                                                                         ng-click="delete_document(record.id, $index, documentlist)"
+                                                                                                         class="tooltips_clss btn"><i
+                                        class="fa fa-times"> </i></a>
+
+
+                                    <span ng-if=" record.image != ''"> <a title="View" target="_blank"   download="{{record.image}}"
+                                                                          href="{{imagePath + record.image}}"
+                                                                          class="tooltips_clss btn"> <i
+                                            class="fa fa-eye"> </i></a> </span>
+
+
+                                </td>
+                            </tr>
+                            <!--<tr ng-repeat="rec in $data    "   >
+                                  <td ng-repeat="column in columns"  sortable="column.title"
+                                ng-click="show_price_sale_edit_form(record.id)"
+                                 ng-if="column.title!= 'Id'" > {{rec[column.field]}} </td>
+                                  <td ><a title="Edit"
+                             ng-click="show_price_sale_edit_form(record.id)"
+                                class="tooltips_clss btn "><i class="fa fa-edit"> </i></a> <a title="Delete" ng-click="delete_sale_price(rec.id,$index,$data)" class="tooltips_clss btn "><i class="fa fa-times"> </i></a></td>
+                                </tr>-->
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group" style="text-align: left;">
+                                <ul class="pagination" style="margin: 0px !important;"
+                                    ng-show="item_paging.total_pages > 1">
+                                    <li ng-class="{'disabled': item_paging.cpage == 1}" class=""><a
+                                            ng-click="itemselectPage(item_paging.ppage); getDocuments();"
+                                            href="javascript: void(0);" class="">«</a></li>
+                                    <li ng-repeat="(key,value) in item_paging.pages"
+                                        ng-class="{'active': value == item_paging.cpage}"><a
+                                            ng-click="itemselectPage(value); getDocuments();"
+                                            href="javascript: void(0);"><span ng-bind="value"></span></a></li>
+                                    <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}"><a
+                                            ng-click="itemselectPage(item_paging.npage); getDocuments();"
+                                            href="javascript: void(0);">»</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

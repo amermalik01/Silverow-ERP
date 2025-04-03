@@ -1,0 +1,200 @@
+<div ng-class="{'whirl no-overlay':showLoader}"></div>
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div id="attachmentsPage">
+            <div class="row ng-scope" ng-if="record_data.length > 0">
+                <div class="col-md-3">
+                    <div class="input-symbol">
+                        <input type="text" placeholder="Search" class="form-control" ng-model="searchKeyword.search">
+                        <span>
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3 pl0">
+                    <div ng-init="view = 'table'" class="btn-group">
+                        <button ng-click="view = 'grid'" type="button" class="btn btn-default2" title="Grid View">
+                            <i class="fa fa-th" aria-hidden="true"></i>
+                        </button>
+                        <button ng-click="view = 'table'" type="button" class="btn btn-default2" title="Table View">
+                            <i class="fa fa-table" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div ng-if="addPerm" class="fileUpload btn btn-default2 pull-right">
+                        <span> Upload Attachment(s)</span>
+                        <input type="file" ngf-select="onFileSelect($files, $invalidFiles)" name="file" multiple="" class="upload"  accept=".xlsx, .xls, .ppt, .pptx, .doc, .docx, .pdf,.txt,.jpg,.jpeg,.png,.gif,.tiff,.zip"
+                            ngf-max-size="5MB" ngf-max-files="20">
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="view == 'table'" ng-class="focused.name.length > 0 ? 'col-md-10': 'col-md-12'" class="pl0">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div ng-if="tableData.data.ack">
+                            <div class="flexiTable" x-generate-table x-data="tableData.data" x-row-click="updateFocused(file)" x-table-name="Attachments" x-filter-function="getFileListing()"
+                                x-filter-object="searchKeyword">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div ng-if="view == 'grid'" class=" attachgridview pl0" ng-class="focused.name.length > 0 ? 'col-md-10': 'col-md-12'">
+
+                <div class="pl0 pr0">
+                    <ul style="padding: 0 !important;">
+                        <li ng-click="updateFocused(file)" class="{{file.fileType}}clr" ng-repeat="file in record_data | filter:searchKeyword" ng-if="!file.source.length"
+                            ng-class="focused.id == file.id?'highlightfile':''">
+
+                            <div>
+                                <img ng-src="app/img/filetype/{{file.fileType}}.svg" style="height:35px;">
+                                <div class="documentdesp">{{file.alias}}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="col-md-2 moredetails pl0 pr0" ng-show="focused.name.length">
+                <div class="pull-right" ng-click="removeFocused()" style="cursor: pointer;padding: 0px 4px;">X</div>
+                <div class="text-center">
+                    <div ng-if="focused.fileType != 'png' && focused.fileType != 'jpg' && focused.fileType != 'jpeg' && focused.fileType != 'tiff' && focused.fileType != 'gif'">
+                        <img ng-src="app/img/filetype/{{focused.fileType}}.svg" style="height:40px;">
+                    </div>
+                </div>
+                <div style="font-size: 13px; margin: 4px 0 4px 0;">
+                    <b style="white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: block;width: 88%;">{{focused.alias}}</b>
+                </div>
+                <img data-toggle="modal" data-target="#PreviewImage_{{$stateParams.id}}_{{fileData.subTypeId}}" ng-if="focused.fileType == 'png' || focused.fileType == 'jpg' || focused.fileType == 'jpeg' || focused.fileType == 'tiff' || focused.fileType == 'gif'"
+                    ng-src="{{focused.path}}" style="width: 100%;
+                        margin: 0 auto;
+                        cursor: pointer;
+                        border: 1px solid #dedede;
+                        padding: 10px;
+                        border-radius: 2px;" />
+                <table style="width: 100%;">
+                    <tbody>
+                        <tr>
+                                <td>Description</td>
+                                <td>{{focused.description}}</td>
+                            </tr>
+                        <tr>
+                            <td>File Size</td>
+                            <td>{{focused.size}} Kbs</td>
+                        </tr>
+                        <tr>
+                            <td>File Type</td>
+                            <td>
+                                <span style="    padding: 2px 6px;
+                                    border-radius: 3px;
+                                    border: 1px solid #d0d0d0;">{{focused.fileType | uppercase}}</span>
+                            </td>
+                        </tr>
+                        <!-- <tr>
+                            <td>Modified</td>
+                            <td>{{focused.date_modified}}</td>
+                        </tr>
+                        <tr>
+                            <td>Created</td>
+                            <td>{{focused.date_created}}</td>
+                        </tr> -->
+                        <tr>
+                            <td>Uploaded</td>
+                            <td>{{focused.date_uploaded}}</td>
+                        </tr>
+                        <tr>
+                            <td>Uploaded by</td>
+                            <td>{{focused.user_name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <a class="btn btn-default2" style="margin: 6px 0 1px 0;
+                    width: 49%;" href="{{focused.path}}" download="{{focused.alias}}">Download</a>
+
+                <a class="btn btn-delete" ng-if="deletePerm" ng-click="deleteFile($event,focused.id)" style="margin: 6px 0 1px 0;
+                    width: 49%;">Delete</a>
+            </div>
+
+            <style>
+                .moredetails table td {
+                    padding-top: 7px;
+                    padding-bottom: 7px;
+                    vertical-align: top;
+                }
+
+                .moredetails table td:last-child {
+                    padding-left: 3px;
+                }
+
+                .moredetails table tr td:first-child {
+                    color: gray;
+                }
+
+                .moredetails table tr td:lastchild {
+                    color: black;
+                }
+            </style>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade overflow-visible" id="attachmentUploadModal_{{$stateParams.id}}_{{fileData.subTypeId}}" tabindex="-1" role="dialog" aria-labelledby="Upload Attachment"
+    aria-hidden="true">
+    <div class="modal-dialog modal-sm" dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Upload Attachment</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <img ng-src="{{currentFile.ext}}" style="height:29px;float: left;">
+                </div>
+                <input type="text" ng-model="currentFile.name" class="form-control" style="
+                width: 86%;
+                margin-left: 8px;
+                float: left;
+                margin-bottom: 11px;" />
+                <textarea class="form-control" ng-model="currentFile.desc" placeholder="Description" style="height: 70px;"></textarea>
+                <progressbar style="width: 100%;" value="progress"></progressbar>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-delete pull-left no-margin">Delete</button> -->
+                <button ng-click="saveChanges()" class="btn btn_add2" type="button">Update
+                </button>
+                <button data-dismiss="modal" type="button" class="btn btn-cancel">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade overflow-visible" id="PreviewImage_{{$stateParams.id}}_{{fileData.subTypeId}}" role="dialog">
+    <div class="modal-dialog" dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{focused.alias}}</h4>
+            </div>
+            <div class="modal-body" style="height: 60vh;overflow: auto;">
+                <img ng-src="{{focused.path}}" style="width: 100%; margin: 0 auto;" />
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" type="button" class="btn btn-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

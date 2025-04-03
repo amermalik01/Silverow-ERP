@@ -1,0 +1,97 @@
+
+<div class="row" >
+
+    <div class="col-lg-12">
+        <!-- START panel-->
+        <div class="panel panel-default no-padding no-border no-margin">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+            </div>
+
+            <div class="col-md-12 ">
+                <div class="nav nav-tabs " style="    padding-top: 11px !important;padding-bottom: 11px !important;">
+                    <div class="col-md-4">
+                        <form class="form-horizontal no-margin" ng-submit="gethr_list()">
+                            <div  >
+                                <div class="input-symbol">
+                                    <input type="text" Placeholder="Search" class="form-control" ng-model="searchKeyword.$" style="padding-left:4px;">
+                                    <span id="date_msg_4"> <i class="fa fa-search"></i></span></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                        <div  >
+                            <select ng-model="searchKeyword.deprtment" ng-options="opt as opt.name for opt in deprtment_arr" class="form-control" ng-change="gethr_list()">
+                                <option value="" disabled selected>Select Department</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div  >
+
+                            <select ng-model="searchKeyword.status" ng-options="opt as opt.title for opt in status_list" class="form-control" ng-change="gethr_list()">
+                                <option value="" disabled selected>Select Status</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--<div class="col-md-2">
+                        <div  >
+                            <label class="col-md-4  control-label">Job Title </label>
+
+                            <div class="col-md-8 ">
+                                <select ng-model="searchKeyword.job_title"
+                                        ng-options="opt as opt.title for opt in job_title_list"
+                                        class="form-control" ng-change="gethr_list()">
+                                    <option style="display:block" value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>-->
+
+                    <!--<div class="col-md-4">
+                        <div  >
+                            <label class="col-md-4  control-label">Employment Type </label>
+
+                            <div class="col-md-8 ">
+                                <select ng-model="searchKeyword.emp_type"
+                                        ng-options="opt as opt.name for opt in emp_type_arr"
+                                        class="form-control" ng-change="gethr_list()">
+                                    <option style="display:block" value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>-->
+                    <div class="col-md-1 pr0">
+                        <button type="button" class="btn btn-default h31 m0auto" title="Clear Fields" ng-click="searchKeyword=''; gethr_list();reset_single_value('hrsort_name')   " ng-model="strict"><i class="fa fa-refresh"aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="col-md-1"><a ng-if="allowaddhr==1" id="prompt" ui-sref="app.add_hr_values" class="btn pull-right btn_add"> Add</a></div>
+                </div>
+            </div>
+            <div class="panel-body" style="  overflow-y: scroll; max-height: 325px;">
+                <!-- START table-responsive-->
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" style="margin-bottom: 0px;">
+                        <thead>
+                            <tr class="bg-col">
+                                <th ng-repeat="column in columns_ship" ng-hide="column.field == 'id'">{{column.title}}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="courser table-body">
+                            <tr ng-repeat="rec in record_ship" ng-click="confirm(rec)">
+                                <td ng-repeat="column in columns_ship" ng-hide="column.field == 'id'">{{rec[column.field]}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- END table-responsive-->
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+        <!-- END panel-->
+    </div>
+</div>

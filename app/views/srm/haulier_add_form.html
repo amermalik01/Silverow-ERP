@@ -1,0 +1,319 @@
+<div class="row animated fadeIn">
+  <div class="col-md-12 col-md-12">
+    <div class="widget" style="background:none;">
+      <div class="widget-body" style="background:none;">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel-title2">Haulier Database</div>
+            <div class="col-md-5">
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Price Received By <span class="required">*</span></label>
+
+                <div class="col-md-8">
+                  <div class="input-symbol" ng-click="selectAreaEmployees()" ng-class="{'dont-click readonly':haulierFormReadonly }">
+                    <input type="text" id="price_received_by_name" class="form-control" placeholder="Select Employee"
+                      ng-disabled="haulierFormReadonly"
+                      readonly
+                      ng-model="rec_area.price_received_by_name" />
+                    <span>
+                        <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Location From Type<span class="required">*</span></label>
+
+                <div class="col-md-8">
+                    <label ng-repeat="n in locOptionsType" class="ib" style="font-weight: normal; margin-right: 15px;">
+                        <input type="radio" name="locOption" 
+                            ng-model="rec_area.locOption" 
+                            ng-disabled="haulierFormReadonly"
+                            ng-change="changeLocOptionFrom(rec_area.locOption.id)"
+                            ng-value="n" />{{n.name}}
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label"> Location From <span class="required">*</span></label>
+
+                <div class="col-md-8" ng-if="rec_area.locOption.id == 1">
+
+                  <ui-select ng-model="rec_area.valid_from" ng-disabled="haulierFormReadonly">
+                    <ui-select-match placeholder="Select Location">{{$select.selected.name +' - '+
+                                            $select.selected.code +' - '+
+                                            $select.selected.address}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="opt in location_from | filter: $select.search">
+                      <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                      <small ng-bind-html="opt.code | highlight: $select.search"></small>
+                      <small ng-bind-html="opt.address | highlight: $select.search"></small>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
+
+                <div class="col-md-8" ng-if="rec_area.locOption.id == 2">
+                  <!-- <div class="panel-info" ng-click="getHaulierLoc(1)">
+                    <div class="panel-body" style="background-color: white;">
+                      <span ng-repeat="sp in areasLocFrom track by $index">
+                        <span ng-if="areasLocFrom.length == 1">{{sp.title}}</span>
+                        <span ng-if="areasLocFrom.length > 1">{{sp.title}}<span
+                            ng-if="$index < areasLocFrom.length && $index!=0">;&nbsp;</span></span>
+                      </span>
+                      <aside></aside>
+                    </div>
+                  </div> -->
+                  <div class="panel-info" ng-click="getHaulierLoc(1)"  ng-class="{'dont-click readonly':haulierFormReadonly }">
+                    <div class="panel-body"><!--  style="background-color: white;" -->
+                      <!-- 
+                          <span ng-repeat="sp in areasLocFrom track by $index">
+                        <span ng-if="areasLocFrom.length == 1">{{sp.title}}</span>
+                        <span ng-if="areasLocFrom.length > 1">{{sp.title}}<span
+                            ng-if="$index < areasLocFrom.length && $index!=0">;&nbsp;</span></span>
+                      </span> 
+                    -->
+                        <span ng-if="rec_area.haulierLoc_from_level1">
+                            {{rec_area.haulierLoc_from_level1}} - {{rec_area.haulierLoc_from_level2}} - {{rec_area.haulierLoc_from_level3}}
+                        </span>
+                        <aside></aside>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Location To Type<span class="required">*</span></label>
+
+                <div class="col-md-8">
+                    <label ng-repeat="n in locOptionsType" class="ib" style="font-weight: normal; margin-right: 15px;">
+                        <input type="radio" name="locOptionTo" 
+                            ng-model="rec_area.locOptionTo" 
+                            ng-disabled="haulierFormReadonly"
+                            ng-change="changeLocOptionTo(rec_area.locOptionTo.id)"
+                            ng-value="n"/>{{n.name}}
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Location To <span class="required">*</span></label>
+
+                <div class="col-md-8" ng-if="rec_area.locOptionTo.id == 1">
+
+                  <ui-select ng-model="rec_area.validTo" ng-disabled="haulierFormReadonly">
+                    <ui-select-match placeholder="Select Location">{{$select.selected.name +' - '+
+                                            $select.selected.code +' - '+
+                                            $select.selected.address}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="opt in location_from | filter: $select.search">
+                      <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                      <small ng-bind-html="opt.code | highlight: $select.search"></small>
+                      <small ng-bind-html="opt.address | highlight: $select.search"></small>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
+
+                <div class="col-md-8" ng-if="rec_area.locOptionTo.id == 2">
+                  <div class="panel-info" ng-click="getHaulierLoc(2)" ng-class="{'dont-click readonly':haulierFormReadonly }" >
+                    <div class="panel-body"><!--  style="background-color: white;" -->
+                      <span ng-repeat="sp in areasLocTo track by $index">
+                        <span ng-if="areasLocTo.length == 1">{{sp.title}}</span>
+                        <span ng-if="areasLocTo.length > 1">{{sp.title}}<span
+                            ng-if="$index < areasLocTo.length && $index!=0">;&nbsp;</span></span>
+                      </span>
+                      <aside></aside>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Shipping Quantity </label>
+
+                <div class="col-md-2 padr6">
+                  <input type="text" ng-model="rec_area.shipQtyMin" id="shipQtyMin" class="form-control"
+                    placeholder="Min" ng-disabled="haulierFormReadonly" />
+                </div>
+                <div class="col-md-2 padr6 padl6">
+                  <input type="text" placeholder="Max" ng-model="rec_area.shipQtyMax" id="shipQtyMax"
+                    class="form-control" ng-disabled="haulierFormReadonly" />
+                </div>
+                <div class="col-md-4 padl6">
+
+                  <!-- <input type="text" value="Pallet(s)" class="form-control" readonly disabled> -->
+
+                  <ui-select required
+                            ng-model="rec_area.unit_id" disabled="disabled"><!-- ng-disabled="haulierFormReadonly" -->
+                    <ui-select-match placeholder="Select U.O.M">{{$select.selected.title}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="opt in uni_prooduct_arr | filter: $select.search">
+                        <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+
+                  <!-- <ui-select ng-model="rec_area.uom"
+                             ng-disabled="haulierFormReadonly">
+                    <ui-select-match placeholder="Select UOM">{{$select.selected.name}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="opt in uni_prooduct_arr | filter: $select.search">
+                      <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select> -->
+                </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-md-4 control-label">Price Date</label>
+
+                    <div class="col-md-8">
+                        <input jqdatepicker
+                            class="form-control"
+                            id="priceDate"
+                            placeholder="dd/mm/yyyy"
+                            ng-disabled="haulierFormReadonly"
+                            ng-model="rec_area.priceDate"
+                            ng-class="{'pickdate':!haulierFormReadonly}"
+                            ng-change="validConvrate(rec_area.price, rec_area.currency_id.id,rec_area.priceDate)"
+                            
+                            readonly>
+                        <span class="fa fa-calendar new_ca form-control-feedback"
+                            aria-hidden="true"></span>
+                    </div>
+                </div>
+
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Price</label>
+
+                <div class="col-md-4 padr6">
+                  <div class="input-symbol">
+
+                    <input type="text" ng-model="rec_area.price" class="form-control" ng-disabled="haulierFormReadonly"
+                      data-parsley-trigger="keyup" data-parsley-minlength-message="Invalid Value"
+                      data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value"
+                      pattern="[0-9]+([\.,][0-9]+)*" ng-change="validConvrate(rec_area.price, rec_area.currency_id.id,rec_area.priceDate)" />
+                    <!--   data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/"-->
+                    <span>{{rec_area.currency_id.code}}</span>
+                  </div>
+                </div>
+                <div class="col-md-4 padl6">
+                  <ui-select ng-model="rec_area.currency_id"
+                    ng-change="validConvrate(rec_area.price, rec_area.currency_id.id,rec_area.priceDate)" ng-disabled="haulierFormReadonly">
+                    <ui-select-match placeholder="Select Currency">{{$select.selected.code}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="opt in arr_currency | filter: $select.search">
+                      <div ng-bind-html="opt.code | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
+              </div>
+
+              
+              <div class="form-group">
+                <label class="col-md-4 control-label"> Converted Price</label>
+
+                <div class="col-md-8">
+                  <div class="input-symbol">
+
+                    <input type="text" ng-model="rec_area.price_lcy" class="form-control"
+                      data-parsley-trigger="keyup" data-parsley-minlength-message="Invalid Value"
+                      data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value"
+                      pattern="[0-9]+([\.,][0-9]+)*" readonly />
+                    <span><!-- {{rec_area.currency_id.code}} -->{{defaultCurrencyCode}}</span>
+                  </div>
+                  <!--{{defaultCurrencyCode}}-->
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-5 col-md-offset-2">
+              <!-- <div class="form-group">
+                <label class="col-md-4 control-label">Offer Method</label>
+
+                <div class="col-md-8">
+                  <ui-select ng-model="rec_area.offer_methods" ng-disabled="haulierFormReadonly">
+                    <ui-select-match placeholder="Select Offer Method">{{$select.selected.title}}</ui-select-match>
+                    <ui-select-choices repeat="opt in arr_offer_method | filter: $select.search">
+                      <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+
+                </div>
+              </div> -->
+              <div class="form-group">
+                <label class="col-md-4 control-label">Shipping Method</label>
+
+                <div class="col-md-8">
+                  <ui-select ng-model="rec_area.haulierShippingMethod_Name" ng-disabled="haulierFormReadonly">
+                    <ui-select-match placeholder="Select Shipping Method">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="opt in haulierShippmentMethodsArray | filter: $select.search">
+                      <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
+
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Notes</label>
+
+                <div class="col-md-8">
+                  <textarea name="notes" cols="160" rows="4" id="note" ng-model="rec_area.notes" class="form-control"
+                    ng-readonly="haulierFormReadonly" maxlength="250"
+                    style="height:100px !important;resize:none;"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Status <span class="required">*</span></label>
+
+                <div class="col-md-8">
+                  <ui-select ng-model="rec_area.status" ng-disabled="haulierFormReadonly">
+                    <ui-select-match placeholder="Select Status">{{$select.selected.title}}</ui-select-match>
+                    <ui-select-choices repeat="opt in status_list | filter: $select.search">
+                      <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-12">
+              <div class="pull-right">
+                <button class="btn btn-delete" type="button" 
+                    ng-click="deleteHaulier(rec_area.id)"
+                    ng-if="rec_area.id >0 && deleteHaulierTabPermission"
+                    ng-show="!haulierFormReadonly">Delete
+                </button>
+                <button class="btn btn-submit" type="button" 
+                    ng-click="addHaulier(rec_area)"
+                    ng-show="!haulierFormReadonly">Save
+                </button>
+                <button class="btn btn-edit" type="button" 
+                    ng-click="gotoeditHaulierForm()"
+                    ng-if="editHaulierTabPermission" 
+                    ng-show="haulierFormReadonly">Edit
+                </button>
+                <button class="btn btn-cancel" type="button" 
+                    ng-click="getHaulierListing()">Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div ng-include="'app/views/srm/_listing_areas.html'"></div>
+<div ng-include="'app/views/srm/_listing_employee_area_covered.html'"></div>
+<div ng-include="'app/views/srm/_haulierAddNewLoc.html'"></div>

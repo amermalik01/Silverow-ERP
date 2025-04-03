@@ -1,0 +1,487 @@
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="panel panel-default no-bd"
+                 style="padding-bottom: 0;">
+                <div class="panel-heading no-bg"
+                     style="display:none;">
+                    <h3 class="panel-title"
+                        style="padding-left:14px;">Standard Item Price</h3>
+                </div>
+                <div class="panel-body" style="padding: 1px 0 17px !important;">
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <div class="col-md-5 ">
+                                <!-- <div class="form-group">
+                                    <label class="col-md-4 control-label ">Standard Sales Price </label>
+
+                                    <div class="col-md-8">
+                                        <div class="input-symbol">
+                                            <input type="text" id="min_quantity" class="form-control input_text ng-valid ng-touched ng-dirty ng-valid-parse" 
+                                                ng-readonly="checkItemSalesReadonly" 
+                                                ng-model="salesFormData.standard_price"
+                                                ng-blur="st_price_change()"
+                                                data-parsley-trigger="keyup" 
+                                                data-parsley-minlength-message="Invalid Value"
+                                                data-parsley-type-message="Invalid Value" 
+                                                data-parsley-error-message="Invalid Value"
+                                                data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >
+                                            <span>{{defaultCurrencyCode}}/{{formData.unit_id.title}} </span>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <!-- <div class="form-group">
+                                    <label class="col-md-4 control-label ">Minimum Sales Price</label>
+
+                                    <div class="col-md-8">
+                                        <div class="input-symbol">
+                                            <input type="text" id="min_quantity" class="form-control input_text ng-valid ng-touched ng-dirty ng-valid-parse" ng-readonly="checkItemSalesReadonly"
+                                                ng-model="salesFormData.absolute_minimum_price" data-parsley-trigger="keyup"
+                                                data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value"
+                                                data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/">
+                                            <span>{{defaultCurrencyCode}}/{{formData.unit_id.title}} </span>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <!-- <div class="form-group">
+                                    <label class="col-md-4 control-label " title="G/L No. for Discount | Promotion">G/L No. for Discount</label>
+
+                                    <div class="col-md-8">
+                                        <div class="input-symbol">
+                                            <input type="text" title="{{salesFormData.sale_item_gl_codes}}" class="form-control" ng-model="salesFormData.sale_item_gl_codes"
+                                                ng-disabled="checkItemSalesReadonly" ng-class="{'pickdate':!checkItemSalesReadonly}"  readonly ng-click="getGL_account_code('sale_item_gl')"
+                                            />
+                                            <input type="hidden" ng-model="salesFormData.sale_item_gl_id" class="form-control" />
+                                            <span><i class="fa fa-external-link"></i></span>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label ">Start Date</label>
+
+                                    <div class="col-md-8">
+                                        <input class="form-control 2date-picker" jqdatepicker id="msdate" readonly ng-model="salesFormData.margin_start_date" ng-disabled="checkItemSalesReadonly"
+                                            ng-class="{'pickdate':!checkItemSalesReadonly}" ng-change="testdate_by_id('msdate','medate','mr_date');">
+                                        <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                        <span id="mr_date" style="color:#F00; display: none;">End Date is Earlier Than Start Date</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label ">End Date</label>
+
+                                    <div class="col-md-8">
+                                        <input class="form-control 2date-picker" jqdatepicker id="medate" readonly="" ng-model="salesFormData.margin_end_date" ng-disabled="checkItemSalesReadonly"
+                                            ng-class="{'pickdate':!checkItemSalesReadonly}" ng-change="testdate_by_id('msdate','medate','mr_date');">
+                                        <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-md-offset-2 ">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label " style="padding-top: 0;">Average Sales Price <br>
+                                        <span class="pull-left"><small>{{defaultCurrencyCode}}/{{formData.unit_id.title}}</small></span>
+                                    </label>
+                                    <div class="col-md-3 padr6">
+                                        <div class="input-symbol">
+                                            <input readonly type="text" class="form-control input_text" placeholder="0"
+                                                data-parsley-trigger="keyup"                                                  
+                                                ng-model="salesFormData.average_sale_price">
+                                        </div>
+                                    </div>
+                                    <label class="col-md-2 control-label " style="padding-top: 0; line-height: 15px;">Overall <br>Margin</label>
+                                    <div class="col-md-3">
+                                        <div class="input-symbol">
+                                            <input readonly type="text" class="form-control input_text" placeholder="0" data-parsley-trigger="keyup" 
+                                                ng-model="salesFormData.overall_margin" >
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                                <!-- <div class="form-group">
+                                    <label class="col-md-4 control-label ">Sales Order Quantity</label>
+
+                                    <div class="col-md-4 padr6">
+                                        <div class="input-label input-fax">
+                                            <div class="input-label-name">Min:</div>
+                                            <div class="input-symbol">
+                                                    <input type="number" data-parsley-trigger="keyup" id="min_quantity" 
+                                                        ng-readonly="checkItemSalesReadonly"
+                                                        ng-model="salesFormData.minSaleQty"
+                                                        class="form-control input_text"
+                                                        data-parsley-minlength-message="Invalid Value"
+                                                        data-parsley-type-message="Invalid Value"
+                                                        data-parsley-error-message="Invalid Value"
+                                                        data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                                                    <span>{{formData.unit_id.title}}</span> 
+                                                </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4 padl6">
+                                            <div class="input-label input-fax">
+                                                    <div class="input-label-name">Max:</div>
+                                                    <div class="input-symbol">
+                                                            <input type="number" data-parsley-trigger="keyup" id="max_quantity"
+                                                                ng-readonly="checkItemSalesReadonly"
+                                                                ng-model="salesFormData.maxSaleQty" 
+                                                                ng-blur="validateMinMaxRange('max')"
+                                                                class="form-control input_text"
+                                                                data-parsley-minlength-message="Invalid Value"
+                                                                data-parsley-type-message="Invalid Value"
+                                                                data-parsley-error-message="Invalid Value"
+                                                                data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                                                            <span>{{formData.unit_id.title}}</span> 
+                                                        </div>
+                                            </div>
+                                        </div>
+                                </div> -->
+                                <!--  ng-blur="validateMinMaxRange('min')" -->
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12"
+                         style="    margin-bottom: 20px;">
+                        <!-- <x-item-price-offer-tbl 
+                            headers="tbl_records.headers" 
+                            data="tbl_records.data" 
+                            price-offer-rec="PriceOffer_rec"
+                            currency-conversion-rate="currencyConversionRate">
+                        </x-price-offer-tbl> -->
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="fixit">
+                                <tr class="bg-col">
+                                    <th> Item No. </th>
+                                    <th> Description </th>
+                                    <th> U.O.M </th>
+                                    <th> Start Date </th>
+                                    <th> End Date </th>
+                                    <th class="text-right"> Standard Price ({{defaultCurrencyCode}}) </th>
+                                    <th class="text-right"> Min. Sales Price ({{defaultCurrencyCode}})</th>
+                                    <th class="text-right"> Min. Order Qty.</th>
+                                    <th class="text-right"> Max. Order Qty.</th>
+
+                                    <th class="text-center">
+                                        Volume Discount
+                                    </th>
+                                    <th style="    width: 4%;">
+                                        <a class="ib add-dis-btn"
+                                           title="Add Item">
+                                            <i class="material-icons"
+                                               ng-class="{'disable-el dont-click':(allowedit_item_sale_tab == 0 || checkItemSalesReadonly)}"
+                                               ng-click="pushNewPriceOffer(1)">&#xE147;</i>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="fixit"
+                                   style="max-height: 229px;">
+                                <tr ng-repeat="priceitem in SalePriceList"
+                                    ng-click="onFocusPriceItem(priceitem, $index);"
+                                    ng-class="{'selectedItem':$index == selectedRow}">
+                                    <td> {{formData.product_code}} </td>
+                                    <td> {{formData.description}} </td>
+                                    <td>
+                                        <!--  ng-change="addItemSalesInfo(1)" -->
+                                        <select class="form-control"
+                                                ng-model="priceitem.uom_id" 
+                                                ng-click="onFocusPriceItem(priceitem, $index);"
+                                                ng-change="onFocusPriceItem(priceitem, $index);" 
+                                                disabled                                                
+                                                ng-options="opt as opt.title for opt in refUOMList">
+                                        </select><!-- ng-disabled="checkItemSalesReadonly" -->
+                                    </td>
+                                    <td>
+                                        <div class="input-symbol">
+                                            <input class="form-control 2date-picker"
+                                                   jqdatepicker
+                                                   readonly
+                                                   ng-model="priceitem.start_date"
+                                                   ng-disabled="checkItemSalesReadonly"
+                                                   ng-focus="onFocusPriceItem(priceitem, $index);"
+                                                   ng-class="{'pickdate':!checkItemSalesReadonly}"
+                                                   ng-change="ValidateDate(priceitem, 1, 1);">
+                                            <span class="fa fa-calendar">
+                                            </span>
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <div class="input-symbol">
+                                            <input class="form-control 2date-picker"
+                                                   jqdatepicker
+                                                   readonly=""
+                                                   ng-model="priceitem.end_date"
+                                                   ng-disabled="checkItemSalesReadonly"
+                                                   ng-click="onFocusPriceItem(priceitem, $index);"
+                                                   ng-class="{'pickdate':!checkItemSalesReadonly}"
+                                                   ng-change="ValidateDate(priceitem, 2, 1);">
+                                            <span class="fa fa-calendar"></span>
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <input type="number"
+                                               step="any"
+                                               ng-disabled="checkItemSalesReadonly"
+                                               step="any"
+                                               ng-if="!checkItemSalesReadonly"
+                                               class="form-control text-right"
+                                               id="StdPrice"
+                                               ng-blur="ValidateMinSalesPrice(priceitem, 1, 1)"
+                                               ng-focus="onFocusPriceItem(priceitem, $index);"
+                                               ng-model="priceitem.standard_price">
+                                               
+                                        <span class="form-control readonlydiv text-right" ng-if="checkItemSalesReadonly" title="{{priceitem.standard_price | unitPriceFilter}}">
+                                            {{priceitem.standard_price | unitPriceFilter}}
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <input type="number"
+                                               step="any"
+                                            ng-if="!checkItemSalesReadonly"
+                                               ng-disabled="checkItemSalesReadonly"
+                                               step="any"
+                                               class="form-control text-right"
+                                               id="min_max_sale_price"
+                                               ng-blur="ValidateMinSalesPrice(priceitem, 2, 1)"
+                                               ng-focus="onFocusPriceItem(priceitem, $index);"
+                                               ng-model="priceitem.min_max_sale_price">
+
+                                        <span class="form-control readonlydiv text-right"
+                                              ng-if="checkItemSalesReadonly" title="{{priceitem.min_max_sale_price | unitPriceFilter}}">
+                                            {{priceitem.min_max_sale_price | unitPriceFilter}}
+                                        </span>
+                                    </td>
+
+                                    <!-- <span ng-if="itemAttr=='priceoffer'">
+                                            <x-expression-eval 
+                                                x-value = 'item.itemData.priceoffer'
+                                                enable-percentage = '1'>
+                                            </x-expression-eval>
+                                        </span>
+                                -->
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('[data-toggle="popover"]').popover();
+                                        });
+                                    </script>
+                                    <td>
+                                        <!-- ng-blur="addItemSalesInfo(1)" -->
+                                        <input type="number"
+                                               step="any"
+                                               id="min_qty"
+                                               max="2147483648"
+                                               ng-if="!checkItemSalesReadonly"
+                                               class="form-control text-right"
+                                               ng-disabled="checkItemSalesReadonly"
+                                               ng-focus="onFocusPriceItem(priceitem, $index);"
+                                               ng-model="priceitem.min_qty"
+                                               ng-blur="validateMinMaxRange(priceitem, 1,1);">
+
+                                            <span class="form-control readonlydiv text-right"
+                                                  ng-if="checkItemSalesReadonly">
+                                                {{priceitem.min_qty | numberNoDecimalsIfZeroFilter:2:''}}
+                                            </span>
+                                    </td>
+                                    <td>
+                                        <!--  ng-blur="addItemSalesInfo(1)" -->
+                                        <input type="number"
+                                               step="any"
+                                               max="2147483648"
+                                               ng-if="!checkItemSalesReadonly"
+                                               id="max_qty"
+                                               class="form-control text-right"
+                                               ng-disabled="checkItemSalesReadonly"
+                                               ng-focus="onFocusPriceItem(priceitem, $index);"
+                                               ng-model="priceitem.max_qty"
+                                               ng-blur="validateMinMaxRange(priceitem, 2,1);">
+
+                                        <span class="form-control readonlydiv text-right"
+                                              ng-if="checkItemSalesReadonly">
+                                            {{priceitem.max_qty | numberNoDecimalsIfZeroFilter:2:''}}
+                                        </span>
+                                    </td>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <!-- ng-click="pushNewVolumeDiscount()" -->
+
+                                        <input type="checkbox"
+                                               ng-model="priceitem.show_vol_discount"
+                                               ng-checked="priceitem.volume_discount_arr.length >0"
+                                               ng-disabled="priceitem.volume_discount_arr.length > 0 || checkItemSalesReadonly || 
+                                                         priceitem.standard_price == '' || priceitem.standard_price == null ||
+                                                         priceitem.min_max_sale_price == '' ||priceitem.min_max_sale_price == null ||
+                                                         priceitem.min_qty == '' || priceitem.min_qty == null ||
+                                                         priceitem.max_qty == '' || priceitem.max_qty == null"
+                                               ng-click="onFocusPriceItem(priceitem, $index);" />
+                                        <a ng-if="SalePriceList.length > 1">
+                                            <i class="fa fa-times"
+                                               aria-hidden="true"
+                                               ng-click="deletePriceItem(priceitem.id, $index, 1)"
+                                               ng-class="{'disable-el dont-click':(allowedit_item_sale_tab == 0 || checkItemSalesReadonly)}"></i>
+                                        </a>
+                                    </td>
+                                    <td style="    width: 4%;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div ng-if="inFocusItem.show_vol_discount">
+                            <div class="col-md-7"
+                                 style="margin: 15px 0 5px 0;">
+                                <h6 class="col-md-6 pl0"
+                                    style="color: #000000;font-size: 13px;font-weight: bold;">Volume Discount for
+                                    {{formData.description}} - ({{formData.product_code}}) </span>
+                                </h6>
+                                <div class="col-md-4 col-md-offset-2 pr0">
+                                    <div class="pr0"
+                                         style="margin-top: 3px;">
+                                        <ui-select required
+                                                   id="type_1"
+                                                   ng-disabled="checkItemSalesReadonly || inFocusItem.volume_discount_arr.length>0"
+                                                   ng-model="inFocusItem.discount_type"
+                                                   ng-change="onChangeCalculateDiscounts()">
+                                            <ui-select-match placeholder="Select Discount Type">
+                                                {{$select.selected.name}}</ui-select-match>
+                                            <ui-select-choices repeat="opt in list_type | filter: $select.search">
+                                                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-7 pl0">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead class="fixit">
+                                        <tr class="bg-col">
+                                            <th>Min. Order Qty.</th>
+                                            <th>Discount By
+                                                <span
+                                                      ng-if="inFocusItem.discount_type.id == 2">({{defaultCurrencyCode}})
+                                                </span>
+                                            </th>
+                                            <th>Discounted Price
+                                                <span
+                                                      ng-if="inFocusItem.discount_type.id == 2">({{defaultCurrencyCode}})
+                                                </span>
+                                            </th>
+                                            <th>Actual Discount
+                                                <span
+                                                      ng-if="inFocusItem.discount_type.id == 2">({{defaultCurrencyCode}})
+                                                </span>
+                                            </th>
+                                            <th class="text-center"
+                                                style="    width: 9%;">
+                                                Action
+                                            </th>
+                                            <th style="    width: 6%;">
+                                                <a class="ib add-dis-btn"
+                                                   title="Add Volume Discount">
+                                                    <i class="material-icons"
+                                                       ng-class="{'disable-el dont-click':checkItemSalesReadonly}"
+                                                       ng-click="pushNewVolumeDiscount() ">&#xE147;</i>
+                                                </a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fixit"
+                                           style="max-height:150px;">
+
+                                        <tr ng-repeat="discount in inFocusItem.volume_discount_arr track by $index">
+                                            <td>
+                                                <input type="number"
+                                                       step="any"
+                                                       id="min_quantity"
+                                                       ng-disabled="checkItemSalesReadonly"
+                                                       class="form-control input_text ng-valid ng-touched ng-dirty ng-valid-parse"
+                                                       ng-blur="OnBlurVolumeItem(discount);"
+                                                       ng-model="discount.min_qty">
+
+                                            </td>
+                                            <td>
+                                                <div class="input-symbol">
+
+                                                    <input type="number"
+                                                           step="any"
+                                                           class="form-control"
+                                                           id="priceoffer"
+                                                           ng-disabled="checkItemSalesReadonly"
+                                                           ng-model="discount.discount"
+                                                           ng-blur="OnBlurVolumeItem(discount);">
+
+                                                    <span ng-if="inFocusItem.discount_type.id == 1">%</span>
+                                                    <span
+                                                          ng-if="inFocusItem.discount_type.id == 2">{{defaultCurrencyCode}}</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <!-- <span ng-if="inFocusItem.discount_type.id == 1">
+                                                    {{inFocusItem.standard_price - (inFocusItem.standard_price * discount.discount)/100}}
+                                                </span> -->
+                                                {{discount.discountedPrice}}
+                                            </td>
+                                            <td>
+                                                {{discount.actualDiscount}}
+                                                <!-- {{inFocusItem.standard_price - (inFocusItem.standard_price - (inFocusItem.standard_price * discount.discount)/100) |  number:decimal_range}} -->
+                                            </td>
+
+                                            <td class="text-center"
+                                                style="    width: 9%;">
+                                                <a>
+                                                    <i class="fa fa-times"
+                                                       aria-hidden="true"
+                                                       ng-click="removePriceItemVolume($index, discount.id)"
+                                                       ng-class="{'disable-el dont-click':checkItemSalesReadonly}"></i>
+                                                </a>
+                                            </td>
+                                            <td style="    width: 6%;"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                <!-- <button class="btn  btn-default" type="button" title="Documents" ng-show="salesFormData.id>0 &&  item_sale_tab_module>0"
+                                    ng-click="set_document_internal(item_sale_tab_module)">
+                                    {{document_title}} <img src="app/img/infile.png" style="width:16px;"
+                                                            class="doc-icon">
+                                </button> -->
+                                <button class=" picc_block btn btn-submit no-width"
+                                        type="submit"
+                                        ng-show="!checkItemSalesReadonly && allowedit_item_sale_tab"
+                                        ng-click="addItemSalesInfo()">
+                                    Save
+                                </button>
+                                <button class="btn btn-edit no-width"
+                                        type="button"
+                                        ng-click="showEditItemSalesForm()"
+                                        ng-show="checkItemSalesReadonly && allowedit_item_sale_tab">Edit
+                                </button>
+                                <button type="button"
+                                        class="btn btn-cancel "
+                                        ui-sref="{{btnCancelUrl}}"
+                                        data-dismiss="modal">Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- <div ng-include="'app/views/sale_item_info/_margin_date_popup.html'"></div> -->
+<!-- <div ng-include="'app/views/product_values/_sale_item_gl_account_modal.html'"></div> -->

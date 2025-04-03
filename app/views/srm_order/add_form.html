@@ -1,0 +1,37 @@
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<tabset>
+    <!--id="quotes_tabs"-->
+    <tab heading="General" class="general_information" 
+        ng-click="generalInformation()">
+        <div>
+            <div class="vertical_space"></div>
+            <form autocomplete="off" class="form-horizontal no-margin small_fields" name="addForm" role="form" validate-form="" novalidate="" 
+                ng-submit="add_general(rec)"                 
+                ng-hide="showLoader">
+                <div 
+                    ng-include="'app/views/srm_order/_general.html'"></div>
+            </form>
+        </div>
+    </tab>
+    <tab heading="Invoicing" class="contact_information dont-click">
+        <div>
+            <div class="vertical_space"></div>
+        </div>
+    </tab>
+    <tab heading="Shipping" class="shiping_information dont-click">
+        <div>
+            <div class="vertical_space"></div>
+        </div>
+    </tab>
+</tabset>
+<div 
+    ng-include="'app/views/_confirm_modal.html'"></div>
+<div 
+    ng-include="'app/views/_listing_supplier_single.html'"></div>
+<div 
+    ng-include="'app/views/_listing_modal.html'"></div>
+<div 
+    ng-include="'app/views/srm_order/customer_model.html'"></div>
+<div 
+    ng-include="'app/views/srm_order/_saleOrdersModal.html'"></div>

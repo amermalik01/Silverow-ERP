@@ -1,0 +1,39 @@
+<div class="col-md-12">
+    <div class="panel-title2"> {{name}} Classification</div>
+    <div class="col-md-6">
+        Selected classification will be available in {{name}} classification field
+        <div style="    margin-top: 20px;">
+            <!-- <div ng-repeat="mailloc in arr_module_type " style="    margin-top: 10px;">
+                <div class="pure-checkbox">
+                        <input type="checkbox" name="typevalue_{{mailloc.id}}" id="typevalue_{{mailloc.id}}" ng-model="mailloc.option"
+                            data-parsley-multiple="checkbox" ng-value="choice.id" ng-disabled="check_readonly" ng-checked="(mailloc.option == 1)" style="    margin-right: 16px;"/> 
+                    <label for="typevalue_{{mailloc.id}}"> {{mailloc.name}}</label>
+                </div>
+            </div> -->
+            <table style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th> Name </th>
+                        <th> CRM </th>
+                        <th> Customer </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="mailloc in arr_module_type">
+                        <td> {{mailloc.name}} </td>
+                        <td>
+                            <input type="checkbox" name="typevalue_{{mailloc.id}}" id="typevalue_{{mailloc.id}}" ng-model="mailloc.option"
+                            data-parsley-multiple="checkbox" ng-value="choice.id" ng-disabled="check_readonly" ng-checked="(mailloc.option == 1)" style="    margin-right: 16px;"/>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="typevalue_{{mailloc.id}}" id="typevalue_{{mailloc.id}}" ng-model="mailloc.option"
+                            data-parsley-multiple="checkbox" ng-value="choice.id" ng-disabled="check_readonly" ng-checked="(mailloc.option == 1)" style="    margin-right: 16px;"/>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,28 @@
+<div class="modal fade" id="approval_comments">
+    <div class="modal-dialog modal-sm" dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Comments</h4>
+            </div>
+            <div class="modal-body" style="min-height: auto !important;">
+                
+                <div class="row mb0">
+                    <div class="col-md-12">
+                        <textarea rows="5" cols="40" class="form-control" ng-model="comments.comment" autofocus></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button class="btn btn-delete active-btns" type="button" ng-click="submit_comments(7)" ng-if="list_type == 1 && record.status != 7">Put On-Hold</button> &nbsp;
+                    <button class="btn btn-submit active-btns" type="button" ng-click="submit_comments(1)" ng-if="list_type == 1 && record.status == 7">Release On-Hold</button> &nbsp;
+                    <button class="btn btn-submit" type="button" ng-click="submit_comments()">Save</button> &nbsp;
+                    <button type="button" class="btn btn-cancel pull-right " data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

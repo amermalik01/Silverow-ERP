@@ -1,0 +1,68 @@
+<div class="modal fade" id="accthead_modal"   >
+   <div class="modal-dialog modal-lg"  ><!--modal-lg   style=" width:65% !important" -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><!--{{title}}--> G/L No.</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-default"  >
+              <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;">
+                <div class="table-responsive">
+                  <div class="tree"  > 
+                    
+                    <!--	Category -->
+                    <div ng-repeat="formFields in category_list"  > 
+                      <!--  {{counter_parent}}  {{counter_parent=counter_parent++}}
+          ng-class="mySelectClass"      ng-click="updateTag(formFields.id,formFields.name)" -->
+                      <div class="tree-item "   > <i class="fa fa-minus pls_mins_sign"   id="pls_mins_sign_{{formFields.name}}_{{formFields.id}}"
+       
+              href="#demo_{{formFields.id}}" data-toggle="collapse"></i> &nbsp; {{formFields.name}} </div>
+                      <!-- Sub category -->
+                      <div id="demo_{{formFields.id}}" class="collapse in" 
+                  style="padding-left: 10px;" 
+          		  ng-repeat="formSelData in category_sub" 
+                 ng-if="formSelData.parent_id == formFields.id"   >
+                        <div class="tree-item"> <i class="fa fa-minus pls_mins_sign_second"  
+                    href="#demo_{{formSelData.parent_id+'_'+formSelData.id}}" data-toggle="collapse"></i> &nbsp; {{formSelData.name}} </div>
+                        <!-- Level One-->
+                        <div  id="demo_{{formSelData.parent_id+'_'+formSelData.id}}" class="collapse in" 
+                       style="padding-left: 11px;"
+                      ng-repeat="formSelone in category_list_data_one" 
+                       ng-if="formSelone.parent_id == formSelData.id">
+                          <div class="tree-item"> <i class="fa fa-minus pls_mins_sign_third"
+                   href="#demo_{{formSelone.parent_id+'_'+formSelData.id+'_'+formSelone.parent_id}}" data-toggle="collapse"></i> <a ng-click="show_add_pop(formSelone.id)"> &nbsp; {{formSelone.name}} </a> </div>
+                          <!-- Level Two-->
+                          <div  id="demo_{{formSelone.parent_id+'_'+formSelData.id+'_'+formSelone.parent_id}}" class="collapse in" 
+                               style="padding-left: 11px;"
+                          ng-repeat="formSec in category_list_data_second" 
+                           ng-if="formSec.parent_id == formSelone.id">
+                            <div class="tree-item"> <i class="fa fa-minus pls_mins_sign_fourth"
+                              href="#demo_{{formSec.parent_id+'_'+formSelone.id+'_'+formSelone.id+'_'+formSec.id}}" data-toggle="collapse"></i> &nbsp; <a ng-click="show_add_pop(formSec.id)"> &nbsp; {{formSec.name}} </a> </div>
+                            
+                            <!-- Level Three-->
+                            <div  id="demo_{{formSec.parent_id+'_'+formSelone.id+'_'+formSelone.id+'_'+formSec.id}}" class="collapse in" 		  style="padding-left: 11px;"
+                          ng-repeat="formthird in category_list_data_third" 
+                           ng-if="formthird.parent_id == formSec.id">
+                              <div class="tree-item"> &nbsp; <a ng-click="show_add_pop(formthird.id)"> &nbsp; {{formthird.name}} </a> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn default pull-right width_80" data-dismiss="modal">Cancel</button>
+        <button class="btn btn_blue pull-right width_80" style="margin:0 5px;" type="button" ><i class="fa fa-check fa_display"></i>Add</button>
+      </div>
+    </div>
+  </div>
+</div>

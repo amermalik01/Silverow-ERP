@@ -1,0 +1,110 @@
+
+
+
+
+<div class="modal fade" id="prevTabDetailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:85%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Tab Detail</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 col-md-12">
+                        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+                            <div class="panel-body" style="  overflow-y: scroll;    max-height: 500px;">
+                                <form>
+                                    <div id="main_div" ng-repeat="rec in tabsDetil">
+                                        <h3>{{rec.tab_name}}</h3>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <label class="col-md-4 control-label">Created By</label>
+                                                    <div class="col-md-8"> {{defaultUserName}} </div>
+                                                </div>
+                                                <div class="form-group clearfix">
+                                                    <label class="col-md-4 control-label">Subject </label>
+                                                    <div class="col-md-8"> {{rec.subject}} </div>
+                                                </div>
+                                                <div class="form-group clearfix">
+                                                    <label class="col-md-4 control-label">Stage Start Date </label>
+                                                    <div class="col-md-8"> {{convert_numeric_date_to_string(rec.start_date)}} </div>
+                                                </div>
+                                                <div class="form-group clearfix">
+                                                    <label class="col-md-4 control-label">Stage End Date</label>
+                                                    <div class="col-md-8"> {{convert_numeric_date_to_string(rec.end_date)}} </div>
+                                                </div>
+                                                <div class="form-group clearfix">
+                                                    <label class="col-md-4 control-label">Contact Person </label>
+                                                    <div class="col-md-4"> <span ng-repeat="contact in arr_alt_contacts| filter:rec.contact_person_1">{{contact.name}}</span> </div>
+                                                    <label class="col-md-1 control-label">Role</label>
+                                                    <div class="col-md-3"> <span ng-repeat="role in arr_roles1| filter:rec.role_1">{{role.Name}}</span> </div>
+                                                </div>
+                                                <div class="form-group clearfix">
+                                                    <label class="col-md-4 control-label">Contact Person</label>
+                                                    <div class="col-md-4"> <span ng-repeat="contact in arr_alt_contacts| filter:rec.contact_person_2">{{contact.name}}</span> </div>
+                                                    <label class="col-md-1 control-label">Role</label>
+                                                    <div class="col-md-3"> <span ng-repeat="role in arr_roles1| filter:rec.role_2">{{role.Name}}</span> </div>
+                                                </div>
+                                                <div class="form-group clearfix">
+                                                    <label class="col-md-4 control-label">Contact Person</label>
+                                                    <div class="col-md-4"> <span ng-repeat="contact in arr_alt_contacts| filter:rec.contact_person_3:strict">{{contact.name}}</span> </div>
+                                                    <label class="col-md-1 control-label">Role</label>
+                                                    <div class="col-md-3"> <span ng-repeat="role in arr_roles1| filter:rec.role_3">{{role.Name}}</span> </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <label class="col-md-4 control-label">Process of Decision</label>
+                                                    <div class="col-md-8"> <span ng-repeat="process in arr_process_of_decision| filter:rec.process_of_decision">{{process.name}}</span> </div>
+                                                </div>
+                                                <div class="form-group clearfix">
+                                                    <label class="col-md-4 control-label"> Forecast Amount</label>
+                                                    <div class="col-md-8"> {{rec.forecast_amount}} </div>
+                                                    <div class="form-group clearfix">
+                                                        <label class="col-md-4 control-label">Probability</label>
+                                                        <div class="col-md-8"> {{rec.probability}}<span>&#37;</span> </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label class="col-md-4 control-label">Expected Deal Close Date</label>
+                                                        <div class="col-md-8"> {{convert_numeric_date_to_string(rec.expected_close_date)}} </div>
+                                                    </div>
+                                                    <div class="form-group clearfix" ng-show="rec.tab_name == 'Outcome'">
+                                                        <label class="col-md-4 control-label">Outcome</label>
+                                                        <div class="col-md-8"> <span ng-repeat="outcome in arr_win_lost_outcome| filter:rec.win_lost_outcome">{{outcome.name}}</span> </div>
+                                                    </div>
+                                                    <!--     <div class="form-group clearfix">    <label class="col-md-4 control-label">Salesperson </label>  <div class="col-md-8"> <span ng-repeat="sp in arr_selectedSalespersons3[$index] track by $index"> <span ng-if="$index == 0"><span ng-class="{'hilight':sp.isPrimary}">{{sp.first_name + ' ' + sp.last_name}}</span></span> <span ng-if="$index > 0">;&nbsp;<span ng-class="{'hilight':sp.isPrimary}">{{sp.first_name + ' ' + sp.last_name}}</span></span> </span> </div>      </div>-->
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group clearfix">
+                                                        <label class="col-md-2 control-label">Description </label>
+                                                        <div class="col-md-10"> {{rec.description}} </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row ends --> 
+
+                </div>
+                <div class="modal-footer"> 
+                    <!-- {{selectedCustomers}} --> 
+                    <!-- <button type="button" class="btn btn-default btn_blue"_blue>Add</button> --> 
+                    <!--  --> 
+                    <!-- <span class="pull-left">Selected:&nbsp;{{(arr_salepersons | filter: {chk: true}).length}}</span>
+                                        <button ng-show="rec.universal_types.id != 2" class="btn btn-info btn_blue" data-dismiss="modal" style="margin:10px;" type="button">Add</button> -->
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Ends-->
+
+

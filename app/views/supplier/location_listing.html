@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-lg-12">
+        <!--   Add   permision for Company User /superadmin -->
+        <a id="prompt" ng-click="location_add_Form()"
+           class="btn btn-info btn_blue pull-right margin_bottom"
+           ng-if="allowadd_supplier_location_tab==1"><i class="fa fa-plus"> </i> Add New</a>
+    </div>
+</div>
+
+<!-- Row starts -->
+<div class="row" ng-show="columnss.length > 0">
+    <div class="col-lg-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body ">
+                <div class="row" >
+                    <div id="dt_example" class="example_alt_pagination">
+
+                        <!--    View    permision for Company User /superadmin -->
+                        <table class="table table-condensed table-striped table-hover table-bordered" id="data-table"
+                               ng-if="allowview_supplier_location_tab ==1">
+                            <thead>
+                            <tr class="bg-col" ng-show="columnss.length > 0">
+                                <th ng-repeat="column in columnss" ng-show="column.visible"
+                                    ng-if="	column.title != 'Id'  "> {{column.title}}
+                                </th>
+                                <th style="width: 11%;">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-body courser ">
+                            <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+                            <tr ng-repeat="rec in location_data" ng-show="columnss.length > 0"
+                                ng-class="{'dont-click':allowedit_supplier_location_tab==0}">
+                                <td ng-repeat="column in columnss" ng-if="column.title != 'Id'" ng-show="column.visible"
+                                    ng-click="editlocationForm(rec.id)" sortable="column.title"> {{rec[column.field]}}
+                                </td>
+                                <td class="text-left " ng-show="columnss.length > 0">
+
+                                    <!--   Edit    permision for Company User /superadmin -->
+                                    <a ng-click="editlocationForm(rec.id)" title="Edit"
+                                       class="btn btn-primary icon_square"
+                                       ng-class="{'dont-click':allowedit_supplier_location_tab==0}"><i
+                                            class="fa fa-edit"></i></a>
+
+                                    <!--    Delete   permision for Company User /superadmin -->
+                                    <a ng-click="deletelocation(rec.id,$index,location_data)" title="Delete"
+                                       ng-if="allowdelete_supplier_location_tab==1"
+                                       class="btn btn-primary icon_square"><i class="fa fa-times"></i></a></td>
+                            </tr>
+                            <!--  <tr ng-show="columnss.length == 0 && !showLoader">
+                              <td>No Record found agaist this entity! Please add.</td>
+                            </tr>-->
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

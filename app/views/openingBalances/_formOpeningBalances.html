@@ -1,0 +1,1537 @@
+<div ng-controller="GlControllerTREE as table">
+
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+  <!-- {{receipt_gl_form}}=== {{receipt_gl_list}} =={{array_receipt_gl_form}}-->
+  <div ng-if="receipt_gl_list">
+
+    <div class="row"
+         style="margin-bottom: 0 !important;">
+      <div class="col-md-12">
+        <div class="nav nav-tabs"
+             style="padding:8px;">
+          <form class="form-horizontal no-margin"
+                role="form"
+                ng-submit="get_receipt_main_list()"
+                name="addForm"
+                validate-form=""
+                novalidate="">
+            <div class="col-md-3">
+              <div class="search-wrapper">
+                <input type="text"
+                       ng-model="rec.serachkeyword"
+                       placeholder="Search"
+                       class="form-control" />
+                <i class="fa fa-search search-icon"
+                   aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="col-md-2 padl6">
+            </div>
+          </form>
+          <div class="col-md-7">
+            <a id="prompt"
+               ng-click="showAddReceipt()"
+               class="btn btn_add pull-right">Add</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <table class="table table-striped  table-condensed table-bordered narrow_table small_fields"
+             ng-show="recipt_record_main.length > 0">
+        <thead class="fixit">
+          <tr class="bg-col">
+            <th ng-repeat="column in columns_recipt_main"
+                ng-if="column.field != 'id'"> {{column.title}}</th>
+            <th style="width: 10%;text-align:center !important;">Action</th>
+          </tr>
+        </thead>
+        <tbody class="fixit"
+               style=" max-height: 500px;">
+          <tr ng-repeat="recmian in recipt_record_main  track by $index | filter:rec.serachkeyword"
+              ng-if="recipt_record_main.length > 0">
+            <td ng-repeat="column in columns_recipt_main"
+                ng-if="column.field != 'id'"> {{recmian[column.field]}} </td>
+            <td style="width: 10%;text-align:center !important;">
+              <a title="Edit"
+                 class="tooltips_cls btn "
+                 ng-click="showEditReceipt(recmian.id)">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a title="Delete"
+                 class="tooltips_clss btn"
+                 ng-show="rec.status.id == 1"
+                 ng-click="showDeletReceipt_main(recmian.id, $index, recipt_record_main, recmian.discount_value)">
+                <i class="fa fa-times"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div ng-show="!recipt_record_main.length > 0"
+           class="no-record">
+      </div>
+    </div>
+  </div>
+  <div class="row"
+       ng-if="receipt_gl_form">
+    <div class="col-md-12 "
+         ng-if="array_receipt_gl_form.module_type!=4">
+      <div class="nav nav-tabs"
+           style="padding-bottom: 12px !important;padding-top: 11px !important;">
+        <form class="form-horizontal no-margin"
+              autocomplete="off"
+              role="form"
+              validate-form=""
+              novalidate=""
+              ng-submit="addReceipt_main()">
+          <div class="col-md-3">
+            <label class="control-label col-md-4">Code
+              <span class="required">*</span>
+            </label>
+            <div class="col-md-8">
+              <input class="form-control"
+                     required
+                     type="text"
+                     ng-readonly="product_type"
+                     ng-model="array_receipt_gl_form.acc_code" />
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label class="  control-label col-md-4"> Name <span class="required">*</span></label>
+            <div class="col-md-8">
+              <input ng-readonly="readonly_journal || main_title == 'Edit'"
+                     type="text"
+                     required
+                     ng-model="array_receipt_gl_form.acc_description"
+                     class="form-control input_text">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="pull-right"
+                 ng-if="main_title != 'Edit'">
+              <button ng-if="array_receipt_gl_form.type == 1"
+                      class="btn "
+                      ng-class="{'btn-edit':main_title == 'Edit','btn_add':main_title == 'Add'}"
+                      type="submit">
+                <i class="fa fa-check fa_display"></i> {{main_title}} </button>
+
+              <button class="btn btn-cancel"
+                      type="button"
+                      ng-click="get_receipt_main_list(1)">
+                <i class="fa fa-undo fa_display"></i> Cancel </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div ng-show="array_receipt_gl_form.id > 0 || array_receipt_gl_form.module_type==4">
+
+      <div class="col-md-12"
+           ng-if="array_receipt_gl_form.module_type!=4">
+        <div class="panel panel-default"
+             style="    padding-bottom: 0;">
+          <div class="panel-heading"
+               style="display:none;">
+            <h3 class="panel-title">Journal Details </h3>
+          </div>
+          <div class="panel-body">
+            <table class="table table-striped table-bordered narrow_table small_fields">
+              <thead>
+                <tr>
+                  <th style="width: 9%;">Posting Date</th>
+                  <th style="width: 8%;">Transaction Type</th>
+                  <th style="width: 7%;">Item No.</th>
+                  <th style="width: 7%;">Item Description</th>
+                  <th style="width: 10%;">Warehouse</th>
+                  <th style="width: 10%;">Location</th>
+                  <th style="width: 7%;"> Qty. </th>
+                  <th style="width: 7%;">U.O.M</th>
+                  <th style="width: 7%;">Cost Per Unit</th>
+                  <th style="width: 7%;">Amount </th>
+                  <th> Account Type </th>
+                  <th> Account Name </th>
+                  <th class="text-center">
+                    <div ng-if="array_receipt_gl_form.type == 1">
+                      <a ng-click="AddReceiptRow(rec_data, $index)"
+                         style="    margin-left: -8px;"
+                         class="ib add-dis-btn">
+                        <i class="material-icons">&#xE147;</i>
+                      </a>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-ng-repeat="rec_recpt in receipt_sub_list track by $index">
+                  <td title="{{rec_recpt.posting_date}}">
+                    <!-- id="test_{{$index}}"  -->
+                    <input jqdatepicker
+                           class="2date-picker form-control form-control"
+                           ng-model="rec_recpt.posting_date"
+                           required
+                           ng-click="load_date_picker('load'); "
+                           style="background: white;"
+                           ng-chnage="test_date_duplicate(rec_recpt, $index); AddReceiptRow(rec_recpt, $index)"
+                           readonly="readonly"
+                           ng-disabled="array_receipt_gl_form.type == 2">
+                    <!--  <span class="fa fa-calendar    form-control-feedback"></span>-->
+                  </td>
+                  <td>
+                    <select ng-model="rec_recpt.module_type"
+                            ng-options="opt as opt.name for opt in sale_type_array_item"
+                            class="form-control"
+                            ng-change="OnChangeItemTrasactionType(rec_recpt);"
+                            required
+                            ng-class="{'   ':receipt_type != 0, 'dont-click':array_receipt_gl_form.type == 2}">
+                      <option style="display:block"
+                              value=""></option>
+                    </select>
+                  </td>
+                  <td>
+                    <div class="input-symbol"
+                         ng-click="getItemList(rec_recpt, $index, 0)">
+                      <input type="text"
+                             style="    background: white !important;"
+                             ng-model="rec_recpt.item_code"
+                             readonly
+                             required
+                             class="  form-control"
+                             ng-class="{'dont-click':array_receipt_gl_form.type == 2}" />
+                      <span><i class="fa fa-external-link"></i></span>
+                    </div>
+                  </td>
+                  <td>
+                    <input type="text"
+                           ng-model="rec_recpt.item_name"
+                           class="form-control input_text">
+                  </td>
+
+                  <td>
+                    <select ng-model="rec_recpt.warehouse"
+                            ng-options="opt as opt.name+' ('+opt.available_quantity+')' for opt in rec_recpt.arr_warehouse"
+                            ng-change="OnChangeWarehouse(rec_recpt, $index)"
+                            class="form-control"
+                            required
+                            ng-class="{'   ':receipt_type != 0, 'dont-click':array_receipt_gl_form.type == 2}">
+                      <option style="display:block"
+                              value=""></option>
+                    </select>
+                  </td>
+                  <td>
+                    <select ng-model="rec_recpt.location"
+                            ng-options="opt as opt.Storage_location for opt in rec_recpt.warehouse.arr_location"
+                            class="form-control"
+                            required
+                            ng-class="{'   ':receipt_type != 0, 'dont-click':array_receipt_gl_form.type == 2}">
+                      <option style="display:block"
+                              value=""></option>
+                    </select>
+                  </td>
+                  <td>
+                    <input type="number"
+                           ng-model="rec_recpt.qty"
+                           class="form-control input_text"
+                           ng-blur="CalculateAmount(rec_recpt, $index)">
+                  </td>
+
+                  <td>
+                    <select ng-model="rec_recpt.uom"
+                            ng-options="opt as opt.name  for opt in rec_recpt.arr_units "
+                            class="form-control">
+                      <option style="display:block"
+                              value=""></option>
+                    </select>
+                  </td>
+
+                  <td>
+                    <input type="number"
+                           ng-model="rec_recpt.cost_per_unit"
+                           class=" form-control input_text"
+                           ng-change="CalculateAmount(rec_recpt, $index)">
+                  </td>
+                  <td>
+                    <input type="text"
+                           ng-readonly="1"
+                           ng-model="rec_recpt.amount"
+                           class=" form-control input_text">
+                  </td>
+                  <td>
+                    <!-- ng-class="{'dont-click  ':rec_recpt.module_type.value == 1}" -->
+                    <div class="input-symbol"
+                         ng-click="getGLRecipt(rec_recpt, $index, 2)">
+                      <input type="text"
+                             ng-model="rec_recpt.balancing_account_code"
+                             required
+                             readonly
+                             class="   form-control input_text"
+                             ng-class="{'dont-click':(rec_recpt.allocated_amount > 0 && rec_recpt.balancing_account_code.length > 0) || array_receipt_gl_form.type == 2}"
+                             style="background: white !important;" />
+                      <input type="hidden"
+                             ng-model="rec_recpt.balance_id" />
+                      <span><i class="fa fa-external-link"></i></span>
+
+                    </div>
+
+                  </td>
+                  <td>
+                    <input type="text"
+                           ng-model="rec_recpt.balancing_account_name"
+                           required
+                           class="   form-control input_text"
+                           style="background: white !important;" />
+                  </td>
+                  <!-- <td style="text-align:center;"> 
+                      <a title="Open" ng-hide="rec_recpt.allocated == 0" ng-click="get_invoice_list(rec_recpt, $index, parent_id)" class="tooltips_cls btn " ng-class="{'disable-el':receipt_type == 0}"> 
+                        <i style="  font-size: 20px;	position: relative;	top: 3px;" class="material-icons">&#xE89D;</i> </a>
+                    </td> -->
+                  <td>
+                    <a ng-if="array_receipt_gl_form.type == 1"
+                       ng-click="showDeletReceiptItem(rec_recpt.id, $index, receipt_sub_list)"
+                       title="Delete"
+                       class="btn">
+                      <i class="fa fa-times"></i>
+                    </a>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+            <div class="col-md-12 no-padding"
+                 ng-if="array_receipt_gl_form.type == 1"
+                 style="    margin-top: 15px;">
+              <div class="pull-right "
+                   ng-show="receipt_sub_list.length > 0">
+                <button class="btn btn-default "
+                        type="submit"
+                        ng-class="{'dont-click  ':(netBalanceRecipt() > 0 || enable_date_check) }"
+                        ng-show="backend_data == 1"
+                        ng-click="recptconvertposting_item()"
+                        style="margin-left:5px;">
+                  <i class="fa fa-check fa_display"></i> Post</button>
+                <button class="btn btn-cancel"
+                        type="button"
+                        ng-click="get_receipt_main_list(1)">
+                  <i class="fa fa-undo fa_display"></i> Cancel </button>
+                <button class="btn btn-submit cur_block  "
+                        ng-click="add_gl_recipt_sublist_item()"
+                        type="button"> Save </button>
+                <!--<button type="button" class="btn btn-default" ng-click="clear_search()" > Clear </button>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opening Balance - Bank Area Start -->
+      <div class="col-md-12"
+           ng-if="array_receipt_gl_form.module_type==4 && array_receipt_gl_form.sub_module_type==1">
+        <div class="panel panel-default"
+             style="padding-bottom: 0;    margin-top: 10px;">
+          <div class="panel-body">
+            <div style="margin-bottom: 13px;">
+              <div class="row"
+                   style="margin-bottom: 7px !important;">
+                <div class="col-md-4">
+                  <button type="button"
+                          class="btn btn-default2 no-margin"
+                          style="color:#2196F3"
+                          ng-click="clearFilterAndSelectSupplier()"
+                          ng-disabled="check_opbalnc_readonly">Select Supplier</button>
+                  <!-- ng-disabled="postStatus>0" -->
+                  <button type="button"
+                          class="btn btn-default2"
+                          style="color:#2196F3"
+                          ng-click="clearFilterAndSelectCustomers();"
+                          ng-disabled="check_opbalnc_readonly">Select Customer</button>
+                  <!-- ng-disabled="postStatus>0" -->
+                </div>
+              </div>
+              <table class="table table-striped table-bordered narrow_table small_fields">
+                <thead class="fixit fixitthtd">
+                  <tr>
+                    <th style="width:10%">Posting Date</th>
+                    <th style="width:5%">Type</th>
+                    <th style="width:10%">Doc. Type</th>
+                    <th style="width:5%">Doc. No.</th>
+                    <th style="width:5%">External Ref. No.</th>
+                    <th style="width:5%">No.</th>
+                    <th style="width:10%">Description</th>
+                    <th style="width:10%">Bank G/L No.</th>
+                    <th style="width:5%">Currency</th>
+                    <th style="width:10%;text-align: right">Debit</th>
+                    <th style="width:10%;text-align: right">Credit</th>
+                    <th style="width:5%;text-align: right">Exchange Rate</th>
+                    <!-- <th style="width:5%"  ng-if="!(postStatus>0)">Amount in LCY</th> -->
+                    <th style="width:10%;text-align: right">Amount in LCY</th><!--  ng-if="postStatus>0" -->
+                    <th class="text-center"
+                        style="width:5%">Action</th><!-- ng-if="!(postStatus>0)" -->
+                  </tr>
+                </thead>
+                <tbody class="fixit fixitthtd">
+                  <tr ng-repeat="(key,rec) in bankRec track by $index">
+                    <td style="width:10%"
+                        title="{{rec.posting_date}}">
+                      <input jqdatepicker
+                             class="form-control form-control"
+                             required
+                             ng-class="{'whitebg':!(rec.postStatus==1) && !check_opbalnc_readonly,'dont-click disable':check_opbalnc_readonly || rec.postStatus==1}"
+                             readonly
+                             ng-model="rec.posting_date"
+                             ng-change="changePostingDateBank(rec)"
+                             ng-click="load_date_picker('load'); ">
+                    </td>
+                    <td style="width:5%">
+                      <span ng-if="rec.moduleType==1"
+                            title="Customer">Customer</span>
+                      <span ng-if="rec.moduleType==2"
+                            title="Supplier">Supplier</span>
+                    </td>
+                    <td style="width:10%">
+                      <select class="form-control"
+                              ng-disabled="check_opbalnc_readonly || rec.postStatus==1"
+                              ng-change="changeDocTypeBank(rec.docTypes.id,rec)"
+                              ng-model="rec.docTypes"
+                              ng-options="opt as opt.name for opt in rec.docType">
+                        <option style="display:none"
+                                value=""></option>
+                      </select>
+                    </td>
+                    <td style="width:5%"
+                        title="{{rec.invoiceNo}}">
+                      <input type="text"
+                             class=" form-control"
+                             ng-model="rec.invoiceNo"
+                             ng-readonly="check_opbalnc_readonly || rec.postStatus==1">
+                    </td>
+                    <td style="width:5%"
+                        title="{{rec.extRefNo}}">
+                      <input type="text"
+                             class=" form-control"
+                             ng-model="rec.extRefNo"
+                             ng-readonly="check_opbalnc_readonly || rec.postStatus==1">
+                    </td>
+                    <td style="width:5%"
+                        title="{{rec.moduleNo}}">{{rec.moduleNo}}</td>
+                    <td style="width:10%"
+                        title="{{rec.description}}">
+                      <input type="text"
+                             class="form-control input_text"
+                             ng-model="rec.description"
+                             ng-readonly="check_opbalnc_readonly || rec.postStatus==1 || show_recieve_list">
+                    </td>
+                    <td style="width:10%"
+                        title="{{rec.bankNo}}">
+                      <div class="input-symbol"
+                           ng-click="getOpeningBalanceGlList(rec, $index,2)"
+                           ng-class="{'dont-click':check_opbalnc_readonly || rec.postStatus==1 || show_recieve_list}">
+                        <input type="text"
+                               readonly
+                               class="form-control"
+                               ng-model="rec.bankNo"
+                               ng-class="{'dont-click disable':check_opbalnc_readonly || rec.postStatus==1 || show_recieve_list,'whitebg':!check_opbalnc_readonly && !(rec.postStatus==1)}" />
+                        <span><i class="fa fa-external-link"></i></span>
+                      </div>
+                    </td>
+                    <td style="width:5%">
+                      <select ng-model="rec.currencyID"
+                              ng-change="convertAmountinLCYBank(rec)"
+                              disabled
+                              ng-options="opt as opt.code for opt in newCurrencyList"
+                              class="form-control">
+                        <option style="display:block"
+                                value=""></option>
+                      </select>
+                      <!-- <select class="form-control"
+                            disabled
+                            ng-change="convertAmountinLCYBank(rec)"
+                            ng-model="rec.currency_id">
+                        <option ng-repeat="opt in arr_currency"
+                                ng-selected="{{opt.id == rec.currency_id}}"
+                                value="{{opt.id}}"> {{opt.code}} </option>
+                    </select> -->
+                    </td>
+                    <td style="width:10%"
+                        title="{{rec.debitAmount}}">
+                      <input type="number"
+                             step="any"
+                             style="color:#000000"
+                             class="form-control input_text text-right"
+                             ng-readonly="check_opbalnc_readonly || rec.postStatus==1 || rec.debitAmountchk==0"
+                             ng-change="changeDebitCreditAmountBank(rec)"
+                             ng-model="rec.debitAmount">
+                    </td>
+                    <td style="width:10%"
+                        title="{{rec.creditAmount}}">
+                      <input type="number"
+                             step="any"
+                             style="color:#000000"
+                             class="form-control input_text text-right"
+                             ng-readonly="check_opbalnc_readonly || rec.postStatus==1  || rec.creditAmountchk==0"
+                             ng-change="changeDebitCreditAmountBank(rec)"
+                             ng-model="rec.creditAmount">
+                    </td>
+                    <td style="width:5%"
+                        title="{{rec.convRate}}">
+                      <input type="number"
+                             step="any"
+                             style="color:#000000"
+                             class="form-control input_text text-right"
+                             ng-readonly="check_opbalnc_readonly || rec.postStatus==1 || rec.currencyID.id == defaultCurrency"
+                             ng-change="changeConvRateBank(rec)"
+                             ng-model="rec.convRate">
+                    </td>
+                    <!-- <td style="width:5%" title="{{rec.calcAmount}}"
+                       ng-if="!(postStatus>0)"> 
+                      <span ng-if="rec.creditAmount>0">-</span>{{rec.calcAmount | number:decimal_range}} 
+                    </td> -->
+
+                    <td style="width:15%;text-align: right">
+                       <span ng-if="rec.creditAmount>0" title="{{rec.calcAmount*(-1) | currency:''}}">
+                         {{rec.calcAmount*(-1) | currency : "" : decimal_range}} 
+                        </span>
+                       <span ng-if="!(rec.creditAmount>0)" title="{{rec.calcAmount | currency:''}}">{{rec.calcAmount | currency : "" : decimal_range}} </span>
+                    </td>
+
+                    <!-- <td style="width:15%"
+                        title="{{rec.calcAmount | currency:''}}"
+                        class="text-right">
+                      <span ng-if="rec.creditAmount>0">-</span>{{rec.calcAmount | currency:""}}
+                    </td> -->
+                    <td style="width:10%"
+                        class="text-center">
+                      <a class="btn"
+                         title="Delete"
+                         ng-if="!(rec.postStatus==1)"
+                         ng-class="{'dont-click':check_opbalnc_readonly}"
+                         ng-click="deleteOpeningBalncBankRec(rec.updateID, $index, bankRec)">
+                        <i class="fa fa-times"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td class="text-right"><b>Total</b></td>
+                    <td class="text-right"><b>{{netTotalBank() | currency:''}}</b></td>
+                    <!-- <td>{{netTotalBankDebit() | number:decimal_range}}</td>                    
+                    <td>{{netTotalBankCredit() | number:decimal_range}}</td> -->
+                    <td>&nbsp;</td><!--  ng-if="!(postStatus>0)" -->
+                  </tr>
+                </tbody>
+              </table>
+              <div class="col-md-12 no-padding"
+                   style="margin-top: 15px;">
+                <!-- ng-if="array_receipt_gl_form.type == 1" ng-show="backend_data == 1"  -->
+                <div class="pull-right">
+                  <!--  ng-show="items.length > 0" -->
+                  <button class="btn btn-default2"
+                          type="submit"
+                          style="margin-left:5px;"
+                          ng-click="postOpeningBalance()"
+                          ng-if="check_opbalnc_readonly && bankRec.length>0 && showPostBtn">
+                    <!--  ng-class="{'dont-click  ':(netBalanceRecipt() > 0 || enable_date_check) }" -->
+                    <!-- ng-disabled="postStatus>0" -->
+                    <i class="fa fa-check fa_display"></i> Post </button>
+                  <button class="btn btn-submit2 cur_block"
+                          type="button"
+                          ng-click="addOpeningBalanceBank()"
+                          ng-if="!check_opbalnc_readonly"> Save </button>
+                  <!-- ng-disabled="postStatus>0" -->
+                  <button class="btn btn-edit cur_block"
+                          type="button"
+                          ng-click="gotoEditopBalnc()"
+                          ng-if="check_opbalnc_readonly"> Edit </button>
+                  <!-- ng-disabled="postStatus>0" -->
+                  <button class="btn btn-cancel"
+                          ui-sref="app.setup"
+                          type="button"
+                          ng-click="gotoFinanceTab()">
+                    <i class="fa fa-undo fa_display"></i> Cancel </button> <!--  ng-click="get_receipt_main_list(1)" -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Opening Balance - Bank Area End -->
+
+      <!-- Opening Balance - Stock Area Start -->
+      <div class="col-md-12"
+           ng-if="array_receipt_gl_form.module_type==4 && array_receipt_gl_form.sub_module_type==2">
+        <div class="panel panel-default"
+             style="padding-bottom: 0;margin-top: 10px;">
+          <!-- <div class="panel-heading">
+            <h3 class="panel-title">Opening Balance for Stock </h3>
+          </div> -->
+          <div class="panel-body">
+            <div style="margin-bottom: 13px;">
+              <div class="row"
+                   style="margin-bottom: 7px !important;">
+                <div class="col-md-4">
+                  <button type="button"
+                          class="btn btn-default2 no-margin"
+                          style="color:#2196F3"
+                          ng-click="clearAndSearchItems()"
+                          ng-disabled="check_opbalnc_readonly">Select Item</button><!-- 0, 1,rec -->
+                  <!-- ng-disabled="postStatus>0" -->
+                </div>
+                <!--  ng-disabled="check_opbalnc_readonly || !(rec.sell_to_cust_no.length>0)" -->
+              </div>
+              <table class="table table-striped table-bordered narrow_table small_fields">
+                <thead class="fixit fixitthtd">
+                  <tr>
+                    <th style="width:5%">Posting Date</th>
+                    <th style="width:5%">Item No.</th>
+                    <th style="width:10%">Description</th>
+                    <th style="width:5%">U.O.M</th>
+                    <th style="width:10%">Production Date</th>
+                    <th style="width:10%">Date Received</th>
+                    <th style="width:10%">Use by Date</th>
+                    <th style="width:5%">Consgt. No.</th>
+                    <th style="width:5%">Ref. No.</th>
+                    <th style="width:5%">Batch No.</th>
+                    <th style="width:5%">Warehouse</th>
+                    <th style="width:10%">Location</th>
+                    <th style="width:5%;text-align: right;">Qty.</th>
+                    <th style="width:5%;text-align: right">Unit Price</th>
+                    <!-- <th style="width:5%" ng-if="!(postStatus>0)">Amount</th> -->
+                    <th style="width:10%;text-align: right">Amount</th><!--  ng-if="postStatus>0" -->
+                    <!-- <th style="width:10%">Price IN LCY</th> -->
+                    <th class="text-center"
+                        style="width:5%">Action</th><!-- ng-if="!(postStatus>0)" -->
+                  </tr>
+                </thead>
+                <tbody class="fixit fixitthtd">
+                  <tr ng-repeat="(key,item) in items">
+                    <!-- data-ng-repeat="rec_recpt in receipt_sub_list track by $index" -->
+                    <td style="width:5%"
+                        title="{{item.posting_date}}">
+                      <input jqdatepicker
+                             class="form-control form-control"
+                             required
+                             ng-class="{'whitebg':!(item.postStatus==1) && !check_opbalnc_readonly,'dont-click disable':check_opbalnc_readonly || item.postStatus==1}"
+                             readonly
+                             ng-model="item.posting_date"
+                             ng-click="load_date_picker('load'); "
+                             ng-change="changePostingDateStock(item)">
+                    </td>
+                    <td style="width:5%"
+                        title="{{item.product_code}}">{{item.product_code}}</td>
+                    <td style="width:10%"
+                        title="{{item.product_name}}">
+                      <input type="text"
+                             class="form-control input_text"
+                             ng-model="item.product_name"
+                             ng-readonly="check_opbalnc_readonly || item.postStatus==1 || show_recieve_list">
+                    </td>
+                    <td style="width:5%"
+                        title="{{item.uom}}">{{item.uom}}</td><!--  {{item.uomID}} -->
+                    <td style="width:10%"
+                        title="{{item.prod_date}}">
+                      <input jqdatepicker
+                             class="form-control form-control"
+                             required
+                             ng-class="{'whitebg':!(item.postStatus==1) && !check_opbalnc_readonly,'dont-click disable':check_opbalnc_readonly || item.postStatus==1}"
+                             readonly
+                             ng-model="item.prod_date"
+                             ng-click="load_date_picker('load'); "
+                             ng-change="changePostingDateStock(item)">
+                    </td>
+                    <td style="width:10%"
+                        title="{{tem.date_received}}">
+                      <input jqdatepicker
+                             class="form-control form-control"
+                             required
+                             ng-class="{'whitebg':!(item.postStatus==1) && !check_opbalnc_readonly,'dont-click disable':check_opbalnc_readonly || item.postStatus==1}"
+                             readonly
+                             ng-model="item.date_received"
+                             ng-click="load_date_picker('load'); "
+                             ng-change="changePostingDateStock(item)"
+                             s>
+                    </td>
+                    <td style="width:10%"
+                        title="{{item.use_by_date}}">
+                      <input jqdatepicker
+                             class="form-control form-control"
+                             required
+                             ng-class="{'whitebg':!(item.postStatus==1) && !check_opbalnc_readonly,'dont-click disable':check_opbalnc_readonly || item.postStatus==1}"
+                             readonly
+                             ng-model="item.use_by_date"
+                             ng-change="changePostingDateStock(item)"
+                             ng-click="load_date_picker('load'); ">
+                    </td>
+                    <td style="width:5%"
+                        title="{{item.comm_book_in_no}}">
+                      <input type="text"
+                             class=" form-control"
+                             ng-model="item.comm_book_in_no"
+                             ng-readonly="check_opbalnc_readonly || item.postStatus==1">
+                    </td>
+                    <td style="width:5%"
+                        title="{{item.container_no}}">
+                      <input type="text"
+                             class=" form-control"
+                             ng-model="item.container_no"
+                             ng-readonly="check_opbalnc_readonly || item.postStatus==1">
+                    </td>
+                    <td style="width:5%"
+                        title="{{item.batch_no}}">
+                      <input type="text"
+                             class=" form-control"
+                             ng-model="item.batch_no"
+                             ng-readonly="check_opbalnc_readonly || item.postStatus==1">
+                    </td>
+                    <!-- <td style="width:10%">
+                      <select class="form-control"
+                          ng-model="item.units" 
+                          ng-change="!check_opbalnc_readonly && check_min_max(item)" 
+                          ng-options="opt as opt.name+'('+opt.quantity+')' for opt in item.arr_units"
+                          ng-disabled="show_recieve_list  || check_opbalnc_readonly" >
+                          <option style="display:none" value=""></option>
+                      </select>
+                    </td> -->
+                    <td style="width:5%">
+                      <select class="form-control"
+                              ng-attr-title="{{item.warehouses.name}}"
+                              ng-disabled="(item.remainig_qty < item.qty) || check_opbalnc_readonly || item.postStatus==1 || show_recieve_list "
+                              ng-model="item.warehouses"
+                              ng-change="getWarehouseLoc(item.warehouses.id,item)"
+                              ng-options="opt as opt.name +' ('+opt.available_quantity+')' for opt in item.arr_prod_warehouse">
+                        <option style="display:none"
+                                value=""></option>
+                      </select>
+                    </td>
+                    <td style="width:10%">
+                      <select class="form-control"
+                              ng-attr-title="{{item.storageLoc.Storage_location}}"
+                              ng-disabled="(item.remainig_qty < item.qty) || check_opbalnc_readonly || item.stock_check == 0 || item.postStatus==1 || show_recieve_list "
+                              ng-model="item.storageLoc"
+                              ng-change="updateWarehouseLoc(item.storageLoc,item)"
+                              ng-options="opt as opt.Storage_location for opt in item.arrStorageLoc">
+                        <option style="display:none"
+                                value=""></option>
+                      </select>
+                    </td>
+                    <td title="{{item.qty}}"
+                        style="width:5%">
+                      <input class="form-control input_text text-right"
+                             type="number"
+                             style="color:#000000"
+                             ng-readonly=" item.remainig_qty == 0 || check_opbalnc_readonly || item.postStatus==1 || (show_recieve_list && item.item_type != 1)"
+                             ng-change=" !check_opbalnc_readonly && check_min_max(item)"
+                             ng-model="item.qty"
+                             ng-if="!check_opbalnc_readonly"
+                             min="0"
+                             step="any"
+                             data-parsley-trigger="keyup"
+                             data-parsley-minlength-message="Invalid Value"
+                             data-parsley-type-message="Invalid Value"
+                             data-parsley-error-message="Invalid Value"
+                             data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+
+                      <span class="readonlydiv form-control text-right"
+                            ng-if="check_opbalnc_readonly">{{item.qty | numberNoDecimalsIfZeroFilter:2:''}}</span>
+                    </td>
+                    <td style="width:5%"
+                        title="{{item.standard_price}}">
+                      <input type="number"
+                             step="any"
+                             style="color:#000000"
+                             ng-if="!check_opbalnc_readonly "
+                             class="form-control input_text text-right"
+                             ng-readonly="check_opbalnc_readonly || item.postStatus==1"
+                             ng-model="item.standard_price"
+                             ng-blur="checkNegativeEntry(item)">
+                      <span class="readonlydiv form-control text-right"
+                            ng-if="check_opbalnc_readonly">{{item.standard_price | unitPriceFilter}}</span>
+                    </td>
+                    <td style="width:5%"
+                        title="{{item.standard_price * item.qty | currency:''}}"
+                        class="text-right">
+                      {{item.calcAmount=item.standard_price * item.qty | currency:""}}</td><!-- ( | unitPriceFilter) -->
+
+                    <!-- <td style="width:10%">{{item.calcAmount}}</td> -->
+                    <td style="width:5%">
+                      <!-- ng-if="!(postStatus>0)" -->
+                      <a class="btn"
+                         title="Delete"
+                         ng-if="!(item.postStatus==1)"
+                         ng-class="{'dont-click':check_opbalnc_readonly}"
+                         ng-click="deleteOpeningBalncStockItem(item.updateID, $index, items)">
+                        <i class="fa fa-times"></i>
+                      </a><!--  -->
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td colspan="3"><b>Total Amount for Debit</b></td>
+                    <td class="text-right"
+                        style="padding-right: 0;"><b>{{netTotalStock() | currency:"" }}</b></td>
+                    <td style="    width: 5% !important;">&nbsp;</td><!-- ng-if="!(postStatus>0)" -->
+                  </tr>
+                </tbody>
+              </table>
+              <div class="col-md-12 no-padding"
+                   style="margin-top: 15px;">
+                <!-- ng-if="array_receipt_gl_form.type == 1" ng-show="backend_data == 1"  -->
+                <div class="pull-right">
+                  <!--  ng-show="items.length > 0" -->
+                  <button class="btn btn-default2"
+                          type="submit"
+                          style="margin-left:5px;"
+                          ng-click="postOpeningBalance()"
+                          ng-if="check_opbalnc_readonly && items.length>0 && showPostBtn">
+                    <!--  ng-class="{'dont-click  ':(netBalanceRecipt() > 0 || enable_date_check) }" -->
+                    <!-- ng-disabled="postStatus>0"  -->
+                    <i class="fa fa-check fa_display"></i> Post </button>
+                  <button class="btn btn-submit2 cur_block"
+                          type="button"
+                          ng-click="addOpeningBalanceStock()"
+                          ng-if="!check_opbalnc_readonly"> Save </button>
+                  <!-- ng-disabled="postStatus>0" -->
+                  <button class="btn btn-edit cur_block"
+                          type="button"
+                          ng-click="gotoEditopBalnc()"
+                          ng-if="check_opbalnc_readonly"> Edit </button>
+                  <!-- ng-disabled="postStatus>0" -->
+                  <button class="btn btn-cancel"
+                          ui-sref="app.setup"
+                          type="button"
+                          ng-click="gotoFinanceTab()">
+                    <i class="fa fa-undo fa_display"></i> Cancel </button> <!--  ng-click="get_receipt_main_list(1)" -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Opening Balance - Stock Area End -->
+
+      <!-- Opening Balance - Customer Area Start -->
+      <div class="col-md-12"
+           ng-if="array_receipt_gl_form.module_type==4 && array_receipt_gl_form.sub_module_type==3">
+        <div class="panel panel-default"
+             style="padding-bottom: 0;margin-top: 10px">
+          <div class="panel-body">
+            <div style="margin-bottom: 13px;">
+              <div class="row"
+                   style="margin-bottom: 7px !important;">
+                <div class="col-md-4">
+                  <button type="button"
+                          class="btn btn-default2 no-margin"
+                          style="color:#2196F3"
+                          ng-click="clearFilterAndSelectCustomers()"
+                          ng-disabled="check_opbalnc_readonly">Select Customer
+                    <!-- ng-disabled="postStatus>0" --></button>
+                </div>
+              </div>
+              <table class="table table-striped table-bordered narrow_table small_fields">
+                <thead class="fixit fixitthtd">
+                  <tr>
+                    <th style="width:10%">Posting Date</th>
+                    <th style="width:10%">Doc. Type</th>
+                    <th style="width:10%">Doc. No.</th>
+                    <th style="width:10%">External Ref. No.</th>
+                    <th style="width:5%">No.</th>
+                    <th style="width:15%">Description</th>
+                    <th style="width:5%">Currency</th>
+                    <th style="width:10%;text-align: right">Debit</th>
+                    <th style="width:10%;text-align: right">Credit</th>
+                    <th style="width:5%;text-align: right">Exchange Rate</th>
+                    <th style="width:5%;text-align: right">Amount in LCY
+                      <!-- ng-if="!(postStatus>0)" -->
+                    </th>
+                    <th class="text-center"
+                        style="width:5%">Action
+                      <!-- ng-if="!(postStatus>0)" -->
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="fixit fixitthtd">
+                  <tr ng-repeat="(key,rec) in customers  track by $index">
+                    <td style="width:10%"
+                        title="{{rec.posting_date}}">
+                      <input jqdatepicker
+                             class="form-control form-control"
+                             required
+                             ng-class="{'whitebg':!(rec.postStatus==1) && !check_opbalnc_readonly,'dont-click disable':check_opbalnc_readonly || rec.postStatus==1}"
+                             readonly
+                             ng-model="rec.posting_date"
+                             ng-change="changePostingDate(rec)"
+                             ng-click="load_date_picker('load'); ">
+                    </td>
+                    <td style="width:10%">
+                      <select class="form-control"
+                              ng-disabled="check_opbalnc_readonly || rec.postStatus==1"
+                              ng-change="changeDocType(rec.docTypes.id,rec)"
+                              ng-model="rec.docTypes"
+                              ng-options="opt as opt.name for opt in rec.docType">
+                        <option style="display:none"
+                                value=""></option>
+                      </select>
+                    </td>
+                    <td style="width:10%"
+                        title="{{rec.invoiceNo}}">
+                      <input type="text"
+                             class=" form-control"
+                             ng-model="rec.invoiceNo"
+                             ng-readonly="check_opbalnc_readonly || rec.postStatus==1">
+                    </td>
+                    <td style="width:10%"
+                        title="{{rec.extRefNo}}">
+                      <input type="text"
+                             class=" form-control"
+                             ng-model="rec.extRefNo"
+                             ng-readonly="check_opbalnc_readonly || rec.postStatus==1">
+                    </td>
+                    <td style="width:5%"
+                        title="{{rec.moduleNo}}">{{rec.moduleNo}}</td>
+                    <td style="width:15%"
+                        title="{{rec.description}}">
+                      <input type="text"
+                             class="form-control input_text"
+                             ng-model="rec.description"
+                             ng-readonly="check_opbalnc_readonly || show_recieve_list || rec.postStatus==1">
+                    </td>
+                    <td style="width:5%">
+                      <select ng-model="rec.currencyID"
+                              ng-change="convertAmountinLCY(rec)"
+                              disabled
+                              ng-options="opt as opt.code  for opt in newCurrencyList"
+                              class="form-control">
+                        <option style="display:block"
+                                value=""></option>
+                      </select>
+                    </td>
+                    <td style="width:10%"
+                        title="{{rec.debitAmount}}">
+                      <input type="number"
+                             step="any"
+                             style="color:#000000"
+                             class="form-control input_text text-right"
+                             ng-readonly="check_opbalnc_readonly || rec.docTypes.id==2 || rec.postStatus==1"
+                             ng-change="changeDebitCreditAmount(rec)"
+                             ng-model="rec.debitAmount">
+                    </td>
+                    <td style="width:10%"
+                        title="{{rec.creditAmount}}">
+                      <input type="number"
+                             step="any"
+                             style="color:#000000"
+                             class="form-control input_text text-right"
+                             ng-readonly="check_opbalnc_readonly || rec.docTypes.id==1 || rec.postStatus==1"
+                             ng-change="changeDebitCreditAmount(rec)"
+                             ng-model="rec.creditAmount">
+                    </td>
+                    <td style="width:5%"
+                        title="{{rec.convRate}}">
+                      <input type="number"
+                             step="any"
+                             style="color:#000000"
+                             class="form-control input_text text-right"
+                             ng-readonly="check_opbalnc_readonly || rec.currencyID.id == defaultCurrency || rec.postStatus==1"
+                             ng-change="changeConvRate(rec)"
+                             ng-model="rec.convRate">
+                    </td>
+                    <!-- <td style="width:5%" title="{{rec.calcAmount}}" ng-if="!(postStatus>0)"> <span ng-if="rec.creditAmount>0">-</span>{{rec.calcAmount | number:decimal_range}} </td> -->
+                    <!-- <td style="width:15%;"
+                        title="{{rec.calcAmount  | currency:''}}"
+                        class="text-right">
+                      <span ng-if="rec.creditAmount>0">-</span>{{rec.calcAmount | currency:""}} </td> -->
+
+                    <td style="width:15%;text-align: right">
+                       <span ng-if="rec.creditAmount>0" title="{{rec.calcAmount*(-1) | currency:''}}">
+                         {{rec.calcAmount*(-1) | currency : "" : decimal_range}} 
+                        </span>
+                       <span ng-if="!(rec.creditAmount>0)" title="{{rec.calcAmount | currency:''}}">{{rec.calcAmount | currency : "" : decimal_range}} </span>
+                    </td>
+
+                    <td style="width:10%"
+                        class="text-center">
+                      <!-- ng-if="!(postStatus>0)" -->
+                      <!--        -->
+                      <a class="btn"
+                         title="Delete"
+                         ng-if="!(rec.postStatus==1)"
+                         ng-class="{'dont-click':check_opbalnc_readonly || rec.postStatus==1}"
+                         ng-click="deleteOpeningBalncCustomerRec(rec.updateID, $index, customers)">
+                        <i class="fa fa-times"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td class="text-right"><b>Total:</b></td>
+                    <td class="text-right"><b>{{netTotalCustomers() | number:decimal_range}}</b></td>
+                    <!-- <td>{{netTotalCustomersDebit() | number:decimal_range}}</td>
+                    <td>{{netTotalCustomersCredit() | number:decimal_range}}</td> -->
+                    <td>&nbsp;</td><!-- ng-if="!(postStatus>0)" -->
+
+                  </tr>
+                </tbody>
+              </table>
+              <div class="col-md-12 no-padding"
+                   style="margin-top: 15px;">
+                <div class="pull-right">
+                  <button class="btn btn-default2"
+                          type="submit"
+                          style="margin-left:5px;"
+                          ng-click="postOpeningBalance()"
+                          ng-if="check_opbalnc_readonly  && customers.length>0 && showPostBtn">
+                    <!-- ng-disabled="postStatus>0"  -->
+                    <i class="fa fa-check fa_display"></i> Post </button>
+                  <button class="btn btn-submit2 cur_block"
+                          type="button"
+                          ng-click="addOpeningBalanceCustomers()"
+                          ng-if="!check_opbalnc_readonly"> Save
+                    <!--  ng-disabled="postStatus>0" --></button>
+                  <button class="btn btn-edit cur_block"
+                          type="button"
+                          ng-click="gotoEditopBalnc()"
+                          ng-if="check_opbalnc_readonly"> Edit
+                    <!-- ng-disabled="postStatus>0" --></button>
+                  <button class="btn btn-cancel"
+                          ui-sref="app.setup"
+                          type="button"
+                          ng-click="gotoFinanceTab()">
+                    <i class="fa fa-undo fa_display"></i> Cancel </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Opening Balance - Customer Area End -->
+
+      <!-- Opening Balance - Supplier Area Start -->
+      <div class="col-md-12"
+           ng-if="array_receipt_gl_form.module_type==4 && array_receipt_gl_form.sub_module_type==4">
+        <div class="panel panel-default"
+             style="padding-bottom: 0;margin-top: 10px;">
+          <div class="panel-body">
+            <div style="margin-bottom: 13px;">
+              <div class="row"
+                   style="margin-bottom: 7px !important;">
+                <div class="col-md-4">
+                  <button type="button"
+                          class="btn btn-default2 no-margin"
+                          style="color:#2196F3"
+                          ng-click="clearFilterAndSelectSupplier()"
+                          ng-disabled="check_opbalnc_readonly">Select Supplier
+                    <!-- ng-disabled="postStatus>0" --></button>
+                </div>
+              </div>
+              <table class="table table-striped table-bordered narrow_table small_fields">
+                <thead class="fixit fixitthtd">
+                  <tr>
+                    <th style="width:10%">Posting Date</th>
+                    <th style="width:10%">Doc. Type</th>
+                    <th style="width:10%">Doc. No.</th>
+                    <th style="width:10%">External Ref. No.</th>
+                    <th style="width:5%">No.</th>
+                    <th style="width:15%">Description</th>
+                    <th style="width:5%">Currency</th>
+                    <th style="width:10%;text-align: right;">Debit</th>
+                    <th style="width:10%;text-align: right;">Credit</th>
+                    <th style="width:5%;text-align: right;">Exchange Rate</th>
+                    <!-- <th style="width:5%"  ng-if="!(postStatus>0)">Amount in LCY</th> -->
+                    <th style="width:10%;text-align: right;">Amount in LCY
+                      <!--  ng-if="postStatus>0" -->
+                    </th>
+                    <th class="text-center"
+                        style="width:5%">Action
+                      <!--  ng-if="!(postStatus>0) -->
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="fixit fixitthtd">
+                  <tr ng-repeat="(key,rec) in suppliers track by $index">
+                    <td style="width:10%"
+                        title="{{rec.posting_date}}">
+                      <input jqdatepicker
+                             class="form-control form-control"
+                             required
+                             ng-class="{'whitebg':!(rec.postStatus==1) && !check_opbalnc_readonly,'dont-click disable':check_opbalnc_readonly || rec.postStatus==1}"
+                             readonly
+                             ng-model="rec.posting_date"
+                             ng-change="changePostingDate(rec,2)"
+                             ng-click="load_date_picker('load'); ">
+                    </td>
+                    <td style="width:10%">
+                      <select class="form-control"
+                              ng-disabled="check_opbalnc_readonly || rec.postStatus==1"
+                              ng-change="changeDocType(rec.docTypes.id,rec,2)"
+                              ng-model="rec.docTypes"
+                              ng-options="opt as opt.name for opt in rec.docType">
+                        <option style="display:none"
+                                value=""></option>
+                      </select>
+                    </td>
+                    <td style="width:10%"
+                        title="{{rec.invoiceNo}}">
+                      <input type="text"
+                             class=" form-control"
+                             ng-model="rec.invoiceNo"
+                             ng-readonly="check_opbalnc_readonly || rec.postStatus==1">
+                    </td>
+                    <td style="width:10%"
+                        title="{{rec.extRefNo}}">
+                      <input type="text"
+                             class=" form-control"
+                             ng-model="rec.extRefNo"
+                             ng-readonly="check_opbalnc_readonly || rec.postStatus==1">
+                    </td>
+                    <td style="width:5%"
+                        title="{{rec.moduleNo}}">{{rec.moduleNo}}</td>
+                    <td style="width:15%"
+                        title="{{rec.description}}">
+                      <input type="text"
+                             class="form-control input_text"
+                             ng-model="rec.description"
+                             ng-readonly="check_opbalnc_readonly || show_recieve_list || rec.postStatus==1">
+                    </td>
+                    <td style="width:5%">
+                      <select ng-model="rec.currencyID"
+                              ng-change="convertAmountinLCY(rec,2)"
+                              disabled
+                              ng-options="opt as opt.code for opt in newCurrencyList"
+                              class="form-control">
+                        <option style="display:block"
+                                value=""></option>
+                      </select>
+                    </td>
+                    <td style="width:10%"
+                        title="{{rec.debitAmount}}">
+                      <input type="number"
+                             step="any"
+                             style="color:#000000"
+                             class="form-control input_text text-right"
+                             ng-readonly="check_opbalnc_readonly || rec.docTypes.id==1 || rec.postStatus==1"
+                             ng-change="changeDebitCreditAmount(rec,2)"
+                             ng-model="rec.debitAmount">
+                    </td>
+                    <td style="width:10%"
+                        title="{{rec.creditAmount}}">
+                      <input type="number"
+                             step="any"
+                             style="color:#000000"
+                             class="form-control input_text text-right"
+                             ng-readonly="check_opbalnc_readonly || rec.docTypes.id==2 || rec.postStatus==1"
+                             ng-change="changeDebitCreditAmount(rec,2)"
+                             ng-model="rec.creditAmount">
+                    </td>
+                    <td style="width:5%"
+                        title="{{rec.convRate}}">
+                      <input type="number"
+                             step="any"
+                             style="color:#000000"
+                             class="form-control input_text text-right"
+                             ng-readonly="check_opbalnc_readonly || rec.currencyID.id == defaultCurrency || rec.postStatus==1"
+                             ng-change="changeConvRate(rec,2)"
+                             ng-model="rec.convRate">
+                    </td>
+                    <!-- <td style="width:5%;text-align: right"
+                    title="{{(rec.creditAmount>0) ? (-1*rec.calcAmount) : rec.calcAmount | currency:''}}"
+                        ng-if="!(rec.postStatus==1)">
+                        <span ng-if="!(rec.creditAmount>0)">{{rec.calcAmount | currency:""}}</span>
+                        <span ng-if="rec.creditAmount>0">{{(-1*rec.calcAmount) | currency:""}}</span></td> -->
+                    
+                    <td style="width:5%;text-align: right" ng-if="!(rec.postStatus==1)">
+                       <span ng-if="rec.creditAmount>0" title="{{rec.calcAmount*(-1) | currency:''}}">
+                         {{rec.calcAmount*(-1) | currency : "" : decimal_range}} 
+                        </span>
+                       <span ng-if="!(rec.creditAmount>0)" title="{{rec.calcAmount | currency:''}}">{{rec.calcAmount | currency : "" : decimal_range}} </span>
+                    </td>
+                    <!-- <td style="width:15%;text-align: right"
+                        title="{{(rec.creditAmount>0) ? (-1*rec.calcAmount) : rec.calcAmount | currency:''}}"
+                        ng-if="rec.postStatus==1">
+                      <span ng-if="!(rec.creditAmount>0)">{{rec.calcAmount | currency:""}}</span>
+                      <span ng-if="rec.creditAmount>0">{{(-1*rec.calcAmount) | currency:""}}</span>
+                    </td> -->
+                    <td style="width:15%;text-align: right" ng-if="rec.postStatus==1">
+                       <span ng-if="rec.creditAmount>0" title="{{rec.calcAmount*(-1) | currency:''}}">
+                         {{rec.calcAmount*(-1) | currency : "" : decimal_range}} 
+                        </span>
+                       <span ng-if="!(rec.creditAmount>0)" title="{{rec.calcAmount | currency:''}}">{{rec.calcAmount | currency : "" : decimal_range}} </span>
+                    </td>
+
+                    <td style="width:10%"
+                        class="text-center">
+                      <!--   ng-if="!(rec.postStatus==1)" -->
+                      <a class="btn"
+                         title="Delete"
+                         ng-if="!(rec.postStatus==1)"
+                         ng-class="{'dont-click':check_opbalnc_readonly || rec.postStatus==1}"
+                         ng-click="deleteOpeningBalncSupplierRec(rec.updateID, $index, suppliers)">
+                        <i class="fa fa-times"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td class="text-right"><b>Total:</b></td>
+                    <td style="text-align: right"><b>{{netTotalSupplier() | currency:""}}</b></td>
+                    <!-- <td>{{netTotalSupplierDebit() | number:decimal_range}}</td>
+                    <td>{{netTotalSupplierCredit() | number:decimal_range}}</td> -->
+                    <td>&nbsp;</td><!-- ng-if="!(postStatus>0)" -->
+                  </tr>
+                </tbody>
+              </table>
+              <div class="col-md-12 no-padding"
+                   style="margin-top: 15px;">
+                <div class="pull-right">
+                  <button class="btn btn-default2"
+                          type="submit"
+                          style="margin-left:5px;"
+                          ng-click="postOpeningBalance()"
+                          ng-if="check_opbalnc_readonly && suppliers.length>0 && showPostBtn"
+                          ng-disabled="postStatus>0">
+                    <i class="fa fa-check fa_display"></i> Post</button>
+                  <button class="btn btn-submit2 cur_block"
+                          type="button"
+                          ng-click="addOpeningBalanceSuppliers()"
+                          ng-if="!check_opbalnc_readonly"> Save
+                    <!-- ng-disabled="postStatus>0" --></button>
+                  <button class="btn btn-edit cur_block"
+                          type="button"
+                          ng-click="gotoEditopBalnc()"
+                          ng-if="check_opbalnc_readonly"> Edit
+                    <!-- ng-disabled="postStatus>0" --> </button>
+                  <button class="btn btn-cancel"
+                          ui-sref="app.setup"
+                          type="button"
+                          ng-click="gotoFinanceTab()">
+                    <i class="fa fa-undo fa_display"></i> Cancel </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Opening Balance - Supplier Area End -->
+
+
+      <!-- Opening Balance - General Ledger Area Start -->
+      <div class="col-md-12"
+           ng-if="array_receipt_gl_form.module_type==4 && array_receipt_gl_form.sub_module_type==5">
+        <div class="panel panel-default"
+             style="padding-bottom: 0;margin-top: 10px">
+          <div class="panel-body">
+            <div style="margin-bottom: 13px;">
+              <table class="table table-striped table-bordered narrow_table small_fields">
+                <thead class="fixit fixitthtd">
+                  <tr>
+                    <th style="width:10%">Posting Date</th>
+                    <!-- <th style="width:10%">Doc. Type</th> -->
+                    <th style="width:10%">Doc. No.</th>
+                    <th style="width:10%">External Ref. No.</th>
+                    <th style="width:10%">G/L No.</th>
+                    <th style="width:15%">Name</th>
+                    <th style="width:10%">Currency</th>
+                    <th style="width:10%;text-align: right">Debit</th>
+                    <th style="width:10%;text-align: right">Credit</th>
+                    <th style="width:5%;text-align: right">Exchange Rate</th>
+                    <th style="width:15%;text-align: right">Amount in LCY</th><!-- ng-if="postStatus>0" -->
+                    <th class="text-center"
+                        style="width:5%">
+                      <!-- ng-if="!(postStatus>0)" -->
+                      <div ng-if="!check_opbalnc_readonly">
+                        <a style="margin-left: -8px;"
+                           class="ib add-dis-btn"
+                           ng-click="addOpeningBalncGLRow(recGL, $index)">
+                          <i class="material-icons">&#xE147;</i>
+                        </a>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="fixit fixitthtd">
+                  <tr ng-repeat="(key,rec) in recGL ">
+                    <td style="width:10%"
+                        title="{{rec.posting_date}}">
+                      <input jqdatepicker
+                             class="form-control form-control"
+                             required
+                             ng-class="{'whitebg':!(rec.postStatus==1) && !check_opbalnc_readonly,'dont-click disable':check_opbalnc_readonly || rec.postStatus==1}"
+                             ng-model="rec.posting_date"
+                             readonly
+                             ng-change="changePostingDateGl(rec)"
+                             ng-click="load_date_picker('load'); ">
+                    </td>
+                    <!-- <td style="width:10%">
+                      <select class="form-control"
+                          ng-disabled="check_opbalnc_readonly" 
+                          ng-change="changeDocType(rec.docTypes.id,rec,2)"
+                          ng-model="rec.docTypes"
+                          ng-options="opt as opt.name for opt in rec.docType">
+                          <option style="display:none" value=""></option>
+                      </select>
+                    </td> -->
+                    <td style="width:10%"
+                        title="{{rec.invoiceNo}}">
+                      <input type="text"
+                             class=" form-control"
+                             ng-model="rec.invoiceNo"
+                             ng-readonly="check_opbalnc_readonly || rec.postStatus==1">
+                    </td>
+                    <td style="width:10%"
+                        title="{{rec.extRefNo}}">
+                      <input type="text"
+                             class=" form-control"
+                             ng-model="rec.extRefNo"
+                             ng-readonly="check_opbalnc_readonly || rec.postStatus==1">
+                    </td>
+                    <td style="width:10%"
+                        title="{{rec.moduleNo}}">
+                      <!-- {{rec.moduleNo}} -->
+                      <!-- <input type="text" class="form-control input_text"
+                          ng-model="rec.moduleNo"
+                          ng-readonly="check_opbalnc_readonly || show_recieve_list"> -->
+                      <div class="input-symbol"
+                           ng-click="getOpeningBalanceGlList(rec, $index,1)"
+                           ng-class="{'dont-click':check_opbalnc_readonly || rec.postStatus==1 || show_recieve_list}">
+                        <input type="text"
+                               class="form-control"
+                               readonly
+                               ng-model="rec.moduleNo"
+                               ng-class="{'dont-click disable':check_opbalnc_readonly || rec.postStatus==1 || show_recieve_list,'whitebg':!(rec.postStatus==1) && !check_opbalnc_readonly}" />
+                        <span><i class="fa fa-external-link"></i></span>
+                      </div>
+                    </td>
+                    <td style="width:15%"
+                        title="{{rec.description}}">
+                      <input type="text"
+                             class="form-control input_text"
+                             ng-model="rec.description"
+                             ng-readonly="check_opbalnc_readonly || rec.postStatus==1 || show_recieve_list">
+                    </td>
+                    <td style="width:10%">
+                      <select ng-model="rec.currencyID"
+                              ng-change="convertAmountinLCYGl(rec,1)"
+                              ng-disabled="check_opbalnc_readonly || rec.postStatus==1"
+                              ng-options="opt as opt.code for opt in newCurrencyList"
+                              class="form-control">
+                        <option style="display:block"
+                                value=""></option>
+                      </select>
+                    </td>
+                    <td style="width:10%"
+                        title="{{rec.debitAmount}}">
+                      <input type="number"
+                             step="any"
+                             style="color:#000000"
+                             class="form-control input_text text-right"
+                             ng-readonly="check_opbalnc_readonly || rec.postStatus==1"
+                             ng-blur="changeDebitCreditAmountGl(rec,1)"
+                             ng-model="rec.debitAmount">
+                    </td>
+                    <td style="width:10%"
+                        title="{{rec.creditAmount}}">
+                      <input type="number"
+                             step="any"
+                             style="color:#000000"
+                             class="form-control input_text text-right"
+                             ng-readonly="check_opbalnc_readonly || rec.postStatus==1"
+                             ng-blur="changeDebitCreditAmountGl(rec,2)"
+                             ng-model="rec.creditAmount">
+                    </td>
+                    <td style="width:5%"
+                        title="{{rec.convRate}}">
+                      <input type="number"
+                             step="any"
+                             style="color:#000000"
+                             class="form-control input_text text-right"
+                             ng-readonly="check_opbalnc_readonly || rec.postStatus==1 || rec.currencyID.id == defaultCurrency"
+                             ng-blur="changeConvRateGl(rec)"
+                             ng-model="rec.convRate">
+                    </td>
+                    <td style="width:10%;text-align: right;"><!-- {{rec.calcAmount | currency : "" : decimal_range}} -->
+                       <span ng-if="rec.creditAmount>0" title="{{rec.calcAmount*(-1) | currency:''}}">
+                         {{rec.calcAmount*(-1) | currency : "" : decimal_range}} 
+                        </span>
+                       <span ng-if="!(rec.creditAmount>0)" title="{{rec.calcAmount | currency:''}}">{{rec.calcAmount | currency : "" : decimal_range}} </span>
+                    </td>
+                    <!-- ng-if="!(postStatus>0)" -->
+                    <!-- <td style="width:20%" title="{{rec.calcAmount}}" ng-if="postStatus>0"><span ng-if="rec.creditAmount>0">-</span>{{rec.calcAmount | number:decimal_range}} </td>  -->
+                    <td style="width:10%"
+                        class="text-center">
+                      <!--  ng-if="!(postStatus>0)" -->
+                      <a class="btn"
+                         title="Delete"
+                         ng-if="!(rec.postStatus==1)"
+                         ng-class="{'dont-click':check_opbalnc_readonly || rec.postStatus==1}"
+                         ng-click="deleteOpeningBalncGLRec(rec.updateID, $index, recGL)">
+                        <i class="fa fa-times"></i>
+                      </a><!-- ng-if="!(postStatus>0)" -->
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <!-- <td>&nbsp;</td> -->
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td class="text-right"><b>Total:</b></td>
+                    <td class="text-right"><b>{{netTotalGL() | currency:""}}</b></td>
+                    <!-- <td>{{netTotalGLDebit() | number:decimal_range}}</td>
+                    <td>{{netTotalGLCredit() | number:decimal_range}}</td> -->
+                    <td>&nbsp;</td><!-- ng-if="!(postStatus>0)" -->
+                  </tr>
+                </tbody>
+              </table>
+              <div class="col-md-12 no-padding"
+                   style="margin-top: 15px;">
+                <!-- ng-if="array_receipt_gl_form.type == 1" ng-show="backend_data == 1"  -->
+                <div class="pull-right">
+                  <!--  ng-show="items.length > 0" -->
+                  <button class="btn btn-default2"
+                          type="submit"
+                          style="margin-left:5px;"
+                          ng-click="postOpeningBalance()"
+                          ng-if="check_opbalnc_readonly && recGL.length>0 && showPostBtn">
+                    <!--  ng-class="{'dont-click  ':(netBalanceRecipt() > 0 || enable_date_check) }" -->
+                    <!-- ng-disabled="postStatus>0"  -->
+                    <i class="fa fa-check fa_display"></i> Post </button>
+                  <button class="btn btn-submit2 cur_block"
+                          type="button"
+                          ng-click="addOpeningBalanceGL()"
+                          ng-if="!check_opbalnc_readonly"> Save </button>
+                  <!-- ng-disabled="postStatus>0" -->
+                  <button class="btn btn-edit cur_block"
+                          type="button"
+                          ng-click="gotoEditopBalnc()"
+                          ng-if="check_opbalnc_readonly"> Edit </button>
+                  <!-- ng-disabled="postStatus>0" -->
+                  <button class="btn btn-cancel"
+                          ui-sref="app.setup"
+                          type="button"
+                          ng-click="gotoFinanceTab()">
+                    <i class="fa fa-undo fa_display"></i> Cancel </button> <!--  ng-click="get_receipt_main_list(1)" -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Opening Balance - General Ledger Area End -->
+    </div>
+  </div>
+  <div ng-include="'app/views/_confirm_modal.html'"></div>
+  <div ng-include="'app/views/_conform_to_continue.html'"></div>
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+  <div id="RecptAccountpop"
+       class="modal fade"
+       role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button"
+                  class="close"
+                  data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">{{module_name}}</h4>
+        </div>
+        <div class="modal-body"
+             style="overflow:hidden;">
+          <div class="row"
+               style="margin-bottom: 0 !important;">
+            <div class="col-md-12"
+                 style="margin-bottom: 5px;">
+              <div class="col-md-5 no-padding">
+                <!-- ng-blur="getGLRecipt(module_type, account_index, gltype)"  -->
+                <input type="text"
+                       placeholder="Code , Name"
+                       class="form-control ng-pristine ng-valid ng-touched"
+                       ng-model="module_type.searchKeyword2"
+                       style="padding-left:4px;">
+              </div>
+              <div class="col-md-7"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div>
+                <div>
+                  <div>
+                    <table class="table table-striped table-bordered table-hover1">
+                      <thead class="fixit">
+                        <tr class="">
+                          <th width="50%"> No.</th>
+                          <th width="50%">Name</th>
+                        </tr>
+                      </thead>
+                      <tbody class="fixit"
+                             style="max-height:230px;">
+                        <tr ng-repeat="record in account_list | filter:module_type.searchKeyword2"
+                            ng-click="assignreciptselect(record);">
+                          <td>{{record.code}}</td>
+                          <td>{{record.name}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="pull-left">
+          </div>
+          <button type="button"
+                  class="btn btn-cancel pull-right"
+                  data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div ng-include="'app/views/general_ledger/payment_invoice_list.html'"></div>
+<div ng-include="'app/views/general_ledger/get_invoice_payed_list.html'"></div>
+<div ng-include="'app/views/general_ledger/_invoice_for_payment_list.html'"></div> -->
+
+<!-- <div ng-include="'app/views/srm_order/_listing_prod_modal.html'"></div> -->
+<!-- <div ng-include="'app/views/openingBalances/_listingCustomerModal.html'"></div>
+<div ng-include="'app/views/openingBalances/_listingSupplierModal.html'"></div> -->
+<div ng-include="'app/views/reports/_listingCustomerDetailModal.html'"></div>
+<!-- <div ng-include="'app/views/reports/_listingSupplierModal.html'"></div> -->
+<div ng-include="'app/views/reports/_listingSupplierDetailModal.html'"></div>
+<div ng-include="'app/views/reports/_listingItemDetailModal.html'"></div>
+<div ng-include="'app/views/openingBalances/_glAccountModal.html'"></div>

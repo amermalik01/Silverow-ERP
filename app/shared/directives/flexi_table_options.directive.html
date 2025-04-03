@@ -1,0 +1,56 @@
+<tr class="shadowbox">
+    <td class="handle">
+        <i class="fa fa-bars"
+           aria-hidden="true"></i>
+    </td>
+    <td>
+        {{header.title}}
+    </td>
+    <td class="text-center">
+        <input ng-model-options="{ debounce: 100 }"
+               type="checkbox"
+               ng-true-value="'1'"
+               ng-false-value="'0'"
+               ng-model="header.visible"
+               ng-checked="{{header.visible}}" />
+    </td>
+    <td class="text-center">
+        <input ng-model-options="{ debounce: 100 }"
+               type="radio"
+               name="pinned"
+               ng-disabled="defaultWidth || header.visible == '0'"
+               ng-checked="header.pinned == '1'"
+               ng-click="passToHandleRadio(header)">
+    </td>
+    <!-- <td><input type="checkbox" ng-checked="{{header.read_only}}" ng-model="header.read_only"></td> -->
+    <td>
+        <div class="colorSelection">
+            <div ng-click="header.color = '#e3f2fd'"
+                 style="background: #e3f2fd"
+                 ng-class="{'colorSelected':header.color == '#e3f2fd'}"></div>
+            <div ng-click="header.color = '#d8f5df'"
+                 style="background: #d8f5df"
+                 ng-class="{'colorSelected':header.color == '#d8f5df'}"></div>
+            <div ng-click="header.color = '#f7f2cd'"
+                 style="background: #f7f2cd"
+                 ng-class="{'colorSelected':header.color == '#f7f2cd'}"></div>
+            <div ng-click="header.color = '#f8e3dc'"
+                 style="background: #f8e3dc"
+                 ng-class="{'colorSelected':header.color == '#f8e3dc'}"></div>
+            <div ng-click="header.color = '#ffffff'"
+                 style="background: #ffffff"
+                 ng-class="{'colorSelected':header.color == '#ffffff'}"></div>
+        </div>
+    </td>
+    <td>
+        <input ng-model-options="{ debounce: 100 }"
+               ng-disabled="defaultWidth"
+               ng-class="{'dont-click':defaultWidth}"
+               ng-change="widthUpdater(header)"
+               type="range"
+               ng-model="header.width"
+               value="{{header.width}}"
+               max="300"
+               min="40">
+    </td>
+</tr>

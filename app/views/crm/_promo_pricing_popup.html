@@ -1,0 +1,111 @@
+<!--Modal Starts -->
+                    <div class="modal fade" id="promoPricingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg" style="width:80%">
+                        <div class="modal-content">
+                          <div class="modal-header remove_head">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <!-- <h4 class="modal-title" id="myModalLabel">View</h4> -->
+                          </div>
+                          
+                          <div class="modal-body">
+                          
+                              <!-- Row starts -->
+                                <div class="row">
+                                
+                                  <div class="col-md-12 col-md-12">
+                                    <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+                                        <tabset>
+                                          <tab heading="Pricing">
+                                            <div style="  overflow-y: scroll;    max-height: 325px;">
+                                            <table class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                   <tr class="bg-col">
+                                                      <th>Product Code</th>
+                                                      <th>Product Name</th>
+                                                      <th>Unit Of Measure</th>
+                                                      <th>Price</th>
+                                                      <th>Territory</th>
+                                                      <th>Segment</th>
+                                                      <th>Buying Group</th>
+                                                      <th>Start Date</th>
+                                                      <th>End Date</th>
+                                                      <th>Exclude</th>
+                                                   </tr>
+                                                </thead>
+                                                <tbody class="courser table-body">
+                                                    <tr ng-repeat="rec in pricing">
+                                                    <td ng-click="getGroupOfCustomers(rec)">{{rec.Item_Code}}</td>
+                                                    <td ng-click="getGroupOfCustomers(rec)">{{rec.Item_Description}}</td>
+                                                    <td ng-click="getGroupOfCustomers(rec)">{{rec.Unit_Of_Measure}}</td>
+                                                    <td ng-click="getGroupOfCustomers(rec)">{{rec.Price | numberNoDecimalsIfZeroFilter:2:rec['Code']}}</td>
+                                                    <td ng-click="getGroupOfCustomers(rec)">{{rec.Region}}</td>
+                                                    <td ng-click="getGroupOfCustomers(rec)">{{rec.Segment}}</td>
+                                                    <td ng-click="getGroupOfCustomers(rec)">{{rec.Buying_Group}}</td>
+                                                    <td ng-click="getGroupOfCustomers(rec)">{{ rec.Start_Date | date: dateFormats[defaultDateFormat]}}</td>
+                                                    <td ng-click="getGroupOfCustomers(rec)">{{ rec.End_Date | date: dateFormats[defaultDateFormat]}}</td>
+                                                  <td class="text-left " ng-show="pricing.length > 0">
+                                                      <a ng-click="add_excluded_customers(rec)" title="Add to exluded customers." class="btn" id="sale_exclud_{{rec.id}}" ><i class="fa fa-check"></i></a>
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                             </table>
+                                           </div>
+                                          </tab>
+                                          <tab heading="Promotion" ng-click="getServicesCats()">
+                                            <div style="  overflow-y: scroll;    max-height: 325px;">
+                                            <table class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                   <tr class="bg-col">
+                                                    <th>Promotion Name</th>
+                                                    <th>Category</th>
+                                                    <th>Brand</th>
+                                                    <th>Product Code</th>
+                                                    <th>Product Name</th>
+                                                    <th>Territory</th>
+                                                    <th>Segment</th>
+                                                    <th>Buying Group</th>
+                                                    <th>Start Date</th>
+                                                    <th>End Date</th>
+                                                    <th>Exclude</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody class="courser table-body">
+                                                  <tr ng-repeat="rec in promotion">
+                                                  <td >{{rec.promotion_name}}</td>
+                                                  <td >{{rec.cat_name}}</td>
+                                                  <td >{{rec.brandname}}</td>
+                                                  <td >{{rec.product_code}}</td>
+                                                  <td >{{rec.prodcut_description}}</td>
+                                                  <td >{{rec.region}}</td>
+                                                  <td >{{rec.segment}}</td>
+                                                  <td >{{rec.buying_group}}</td>
+                                                  <td >{{convert_numeric_date_to_string(rec.start_date)}}</td>
+                                                  <td >{{convert_numeric_date_to_string(rec.end_date)}}</td>
+                                                <td class="text-left " ng-show="promotion.length > 0">
+                                                    <a ng-click="add_promo_excluded_customers(rec)" title="Add to exluded customers." class="btn" id="prom_exclud_{{rec.id}}"><i class="fa fa-check"></i></a>
+                                                  </td>
+                                                </tr>
+                                                </tbody>
+                                             </table>
+                                           </div>
+                                          </tab>
+                                        </tabset>
+                                        
+                                    </div>
+                                    
+                                    
+                                  </div>
+                                  
+                                </div>
+                              <!-- Row ends -->
+                            
+                          </div>
+                            
+                          <div class="modal-footer">
+                            <!-- <button type="button" class="btn btn-default btn_blue"_blue>Add</button> -->
+                            <button type="button" class="btn default width_80" data-dismiss="modal">Cancel</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Modal Ends

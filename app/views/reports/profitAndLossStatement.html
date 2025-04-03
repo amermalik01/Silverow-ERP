@@ -1,0 +1,325 @@
+<div>
+  <!--  as table -->
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+  <style>
+    body {
+      background-image: url(app/css/report-BG.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      padding-bottom: 10px;
+    }
+  </style>
+
+
+  <div class="a-content">
+    <div class="a-label-container">
+      <b class="a-title"
+         style="width: 120px">Date <span class="required"> *</span></b>
+      <div class="input-symbol a-date">
+        <input jqdatepicker
+               class="form-control"
+               id="dateFrom"
+               readonly
+               placeholder="From"
+               style="background-color: white;"
+               ng-model="filterReport.dateFrom"
+               ng-change="testdate_by_id('dateFrom','dateTo','date_msg')">
+        <span>
+          <i class="fa fa-calendar"></i>
+        </span>
+      </div>
+      <div class="input-symbol a-date">
+        <input jqdatepicker
+               class="form-control"
+               id="dateTo"
+               readonly
+               placeholder="To"
+               style="background-color: white;"
+               ng-model="filterReport.dateTo"
+               ng-change="testdate_by_id('dateFrom','dateTo','date_msg')">
+        <span>
+          <i class="fa fa-calendar"></i>
+        </span>
+        <span id="date_msg"
+              style="color:#F00; display: none;top: 38px !IMPORTANT;">Date To is earlier than Date From</span>
+      </div>
+
+      <b class="ib a-margin-left add-filter collapsed"
+         data-toggle="collapse"
+         data-target="#demo">Add Filter(s)</b>
+
+      <div class="pull-right">
+        <button style="  margin-left: 0;"
+                class="btn report-generate"
+                type="button"
+                ng-click="generateReport()">Generate Report</button>
+        <button class="btn report-clearfilter"
+                type="button"
+                ng-click="clearReport()">Clear Filter</button>
+        <div class="dropdown report-excel">
+          <button class="btn report-default dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown">Export As
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a ng-click="generateReport('xlsx')">Excel</a></li>
+            <li><a ng-click="generateReport('pdf')">PDF</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-filter-panel collapse in"
+         id="demo">
+
+      <div class="report-box">
+        <label>
+          <input ng-model="filterReport.percentageTurnover"
+                 type="checkbox"
+                 class="ng-pristine ng-untouched ng-valid"> Show % of Total Turnover
+        </label>
+      </div>
+      <div class="report-box">
+        <label>
+          <input ng-model="filterReport.compare"
+                 type="checkbox"
+                 class="ng-pristine ng-untouched ng-valid"> Compare With Prior Period
+        </label>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="a-table"
+       ng-if="reportRes">
+
+
+    <h5 class="a-report-title">Profit and Loss Statement </h5>
+    <small ng-if="filterReport.dateFrom"
+           class="a-report-date">From {{filterReport.dateFrom}} to {{filterReport.dateTo}}</small>
+    <div id="dt_example"
+         class="example_alt_pagination">
+      <table class="table table-condensed table-striped table-hover report-spacing"
+             id="data-table"
+             style="margin-top: 8px; margin-bottom: 10px;">
+        <thead>
+          <tr class="bg-col">
+            <th></th>
+            <th style="text-align: right;"
+                ng-class="{'border-right-dash':!filterReport.percentageTurnover}"
+                ng-if="!filterReport.percentageTurnover">Selected Period</th>
+            <th colspan="2"
+                style="text-align: right;"
+                class="border-right-dash"
+                ng-if="filterReport.percentageTurnover">Selected Period</th>
+
+            <th ng-if="filterReport.compare && !filterReport.percentageTurnover"
+                style="text-align: right;">Prior Period</th>
+            <th colspan="2"
+                ng-if="filterReport.compare && filterReport.percentageTurnover"
+                style="text-align: right;"
+                ng-if="filterReport.percentageTurnover">Prior Period</th>
+          </tr>
+          <tr>
+            <th></th>
+            <th style="text-align: right;"
+                ng-class="{'border-right-dash':!filterReport.percentageTurnover}">{{pnlFinal.columnTitle.a1}}</th>
+            <th style="text-align: right;"
+                class="border-right-dash"
+                ng-if="filterReport.percentageTurnover">% of Turnover</th>
+
+            <th ng-if="filterReport.compare"
+                style="text-align: right;">{{pnlFinal.columnTitle.a2}}</th>
+            <th ng-if="filterReport.compare && filterReport.percentageTurnover"
+                style="text-align: right;"
+                ng-if="filterReport.percentageTurnover">% of Turnover</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Turnover</strong></td>
+            <td ng-if="!filterReport.compare"></td>
+            <td colspan="2" ng-if="filterReport.compare"></td>
+            <td colspan="2" ng-if="filterReport.percentageTurnover"></td>
+          </tr>
+          <!-- <tr ng-repeat="plresp in pnlFinal.income.a1"> -->
+          <tr ng-repeat="plresp in getNumber(pnlFinal.income.maxCount) track by $index">
+
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{pnlFinal.income[pnlFinal.income.hasMaxRec][$index].account}}</td>
+
+            <td style="text-align: right;"
+                ng-class="{'border-right-dash':!filterReport.percentageTurnover}">{{pnlFinal.income.a1[$index].total | currency:""}} </td>
+            <td style="text-align: right;"
+                class="border-right-dash"
+                ng-if="filterReport.percentageTurnover"></td>
+
+            <td ng-if="filterReport.compare"
+                style="text-align: right;">{{pnlFinal.income.a2[$index].total | currency:""}} </td>
+            <td ng-if="filterReport.compare && filterReport.percentageTurnover"
+                style="text-align: right;"></td>
+          </tr>
+          <tr>
+            <td><strong>Total Turnover</strong></td>
+            <td style="text-align: right;"
+                ng-class="{'border-right-dash':!filterReport.percentageTurnover}">
+              <strong>{{pnlFinal.totalTurnover[0] | currency:""}}</strong></td>
+            <td ng-if="filterReport.percentageTurnover"
+                class="border-right-dash"></td>
+            <td style="text-align: right;"
+                ng-if="filterReport.compare"><strong>{{pnlFinal.totalTurnover[1] | currency:""}}</strong></td>
+            <td ng-if="filterReport.compare && filterReport.percentageTurnover"></td>
+          </tr>
+          <tr>
+            <td><strong>Cost of Sales</strong></td>
+            <td ng-if="!filterReport.compare"></td>
+            <td colspan="2" ng-if="filterReport.compare"></td>
+            <td colspan="2" ng-if="filterReport.percentageTurnover"></td>
+          </tr>
+          <!-- <tr ng-repeat="plresp in pnlFinal.directExpenses.a1"> -->
+            <tr ng-repeat="plresp in getNumber(pnlFinal.directExpenses.maxCount) track by $index">
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{pnlFinal.directExpenses[pnlFinal.directExpenses.hasMaxRec][$index].account}}</td>
+            <td style="text-align: right;"
+                ng-class="{'border-right-dash':!filterReport.percentageTurnover}">{{pnlFinal.directExpenses.a1[$index].total | currency:""}} </td>
+            <td style="text-align: right;"
+                class="border-right-dash"
+                ng-if="filterReport.percentageTurnover"></td>
+
+            <td ng-if="filterReport.compare"
+                style="text-align: right;">{{pnlFinal.directExpenses.a2[$index].total | currency:""}} </td>
+            <td ng-if="filterReport.compare && filterReport.percentageTurnover"
+                style="text-align: right;"></td>
+
+          </tr>
+          <tr>
+            <td><strong>Total Cost of Sales</strong></td>
+            <td style="text-align: right;"
+                ng-class="{'border-right-dash':!filterReport.percentageTurnover}">
+              <strong>{{pnlFinal.totalCostOfSales[0] | currency:""}}</strong></td>
+
+            <td style="text-align: right;"
+                class="border-right-dash"
+                ng-if="filterReport.percentageTurnover">
+                <span ng-if="pnlFinal.totalCostOfSalesPoT[0]">
+
+                {{pnlFinal.totalCostOfSalesPoT[0] | currency:""}}%</span></td>
+            <td style="text-align: right;"
+                ng-if="filterReport.compare"><strong>{{pnlFinal.totalCostOfSales[1] | currency:""}}</strong></td>
+            <td style="text-align: right;"
+                ng-if="filterReport.compare && filterReport.percentageTurnover">
+                <span ng-if="pnlFinal.totalCostOfSalesPoT[1]">
+              {{pnlFinal.totalCostOfSalesPoT[1] | currency:""}}% 
+                </span>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Gross Profit</strong></td>
+            <td style="text-align: right;"
+                ng-class="{'border-right-dash':!filterReport.percentageTurnover}">
+              <strong>{{pnlFinal.grossProfit[0] | currency:""}}</strong></td>
+            <td style="text-align: right;"
+                class="border-right-dash"
+                ng-if="filterReport.percentageTurnover">
+                <span ng-if="pnlFinal.grossProfitPoT[0]">{{pnlFinal.grossProfitPoT[0] | currency:""}}%
+                  </span>
+                </td>
+            <td style="text-align: right;"
+                ng-if="filterReport.compare"><strong>{{pnlFinal.grossProfit[1] | currency:""}}</strong></td>
+            <td style="text-align: right;"
+                ng-if="filterReport.compare && filterReport.percentageTurnover">
+                <span ng-if="pnlFinal.grossProfitPoT[1]">
+                  {{pnlFinal.grossProfitPoT[1] | currency:""}}%
+                </span>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Overheads</strong></td>
+            <td ng-if="!filterReport.compare"></td>
+            <td colspan="2" ng-if="filterReport.compare"></td>
+            <td colspan="2" ng-if="filterReport.percentageTurnover"></td>
+          </tr>
+          <!-- <tr ng-repeat="plresp in pnlFinal.overheads.a1"> -->
+              <tr ng-repeat="plresp in getNumber(pnlFinal.overheads.maxCount) track by $index">
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{pnlFinal.overheads[pnlFinal.overheads.hasMaxRec][$index].account}}</td>
+            <td style="text-align: right;"
+                ng-class="{'border-right-dash':!filterReport.percentageTurnover}">{{pnlFinal.overheads.a1[$index].total | currency:""}}</td>
+            <td style="text-align: right;"
+                class="border-right-dash"
+                ng-if="filterReport.percentageTurnover"></td>
+
+            <td ng-if="filterReport.compare"
+                style="text-align: right;">{{pnlFinal.overheads.a2[$index].total | currency:""}} </td>
+            <td ng-if="filterReport.compare && filterReport.percentageTurnover"
+                style="text-align: right;"></td>
+          </tr>
+          <tr>
+            <td><strong>Total Overheads</strong></td>
+            <td style="text-align: right;"
+                ng-class="{'border-right-dash':!filterReport.percentageTurnover}">
+              <strong>{{pnlFinal.totalOverheads[0] | currency:""}}</strong></td>
+            <td style="text-align: right;"
+                class="border-right-dash"
+                ng-if="filterReport.percentageTurnover">
+                <span ng-if="pnlFinal.totalOverheadsPoT[0]">
+                  {{pnlFinal.totalOverheadsPoT[0] | currency:""}}%</span></td>
+            <td style="text-align: right;"
+                ng-if="filterReport.compare"><strong>{{pnlFinal.totalOverheads[1] | currency:""}}</strong></td>
+            <td style="text-align: right;"
+                ng-if="filterReport.compare && filterReport.percentageTurnover">
+                <span ng-if="pnlFinal.totalOverheadsPoT[1]">
+                  {{pnlFinal.totalOverheadsPoT[1] | currency:""}}%
+                </span>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>
+              <span ng-if="pnlFinal.netProfit[0] >0">Net Total Profit</span>
+              <span ng-if="pnlFinal.netProfit[0] < 0" style=" color:red;">Net Total Loss</span>
+            </strong></td>
+            <td style="text-align: right;"
+                ng-class="{'border-right-dash':!filterReport.percentageTurnover}">
+              <strong>
+                <span ng-if="pnlFinal.netProfit[0] >0">{{pnlFinal.netProfit[0] | currency:""}}</span>
+                <span ng-if="pnlFinal.netProfit[0] <0" style=" color:red;">{{pnlFinal.netProfit[0] | currency:""}}</span>
+              </strong></td>
+            <td style="text-align: right;"
+                class="border-right-dash"
+                ng-if="filterReport.percentageTurnover">
+                <span ng-if="pnlFinal.netProfitPoT[0] && pnlFinal.netProfitPoT[0] >0">
+                {{pnlFinal.netProfitPoT[0] | currency:""}}%</span>
+                <span ng-if="pnlFinal.netProfitPoT[0] && pnlFinal.netProfitPoT[0] <0" style=" color:red;">
+                  {{pnlFinal.netProfitPoT[0] | currency:""}}%</span>
+              </td>
+            <td style="text-align: right;"
+                ng-if="filterReport.compare"><strong>
+                  <span ng-if="pnlFinal.netProfit[1] >0">{{pnlFinal.netProfit[1] | currency:""}}</span>
+                  <span ng-if="pnlFinal.netProfit[1] <0" style=" color:red;">{{pnlFinal.netProfit[1] | currency:""}}</span>
+                </strong></td>
+            <td style="text-align: right;"
+                ng-if="filterReport.compare && filterReport.percentageTurnover">
+                <span ng-if="pnlFinal.netProfitPoT[1] && pnlFinal.netProfitPoT[1]>0">
+                  {{pnlFinal.netProfitPoT[1] | currency:""}}%
+                </span>
+                <span ng-if="pnlFinal.netProfitPoT[1] && pnlFinal.netProfitPoT[1] <0" style=" color:red;">
+                  {{pnlFinal.netProfitPoT[1] | currency:""}}%
+                </span>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- <div ng-include="'app/views/reports/_listingCustomerModal.html'"></div>  -->
+  <!-- <div ng-include="'app/views/reports/_listingSupplierModal.html'"></div> -->
+  <div ng-include="'app/views/reports/_listingCustomerDetailModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingSupplierDetailModal.html'"></div>
+
+  <div ng-include="'app/views/general_ledger/payment_invoice_list.html'"></div>
+  <div ng-include="'app/views/general_ledger/get_invoice_payed_list.html'"></div>
+  <div ng-include="'app/views/general_ledger/_invoice_for_payment_list.html'"></div>
+  <div ng-include="'app/views/general_ledger/_invoice_for_allocated_list.html'"></div>
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

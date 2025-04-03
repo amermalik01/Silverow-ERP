@@ -1,0 +1,44 @@
+{
+    "SocialMedia": [
+        {
+            "id": "1",
+            "name": "Facebook"
+        },
+        {
+            "id": "2",
+            "name": "Twitter"
+        },
+        {
+            "id": "3",
+            "name": "LinkedIn"
+        },
+        {
+            "id": "4",
+            "name": "Pintrest"
+        },
+        {
+            "id": "5",
+            "name": "Flicker"
+        },
+        {
+            "id": "6",
+            "name": "Youtube"
+        },
+        {
+            "id": "7",
+            "name": "Outlook"
+        },
+        {
+            "id": "8",
+            "name": "Google Plus"
+        },
+        {
+            "id": "9",
+            "name": "Instagram"
+        },
+        {
+            "id": "10",
+            "name": "Skype"
+        }
+    ]
+}

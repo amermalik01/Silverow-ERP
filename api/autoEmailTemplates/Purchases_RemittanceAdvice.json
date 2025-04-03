@@ -1,0 +1,9 @@
+{
+    "senderEmail": "",
+    "availablePlaceholders": {
+        "supplier_no": "supplier_code"
+    },
+    "fileName": "RA.[[supplier_no]].[[current_company_id]].pdf",
+    "templateSubject": "",
+    "templateBody": ""
+}

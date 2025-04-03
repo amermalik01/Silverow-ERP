@@ -1,0 +1,885 @@
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `SR_postOpeningBalance`$$
+
+CREATE DEFINER=`db_dev`@`%` PROCEDURE `SR_postOpeningBalance`(pi_module_id INT(11),pi_company_id INT(11), pi_user_id INT(11),OUT po_errorNo INT(11),OUT po_param1 VARCHAR(255),OUT po_param2 VARCHAR(255),OUT po_param3 VARCHAR(255),OUT po_param4 VARCHAR(255))
+postOpeningBalance:BEGIN
+	DECLARE p_openBalncGLID INT;
+	DECLARE p_openBalncGLCode INT;
+	DECLARE p_openBalncGLName VARCHAR(255);
+	
+	DECLARE p_stockGLID INT;
+	DECLARE p_stockGLCode INT;
+	DECLARE p_stockGLName VARCHAR(255);	
+	
+	DECLARE CONTINUE HANDLER FOR NOT FOUND BEGIN END; 
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+	BEGIN
+		RESIGNAL;
+	END;
+		
+	DECLARE EXIT HANDLER FOR SQLWARNING
+	BEGIN
+		RESIGNAL;
+	END;
+	
+	SET po_errorNo = 1;
+	SET po_param1 =	'';	
+	SET po_param2 = '';
+	SET po_param3 =	'';	
+	SET po_param4 = '';
+	
+	
+	SET p_openBalncGLID=0;
+	SET p_openBalncGLName=0;
+	SET p_openBalncGLCode=0;
+	
+	SET p_stockGLID=0;
+	SET p_stockGLName=0;
+	SET p_stockGLCode=0;
+	
+	# ---------------------------- Opening Balance Account Selection ----------------------------
+	
+	SELECT COALESCE(gl.id,0),gl.displayName,gl.accountCode 
+		INTO  p_openBalncGLID, p_openBalncGLName, p_openBalncGLCode
+	FROM financial_settings fs
+	LEFT JOIN gl_account gl ON gl.id= fs.opening_balance_gl_account
+	WHERE gl.STATUS=1 AND gl.allowPosting=1 AND gl.company_id=pi_company_id AND fs.company_id=pi_company_id;
+	 
+	IF (p_openBalncGLID = 0) THEN		
+		
+		SET po_errorNo = 10018;			
+		LEAVE postOpeningBalance;
+		
+	END IF;
+	 
+	 
+	IF (p_openBalncGLID>0) THEN
+		
+		IF (pi_module_id = 1) THEN
+	
+		# ///////////////////////////////////////////////////////////////////////////////
+		# ---------------------- Post Opening Balances for Bank  -----------------------
+		# ///////////////////////////////////////////////////////////////////////////////
+		# Account entry for debit.
+		
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType,
+						    DebitorCreditSign, 
+						    transaction_id)
+				SELECT  t1.id, 
+					6, 
+					pi_company_id, 
+					pi_user_id, 
+					t1.account_id,
+					t1.account_no,
+					t1.account_name,
+					0,
+					t1.debitAmount,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'D',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_bank AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND  
+				      t1.debitAmount >0 AND 
+				      t1.status= 1;
+				      
+				      -- !=1 AND
+				      -- converted_price
+				      
+		# balancing account entry for debit.
+				      
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					6, 
+					pi_company_id, 
+					pi_user_id, 
+					p_openBalncGLID,
+					p_openBalncGLCode,
+					p_openBalncGLName,
+					t1.debitAmount,
+					0,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'C',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_bank AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND 
+				      t1.debitAmount >0 AND 
+				      t1.status= 1;
+				      # converted_price
+				      
+			# Account entry for Credit.
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					6, 
+					pi_company_id, 
+					pi_user_id, 
+					t1.account_id,
+					t1.account_no,
+					t1.account_name,
+					t1.creditAmount,
+					0,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'C',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_bank AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND 
+				      t1.creditAmount >0 AND 
+				      t1.status= 1;
+				      
+				  #converted_price
+				      
+		# balancing account entry for credit.
+				      
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					6, 
+					pi_company_id, 
+					pi_user_id, 
+					p_openBalncGLID,
+					p_openBalncGLCode,
+					p_openBalncGLName,
+					0,
+					t1.creditAmount,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'D',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_bank AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND 
+				      t1.creditAmount >0 AND  
+				      t1.status= 1;
+				      
+				 #converted_price
+				      
+			# update table status for customer 
+			UPDATE opening_balance_bank 
+			SET postStatus=1,
+			    posting_dateUnConv = DATE_FORMAT(FROM_UNIXTIME(posting_date), '%Y-%m-%d')
+			WHERE company_id= pi_company_id AND 
+				STATUS= 1;
+			
+			TRUNCATE gl_accountcache;
+			INSERT INTO gl_accountcache  SELECT *,NOW() FROM sr_gl_account_sel;
+		END IF;
+		
+		IF (pi_module_id = 2) THEN
+		
+			# ///////////////////////////////////////////////////////////////////////////////
+			# ---------------------- Post Opening Balances for Stock  -----------------------
+			# ///////////////////////////////////////////////////////////////////////////////
+						
+						
+			# ---------------------------- Stock Account Selection ----------------------------
+				
+			# Account entry for debit.
+		
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					7, 
+					pi_company_id, 
+					pi_user_id, 
+					gl.id,
+					gl.accountCode,
+					gl.displayName,
+					0,
+					t1.debit_amount,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'D',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_stock AS t1,financial_settings fs
+				LEFT JOIN gl_account gl ON gl.id= fs.stock_gl_account
+				WHERE gl.STATUS=1 AND gl.allowPosting=1 AND gl.company_id=pi_company_id AND 
+				      fs.company_id=pi_company_id AND t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND  t1.status= 1;
+				      
+			# balancing account entry for debit.
+				      
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					7, 
+					pi_company_id, 
+					pi_user_id, 
+					p_openBalncGLID,
+					p_openBalncGLCode,
+					p_openBalncGLName,
+					t1.debit_amount,
+					0,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'C',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_stock AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND 
+				      t1.status= 1;
+				
+			
+			# Insert into warehouse_allocation to update stock entries.
+					
+			INSERT INTO warehouse_allocation (order_id,
+							product_id, 
+						    warehouse_id,
+						    location,
+						    container_no,
+						    batch_no,
+						    prod_date,
+						    date_received,
+						    use_by_date,
+						    quantity,
+						    TYPE,
+						    STATUS,
+						    purchase_status,
+						    order_date,
+						    cost,
+						    unit_measure,
+						    unit_measure_id,
+						    unit_measure_name,
+						    item_trace_unique_id,
+						    opBalncID, 
+						    company_id, 
+						    user_id)
+				SELECT  0,t1.productID, 
+					t1.warehouseID, 
+					t1.prodStorageLocID,
+					t1.container_no,
+					t1.batch_no,
+					t1.prod_date,
+					t1.date_received,
+					t1.use_by_date,
+					t1.qty,
+					4,
+					1,
+					3,
+					t1.posting_date,
+					t1.debit_amount,
+					t1.uom,
+					t1.uomID,
+					t1.uom,
+					UUID(),
+					t1.id,
+					pi_company_id, 
+					pi_user_id
+				FROM opening_balance_stock AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND 
+				      t1.status= 1;
+			
+			-- storageLocID
+			# Item IN/OUT Cost entries
+			# in opening balance we only get IN entries
+			INSERT INTO item_in_cost_entries(invoice_id, invoice_type, product_id, total_qty, remaining_qty, unit_price, posting_date, posted_on, company_id)
+			SELECT t1.id, 3, t1.productID, t1.qty, t1.qty, t1.price, t1.posting_date, FROM_UNIXTIME(NOW()), pi_company_id
+			FROM opening_balance_stock AS t1
+			WHERE t1.company_id= pi_company_id AND 
+			      t1.postStatus IS NULL AND 
+			      t1.status= 1;
+				      
+				      
+			# update table status for Stock 
+			UPDATE opening_balance_stock 
+			SET postStatus=1 
+			WHERE company_id= pi_company_id AND 
+				STATUS= 1;
+				
+			TRUNCATE gl_accountcache;
+			INSERT INTO gl_accountcache  SELECT *,NOW() FROM sr_gl_account_sel;
+			
+			TRUNCATE ProductCache;
+			INSERT INTO ProductCache SELECT *,NOW() FROM SR_product_sel;
+				
+			#,posting_date= UNIX_TIMESTAMP (NOW())
+		END IF;
+		
+		IF (pi_module_id = 3) THEN
+		
+			# ///////////////////////////////////////////////////////////////////////////////
+			# ---------------------- Post Opening Balances for Customer  -----------------------
+			# ///////////////////////////////////////////////////////////////////////////////
+		
+			# Account entry for debit.
+			
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					8, 
+					pi_company_id, 
+					pi_user_id, 
+					t1.account_id,
+					t1.account_no,
+					t1.account_name,
+					0,
+					t1.debitAmount,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'D',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_customer AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND 
+				      t1.debitAmount >0 AND 
+				      t1.type =1 AND 
+				      t1.status= 1;
+				# converted_price
+				      
+			# balancing account entry for debit.
+				      
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					8, 
+					pi_company_id, 
+					pi_user_id, 
+					p_openBalncGLID,
+					p_openBalncGLCode,
+					p_openBalncGLName,
+					t1.debitAmount,
+					0,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'C',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_customer AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND 
+				      t1.debitAmount >0 AND 
+				      t1.type =1 AND 
+				      t1.status= 1;
+				#converted_price
+				      
+			# Account entry for Credit.
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					8, 
+					pi_company_id, 
+					pi_user_id, 
+					t1.account_id,
+					t1.account_no,
+					t1.account_name,
+					t1.creditAmount,
+					0,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'C',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_customer AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND 
+				      t1.creditAmount >0 AND 
+				      t1.type =1 AND 
+				      t1.status= 1;
+				# converted_price
+				      
+			# balancing account entry for credit.
+				      
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					8, 
+					pi_company_id, 
+					pi_user_id, 
+					p_openBalncGLID,
+					p_openBalncGLCode,
+					p_openBalncGLName,
+					0,
+					t1.creditAmount,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'D',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_customer AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND 
+				      t1.creditAmount >0 AND 
+				      t1.type =1 AND 
+				      t1.status= 1;
+				# converted_price
+				      
+			# update table status for customer 
+			UPDATE opening_balance_customer 
+			SET postStatus=1,
+			    posting_dateUnConv = DATE_FORMAT(FROM_UNIXTIME(posting_date), '%Y-%m-%d')
+			WHERE company_id= pi_company_id AND 
+				TYPE =1 AND 
+				STATUS= 1;
+				
+			TRUNCATE gl_accountcache;
+			INSERT INTO gl_accountcache  SELECT *,NOW() FROM sr_gl_account_sel;
+		END IF;
+		
+		IF (pi_module_id = 4) THEN
+		
+			# ///////////////////////////////////////////////////////////////////////////////
+			# ---------------------- Post Opening Balances for Supplier  -----------------------
+			# ///////////////////////////////////////////////////////////////////////////////
+			
+			# Account entry for debit.
+			
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					9, 
+					pi_company_id, 
+					pi_user_id, 
+					t1.account_id,
+					t1.account_no,
+					t1.account_name,
+					0,
+					t1.debitAmount,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'D',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_customer AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND 
+				      t1.debitAmount >0 AND 
+				      t1.type =2 AND 
+				      t1.status= 1;
+				#converted_price
+				      
+			# balancing account entry for debit.
+				      
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					9, 
+					pi_company_id, 
+					pi_user_id, 
+					p_openBalncGLID,
+					p_openBalncGLCode,
+					p_openBalncGLName,
+					t1.debitAmount,
+					0,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'C',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_customer AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND 
+				      t1.debitAmount >0 AND 
+				      t1.type =2 AND 
+				      t1.status= 1;
+				 #converted_price
+				      
+			# Account entry for Credit.
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					9, 
+					pi_company_id, 
+					pi_user_id, 
+					t1.account_id,
+					t1.account_no,
+					t1.account_name,
+					t1.creditAmount,
+					0,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'C',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_customer AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND 
+				      t1.creditAmount >0 AND 
+				      t1.type =2 AND 
+				      t1.status= 1;
+				#converted_price
+				      
+			# balancing account entry for credit.
+				      
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					9, 
+					pi_company_id, 
+					pi_user_id, 
+					p_openBalncGLID,
+					p_openBalncGLCode,
+					p_openBalncGLName,
+					0,
+					t1.creditAmount,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'D',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_customer AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND
+				      t1.creditAmount >0 AND 
+				      t1.type =2 AND 
+				      t1.status= 1;
+				#converted_price
+				      
+			# update table status for customer 
+			UPDATE opening_balance_customer 
+			SET postStatus=1,
+			    posting_dateUnConv = DATE_FORMAT(FROM_UNIXTIME(posting_date), '%Y-%m-%d')
+			WHERE company_id= pi_company_id AND 
+				TYPE =2 AND 
+				STATUS= 1;
+			
+			TRUNCATE gl_accountcache;
+			INSERT INTO gl_accountcache  SELECT *,NOW() FROM sr_gl_account_sel;
+			
+		END IF;
+		
+		IF (pi_module_id = 5) THEN
+		
+			# ///////////////////////////////////////////////////////////////////////////////
+			# ---------------------- Post Opening Balances for GL  ----------------------- 
+			# ///////////////////////////////////////////////////////////////////////////////
+			
+			# Account entry for debit.
+			
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					10, 
+					pi_company_id, 
+					pi_user_id, 
+					t1.account_id,
+					t1.account_no,
+					t1.account_name,
+					0,
+					t1.converted_price,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'D',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_gl AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND
+				      t1.status= 1 AND 
+				      t1.debitAmount>0;		      
+				       
+				      -- t1.docType =2 AND !=1
+				      
+			# balancing account entry for debit.
+				      
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					10, 
+					pi_company_id, 
+					pi_user_id, 
+					p_openBalncGLID,
+					p_openBalncGLCode,
+					p_openBalncGLName,
+					t1.converted_price,
+					0,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'C',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_gl AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND 
+				      t1.status= 1 AND 
+				      t1.debitAmount>0;
+				      
+			# Account entry for Credit.
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					10, 
+					pi_company_id, 
+					pi_user_id, 
+					t1.account_id,
+					t1.account_no,
+					t1.account_name,
+					t1.converted_price,
+					0,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'C',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_gl AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND 
+				      t1.status= 1 AND 
+				      t1.creditAmount>0;
+				      
+			# balancing account entry for credit.
+				      
+			INSERT INTO gl_account_txn (object_id, 
+						    TYPE, 
+						    company_id, 
+						    user_id, 
+						    gl_account_id,
+						    gl_account_code, 
+						    gl_account_name,
+						    credit_amount, 
+						    debit_amount, 
+						    AddedBy, 
+						    AddedOn,
+						    txnType, 
+						    DebitorCreditSign,
+						    transaction_id)
+				SELECT  t1.id, 
+					10, 
+					pi_company_id, 
+					pi_user_id, 
+					p_openBalncGLID,
+					p_openBalncGLCode,
+					p_openBalncGLName,
+					0,
+					t1.converted_price,
+					pi_user_id, 
+					UNIX_TIMESTAMP (NOW()),
+					2, 
+					'D',
+					SR_GetNextTransactionID(pi_company_id, 1)
+				FROM opening_balance_gl AS t1
+				WHERE t1.company_id= pi_company_id AND 
+				      t1.postStatus IS NULL AND 
+				      t1.status= 1 AND 
+				      t1.creditAmount>0;
+				      
+			# update table status for customer 
+			UPDATE opening_balance_gl 
+			SET postStatus=1
+			WHERE company_id= pi_company_id AND 
+				STATUS= 1;
+			
+			TRUNCATE gl_accountcache;
+			INSERT INTO gl_accountcache  SELECT *,NOW() FROM sr_gl_account_sel;
+		END IF;
+	  END IF;
+    END$$
+
+DELIMITER ;

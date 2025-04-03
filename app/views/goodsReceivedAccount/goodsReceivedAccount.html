@@ -1,0 +1,58 @@
+<div ng-controller="goodsReceivedAccountController as table">
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+
+  <div class="row">
+    <div class="col-md-12 col-md-12">
+      <div class="widget">
+        <div class="widget-body " style="margin-top: 10px;">
+          <div id="dt_example" class="example_alt_pagination">
+            <div class="row">
+              <div class="col-lg-12 col-md-12">
+                <div class="widget animated fadeIn">
+                  <div class="widget-body nobg-widget-body" style="padding-top: 0px !important;">
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <b class="bit" style="background: white; border: 0; text-align: center; font-weight: bold; font-size: 13px; padding: 9px 2px; border-bottom: 1px solid #dddddd !important; margin-bottom: 20px;">
+                            G/L Account for Goods Received Not Invoiced</b>
+                          <div class="col-md-5">
+                            <label class="col-md-4 control-label2">G/L Account</label>
+                            <div class="col-md-8">
+                              <div class="input-symbol" ng-class="{'dont-click':goodsReceivedReadonly}">
+                                <input type="text" class="form-control" 
+                                  ng-model="goodsReceivedAccount_code"
+                                  ng-class="{'pickdate':!goodsReceivedReadonly}"
+                                  ng-disabled="goodsReceivedReadonly"
+                                  ng-click="getGLAccountCode()"
+                                  readonly="" />
+                                <span><i class="fa fa-external-link"></i></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-2 col-md-offset-5">
+
+                            <div class="pull-right">
+                              <button type="button" class="btn btn-submit2" 
+                              ng-click="saveGLCode()"
+                              ng-if="!goodsReceivedReadonly">Save</button>
+                          <button class="btn btn-edit" ng-if="goodsReceivedReadonly" type="button" ng-click="gotoEdit()"><i class="fa fa-edit fa_display"></i> Edit</button>
+                          <button class="btn btn-cancel" type="button" ui-sref="{{btnCancelUrl}}" ng-click="gotoFinanceTab()"><i class="fa fa-undo fa_display"></i> Cancel</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   <div ng-include="'app/views/company/_finance_setting_gl_account_modal.html'"></div> 
+  <!-- <div ng-include="'app/views/inventorySetup/_inventorySetupGL_account_modal.html'"></div> -->
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

@@ -1,0 +1,79 @@
+<div class="col-md-12">
+	<div>
+		<div class="panel-title2">
+			Brands
+		</div>
+		<div class="col-md-5">
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">Name <span class="required">*</span></label>
+				<div class="col-md-8">
+					<input type="text" ng-model="rec.brandname" id="brandname" name="brandname" class="form-control" tabindex="1" required="required"
+					 ng-readonly="check_readonly" />
+				</div>
+			</div>
+
+			<!-- <div class="form-group">
+				<label class="col-md-4 control-label">Brand Code<span class="required">*</span></label>
+				<div class="col-md-8">
+					<input type="text" ng-model="rec.brandcode" id="brandcode" name="brandcode" class="form-control" tabindex="2" required="required"
+					 ng-readonly="check_readonly" />
+				</div>
+			</div> -->
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">Categories</label>
+
+				<div class="col-md-8">
+					<div title="{{SelcategoryTooltip}}">
+						<div class="panel-info pi2" ng-class="{'dont-click readonly':check_readonly}" ng-click="getCategories()">
+							<div class="panel-body" ng-class="{'dont-click readonly':check_readonly}">
+								<span ng-repeat="sp in categorySelArray track by $index">
+									<!-- <span ng-if="$index == 0">
+										<span>{{sp.title}} == {{$index}}####</span>
+									</span> -->
+									<span ng-if="categorySelArray.length == 1">{{sp.title}}</span>
+									<span ng-if="categorySelArray.length > 1">{{sp.title}}<span ng-if="$index < categorySelArray.length && $index!=0">;&nbsp;</span></span>
+								</span>
+								<aside></aside>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- <div class="form-group">
+				<label class="col-md-4 control-label">Status<span class="required">*</span></label>
+				<div class="col-md-8">
+					<ui-select ng-model="rec.status" required="required"
+						ng-disabled="check_readonly" id="status" tabindex="4">
+						<ui-select-match placeholder="Select Status">{{$select.selected.label}}</ui-select-match>
+						<ui-select-choices repeat="opt in arr_status | filter: $select.search">
+							<div ng-bind-html="opt.label | highlight: $select.search"></div>
+						</ui-select-choices>
+					</ui-select>
+				</div>
+			</div> -->
+
+		</div>
+
+		<!-- <div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label class="col-md-4 control-label">Category </label>
+
+					<div class="col-md-8">
+						<ui-select ng-model="rec.category" ng-disabled="check_readonly">
+							<ui-select-match placeholder="Select Category">{{$select.selected.name}}
+							</ui-select-match>
+							<ui-select-choices repeat="opt in cat_prodcut_arr | filter: $select.search">
+								<div ng-bind-html="opt.name | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+					</div>
+				</div>
+			</div>
+		</div> -->
+	</div>
+</div>
+<div ng-include="'app/views/brands/categoriesModal.html'"></div>

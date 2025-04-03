@@ -1,0 +1,168 @@
+[
+        {
+                "title": "Item No.",
+                "field_name": "product_code",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "100",
+                "conditional_classes": " 'onHoldRed': value.available_stock <= value.reorder_quantity ",
+                "data_type": "string"
+        },
+        {
+                "title": "Description",
+                "field_name": "description",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "180",
+                "data_type": "string"
+        },
+        {
+                "title": "Brand",
+                "field_name": "brand_name",
+                "db_table": "brand",
+                "db_field": "brandname",
+                "db_where": " status = 1 ",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "150",
+                "data_type": "drop_down"
+        },
+        {
+                "title": "Category",
+                "field_name": "category_name",
+                "db_table": "category",
+                "db_field": "name",
+                "db_where": " status = 1 ",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "150",
+                "data_type": "drop_down"
+        },
+        {
+                "title": "U.O.M",
+                "field_name": "unit_name",
+                "db_table": "units_of_measure",
+                "db_field": "title",
+                "db_where": " status = 1 ",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "100",
+                "data_type": "drop_down"
+        },
+        {
+                "title": "Status",
+                "field_name": "statusp",
+                "default_filter": true,
+                "filter_type": "Exact",
+                "filter_value": "Active",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "100",
+                "data_type": "drop_down"
+        },
+        {
+                "title": "Country of Origin",
+                "field_name": "origin_country_name",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "180",
+                "data_type": "string"
+        },
+        {
+                "title": "Allocation Required",
+                "field_name": "allocation_required",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "180",
+                "data_type": "string"
+        },
+        {
+                "title": "Reorder Point Qty",
+                "field_name": "reorder_quantity",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "180",
+                "data_type": "string"
+        },
+        {
+                "title": "Barcode",
+                "field_name": "bar_code",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "180",
+                "data_type": "string"
+        },
+        {
+                "title": "Link to Sub. Items",
+                "field_name": "link_to_sub_items",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "180",
+                "data_type": "string"
+        },
+        {
+                "title": "Name 1",
+                "field_name": "itemAdditionalDetail1_value",
+                "visible": "0",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "180",
+                "data_type": "string"
+        },
+        {
+                "title": "Name 2",
+                "field_name": "itemAdditionalDetail2_value",
+                "visible": "0",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "180",
+                "data_type": "string"
+        },
+        {
+                "title": "Name 3",
+                "field_name": "itemAdditionalDetail3_value",
+                "visible": "0",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "180",
+                "data_type": "string"
+        },
+        {
+                "title": "Name 4",
+                "field_name": "itemAdditionalDetail4_value",
+                "visible": "0",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "180",
+                "data_type": "string"
+        },
+        {
+                "title": "Name 5",
+                "field_name": "itemAdditionalDetail5_value",
+                "visible": "0",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "180",
+                "data_type": "string"
+        },
+        {
+                "title": "Item Code",
+                "field_name": "old_code",
+                "visible": "1",
+                "pinned": "0",
+                "color": "#ffffff",
+                "width": "180",
+                "data_type": "string"
+        }
+]

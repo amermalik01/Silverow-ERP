@@ -1,0 +1,179 @@
+<div ng-include="'app/views/_breadcrumb2.html'"></div>
+<style type="text/css">
+    .reportBox aside:after {
+        display: contents;
+        cursor: pointer;
+        color: #008eff;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12"
+         style="margin-bottom: 10px;">
+        <div class="widget-wrapper-holiday">
+            <div class="summary-box dis-table">
+                <div>Entitled Annual Leave</div>
+                <div>{{holidayPeriod.period == 0 ? (formData.entitle_holiday?formData.entitle_holiday:"0") : "-"}}</div>
+            </div>
+            <div class="summary-box dis-table">
+                <div>Future Booked Annual Leave</div>
+                <div>{{totalBooked?totalBooked:"0"}} <!-- {{totalUnpaidBooked?"("+totalUnpaidBooked+")":""}}--></div> 
+            </div>
+            <div class="summary-box dis-table">
+                <div>Remaining Annual Leave</div>
+                <div>
+                    {{holidayPeriod.period == 0 ? (formData.entitle_holiday?(formData.entitle_holiday - totalAvailed - totalBooked):"0"): "-"}}
+                </div>
+            </div>
+            <div class="summary-box dis-table">
+                <div>Sick Leave</div>
+                <div>{{sickLeaves?sickLeaves:"0"}}</div>
+            </div>
+            <div class="summary-box dis-table">
+                <div>Other Leave</div>
+                <div>{{otherLeaves?otherLeaves:"0"}}</div>
+            </div>
+            <div class="summary-box dis-table reportBox">
+                <div>Employee Absence List<!-- Report --> <!-- module:{{formData.employee_id}} --></div>
+                <div>
+                    <a ui-sref="app.showHolidayReport({id:$stateParams.id})" class="fave-report-desp" target="_blank">
+                        <aside></aside>
+                    </a>
+                    <!-- <aside ng-click="showHolidayReport(formData.employee_id)"></aside> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="input-symbol">
+            <input type="text"
+                   Placeholder="Search"
+                   ng-model="searchTerm"
+                   class="form-control">
+            <span id="date_msg_4">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+    </div>
+    <!-- <div class="col-md-1"
+         style="margin-top: 14px;padding-right: 0;padding-left: 0;">
+        <div class="input-symbol">
+            <select
+                    ng-model="holidayPeriod.period"
+                    ng-change="getHoliday(holidayPeriod.period)"
+                    class="form-control">
+                <option value="0"
+                        label="Current Period">Current Period</option>
+                <option value="-1"
+                        label="Previous Period">Previous Period</option>
+                <option value="1"
+                        label="Future Period">Future Period</option>
+            </select>
+        
+        </div>
+    </div> -->
+    <div class="col-md-offset-8 col-md-1">
+        <a id="prompt"
+           ng-if="(allowaddhr_holiday==1 || userId == formData.id) && formData.entitle_holiday"
+           ng-click="hrHolidayForm()"
+           class="btn btn_add pull-right">
+            <i class="fa fa-plus fa_display"> </i> Add</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget-body ">
+            <div ng-show="!holidays_columns.length > 0"
+                 class="no-record">
+            </div>
+            <div id="dt_example"
+                 class="example_alt_pagination"
+                 ng-show="holidays_columns.length > 0">
+                <!--    view    permision for Company User /superadmin -->
+                <div class="table-responsive">
+                    <table class="table table-condensed table-striped table-hover table-bordered"
+                           ng-if="(allowviewhr_holiday==1 || userId == formData.id)">
+                        <thead>
+                            <tr class="bg-col">
+                                <th ng-repeat="column in holidays_columns"
+                                    class="sortable sort-asc"
+                                    ng-class="{ 'sort-asc': vm.tableParams.isSortBy(column.field, 'asc'),   'sort-desc': !vm.tableParams.isSortBy(column.field, 'desc')   }"
+                                    ng-click="vm.tableParams.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"
+                                    ng-if="column.title!= 'Id' && column.title !='Passed'"
+                                    sortable="column.title"
+                                    filter="{ column.title: 'text'}"> {{column.title}}
+                                </th>
+                                <th style="width: 7%;"
+                                    class="ShowHideAction">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body courser ">
+                            <span us-spinner="{radius:30, width:8, length: 16}"
+                                  spinner-key="spinner-1"></span>
+                            <tr ng-repeat="record in holidays | filter:searchTerm">
+                                <td ng-repeat="column in holidays_columns"
+                                    ng-click=" (allowedithr_holiday==1 || currentEmpID == userId) && showHolidayEditForm(record.id)"
+                                    ng-class="{'dont-click':(allowedithr_holiday==0 && currentEmpID != userId)}"
+                                    ng-if="column.title != 'Id' && column.title !='Passed'">{{record[column.field]}}
+                                </td>
+                                <td ng-show="holidays_columns.length > 0 && column.title !='Passed'"
+                                    class="ShowHideAction">
+                                    <!--    Edit    permision for Company User /superadmin -->
+                                    <a ng-click="(allowedithr_holiday==1 || currentEmpID == userId) && showHolidayEditForm(record.id)"
+                                       ng-class="{'dont-click':(allowedithr_holiday==0 || currentEmpID == userId)}"
+                                       class="tooltips_clss btn">
+
+                                        <i class="fa fa-edit"
+                                           ng-if="record.passed == 'No' && record['Status'] == 'In Progress'"> </i>
+
+                                        <i class="fa fa-eye"
+                                           ng-if="record['Status'] == 'Approved' || record['Status'] == 'Disapproved' || record.passed == 'Yes' "></i>
+                                    </a>
+                                    <!--    Delete    permision for Company User /superadmin -->
+
+                                    <a title="Delete"
+                                       ng-hide="record.passed == 'Yes' || record['Status'] != 'In Progress'"
+                                       ng-click="deleteHoliday(record.id,record.passed,record['Status'],$index,expenses)"
+                                       ng-if="(allowdeletehr_holiday==1  || currentEmpID == userId) "
+                                       class="tooltips_clss btn">
+                                        <i class="fa fa-times"> </i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group"
+                             style="text-align: left;">
+                            <ul class="pagination"
+                                style="margin: 0px !important;"
+                                ng-show="item_paging.total_pages > 1">
+                                <li ng-class="{'disabled': item_paging.cpage == 1}"
+                                    class="">
+                                    <a ng-click="itemselectPage(item_paging.ppage); getexpenses();"
+                                       href="javascript: void(0);"
+                                       class="">«</a>
+                                </li>
+                                <li ng-repeat="(key,value) in item_paging.pages"
+                                    ng-class="{'active': value == item_paging.cpage}">
+                                    <a ng-click="itemselectPage(value); getexpenses();"
+                                       href="javascript: void(0);">
+                                        <span ng-bind="value"></span>
+                                    </a>
+                                </li>
+                                <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}">
+                                    <a ng-click="itemselectPage(item_paging.npage); getexpenses();"
+                                       href="javascript: void(0);">»</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

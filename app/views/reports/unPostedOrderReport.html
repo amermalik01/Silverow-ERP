@@ -1,0 +1,167 @@
+<div ng-controller="UnPostedOrderReportController as table">
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+
+  <style>
+    body {
+      background-image: url(app/css/report-BG.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      padding-bottom: 10px;
+    }
+  </style>
+
+  <div class="a-content">
+    <div class="a-label-container">
+
+      <span ng-if="module!='PurchaseOrderGoodReceived'">
+        <b class="a-title">Date <span class="required"> *</span></b>
+        <div class="input-symbol a-date">
+          <input jqdatepicker
+                 class="form-control"
+                 id="dateFrom"
+                 readonly
+                 placeholder="From"
+                 ng-model="filterReport.dateFrom"
+                 style="background-color: white;">
+          <span>
+            <i class="fa fa-calendar"></i>
+          </span>
+        </div>
+        <div class="input-symbol a-date">
+          <input jqdatepicker
+                 class="form-control"
+                 id="dateTo"
+                 readonly
+                 ng-model="filterReport.dateTo"
+                 style="background-color: white;">
+          <span>
+            <i class="fa fa-calendar"></i>
+          </span>
+        </div>
+      </span>
+
+      <span ng-if="module == 'PurchaseOrderGoodReceived'">
+        <b class="a-title">Date As at <span class="required"> *</span></b>
+        <div class="input-symbol a-date">
+          <input jqdatepicker
+                 class="form-control"
+                 id="dateTo"
+                 readonly
+                 ng-model="filterReport.dateTo"
+                 style="background-color: white;">
+          <span>
+            <i class="fa fa-calendar"></i>
+          </span>
+        </div>
+      </span>
+
+      <!-- <b class="ib a-margin-left add-filter collapsed"
+         data-toggle="collapse"
+         data-target="#demo">Add Filter(s)</b> -->
+
+      <div class="pull-right">
+        <button class="btn report-generate no-margin"
+                type="button"
+                ng-click="generateReport()">Generate Report</button>
+        <button class="btn report-clearfilter"
+                type="button"
+                ng-click="clearReport()">Clear Filter</button>
+        <button class="btn report-default"
+                type="button"
+                ng-click="showPdfModal()"> Print Preview</button>
+        <div class="dropdown report-excel">
+          <button class="btn report-default dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown">Export As
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a ng-click="showPdfModal('xlsx')">Excel</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="a-table"
+       ng-if="columns.length > 0">
+    <h5 class="a-report-title">{{reportTitle}}</h5>
+    <small class="a-report-date">As at {{filterReport.dateTo}}</small>
+    <table class="table table-condensed table-striped table-hover report-spacing"
+           id="data-table">
+      <thead>
+        <tr class="bg-col">
+          <th x-col="{{column.title}}"
+              ng-repeat="column in columns"
+              ng-if="column.title!= 'Id'"
+              ng-class="{'rightAlign':column.title == 'Received Qty' || column.title == 'Unit Cost' || column.title == 'Total Amount'  }">
+            <!-- {{column.title | limitStr:true:text_limit}} -->
+            <span ng-if="column.title == 'Custno'">Customer No.</span>
+            <span ng-if="column.title == 'Cust Order_no'">Cust Order No.</span>
+            <span ng-if="column.title == 'Supp Ref_no'">Supp. Ref. No.</span>
+            <span ng-if="column.title == 'Order'">Order No.</span>
+            <span ng-if="column.title == 'Eu Country_code'">EU Country Code</span>
+            <span ng-if="column.title == 'Vat Registernumber'">VAT Registration No.</span>
+            <span ng-if="column.title == 'Total Value_of_supplies'">Total Value of Supplies</span>
+            <span ng-if="column.title == 'Amount Incl_vat'">Amount Incl. VAT(LCY)</span>
+            <span ng-if="column.title == 'Amount Excl_vat'">Amount (LCY)</span>
+            <span ng-if="column.title == 'Link To So'">Link to SO No.</span>
+            <span ng-if="column.title == 'Po No'">PO No.</span>
+            <span ng-if="column.title == 'Item No'">Item No.</span>
+            <span ng-if="column.title == 'Received Qty'">Received Qty.</span>
+            <span ng-if="column.title == 'Supplier No'">Supplier No.</span>
+
+            <span
+                  ng-if="column.title != 'Vat Amount' && column.title != 'Amount Excl_vat' && column.title != 'Custno' &&
+                                       column.title != 'Supp Ref_no' && column.title != 'Cust Order_no' &&
+                                       column.title != 'Eu Country_code' && column.title != 'Vat Registernumber' &&
+                                       column.title != 'Total Value_of_supplies' && column.title != 'Link To So' &&
+                                       column.title != 'Sale Order_no' && column.title != 'Amount Incl_vat' && column.title != 'Po No' && column.title != 'Item No' && column.title != 'Received Qty' && column.title != 'Supplier No'">{{column.title}}</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="rec in reportsDataArr"
+            ng-if="columns.length > 0"
+            ng-class="{'makeBold':rec.vat_registernumber == 'Total'}">
+          <td ng-repeat="column in columns"
+              ng-if="column.title != 'Id'"
+              ng-class="{'rightAlign':column.title == 'Received Qty' || column.title == 'Unit Cost' || 
+                        column.title == 'Total Amount'  }">
+            <span
+                  ng-if="column.title != 'Amount Excl_vat' && column.title != 'Amount Incl_vat' && 
+                                       column.title != 'Amount' && column.title != 'Total Value_of_supplies' && 
+                                       column.title != 'Stock Value' && column.title != 'Total Amount' && column.title != 'Unit Cost' && column.title != 'Received Qty'">{{rec[column.field]}}</span>
+
+            <span
+                  ng-if="(column.title == 'Amount Excl_vat' || column.title == 'Amount Incl_vat' || 
+                                       column.title == 'Amount' || column.title == 'Total Value_of_supplies' || 
+                                       column.title == 'Stock Value' || column.title == 'Total Amount' || column.title == 'Unit Cost') && module !='ECSalesList'">
+              {{rec[column.field] | currency : "" : decimal_range }}</span>
+
+            <span
+                  ng-if="column.title == 'Received Qty'">
+                 {{rec[column.field] | numberNoDecimalsIfZeroFilter:2:'' }}</span>
+
+            <span
+                  ng-if="(column.title == 'Amount Excl_vat' || column.title == 'Amount Incl_vat' || 
+                                       column.title == 'Amount' || column.title == 'Total Value_of_supplies' || 
+                                       column.title == 'Stock Value') && module=='ECSalesList'">{{rec[column.field] | currency : "" : decimal_range }} {{defaultCurrencyCode}}</span>
+            <!-- <span ng-if="column.title != 'Amount' && column.title != 'Amount Incl. Vat' && column.title != 'Vat Amount'">{{rec[column.field]}}</span>
+                          <span ng-if="column.title == 'Amount' || column.title == 'Amount Incl. Vat' || column.title == 'Vat Amount'">{{rec[column.field] | currency : "" : decimal_range }}</span> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+  <div ng-include="'app/views/reports/_listingCustomerDetailModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingSalepersonModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingSupplierDetailModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingEuCountriesModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingItemDetailModal.html'"></div>
+
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

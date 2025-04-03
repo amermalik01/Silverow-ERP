@@ -1,0 +1,47 @@
+<div class="modal fade" id="deptListingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog  modal-lg" dragable style="    width: 80%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Select Department(s)</h4>
+            </div>
+
+            <div class="modal-body">                
+                <div class="row" style="margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                         <!-- {{tempSalepersonsArr2 | json}}    -->
+                        <!-- <div ng-if="tempSalepersonsArr2.ack">
+                            <div class="flexiTable makeModalFixed" 
+                                x-generate-table2 
+                                x-data="tempSalepersonsArr2" 
+                                x-table-name="SalePersonsDetailModal"
+                                x-select-flexi-chk-box="false" 
+                                x-updated-object-arr="PendingSelectedSalepersons"
+                                x-filter-function="getCUSTlist()"  
+                                x-filter-object="searchKeyword"></div>
+                        </div> -->
+{{tableData}}
+                        <div>
+                                <x-flexi-select x-flexi-select-title="'Department'"
+                                x-flexi-select-modal-id="'DepartmentSelectModal'"
+                                x-flexi-select-output='formData.roles'
+                                x-flexi-select-data="tableData">
+                </x-flexi-select>
+                           <!--  <div class="flexiTable" x-report-modal="'true'" x-generate-table x-data="tableData.data" x-table-name="DeptDetailModal"
+                            x-forget-filters="true"
+                                 x-controller-initiate 
+                                x-filter-function="selectDepartment()" x-checked-records="selectedRecFromModalsDpt" x-filter-object="searchKeywordDpt"></div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button class="btn btn_add" type="button" ng-click="addDpt()">Add</button>
+                    <button type="button" class="btn btn-cancel" ng-click="clearPendingDpt()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

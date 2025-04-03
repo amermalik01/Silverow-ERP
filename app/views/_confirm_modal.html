@@ -1,0 +1,673 @@
+<style>
+    .ngdialog.ngdialog-theme-default .ngdialog-content {
+        padding: 10px !important;
+    }
+</style>
+<script type="text/ng-template"
+        id="modalDeleteDialogId">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-error animate">
+            <span class="f-modal-x-mark">
+                <span class="f-modal-line f-modal-left animateXLeft"></span>
+                <span class="f-modal-line f-modal-right animateXRight"></span>
+            </span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style=" margin: 7px 0 12px 0; display: block;"> Are you sure you want to delete this record? </b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="submitVATConfirmationDialog">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style=" margin: 7px 0 12px 0; display: block;"> This will submit the report to HMRC. Are you sure you want to go ahead with this action?</b></p>
+        <p><span><input ng-model="VATHMRCConfirmation" type="checkbox"></span><strong>When you submit this VAT information you are making a legal
+declaration that the information is true and complete. A false declaration
+can result in prosecution.</strong></p>
+        
+        <button type="button" ng-disabled="!VATHMRCConfirmation" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="postVATwithoutHMRCSubmitDialog">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style=" margin: 7px 0 12px 0; display: block;"> Are you sure you want to post VAT return, for selected period. Once posted, transactions can not be reverted.</b></p>
+        
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+
+<script type="text/ng-template"
+        id="sessionTimeoutConfirmationDialog">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <i class="material-icons" style="font-size: 65px;color: #2196F3;">
+            timer
+        </i>
+        <h3 style="margin-top: 5px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Session Timeout</h3>
+        <p><b style=" margin: 7px 0 12px 0; display: block;">Your Session will timeout after 1 min.</b></p>
+        
+        <!-- <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button> -->
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel">Stay Login<!-- Cancel(Session Out) --></button>
+    </div>
+</script>
+
+
+<script type="text/ng-template"
+        id="applyFiltersDialogId">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style=" margin: 7px 0 12px 0; display: block;"> This will overwrite the existing Salespersons on all records as per the filters. Are you sure you want to go ahead with this action?</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="bucketDeleteDialogId">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-error animate">
+            <span class="f-modal-x-mark">
+                <span class="f-modal-line f-modal-left animateXLeft"></span>
+                <span class="f-modal-line f-modal-right animateXRight"></span>
+            </span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style=" margin: 7px 0 12px 0; display: block;"> This bucket has already been assigned to one or more employees. Are you sure you want to delete it?</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+<script type="text/ng-template"
+        id="modalDeleteDialogId2">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-error animate">
+            <span class="f-modal-x-mark">
+                <span class="f-modal-line f-modal-left animateXLeft"></span>
+                <span class="f-modal-line f-modal-right animateXRight"></span>
+            </span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style=" margin: 7px 0 12px 0; display: block;">This role might have been assigned to one or more employees. Are you sure you want to delete it?</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="modalUnallocateDialogId">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style=" margin: 7px 0 12px 0; display: block;"> Are you sure you want to Deallocate this Stock? </b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="modalcompleteDialogId">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="    margin: 7px 0 12px 0; display: block;"> Are you sure you want to complete this Stage ?</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="modalDiscardPriceOfferDialogId">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-error animate">
+            <span class="f-modal-x-mark">
+                <span class="f-modal-line f-modal-left animateXLeft"></span>
+                <span class="f-modal-line f-modal-right animateXRight"></span>
+            </span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;"> <!-- Add items or click confirm if you want to discard this price offer -->Are you sure you want to discard this record?</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="modalDiscardPriceOfferEmptyItemDialogId">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-error animate">
+            <span class="f-modal-x-mark">
+                <span class="f-modal-line f-modal-left animateXLeft"></span>
+                <span class="f-modal-line f-modal-right animateXRight"></span>
+            </span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;"> No Items have been selected. You can't save the record without an item. By selecting 'Confirm' the price offer will be discarded .</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="modalDiscardPurchaseOrderDialogId">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-error animate">
+            <span class="f-modal-x-mark">
+                <span class="f-modal-line f-modal-left animateXLeft"></span>
+                <span class="f-modal-line f-modal-right animateXRight"></span>
+            </span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">Are you sure you want to discard this record?</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="_confirm_all_order_posting">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">{{post_all_order_msg}}</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="_confirm_quote_to_order_invoice_modal">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">{{quote_post_invoice_msg}}</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+<script type="text/ng-template"
+        id="_confirm_order_invoice_modal">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">{{order_post_invoice_msg}}</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+<script type="text/ng-template"
+        id="_confirm_approval_required_modal">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Approval Required</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">{{approval_message}}</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 130px;">Queue for Approval</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+<script type="text/ng-template"
+        id="_confirm_approval_confirmation_modal">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block; white-space: pre-line;">{{approval_message}}</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 120px;">{{approval_type}}</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="_confirm_approval_confirmation_modal2">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block; block; white-space: pre-line;">{{approval_message}}</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 120px;">{{approval_type}}</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Edit</button>
+    </div>
+</script>
+<script type="text/ng-template"
+        id="_confirm_logout_modal">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">{{confirm_logout_modal}}</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+<script type="text/ng-template"
+        id="_confirm_promotion_delete_modal">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-error animate">
+            <span class="f-modal-x-mark">
+                <span class="f-modal-line f-modal-left animateXLeft"></span>
+                <span class="f-modal-line f-modal-right animateXRight"></span>
+            </span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">{{promotion_delete_error_msg}}</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+<script type="text/ng-template"
+        id="_confirm_uom_delete_error_msg">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-error animate">
+            <span class="f-modal-x-mark">
+                <span class="f-modal-line f-modal-left animateXLeft"></span>
+                <span class="f-modal-line f-modal-right animateXRight"></span>
+            </span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">Are you sure you want to delete this U.O.M?</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="_confirm_credit_note_invoice_modal">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">{{credit_note_post_invoice_msg}}</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="_confirm_template_change_modal">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">{{template_error_msg}}</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+
+<script type="text/ng-template"
+        id="_confirm_credit_note_receive">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">{{credit_note_receive_stock_msg}}</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="_confirm_order_stage_unchecked">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">{{confirm_order_stage_unchecked_message}}</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+<script type="text/ng-template"
+        id="modalPostOpeningBalance">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style=" margin: 7px 0 12px 0; display: block;"> Are you sure you want to Post Opening Balances? </b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="modalConfirmInventorySetupDialogId">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="    margin: 7px 0 12px 0; display: block;"> Are you sure you want to select this inventory setup? Once confirmed you will never be able to change inventroy setup again!</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="modalToGoToTask">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div style="font-weight: normal;
+                        font-size: 14px;
+                        color: green;   
+                        margin-bottom: 22px;
+                        margin-top: 11px;">Task Reminder <div style="display:inline-block" ng-if="ngDialogData.recordName">({{ngDialogData.recordName}})</div></div>
+        <div class="clearfix">
+            <table style="width: 100%;margin-bottom: 12px;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <span class="mbri-alert"
+                                  style="font-size: 53px;color: #4CAF50;padding: 13px 12px;"></span>
+                        </td>
+                        <td>
+                            <div class="reminderNotification"
+                                 style="text-align: left !important;border-left: 1px solid #e0e0e0;padding-left: 16px;">
+                                <div style="font-size: 13px;color: black;font-weight: bold;padding-bottom: 4px;">
+                                    <span ng-if="ngDialogData.priority == 'high'"
+                                          style=" color: red;
+                                                                                            font-size: 16px;
+                                                                                            position: relative;
+                                                                                            top: 1px;
+                                                                                            left: -1px;
+                                                                                            border-radius: 14px;
+                                                                                            padding: 0px 8px;
+                                                                                            display: inline-block;
+                                                                                            border: 1px solid red;margin-right: 5px;">!</span>{{ngDialogData.subject}}</div>
+                                <div style="    color: black;
+                                                text-align: justify;
+                                                padding: 6px 13px;
+                                                border-radius: 2px;
+                                                margin-top: 4px;
+                                                margin-bottom: 4px;
+                                                background-color: #f5f5f5;word-break: break-all;" ng-if="ngDialogData.comment">{{ngDialogData.comment}}</div>
+                                <div style="color: black;">Due at {{ngDialogData.dueTime}} on {{ngDialogData.dueDate}}</div>
+                                <div ng-if="ngDialogData.priority == 'low' || ngDialogData.priority == 'none'" style="color: black;">Priority:
+                                    {{ngDialogData.priority | toTitleCase}}</div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button type="button"
+                ng-click="confirm('button')"
+                class="btn btn-cancel"
+                style="width: 70px;
+                    margin-left: 260px;
+                    position: relative;
+                    top: 4px">Close</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="modalChangeOnHoldStatus">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;"> </b>{{modalChangeOnHoldStatusMessage}}</p>
+        <button type="button" ui-sref="app.task({id:goToTaskId})" ng-click="confirm(confirmValue)" class="btn btn-delete" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="modalConvertCRMToIndirect">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">Are you sure to want to convert this CRM to Indirect CRM?</p>
+        <button type="button" ui-sref="app.task({id:goToTaskId})" ng-click="confirm(confirmValue)" class="btn btn-delete" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="testConfirmDialog">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">Are you sure to want to convert this CRM to Indirect CRM?</p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-delete" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="_order_date_currency_exchange_confirmation_modal">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">The currency exchange rate for invoice date {{data.posting_date}} was {{data.conv_rate}} and current exchange rate is {{data.current_conv_rate}}. Do you want to use the invoice date currency exchange rate?</b></p>
+        <button type="button" ng-click="confirm(true)" class="btn btn-delete" style="width: 70px;">Yes</button>
+        <button type="button" ng-click="closeThisDialog(false)" class="btn btn-cancel" style="width: 70px;">No</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="confirm_order_stage_unchecked_message">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Current Stage</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">Unchecking means that this stage will be incomplete. Are you sure you want to do this?</b></p>
+        <button type="button" ng-click="confirm(true)" class="btn btn-delete" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog(false)" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="BulkEmailConfirmationMessage">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">Are you sure you want to send email to the selected {{BulkEmailMessage}}?</b></p>
+        <button type="button" ng-click="confirm(true)" class="btn btn-delete" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog(false)" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="unsubscribeEmailFromCRM">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;"> Are you sure you want to unsubscribe this CRM from email campaigns?</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="modalBillingDialogId">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">The Billing option is already selected for this customer. Are you sure you want to change it to this location?</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="modalPaymentDialogId">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">The Payment option is already selected for this customer. Are you sure you want to change it to this location?</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template"
+        id="modalBillingPaymentDialogId">
+    <div class="ngdialog-message text-center f-modal-alert">
+        <div class="f-modal-icon f-modal-success animate">
+            <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+            <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+            <div class="f-modal-placeholder"></div>
+            <div class="f-modal-fix"></div>
+        </div>
+        <h3 style="margin-top: 26px;color: #000000;font-size: 20px;letter-spacing: 0.1px;">Confirmation</h3>
+        <p><b style="margin: 7px 0 12px 0; display: block;">The Billing/Payment option is already selected for this customer. Are you sure you want to change it to this location?</b></p>
+        <button type="button" ng-click="confirm(confirmValue)" class="btn btn-default2" style="width: 70px;">Confirm</button>
+        <button type="button" ng-click="closeThisDialog('button')" class="btn btn-cancel" style="width: 70px;">Cancel</button>
+    </div>
+</script>
+
+<style type="text/css">
+    .ngdialog-content {
+        background: #FFF !important;
+        padding: 10px !important;
+    }
+</style>

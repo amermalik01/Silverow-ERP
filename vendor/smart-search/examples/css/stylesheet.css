@@ -1,0 +1,45 @@
+.demo {
+	border-bottom: 1px solid #e8e8e8;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+.demo:last-child {
+	border-bottom: 0 none;
+}
+.demo select, .demo input, .demo .selectize-control {
+	width: 100%;
+}
+.demo > *:first-child {
+	margin-top: 0;
+}
+.demo > *:last-child {
+	margin-bottom: 0;
+}
+.demo .value {
+	margin: 0 0 10px 0;
+	font-size: 12px;
+}
+.demo .value span {
+	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+}
+.theme-selector {
+	margin-top: 10px;
+	font-size: 13px;
+}
+.theme-selector:before {
+	content: 'Themes: ';
+}
+.theme-selector a {
+	margin: 0 5px;
+}
+.theme-selector a.active {
+	color: #202020;
+	font-weight: bold;
+}
+
+.buttons {
+	margin: 0 0 25px 0;
+}

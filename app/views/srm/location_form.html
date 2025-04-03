@@ -1,0 +1,515 @@
+<style>
+    .new-time {
+        right: -30px !important;
+        top: 9px;
+        position: absolute;
+        color: #464646;
+        z-index: 1;
+        font-size: 13px !important;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget" style="background:none;">
+            <div class="widget-body" style="background:none;">
+                <div class="row animated fadeIn">
+                    <div class="col-md-12">
+                        <div class="panel-title2"> Other Locations</div>
+                        <!-- <div ng-if="rec_loc.is_primary==1" class="warning-primary">
+                            <i class="fa fa-flag marks"></i> Primary Location can be changed in General Tab
+                        </div> -->
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Primary</label> <!-- title="Once it is Primary, it cannot be unchecked. It can only be replaced by some other Primary Location" -->
+                                <div class="col-md-1 " style="margin-top: 6px;" title="Once Primary is checked it cannot be unchecked. It can only be replaced by another Primary Location">
+                                    <input type="checkbox" name="a" id="is_primary" ng-model="rec_loc.is_primary" ng-disabled="check_alt_depot_readonly || rec_loc.is_primary>0"
+                                        ng-checked="rec_loc.is_primary>0">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"> Name <span class="required">*</span></label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec_loc.depot" id="depot" class="form-control" ng-readonly="check_alt_depot_readonly" name="depot"
+                                        required/>
+                                    <input type="hidden" ng-model="rec_loc.id" id="update_id" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Address Line 1 </label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec_loc.address" id="address" class="form-control" ng-readonly="check_alt_depot_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Address Line 2</label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec_loc.address_2" id="address_2" class="form-control" ng-readonly="check_alt_depot_readonly"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"></label>
+                                <div class="col-md-4 padr6">
+                                    <input type="text" ng-model="rec_loc.city" id="city" class="form-control" ng-readonly="check_alt_depot_readonly" placeholder="City"/>
+                                </div>
+
+                                <div class="col-md-4 padl6">
+                                    <input type="text" ng-model="rec_loc.county" id="county" class="form-control" ng-readonly="check_alt_depot_readonly" placeholder="County" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"></label>
+
+                                <div class="col-md-4 padr6">
+                                    <input type="text" ng-model="rec_loc.postcode " id="postcode" class="form-control crm-postcode" ng-readonly="check_alt_depot_readonly" placeholder="Postcode"
+                                    />
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <ui-select ng-model="rec_loc.depo_country_id  " required ng-disabled="check_alt_depot_readonly">
+                                        <ui-select-match placeholder="Select Country">{{$select.selected.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in country_type_arr | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Telephone</label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec_loc.phone" id="phone" class="form-control" ng-readonly="check_alt_depot_readonly"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Email</label>
+                                <div class="col-md-8">
+                                      <input type="text" ng-model="rec_loc.email" id="email" class="form-control" ng-readonly="check_alt_depot_readonly"/>
+                                </div><!-- type="email" -->
+                            </div>
+                        </div>
+
+                        <div class="col-md-5 col-md-offset-2">
+
+
+
+                            <!--ng-click="set_detail_show(rec_loc.is_delivery_collection_address)"-->
+                            <!--{{rec_loc.is_delivery_collection_address}}-->
+
+
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Assign Contact(s) </label>
+
+                                <div class="col-md-2   ">
+
+                                    <button style="line-height: 18px;" class="btn btn-icon pull-right" type="button"  ng-click="getAltContacts(1,rec_loc.showdata2)" ng-class="{'setshow3':rec_loc.showdata2>0}"
+                                        title="Total Record : {{rec_loc.showdata2}}">
+                                        <span ng-show="rec_loc.showdata2==0 || !rec_loc.showdata2>0">0</span>
+                                        <span ng-show="rec_loc.showdata2>0">{{rec_loc.showdata2}}</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Location Type</label>
+
+                                <div class="col-md-8 pl0" style="    margin-top: 5px;">
+                                    <div class="col-md-3 pr0">
+                                        <div class="pure-checkbox">
+                                            <input type="checkbox" name="a" ng-model="rec_loc.is_billing_address" ng-disabled="check_alt_depot_readonly" id="locis_billing_address"
+                                                ng-checked="rec_loc.is_billing_address > 0" class="">
+                                            <label for="locis_billing_address">Billing</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 pr0 pl0">
+                                        <div class="pure-checkbox">
+                                            <input type="checkbox" name="c" ng-model="rec_loc.is_invoice_address" ng-disabled="check_alt_depot_readonly" id="locis_invoice_address"
+                                                ng-checked="rec_loc.is_invoice_address > 0" class="">
+                                            <label for="locis_invoice_address">Payment</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 pr0 pl0">
+                                        <div class="pure-checkbox">
+                                            <input type="checkbox" name="b" ng-model="rec_loc.is_delivery_collection_address" ng-disabled="check_alt_depot_readonly"
+                                                id="locis_delivery_collection_address" ng-checked="rec_loc.is_delivery_collection_address > 0"
+                                                ng-click="SetDetailEmptyOnUncheck()" class="">
+                                            <label for="locis_delivery_collection_address"><!-- Delivery -->Collection</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 pr0 pl0" ng-if="rec_loc.is_delivery_collection_address==1">
+                                        <div class="pure-checkbox" title="Once it is Default, it cannot be unchecked. It can only be replaced by some other Default Location.">
+                                            <input type="checkbox" name="a" id="is_default" ng-model="rec_loc.is_default" ng-disabled="check_alt_depot_readonly  || rec_loc.is_default>0"
+                                                ng-checked="rec_loc.is_default>0">
+                                            <label for="is_default">Default</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Location Notes</label>
+
+                                <div class="col-md-8" style="position:relative;">
+                                    <textarea style="height:100px !important; resize:none;" ng-model="rec_loc.booking_instructions" id="booking_instructions"
+                                        class="form-control" ng-readonly="check_alt_depot_readonly" maxlength="100" />
+                                    </textarea>
+                                    <!--<span class="word-counter">{{rec_loc.booking_instructions.length}}/100</span>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tablist" class="panel-group animated fadeIn" ng-if="rec_loc.is_delivery_collection_address==1">
+                    <div class="panel">
+                        <div id="collapseListGroupHeading2" role="tab" class="">
+                            <h4>
+                                <div aria-controls="collapseListGroup1" aria-expanded="{{rec_loc.booking_job_title.length > 0 || rec_loc.is_delivery_collection_address}}"
+                                    href="#collapseListGroup2" data-toggle="collapse" class="collapsed btn-collapo" ng-class="{'setshow4':rec_loc.booking_contact.length > 0 || rec_loc.is_delivery_collection_address}">
+                                    Collection Details <i class="fa fa-caret-down"></i>
+                                </div>
+                            </h4>
+                        </div>
+                        <!--{{rec_loc.is_delivery_collection_address}}-->
+                        <div aria-labelledby="collapseListGroupHeading2" role="tabpanel" class="panel-collapse collapse" ng-class="{'in':rec_loc.booking_job_title.length > 0 ||rec_loc.is_delivery_collection_address}"
+                            id="collapseListGroup2" aria-expanded="{{rec_loc.booking_job_title.length > 0 || rec_loc.is_delivery_collection_address}}"
+                            style="height: 0px;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Contact Name </label>
+
+                                            <div class="col-md-8">
+
+                                                <ui-select ng-model="rec_loc.booking_contact" ng-disabled="check_alt_depot_readonly " ng-change="set_contact_infolocation(rec_loc.booking_contact)"
+                                                    ng-class="{'not-click-allow':disableClass > 0}">
+                                                    <ui-select-match placeholder="Select Contact Name">
+                                                        {{$select.selected.name}}
+                                                    </ui-select-match>
+                                                    <ui-select-choices repeat="opt in record_ContactLoc | filter: $select.search">
+                                                        <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                                <!--select2me -->
+                                                <!--<option value="" disabled selected> </option>-->
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Job Title</label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="rec_loc.booking_job_title" id="role" class="form-control" readonly/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Direct Line</label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="rec_loc.booking_direct_line" id="direct_line" class="form-control" readonly/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Mobile</label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="rec_loc.booking_mobile" id="mobile" class="form-control" readonly/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Email </label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="rec_loc.booking_email" id="email" data-parsley-type="email" placeholder="e.g. myname@example.com"
+                                                    data-email-msg="Email format is not valid" class="form-control" readonly
+                                                />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Telephone </label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="rec_loc.booking_telephone" id="Telephone" class="form-control" readonly/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Fax </label>
+
+                                            <div class="col-md-8">
+                                                <input type="text" ng-model="rec_loc.booking_fax" id="fax" class="form-control" readonly/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" title="Preferred Method Of Communication">Pref. Method Of Comm.</label>
+
+
+                                            <div class="col-md-8">
+                                                <select ng-model="drp.booking_pref_mthod_of_comm" ng-options="opt as opt.title for opt in arr_pref_method_comm" class="form-control"
+                                                    disabled ng-class="{'not-click-allow':disableClass > 0}">
+                                                    <option style="display:block" value=""></option>
+                                                </select>
+                                                <!--select2me -->
+                                                <!--arr_pref_method_comm-->
+                                                <!--rec.-->
+                                            </div>
+                                            <!--
+                                                                          <option value="" disabled selected> </option>
+                                                                          ng-change="addNewPredefinedPopup(drp.pref_mthod_of_comm, 'PREFER_METHOD', 'Preferred Method Of Communication', drp)"
+                                                                              -->
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-md-offset-1">
+
+                                        <!--ng-if="rec_loc.id > 0"-->
+                                        <div class="dtb">
+                                            <label class="dtl"><b>Collection
+                                                Time(s) </b></label>
+                                            <label class="col-md-12">
+                                                &nbsp;
+                                                <!--style="    visibility: hidden;"  ng-if="rec.social_mediasconatctcrm.length==0"-->
+                                                <!--<a href="javascript: void(0);" class="circle-icon2     pull-right "-->
+                                                <!--style="    margin-right: 14px;"-->
+                                                <!--ng-if="rec_loc.loccaiontiming.length < 5"><i-->
+                                                <!--class="fa fa-plus"-->
+                                                <!--ng-click="rec_loc.loccaiontiming.push({'id': ''})"-->
+                                                <!--aria-hidden="true"></i></a>-->
+                                            </label>
+                                            <label class="col-md-2 pr0"><b>Days</b></label>
+                                            <label class="col-md-3 pr0"><b>Opening Times</b></label>
+                                            <label class="col-md-3 pr0"><b>Closing Times</b></label>
+                                            <label class="col-md-4 pr0"><b>Comments</b></label>
+
+                                            <!--<div class="animated fadeIn"
+                                                                       style="    display: inline-block;    width: 100%;"
+                                                                       ng-repeat="mailloc in rec_loc.loccaiontiming track by $index">
+
+                                                                      <div class="col-md-2 pr0">
+                                                                          <select ng-model="mailloc.day_limit"
+                                                                                  ng-options="opt as opt.label for opt in arr_days"
+                                                                                  class="form-control" readonly
+                                                                                  ng-disabled="true"
+                                                                                  ng-class="{'not-click-allow':true}">&lt;!&ndash;disableClass&ndash;&gt;
+                                                                              <option style="display:block" value=""></option>
+                                                                          </select>&lt;!&ndash;="check_alt_depot_readonly"&ndash;&gt;
+                                                                      </div>
+                                                                      <div class="col-md-3  pr0">
+                                                                          <input type="text" ng-model="mailloc.booking_start_time"
+                                                                                 jqtimepicker ng-disabled="check_alt_depot_readonly"
+                                                                                 class="form-control {{$index}}" readonly>
+
+                                                                          <span class="fa fa-clock-o   new_ca  form-control-feedback new-time"
+                                                                                aria-hidden="true"></span>
+                                                                      </div>
+                                                                      <div class="col-md-3  pr0">
+                                                                          <input type="text" ng-model="mailloc.booking_end_time"
+                                                                                 ng-disabled="check_alt_depot_readonly"
+                                                                                 jqtimepicker class="form-control {{$index}}" readonly>
+
+                                                                          <span class="fa fa-clock-o new_ca form-control-feedback"
+                                                                                aria-hidden="true"></span>
+                                                                      </div>
+                                                                      <div class="col-md-4 pr0">
+                                                                          <input type="text" ng-model="mailloc.notes"
+                                                                                 ng-readonly="check_alt_depot_readonly"
+                                                                                 class="form-control   {{$index}}">
+                                                                      </div>
+                                                                  </div>-->
+
+                                            <div class="animated fadeIn" style="display: inline-block; width: 100%;    margin-top: 16px;">
+                                                <!--<label class="col-md-2 pr0">Monday</label>-->
+                                                <div class="col-md-2 pr0">
+                                                    <b class="fwn">Monday</b>
+                                                </div>
+
+                                                <div class="col-md-3  pr0">
+                                                    <input type="text" ng-model="rec_loc.monday_start_time" jqtimepicker ng-disabled="check_alt_depot_readonly" class="form-control"
+                                                        readonly ng-class="{'pickdate':!check_alt_depot_readonly}">
+                                                    <span class="fa fa-clock-o   new_ca  form-control-feedback new-time" aria-hidden="true"></span>
+                                                </div>
+                                                <div class="col-md-3  pr0">
+                                                    <input type="text" ng-model="rec_loc.monday_end_time" ng-disabled="check_alt_depot_readonly" jqtimepicker class="form-control"
+                                                        readonly ng-class="{'pickdate':!check_alt_depot_readonly}">
+                                                    <span class="fa fa-clock-o new_ca new-time form-control-feedback" aria-hidden="true"></span>
+                                                </div>
+                                                <div class="col-md-4 pr0">
+                                                    <input type="text" ng-model="rec_loc.monday_notes" ng-readonly="check_alt_depot_readonly" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="animated fadeIn" style="display: inline-block; width: 100%;">
+                                                <!--<label class="col-md-2 pr0">Tuesday</label>-->
+                                                <div class="col-md-2 pr0">
+                                                    <b class="fwn">Tuesday</b>
+                                                </div>
+
+                                                <div class="col-md-3  pr0">
+                                                    <input type="text" ng-model="rec_loc.tuesday_start_time" jqtimepicker ng-disabled="check_alt_depot_readonly" class="form-control"
+                                                        readonly ng-class="{'pickdate':!check_alt_depot_readonly}">
+                                                    <span class="fa fa-clock-o   new_ca  form-control-feedback new-time" aria-hidden="true"></span>
+                                                </div>
+                                                <div class="col-md-3  pr0">
+                                                    <input type="text" ng-model="rec_loc.tuesday_end_time" ng-disabled="check_alt_depot_readonly" jqtimepicker class="form-control"
+                                                        readonly ng-class="{'pickdate':!check_alt_depot_readonly}">
+                                                    <span class="fa fa-clock-o new_ca new-time form-control-feedback" aria-hidden="true"></span>
+                                                </div>
+                                                <div class="col-md-4 pr0">
+                                                    <input type="text" ng-model="rec_loc.tuesday_notes" ng-readonly="check_alt_depot_readonly" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="animated fadeIn" style="display: inline-block; width: 100%;">
+                                                <!--<label class="col-md-2 pr0">Wednessday</label>-->
+
+                                                <div class="col-md-2 pr0">
+                                                    <b class="fwn">Wednesday</b>
+                                                </div>
+
+                                                <div class="col-md-3  pr0">
+                                                    <input type="text" ng-model="rec_loc.wednesday_start_time" jqtimepicker ng-disabled="check_alt_depot_readonly" class="form-control"
+                                                        readonly ng-class="{'pickdate':!check_alt_depot_readonly}">
+                                                    <span class="fa fa-clock-o   new_ca  form-control-feedback new-time" aria-hidden="true"></span>
+                                                </div>
+                                                <div class="col-md-3  pr0">
+                                                    <input type="text" ng-model="rec_loc.wednesday_end_time" ng-disabled="check_alt_depot_readonly" jqtimepicker class="form-control"
+                                                        readonly ng-class="{'pickdate':!check_alt_depot_readonly}">
+                                                    <span class="fa fa-clock-o new_ca new-time form-control-feedback" aria-hidden="true"></span>
+                                                </div>
+                                                <div class="col-md-4 pr0">
+                                                    <input type="text" ng-model="rec_loc.wednesday_notes" ng-readonly="check_alt_depot_readonly" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="animated fadeIn" style="display: inline-block; width: 100%;">
+                                                <!--<label class="col-md-2 pr0">Thursday</label>-->
+
+                                                <div class="col-md-2 pr0">
+                                                    <b class="fwn">Thursday</b>
+                                                </div>
+
+                                                <div class="col-md-3  pr0">
+                                                    <input type="text" ng-model="rec_loc.thursday_start_time" jqtimepicker ng-disabled="check_alt_depot_readonly" class="form-control"
+                                                        readonly ng-class="{'pickdate':!check_alt_depot_readonly}">
+                                                    <span class="fa fa-clock-o   new_ca  form-control-feedback new-time" aria-hidden="true"></span>
+                                                </div>
+                                                <div class="col-md-3  pr0">
+                                                    <input type="text" ng-model="rec_loc.thursday_end_time" ng-disabled="check_alt_depot_readonly" jqtimepicker class="form-control"
+                                                        readonly ng-class="{'pickdate':!check_alt_depot_readonly}">
+                                                    <span class="fa fa-clock-o new_ca new-time form-control-feedback" aria-hidden="true"></span>
+                                                </div>
+                                                <div class="col-md-4 pr0">
+                                                    <input type="text" ng-model="rec_loc.thursday_notes" ng-readonly="check_alt_depot_readonly" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="animated fadeIn" style="display: inline-block; width: 100%;">
+                                                <!--<label class="col-md-2 pr0">Friday</label>-->
+
+                                                <div class="col-md-2 pr0">
+                                                    <b class="fwn">Friday</b>
+                                                </div>
+
+                                                <div class="col-md-3  pr0">
+                                                    <input type="text" ng-model="rec_loc.friday_start_time" jqtimepicker ng-disabled="check_alt_depot_readonly" class="form-control"
+                                                        readonly ng-class="{'pickdate':!check_alt_depot_readonly}">
+                                                    <span class="fa fa-clock-o   new_ca  form-control-feedback new-time" aria-hidden="true"></span>
+                                                </div>
+                                                <div class="col-md-3  pr0">
+                                                    <input type="text" ng-model="rec_loc.friday_end_time" ng-disabled="check_alt_depot_readonly" jqtimepicker class="form-control"
+                                                        readonly ng-class="{'pickdate':!check_alt_depot_readonly}">
+                                                    <span class="fa fa-clock-o new_ca new-time form-control-feedback" aria-hidden="true"></span>
+                                                </div>
+                                                <div class="col-md-4 pr0">
+                                                    <input type="text" ng-model="rec_loc.friday_notes" ng-readonly="check_alt_depot_readonly" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="animated fadeIn" style="display: inline-block; width: 100%;">
+                                                <!--<label class="col-md-2 pr0">Saturday</label>-->
+
+                                                <div class="col-md-2 pr0">
+                                                    <b class="fwn">Saturday</b>
+                                                </div>
+
+                                                <div class="col-md-3  pr0">
+                                                    <input type="text" ng-model="rec_loc.saturday_start_time" jqtimepicker ng-disabled="check_alt_depot_readonly" class="form-control"
+                                                        readonly ng-class="{'pickdate':!check_alt_depot_readonly}">
+                                                    <span class="fa fa-clock-o   new_ca  form-control-feedback new-time" aria-hidden="true"></span>
+                                                </div>
+                                                <div class="col-md-3  pr0">
+                                                    <input type="text" ng-model="rec_loc.saturday_end_time" ng-disabled="check_alt_depot_readonly" jqtimepicker class="form-control"
+                                                        readonly ng-class="{'pickdate':!check_alt_depot_readonly}">
+                                                    <span class="fa fa-clock-o new_ca new-time form-control-feedback" aria-hidden="true"></span>
+                                                </div>
+                                                <div class="col-md-4 pr0">
+                                                    <input type="text" ng-model="rec_loc.saturday_notes" ng-readonly="check_alt_depot_readonly" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="animated fadeIn" style="display: inline-block; width: 100%;">
+                                                <!--<label class="col-md-2 pr0">Sunday</label>-->
+
+                                                <div class="col-md-2 pr0">
+                                                    <b class="fwn">Sunday</b>
+                                                </div>
+
+                                                <div class="col-md-3  pr0">
+                                                    <input type="text" ng-model="rec_loc.sunday_start_time" jqtimepicker ng-disabled="check_alt_depot_readonly" class="form-control"
+                                                        readonly ng-class="{'pickdate':!check_alt_depot_readonly}">
+                                                    <span class="fa fa-clock-o   new_ca  form-control-feedback new-time" aria-hidden="true"></span>
+                                                </div>
+                                                <div class="col-md-3  pr0">
+                                                    <input type="text" ng-model="rec_loc.sunday_end_time" ng-disabled="check_alt_depot_readonly" jqtimepicker class="form-control"
+                                                        readonly ng-class="{'pickdate':!check_alt_depot_readonly}">
+                                                    <span class="fa fa-clock-o new_ca new-time form-control-feedback" aria-hidden="true"></span>
+                                                </div>
+                                                <div class="col-md-4 pr0">
+                                                    <input type="text" ng-model="rec_loc.sunday_notes" ng-readonly="check_alt_depot_readonly" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <div class="dropdown ib" ng-show="rec_loc.id > 0 && crm_location_tab_module > 0">
+                                <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <i class="dte-ico"></i>
+                                </button>
+                                <ul class="dropdown-menu dte animated fadeIn">
+                                    <span ng-click="set_document_internal(crm_general_tab_module)">
+                                        <i class="fa fa-file-text-o" aria-hidden="true"></i> Add Document</span>
+                                    <span>
+                                        <i class="fa fa-check" aria-hidden="true"></i> Add Task</span>
+                                    <span>
+                                        <i class="fa fa-envelope-o" aria-hidden="true"></i> Compose Email</span>
+                                </ul>
+                            </div>
+                            <button class="btn btn-delete" type="button" ng-click="delete_location(rec_loc.id)" ng-if="rec_loc.id > 0 && !check_alt_depot_readonly && deleteLocationPermission && rec_loc.is_primary != 1">Delete
+                            </button>
+                            <button class="btn btn-submit" type="submit" ng-show="!check_alt_depot_readonly">Save
+                            </button>
+                            <button class="btn btn-edit" type="button" ng-click="showEditForm_loc()" ng-show="check_alt_depot_readonly && editLocationPermission"> Edit
+                            </button>
+                            <button class="btn btn-cancel" type="button" ng-click="getAltLocation()">Cancel
+                            </button>
+                            <!--showLocationListing()-->
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

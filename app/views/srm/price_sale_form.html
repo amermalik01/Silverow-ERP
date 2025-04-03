@@ -1,0 +1,146 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="widget">
+      <div class="widget-body">
+        <input type="hidden"   ng-model="priceFormData.update_id" />
+        <div class="row">
+          <div class="col-lg-6 col-md-6">
+            <div class="form-group"  >
+              <label class="col-lg-3 control-label">Supplier  Code</label>
+              <div class="col-lg-7" style="    margin-top: 7px;">
+                <input type="text" ng-model="priceFormData.sale_code" id="sale_code"  
+                 class="form-control input_text"   readonly />
+              </div>
+            </div>
+            <div class="form-group"  ><!--ng-show="form_before_edit"-->
+              <label class="col-lg-3 control-label"><!--<span ng-bind="price_sale_user"> </span>--> 
+                
+                Supplier Name <span class="required">*</span> </label>
+              <div class="col-lg-7">
+                <input type="hidden" ng-model="priceFormData.sale_id"    />
+                <input type="text" ng-model="priceFormData.sale_name" ng-click="get_all_list_customers(1);"
+                 class="form-control "   />
+              </div>
+            </div>
+            <!--<div class="form-group" ng-click="get_all_list_customers(1);" ng-show="form_after_edit">
+              <label class="col-sm-3 control-label"><span ng-bind="price_sale_user"></span><span class="required">*</span> </label>
+              <div class="col-sm-7">
+                <input type="hidden" ng-model="priceFormData.sale_ids"  class="form-control" />
+                <div class="panel panel-info no-margin" style="white-space: nowrap;overflow-x: scroll;" >
+                  <div class="panel-body display_record" > </div>
+                </div>
+                <ul class="parsley-errors-list filled" class="parsley-id-cs0530" style="display: none;">
+                <li class="parsley-custom-error-message">This field is required.</li>
+                </ul>
+              </div>
+            </div>-->
+            <div class="form-group">
+              <label class="col-lg-3 control-label ">Unit of Measure </label>
+              <div class="col-lg-7">
+                <select  ng-disabled="check_item_readonly"  
+                          ng-model="priceFormData.purchase_measure"
+                           ng-options="opt as opt.name for opt in list_unit_category" 
+                                 class=" form-control purchase_measure"      >
+                </select>
+              </div>
+            </div>
+            <div class="form-group"  >
+              <label class="col-lg-3 control-label">Unit Price </label>
+              <div class="col-lg-5" >
+                <input ng-readonly="check_item_readonly"
+              type="text"   data-parsley-trigger="keyup"     
+            ng-model="priceFormData.unit_price"  ng-change="change_unit_price()"
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" 
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"  
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >
+              </div>
+              <div class=" "> {{priceFormData.sale_currency}} </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Lead Time </label>
+              <div class="col-sm-7">
+                <div class="col-sm-4 no-padding">
+                  <input ng-readonly="check_item_readonly"
+              type="text"   data-parsley-trigger="keyup"     
+            ng-model="priceFormData.lead_time" 
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" 
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"  
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >
+                </div>
+                <div class="col-sm-8 remove-right-pad">
+                  <select  ng-disabled="check_item_readonly"        ng-model="priceFormData.lead_type"     ng-options="opt as opt.label for opt in lead_types" class=" form-control">
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Start Date </label>
+              <div class="col-lg-7">
+                <p class="input-group">
+                  <input   readonly="readonly"  
+                      type="text" class="form-control" ng-model="priceFormData.start_date"    
+ ng-change="testdate(priceFormData.start_date,priceFormData.end_date,117)"  
+datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" 
+is-open="datePicker.instances['start_date']" 
+close-text="Close" 
+data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" 
+/>
+                  <span class="input-group-btn">
+                  <button   type="button"   ng-disabled="check_item_readonly"  
+            class="btn btn-default" ng-click="datePicker.open($event, 'start_date')"> <i class="fa fa-calendar"></i></button>
+                  </span> </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">End Date </label>
+              <div class="col-lg-7"><!-- min-date="newD" -->
+                <p class="input-group">
+                  <input readonly="readonly"  
+                      type="text" class="form-control" ng-model="priceFormData.end_date" 
+ ng-change="testdate(priceFormData.start_date,priceFormData.end_date,117)"  
+ datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" is-open="datePicker.instances['end_date']"  
+close-text="Close"  data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+                  <span class="input-group-btn">
+                  <button type="button" ng-disabled="check_item_readonly" class="btn btn-default"
+ng-click="datePicker.open($event, 'end_date')"><i class="fa fa-calendar"></i></button>
+                  </span> </p>
+                <span id="date_msg_leave_117" style="color:#F00; display: none;"  >End Date is earlier  then Start Date</span> </div>
+            </div>
+          </div>
+          
+          <!--ng-show="show_first_button"--> 
+          <!--<div class="col-md-12" > 
+            <div class="hr_line2"></div>
+            <div class="pull-right">
+              <button class="btn btn-info btn_blue pic_block" type="submit" ng-show="perreadonly"><i class="fa fa-check"></i> Submit</button>
+              <button class="btn btn-info btn_blue " type="button" ng-click="showEditForm()" ng-show="check_item_readonly"><i class="fa fa-edit"></i> Edit</button>
+              <button class="btn default" type="button" ng-click="get_sale_price(priceFormData.type)" ><i class="fa fa-undo"></i> Cancel</button>
+            </div>
+          </div>--> 
+          
+        </div>
+        
+        
+        
+        <div class="row">
+         <div ng-include="'app/views/product_values/price_new_form.html'" ng-show="show_supp_form"></div>
+        </div>
+        
+        <div class="row">
+        <div class="col-md-12">
+            <div class="hr_line2"></div>
+            <div class="pull-right">
+              <button class="btn btn-submit" type="submit" ng-show="perreadonly"><i class="fa fa-check fa_display"></i> Submit</button>
+              <button class="btn btn-edit" type="button" ng-click="showEditForm()" ng-show="check_item_readonly"><i class="fa fa-edit fa_display"></i> Edit</button>
+              <button class="btn btn-cancel" type="button" ng-click="get_purchase_sale_price(priceFormData.type)" ><i class="fa fa-undo fa_display"></i> Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div ng-include="'app/views/_listing_modal_sales.html'" ></div>--> 

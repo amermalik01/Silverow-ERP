@@ -1,0 +1,11 @@
+[
+    {
+        "title": "Name",
+        "field_name": "title",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    }
+]

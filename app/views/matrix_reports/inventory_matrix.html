@@ -1,0 +1,235 @@
+<div ng-class="{'whirl no-overlay':showLoader}"></div>
+<style>
+    #ui-datepicker-div {
+        width: 220px;
+        z-index: 5 !important;
+    }
+    .exportFile {
+    color: #808080;
+    box-shadow: inset 0 0 0 1px #37393d;
+    }
+
+    .exportFile:hover {
+    background-color: #9d9d9d !important;
+    }
+    .flexiTable tbody tr:nth-child(odd) td {
+        box-shadow: inset 0 0 0 13px white;
+    }
+
+    .panel-info .panel-body span {
+        float: left;
+        font-weight: normal;
+        color: black;
+    }
+
+    .flexiTable:last-child td,
+    .flexiTable:last-child th {
+        padding-right: 9px !important;
+    }
+
+    .flexi_search_btn {
+        color: #494a4e !important;
+        box-shadow: inset 0 0 0 1px rgb(55, 57, 61) !important;
+    }
+
+    .flexi_search_btn:hover {
+        background-color: #9d9d9d !important;
+        color: white !important;
+    }
+
+    .tableSettings {
+        box-shadow: inset 0 0px 0px 1px rgb(55, 57, 61);
+    }
+
+    .new-pagination select {
+        color: black;
+    }
+
+    .tableSettings i,
+    a.widthcontainer i,
+    .exportExcel {
+        color: #7f7f7f;
+    }
+
+    a.widthcontainer,
+    a.exportExcel {
+        box-shadow: inset 0 0px 0px 1px rgb(30, 34, 44) !important;
+    }
+
+    /* Selected Period */
+    .highlightColBoth {
+        box-shadow: inset 0px 0px 0px 12px #e3e1e2 !important;
+    }
+
+    /* Prior Period */
+    .highlightColBoth2 {
+        box-shadow: inset 0px 0px 0px 12px #ede7e7 !important;
+    }
+
+    .tooltips_clsshilight {
+        color: #0078d6 !important;
+        width: 100%;
+        text-overflow: ellipsis;
+    }
+
+    /* body {
+        background-image: url(app/css/matrixbg2.jpg);
+        background-size: cover;
+    } */
+
+    body {
+        padding-bottom: 5px;
+    }
+
+    .flexiTable .bodyContainer td.flexiCol {
+        padding-top: 2px;
+        padding-bottom: 2px;
+        border-right: 1px solid #20242d;
+        background: #f8f8f8 !important;
+        color: black;
+        border-color: #ffffff !important;
+    }
+
+    .highlightTh {
+        color: #ffffff !important;
+        background: #222222 !important;
+        box-shadow: none !important;
+    }
+
+    .flexiTable .headerContainer th.flexiCol:last-child,
+    .flexiTable .bodyContainer td.flexiCol:last-child {
+        border-right: 0 !important;
+    }
+
+    .flexiTable .headerContainer th.flexiCol {
+        color: #ffffff;
+        border-right: 1px solid #20242d !important;
+        border-color: #1f232c;
+        background-color: #444444;
+        position: relative;
+    }
+
+    .total-records {
+        color: #ffffff;
+    }
+
+    .new-pagination {
+        padding: 7px 6px;
+        position: relative;
+        border-color: #1f232c;
+        background: #444444;
+    }
+
+    .flexiTable {
+        border: 1px solid #1f232c;
+    }
+
+    .nonPinnedHeader,
+    .nonPinnedHeader table {
+        background: -moz-linear-gradient(top, #78787a 1%, #333539 100%);
+        background: -webkit-linear-gradient(top, #78787a 1%, #333539 100%);
+        background: linear-gradient(to bottom, #78787a 1%, #333539 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#78787a', endColorstr='#333539', GradientType=0);
+    }
+
+    .flexiTable tbody {
+        background: white;
+    }
+
+    .tableCustomize tbody {
+        background-color: white !important;
+    }
+</style>
+<div class="row"
+     style="margin-bottom: 0 !important;">
+    <div class="col-md-12">
+        <div class="col-md-12"
+             style="margin-bottom: 0px !important;">
+            <div class="matrixcontainer3">
+                <div class="col-md-5 pl0 dateHighlighter">
+                    <div class="ib"
+                         style="margin-right: 7px;color: #404146;"><b>Date</b></div>
+                    <div class="input-symbol matrixDate2">
+                        <input jqdatepicker
+                               class="2date-picker form-control pickdate"
+                               id="start_date"
+                               ng-model="rec.start_date"
+                               readonly="">
+                        <span>
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+                    <div class="ib">-</div>
+                    <div class="input-symbol matrixDate">
+                        <input jqdatepicker
+                               class="2date-picker form-control pickdate"
+                               id="end_date"
+                               ng-model="rec.end_date"
+                               readonly="">
+                        <span>
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+                    <div class="ib">-</div>
+                    <select ng-model="rec.report_type"
+                            style="    background-color: #d0d0d1 !important;
+    color: black !important;
+    border-radius: 6px;
+    width: 80px;
+    border: 1px solid #3a3b3f;"
+                            class="form-control ib"
+                            title="Filter by"
+                            style="width: 82px;">
+                        <option value="1"
+                                selected>By Value</option>
+                        <option value="2" disabled>By Volume</option>
+                    </select>
+                    <a class="btn btn-submit2 ib matrixSearch"
+                       ng-click="getInventoryMatrix(1);">Search</a>
+
+                </div>
+                <div class="col-md-4 text-center">
+                    <h3 class="no-margin"
+                        style="color: #404146;position: relative;top: 4px;">
+                        Inventory Matrix <img src="app/css/SilverowBirdSmall.png"
+                             style="width: 17px;margin-top: -7px;" /></h3>
+                </div>
+                <div class="col-md-3 pr0">
+                    <div class="dropdown report-excel pull-right">
+                        <button class="btn report-default dropdown-toggle"
+                                type="button"
+                                data-toggle="dropdown">Export As
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="exportMatrix('pdf')">PDF</a></li>
+                            <!-- <li><a  ng-click="exportMatrix('xlsx')" >Excel</a></li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="col-md-12 col-md-12">
+        <div ng-if="tableData_inventory.data.ack">
+            <div class="flexiTable matrixContainer"
+                 x-generate-table
+                 style="margin-top: 26px;"
+                 x-data="tableData_inventory.data"
+                 x-controller-initiate
+                 x-forget-filters="true"
+                 x-table-name="InventoryMatrix"
+                 x-filter-function="getInventoryMatrix(1)"
+                 x-filter-object="searchKeywordInventory"></div>
+        </div>
+    </div>
+    <!-- <div class="col-md-12 col-md-12">
+    <div ng-if="tableData_inventory_volume.data.ack">
+        <div class="flexiTable" x-generate-table style="margin-top: 26px;" x-data="tableData_inventory_volume.data"
+            x-table-name="InventoryMatrixVolume" x-filter-function="getInventoryMatrix(2)" x-filter-object="searchKeywordInventory"></div>
+    </div>
+</div> -->
+</div>
+<div ng-include="'app/views/matrix_reports/inventory_matrix_details.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

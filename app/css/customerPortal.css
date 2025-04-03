@@ -1,0 +1,122 @@
+body {
+                  background-image: url(report-BG.jpg);
+                  background-size: cover;
+                  background-repeat: no-repeat;
+                  background-attachment: fixed;
+                  padding-bottom: 10px;
+            }
+
+            .compname {
+                  display: block;
+                  text-align: center;
+                  font-size: 14px;
+                  color: black;
+            }
+
+            .loggedinas {
+                  color: grey;
+                  display: block;
+                  text-align: center;
+            }
+
+            .dropdown-menu .divider {
+                  background-color: #3c3c3c;
+            }
+
+            .navbar-default .navbar-nav>li>a {
+                  color: white !important;
+                  font-size: 12.5px;
+                  letter-spacing: 0.4px;
+            }
+
+            .dropdown-menu>li>a {
+                  letter-spacing: 0.4px;
+            }
+
+            .navbar-default .navbar-nav>li>a:hover {
+                  color: white !important;
+                  cursor: pointer;
+                  background-color: #000 !important;
+            }
+
+            .navbar-default .navbar-nav>li>a:hover .fa-caret-down {
+                  visibility: visible;
+            }
+
+            .dropdown-menu>li>a:hover {
+                  color: #ffffff;
+                  cursor: pointer;
+                  background: #2f2f2f;
+            }
+
+            .dropdown-menu>li>a:active {
+                  color: #2196F3;
+            }
+
+            .navbar-default .navbar-nav>.open>:not(:hover) {
+                  background: #000 !important;
+            }
+            .fa-caret-down {
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  visibility: hidden;
+                  text-align: center;
+                  transition: none !important;
+                  bottom: 3px;
+            }
+
+            ul.dropdown-menu li a {
+                  color: #ffffff;
+                  font-size: 12px;
+                  padding: 7px 0 7px 15px;
+            }
+
+            .dropdown-submenu {
+                  position: relative;
+            }
+
+            .dropdown-submenu:hover {
+                  background: #2f2f2f;
+            }
+
+            .dropdown-submenu>.dropdown-menu {
+                  top: -3px;
+                  background: #000000;
+                  left: 183px;
+                  box-shadow: none;
+                  border-top-left-radius: 0;
+            }
+
+            .dropdown-submenu:hover>.dropdown-menu {
+                  display: block;
+            }
+
+            .dropdown-submenu.pull-left {
+                  float: none;
+            }
+
+            .dropdown-toggle2 span {
+                  position: absolute;
+                  right: 11px;
+                  top: 8px;
+            }
+
+            .dropdown-submenu.pull-left>.dropdown-menu {
+                  left: -100%;
+                  margin-left: 10px;
+                  -webkit-border-radius: 6px 0 6px 6px;
+                  -moz-border-radius: 6px 0 6px 6px;
+                  border-radius: 6px 0 6px 6px;
+            }
+
+            .navbar-nav>li>.dropdown-menu {
+                  background: #000000;
+                  min-width: 184px;
+                  box-shadow: none;
+            }
+
+            .allReport li a.fave-report-desp {
+                  width: calc(100%) !important;
+                  padding-left: 20px !important;
+            }

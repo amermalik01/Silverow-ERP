@@ -1,0 +1,177 @@
+<div ng-controller="UnPostedOrderDetailReportController as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <style>
+        body {
+            background-image: url(app/css/report-BG.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding-bottom: 10px;
+        }
+    </style>
+
+
+    <div class="a-content">
+        <div class="a-label-container" ng-if="reportType == 'UnPostedCustomerOrdersByItem' || reportType == 'UnPostedSalesOrdersDetail'">
+            <b class="a-title"
+               style="width: 120px;">Date <span class="required"> *</span></b>
+            <div class="input-symbol a-date">
+                <input jqdatepicker
+                       class="form-control"
+                       id="dateFrom"
+                       readonly
+                       placeholder="From"
+                       ng-model="filterReport.dateFrom"
+                       style="background-color: white;">
+                <span>
+                    <i class="fa fa-calendar"></i>
+                </span>
+            </div>
+            <div class="input-symbol a-date">
+                <input jqdatepicker
+                       class="form-control"
+                       id="dateTo"
+                       placeholder="To"
+                       readonly
+                       ng-model="filterReport.dateTo"
+                       style="background-color: white;">
+                <span>
+                    <i class="fa fa-calendar"></i>
+                </span>
+            </div>
+
+            <b class="ib a-margin-left add-filter collapsed"
+               data-toggle="collapse"
+               data-target="#demo">Add Filter(s)</b>
+
+            <div class="pull-right">
+
+                <button class="btn report-generate no-margin"
+                        type="button"
+                        ng-click="generateReport()">Generate
+                    Report</button>
+
+                <button class="btn report-clearfilter"
+                        type="button"
+                        ng-click="clearReport()">Clear
+                    Filter</button>
+
+                <div class="dropdown report-excel">
+                    <button class="btn report-default dropdown-toggle"
+                            type="button"
+                            data-toggle="dropdown">Export As
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="generateReport('xlsx')">Excel</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-filter-panel collapse in"
+             id="demo"> 
+
+             <div class="pull-right" ng-if="reportType == 'UnallocatedStock'">
+
+                <button class="btn report-generate no-margin"
+                        type="button"
+                        ng-click="generateReport()">Generate
+                    Report</button>
+
+                <button class="btn report-clearfilter"
+                        type="button"
+                        ng-click="clearReport()">Clear
+                    Filter</button>
+
+                <div class="dropdown report-excel">
+                    <button class="btn report-default dropdown-toggle"
+                            type="button"
+                            data-toggle="dropdown">Export As
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="generateReport('xlsx')">Excel</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+
+            <div class="report-box" ng-if="reportType == 'UnPostedSalesOrdersDetail' || reportType == 'UnallocatedStock'">
+                <b class="a-title a-title-relative"
+                   style="width: 120px">Select Customer(s)</b>
+                <div title="{{SelcustomersTooltip}}"
+                     class="a-form-control" style="    width: 334px;">
+                    <div class="panel-info pi2"
+                         ng-click="selectCustomers()">
+                        <div class="panel-body"
+                             style="background-color: #fff;">
+                            <span ng-repeat="sp in customers track by $index">
+                                <span ng-if="customers.length == 1">{{sp.title}}</span>
+                                <span ng-if="customers.length > 1">{{sp.title}}
+                                    <span ng-if="$index < customers.length && $index!=0">;&nbsp;</span>
+                                </span>
+                            </span>
+                            <aside></aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="report-box" ng-if="reportType == 'UnPostedCustomerOrdersByItem' || reportType == 'UnallocatedStock'">
+                <b class="a-title a-title-relative"
+                    style="width: 120px">Select Item(s)</b>
+                <div title="{{SelItemsTooltip}}"
+                    class="a-form-control"
+                    style="width: 334px;">
+                <div class="panel-info pi2"
+                    ng-click="clearFiltersAndSelectItems()">
+                    <div class="panel-body"
+                        style="background-color: #fff;">
+                        <span ng-repeat="sp in items track by $index">
+                            <span ng-if="items.length == 1">{{sp.title}}</span>
+                            <span ng-if="items.length > 1">{{sp.title}}<span
+                                    ng-if="$index < items.length && $index!=0">;&nbsp;</span></span>
+                        </span>
+                        <aside></aside>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="report-box" ng-if="reportType == 'UnPostedCustomerOrdersByItem' || reportType == 'UnPostedSalesOrdersDetail'">
+                <b class="a-title"
+                   style="width: 120px">Report Type</b>
+                <select class="select2me form-control a-date"
+                        ng-model="filterReport.reportOrderBy">
+                    <option value="1">By Order Date</option>
+                    <option value="2">By Posting Date</option>
+                </select>
+            </div> 
+
+            <!-- <div class="report-box">
+                <b class="a-title"
+                   style="width: 120px">Doc. Type</b>
+                <select class="select2me form-control a-date"
+                        ng-model="filterReport.reportOrderType">
+                    <option value="1">ALL</option>
+                    <option value="2">Only Sales Order</option>
+                    <option value="3">Only Credit Notes</option>
+                    <option value="4">Only Sales Quote</option>
+                    <option value="5">Sale Orders & Quotes</option>
+                    <option value="6">Sale Orders & Credit Notes</option>
+                    <option value="7">Quotes & Credit Notes</option>
+                </select>
+            </div>  -->
+
+            <div class="report-box" ><!-- ng-if="reportType == 'UnPostedCustomerOrdersByItem' || reportType == 'UnPostedSalesOrdersDetail'" -->
+                <label>
+                <input ng-model="filterReport.reportOrderType"
+                        type="checkbox"
+                        class="ng-pristine ng-untouched ng-valid"> Include Sales Quote
+                </label>
+            </div>
+        </div>
+    </div>
+    <div ng-if="reportType == 'UnPostedSalesOrdersDetail' || reportType == 'UnallocatedStock'" ng-include="'app/views/reports/_listingCustomerDetailModal.html'"></div>
+    <div ng-if="reportType == 'UnPostedCustomerOrdersByItem' || reportType == 'UnallocatedStock'" ng-include="'app/views/reports/_listingItemDetailModal.html'"></div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

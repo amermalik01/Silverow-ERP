@@ -1,0 +1,81 @@
+<div class="modal fade" id="saleTargetFrequencyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{title}}</h4>
+            </div>
+            <div class="modal-body" style="overflow-x:hidden">
+                <div class="row">
+                    <div class="col-md-12 col-md-12">
+                        <form autocomplete="off" id="saleTargetFrequency" name="saleTargetFrequency" class="form-horizontal" role="form" validate-form=""
+                            novalidate="">
+                            <h4 style="padding-left: 15px;">Monthly Spread</h4>
+                            <div class="col-md-4">
+                                <div 
+                                    ng-repeat="month in startMonthArr | startFrom : start_month | orderBy:'id' track by $index" 
+                                    ng-if="$index < 6">
+                                    <div class="form-group">
+                                        <label 
+                                            ng-class="($index < 6) ? 'col-md-3 control-label2' : 'col-md-4 control-label2'">{{month.title}}</label>
+                                        <div class="col-md-5">
+                                            <div class="input-symbol">
+                                                <input type="number" class="form-control" id="rec.month.title" 
+                                                    ng-model="rec.monthlySpreadArr[month.title]" 
+                                                    ng-change="toggleEqualSpread(rec.equalSpread)"                                                    
+                                                    ng-readonly="check_readonly_opp" />
+                                                <span>{{defaultCurrencyCode}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div 
+                                    ng-repeat="month in startMonthArr | startFrom : start_month | orderBy:'id' track by $index" 
+                                    ng-if="$index >= 6">
+                                    <div class="form-group">
+                                        <label 
+                                            ng-class="($index < 6) ? 'col-md-3 control-label2' : 'col-md-4 control-label2'">{{month.title}}</label>
+                                        <div class="col-md-5">
+                                            <div class="input-symbol">
+                                                <input type="number" class="form-control" id="rec.month.title"
+                                                    ng-model="rec.monthlySpreadArr[month.title]" 
+                                                    ng-change="toggleEqualSpread(rec.equalSpread)"
+                                                    ng-readonly="check_readonly_opp" />
+                                                <span>{{defaultCurrencyCode}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label2">Start Month</label>
+                                <ui-select 
+                                    ng-model="rec.startmonth" 
+                                    ng-change="changesaleTargetMonthSequence()">
+                                    <ui-select-match placeholder="Select Start Month">{{$select.selected.title}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in startMonthSelectionArr | filter: $select.search">
+                                        <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <label class="pull-left" style="margin: 3px 14px;">
+                    <input id="equalSpread" type="checkbox"
+                        ng-model="rec.equalSpread" 
+                        ng-disabled="check_readonly_opp" 
+                        ng-checked="rec.equalSpread>0" 
+                        ng-click="equalSpreadFrequency(rec.equalSpread)">Equal Spread
+                </label>
+                <button class="btn btn_add2"  type="button"
+                    ng-click="addSpreadFrequency(rec)">Add</button>
+                <button type="button" class="btn btn-cancel2" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

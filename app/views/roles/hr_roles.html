@@ -1,0 +1,41 @@
+<div ng-controller="RolesController as table" class="container-fluid">
+  
+  <div class="row">
+    <div ng-include="'app/views/_breadcrumb.html'" ></div>
+    <!-- <button type="button" class="btn btn-primary pull-right" ui-sref="app.addCompany"><em class="fa fa-plus-circle fa-fw mr-sm"></em>Add Company</button> --> 
+  </div>
+  
+  
+  <div  class="breadcrumb_wraper">
+    <div ng-include="'app/views/_breadcrumb.html'" class="{{class}}"></div>
+    <button type="button" class="btn btn-primary pull-right" ui-sref="app.addRoles"><em class="fa fa-plus-circle fa-fw mr-sm"></em>Add Roles</button>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading"> </div>
+    <table ng-table="table.tableParams5" class="table table-bordered table-striped" show-filter="true">
+      <thead>
+        <tr class="bg-col">
+          <th ng-repeat="column in columns" 
+                    class="sortable sort-asc" ng-class="{
+                    'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),
+                    'sort-desc': !table.tableParams5.isSortBy(column.field, 'desc')
+                  }"
+                    ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"> {{column.title}} </th>
+        </tr>
+        <tr>
+          <th ng-repeat="column in columns"
+                    
+                    class="sortable"
+                        > <input type="text" class="form-control"
+                           ng-model="MyCustomeFilters[column.field] "/>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="courser table-body">
+        <tr ng-repeat="record in $data" ui-sref="app.viewRoles({id:record.id})">
+          <td ng-repeat="column in columns"  sortable="column.title"> {{record[column.field]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

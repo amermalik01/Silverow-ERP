@@ -1,0 +1,319 @@
+
+<div class="modal fade" id="return_ware_modal">
+    <div class="modal-dialog modal-lg" style="width:80%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Stock Allocation</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4 ">
+                        <span class="addnew" style="    font-weight: normal;">Order Details ( {{formData.product_code}} )</span>
+                        <input type="hidden" name="order_id" value="12" id="order_id" ng-model="formData.order_id">
+                        <input type="hidden" name="product_id" value="5" id="product_id"
+                               ng-model="formData.product_code">
+                        <input type="hidden" name="order_detail_id" value="61" id="order_detail_id">
+                        <input type="hidden" name="total_qty" value="1" id="total_qty" ng-model="formData.itme_qty">
+                        <input type="hidden" name="bl_shipment_no" value="ABC 123" id="bl_shipment_no">
+
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-6 control-label">Warehouse<!--Location--></label>
+                            <label class="col-md-6 control-label" style="font-weight: normal !important;">{{formData.warehouses_name}}</label>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-6 control-label">Description</label>
+                            <label class="col-md-6 control-label" style="font-weight: normal !important;">{{formData.product_name}}</label>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0px !important; display:none">
+                            <label class="col-md-6 control-label"> U.O.M</label>
+                            <label class="col-md-6 control-label" style="font-weight: normal !important;">{{formData.unit_of_measure_name}}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4 " style="margin-top: 17px;">
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-6 control-label">Document No.</label>
+                            <label class="col-md-6 control-label" style="font-weight: normal !important;">{{formData.bl_shipment_no}}</label>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-6 control-label">Order No.</label>
+                            <label class="col-md-6 control-label" style="font-weight: normal !important;">{{formData.order_no}}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4 " style="margin-top: 17px;">
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-6 control-label" title="Quantity Total">QTY Total </label>
+                            <label class="col-md-6 control-label" style="font-weight: normal !important;">
+                                {{formData.item_qty | number:decimal_range}}({{formData.unit_of_measure_name}})</label>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0px !important;">
+                            <label class="col-md-6 control-label" title="Quantity Still to Allocate">QTY Still To
+                                Allocate </label>
+                            <label class="col-md-6 control-label" style="font-weight: normal !important;">
+                                {{total_remaing | number:decimal_range}}({{formData.unit_of_measure_name}})</label>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-4 "><span class="addnew" style="color: #3693cf;">Add New</span>
+                        <input type="hidden" name="warehouse_id" id="warehouse_id" ng-model="formData.id">
+                        <input type="hidden" ng-model="formData.order_date">
+                        <input type="hidden" ng-model="formData.warehouses_id">
+
+                        <div class="form-group">
+                            <label for="zone" class="col-md-4 control-label">Storage Location </label>
+
+                            <div class="col-md-8">
+                                <select name="zone" id="zone" ng-model="formData.storage_location"
+                                        ng-options="opt as opt.Storage_location for opt in storage_loc"
+                                        ng-change="get_storage_location_data(formData.storage_location.wh_loc_id)"
+                                        class="select2me form-control" ng-disabled="check_readonly">
+                                </select>
+                            </div>
+                        </div>
+
+                        <!--<div class="form-group">
+                            <label for="zone" class="col-md-6 control-label">Zone Location </label>
+
+                            <div class="col-md-6">
+                                <select name="zone" id="zone" ng-model="formData.zone_location"
+                                        ng-options="opt as opt.title for opt in zone"
+                                        ng-change="get_aisle_location(formData.zone_location.id)"
+                                        class="select2me form-control" ng-disabled="check_readonly">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="formData.aisle==1">
+                            <label class="col-md-6 control-label">Aisle Location </label>
+
+                            <div class="col-md-6">
+                                <select ng-model="formData.aisle_location"
+                                        ng-options="opt as opt.title for opt in aisle"
+                                        ng-change="get_bin_location(formData.aisle_location.id)"
+                                        class="select2me form-control" ng-disabled="check_readonly">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="formData.bin==1">
+                            <label class="col-md-6 control-label">Bin Location </label>
+
+                            <div class="col-md-6">
+                                <select ng-model="formData.bin_location"
+                                        ng-options="opt as opt.title for opt in bin"
+                                        ng-change="get_cost_uom_location(formData.bin_location.id)"
+                                        class="select2me form-control" ng-disabled="check_readonly">
+                                </select>
+                            </div>
+                        </div>-->
+                        <div class="form-group" ng-if="formData.cost.length>0">
+                            <label class="col-md-4 control-label">Cost </label>
+                            <label class="col-md-8 control-label" style="font-weight: normal !important;">{{formData.cost}} </label>
+
+                            <!--<div class="col-md-6">
+                                <input type="text" name="cost" value="" id="cost" class=" form-control"
+                                       ng-model="formData.cost">
+                            </div>-->
+                        </div>
+                        <div class="form-group" ng-if="formData.uom.length>0">
+                            <label class="col-md-4 control-label">Unit of Measure </label>
+                            <label class="col-md-8 control-label" style="font-weight: normal !important;">{{formData.uom}} </label>
+                        </div>
+                        <div class="form-group" ng-if="formData.currency.length>0">
+                            <label class="col-md-4 control-label">Currency </label>
+                            <label class="col-md-8 control-label" style="font-weight: normal !important;">{{formData.currency}} </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ">
+                        <span class="addnew">&nbsp;</span>
+
+                        <div class="form-group">
+                            <label for="container_no" class="col-md-6 control-label">Consignment No. </label>
+
+                            <div class="col-md-6">
+                                <input type="text" name="container_no" value="" id="container_no" class="form-control"
+                                       ng-model="formData.container_no">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="batch_no" class="col-md-6 control-label">Batch No.</label>
+
+                            <div class="col-md-6">
+                                <input type="text" name="batch_no" value="" id="batch_no" class="form-control"
+                                       ng-model="formData.batch_no">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity" class="col-md-6 control-label">Quantity<span class="required">*</span></label>
+
+                            <div class="col-md-6">
+                                <input type="text" data-parsley-trigger="keyup" required ng-model="formData.stock_qty"
+                                       ng-change="check_min_max_war(formData)" class="form-control input_text"
+                                       data-parsley-minlength-message="Invalid Value"
+                                       data-parsley-type-message="Invalid Value" id="quantity"
+                                       data-parsley-error-message="Invalid Value"
+                                       data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 " style="margin-top: 20px;">
+                        <div class="form-group">
+                            <label for="prod_date" class="col-md-6 control-label" title="Production Date">Prod.
+                                Date</label>
+
+                            <div class="col-md-6">
+                                <input jqdatepicker class="2date-picker form-control" id="prod_date" ng-model="formData.prod_date"
+                                       readonly
+                                       ng-change="testdate_by_id('prod_date','date_received','date_msg_wr_order')">
+                                <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                <span id="date_msg_wr_order" style="color:#F00; display: none;">Date Received   is earlier  then Prod Date</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="date_received" class="col-md-6 control-label">Date Received <span
+                                    class="required">*</span></label>
+
+                            <div class="col-md-6">
+                                <input jqdatepicker class="2date-picker form-control  " id="date_received"
+                                       ng-change="testdate_by_id('prod_date','date_received','date_msg_wr_order');testdate_by_id('date_received','use_by_date','date_msg_wr_order2')"
+                                       ng-model="formData.date_received" readonly required>
+                                <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                <span id="date_msg_wr_order2" style="color:#F00; display: none;"> Use By Date  Earlier  then Date Recieved</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="use_by_date" class="col-md-6 control-label">Use By Date </label>
+
+                            <div class="col-md-6">
+                                <input jqdatepicker class="2date-picker form-control" id="use_by_date"
+                                       ng-model="formData.use_by_date" readonly
+                                       ng-change="testdate_by_id('date_received','use_by_date','date_msg_wr_order2')">
+                                <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr/>
+                        <div class="pull-left" ng-hide="show_import_div"></div>
+                        <div class="pull-left col-md-6" ng-show="show_import_div">
+                            <h4>Import {{title}} File </h4>
+
+                            <div><!--ng-controller="DocUploadMigration_single2"-->
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label  ">Import</label>
+
+                                    <div class="col-md-5">
+                                        <div class="fileUpload btn btn-primary btn_blue col-md-7">
+                                            <span> Select File</span>
+                                            <input type="file" ngf-select="uploadFiles_xl($file, $invalidFiles)"
+                                                   name="file" multiple class="upload" accept=".xlsx, .xls"
+                                                   ngf-max-size="2MB"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5"><span> File Name :  {{file_data.name}}</span></div>
+                                </div>
+                                <br>
+                                <br>
+
+                                <div class="form-group" ng-show="sample.length>0">
+                                    <label class="col-md-6 ">Sample: <a target="_blank" href="{{sample}}"> <em
+                                            style="font-size: 30px !important;" class="fa fa-file-image-o"></em></a>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="pull-right">
+                        <button class="btn btn_blue pic_block wr_date_block wr_d_block" type="button"
+                        ng-click="show_migrate_pop(formData)">Import
+                        </button>
+                        &nbsp;
+                        <button class="btn btn-submit pic_block wr_date_block wr_d_block" type="submit"> Save
+                        </button>
+                        &nbsp;
+                        <button type="button" class="btn btn-cancel pull-right " data-dismiss="modal">Cancel
+                        </button>
+                        </div>-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" ng-show="columns.length > 0">
+                        <div class="panel panel-default">
+                            <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <tr ng-show="columns.length > 0">
+                                            <th>Unit Of Measure</th>
+                                            <th>Warehouse</th>
+                                            <th>Storage Location</th>
+                                            <th>Consignment No.</th>
+                                            <th>Batch No.</th>
+                                            <th>Prod. Date</th>
+                                            <th>Date Received</th>
+                                            <th>Use By Date</th>
+                                            <th>Quantity</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="courser table-body">
+                                        <tr ng-repeat="rec in record" ng-show="columns.length > 0">
+                                            <td> {{formData.unit_of_measure_name}}</td>
+                                            <td ng-repeat="column in columns"
+                                                ng-if="column.field != 'id' && column.field != 'WH_loc_id' && column.field != 'storage_loc_id' && column.field != 'warehouse_id'"><!--
+                                                ng-click="edit_ware(rec.id)"-->
+                                                <span ng-if="column.field != 'location' && column.field != 'date_received' && column.field != 'prod_date' && column.field != 'use_by_date'">
+                                                    {{rec[column.field]}}
+                                                </span>
+                                                <span ng-if="column.field == 'prod_date' || column.field == 'use_by_date'||  column.field == 'date_received' ">
+                                                    <span ng-if=" rec[column.field] != 0 ">
+                                                        {{convert_unix_date_to_angular(rec[column.field])}}
+                                                    </span>
+                                                </span>
+
+                                                <span ng-if="column.field == 'location'"
+                                                      ng-click="show_warehouse_loc_info(rec.WH_loc_id,rec.warehouse_id,rec.storage_loc_id,formData.product_id)">
+                                                    <a title="Location Info" class="tooltips_clss btn hilight "
+                                                       style="font-size: 11px;">
+                                                        {{rec[column.field]}}
+                                                    </a>
+                                                </span>
+                                            </td>
+                                            <td class="text-left ">
+                                                <a ng-click="edit_ware(rec.id)" title="Edit" class="btn">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a ng-click="delete_ware(rec.id,$index,record)" title="Delete"
+                                                   class="btn">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr ng-show="columns.length == 0 && !showLoader">
+                                            <td>No Record found agaist this entity! Please add.</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button class="btn btn_blue pic_block wr_date_block wr_d_block" type="button"
+                            ng-click="show_migrate_pop(formData)">Import
+                    </button>
+                    &nbsp;
+                    <button class="btn btn-submit pic_block wr_date_block wr_d_block" type="submit"> Save</button>
+                    &nbsp;
+                    <button type="button" class="btn btn-cancel pull-right " data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

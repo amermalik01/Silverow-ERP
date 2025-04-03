@@ -1,0 +1,48 @@
+<div class="modal fade" id="marginDateModal"   >
+
+      
+      
+  <div class="modal-dialog"   >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"   aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Set Overall Margin Date</h4>
+      </div>
+      <div class="modal-body centerwidth">
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Start Date<span class="required">*</span></label>
+              <div class="col-lg-7">
+                <input jqdatepicker class="2date-picker form-control "   id="popmsdate"
+                  ng-model="margin.margin_start_date" 
+ng-change="testdate_by_id('popmsdate','popmedate','popdate');checkMargin(margin)"
+                required readonly="" >
+                <span class="fa fa-calendar  new_ca  form-control-feedback"></span> <span    id="popdate" style="color:#F00; display: none;"  >start Date is earlier  then Start Date</span> </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">End Date<span class="required">*</span></label>
+              <div class="col-lg-7">
+                <input jqdatepicker class="2date-picker form-control "   id="popmedate"
+                  ng-model="margin.margin_end_date" 
+ng-change="testdate_by_id('popmsdate','popmedate','popdate');checkMargin(margin)"
+                required readonly="" >
+                <span class="fa fa-calendar  new_ca  form-control-feedback"></span> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer"><!-- ng-class="{'btn-submit ':isBtnMargin,'dont-click':!isBtnMargin}"-->
+        <button class=" picc_block btn btn-submit no-width" type="submit" 
+        
+          ng-click="addMarginDate(margin)" 
+         ng-show="!check_item_readonly"
+
+              > Save</button>
+        <button class="btn btn-edit no-width" type="button" ng-click="showEditForm()"
+                ng-show="check_item_readonly">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ng-click="reload_popup(7,'model_vol_1')" --> 

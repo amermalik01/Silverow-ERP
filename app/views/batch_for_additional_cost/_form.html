@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-12">
+        <div class="col-md-5">
+          <div class="form-group">
+            <label class="col-md-4 control-label">Name<span class="required">*</span></label>
+            <div class="col-md-8">
+              <input type="text" ng-model="rec.vat_name" id="vat_name" name="vat_name" class="form-control" ng-readonly="check_readonly" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">VAT Rate<span class="required">*</span></label>
+            <div class="col-md-8">
+              <div class="input-symbol">
+                <input type="number" ng-model="rec.vat_value" id="vat_value" name="vat_value" class="form-control" step="any" ng-readonly="check_readonly" required/>
+                <span>%</span>
+              </div>
+            </div>
+          </div>
+            <!-- <div class="form-group">
+              <label class="col-md-4 control-label">Status<span class="required">*</span></label>
+              <div class="col-md-8">
+                <select ng-model="rec.status" ng-options="opt as opt.label for opt in arr_status" class="select2me form-control" required 
+                ng-disabled="check_readonly" id="status" >
+                  <option style="display:none" ></option>
+                </select>
+              </div>
+            </div> -->
+        </div>
+    
+    </div>
+  </div>
+</div>

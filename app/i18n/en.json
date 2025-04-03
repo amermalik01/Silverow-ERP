@@ -1,0 +1,45 @@
+{
+  "dashboard": {
+    "WELCOME": "Welcome to {{appName}}"
+  },
+  "topbar": {
+    "search": {
+      "PLACEHOLDER": "Type and hit enter.."
+    }
+  },
+  "sidebar": {
+    "WELCOME": "Welcome",
+    "heading": {
+      "HEADER": "Main Navigation"
+    },
+   "nav": {
+        "DASHBOARD": "Dashboard",
+        "STOCK": "Stock",
+        "HR": "Human Resources",
+        "SETUP": "Setup",
+        "hr-menu": {
+            "ROLES":"Roles"
+        },
+        "setup-menu": {
+            "GENERAL":"General",
+            "SUPPLIER":"Supplier"
+        },
+        "setup-general-menu": {
+            "COMPANY":"Company",
+            "BANK":"Bank",
+            "MODULES_CODES":"Modules Codes",
+            "CURRENCY":"Currency"
+        },
+        "setup-supplier-menu": {
+            "COVERAGE_AREAS":"Coverage Areas"
+        },
+        "stock-menu": {
+            "BRAND": "Brands",
+            "CATEGORY": "Category",
+            "UNITS_OF_MEASURE": "Units of Measure",
+            "CAT_UNITS_OF_MEASURE": "Cat. Units of Measure",
+            "PRODUCT_TABS": "Product Tabs"
+          }
+      }
+  }
+}

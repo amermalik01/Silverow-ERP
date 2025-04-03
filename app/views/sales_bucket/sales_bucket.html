@@ -1,0 +1,77 @@
+<div ng-controller="SalesbuckettListController as table">
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+  <div ng-show="main_bucket_listing">
+  </div>
+
+  <div class="row" style="margin-bottom: 0 !important;">
+    <div class="col-md-12">
+      <div class="nav nav-tabs" style="padding:8px;">
+        <div class="col-md-11">
+          <div class="search-wrapper">
+            <input type="text" Placeholder="Search in View Bucket " class="form-control" ng-model="searchKeyword.search">
+            <i class="fa fa-search search-icon" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="col-md-1">
+          <a id="prompt" ui-sref="app.add-sales-bucket()" class="btn btn_add pull-right"> Add </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-md-12">
+      <div>
+        <div>
+          <!--ng-show="main_bucket_listing"-->
+          <table ng-table="table.tableParams5" class="table table-condensed table-striped table-hover table-bordered" id="data-table"
+            show-filter="true" ng-show="columns.length > 0">
+            <thead class="fixit">
+              <tr class="bg-col" ng-show="columns.length > 0">
+                <th ng-repeat="column in columns" class="sortable sort-asc" ng-class="{ 'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),   'sort-desc': !table.tableParams5.isSortBy(column.field, 'desc')   }"
+                  ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"
+                  ng-if="column.title!= 'Id' && column.title!= 'Action'  && column.field != 'unit'" sortable="column.title">
+                  {{column.title}}{{column.title=="Bucket No"?".":""}} </th>
+                <th class="active-listing" style="width: 11%;">Action</th>
+              </tr>
+              <tr ng-show="columns.length > 0" class="hide-filter">
+                <th ng-repeat="column in columns" class="sortable" ng-if="column.title != 'Id'&& column.title!= 'Action'  && column.title!= 'Type'">
+                  <input type="text" class="form-control" ng-model="MyCustomeFilters[column.field] " />
+                </th>
+              </tr>
+            </thead>
+            <tbody class="fixit">
+              <tr ng-repeat="rec in $data | filter:searchKeyword.search" ng-show="columns.length > 0" ui-sref="app.edit-sales-bucket({id:rec.id})">
+                <td ng-repeat="column in columns" sortable="column.title" ng-click="historytype(rec.id)" ng-if="column.title!= 'Id' && column.title!= 'Action' && column.field != 'unit'">
+                  <span ng-if="column.field != 'starting_date' && column.field != 'ending_date'">
+                    <span ng-if="column.field != 'target_amount'  && column.field != 'forecast'
+                 && column.field != 'unit'"> {{rec[column.field]}} </span>
+                    <span ng-if="column.field == 'target_amount' ">
+                      <span ng-if="rec.type=='Individual' "> {{rec[column.field] | number:decimal_range}} {{defaultCurrencyCode}} </span>
+                      <span ng-if="rec.type=='Group' ">
+                        {{rec[column.field]}} {{rec.unit}} </span>
+                    </span>
+                    <span ng-if="column.field == 'forecast' "> {{rec[column.field] | number:decimal_range}} </span>
+                  </span>
+                  <span ng-if="column.field == 'starting_date' || column.field == 'ending_date'">
+                    <span ng-if=" rec[column.field] != 0 "> {{convert_unix_date_to_angular(rec[column.field])}} </span>
+                  </span>
+                </td>
+                <td class="active-listing">
+                  <a title="Edit" ui-sref="app.edit-sales-bucket({id:rec.id})" class="tooltips_cls btn ">
+                    <i class="fa fa-edit"></i>
+                  </a>
+                  <a title="Delete" ng-click="delete(rec.id,$index,$data)" class="tooltips_cls btn ">
+                    <i class="fa fa-times"></i>
+                  </a>
+                </td>
+              </tr>
+              <div ng-show="!columns.length > 0" class="no-record"></div>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-include="'app/views/_confirm_modal.html'"></div>
+</div>

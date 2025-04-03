@@ -1,0 +1,47 @@
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div>
+      <div class="widget">
+        <div class="widget-body nobg-widget-body" style="    margin-top: 10px;" >
+          <div class="row">
+            <form class="form-horizontal no-margin" role="form" ng-submit="add(rec)" name="addForm" validate-form="" novalidate="">
+              <input type="hidden" ng-model="check_readonly" ng-init="check_readonly='1'" />
+              <div ng-include="formUrl()"></div>
+              <div class="col-md-12" ng-show="!showLoader">
+                <div class="col-md-12" ng-if="btnCancelUrl!='app.haulier-target'">
+                  <div class="pull-right"> <span ng-include="actionUrl()"></span> <span ng-include="statusUrl()"></span>
+                    <!-- <button class="btn btn-delete active-btns" type="button" ng-click="delete()" ng-show="rec.id>0" ng-if="rec.ref_id!=1 && rec.ref_id!=2 && rec.ref_id!=3"> Delete</button> -->
+                    <button class="btn btn-delete active-btns" type="button" 
+                      ng-click="delete()" 
+                      ng-show="rec.id>0" 
+                      ng-if="(rec.ref_id!=1 && rec.ref_id!=2 && rec.ref_id!=3 && rec.ref_id!=4 && !(vat_value==0 || vat_value>0)) && !(rec.deletePerm>0) && enableDelete"> Delete</button><!-- && rec.ref_id==4 && (vat_value!=0 || !(vat_value>0))" -->
+                    <button class="btn btn-edit date_block pic_block" ng-init="enableDelete = 0" type="button" ng-click="enableDelete = 1; gotoEdit()" ng-if="(rec.ref_id!=1 && rec.ref_id!=2 && rec.ref_id!=3 && rec.ref_id!=4 && !(vat_value==0 || vat_value>0))"><i class="fa fa-edit fa_display"></i> Edit</button>
+                    <button class="btn btn-cancel" type="button" ui-sref="{{btnCancelUrl}}"><i class="fa fa-undo fa_display"></i> Cancel</button>
+                  </div>
+                </div>
+
+                <div class="col-md-7" ng-if="btnCancelUrl=='app.haulier-target'">
+                  <div class="pull-right"> <span ng-include="actionUrl()"></span> <span ng-include="statusUrl()"></span>
+                    <!-- <button class="btn btn-delete active-btns" type="button" ng-click="delete()" ng-show="rec.id>0" ng-if="rec.ref_id!=1 && rec.ref_id!=2 && rec.ref_id!=3"> Delete</button> -->
+                    <button class="btn btn-delete active-btns" type="button" 
+                      ng-click="delete()" 
+                      ng-show="rec.id>0" 
+                      ng-if="(rec.ref_id!=1 && rec.ref_id!=2 && rec.ref_id!=3 && rec.ref_id!=4 && !(vat_value==0 || vat_value>0)) && !(rec.deletePerm>0) && enableDelete"> Delete</button><!-- && rec.ref_id==4 && (vat_value!=0 || !(vat_value>0))" -->
+                    <button class="btn btn-edit date_block pic_block" ng-init="enableDelete = 0" type="button" ng-click="enableDelete = 1; gotoEdit()" ng-if="(rec.ref_id!=1 && rec.ref_id!=2 && rec.ref_id!=3 && rec.ref_id!=4 && !(vat_value==0 || vat_value>0))"><i class="fa fa-edit fa_display"></i> Edit</button>
+                    <button class="btn btn-cancel" type="button" ui-sref="{{btnCancelUrl}}"><i class="fa fa-undo fa_display"></i> Cancel</button>
+                  </div>
+                </div>
+
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<div ng-include="'app/views/_listing_modal_2.html'"></div>

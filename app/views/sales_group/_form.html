@@ -1,0 +1,43 @@
+
+<input type="hidden" ng-model="rec.id"  class="form-control"   ng-readonly="check_readonly" />
+<div class="col-md-5">
+  <div class="col-md-12">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label class="col-md-4 control-label">Code <span class="required">*</span></label>
+        <div class="col-md-7">
+          <input type="text" ng-model="rec.sale_code" class="form-control ng-pristine ng-untouched ng-valid"
+ng-readonly="product_type" required>
+          <input type="hidden" ng-model="rec.code_type" class="ng-pristine ng-untouched ng-valid">
+          <input type="hidden" ng-model="rec.sale_no" class="form-control ng-pristine ng-untouched ng-valid">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Group Name<span class="required">*</span></label>
+        <div class="col-md-7">
+          <input type="text" ng-model="rec.group_name"  class="form-control ng-pristine ng-valid ng-touched"
+          required ng-readonly="check_readonly">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Salesperson </label>
+        <div class="col-md-7">
+          <div class="panel panel-info no-margin" ng-class="{'dont-click readonly':check_readonly}" >
+            <div class="panel-body" ng-click="itemselectPage(1);getSalePersons()" style="height:30px; overflow-y:auto;"> <span ng-repeat="sp in selectedSalespersons track by $index"> <span ng-if="$index == 0"><span ng-class="{'hilight':sp.isPrimary}">{{sp.first_name + ' ' + sp.last_name}}</span></span> <span ng-if="$index > 0">;&nbsp;<span ng-class="{'hilight':sp.isPrimary}">{{sp.first_name + ' ' + sp.last_name}}</span></span> </span> </div>
+          </div>
+        </div>
+        <!--<div class="col-md-2">
+        <button class="btn btn-info btn_blue" type="button" ng-click="historytype('Salespersons')">  History</button>
+      </div>-->
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Status </label>
+        <div class="col-md-7">
+          <select ng-model="rec.status" ng-options="opt as opt.label for opt in arr_status" class=" form-control"  ng-disabled="check_readonly" id="status"  >
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/sales_group/_salesperson_popup.html'"></div>

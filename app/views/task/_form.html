@@ -1,0 +1,231 @@
+
+<div id="model_btn_cs" ng-init="getAllStatus(); getCompanyEmployees();" class="d-wi3">
+  <div class="row">
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-md-4">
+          <input type="hidden" title="Title" ng-model="formData.id">
+          <input required ng-readonly="check_task_readonly" type="text" class="form-control bold-text" placeholder="Title" style="border: 0px;box-shadow: none;padding-left: 0px;" ng-model="formData.t_title">
+        </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-4 pl0">
+  <select ng-disabled="check_task_readonly" ng-model="formData.t_status" class="select2me form-control">
+    <option value="completed">Completed</option>
+    <option value="incompleted">Incompleted</option>
+  </select>
+</div>
+
+  <div class="row">
+    <div class="col-md-12 ">
+      <div class="contact-li">
+        <div class="row no-b-mar">
+          <div class="col-md-12">
+            <div class="col-md-3">
+              <div class="left-info-contact">
+                <svg class="icon" style="width: 33px;height: 17px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#assign"></use></svg>
+                <div class="c-title"> Assigned To </div>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="row no-b-mar">
+                <div class="col-md-6">
+                  <input type="hidden" ng-model="formData.assign_to">
+                  <input type="text" ng-readonly="check_task_readonly" id="assignval" class="form-control" ng-click="showCompanyEmployees();" placeholder="Select"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-li no-border-top">
+        <div class="row no-b-mar">
+          <div class="col-md-12">
+            <div class="col-md-3">
+              <div class="left-info-contact">
+                <svg class="icon" style="width: 33px;height: 17px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#calendar2"></use></svg>
+                <div class="c-title"> Date </div>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="row no-b-mar">
+                <div class="col-md-6" title="Start Date">
+                  <input jqdatepicker class="2date-picker form-control"  id="ck_sdate"
+									ng-model="formData.t_date"
+									ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg');taskStartDate(formData.t_date)"
+									required readonly="" placeholder="Start date">
+                  <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+								</div>
+                <div class="col-md-6" title="End Date">
+                  <input jqdatepicker class="2date-picker form-control "  id="ck_edate"
+									ng-model="formData.e_date"
+									ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg')"
+									required readonly="" placeholder="End date">
+                  <span class="fa fa-calendar  new_ca  form-control-feedback"></span> </div>
+                <span id="date_msg" style="color:#F00; display: none;"  >Leaving Date is earlier  then Start Date</span> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-li no-border-top">
+        <div class="row no-b-mar">
+          <div class="col-md-12">
+            <div class="col-md-3">
+              <div class="left-info-contact">
+                <svg class="icon" style="width: 33px;height: 17px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clock"></use></svg>
+                <div class="c-title"> Time </div>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="row no-b-mar">
+                <div class="col-md-6" title="Start Time">
+                  <input type="text" jqtimepicker ng-readonly="check_task_readonly" ng-model="formData.t_time" id="t_time" class="form-control"   placeholder="Start Time"/>
+                  <span class="fa fa-clock-o   new_ca  form-control-feedback"></span> </div>
+                <div class="col-md-6" title="End Time">
+                  <input type="text" jqtimepicker ng-readonly="check_task_readonly" ng-model="formData.e_time" id="e_time" class="form-control"    placeholder="End Time"/>
+                  <span class="fa fa-clock-o  new_ca  form-control-feedback"></span> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-li no-border-top">
+          <div class="row no-b-mar">
+            <div class="col-md-12">
+              <div class="col-md-3">
+                <div class="left-info-contact">
+                  <svg class="icon" style="width: 33px;height: 17px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clock"></use></svg>
+                  <div class="c-title"> Notify </div>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="row no-b-mar">
+                    <input type="checkbox" ng-model="formData.notify" ng-click="setNotification();" id="notify" >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="contact-li no-border-top">
+        <div class="row no-b-mar">
+          <div class="col-md-12">
+            <div class="col-md-3">
+              <div class="left-info-contact">
+                <svg class="icon" style="width: 33px;height: 17px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#attachment"></use></svg>
+                <div class="c-title"> Attachment </div>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="row no-b-mar">
+                <div class="col-md-6">
+                  <div class="fileUpload" ng-show="!check_contact_readonly">
+                    <div  ng-controller="DocUploadDocument_single" >
+                      <div class="fileUpload"  style="    margin-top: 9px;color: #2196F3;"> <span >Upload Document</span>
+                        <input  type="file"
+										ngf-select="uploadFiles($file, $invalidFiles)" name="file"
+										accept=".gif, .jpg, .png, .doc, .docx,.pdf"    multiple class="upload" ngf-max-size="2MB"  />
+                        <input type="hidden"  ng-model="formData.FileType">
+                        <input type="hidden"  ng-model="formData.t_image">
+                        <input type="hidden" ng-model="t_image" />
+                        <input type="hidden"  ng-init="formData.t_image = formData.t_image"     ng-model="formData.t_image">
+                        <span ng-show="image_error" style="color:#F00">Error in files uploading Please check Size and Format JPG, Word or PDF</span> </div>
+                      <div class=" " ng-if="formData.t_image">
+                        <div class="col-md-7"> <span   ng-if=" formData.t_image !='' "  > <a target="_blank" href="{{imagePath+formData.t_image}}"> <em  style="font-size: 30px !important;"class="fa fa-file-image-o"></em></a> </span> </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-li no-border-top">
+        <div class="row no-b-mar">
+          <div class="col-md-12">
+            <div class="col-md-3">
+              <div class="left-info-contact">
+                <svg class="icon" style="width: 33px;height: 17px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#note"></use></svg>
+                <div class="c-title"> Other Information </div>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="row no-b-mar">
+                <div class="col-md-12">
+                  <textarea type="text" class="form-control"rows="4" cols="30" id="redactor_content" style="resize: none;"
+                            ng-disabled="check_task_readonly" 
+                            ng-model="formData.t_description">{{formData.t_description}}</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="pull-right">
+        <button class="btn btn-submit" type="submit" ng-show="perreadonly"><i class="fa fa-check fa_display"></i>Save</button>
+        <button class="btn btn-edit" type="button" ng-click="showEditForm()" ng-show="check_task_readonly"><i class="fa fa-edit fa_display"></i> Edit</button>
+        <button ng-click="hide_add_task()" ng-hide="hide_cancel" class="btn btn-cancel" type="button"><i class="fa fa-undo fa_display"></i> Cancel</button>
+        <button type="button" class="btn btn-grey width_80" ng-show="hide_cancel" data-dismiss="modal" >Cancel</button>
+        <span ng-if="formData.id" ng-show="!check_task_readonly" ng-hide="hide_cancel"  > <a ng-click="delete(formData.id)"
+						class="btn btn-delete"><!--<i class="fa fa-trash"> </i>-->Delete</a> </span> </p>
+    </div>
+  </div>
+</div>
+<div class="modal fade in" id="companyEmployeesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg"  ><!--modal-lg   style=" width:65% !important" -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Assign To</h4>
+      </div>
+      <div class="modal-body">
+
+        <!-- Row starts -->
+        <div class="row">
+          <div class="col-md-12 col-md-12">
+            <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+              <div class="panel panel-default"  >
+                <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr class="bg-col">
+                          <th> First Name</th>
+                          <th>Last Name</th>
+                          <th>Job Title</th>
+                          <th>User Code</th>
+                          <th>Department</th>
+                          <th>User Email</th>
+                        </tr>
+                      </thead>
+                      <tbody class="courser table-body">
+                        <tr ng-repeat="employee in companyEmployees" ng-click="addEmployee(employee.id, employee.first_name, employee.last_name, employee.job_title); hideCompanyEmployees();">
+                          <td>{{employee.first_name}}</td>
+                          <td>{{employee.last_name}}</td>
+                          <td>{{employee.job_title}}</td>
+                          <td>{{employee.user_code}}</td>
+                          <td>{{employee.department}}</td>
+                          <td>{{employee.user_email}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Row ends -->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn default width_80" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

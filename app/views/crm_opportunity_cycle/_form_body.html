@@ -1,0 +1,223 @@
+
+<div class="widget">
+    <div class="widget-body" style="margin-bottom: 17px;">
+        <div class="row animated fadeIn">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Created By</label>
+                        <div class="col-md-8">
+                            <input type="text" ng-model="defaultUserName" id="create_by" class="form-control"  ng-readonly ="1"  />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Subject <span class="required">*</span></label>
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.subject" id="subject" class="form-control"  ng-disabled ="check_readonly" required />
+                            <input type="hidden" ng-model="rec.crm_id" id="crm_no"  class="form-control" />
+                            <input type="hidden" ng-model="rec.id" id="recUpdateId"  class="form-control" />
+                            <input type="hidden" ng-model="detail.id" id="detailUpdateId"  class="form-control" />
+                            <input type="hidden" ng-model="current_status" id="current_status"  class="form-control" />
+                            <input type="hidden" ng-model="type" id="type"  class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Stage Start Date<span class="required">*</span> </label>
+                        <div class="col-md-8">
+                            <input jqdatepicker class="2date-picker form-control" ng-model="detail.start_date" required readonly >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Stage End Date<span class="required">*</span></label>
+                        <div class="col-md-8">
+                            <input jqdatepicker class="2date-picker form-control" ng-model="detail.end_date" required readonly >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Contact Person <span class="required">*</span></label>
+                        <div class="col-md-4">
+                            <select ng-model="rec.contact_person_one"  ng-options="opt as opt.name for opt in arr_alt_contacts"     ng-readonly ="check_readonly" class="form-control"  >
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+                        <label class="col-md-1 control-label">Role<span class="required">*</span></label>
+                        <div class="col-md-3">
+                            <select ng-model="rec.role_one"   ng-options="opt as opt.title for opt in arr_roles1"   ng-change="addNewRolePopup(rec.role_one, 1, rec)"   ng-readonly ="check_readonly" class="form-control">
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Contact Person</label>
+                        <div class="col-md-4">
+                            <select ng-model="rec.contact_person_two"   ng-options="opt as opt.name for opt in arr_alt_contacts"   ng-readonly ="check_readonly" class="form-control">
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+                        <label class="col-md-1 control-label">Role</label>
+                        <div class="col-md-3">
+                            <select ng-model="rec.role_two"   ng-options="opt as opt.title for opt in arr_roles2"  ng-change="addNewRolePopup(rec.role_two, 2, rec)"  ng-readonly ="check_readonly" class="form-control">
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Contact Person</label>
+                        <div class="col-md-4">
+                            <select ng-model="rec.contact_person_three"   ng-options="opt as opt.name for opt in arr_alt_contacts"   ng-readonly ="check_readonly" class="form-control">
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+                        <label class="col-md-1 control-label">Role</label>
+                        <div class="col-md-3">
+                            <select ng-model="rec.role_three"  ng-options="opt as opt.title for opt in arr_roles3"  ng-change="addNewRolePopup(rec.role_two, 3, rec)" ng-readonly ="check_readonly" class="form-control">
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Currency </label>
+                        <div class="col-md-8">
+                            <select ng-model="rec.currency_id"  
+                                    ng-change="validConvrate(rec.forecast_amount, rec.currency_id)"
+                                    ng-options="opt as opt.code  for opt in arr_currency " class="in-t-1">
+
+                                <option style="display:block" value=""></option>
+                            </select>
+
+                        </div>
+                    </div> 
+
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"> Forecast Amount</label>
+                        <div class="col-md-8">     <div class="input-symbol"> 
+
+                                <input   type="text"   required  ng-model="rec.forecast_amount"      class="form-control"  data-parsley-trigger="keyup" data-parsley-minlength-message="Invalid Value"   ng-readonly="check_readonly"  data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"   data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/" ng-change="validConvrate(rec.forecast_amount, rec.currency_id)"/>
+
+
+                                <span> {{defaultCurrencyCode}} </span> </div> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"> Converted Amount</label>
+                        <div class="col-md-8">     <div class="input-symbol"> 
+
+                                <input   type="text"      ng-model="rec.convert_amount"      class="form-control"  data-parsley-trigger="keyup" data-parsley-minlength-message="Invalid Value"     data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"   data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/"   readonly />
+                                <span> {{defaultCurrencyCode}} </span> </div> 
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Stage<span class="required">*</span></label>
+                        <div class="col-md-8">
+                            <select ng-model="rec.current_status"  ng-options="opt as opt.name for opt in arr_tabs"     ng-readonly ="check_readonly" class="form-control"   ng-change="onTabSelect(rec.tab_stage.id, rec.tab_stage.parent_id)" >
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Process of Decision </label>
+                        <div class="col-md-8">
+                            <select ng-model="rec.process_of_decisions"    ng-options="opt as opt.name for opt in arr_process_of_decision"   ng-change="addNewProcessPopup()"  ng-readonly ="check_readonly" class="form-control">
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Probability<span class="required">*</span></label>
+                        <div class="col-md-8">
+                            <div class="input-symbol">
+                                <input type="text" ng-model="detail.probability" class="form-control" ng-readonly ="check_readonly" required="1"  >
+                                <span>&#37;</span> </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Expected Deal Close Date </label>
+                        <div class="col-md-8">
+                            <input jqdatepicker class="2date-picker form-control" ng-model="detail.expected_close_date"  readonly >
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="tab.name == 'Outcome'">
+                        <label class="col-md-4 control-label">Outcome</label>
+                        <div class="col-md-8">
+                            <select ng-model="rec.win_lost_outcome"   ng-options="opt as opt.name for opt in arr_win_lost_outcome"  ng-readonly ="check_readonly" class="form-control">
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Salesperson </label>
+                        <div class="col-md-6">
+                            <!-- <input type="text" ng-model="sales_person" id="sales_person1" class="form-control" ng-click="getSalePerson()"  ng-readonly="check_readonly"    />
+                                                    <input type="hidden" ng-model="rec.salesperson_id"  class="form-control" /> -->
+                            <div class="panel-info" ng-class="{'dont-click readonly':check_readonly}" style="overflow-x:auto;">
+                                <div class="panel-body" ng-click="getSalePerson_oop()"> <span ng-repeat="sp in selectedSalespersons_oop track by $index"> <span ng-if="$index == 0"><span ng-class="{'hilight':sp.isPrimary}">{{sp.first_name + ' ' + sp.last_name}}</span></span> <span ng-if="$index > 0">;&nbsp;<span ng-class="{'hilight':sp.isPrimary}">{{sp.first_name + ' ' + sp.last_name}}</span></span> </span> </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-icon pull-right" type="button" ng-click="historytype('Salespersons')">
+                                <img src="app/img/entypo/time-slot.svg" /></button>
+                        </div>
+                        <div ng-include="'app/views/crm_opportunity_cycle/_salesperson_popup.html'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-right">
+
+
+
+                    <button type="submit" class="btn btn_blue width_80"     title="Show Previous Tabs"  ng-click="showPreviousTabs()">>   <i class="fa fa-eye"></i></button>
+
+
+
+                    <div class="dropdown ib" ng-show="rec.id > 0 && crm_oop_cycle_tab_module > 0">
+                        <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown"><i class="dte-ico"></i></button>
+                        <ul class="dropdown-menu dte animated fadeIn">
+                            <span ng-click="set_document_internal(crm_oop_cycle_tab_module)"><i class="fa fa-file-text-o" aria-hidden="true"></i> Add Document</span>
+                            <span><i class="fa fa-check" aria-hidden="true"></i> Add Task</span>
+                            <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Compose Email</span>
+                        </ul>
+                    </div>
+
+                    <button type="submit" class="btn btn_blue width_80"   ng-if="detail.is_complete == 0 && detail.id > 0" ng-click="isComplete(tab.id)"><i class="fa fa-check fa_display"></i>&nbsp;Complete Stage</button>
+
+
+                    <button   class="btn btn_blue width_80" type="button" ng-show="rec.id > 0" ng-click="add_to_pipeline(rec, detail, tab.id)"><i class="fa fa-check fa_display"></i> Add To Pipeline</button>
+
+                    <!-- <button type="submit" ng-show="btn_complete" class="btn btn-info btn_blue dont-click"   ng-if="detail.is_complete == 0 && detail.id == 0" ng-click="isComplete(tab.id)"><i class="fa fa-check"></i>&nbsp;Complete</button> -->
+
+
+                    <button class="btn btn-edit"   type="button" ng-click="showOppCycleEditForm()" ng-show="check_readonly"><i class="fa fa-edit fa_display"></i> Edit</button>
+                    <button  class="btn btn-submit" type="submit" ng-show="!check_readonly"><i class="fa fa-check fa_display"></i> Save</button>
+
+                    <button class="btn btn-cancel"   type="button" ng-click="showOppCycleListing()"><i class="fa fa-undo fa_display"></i> Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">Description </label>
+                      <div class="col-md-10" style="position:relative;">
+                       <textarea name="note"   rows="4" id="note" ng-model="rec.description" class="form-control"    ng-readonly ="check_readonly" style="width:901px; resize:none;" ng-change="showWordsLimits()" maxlength="500" ></textarea>
+                     <span class="word-counter">{{wordsLength}}/500</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>-->

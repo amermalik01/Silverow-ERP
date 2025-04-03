@@ -1,0 +1,410 @@
+<div class="row">
+  <div class="col-md-12 col-md-12">
+    <div class="widget">
+
+
+      <div class="widget-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel-title2">
+              General Information
+            </div>
+            <div class="col-md-5">
+              <div class="form-group">
+                <label class="col-md-4 control-label">Name <span class="required">*</span></label>
+
+                <div class="col-md-8">
+                  <input type="text"
+                         ng-model="general.name"
+                         id="name"
+                         class="form-control"
+                         ng-readonly="check_readonly"
+                         tabindex="1"
+                         required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Address Line 1</label>
+
+                <div class="col-md-8">
+                  <input type="text"
+                         ng-model="general.address"
+                         id="address"
+                         class="form-control"
+                         ng-readonly="check_readonly"
+                         tabindex="2" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Address Line 2</label>
+
+                <div class="col-md-8">
+                  <input type="text"
+                         ng-model="general.address_2"
+                         id="address_2"
+                         class="form-control"
+                         ng-readonly="check_readonly"
+                         tabindex="3" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-md-4 col-md-offset-4 padr6"
+                     title="City">
+                  <input type="text"
+                         ng-model="general.city"
+                         id="city"
+                         class="form-control"
+                         ng-readonly="check_readonly"
+                         placeholder="City">
+                </div>
+                <div class="col-md-4 padl6"
+                     title="County">
+                  <input type="text"
+                         ng-model="general.county"
+                         id="county"
+                         class="form-control"
+                         ng-readonly="check_readonly"
+                         placeholder="County">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-4 col-md-offset-4 padr6"
+                     title=" Postcode">
+                  <input type="text"
+                         ng-model="general.postcode"
+                         id="postcode"
+                         class="form-control crm-postcode "
+                         maxlength="10"
+                         ng-readonly="check_readonly"
+                         placeholder="Postcode">
+                </div>
+                <div class="col-md-4 padl6">
+                  <ui-select ng-model="general.country"
+                             ng-disabled="check_readonly">
+                    <ui-select-match placeholder="Select Country">{{$select.selected.name}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="opt in country_type_arr | filter: $select.search">
+                      <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
+              </div>
+
+
+              <!-- <div class="form-group">
+                <label class="col-md-4 control-label">City</label>
+
+                <div class="col-md-8">
+                  <input type="text" ng-model="general.city" id="city" class="form-control" ng-readonly="check_readonly" tabindex="4" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">County </label>
+
+                <div class="col-md-8">
+                  <input type="text" ng-model="general.county" id="county" class="form-control" ng-readonly="check_readonly" tabindex="5" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Postcode</label>
+
+                <div class="col-md-8">
+                  <input type="text" ng-model="general.postcode" id="postcode" class="form-control" ng-readonly="check_readonly" tabindex="6"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Country<span class="required">*</span></label>
+
+                <div class="col-md-8">
+                  <ui-select ng-model="general.country" ng-disabled="check_readonly" required tabindex="7">
+                    <ui-select-match placeholder="Select Country">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="opt in countries | filter: $select.search">
+                      <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+
+                </div>
+              </div> -->
+              <div class="form-group">
+                <label class="col-md-4 control-label">Telephone </label>
+
+                <div class="col-md-8">
+                  <input type="text"
+                         ng-model="general.telephone"
+                         id="telephone"
+                         class="form-control"
+                         ng-readonly="check_readonly"
+                         tabindex="8">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Fax</label>
+
+                <div class="col-md-8">
+                  <input type="text"
+                         ng-model="general.fax"
+                         id="fax"
+                         class="form-control"
+                         ng-readonly="check_readonly"
+                         tabindex="9" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label"
+                       style="white-space: normal;line-height: 15px;padding-top: 0;">Additional Printable
+                  Information</label>
+
+                <div class="col-md-8 show123">
+                  <input type="text"
+                         ng-model="general.additionalInformation"
+                         id="additionalInformation"
+                         class="form-control"
+                         ng-readonly="check_readonly"
+                         tabindex="10"
+                         maxlength="25" />
+
+                  <div class="small-invoice">
+                    <div class="small-invoice-name">Sales Invoice</div>
+                    <div class="small-invoice-logo">
+                      <i class="fa fa-picture-o"
+                         aria-hidden="true"></i>
+                    </div>
+                    <div style="margin-top: 33px;">
+                      <div class="small-invoice-table"></div>
+                      <div class="small-invoice-table"></div>
+                      <div class="small-invoice-table"></div>
+                      <div class="small-invoice-table"></div>
+                      <div class="small-invoice-table"></div>
+                    </div>
+                    <div class="small-invoice-print-area">ABC1234</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 col-md-offset-2">
+              <div class="form-group">
+                <label class="col-md-4 control-label">Web Address</label>
+
+                <div class="col-md-8">
+                  <input type="text"
+                         ng-model="general.url"
+                         id="url"
+                         class="form-control"
+                         ng-readonly="check_readonly"
+                         data-parsley-type="url"
+                         tabindex="10"
+                         placeholder="e.g: http://www.demo.com or http://demo.com" />
+
+                  <!-- <small>e.g: http://www.demo.com or http://demo.com</small> -->
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Base Currency</label>
+                <div class="col-md-8">
+                  <ui-select ng-model="general.currency"
+                             ng-disabled="check_readonly || disable_currency"
+                             ng-change="addNewCurrencyPopup()"
+                             tabindex="11">
+                    <ui-select-match placeholder="Select Base Currency">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="opt in currencies | filter: $select.search">
+                      <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select><!-- arr_currency -->
+                </div>
+              </div>
+              <!-- <div class="form-group">
+                <label class="col-md-4 control-label">Time Zone</label>
+
+                <div class="col-md-8">
+                  <ui-select ng-model="general.timezonee" ng-readonly="check_readonly" ng-disabled="check_readonly" tabindex="12">
+                    <ui-select-match placeholder="Select Time Zone">{{$select.selected.label}}</ui-select-match>
+                    <ui-select-choices repeat="opt in timezones | filter: $select.search">
+                      <div ng-bind-html="opt.label | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+
+                </div>
+              </div> -->
+              <!-- <div class="form-group">
+                <label class="col-md-4 control-label" for="userName">Date Format</label>
+
+                <div class="col-md-8">
+                  <div data-toggle="buttons" class="btn-group select-btn">
+                    <label class="btn btn-hl"
+                      ng-class="{'active':general.date_format == dtDMY,'dont-click':check_readonly}" 
+                      ng-click='setDefaultDate(3);' tabindex="15">
+                      <input type="radio" name="options3" autocomplete="off">DD/MM/YYYY</label>
+
+                    <label class="btn btn-hl" tabindex="13"
+                      ng-class="{'active':general.date_format == dtYMD,'dont-click':check_readonly}" 
+                      ng-click='setDefaultDate(1);'>
+                      <input type="radio" name="options1" autocomplete="off">YYYY/MM/DD</label>
+
+                    <label class="btn btn-hl" tabindex="14"
+                      ng-class="{'active':general.date_format == dtMDY,'dont-click':check_readonly}" 
+                      ng-click='setDefaultDate(2);'>
+                      <input type="radio" name="options2" autocomplete="off">MM/DD/YYYY</label>
+
+                  </div>
+                  <ul class="parsley-errors-list filled" ng-show="isSetDateFormat">
+                    <li class="parsley-required">You must specify date format.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="userName">Time Format</label>
+
+                <div class="col-md-8">
+                  <div data-toggle="buttons" class="btn-group select-btn">
+                    <label class="btn btn-hl" tabindex="16" 
+                      ng-class="{'active':general.time_format == timeAM,'dont-click':check_readonly}" 
+                      ng-click='setDefaultTime(1);' >
+                      <input type="radio" name="options4" autocomplete="off">12 hr</label>
+
+                    <label class="btn btn-hl" tabindex="18"
+                      ng-class="{'active':general.time_format == time24,'dont-click':check_readonly}" 
+                      ng-click='setDefaultTime(2);'>
+                      <input type="radio" name="options6" autocomplete="off">24 hr</label>
+                  </div>
+                </div>
+              </div> -->
+              <!-- <div class="form-group">
+                <label class="col-md-4 control-label">Decimal Range</label>
+
+                <div class="col-md-8">
+                  <input ng-readonly="check_readonly || defaultReadonly" type="text" data-parsley-trigger="keyup" ng-model="general.decimal_range" class="form-control input_text"
+                    data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value"
+                    data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/">
+                </div>
+              </div> -->
+              <div class="form-group">
+                <label class="col-md-4 control-label"
+                       title="Number of Users to Allow Login">Number of Users...</label>
+
+                <div class="col-md-8">
+                  <input ng-readonly="check_readonly || defaultReadonly"
+                         type="text"
+                         data-parsley-trigger="keyup"
+                         ng-model="general.num_user_login"
+                         class="form-control input_text"
+                         data-parsley-minlength-message="Invalid Value"
+                         data-parsley-type-message="Invalid Value"
+                         data-parsley-error-message="Invalid Value"
+                         data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/">
+                </div>
+              </div>
+              <div class="form-group"
+                   style="display:none;">
+                <label class="col-md-4 control-label"
+                       for="userName">Opp. Cycle Tab Limit</label>
+
+                <div class="col-md-8">
+                  <input ng-readonly="check_readonly"
+                         type="text"
+                         data-parsley-trigger="keyup"
+                         ng-model="general.opp_cycle_limit"
+                         class="form-control input_text"
+                         data-parsley-minlength-message="Invalid Value"
+                         data-parsley-type-message="Invalid Value"
+                         data-parsley-error-message="Invalid Value"
+                         data-parsley-pattern="^[0-9\-_]{0,50}$">
+                </div>
+              </div>
+
+              <!--                            <div class="form-group">
+                                <label class="col-md-4 control-label">Opp. Cycle Probability Readonly</label>
+
+                                <div class="col-md-8">
+                                    <input   type="checkbox"    ng-model="general.oop_cycle_edit_role" ng-checked="general.oop_cycle_edit_role"   class="  " ng-readonly="check_readonly" style="   position: relative !important;
+                                             top: 12px;
+                                             " >
+                                </div>
+                            </div>-->
+
+
+              <div class="form-group"
+                   ng-controller="CompanyFileUploadController">
+                <label class="col-md-4 control-label"
+                       for="userName">Company Logo</label>
+
+                <div class="col-md-3">
+
+                  <!-- <input id="uploadDocFile" placeholder="Choose File" disabled="disabled" ng-value="general.logo"  /> -->
+                  <div class="fileUpload btn btn-default2"
+                       tabindex="7"
+                       ng-class="{'dont-click low-op':check_readonly}"
+                       style="margin: 0;">
+                    <span ng-if="!general.logo"
+                          ng-disabled="check_readonly">Select File</span>
+                    <span ng-if="general.logo">Change File</span>
+                    <input id="uploadDocBtn"
+                           type="file"
+                           ngf-select="uploadFiles($file, $invalidFiles)"
+                           ngf-accept="'image/*'"
+                           name="file"
+                           multiple
+                           accept=".png,.jpeg,.jpg"
+                           class="upload"
+                           ngf-resize="{width: 200, height: 200, centerCrop: false}"
+                           ngf-max-size="2MB"/>
+                    <input type="hidden"
+                           name="logo"
+                           ng-model="general.logo">
+                    <input type="hidden"
+                           name="old_logo"
+                           ng-init="old_logo = general.logo"
+                           ng-model="general.old_logo">
+                  </div>
+                </div>
+                <div class="col-md-12 col-md-offset-4"
+                     ng-if="defaultLogo.length > 0"
+                     style="margin-top: 15px;">
+                  <img ngf-src="imagePath+defaultLogo"
+                       style=" 
+                              box-shadow: 0 5px 14px 0 rgba(50,50,93,.1), 0 1px 6px 0 rgba(0,0,0,.07);
+                              padding: 10px;">
+                </div>
+              </div>
+              <div class="col-md-12 pl0"
+                   style="background-color: #ff980017;padding: 6px 12px;margin-top: 7px;">
+                <p style="margin: 0 0 1px;">
+                  <b>Note</b>
+                  <p>
+                    Supported file formats are jpg/png/jpeg <br />
+                    File size should be less than 2 MB<br />
+                    For best results, upload with dimensions:200*200 px
+                  </p>
+                </p>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-md-6 col-md-offset-6"
+               style="    margin-top: 20px;">
+            <div class="pull-right">
+              <div class="col-md-12">
+                <button class="btn btn-submit2"
+                        type="submit"
+                        ng-show="!check_readonly">Save</button>
+                <button class="btn btn-edit"
+                        type="button"
+                        ng-click="gotoEdit()"
+                        ng-show="check_readonly">
+                  Edit
+                </button>
+                <!-- <button class="btn btn-delete active-btns" type="button" ng-click="delete({id: id})" ng-show="check_readonly" ng-show="rec.id > 0">
+                                Delete
+                            </button> -->
+                <button class="btn btn-cancel"
+                        type="button"
+                        ui-sref="{{btnCancelUrl}}">Cancel</button>
+              </div>
+              <div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

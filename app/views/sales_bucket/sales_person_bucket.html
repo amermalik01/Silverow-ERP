@@ -1,0 +1,110 @@
+<div class="row" ng-show="rec.id>0" ng-init="get_sale_person_bucket(rec.id)" >
+  <div class="panel-heading">
+    <h3 class="panel-title">Bucket Sales person(s) </h3>
+  </div>
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+  <div ng-include="'app/views/_breadcrumb.html'" ></div>
+  <div class="col-lg-12"  ng-show="show_add_bucket_listing"> 
+    <!--<div class="pull-left" > <a id="prompt"ng-click="goto_main()"
+     class="btn btn-info btn_blue pull-right margin_bottom"> Back</a> </div>-->
+    <div class="pull-right>"> <a id="prompt" ng-click="edit_sale_person_bucket()"
+     class="btn btn-info btn_blue pull-right margin_bottom"><i class="fa fa-plus"></i> Add New</a> </div>
+  </div>
+  <div class="clearfix" style="margin-top:40px;"></div>
+  <div class="col-sm-12 " ng-show="show_add_bucket_listing">
+    <table class="table table-striped table-bordered table-hover" >
+      <thead >
+        <tr class="bg-col" ng-show="columns_general.length > 0" > 
+          <!-- <th><input type="checkbox" class="checkAll_aproval"></th>-->
+          <th ng-repeat="column in columns_general" 
+  class="sortable sort-asc" ng-class="{ 'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),   'sort-desc': !table.tableParams5.isSortBy(column.field, 'desc')   }" 
+    ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"
+    
+      ng-if="column.title!= 'Id' && column.title!= 'Action'"  sortable="column.title"
+      > {{column.title}} </th>
+          <th    style="width: 7%;">Action</th>
+        </tr>
+      </thead>
+      <tbody class="table-body courser " >
+        <tr ng-repeat="rec_load in general   track by $index"  ng-show="columns_general.length > 0" > 
+          <!-- <td><input type="checkbox" ng-checked="rec_sale_person.chk" ng-click="selectToAproval(rec,0)"></td>-->
+          <td ng-repeat="column in columns_general"  sortable="column.title"  
+                 ng-if="column.title!= 'Id' && column.title!= 'Action'"
+                 ><span ng-if="column.field != 'sale_date'"> <span  ng-if="column.field != 'target'  && column.field != 'forecast'"> {{rec_load[column.field]}} </span> </span> <span ng-if="column.field == 'sale_date' "> <span ng-if="rec[column.field] != 0 "> {{convert_unix_date_to_angular(rec_load[column.field])}} </span></span></td>
+          <td    ><a title="Edit" 
+                  
+                  ng-click="edit_sale_person_bucket({id:rec_load.id})";class="tooltips_cls btn "> <i class="fa fa-edit"></i> </a> <a title="Delete"   ng-click="delete_sale_person_bucket(rec_load.id,$index,$data)" class="tooltips_cls btn "> <i class="fa fa-times"></i> </a></td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  <div class="clearfix" style="margin-top:40px;"></div>
+  <div class="col-sm-12 "  ng-show="show_add_bucket_form">
+    <form autocomplete="off"  class="form-horizontal no-margin" role="form"  validate-form="" novalidate=""
+ng-submit="add_sale_person_bucket(rec_sale_person);">
+      <div class="widget">
+        <div class="widget-body">
+          <div class="row">
+            <div class="col-lg-6">
+              <input type="hidden"  ng-model="rec_sale_person.update_id" />
+              <input type="hidden" ng-model="rec_sale_person.id"    />
+              <div class="form-group">
+                <label class="col-lg-4 control-label "> Bucket <span class="required">*</span></label>
+                <div class="col-lg-7">
+                  <input  ng-readonly="check_sale_bucket_readonly"  type="text"   ng-model="rec_sale_person.bucket_name"
+          required class="form-control"   ng-click="!check_sale_target_readonly  && getSalePerson_single(bk_id)"
+          
+          />
+                  <input  type="hidden"   ng-model="rec_sale_person.bucket_id"/>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="col-lg-4 control-label">Start Date <span class="required">*</span></label>
+                <div class="col-lg-7"><!--checkDate_date_info-->
+                  <input jqdatepicker class="2date-picker form-control "  id="ck_sdate"
+                  ng-model="rec_sale_person.starting_date" 
+ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_leave_sale_target')" 
+                required readonly="" >
+                  <span class="fa fa-calendar  new_ca  form-control-feedback"></span> </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 control-label">End Date <span class="required">*</span></label>
+                <div class="col-lg-7">
+                  <input jqdatepicker class="2date-picker form-control "  id="ck_edate"
+                  ng-model="rec_sale_person.ending_date" 
+ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_leave_sale_target')" 
+                  required readonly="" >
+                  <span class="fa fa-calendar  new_ca  form-control-feedback"></span> <span id="date_msg_leave_sale_target" style="color:#F00; display: none;"  > End Date is earlier  then Start Date</span> </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 control-label">Status </label>
+                <div class="col-lg-7">
+                  <select ng-model="rec_sale_person.status" ng-options="opt as opt.label for opt in arr_status" 
+                class=" form-control"    ng-disabled="check_sale_bucket_readonly" >
+                    <option style="display:block" value=""></option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12"ng-show="!showLoader">
+              <div class="hr_line2"></div>
+              <div class="pull-right">
+                <button class="btn btn_blue width_80 date_block pic_block"   type="submit" 
+              
+                    ng-show="!check_sale_bucket_readonly"
+                    > <i class="fa fa-check fa_display"></i> Submit</button>
+                <button class="btn btn-info btn_blue" type="button"  ng-click="showEditForm()" 
+      ng-show="check_sale_bucket_readonly"><i class="fa fa-edit"></i> Edit</button>
+                <button class="btn default width_80" type="button" ng-click="get_sale_person_bucket(bk_id)" > <i class="fa fa-undo fa_display"></i> Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div ng-include="'app/views/_listing_modal_2.html'" ></div>
+</div>

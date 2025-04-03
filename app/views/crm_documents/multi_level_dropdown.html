@@ -1,0 +1,11 @@
+<ul>
+    <li ng-repeat="folder in sub">
+      <span ng-click="select(folder)">{{folder.title}}</span>
+      <div ng-switch on="folder.sub.length > 0">
+        <div ng-switch-when="true">
+          <div ng-init="sub = folder.sub;" 
+          ng-include="basePath+'app/views/crm_documents/multi_level_dropdown.html'"></div>  
+        </div>
+      </div>
+    </li>
+</ul>

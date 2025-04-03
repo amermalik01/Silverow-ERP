@@ -1,0 +1,144 @@
+<style>
+    @media print {
+        table {
+            page-break-after: always !important;
+        }
+    }
+</style>
+
+<div class="modal fade template-design"
+     id="accessByTransactionNumbersModal">
+    <div class="modal-dialog modal-md"
+         style=" width: 24cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 2cm;">
+                <div 
+                     style="clear: both;margin-bottom: 72px;">
+                    <sethtmlpageheader name='MyCustomHeader'
+                                       page='ALL'
+                                       value='on'
+                                       show-this-page='1' />
+
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+                    <setpagefooter name='MyFooter3'
+                                   page='ALL'
+                                   value='on'
+                                   show-this-page='1' />
+
+                    <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter3;
+                        }
+                    </style>
+                    <div class='reportHeading'>
+                        <div class='reportHeading__left'>
+                            <div class='reportHeading__left__reportname'
+                                 style="margin-bottom: 12px;">{{printPdfVals.reportTitle}}</div>
+                            <div class='reportHeading__left__reportfilter'
+                                    style="width: 100%;margin-bottom: 5px;"
+                                    ng-if="printPdfVals.transactionFrom != printPdfVals.transactionTo">
+                                    Entry No. From {{printPdfVals.transactionFrom}} To {{printPdfVals.transactionTo}}
+                            </div>
+
+                            <div class='reportHeading__left__reportfilter'
+                                    style="width: 100%;margin-bottom: 5px;"
+                                    ng-if="printPdfVals.transactionFrom == printPdfVals.transactionTo">
+                                    Entry No. : {{printPdfVals.transactionFrom}}
+                            </div>
+                        </div>
+                        <div class='reportHeading__right'>
+                            <img ng-src='{{imagePath+defaultLogo}}'
+                                 class='reportHeading__right__img '
+                                 ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                        </div>
+                    </div>
+
+                    <div style="margin: 0 auto"><!-- width: 70%; -->
+                        <table style="width: 100%;margin-top: 33px;float: left;">
+                            <thead>
+                                <tr>
+                                    <th ng-repeat="column in printPdfVals.columns"
+                                        ng-if=" column.title != 'Rank' && column.title != 'Financecharges' && 
+                                                column.title != 'Object Code' && column.title != 'Balancing Acc_no' && column.title != 'Debitorcreditsign'"
+                                        x-col={{column.title}}
+                                        ng-class="{'rightAlign':  column.title == 'Debit Amount' || column.title == 'Credit Amount' || column.title == 'Transaction Id'}">
+                                        <span ng-if="column.title == 'Documenttype'">Doc. Type</span>
+                                        <span ng-if="column.title == 'Gl Account_code'">Gl Account No.</span>
+                                        <span ng-if="column.title == 'Gl Account_name'">Gl Account</span>
+                                        <span ng-if="column.title == 'Object No'">Source No.</span>
+                                        <span ng-if="column.title == 'Postedby'">Posted By</span>
+                                        <span ng-if="column.title == 'Actuallpostedon'">Posted On</span>
+                                        <span ng-if="column.title == 'Document No'">Doc. No.</span>
+                                        <span ng-if="column.title == 'Transaction Id'">Entry No.</span>
+                                        <span
+                                            ng-if="column.title != 'Documenttype' && column.title != 'Gl Account_code' && 
+                                                    column.title != 'Gl Account_name' && column.title != 'Object No' && 
+                                                    column.title != 'Postedby' && column.title != 'Actuallpostedon' && 
+                                                    column.title != 'Document No' && column.title != 'Transaction Id'">{{column.title}}</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="rec in printPdfVals.reportsDataArr track by $index">
+                                    <td ng-repeat="column in printPdfVals.columns"
+                                        ng-if="column.title != 'Rank' && column.title != 'Financecharges' && 
+                                               column.title != 'Object Code' && column.title != 'Balancing Acc_no' && column.title != 'Debitorcreditsign'"
+                                        ng-class="{'rightAlign': column.title == 'Debit Amount' || column.title == 'Credit Amount' || column.title == 'Transaction Id'}">
+                                        <span
+                                            ng-if="column.title != 'Debit Amount' && column.title != 'Credit Amount'">
+                                            {{rec[column.field]}}
+                                        </span>
+                                        <span ng-if="column.title == 'Debit Amount' || column.title == 'Credit Amount'">
+                                            {{rec[column.field] | currency : "" : decimal_range }}
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="display: inline-block;height: 17px;width: 100%"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            ng-click="destroyPdfModal('accessByTransactionNumbersModal')">Cancel</button>
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <!-- jsreport download button -->
+                    <a type="button"
+                       class="btn btn-default2"
+                       ng-if="!jsreportLoading"
+                       title="Download PDF"
+                       ng-click="downloadReportaccessByTransactionNumbers(printPdfVals)">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

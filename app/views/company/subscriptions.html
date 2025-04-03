@@ -1,0 +1,147 @@
+<style>
+    body {
+        background-image: url(app/css/report-BG.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        padding-bottom: 10px;
+    }
+</style>
+
+
+<div class="subs-container_parent">
+    <h3 class="text-center">View Subscriptions</h3>
+    <div class="subs-container_child text-center">
+        <div class="subs-icon"><img src="app/img/sub2.png"
+                 alt=""
+                 style="    width: 34px;"></div>
+        <div class="subs-number">{{APPLICATION_LIMITATIONS.num_max_user_login}}</div>
+        <div class="subs-desp">No. Of Licenced Users</div>
+    </div>
+    <div class="subs-container_child text-center">
+        <div class="subs-icon">
+            <img src="app/img/sub3.png"
+                 alt="">
+        </div>
+        <div class="subs-number">{{APPLICATION_LIMITATIONS.allow_login_users}}</div>
+        <div class="subs-desp">No. Of Licenced Users Who Can Login</div>
+    </div>
+    <div class="subs-container_child text-center">
+        <div class="subs-icon"><img src="app/img/sub4.png"
+                 alt=""></div>
+        <div class="subs-number">{{APPLICATION_LIMITATIONS.total_users }}</div>
+        <div class="subs-desp">No. Of Users Created</div>
+    </div>
+    <div class="subs-container_child subs-container_hover text-center"
+         data-toggle="modal"
+         data-target="#customerSalesInvoice">
+        <i class="fa fa-external-link"></i>
+        <div class="subs-icon"><img src="app/img/sub5.png"
+                 alt=""></div>
+        <div class="subs-number">{{APPLICATION_LIMITATIONS.sales_invoices}}</div>
+        <div class="subs-desp">Sales Invoices</div>
+    </div>
+    <div class="subs-container_child text-center subs-container_hover">
+<i class="fa fa-external-link"></i>
+        <div class="subs-number">
+            <div class="subs-icon">
+                <img src="app/img/sub6.png">
+            </div>
+            <div class="subs-number"
+                 style="    font-size: 17px;
+                            position: relative;
+                            top: 24px;
+                            line-height: 22px;">Silverow Ltd & {{company_name}}</div>
+        </div>
+        <div class="subs-desp">Licence Agreement</div>
+    </div>
+    <div class="subs-container_child text-center">
+        <div class="subs-icon"><img src="app/img/sub8.png"
+                 alt=""></div>
+        <div class="subs-number">{{APPLICATION_LIMITATIONS.storage_purchased}} <small>GB</small></div>
+        <div class="subs-desp">Space Purchased</div>
+    </div>
+    <div class="subs-container_child text-center">
+        <div class="subs-icon"><img src="app/img/sub7.png"
+                 alt=""></div>
+        <div class="subs-number">{{APPLICATION_LIMITATIONS.storage_used}} <small>GB</small></div>
+        <div class="subs-desp">Space In Use</div>
+    </div>
+    <div class="subs-container_child text-center">
+        <div class="subs-icon"><img src="app/img/sub1.png"
+                 alt=""></div>
+        <div class="subs-number">{{APPLICATION_LIMITATIONS.storage_available}} <small>GB</small></div>
+        <div class="subs-desp">Free Available Space</div>
+    </div>
+    <div class="subs-container_child text-center">
+        <div class="subs-icon"><img src="app/img/sub9.png"
+                 alt=""></div>
+        <div class="subs-text-large">{{APPLICATION_LIMITATIONS.last_activity_known_as}}</div>
+        <div class="subs-text-small">{{APPLICATION_LIMITATIONS.last_activity_user_email}}</div>
+        <div class="subs-text-small">{{APPLICATION_LIMITATIONS.last_activity_time}}</div>
+        <div class="subs-desp">Who Logged On Last</div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="customerSalesInvoice"
+     class="modal fade"
+     role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sales Invoices</h4>
+            </div>
+            <div class="modal-body">
+                <p>List of all direct debit invoices you have received since starting your subscription.</p>
+                <table class="table table-condensed table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Invoice No.</th>
+                            <th>Date</th>
+                            <th>Due Date</th>
+                            <th class="text-right">Total</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>INV0191</td>
+                            <td>10/10/2019</td>
+                            <td>12/10/2019</td>
+                            <td class="text-right">34.09 GBP</td>
+                            <td><span class="unpaid-invoice">Unpaid</span></td>
+                            <td><a class="tooltips_clsshilight">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>INV0193</td>
+                            <td>01/10/2019</td>
+                            <td>12/11/2019</td>
+                            <td class="text-right">100.20 GBP</td>
+                            <td><span class="paid-invoice">Paid</span></td>
+                            <td><a class="tooltips_clsshilight">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>INV0194</td>
+                            <td>13/09/2019</td>
+                            <td>15/09/2019</td>
+                            <td class="text-right">40.19 GBP</td>
+                            <td><span class="paid-invoice">Paid</span></td>
+                            <td><a class="tooltips_clsshilight">View</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-default"
+                        data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

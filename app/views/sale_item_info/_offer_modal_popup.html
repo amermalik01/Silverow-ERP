@@ -1,0 +1,126 @@
+<div class="modal fade" id="item_offer_modal_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+        <div ng-class="{'whirl no-overlay':showLoader}"></div>
+  <div ng-class="{'loader_pop':loader_pop}"></div>
+    <div class="modal-dialog  modal-lg" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{title}}</h4>
+            </div>
+            <div class="modal-body">
+                <!-- Filter Start -->
+                <div class="row" ng-init="get_region_list();get_employee_type_list();get_department_list();">
+            <div class="col-md-12">
+             <!-- Filter Start -->
+          
+            <div class="col-md-4" >
+              <label class="  control-label"> Search</label>
+            <form autocomplete="off" class="form-horizontal no-margin ng-pristine ng-valid" role="form" ng-submit="getOffer()">
+                <div class="input-symbol">
+                  <input type="text"    Placeholder="Search"  class="form-control"ng-model="searchKeyword_offer.$">
+                  <span  id="date_msg_4" > <i class="fa fa-search"></i></span>
+                  
+                 </div>
+                  </form>
+            </div>
+            <!--<div class="col-md-3" >
+              <label class="  control-label">Region </label>
+              <div class=" ">
+                <select  ng-model="searchKeyword.region"     class=" form-control"    >
+                  <option style="display:block" value=""></option>
+                  <option ng-repeat="value in region_customer_arr"
+                 value="{{value.title}}">{{value.title}} </option>
+                </select>
+              </div>
+            </div>-->
+            <div class="col-md-2" >
+              <label class="  control-label">Depatment </label>
+              <div class=" ">
+                  <select ng-model="searchKeyword_offer.department"
+                  ng-options="opt as opt.name for opt in deprtment_arr"
+                   class=" form-control" ng-change="getOffer()"   >
+                  <option style="display:block" value=""></option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2" >
+              <label class="  control-label">Emp Type </label>
+              <div class=" ">
+             
+                 <select ng-model="searchKeyword_offer.employee_type" 
+                  ng-options="opt as opt.name for opt in emp_type_arr"
+                   class=" form-control"     ng-change="getOffer()"   >
+                  <option style="display:block" value=""></option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2" >
+              <label class="  control-label"> </label>
+              <div style="margin-top:4px;">
+                <button type="button" class="btn btn-default" ng-click="getOffer(77,1);"
+               ng-model="strict" >Clear</button>
+              </div>
+            </div>
+          </div>  
+          <div class="col-md-12">
+      <!--paging options start-->
+      <div class="page-options" style="margin-top:5px">
+        <div class="col-xs-4">
+          <div class="form-group" >
+            <label class="col-md-6 show_record">Show Entries </label>
+            <div class="col-md-4">
+              <select ng-model="item_paging.pagination_limit"
+                ng-options="opt as opt.label for opt in pagination_arry"
+                  class="in-t-1"    ng-change="getOffer()"   >
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <div class="text-center total_paging_center" ng-if="record.length > 0">{{total_paging_record}} </div>
+        </div>
+        <div class="col-xs-4">
+          <div class="text-right total_paging_record" ng-if="record.length > 0">Total: {{total}}</div>
+        </div>
+      </div>
+      <!--paging options end-->
+    </div>
+                </div>
+                <!-- Filter End -->   
+                <div class="col-md-12 ">
+                    <div class="panel-body" style="  overflow-y: scroll;    max-height:200px;">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover no-margin">
+            <thead>
+              <tr class="bg-col">
+                <th ng-repeat="column in columns" ng-hide="column.field == 'id' || column.field == 'type'">{{column.title}}</th>
+              </tr>
+            </thead>
+            <tbody class="courser table-body"><!--| filter:searchKeyword:strict  track by $index  -->
+              <tr ng-repeat="rec in record " ng-click="confirmOffer(rec)">
+                <td ng-repeat="column in columns" ng-hide="column.field == 'id'  ||  column.field == 'type'"><span ng-if="column.field != 'start_date' &&   column.field != 'end_date' "> {{rec[column.field]}}</span> <span ng-if="column.field == 'start_date'  || column.field == 'end_date' "> <span ng-if="rec[column.field] != 0 "> {{convert_unix_date_to_angular(rec[column.field])}} </span></span></td>
+              </tr>
+            </tbody>
+          </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12"  ng-if="record.length > 0">
+              <div class="form-group" style="text-align: left;">
+                <ul class="pagination" style="margin: 0px !important;" ng-show="item_paging.total_pages > 1">
+                  <li ng-class="{'disabled': item_paging.cpage == 1}" class=""> <a ng-click="itemselectPage(item_paging.ppage); getOffer();" href="javascript: void(0);" class="">«</a> </li>
+                  <li ng-repeat="(key,value) in item_paging.pages" ng-class="{'active': value == item_paging.cpage}"> <a ng-click="itemselectPage(value); getOffer();" href="javascript: void(0);"><span ng-bind="value"></span></a> </li>
+                  <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}"> <a ng-click="itemselectPage(item_paging.npage); getOffer();" href="javascript: void(0);" >»</a> </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+            </div>
+            <div class="modal-footer">
+                Selected:&nbsp;{{(products | filter: {chk: true}).length}}
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+ 

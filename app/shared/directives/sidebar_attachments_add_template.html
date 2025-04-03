@@ -1,0 +1,56 @@
+<div ng-controller="fileUploadController" class="email-area">
+    <b>Module</b>
+    <div class="email-input">
+        <select style="width: 30%;"
+                ng-init="moduleTracker.module.name?(bringAttachmentNames()):'0'"
+                ng-model="selectedAttachmentModule"
+                ng-change="bringNamesForAttachments()"
+                name=""
+                id=""
+                class="form-control">
+            <option selected
+                    disabled
+                    value="">Select Module</option>
+            <option value="crm">CRM</option>
+            <option value="customer">Customer</option>
+            <option value="srm">SRM</option>
+            <option value="supplier">Supplier</option>
+            <option value="hr">HR</option>
+            <option value="item">Item</option>
+            <option value="warehouse">Warehouse</option>
+        </select>
+    </div>
+</div>
+<div class="email-area"
+     ng-show="allNames.length">
+    <b> Record</b>
+    <div class="email-input">
+        <ui-select style="    width: 30%;"
+                   ng-model="selectedAttachmentRecord"
+                   ng-change="updateAttachmentRecord(selectedAttachmentRecord)">
+            <ui-select-match placeholder="Select Record Name">{{$select.selected.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="opt in allNames | filter: $select.search">
+                <div ng-bind-html="opt.name| highlight: $select.search"></div>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+</div>
+<div class="email-area"
+     ng-show="selectedAttachmentRecord.id">
+    <b style="    width: 13.3%;"> Upload Document(s)</b>
+    <div class="fileUpload btn btn-default2"
+         style="margin: 0;">
+        <span>Select File</span>
+        <input tabindex="0"
+               type="file"
+               ngf-select="onFileSelectFromOutside($files, $invalidFiles)"
+               name="file"
+               ngf-max-files="20"
+               multiple=""
+               class="upload"
+               accept=".xlsx, .xls, .ppt, .pptx, .doc, .docx, .pdf,.txt,.jpg,.jpeg,.png,.gif,.tiff,.zip, .mp4, .mp3"
+               ngf-max-size="10MB">
+    </div>
+
+</div>

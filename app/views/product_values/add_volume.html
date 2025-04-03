@@ -1,0 +1,65 @@
+
+<div class="modal fade" id="add_volume_disc"   >
+  <div class="modal-dialog"   >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"   aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{title_type}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="widget">
+              <div class="widget-body">
+                <div class="row">
+                  <div class="col-md-12 col-md-12">
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label "> From Quantity <span class="required">*</span></label>
+                      <div class="col-sm-7">
+                        <input class="form-control input_text"  ng-readonly="check_sub_readonly"
+                 data-parsley-trigger="keyup"     required ng-change="check_value_volume(formData_vol_1.quantity_from,formData_vol_1.quantity_to)"
+             ng-model="formData_vol_1.quantity_from"  id="quantity_from" data-parsley-type="number" 
+          
+              data-parsley-error-message="This value  must  be greater than  0."   
+            type="text"  min="0.01" step="0.01"  data-parsley-min="0.01"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label "> To Quantity <span class="required">*</span></label>
+                      <div class="col-sm-7"> 
+                        <!--<input  ng-readonly="check_sub_readonly" required id="description"  type="text" 
+                        ng-model="formData_vol_1.description"  class="form-control" />-->
+                        <input class="form-control input_text"  ng-readonly="check_sub_readonly"
+                 data-parsley-trigger="keyup"     required ng-change="check_value_volume(formData_vol_1.quantity_from,formData_vol_1.quantity_to)"
+             ng-model="formData_vol_1.quantity_to"  id="quantity_to" data-parsley-type="number" 
+          
+              data-parsley-error-message="This value  must  be greater than  0."   
+            type="text"  min="0.01" step="0.01"  data-parsley-min="0.01"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label "> Unit Of Measure <span class="required">*</span></label>
+                      <div class="col-sm-7">
+                        <select  ng-disabled="check_sub_readonly" required 
+                         ng-model="formData_vol_1.unit_category"
+                   ng-options="opt as opt.name for opt in list_unit_category"      
+                          class=" form-control"   >
+                          <option value="" style="display: none;"></option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-info btn_blue pic_block width_80  " type="submit" ><i class="fa fa-check   fa_display"></i> Submit</button> 
+        <button type="button" class="btn btn-default width_80  " data-dismiss="modal"  >Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ng-click="reload_popup(7,'model_vol_1')" -->

@@ -1,0 +1,4 @@
+"helllooo" does not exist in SQL Table
+"helllloooo" does not exist in SQL Table
+"hello" is not a numeric field
+"hello" is not a numeric field

@@ -1,0 +1,97 @@
+{
+    "tblMeta": {
+        "autoAdjust": true
+    },
+    "colMeta": [
+        {
+            "title": "Warehouse No.",
+            "field_name": "wrh_code",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "120",
+            "data_type": "string"
+        },
+        {
+            "title": "Name",
+            "field_name": "name",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "180",
+            "data_type": "string"
+        },
+        {
+            "title": "Contact Person",
+            "field_name": "contact_person",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "150",
+            "data_type": "string"
+        },
+        {
+            "title": "Job Title",
+            "field_name": "job_title",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "150",
+            "data_type": "string"
+        },
+        {
+            "title": "Direct Line",
+            "field_name": "direct_line",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "150",
+            "data_type": "string"
+        },
+        {
+            "title": "Mobile",
+            "field_name": "mobile",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "150",
+            "data_type": "string"
+        },
+        {
+            "title": "Email",
+            "field_name": "email",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "180",
+            "data_type": "string"
+        },
+        {
+            "title": "City",
+            "field_name": "city",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "110",
+            "data_type": "string"
+        },
+        {
+            "title": "Postcode",
+            "field_name": "postcode",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "100",
+            "data_type": "string"
+        },
+        {
+            "title": "Warehouse Type",
+            "field_name": "warehouse_type",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "120",
+            "data_type": "string"
+        }
+    ]
+}

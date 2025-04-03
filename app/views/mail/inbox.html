@@ -1,0 +1,75 @@
+<div id="" role="main" ng-controller="MailController" ng-init="inbox();">
+    <div ng-include="'app/views/_breadcrumb.html'" class="col-lg-12"></div>
+    <div class="row">
+
+        <div class="col-lg-3 col-md-3 col-sm-12 col-sx-12">
+            <div class="panel panel-default">
+                <div class="panel-heading bgt " style="webkit-box-shadow: inset 0px 2px 0px 0px #ec706d;
+    -moz-box-shadow: inset 0px 2px 0px 0px #ec706d;
+    box-shadow: inset 0px 2px 0px 0px #ec706d;">
+                    <h4 class="panel-title pull-left">INBOX</h4>
+                    <a ui-sref="app.inbox()"><i class="fa fa-refresh email-refresh pull-right"></i></a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body no-padding">
+
+                    <div class="wrapper">
+                        <div id="scrollbar-two">
+                            <div class="scrollbar" style="height: 600px;">
+                                <div class="track" style="height: 600px;">
+                                    <div class="thumb" style="top: 0px; height: 448.878px;">
+                                        <div class="end">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="viewport" style="min-height: 600px;">
+                                <div class="overview" style="top: 0px;">
+                                    <div class="featured-articles-container">
+                                        <div class="articles">
+                                            <div ng-repeat="email in inbox">
+                                                <i class="fa fa-envelope pull-left"></i>
+                                                <a href="javascript: void(0);" ng-click="getInboxMessage(email.Msgno)">
+                                                    <strong ng-repeat="sender in email.sender" ng-bind="sender.personal"></strong> <br>
+                                                    <strong ng-bind="email.subject"></strong>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-9 col-md-9 col-sm-12 col-sx-12 remove-left-pad">
+            <div class="panel panel-default">
+                <div class="panel-heading bgt " style="webkit-box-shadow: inset 0px 2px 0px 0px #ec706d;
+    -moz-box-shadow: inset 0px 2px 0px 0px #ec706d;
+    box-shadow: inset 0px 2px 0px 0px #ec706d;">
+                    <h4 class="panel-title">
+                        <button class="btn btn-link no-padding-btn" type="button" data-original-title="" title="">NEW</button>
+                        <button class="btn btn-link no-padding-btn" type="button" data-original-title="" title="">REPLY</button>
+                        <button class="btn btn-link no-padding-btn" type="button" data-original-title="" title="">FORWARD</button>
+                        <button class="btn btn-link no-padding-btn" type="button" data-original-title="" title="">DELETE</button>
+                        <button class="btn btn-link no-padding-btn" type="button" data-original-title="" title="">JUNK</button>
+                        <button class="btn btn-link no-padding-btn" type="button" data-original-title="" title="">MOVE TO</button>
+                        <button class="btn btn-link no-padding-btn" type="button" data-original-title="" title="">PRINT</button>
+
+                        <div class="col-md-2 no-padding pull-right">
+                            <input type="text" placeholder="Search" id="search" class="form-control search_f">
+                        </div>
+                    </h4>
+                </div>
+                <div class="panel-body" style="min-height: 600px;">
+                    <div ng-show="inboxMessage.html" ng-bind-html="toTrustedHTML(inboxMessage.html)"></div>
+                    <div ng-show="inboxMessage.attachments" ng-bind-html="inboxMessage.attachments"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

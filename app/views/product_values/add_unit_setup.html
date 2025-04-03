@@ -1,0 +1,129 @@
+<style>
+    tbody.set-mar tr td {
+        padding: 10px !important;
+        border-left: 0px;
+    }
+</style>
+<div class="modal fade"
+     id="add_unit_category">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"> Hierarchy of Unit of Measure </h4>
+            </div>
+            <!-- <div class="modal-body">
+                <div class="row">
+                    <div>
+                        <input type="hidden" ng-model="array_submit_unit.id" class="form-control" ng-readonly="check_readonly" />
+                        <div class="col-md-3">
+                            <div class="input-symbol">
+                                <div class=" ">
+                                    <select class="form-control"
+                                        ng-model="array_submit_unit.cat_id" 
+                                        ng-options="opt as opt.title for opt in uni_prooduct_arr"                                        
+                                        ng-disabled="edit_readonly">
+                                        <option value="" disabled selected>Select U.O.M</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-symbol">
+                                <input required type="text" data-parsley-trigger="keyup" class="form-control input_text"
+                                    ng-disabled="edit_readonly || default_value_readonly" 
+                                    ng-model="array_submit_unit.quantity"
+                                    ng-blur="check_duplicate_ref(array_submit_unit, 3)"                                     
+                                    data-parsley-minlength-message="Invalid Value" 
+                                    data-parsley-type-message="Invalid Value"
+                                    data-parsley-error-message="Invalid Value" 
+                                    data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/"                                     
+                                    placeholder="Enter Quantity">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control"  
+                                ng-model="array_submit_unit.ref_unit_id" 
+                                ng-disabled="edit_readonly" 
+                                ng-options="opt as opt.title for opt in ref_unit_measures"
+                                ng-change="check_duplicate_ref(array_submit_unit, 3)">
+                                <option value="" disabled selected>Select Ref U.O.M</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <div>
+                                <div>
+                                    <input type="hidden" ng-model="array_submit_unit.ref_quantity" />
+                                    <button class="btn btn_add2 block_ref pull-right blocksubmit" type="button" 
+                                        ng-click="add_unit_setup()"><i class="fa fa-check fa_display"></i> Add
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div>
+                            <div>
+                                <div>
+                                    <table class="table table-striped table-bordered narrow_table small_fields">
+                                        <thead class="fixit">
+                                            <tr>
+                                                <th>Unit of Measure</th>
+                                                <th></th>
+                                                <th>Quantity</th>
+                                                <th>Ref U.O.M</th>
+                                                <th>Base U.O.M Quantity</th>
+                                                <th class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fixit">
+                                            <tr data-ng-repeat="formDataExpense in unit_measures_category_record track by $index" ng-show="unit_measures_category_record.length>0">
+                                                <td> {{formDataExpense.cat_id.title}}</td>
+                                                <td><span style="margin-left: 6px;"> =</span></td>
+                                                <td>
+                                                    {{formDataExpense.quantity | number:decimal_range}}
+
+                                                </td>
+                                                <td> {{formDataExpense.ref_unit_id.title}}</td>
+                                                <td> {{formDataExpense.ref_quantity}} {{formData.unit_id.title}}
+                                                </td>
+                                                <td class="text-center"><a title="Edit" ng-if="$index>0" ng-click="edit_sale_unit_setup(formDataExpense.rec_id)"
+                                                        class="tooltips_cls btn "> <i class="fa fa-edit"></i> </a>
+                                                    </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- <form > -->
+            <div class="modal-body"
+                 ng-if="unit_measures_category_record.data.length>0">
+                <item-uom-details table-headers="unit_measures_category_record.table_headers"
+                                  data="unit_measures_category_record.data"
+                                  length-unit-arr="length_unit_arr"
+                                  ref-uom-list="refUOMList">
+                </item-uom-details>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-submit2 picc_block"
+                        type="button"
+                        ng-click="add_unit_setup();">
+                    <i class="fa fa-check fa_display"></i> Save
+                </button><!-- type="submit"  -->
+                <button type="button"
+                        class="btn btn-cancel"
+                        data-dismiss="modal">Cancel</button>
+            </div>
+            <!-- </form> -->
+        </div>
+    </div>
+</div>

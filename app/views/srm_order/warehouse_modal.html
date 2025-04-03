@@ -1,0 +1,397 @@
+<style>
+    .smallwidget {
+        /* width: 24%; */
+        margin-top: 5px;
+    }
+
+    .smallwidget span {
+        font-weight: normal;
+        font-size: 11px;
+    }
+
+    .changeModal .modal-dialog {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%) !important;
+}
+</style>
+<div class="modal fade"
+     id="ware_modal">
+    <div class="modal-dialog modal-lg"
+         style="width:90%;    margin-top: 51px;">
+        <!-- dragable -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        ng-click="updateAllocationResults()"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Stock Allocation - <span ng-if="formData.itemJournalChk>0">Item Journal
+                        ({{formData.itemCode}})</span>
+                    <span ng-if="!(formData.itemJournalChk>0)">Purchase Order ({{rec.order_code}})</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group"
+                             style="margin-bottom: 0px !important;">
+                            <label class="col-md-4 control-label">Item</label>
+                            <label class="col-md-8 control-label normal-font"
+                                   style="    white-space: normal !important;">{{formData.product_code}} -
+                                {{formData.product_name}}
+                                <!-- {{formData.product_name}} --></label>
+                        </div>
+                        <div class="form-group"
+                             style="margin-bottom: 0px !important;"
+                             ng-if="!(formData.itemJournalChk>0)">
+                            <label class="col-md-4 control-label">Supplier </label>
+                            <label class="col-md-8 control-label normal-font"
+                                   style="white-space: normal;white-space: normal !important;">{{formData.order_no}} -
+                                {{rec.sell_to_cust_name}}</label>
+                        </div>
+                        <div class="form-group"
+                             style="margin-bottom: 0px !important;"
+                             ng-if="!(formData.itemJournalChk>0)">
+                            <label class="col-md-4 control-label"
+                                   title="Consignment No.">Cons. No.</label>
+                            <label class="col-md-8 control-label normal-font">{{formData.bl_shipment_no}}</label>
+                        </div>
+                        <div class="form-group"
+                             style="margin-bottom: 0px !important;">
+                            <label class="col-md-4 control-label">Warehouse</label>
+                            <label class="col-md-8 control-label normal-font"
+                                   style="    white-space: normal !important;">{{formData.warehouses_name}}</label>
+                        </div>
+                        <div class="form-group"
+                             style="margin-bottom: 0px !important;"
+                             ng-if="formData.itemJournalChk>0">
+                            <label class="col-md-4 control-label">Location</label>
+                            <label class="col-md-8 control-label normal-font">{{formData.locationName}}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-8 pl0">
+                        <!-- {{formData.receiptDate}} -->
+                        <div class="smallwidget">
+                            <div>
+                                Order Qty.
+                            </div>
+                            <div>
+                                {{formData.item_qty | numberNoDecimalsIfZeroFilter:2:''}}
+                                <!--  | number:decimal_range -->
+                                <span>{{formData.unit_of_measure_name}}</span>
+                            </div>
+                        </div>
+                        <div class="smallwidget"
+                             ng-class="{'belowzero2':total_remaing>0}">
+                            <div>
+                                Qty. To Allocate
+                            </div>
+                            <div ng-if="total_remaing>0">
+                                {{total_remaing | numberNoDecimalsIfZeroFilter:2:''}}
+                                <span>{{formData.unit_of_measure_name}}</span>
+                            </div>
+                            <div ng-if="!(total_remaing>0)">
+                                0
+                                <span>{{formData.unit_of_measure_name}}</span>
+                            </div>
+                        </div>
+                        <div class="smallwidget"
+                             ng-class="{'StkAllocated':total_remaing==0}">
+                            <div>
+                                Allocated Stock
+                            </div>
+                            <div ng-if="(formData.item_qty - total_remaing)>0">
+                                {{(formData.item_qty - total_remaing) | numberNoDecimalsIfZeroFilter:2:''}}
+                                <span>{{formData.unit_of_measure_name}}</span>
+                            </div>
+                            <div ng-if="!((formData.item_qty - total_remaing)>0)">
+                                0
+                                <span>{{formData.unit_of_measure_name}}</span>
+                            </div>
+                        </div>
+                        <div class="smallwidget"
+                             style="cursor:pointer;"
+                             ng-click="showOrderTrail(all_wh_stock[0], 'available_stock')">
+                            <!-- 
+                            ng-class="{'belowzero2 && !hide_dispatch_btn': !(formData.total_available_qty>0)}" -->
+                            <div>
+                                Available Stock
+                                <i class="fa fa-external-link"
+                                   aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <!-- <b
+                                   ng-if="formData.total_available_qty == 0">{{(formData.item_qty - total_remaing) | numberNoDecimalsIfZeroFilter:2:''}}</b> -->
+                                <b ><!-- ng-if="!(formData.total_available_qty == 0)" -->
+                                    {{formData.total_available_qty | numberNoDecimalsIfZeroFilter:2:''}}</b>
+                                <span>{{formData.unit_of_measure_name}}</span>
+                            </div>
+                        </div>
+                        <div class="smallwidget currentStock">
+                            <div>
+                                Current Stock
+                            </div>
+                            <div>
+                                {{formData.currentStock | numberNoDecimalsIfZeroFilter:2:''}}
+                                <span>{{formData.unit_of_measure_name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="margin: 14px 0 13px 0;">
+
+                <div class="row">
+                    <div class="col-md-3"
+                         style="margin-bottom: 6px;">
+                        <div class="input-symbol">
+                            <input type="text"
+                                   Placeholder="Search"
+                                   class="form-control"
+                                   ng-model="stockAllocationSearch.search">
+                            <span id="date_msg_4">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3"
+                         style="margin-bottom: 6px;"
+                         ng-if="!(formData.itemJournalChk>0)">
+                        <select name="location"
+                                class="select2me form-control"
+                                ng-model="stockAllocationSearch.loc"
+                                ng-options="opt as opt.Storage_location for opt in storage_loc">
+                            <option value=""
+                                    selected
+                                    disabled>Select Storage Location</option>
+                        </select>
+                    </div>
+                    <span ng-if="rec.type == 3 && rec.order_code"
+                          style="margin-left: 4px;"
+                          ng-controller="SetupController"
+                          ng-init="callbackAfterMigration = callbackAfterItemsMigration; uploadModalId = 'stockAllocationModal'; callbackBeforeMigration = callbackBeforeStockAllocationMigration"
+                          ng-class="{'disable-el2':show_recieve_list || approvals_lock_order == 1 || check_srm_readonly || !(rec.sell_to_cust_no.length>0)}"
+                          class="ib changeModal">
+                        <button type="button"
+                                class="btn btn-default2"
+                                ng-click="show_migrate_pop('Purchase-Order-Items-Stock-Allocation')"
+                                style="color:#2196F3;margin-left: 13px;">Upload Items</button>
+                        <div ng-include="'app/views/import_file.html'"></div>
+                    </span>
+                    <div class="col-md-1">
+                        <button class="btn btn-default2"
+                                type="button"
+                                ng-click="stockAllocationSearch = {};"
+                                ng-model="strict">Clear Filter</button>
+                    </div>
+                    <div class="col-md-12"
+                         ng-show="stockAllocationcolumns.length > 0">
+                        <div>
+                            <div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead class="fixit">
+                                            <tr ng-show="stockAllocationcolumns.length > 0">
+                                                <th>Date Received</th>
+                                                <th title="Production Date">Prod. Date</th>
+                                                <th>Use By Date</th>
+                                                <th ng-if="!(formData.itemJournalChk>0)">Storage Location</th>
+                                                <th title="Reference No.">Ref. No.</th>
+                                                <th>Batch No.</th>
+                                                <th class="text-right">Qty. ({{formData.unit_of_measure_name}})</th>
+                                                <th class="text-center"
+                                                    ng-if="approvals_lock_order != 1 && !check_srm_readonly && (formData.purchase_status==0 || formData.purchase_status==1)">
+                                                    Action</th><!-- !show_recieve_list -->
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fixit">
+                                            <tr ng-repeat="rec in stockAllocationRecord | filter:stockAllocationSearch.search | filter:stockAllocationSearch.loc.Storage_location"
+                                                ng-show="stockAllocationcolumns.length > 0">
+                                                <!-- .length>0 ?  {'storage_location' : stockAllocationSearch.loc.Storage_location}:''  -->
+                                                <td>
+                                                    <div class="col-lg-12 pl0">
+                                                        <input jqdatepicker
+                                                               readonly
+                                                               class="form-control"
+                                                               ng-model="rec.date_received"
+                                                               ng-init="rec.date_received=formData.receiptDate"
+                                                               disabled>
+                                                        <span
+                                                              class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                                    </div>
+                                                    <!-- ng-disabled="(!(rec.editchk>0) || check_srm_readonly) || formData.purchase_status!=0" -->
+                                                </td>
+                                                <td>
+                                                    <div class="col-lg-12 pl0">
+                                                        <input jqdatepicker
+                                                               class="form-control"
+                                                               ng-model="rec.prod_date"
+                                                               readonly
+                                                               required
+                                                               ng-class="{'pickdate': ((rec.editchk>0) || approvals_lock_order == 1 || check_srm_readonly)}"
+                                                               ng-disabled="(!(rec.editchk>0) || approvals_lock_order == 1 || check_srm_readonly)">
+                                                        <span
+                                                              class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                                        <!-- ng-readonly="(!(rec.editchk>0) || check_srm_readonly) || (formData.purchase_status!=0 && formData.purchase_status!=1)" -->
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="col-lg-12 pl0">
+                                                        <input jqdatepicker
+                                                               class="form-control"
+                                                               ng-model="rec.use_by_date"
+                                                               required
+                                                               readonly
+                                                               ng-class="{'pickdate': ((rec.editchk>0) || approvals_lock_order == 1 || check_srm_readonly)}"
+                                                               ng-disabled="(!(rec.editchk>0) || approvals_lock_order == 1 || check_srm_readonly)">
+                                                        <span
+                                                              class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                                        <!-- show_recieve_list -->
+                                                        <!-- ng-readonly="(!(rec.editchk>0) || check_srm_readonly) || (formData.purchase_status!=0 && formData.purchase_status!=1)" -->
+                                                    </div>
+                                                </td>
+                                                <td ng-if="!(formData.itemJournalChk>0)">
+                                                    <select name="zone"
+                                                            id="zone"
+                                                            class="select2me form-control"
+                                                            required
+                                                            ng-model="rec.storage_location"
+                                                            ng-options="opt as opt.Storage_location for opt in storage_loc"
+                                                            ng-disabled="(!(rec.editchk>0) || approvals_lock_order == 1 || check_srm_readonly) || (formData.purchase_status!=0 && formData.purchase_status!=1) ">
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="text"
+                                                           name="container_no"
+                                                           value=""
+                                                           id="container_no"
+                                                           class="form-control"
+                                                           ng-model="rec.container_no"
+                                                           ng-readonly="(!(rec.editchk>0) || approvals_lock_order == 1 || check_srm_readonly) || (formData.purchase_status!=0 && formData.purchase_status!=1)">
+                                                </td>
+                                                <td>
+                                                    <input type="text"
+                                                           name="batch_no"
+                                                           value=""
+                                                           id="batch_no"
+                                                           class="form-control"
+                                                           ng-model="rec.batch_no"
+                                                           ng-readonly="(!(rec.editchk>0) || approvals_lock_order == 1 || check_srm_readonly) || (formData.purchase_status!=0 && formData.purchase_status!=1)">
+                                                </td>
+                                                <td>
+                                                    <div class="input-symbol">
+                                                        <input type="text"
+                                                               required
+                                                               id="quantity"
+                                                               class="form-control input_text text-right"
+                                                               ng-change="check_min_max_war(formData)"
+                                                               ng-model="rec.stock_qty"
+                                                               ng-readonly="(!(rec.editchk>0) || approvals_lock_order == 1 || check_srm_readonly) || (formData.purchase_status!=0  && formData.purchase_status!=1)"
+                                                               data-parsley-trigger="keyup"
+                                                               data-parsley-minlength-message="Invalid Value"
+                                                               data-parsley-type-message="Invalid Value"
+                                                               data-parsley-error-message="Invalid Value"
+                                                               data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+
+                                                    </div>
+                                                </td>
+                                                <td class="text-center allo"
+                                                    ng-if="approvals_lock_order != 1 && !check_srm_readonly && (formData.purchase_status==0  || formData.purchase_status==1)">
+                                                    <!-- (rec.editchk>0) || () -->
+                                                    <i class="fa fa-retweet"
+                                                       title="Update"
+                                                       ng-click="allocateQty(rec,1)"
+                                                       ng-class="{'disable-el':disableWarehouseAllocRowBtn}"
+                                                       ng-if="rec.id>0 && rec.editchk>0"></i>
+                                                    <!--Re-Allocate <i class="fa fa-retweet" aria-hidden="true"></i> -->
+
+                                                    <i class="fa fa-plus"
+                                                       title="Allocate"
+                                                       ng-click="allocateQty(rec,0)"
+                                                       ng-class="{'disable-el':disableWarehouseAllocRowBtn}"
+                                                       ng-if="!(rec.id>0)"></i>
+                                                    <!-- !(rec.editchk>0) || check_srm_readonly -->
+
+                                                    <i class="fa fa-edit"
+                                                       title="Edit"
+                                                       ng-click="editModeAllocation(rec)"
+                                                       ng-if="rec.id>0 && (!(rec.editchk>0) || check_srm_readonly)"></i>
+
+                                                    <i class="fa fa-minus"
+                                                       title="Un-Allocate"
+                                                       ng-click="delete_ware(rec.id,$index,stockAllocationRecord)"
+                                                       ng-class="{'disable-el':disableWarehouseAllocRowBtn}"
+                                                       ng-if="rec.id>0 && (!(rec.editchk>0) || check_srm_readonly)"></i>
+                                                </td>
+                                            </tr>
+                                            <tr ng-show="stockAllocationcolumns.length == 0">
+                                                <td>No Record found agaist this entity! Please add.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12"
+                     style="background: #f7f7f7; margin-bottom: 11px; border: 1px solid #eaeaea;border-radius: 2px; padding: 4px 9px 4px 12px;"
+                     ng-if="show_import_div">
+                    <div class="col-md-3 pl0">
+                        <h5><b>Import {{title}} File</b></h5>
+                    </div>
+                    <div class="col-md-1"
+                         style="margin-top: 3px;">
+                        <div class="fileUpload btn btn-default2">
+                            <span> Import</span>
+                            <input type="file"
+                                   ngf-select="uploadFiles_xl($file, $invalidFiles)"
+                                   name="file"
+                                   multiple
+                                   class="upload"
+                                   accept=".xlsx, .xls"
+                                   ngf-max-size="2MB" />
+                        </div>
+                    </div>
+                    <div class="col-md-4"
+                         style="margin-top: 7px;">
+                        <span>{{file_data.name}}</span>
+                    </div>
+                    <div class="col-md-3"
+                         style="    margin-top: 8px;">
+                        <a target="_blank"
+                           href="{{sample}}"
+                           class="pull-right">
+                            <i class="fa fa-file-excel-o"></i> Sample File
+                        </a>
+                    </div>
+                    <div class="col-md-1 pr0"
+                         ng-click="show_migrate_pop(formData)">
+                        <span class="pull-right"
+                              style="padding: 3px 6px;margin: 4px;font-size: 22px;color: #a2a2a2;cursor: pointer;">×</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <!-- <button class="btn btn-default2 wr_date_block wr_d_block" type="button" 
+                        ng-if="!check_srm_readonly" 
+                        ng-click="show_migrate_pop(formData)">
+                        Import
+                    </button> -->
+                    <button type="button"
+                            class="btn btn-cancel"
+                            ng-click="updateAllocationResults()">Close
+                        <!-- OK Cancel --> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'app/views/import_file.html'"></div>
+<div ng-include="'app/views/orders/order_trail_modal.html'"></div>

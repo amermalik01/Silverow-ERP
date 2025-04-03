@@ -1,0 +1,326 @@
+Vestro
+"Posted Purchase Invoices and Debit Notes -summary"
+"From 01/01/2021 to 13/12/2021"
+
+"Order Date","PO/DN No.","PI/P. DN No.","Doc. Type","Supplier No.","Supplier Name","Req. Rcpt./Delivery Date","Receipt/Dispatch Date","Amount (LCY)","Amount Incl.VAT (LCY)","Shipping City"
+04/01/2021,PO0128,PI0124,"Purchase Invoice",SUP0018,"Super Kutu Ve Ambalaj San Tic Ltd Sti",,24/01/2021,22101.92,22101.92,Kayseri
+06/01/2021,PO0124,PI0151,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,05/01/2021,0,0,Wembley
+06/01/2021,PO0165,PI0146,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,06/01/2021,1230.57,1476.68,Wembley
+08/01/2021,PO0151,PI0132,"Purchase Invoice",SUP0024,"Palletways (UK) Ltd",,07/01/2021,280.32,336.38,Lichfield
+11/01/2021,PO0099,PI0125,"Purchase Invoice",SUP0014,"Sanat Ambalaj",,05/02/2021,11724.4,11724.4,Gaziantep
+15/01/2021,PO0145,PI0126,"Purchase Invoice",SUP0002,"Palletworks Limited",,15/01/2021,130.35,156.42,Aylesbury
+21/01/2021,PO0152,PI0133,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,21/01/2021,42,50.4,Felixstowe
+21/01/2021,PO0153,PI0134,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,21/01/2021,42,50.4,Felixstowe
+22/01/2021,PO0146,PI0127,"Purchase Invoice",SUP0002,"Palletworks Limited",,22/01/2021,280.5,336.6,Aylesbury
+22/01/2021,PO0166,PI0147,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,22/01/2021,60,72,Wembley
+25/01/2021,PO0154,PI0135,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,25/01/2021,42,50.4,Felixstowe
+25/01/2021,PO0150,PI0131,"Purchase Invoice",SUP0020,"Universal accountancy Ltd",,25/01/2021,100,120,Watford
+26/01/2021,PO0167,PI0148,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,26/01/2021,60,72,Wembley
+29/01/2021,PO0147,PI0128,"Purchase Invoice",SUP0002,"Palletworks Limited",,29/01/2021,120.65,144.78,Aylesbury
+29/01/2021,PO0160,PI0141,"Purchase Invoice",SUP0017,"SAZ IT & Freight Solutions Ltd",,29/01/2021,1308,1308,Hayes
+29/01/2021,PO0161,PI0164,"Purchase Invoice",SUP0017,"SAZ IT & Freight Solutions Ltd",,26/01/2021,0,4530.38,Hayes
+31/01/2021,PO0171,PI0155,"Purchase Invoice",SUP0011,"Dir Expenses (NA)",,31/01/2021,428.74,471.09,
+01/02/2021,PO0168,PI0149,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,01/02/2021,90,108,Wembley
+01/02/2021,PO0155,PI0136,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,01/02/2021,24,28.8,Felixstowe
+05/02/2021,PO0163,PI0144,"Purchase Invoice",SUP0017,"SAZ IT & Freight Solutions Ltd",,05/02/2021,0,2454.88,Hayes
+06/02/2021,PO0169,PI0152,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,06/02/2021,160,192,Wembley
+06/02/2021,PO0162,PI0143,"Purchase Invoice",SUP0017,"SAZ IT & Freight Solutions Ltd",,06/02/2021,840,840,Hayes
+08/02/2021,PO0194,PI0176,"Purchase Invoice",SUP0005,"Matthew Brown",,08/02/2021,45,45,Guildford
+08/02/2021,PO0156,PI0137,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,08/02/2021,24,28.8,Felixstowe
+15/02/2021,PO0157,PI0138,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,15/02/2021,24,28.8,Felixstowe
+15/02/2021,PO0139,PI0162,"Purchase Invoice",SUP0015,"Sepas Plastik A.S",,25/02/2021,20771.7,20771.7,Adana
+18/02/2021,PO0131,PI0153,"Purchase Invoice",SUP0012,"BVS Plastik Ambalaj Petrol Kimya ith. ihr. San. ve Tic Ltd Sti",,10/03/2021,9356.64,9356.64,Mersin
+19/02/2021,PO0148,PI0129,"Purchase Invoice",SUP0002,"Palletworks Limited",,19/02/2021,268.45,322.14,Aylesbury
+19/02/2021,PO0149,PI0130,"Purchase Invoice",SUP0002,"Palletworks Limited",,19/02/2021,47.85,57.42,Aylesbury
+22/02/2021,PO0158,PI0139,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,22/02/2021,24,28.8,Felixstowe
+23/02/2021,PO0185,PI0165,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,23/02/2021,6856.32,8227.58,Wembley
+25/02/2021,PO0137,PI0179,"Purchase Invoice",SUP0016,"Adanus Plastik Ltd Sti",,25/02/2021,11388.3,11388.3,Adana
+27/02/2021,PO0175,PI0157,"Purchase Invoice",SUP0007,Hygge,,27/02/2021,23067.5,27700,
+28/02/2021,PO0144,PI0163,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,01/03/2021,2835,3402,Wembley
+28/02/2021,PO0176,PI0158,"Purchase Invoice",SUP0007,Hygge,,29/03/2021,2166.67,2600,
+28/02/2021,PO0177,PI0159,"Purchase Invoice",SUP0007,"Zain Rahman",,26/02/2021,14000,14000,
+28/02/2021,PO0172,PI0154,"Purchase Invoice",SUP0011,"Dir Expenses(NA)",,28/02/2021,742.87,769.19,
+28/02/2021,PO0174,PI0156,"Purchase Invoice",SUP0011,"Dir Expenses (ZR)",,28/02/2021,175.02,190.02,
+01/03/2021,PO0170,PI0150,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,01/03/2021,60,72,Wembley
+01/03/2021,PO0159,PI0140,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,01/03/2021,16,19.2,Felixstowe
+05/03/2021,PO0090,PI0173,"Purchase Invoice",SUP0002,"Palletworks Limited",,05/03/2021,139.6,167.52,Aylesbury
+08/03/2021,PO0035,PI0166,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,08/03/2021,20,24,Felixstowe
+11/03/2021,PO0352,PI0345,"Purchase Invoice",SUP0012,"BVS Plastik Ambalaj Petrol Kimya ith. ihr. San. ve Tic Ltd Sti",,11/03/2021,500,500,Mersin
+12/03/2021,PO0192,PI0174,"Purchase Invoice",SUP0002,"Palletworks Limited",,12/03/2021,35.15,42.18,Aylesbury
+15/03/2021,PO0186,PI0167,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,15/03/2021,20,24,Felixstowe
+16/03/2021,PO0140,PI0178,"Purchase Invoice",SUP0015,"Sepas Plastik A.S",,13/04/2021,18984.06,18984.06,Adana
+18/03/2021,PO0178,PI0160,"Purchase Invoice",SUP0027,"Sealand Europe A/S",,18/03/2021,15,15,Felixstowe
+18/03/2021,PO0430,PI0424,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,18/03/2021,40,48,Wembley
+19/03/2021,PO0193,PI0175,"Purchase Invoice",SUP0002,"Palletworks Limited",,19/03/2021,71.3,85.56,Aylesbury
+22/03/2021,PO0187,PI0168,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,22/03/2021,45,54,Felixstowe
+23/03/2021,PO0129,PI0180,"Purchase Invoice",SUP0021,"Euro Plastic Industry FZE",26/04/2021,26/04/2021,11868,11868,Sharjah
+29/03/2021,PO0233,PI0208,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,10/03/2021,972,1166.4,Wembley
+29/03/2021,PO0188,PI0169,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,29/03/2021,85,102,Felixstowe
+29/03/2021,PO0179,PI0161,"Purchase Invoice",SUP0028,"Orient Overseas Containers Line (OOCL)",,29/03/2021,175,175,Ipswich
+31/03/2021,PO0190,PI0171,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,31/03/2021,235,282,Felixstowe
+31/03/2021,PO0191,PI0172,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,31/03/2021,122,146.4,Felixstowe
+31/03/2021,PO0215,PI0193,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,31/03/2021,469,469,Felixstowe
+31/03/2021,PO0248,PI0221,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,31/03/2021,775,775,Felixstowe
+31/03/2021,PO0173,PI0209,"Purchase Invoice",SUP0011,"Dir Expenses (NA)",,31/03/2021,1526.73,1764.24,
+31/03/2021,PO0277,PI0253,"Purchase Invoice",SUP0038,"HMRC - VAT",,31/03/2021,0,6245.36,
+02/04/2021,PO0219,PI0197,"Purchase Invoice",SUP0002,"Palletworks Limited",,02/04/2021,270.6,324.72,Aylesbury
+08/04/2021,PO0189,PI0170,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,08/04/2021,75,90,Felixstowe
+09/04/2021,PO0218,PI0196,"Purchase Invoice",SUP0002,"Palletworks Limited",,09/04/2021,189.8,227.76,Aylesbury
+09/04/2021,PO0429,PI0423,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,09/04/2021,40,48,Wembley
+12/04/2021,PO0205,PI0182,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,12/04/2021,57.5,69,Felixstowe
+13/04/2021,PO0142,PI0187,"Purchase Invoice",SUP0014,"Sanat Ambalaj",,13/04/2021,26431.15,26431.15,Gaziantep
+14/04/2021,PO0136,PI0189,"Purchase Invoice",SUP0023,"Göncay Plastik San. Ve Tic. A.?.",,14/05/2021,16437.71,16437.71,Istanbull
+15/04/2021,PO0428,PI0422,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,15/04/2021,40,48,Wembley
+16/04/2021,PO0217,PI0195,"Purchase Invoice",SUP0002,"Palletworks Limited",,16/04/2021,276.4,331.68,Aylesbury
+16/04/2021,PO0198,PI0177,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,15/04/2021,1116,1339.2,Wembley
+17/04/2021,PO0427,PI0421,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,17/04/2021,40,48,Wembley
+19/04/2021,PO0206,PI0183,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,19/04/2021,92.5,111,Felixstowe
+20/04/2021,PO0138,PI0188,"Purchase Invoice",SUP0016,"Adanus Plastik Ltd Sti",,12/05/2021,17290.17,17290.17,Adana
+21/04/2021,PO0221,PI0199,"Purchase Invoice",SUP0031,"Clintopia Sameday Dispatch Ltd",,21/04/2021,222,268,London
+21/04/2021,PO0210,PI0186,"Purchase Invoice",SUP0032,"Maersk Logistics & Services UK Ltd",,21/04/2021,169,169,Felixstowe
+22/04/2021,PO0213,PI0191,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,22/04/2021,475,475,Felixstowe
+22/04/2021,PO0214,PI0192,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,22/04/2021,150,150,Felixstowe
+22/04/2021,PO0262,PI0238,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,22/04/2021,0,30,Felixstowe
+23/04/2021,PO0204,PI0181,"Purchase Invoice",SUP0002,"Palletworks Limited",,23/04/2021,214.95,257.94,Aylesbury
+24/04/2021,PO0199,PI0284,"Purchase Invoice",SUP0014,"Sanat Ambalaj",,24/04/2021,11614.71,11614.71,Gaziantep
+24/04/2021,PO0203,PI0206,"Purchase Invoice",SUP0023,"Goncay Plastik San. Ve Tic. A",,20/05/2021,19226.89,19226.89,Istanbull
+26/04/2021,PO0207,PI0184,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,26/04/2021,105,126,Felixstowe
+27/04/2021,PO0208,PI0185,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,27/04/2021,712.08,712.08,Felixstowe
+28/04/2021,PO0180,PI0223,"Purchase Invoice",SUP0033,"Sanat Ambalaj (USD)",,04/06/2021,15280.3,15280.3,Gaziantep
+30/04/2021,PO0216,PI0194,"Purchase Invoice",SUP0002,"Palletworks Limited",,30/04/2021,73.35,88.02,Aylesbury
+30/04/2021,PO0225,PI0201,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,30/04/2021,206,206,Felixstowe
+30/04/2021,PO0247,PI0220,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,30/04/2021,826,826,Felixstowe
+30/04/2021,PO0212,PI0210,"Purchase Invoice",SUP0011,"Dir Expenses (NA)",,30/04/2021,807.71,969.27,
+30/04/2021,PO0278,PI0254,"Purchase Invoice",SUP0038,"HMRC - VAT",,30/04/2021,0,8940.14,
+03/05/2021,PO0132,PI0224,"Purchase Invoice",SUP0021,"Euro Plastic Industry FZE",,10/06/2021,14048.89,14048.89,Sharjah
+04/05/2021,PO0226,PI0202,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,04/05/2021,212.5,255,Felixstowe
+05/05/2021,PO0143,PI0245,"Purchase Invoice",SUP0023,"Göncay Plastik San. Ve Tic. A.?.",,07/06/2021,18681.88,18681.88,Istanbull
+05/05/2021,PO0201,PI0205,"Purchase Invoice",SUP0029,"Policap Plastik Ambalaj",,05/05/2021,18093.29,18093.29,Istanbul
+10/05/2021,PO0227,PI0203,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,10/05/2021,127.5,153,Felixstowe
+11/05/2021,PO0181,PI0251,"Purchase Invoice",SUP0014,"Sanat Ambalaj",,30/06/2021,23351.76,23351.76,Gaziantep
+12/05/2021,PO0141,PI0190,"Purchase Invoice",SUP0031,"Clintopia Sameday Dispatch Ltd",,12/05/2021,60,72,London
+12/05/2021,PO0222,PI0200,"Purchase Invoice",SUP0031,"Clintopia Sameday Dispatch Ltd",,12/05/2021,260,312,London
+14/05/2021,PO0281,PI0258,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,14/05/2021,4806.9,5768.28,Wembley
+17/05/2021,PO0228,PI0204,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,17/05/2021,280,336,Felixstowe
+19/05/2021,PO0258,PI0234,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,19/05/2021,660,660,Felixstowe
+20/05/2021,PO0220,PI0198,"Purchase Invoice",SUP0031,"Clintopia Sameday Dispatch Ltd",,20/05/2021,380,456,London
+24/05/2021,PO0280,PI0257,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,24/05/2021,647.19,776.63,Wembley
+24/05/2021,PO0240,PI0213,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,24/05/2021,407.5,489,Felixstowe
+24/05/2021,PO0183,PI0256,"Purchase Invoice",SUP0033,"Sanat Ambalaj (USD)",,01/07/2021,14056.66,14056.66,Gaziantep
+27/05/2021,PO0259,PI0235,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,27/05/2021,676.27,676.27,Felixstowe
+27/05/2021,PO0260,PI0236,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,27/05/2021,670.27,670.27,Felixstowe
+27/05/2021,PO0426,PI0420,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,27/05/2021,20,24,Wembley
+27/05/2021,PO0432,PI0426,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,27/05/2021,20,24,Wembley
+28/05/2021,PO0245,PI0218,"Purchase Invoice",SUP0002,"Palletworks Limited",,28/05/2021,328.2,393.84,Aylesbury
+28/05/2021,PO0232,PI0207,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,28/05/2021,950.4,1140.48,Wembley
+28/05/2021,PO0241,PI0214,"Purchase Invoice",SUP0036,"Alfa Logistics Services Ltd",,28/05/2021,280,336,Hayes
+30/05/2021,PO0249,PI0222,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,30/05/2021,98.65,118.38,Ipswich
+31/05/2021,PO0243,PI0216,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,31/05/2021,671.27,671.27,Felixstowe
+31/05/2021,PO0244,PI0217,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,31/05/2021,716.27,716.27,Felixstowe
+31/05/2021,PO0246,PI0219,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,08/06/2021,309.77,309.77,Felixstowe
+31/05/2021,PO0238,PI0211,"Purchase Invoice",SUP0011,"Dir Expenses (NA)",,31/05/2021,1957.83,2304.41,
+31/05/2021,PO0275,PI0252,"Purchase Invoice",SUP0037,"InXpress (SVS Logistics Ltd)",,31/05/2021,410,492,Leicester
+31/05/2021,PO0279,PI0255,"Purchase Invoice",SUP0038,"HMRC - VAT",,31/05/2021,0,23270.26,
+31/05/2021,PO0282,PI0259,"Purchase Invoice",SUP0039,"Seafresh (HQ)",,31/05/2021,90000,108000,Bradford
+01/06/2021,PO0242,PI0215,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,01/06/2021,450,540,Felixstowe
+01/06/2021,PO0261,PI0237,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,01/06/2021,685.77,685.77,Felixstowe
+01/06/2021,PO0286,PI0264,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,01/06/2021,703.77,703.77,Felixstowe
+03/06/2021,PO0250,PI0230,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,03/06/2021,612,612,Felixstowe
+04/06/2021,PO0268,PI0244,"Purchase Invoice",SUP0002,"Palletworks Limited",,04/06/2021,172.7,207.24,Aylesbury
+04/06/2021,PO0239,PI0212,"Purchase Invoice",SUP0020,"Universal accountancy Ltd",,04/06/2021,50,60,Watford
+04/06/2021,PO0380,PI0374,"Purchase Invoice",SUP0020,"Universal accountancy Ltd",,04/06/2021,50,60,Watford
+04/06/2021,PO0297,PI0275,"Purchase Invoice",SUP0039,"Seafresh (HQ)",,04/06/2021,110000,132000,Bradford
+05/06/2021,PO0267,PI0243,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,05/06/2021,255.95,307.14,Ipswich
+07/06/2021,PO0253,PI0227,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,07/06/2021,445,534,Felixstowe
+08/06/2021,PO0256,PI0233,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,08/06/2021,972.77,972.77,Felixstowe
+08/06/2021,PO0269,PI0281,"Purchase Invoice",SUP0023,"Goncay Plastik San. Ve Tic. A",,27/07/2021,19028.77,19028.77,Istanbull
+09/06/2021,PO0254,PI0231,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,09/06/2021,460,460,Felixstowe
+09/06/2021,PO0255,PI0232,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,09/06/2021,841.2,841.2,Felixstowe
+09/06/2021,PO0266,PI0242,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,09/06/2021,151.65,181.98,Ipswich
+14/06/2021,PO0130,PI0226,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,14/06/2021,631.3,631.3,Felixstowe
+14/06/2021,PO0251,PI0225,"Purchase Invoice",SUP0007,"Hampton News And Booze Ltd",,14/06/2021,1800,1800,
+14/06/2021,PO0200,PI0322,"Purchase Invoice",SUP0018,"Super Kutu Ve Ambalaj San Tic Ltd Sti",,07/07/2021,11020.93,11020.93,Kayseri
+14/06/2021,PO0334,PI0323,"Purchase Invoice",SUP0018,"Super Kutu Ve Ambalaj San Tic Ltd Sti",,14/06/2021,9806.18,9806.18,Kayseri
+14/06/2021,PO0133,PI0277,"Purchase Invoice",SUP0021,"Euro Plastic Industry FZE",,25/07/2021,13988.69,13988.69,Sharjah
+14/06/2021,PO0265,PI0241,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,14/06/2021,168.75,202.5,Ipswich
+16/06/2021,PO0202,PI0280,"Purchase Invoice",SUP0029,"Policap Plastik Ambalaj",,27/07/2021,21019.76,21019.76,Istanbul
+17/06/2021,PO0264,PI0240,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,17/06/2021,297.7,357.24,Ipswich
+18/06/2021,PO0135,PI0228,"Purchase Invoice",SUP0002,"Palletworks Limited",,18/06/2021,94.4,113.28,Aylesbury
+18/06/2021,PO0234,PI0229,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,18/06/2021,803,803,Felixstowe
+21/06/2021,PO0270,PI0246,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,21/06/2021,617.5,741,Felixstowe
+21/06/2021,PO0263,PI0239,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,21/06/2021,174.05,208.86,Ipswich
+26/06/2021,PO0271,PI0247,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,26/06/2021,325.8,390.96,Ipswich
+26/06/2021,PO0182,PI0278,"Purchase Invoice",SUP0033,"Sanat Ambalaj (USD)",,31/03/2021,14602,14602,Gaziantep
+28/06/2021,PO0283,PI0261,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,28/06/2021,557.5,669,Felixstowe
+28/06/2021,PO0369,PI0361,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,28/06/2021,7960,9552,Wembley
+30/06/2021,PO0272,PI0248,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,30/06/2021,419.77,419.77,Felixstowe
+30/06/2021,PO0273,PI0249,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,30/06/2021,191.5,191.5,Felixstowe
+30/06/2021,PO0274,PI0250,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,30/06/2021,571.27,571.27,Felixstowe
+30/06/2021,PO0276,PI0260,"Purchase Invoice",SUP0011,"Dir Expenses (NA)",,30/06/2021,1620.72,1835.87,
+30/06/2021,PO0353,PI0346,"Purchase Invoice",SUP0011,"Dir Expenses (NA)",,30/06/2021,773.23,917.88,
+30/06/2021,PO0287,PI0265,"Purchase Invoice",SUP0037,"InXpress (SVS Logistics Ltd)",,30/06/2021,425,510,Leicester
+01/07/2021,PO0230,PI0279,"Purchase Invoice",SUP0015,"Sepas Plastik A.S",,25/07/2021,28365.08,28365.08,Adana
+01/07/2021,PO0291,PI0269,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,01/07/2021,261.25,313.5,Ipswich
+02/07/2021,PO0284,PI0262,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,02/07/2021,1710,2052,Felixstowe
+03/07/2021,PO0290,PI0268,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,03/07/2021,100.8,120.96,Ipswich
+05/07/2021,PO0293,PI0271,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,05/07/2021,517.5,621,Felixstowe
+07/07/2021,PO0381,PI0375,"Purchase Invoice",SUP0020,"Universal accountancy Ltd",,07/07/2021,50,60,Watford
+07/07/2021,PO0358,PI0350,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,07/07/2021,7352.93,8823.52,Wembley
+12/07/2021,PO0285,PI0263,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,14/07/2021,485,582,Felixstowe
+12/07/2021,PO0292,PI0270,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,12/07/2021,60,60,Felixstowe
+12/07/2021,PO0288,PI0266,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,12/07/2021,999.55,1199.46,Ipswich
+12/07/2021,PO0289,PI0267,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,12/07/2021,648,777.6,Ipswich
+13/07/2021,PO0370,PI0362,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,13/07/2021,12189,14626.8,Wembley
+14/07/2021,PO0195,PI0287,"Purchase Invoice",SUP0030,"Guangdong Yuesheng Houseware Technology co.,Ltd",,15/04/2021,19157.85,19157.85,"Shantou Ity"
+15/07/2021,PO0397,PI0391,"Purchase Invoice",SUP0017,"SAZ IT & Freight Solutions Ltd",,15/07/2021,983,983,Hayes
+15/07/2021,PO0294,PI0274,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,15/07/2021,534.45,641.34,Ipswich
+15/07/2021,PO0296,PI0273,"Purchase Invoice",SUP0037,"InXpress (SVS Logistics Ltd)",,15/07/2021,395,474,Leicester
+24/07/2021,PO0307,PI0295,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,24/07/2021,1185.8,1422.96,Ipswich
+26/07/2021,PO0209,PI0289,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,26/07/2021,545,654,Felixstowe
+26/07/2021,PO0295,PI0272,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,26/07/2021,826.82,826.82,Felixstowe
+27/07/2021,PO0298,PI0276,"Purchase Invoice",SUP0002,"Palletworks Limited",,27/07/2021,223.2,267.84,Aylesbury
+27/07/2021,PO0388,PI0382,"Purchase Invoice",SUP0041,"Gills Transport Heathrow Ltd",,27/07/2021,590,708,Hayes
+27/07/2021,PO0134,PI0285,"Purchase Invoice",SUP0014,"Sanat Ambalaj (GBP)",,27/07/2021,9552.5,9552.5,Gaziantep
+28/07/2021,PO0229,PI0293,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,28/07/2021,2302.77,2763.32,Felixstowe
+28/07/2021,PO0303,PI0290,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,28/07/2021,84.09,84.09,Felixstowe
+28/07/2021,PO0305,PI0292,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,28/07/2021,671.27,805.52,Felixstowe
+29/07/2021,PO0306,PI0294,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,29/07/2021,535,642,Felixstowe
+30/07/2021,PO0389,PI0383,"Purchase Invoice",SUP0041,"Gills Transport Heathrow Ltd",,30/07/2021,1037.5,1245,Hayes
+30/07/2021,PO0308,PI0296,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,30/07/2021,2001.99,2001.99,Felixstowe
+30/07/2021,PO0322,PI0310,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,30/07/2021,444.77,533.72,Felixstowe
+31/07/2021,PO0350,PI0343,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,31/07/2021,259,259,Felixstowe
+31/07/2021,PO0354,PI0347,"Purchase Invoice",SUP0011,"Dir Expenses (NA)",,31/07/2021,817.6,881.12,
+31/07/2021,PO0310,PI0298,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,31/07/2021,415.95,499.14,Ipswich
+31/07/2021,PO0257,PI0282,"Purchase Invoice",SUP0037,"InXpress (SVS Logistics Ltd)",,03/06/2021,495,594,Leicester
+31/07/2021,PO0346,PI0339,"Purchase Invoice",SUP0038,"HMRC - VAT",,30/09/2021,0,25092.05,
+01/08/2021,PO0336,PI0329,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,01/08/2021,200,240,Felixstowe
+02/08/2021,PO0309,PI0297,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,02/08/2021,5430,6516,Felixstowe
+04/08/2021,PO0235,PI0286,"Purchase Invoice",SUP0015,"Sepas Plastik A.S",,22/08/2021,29728.06,29728.06,Adana
+05/08/2021,PO0323,PI0311,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,05/08/2021,315,378,Felixstowe
+05/08/2021,PO0378,PI0372,"Purchase Invoice",SUP0020,"Universal accountancy Ltd",,05/08/2021,50,60,Watford
+05/08/2021,PO0366,PI0358,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,05/08/2021,4615.6,5538.72,Wembley
+09/08/2021,PO0321,PI0309,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,09/08/2021,722.5,867,Felixstowe
+09/08/2021,PO0344,PI0337,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,09/08/2021,703.85,844.62,Ipswich
+11/08/2021,PO0320,PI0308,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,11/08/2021,90,90,Felixstowe
+11/08/2021,PO0345,PI0338,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,11/08/2021,216,216,Felixstowe
+13/08/2021,PO0367,PI0359,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,13/08/2021,4442.1,5330.52,Wembley
+16/08/2021,PO0319,PI0307,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,16/08/2021,540,648,Felixstowe
+16/08/2021,PO0343,PI0336,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,16/08/2021,405,405,Felixstowe
+16/08/2021,PO0364,PI0356,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,16/08/2021,9296,11155.2,Wembley
+18/08/2021,PO0342,PI0335,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,18/08/2021,535,642,Ipswich
+20/08/2021,PO0360,PI0352,"Purchase Invoice",SUP0002,"Palletworks Limited",,20/08/2021,166.55,199.86,Aylesbury
+23/08/2021,PO0318,PI0306,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,23/08/2021,510,612,Felixstowe
+23/08/2021,PO0252,PI0326,"Purchase Invoice",SUP0014,"Sanat Ambalaj (GBP)",,23/08/2021,16453.68,16453.68,Gaziantep
+23/08/2021,PO0236,PI0325,"Purchase Invoice",SUP0015,"Sepas Plastik A.S",,23/08/2021,33489.66,33489.66,Adana
+23/08/2021,PO0237,PI0324,"Purchase Invoice",SUP0015,"Sepas Plastik A.S",,23/08/2021,23536.68,23536.68,Adana
+23/08/2021,PO0335,PI0327,"Purchase Invoice",SUP0033,"Sanat Ambalaj (USD)",,23/08/2021,4773.2,4773.2,Gaziantep
+24/08/2021,PO0340,PI0333,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,24/08/2021,242.2,290.64,Ipswich
+25/08/2021,PO0301,PI0283,"Purchase Invoice",SUP0041,"Gills Transport Heathrow Ltd",,25/08/2021,240,288,Hayes
+25/08/2021,PO0341,PI0334,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,25/08/2021,259,259,Felixstowe
+26/08/2021,PO0339,PI0332,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,30/09/2021,125.5,150.6,Ipswich
+26/08/2021,PO0368,PI0360,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,26/08/2021,3461.7,4154.04,Wembley
+27/08/2021,PO0211,PI0328,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,27/08/2021,470,470,Felixstowe
+31/08/2021,PO0317,PI0305,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,31/08/2021,550,660,Felixstowe
+31/08/2021,PO0337,PI0330,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,31/08/2021,689.27,689.27,Felixstowe
+31/08/2021,PO0338,PI0331,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,31/08/2021,690,690,Felixstowe
+31/08/2021,PO0355,PI0348,"Purchase Invoice",SUP0011,"Dir Expenses (NA)",,31/08/2021,366.25,429.5,
+31/08/2021,PO0332,PI0320,"Purchase Invoice",SUP0037,"InXpress (SVS Logistics Ltd)",,31/08/2021,750,900,Leicester
+31/08/2021,PO0347,PI0340,"Purchase Invoice",SUP0038,"HMRC - VAT",,31/08/2021,0,12464.45,
+02/09/2021,PO0333,PI0321,"Purchase Invoice",SUP0042,"Bacton Transport Service Ltd",,02/09/2021,436.9,524.28,Stowmarket
+04/09/2021,PO0331,PI0319,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,04/09/2021,1800.56,1800.56,Felixstowe
+04/09/2021,PO0330,PI0318,"Purchase Invoice",SUP0042,"Bacton Transport Service Ltd",,04/09/2021,154.2,185.04,Stowmarket
+06/09/2021,PO0316,PI0304,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,06/09/2021,545,654,Felixstowe
+06/09/2021,PO0396,PI0390,"Purchase Invoice",SUP0017,"SAZ IT & Freight Solutions Ltd",,06/09/2021,1325,1325,Hayes
+06/09/2021,PO0327,PI0315,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,06/09/2021,102.3,122.76,Ipswich
+07/09/2021,PO0390,PI0384,"Purchase Invoice",SUP0041,"Gills Transport Heathrow Ltd",,07/09/2021,1400,1680,Hayes
+07/09/2021,PO0349,PI0342,"Purchase Invoice",SUP0040,"Lucky Ship (Hong Kong)Company Ltd",,07/09/2021,12363.63,12363.63,
+08/09/2021,PO0313,PI0301,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,08/09/2021,279,334.8,Ipswich
+08/09/2021,PO0326,PI0314,"Purchase Invoice",SUP0042,"Bacton Transport Service Ltd",,08/09/2021,539.7,647.64,Stowmarket
+09/09/2021,PO0391,PI0385,"Purchase Invoice",SUP0041,"Gills Transport Heathrow Ltd",,09/09/2021,250,300,Hayes
+09/09/2021,PO0398,PI0392,"Purchase Invoice",SUP0017,"SAZ IT & Freight Solutions Ltd",,05/11/2021,1152.91,1152.91,Hayes
+10/09/2021,PO0361,PI0353,"Purchase Invoice",SUP0002,"Palletworks Limited",,10/09/2021,88.73,106.48,Aylesbury
+13/09/2021,PO0315,PI0303,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,13/09/2021,452.5,543,Felixstowe
+13/09/2021,PO0379,PI0373,"Purchase Invoice",SUP0020,"Universal accountancy Ltd",,13/09/2021,50,60,Watford
+14/09/2021,PO0312,PI0300,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,14/09/2021,108.95,130.74,Ipswich
+16/09/2021,PO0184,PI0288,"Purchase Invoice",SUP0007,"CreditSafe UK",,16/09/2021,600,720,
+17/09/2021,PO0362,PI0354,"Purchase Invoice",SUP0002,"Palletworks Limited",,07/10/2021,38.31,45.97,Aylesbury
+18/09/2021,PO0328,PI0316,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,18/09/2021,128.85,154.62,Ipswich
+19/09/2021,PO0325,PI0313,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,19/09/2021,1280.16,1280.16,Felixstowe
+20/09/2021,PO0314,PI0302,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,20/09/2021,387.5,465,Felixstowe
+21/09/2021,PO0324,PI0312,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,21/09/2021,690.33,690.33,Felixstowe
+21/09/2021,PO0311,PI0299,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,21/09/2021,397.8,477.36,Ipswich
+24/09/2021,PO0377,PI0371,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,24/09/2021,125.5,150.6,Ipswich
+24/09/2021,PO0223,PI0365,"Purchase Invoice",SUP0033,"Sanat Ambalaj (USD)",,24/09/2021,120.45,120.45,Gaziantep
+24/09/2021,PO0374,PI0367,"Purchase Invoice",SUP0033,"Sanat Ambalaj (USD)",,24/09/2021,2121.88,2121.88,Gaziantep
+24/09/2021,PO0356,PI0366,"Purchase Invoice",SUP0014,"Sanat Ambalaj (GBP)",,25/06/2021,20214.91,20214.91,Gaziantep
+25/09/2021,PO0357,PI0349,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,25/09/2021,80,96,Wembley
+27/09/2021,PO0304,PI0291,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,27/09/2021,864.77,1037.72,Felixstowe
+27/09/2021,PO0329,PI0317,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,27/09/2021,405,405,Felixstowe
+27/09/2021,PO0351,PI0344,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,27/09/2021,372.5,447,Felixstowe
+28/09/2021,PO0375,PI0369,"Purchase Invoice",SUP0014,"Sanat Ambalaj (GBP)",,01/10/2021,599.76,599.76,Gaziantep
+28/09/2021,PO0224,PI0368,"Purchase Invoice",SUP0033,"Sanat Ambalaj (USD)",,01/10/2021,13679.18,13679.18,Gaziantep
+29/09/2021,PO0348,PI0341,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,29/09/2021,264,264,Felixstowe
+30/09/2021,PO0392,PI0386,"Purchase Invoice",SUP0041,"Gills Transport Heathrow Ltd",,03/11/2021,320,384,Hayes
+01/10/2021,PO0424,PI0418,"Purchase Invoice",SUP0002,"Palletworks Limited",,09/12/2021,77.72,93.26,Aylesbury
+04/10/2021,PO0359,PI0351,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,04/10/2021,380,456,Felixstowe
+05/10/2021,PO0382,PI0376,"Purchase Invoice",SUP0020,"Universal accountancy Ltd",,05/10/2021,50,60,Watford
+07/10/2021,PO0363,PI0355,"Purchase Invoice",SUP0002,"Palletworks Limited",,07/10/2021,0.33,0.4,Aylesbury
+07/10/2021,PO0373,PI0364,"Purchase Invoice",SUP0007,"AM Irish",,07/10/2021,216.3,216.3,
+07/10/2021,PO0365,PI0357,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,07/10/2021,4615.6,5538.72,Wembley
+08/10/2021,PO0395,PI0389,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,08/10/2021,1601.1,1921.32,Ipswich
+08/10/2021,PO0371,PI0363,"Purchase Invoice",SUP0042,"Bacton Transport Service Ltd",,08/10/2021,106.91,128.29,Stowmarket
+11/10/2021,PO0409,PI0403,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,11/10/2021,295,354,Felixstowe
+25/10/2021,PO0408,PI0402,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,25/10/2021,207.5,249,Felixstowe
+25/10/2021,PO0386,PI0380,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,25/10/2021,658.35,790.02,Ipswich
+26/10/2021,PO0410,PI0404,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,26/10/2021,180,216,Felixstowe
+26/10/2021,PO0413,PI0407,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,26/10/2021,80,96,Wembley
+26/10/2021,PO0431,PI0425,"Purchase Invoice",SUP0003,"Techno Packaging Ltd",,26/10/2021,360,432,Wembley
+26/10/2021,PO0299,PI0395,"Purchase Invoice",SUP0015,"Sepas Plastik A.S",,11/08/2021,50053.22,50053.22,Adana
+27/10/2021,PO0387,PI0381,"Purchase Invoice",SUP0017,"SAZ IT & Freight Solutions Ltd",,27/10/2021,595,595,Hayes
+28/10/2021,PO0394,PI0388,"Purchase Invoice",SUP0041,"Gills Transport Heathrow Ltd",,03/11/2021,900,1080,Hayes
+28/10/2021,PO0385,PI0379,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,28/10/2021,1264.16,1264.16,Felixstowe
+29/10/2021,PO0393,PI0387,"Purchase Invoice",SUP0041,"Gills Transport Heathrow Ltd",,29/10/2021,240,288,Hayes
+29/10/2021,PO0384,PI0378,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,29/10/2021,100,100,Felixstowe
+29/10/2021,PO0423,PI0417,"Purchase Invoice",SUP0002,"Palletworks Limited",,29/10/2021,193.74,232.49,Aylesbury
+30/10/2021,PO0399,PI0393,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,30/10/2021,193.25,231.9,Ipswich
+01/11/2021,PO0402,PI0397,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,01/11/2021,240,288,Felixstowe
+01/11/2021,PO0376,PI0370,"Purchase Invoice",SUP0007,"AM Irish",,01/11/2021,279.64,279.64,
+03/11/2021,PO0383,PI0377,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,03/11/2021,300,300,Felixstowe
+06/11/2021,PO0415,PI0409,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,06/11/2021,122.2,146.64,Ipswich
+08/11/2021,PO0403,PI0398,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,08/11/2021,115,138,Felixstowe
+09/11/2021,PO0400,PI0394,"Purchase Invoice",SUP0011,"Dir Expenses (NA)",,09/11/2021,54.82,65.78,
+14/11/2021,PO0405,PI0399,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,14/11/2021,183.9,220.68,Ipswich
+15/11/2021,PO0412,PI0406,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,15/11/2021,110,132,Felixstowe
+17/11/2021,PO0416,PI0410,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,17/11/2021,645,645,Felixstowe
+17/11/2021,PO0425,PI0419,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,17/11/2021,1508.73,1810.48,Felixstowe
+18/11/2021,PO0401,PI0396,"Purchase Invoice",SUP0021,"Euro Plastic Industry FZE",,18/11/2021,3072.7,3072.7,Sharjah
+23/11/2021,PO0411,PI0405,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,23/11/2021,220,264,Felixstowe
+23/11/2021,PO0433,PI0427,"Purchase Invoice",SUP0039,"Seafresh (HQ)",,23/11/2021,2365.07,2838.09,Bradford
+24/11/2021,PO0407,PI0401,"Purchase Invoice",SUP0041,"Gills Transport Heathrow Ltd",,24/11/2021,750,900,Hayes
+26/11/2021,PO0406,PI0400,"Purchase Invoice",SUP0007,"Tony Irish",,26/11/2021,379.25,379.25,
+27/11/2021,PO0414,PI0408,"Purchase Invoice",SUP0034,"Debach Enterprises Ltd",,27/11/2021,383.1,459.72,Ipswich
+29/11/2021,PO0417,PI0411,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,29/11/2021,137.5,165,Felixstowe
+29/11/2021,PO0418,PI0412,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,29/11/2021,600,600,Felixstowe
+29/11/2021,PO0419,PI0413,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,29/11/2021,680,816,Felixstowe
+30/11/2021,PO0420,PI0414,"Purchase Invoice",SUP0011,"Dir Expenses (NA)",,30/11/2021,229.77,229.77,
+01/12/2021,PO0421,PI0415,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,01/12/2021,106.16,106.16,Felixstowe
+06/12/2021,PO0422,PI0416,"Purchase Invoice",SUP0025,"Burhill Logistics Ltd",,06/12/2021,90,108,Felixstowe
+,,,,,,,"Total Purchase Invoice (LCY)",1073945.83,1229418.47,
+30/04/2021,DN0006,PDN0006,"Debit Note",SUP0025,"Burhill Logistics Ltd",,25/06/2021,65,65,Felixstowe
+03/06/2021,DN0004,PDN0005,"Debit Note",SUP0025,"Burhill Logistics Ltd",,25/06/2021,180,180,Felixstowe
+14/06/2021,DN0005,PDN0004,"Debit Note",SUP0025,"Burhill Logistics Ltd",,25/06/2021,309.77,309.77,Felixstowe
+02/07/2021,DN0007,PDN0007,"Debit Note",SUP0025,"Burhill Logistics Ltd",,14/07/2021,1097.5,1317,Felixstowe
+31/07/2021,DN0014,PDN0014,"Debit Note",SUP0025,"Burhill Logistics Ltd",,02/10/2021,2001.99,2001.99,Felixstowe
+02/08/2021,DN0008,PDN0008,"Debit Note",SUP0025,"Burhill Logistics Ltd",,25/09/2021,4690,5628,Felixstowe
+05/08/2021,DN0010,PDN0010,"Debit Note",SUP0025,"Burhill Logistics Ltd",,02/10/2021,400,480,Felixstowe
+05/08/2021,DN0011,PDN0011,"Debit Note",SUP0025,"Burhill Logistics Ltd",,02/10/2021,255,306,Felixstowe
+05/08/2021,DN0012,PDN0012,"Debit Note",SUP0025,"Burhill Logistics Ltd",,02/10/2021,300,360,Felixstowe
+05/08/2021,DN0013,PDN0013,"Debit Note",SUP0025,"Burhill Logistics Ltd",,02/10/2021,340,408,Felixstowe
+13/09/2021,DN0009,PDN0009,"Debit Note",SUP0025,"Burhill Logistics Ltd",,26/09/2021,152.5,183,Felixstowe
+28/09/2021,DN0015,PDN0015,"Debit Note",SUP0025,"Burhill Logistics Ltd",,02/10/2021,1768,2121.6,Felixstowe
+28/09/2021,DN0016,PDN0016,"Debit Note",SUP0025,"Burhill Logistics Ltd",,02/10/2021,12.5,15,Felixstowe
+11/11/2021,DN0018,PDN0018,"Debit Note",SUP0025,"Burhill Logistics Ltd",,30/11/2021,340,340,Felixstowe
+15/11/2021,DN0017,PDN0017,"Debit Note",SUP0025,"Burhill Logistics Ltd",,26/11/2021,5,6,Felixstowe
+29/11/2021,DN0019,PDN0019,"Debit Note",SUP0025,"Burhill Logistics Ltd",,30/11/2021,22.5,27,Felixstowe
+,,,,,,,"Total Debit Note (LCY)",11939.76,13748.36,
+,,,,,,,"Total (LCY)",1062006.07,1215670.11,

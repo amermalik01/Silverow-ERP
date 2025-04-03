@@ -1,0 +1,285 @@
+<div ng-controller="ApprovalsSetupController">
+  <div>
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-body2"
+           style="    margin-top: 10px;
+           padding: 10px 20px 64px 20px !important;">
+        <table style="width: 100%;">
+          <thead>
+            <tr>
+              <th style="padding-left: 0;width: 16%;">Document Type</th>
+              <th style="padding-left: 0;    width: 13%;"
+                  class="text-center">Approval Required</th>
+              <th style="padding-left: 0;text-align: center;">Select Employee(s) who can Approve</th>
+              <th style="    width: 16%;">Setup criteria for Approval</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hoverOnApproval">
+              <td>
+                Sales Order Profit Margin
+              </td>
+              <td class="text-center">
+                <input type="checkbox"
+                       ng-disabled="approvals_readonly"
+                       ng-model="approval.status_1" />
+              </td>
+              <td>
+                <div class="input-symbol"
+                     ng-class="{'dont-click':approvals_readonly}"
+                     ng-click="getEmployeeList(1)">
+                  <input type="text"
+                         class="form-control"
+                         ng-model="approval.selected_emps_codes_type_1"
+                         readonly
+                         ng-class="{'white_bg':!approvals_readonly}" />
+                  <span><i class="fa fa-external-link"></i></span>
+                </div>
+              </td>
+              <td style="    padding-left: 5px;">
+                <div class="input-symbol">
+                  <input type="number"
+                         max="100"
+                         ng-disabled="approvals_readonly"
+                         ng-blur="OnBlurMarginPercentage(approval)"
+                         class="form-control"
+                         ng-model="approval.criteria_1" />
+                  <span>&#37;</span>
+                </div>
+              </td>
+            </tr>
+            <tr class="hoverOnApproval">
+              <td>
+                Sales Order Exceeding Credit Limit
+              </td>
+              <td class="text-center">
+                <input type="checkbox"
+                       ng-disabled="approvals_readonly"
+                       ng-model="approval.status_2" />
+              </td>
+              <td>
+                <div class="input-symbol"
+                     ng-class="{'dont-click':approvals_readonly}">
+                  <input type="text"
+                         class="form-control"
+                         ng-model="approval.selected_emps_codes_type_2"
+                         ng-click="getEmployeeList(2)"
+                         readonly
+                         ng-class="{'white_bg':!approvals_readonly}" />
+                  <span><i class="fa fa-external-link"></i></span>
+                </div>
+              </td>
+              <td> </td>
+            </tr>
+            <tr class="hoverOnApproval">
+              <td>
+                Credit Note Level 1
+              </td>
+              <td class="text-center">
+                <input type="checkbox"
+                       ng-disabled="approvals_readonly"
+                       ng-model="approval.status_3" />
+              </td>
+              <td>
+                <div class="input-symbol"
+                     ng-class="{'dont-click':approvals_readonly}">
+                  <input type="text"
+                         class="form-control"
+                         ng-model="approval.selected_emps_codes_type_3"
+                         ng-click="getEmployeeList(3)"
+                         readonly
+                         ng-class="{'white_bg':!approvals_readonly}" />
+                  <span><i class="fa fa-external-link"></i></span>
+                </div>
+              </td>
+              <td> </td>
+            </tr>
+            
+            <tr class="hoverOnApproval">
+                <td>
+                  Credit Note Level 2
+                </td>
+                <td class="text-center">
+                  <input type="checkbox"
+                         ng-disabled="approvals_readonly"
+                         ng-model="approval.status_8" />
+                </td>
+                <td>
+                  <div class="input-symbol"
+                       ng-class="{'dont-click':approvals_readonly}">
+                    <input type="text"
+                           class="form-control"
+                           ng-model="approval.selected_emps_codes_type_8"
+                           ng-click="getEmployeeList(8)"
+                           readonly
+                           ng-class="{'white_bg':!approvals_readonly}" />
+                    <span><i class="fa fa-external-link"></i></span>
+                  </div>
+                </td>
+                <td> </td>
+              </tr>
+            <tr class="hoverOnApproval">
+              <td>
+                Purchase Order Level 1
+              </td>
+              <td class="text-center">
+                <input type="checkbox"
+                       ng-disabled="approvals_readonly"
+                       ng-model="approval.status_4" />
+              </td>
+              <td>
+                <div class="input-symbol"
+                     ng-class="{'dont-click':approvals_readonly}">
+                  <input type="text"
+                         class="form-control"
+                         ng-model="approval.selected_emps_codes_type_4"
+                         ng-click="getEmployeeList(4)"
+                         readonly
+                         ng-class="{'white_bg':!approvals_readonly}" />
+                  <span><i class="fa fa-external-link"></i></span>
+                </div>
+              </td>
+              <td style="    padding-left: 5px;">
+                <div class="input-symbol">
+                  <input type="number"
+                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                         maxlength="8"
+                         onkeydown="javascript: return (event.keyCode == 16 || event.keyCode == 69 || event.keyCode == 107  || event.keyCode == 109 || event.keyCode == 187 || event.keyCode == 189 || event.keyCode == 190)? false : true"
+                         ng-disabled="approvals_readonly"
+                         class="form-control"
+                         ng-model="approval.criteria_4" />
+                  <span>{{defaultCurrencyCode}}</span>
+                </div>
+              </td>
+            </tr>
+            <tr class="hoverOnApproval">
+              <td>
+                Purchase Order Level 2
+              </td>
+              <td class="text-center">
+                <input type="checkbox"
+                       ng-disabled="approvals_readonly"
+                       ng-model="approval.status_7" />
+              </td>
+              <td>
+                <div class="input-symbol"
+                     ng-class="{'dont-click':approvals_readonly}">
+                  <input type="text"
+                         class="form-control"
+                         ng-model="approval.selected_emps_codes_type_7"
+                         ng-click="getEmployeeList(7)"
+                         readonly
+                         ng-class="{'white_bg':!approvals_readonly}" />
+                  <span><i class="fa fa-external-link"></i></span>
+                </div>
+              </td>
+              <td style="    padding-left: 5px;">
+                <div class="input-symbol">
+                  <input type="number"
+                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                         maxlength="8"
+                         onkeydown="javascript: return (event.keyCode == 16 || event.keyCode == 69 || event.keyCode == 107  || event.keyCode == 109 || event.keyCode == 187 || event.keyCode == 189 || event.keyCode == 190)? false : true"
+                         ng-disabled="approvals_readonly"
+                         class="form-control"
+                         ng-model="approval.criteria_7" />
+                  <span>{{defaultCurrencyCode}}</span>
+                </div>
+              </td>
+            </tr>
+            <tr class="hoverOnApproval">
+              <td>
+                Employee Expenses
+              </td>
+              <td class="text-center">
+                <input type="checkbox"
+                       ng-disabled="approvals_readonly"
+                       ng-model="approval.status_5" />
+              </td>
+              <td>
+                <div class="input-symbol"
+                     ng-class="{'dont-click':approvals_readonly}">
+                  <input type="text"
+                         class="form-control"
+                         ng-model="approval.selected_emps_codes_type_5"
+                         ng-click="getEmployeeList(5)"
+                         readonly
+                         ng-class="{'white_bg':!approvals_readonly}" />
+                  <span><i class="fa fa-external-link"></i></span>
+                </div>
+              </td>
+              <td> </td>
+            </tr>
+            <tr class="hoverOnApproval">
+              <td>
+                Employee Holiday Request
+              </td>
+              <td class="text-center">
+                <input type="checkbox"
+                       ng-disabled="approvals_readonly"
+                       ng-model="approval.status_6" />
+              </td>
+              <td>
+                <div class="input-symbol"
+                     ng-class="{'dont-click':approvals_readonly}"
+                     ng-click="getEmployeeList(6)">
+                  <input type="text"
+                         class="form-control"
+                         ng-model="approval.selected_emps_codes_type_6"
+                         readonly
+                         ng-class="{'white_bg':!approvals_readonly}" />
+                  <span><i class="fa fa-external-link"></i></span>
+                </div>
+              </td>
+              <td> </td>
+            </tr>
+            <!-- <tr class="hoverOnApproval">
+              <td>
+                Sales Forecast
+              </td>
+              <td class="text-center">
+                <input type="checkbox"
+                       ng-disabled="approvals_readonly"
+                       ng-model="approval.status_7" />
+              </td>
+              <td>
+                <div class="input-symbol"
+                     ng-class="{'dont-click':approvals_readonly}">
+                  <input type="text"
+                         class="form-control"
+                         ng-model="approval.selected_emps_codes_type_7"
+                         ng-click="getEmployeeList(7)"
+                         readonly
+                         ng-class="{'white_bg':!approvals_readonly}" />
+                  <span><i class="fa fa-external-link"></i></span>
+                </div>
+              </td>
+              <td></td>
+            </tr> -->
+
+          </tbody>
+        </table>
+        <div class="pull-right"
+             style="    margin-top: 17px;">
+          <button type="button"
+                  class="btn btn-submit2"
+                  ng-if="!approvals_readonly"
+                  ng-click="addApprovals()">Save</button>
+          <button type="button"
+                  class="btn btn-default"
+                  ng-if="approvals_readonly"
+                  ng-click="ShowEditForm()">Edit</button>
+          <button type="button"
+                  class="btn btn-cancel2"
+                  ui-sref="app.setup">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<div ng-include="'app/views/approvals_setup/_approval_employee.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

@@ -1,0 +1,334 @@
+<div ng-include="'app/views/_breadcrumb2.html'"></div>
+<div class="row">
+    <div class="col-md-10">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel-title2">Personal Information</div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label "> Date of Birth</label>
+
+                                <div class="col-md-8">
+                                    <input jqdatepicker
+                                           class="2date-picker form-control dont-click"
+                                           id="date_of_birth"
+                                           ng-model="empAccountData.date_of_birth"
+                                           disabled
+                                           ng-change="testDateOfBirthFromCtrl(empAccountData.date_of_birth)"
+                                           ng-class="{'pickdate':!check_hrvalues_readonly}"
+                                           readonly="">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                    <span ng-if="empAccountData.date_of_birth_invalid"
+                                          style="color:#F00; ">Date of Birth should be older than 16 years.</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">National Insurance No.</label>
+
+                                <div class="col-md-8">
+                                    <input readonly
+                                           type="text"
+                                           ng-model="empAccountData.insurance_number"
+                                           id="insurance_number"
+                                           class="form-control input_text"
+                                           ng-change="check_duplicate_ref(array_submit_unit, 3)" />
+                                </div>
+                                <span id="ini_msg"
+                                      ng-show="ini_msg"
+                                      style="color:#F00"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Ethnic Origin</label>
+
+                                <div class="col-md-8">
+                                    <select disabled
+                                            ng-model="empAccountData.ethical_origin"
+                                            ng-options="option.value group by option.type for option in options"
+                                            class="select2me form-control"
+                                            id="case_ethnic"
+                                            ng-change="onChangeethinictype()">
+                                        <option value=""
+                                                disabled
+                                                selected>Select </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group animated fadeIn"
+                                 ng-show="is_ethinic">
+                                <label class="col-md-4 control-label ">Other Ethnic Origin</label>
+
+                                <div class="col-md-8">
+                                    <input readonly
+                                           type="text"
+                                           class="form-control"
+                                           placeholder="Enter Details"
+                                           ng-model="empAccountData.other_ethinic">
+                                </div>
+                            </div>
+                            <h5 style="margin: 23px 0 2px 0;">
+                                <b class="text-capitalize">Bank Account Details</b>
+                            </h5>
+                            <hr style="    margin: 10px 0 11px 0;">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Account Name</label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-model="empAccountData.hr_account_name"
+                                           id="account_name"
+                                           class="form-control"
+                                           disabled />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Sort Code</label>
+                                <div class="col-md-3 padr6">
+                                    <input type="text"
+                                           x-validity="regx.sortCode"
+                                           ng-model="empAccountData.hr_sort_code"
+                                           placeholder=""
+                                           id="sort_code"
+                                           class="form-control"
+                                           disabled
+                                           maxlength="8" />
+                                </div>
+                                <label class="col-md-2 control-label padl6">Account No.</label>
+
+                                <div class="col-md-3 padl6">
+                                    <input type="text"
+                                           x-validity="regx.accNo"
+                                           placeholder=""
+                                           ng-model="empAccountData.hr_account_no"
+                                           id="account_no"
+                                           class="form-control"
+                                           disabled />
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <label class="col-md-4 control-label">Swift/BIC </label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           placeholder=""
+                                           ng-model="empAccountData.hr_swift_no"
+                                           id="swift_no"
+                                           class="form-control text-uppercase"
+                                           disabled
+                                           maxlength="11" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">IBAN</label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           placeholder=""
+                                           ng-model="empAccountData.hr_iban"
+                                           id="iban"
+                                           class="form-control text-uppercase"
+                                           disabled />
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Bank Name</label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-model="empAccountData.hr_bill_bank_name"
+                                           id="bill_bank_name"
+                                           class="form-control"
+                                           disabled />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Bank Address</label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-model="empAccountData.hr_bank_address"
+                                           id="bill_bank_address"
+                                           class="form-control"
+                                           disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Gender </label>
+                                <div class="col-md-8">
+                                    <select disabled
+                                            ng-model="empAccountData.emp_gender"
+                                            class="select2me form-control"
+                                            ng-options="opt as opt.label for opt in gender_type">
+                                        <option value="">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Marital Status </label>
+                                <div class="col-md-3 padr6">
+                                    <select disabled
+                                            ng-model="empAccountData.mar_status"
+                                            class="select2me form-control"
+                                            ng-options="opt as opt.label for opt in mar_status">
+                                        <option value="">Select</option>
+                                    </select>
+                                </div>
+                                <label class="col-md-3 control-label padl6">No. of Children </label>
+                                <div class="col-md-2 padl6">
+                                    <input readonly
+                                           type="text"
+                                           x-validity="regx.number"
+                                           ng-model="empAccountData.children"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Passport No. / ID No.</label>
+
+                                <div class="col-md-8">
+                                    <input readonly
+                                           type="text"
+                                           ng-model="empAccountData.emp_passport"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Driving Licence No. </label>
+
+                                <div class="col-md-8">
+                                    <input readonly
+                                           type="text"
+                                           ng-model="empAccountData.emp_driving_license"
+                                           class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Points on Driving Lic.</label>
+
+                                <div class="col-md-8">
+                                    <input readonly
+                                           type="text"
+                                           data-parsley-trigger="keyup" data-parsley-type="number"
+                                           ng-model="empAccountData.driving_license_pts"
+                                           class="form-control" />
+                                </div>
+                            </div>
+
+                            <h5 style="margin: 23px 0 2px 0;">
+                                <b class="text-capitalize">Next of kin/Emergency contact details</b>
+                            </h5>
+
+                            <hr style="    margin: 10px 0 11px 0;" />
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Name </label>
+
+                                <div class="col-md-8">
+                                    <input readonly
+                                           type="text"
+                                           ng-model="empAccountData.next_of_kin"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Relation </label>
+
+                                <div class="col-md-8">
+                                    <input readonly
+                                           type="text"
+                                           ng-model="empAccountData.relation_kin"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Mobile</label>
+
+                                <div class="col-md-8">
+                                    <input readonly
+                                           type="text"
+                                           ng-model="empAccountData.next_of_kin_mobile"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Telephone</label>
+
+                                <div class="col-md-8">
+                                    <input readonly
+                                           type="text"
+                                           ng-model="empAccountData.next_of_kin_phone"
+                                           class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Email </label>
+
+                                <div class="col-md-8">
+                                    <input x-validity="regx.multiEmail"
+                                           readonly
+                                           type="text"
+                                           ng-model="empAccountData.next_of_kin_email"
+                                           class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-2 padl6">
+        <div class="EmployeeInfo">
+            <div class="employee-label" ng-if="empAccountData.user_id.label!='Administrator'" 
+            style="background-color:#71b9f3;">
+                <i class="fa fa-user-o" aria-hidden="true"></i> {{empAccountData.user_id.label}} </div>
+
+            <div class="employee-label" ng-if="empAccountData.user_id.label=='Administrator'"><i class="fa fa-cog" aria-hidden="true"></i> Admin</div>
+            <div ng-controller="DocUploadDocument_single">
+                <div class="fileUpload showupload">
+                    
+                    <span ng-if="!empAccountData.emp_picture"><i class="fa fa-upload" aria-hidden="true"></i></span>
+                    <span ng-if="empAccountData.emp_picture"><i class="fa fa-upload" aria-hidden="true" style="color:#2196F3"></i></span>
+
+                    <input  type="file" ngf-select="uploadFiles($file, $invalidFiles, 'employeeProfile')"
+                    name="file" class="upload" data-max-size="50" multiple accept=".png,.jpeg,.jpg"/>
+                    <input readonly type="hidden" ng-model="empAccountData.emp_picture">
+                    <input readonly type="hidden" ng-init="empAccountData.emp_picture = empAccountData.emp_picture" ng-model="empAccountData.emp_picture">
+                </div>
+            </div>
+
+            <i ng-if="!empAccountData.emp_picture" class="material-icons" style="font-size: 81px;color: #dedede;">&#xE853;</i>
+
+            <div ng-if="empAccountData.emp_picture" style="display:inline-block">
+                <img class="d1img" ng-style="{'background-image':'url('+ imagePath+empAccountData.emp_picture +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat'}" />
+            </div>
+            
+
+            <span class="name">
+                {{empAccountData.first_name + ' ' + empAccountData.last_name}}
+            </span>
+            <span class="job">
+                {{empAccountData.job_title}}
+            </span>
+            <span class="email">
+                <a href="mailto:{{empAccountData.user_email}}">{{empAccountData.user_email}}</a>
+            </span>
+            <span class="mobile" ng-if="empAccountData.mobile_phone.length>0">
+                <i class="fa fa-mobile" aria-hidden="true"></i>
+                <div>{{empAccountData.mobile_phone}}</div>
+            </span>
+            <span class="skype" ng-if="empAccountData.skype_id.length>0">
+                <i class="fa fa-skype" aria-hidden="true"></i>
+                <div>{{empAccountData.skype_id}}</div>
+            </span>
+        </div>
+    </div>
+</div>

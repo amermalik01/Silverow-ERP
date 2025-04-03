@@ -1,0 +1,108 @@
+    <div class="row">
+
+<div class="col-lg-12 col-md-12">
+<div class="widget" style="background:none;">
+<!-- <div class="widget-header">
+  <div class="title">
+    Add Company General Information
+  </div>
+ 
+</div> -->
+<div class="widget-body" style="background:none;">   
+   
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Document Code<span class="required">*</span></label>
+                      <div class="col-lg-8">
+                        <input type="text" ng-model="rec.document_code" id="title" class="form-control"  ng-disabled ="1" tabindex="1" required/>
+                        <input type="hidden" ng-model="rec.update_id" id="update_id" class="form-control"/>
+                        <input type="hidden" ng-model="rec.old_file">
+                      </div>
+                  </div>
+                  </div>
+                  
+                  <!-- <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Folder<span class="required">*</span></label>
+                      <div class="col-lg-8">
+                        <div class="multi-level-dropdown">
+                          <div class="dropdown-title">{{selected.title}} <span class="fa fa-sort-desc pull-right"></span></div>
+                          <div class="dropdown-content" ng-if= "arr_folders.length > 0" ng-include="'app/views/crm_documents/multi_level_dropdown.html'" ng-init="sub = arr_folders;"></div>
+                        </div>
+                        <ul class="parsley-errors-list filled" ng-show="isSelect"><li class="parsley-required">This field is required.</li></ul>
+                      </div>
+                  </div>
+                 
+                  </div> -->
+               		
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Title <span class="required">*</span></label>
+                      <div class="col-lg-8">
+                        <input type="text" ng-model="rec.title" id="title" class="form-control"  ng-disabled ="check_readonly" tabindex="3" required/>
+                        <input type="hidden" ng-model="rec.update_id" id="update_id" class="form-control"/>
+                        <input type="hidden" ng-model="rec.old_file">
+                      </div>
+                  </div>
+                  </div>
+                  </div>
+             <div class="row">
+              <div class="col-lg-6">
+                    <div class="form-group">
+                    <label class="col-sm-4 control-label "> Folder </label>
+                    <div class="col-sm-8">
+                      <select  ng-disabled="check_readonly" tabindex="2"   ng-model="rec.folders"
+                         ng-options="opt as opt.name for opt in arr_folders" 
+                      
+                    class="select2me form-control"    required
+                   ng-change="addFolderPopup()"   id="case_folder">
+                        <option style="display:none" ></option>
+                      </select>
+                </div>
+              </div>
+                  </div>
+
+                  
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label">Upload Document</label>
+                      <div class="col-lg-3 ">
+                        <!-- <input id="uploadCrmPromotionFile" placeholder="Choose File" disabled="disabled"  /> -->
+                        <div class="fileUpload btn btn-primary" tabindex="7">
+                            <span ng-show="check_files">Change Document</span>
+                            <span ng-show="!check_files">Select Document</span>
+                            <input id="uploadCrmPromotionFileBtn" tabindex="4" ng-disabled="check_readonly" type="file" ngf-select="onFileSelect($files)" name="file"  class="upload" />
+
+                        </div>
+
+                        <!-- <br />
+                        
+                        <div class="file_container" ng-show="check_file"><span  ng-repeat="file in str_files"><span style="font-size:20px;" ng-bind-html='file.name | fileIcon'></span>&nbsp;{{file.name}}<span ng-click="removeFile(file.index)" class="spndelete"><em class="fa fa-trash-o"></em></span></span></div>
+                        <br /><br />
+                       
+                        <div class="file_container" ng-show="check_files"><span  ng-repeat="(key,value) in comp_files">
+                        <a download="{{value.file}}" ng-href="{{basePath+'upload/sales/crm/'+value.file}}">
+                        <span style="font-size:20px;" ng-bind-html='value.file | fileIcon'></span>&nbsp;{{value.file}}</a><span ng-click="viewFile(rec.id)"><em class="fa fa-eye"></em></span></span> 
+                        <div class="clearfix"></div>
+                          
+                        </div> -->
+                      </div>
+                      <label class="col-lg-2 control-label" style="padding: 2px 20px;"><em ng-show="check_file || check_files"  style="font-size: 30px !important;"class="fa fa-file-image-o"></em></label>
+                    </div>
+                  </div>
+                </div>
+				<div class="row">
+                <div class="col-lg-12">
+                  <div class="hr_line2"></div>
+                      <div class="pull-right">
+                      <button class="btn btn-info btn_blue" tabindex="5" type="submit" ng-show="!check_readonly"><i class="fa fa-check"></i> Submit</button>
+                      <button class="btn btn-info btn_blue" type="button" ng-click="showCrmDocumentEditForm()" ng-show="check_readonly" tabindex="4"><i class="fa fa-edit"></i> Edit</button>
+                      <button class="btn default" tabindex="6" type="button" ng-click="showCrmDocumentListing()"><i class="fa fa-undo"></i> Cancel</button>
+                      </div>
+                </div>
+                </div>                
+                
+</div>
+</div>
+</div>

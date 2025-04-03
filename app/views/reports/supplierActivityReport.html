@@ -1,0 +1,180 @@
+<div>
+  <!--  as table -->
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+  <style>
+    body {
+      background-image: url(app/css/report-BG.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      padding-bottom: 10px;
+    }
+  </style>
+
+
+  <div class="a-content">
+    <div class="a-label-container">
+      <b class="a-title"
+         style="width: 120px">Date <span class="required"> *</span></b>
+      <div class="input-symbol a-date">
+        <input jqdatepicker
+               class="form-control"
+               id="dateFrom"
+               readonly
+               placeholder="From"
+               style="background-color: white;"
+               ng-model="filterReport.dateFrom"
+               ng-change="testdate_by_id('dateFrom','dateTo','date_msg')">
+        <span>
+          <i class="fa fa-calendar"></i>
+        </span>
+      </div>
+      <div class="input-symbol a-date">
+        <input jqdatepicker
+               class="form-control"
+               id="dateTo"
+               readonly
+               placeholder="To"
+               style="background-color: white;"
+               ng-model="filterReport.dateTo"
+               ng-change="testdate_by_id('dateFrom','dateTo','date_msg')">
+        <span>
+          <i class="fa fa-calendar"></i>
+        </span>
+        <span id="date_msg"
+              style="color:#F00; display: none;top: 38px !IMPORTANT;">Date To is earlier than Date From</span>
+      </div>
+
+      <b class="ib a-margin-left add-filter collapsed"
+         data-toggle="collapse"
+         data-target="#demo">Add Filter(s)</b>
+
+      <div class="pull-right">
+        <button style="  margin-left: 0;"
+                class="btn report-generate"
+                type="button"
+                ng-click="generateReport('none')">Generate Report</button>
+        <button class="btn report-clearfilter"
+                type="button"
+                ng-click="clearReport()">Clear Filter</button>
+        <div class="dropdown report-excel">
+          <button class="btn report-default dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown">Export As
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a ng-click="generateReport('pdf')">PDF</a></li>
+            <li><a ng-click="generateReport('xlsx')">Excel</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-filter-panel collapse in"
+         id="demo">
+
+      <div class="report-box">
+        <b class="a-title a-title-relative"
+           style="    width: 120px;">Select Supplier(s)</b>
+        <div title="{{SelsupplierTooltip}}"
+             class="a-form-control"
+             style="width: 334px;">
+          <div class="panel-info pi2"
+               ng-click="clearFiltersAndSelectSuppliers()">
+            <div class="panel-body"
+                 style="background-color: #fff;">
+              <span ng-repeat="sp in suppliers track by $index">
+                <span ng-if="$index == 0">{{sp.title}}</span>
+                <span ng-if="$index > 0">; &nbsp;{{sp.title}} </span>
+              </span>
+              <aside></aside>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report-box">
+          <b class="a-title"
+              style="    width: 120px;">Document Type</b>
+          <select class="select2me form-control a-date"
+                  ng-model="filterReport.docType"
+                  ng-options="opt as opt.title for opt in docTypeArr">
+              <option value=""
+                      disabled
+                      selected>Select Document Type</option>
+          </select>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="a-table"
+       ng-if="printPdfVals.reportsDataArr.length > 0">
+    <h5 class="a-report-title">{{reportTitle}}</h5>
+    <small ng-if="filterReport.dateFrom"
+           class="a-report-date">From {{filterReport.dateFrom}} to {{filterReport.dateTo}}
+    </small>
+
+    <div class="white_bg2"
+         ng-repeat="record in printPdfVals.reportsDataArr">
+      <h5 style="margin: 4px 0 12px;"
+          class="pull-left">
+        <small style="color:black"><b>{{record[0].supplier_name}}({{record[0].sell_to_cust_no}})</b>
+          ({{filterReport.dateFrom}} - {{filterReport.dateTo}})</small>
+      </h5>
+      <h5 style="margin: 4px 0 12px; text-align: right;"
+          class="pull-right">
+        <small style="color:black"><b>Opening Balance as at {{filterReport.dateFrom}}:
+          </b>{{record[0].openingBalanc | currency : "" : decimal_range }} {{record[1].currency_code}}</small>
+      </h5>
+
+      <table class="table table-condensed table-striped table-hover report-spacing"
+             id="data-table"
+             style="margin-top: 8px;">
+        <thead>
+          <tr class="bg-col">
+            <th><span>Posting Date</span></th>
+            <th><span>Document Type</span></th>
+            <th><span>Document No.</span></th>
+            <th><span>Supplier Document No.</span></th>
+            <th class="text-right"><span>Original Amount</span></th>
+            <th class="text-right"><span>Amount Paid</span></th>
+            <th class="text-right"><span>Remaining Amount</span></th>
+            <th class="text-right"><span>Balance</span></th>
+            <th><span>Due Date</span></th>
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr ng-repeat="suppliers in record"
+              ng-if="suppliers.rank=='2'">
+            <td>{{suppliers.posting_date}}</td>
+            <td>{{suppliers.docType}}</td>
+            <td>{{suppliers.invoice_code}}</td>
+            <td>{{suppliers.cust_order_no}}</td>
+            <td class="text-right">{{suppliers.grand_total | currency : "" : decimal_range }}</td> <!-- final -->
+
+            <td class="text-right">{{suppliers.amount_paid | currency : "" : decimal_range }}</td>
+            <td class="text-right">{{suppliers.remaining_amount | currency : "" : decimal_range }}</td> <!-- final -->
+            <td class="text-right">{{suppliers.runningBalance | currency : "" : decimal_range}}</td>
+            <td>{{suppliers.due_date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- <div ng-include="'app/views/reports/_listingCustomerModal.html'"></div>  -->
+  <!-- <div ng-include="'app/views/reports/_listingSupplierModal.html'"></div> -->
+  <div ng-include="'app/views/reports/_listingCustomerDetailModal.html'"></div>
+  <div ng-include="'app/views/reports/_listingSupplierDetailModal.html'"></div>
+
+  <div ng-include="'app/views/general_ledger/payment_invoice_list.html'"></div>
+  <div ng-include="'app/views/general_ledger/get_invoice_payed_list.html'"></div>
+  <div ng-include="'app/views/general_ledger/_invoice_for_payment_list.html'"></div>
+  <div ng-include="'app/views/general_ledger/_invoice_for_allocated_list.html'"></div>
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

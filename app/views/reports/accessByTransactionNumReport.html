@@ -1,0 +1,50 @@
+<div ng-controller="AccessByTransactionNumbersController as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <style>
+        body {
+            background-image: url(app/css/report-BG.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding-bottom: 10px;
+        }
+    </style>
+    <div class="a-content">
+        <div class="a-label-container">
+
+            <b class="a-title" style="width: 120px;">Entry No. <span class="required"> *</span></b>
+            
+            <div class="a-form-control">
+                <input class="form-control" id="transactionFrom" type="number" placeholder="From" style="background-color: white;"
+                    ng-model="filterReport.transactionFrom">
+            </div>
+            <div class="a-form-control a-margin-left">
+                <input class="form-control" id="transactionTo" type="number" placeholder="To" style="background-color: white;"
+                    ng-model="filterReport.transactionTo">
+            </div>
+
+            <div class="pull-right">
+                <button class="btn report-generate no-margin"
+                        type="button"
+                        ng-click="generateReport()">Generate
+                    Report</button>
+                <button class="btn report-clearfilter"
+                        type="button"
+                        ng-click="clearReport()">Clear
+                    Filter</button>
+                <div class="dropdown report-excel">
+                    <button class="btn report-default dropdown-toggle"
+                            type="button"
+                            data-toggle="dropdown">Export As
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="generateReport('xlsx')">Excel</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

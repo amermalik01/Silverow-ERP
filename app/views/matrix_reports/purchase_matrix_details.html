@@ -1,0 +1,71 @@
+<style>
+    #ui-datepicker-div {
+        z-index: 9999 !important;
+    }
+</style>
+
+<div class="modal fade headerColor"
+     id="purchase_matrix_details">
+    <div class="modal-dialog modal-lg leftsidebar-container"
+         style="width:783px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{purchase_matrix_detail_title}}</h4>
+                <!--Balance Details-->
+            </div>
+            <div class="modal-body">
+                <div class="row"
+                     style="margin-bottom: 0 !important;">
+                    <div class="col-md-12">
+                        <div ng-if="purchaseMatrixDetailTableData.data.ack"
+                             style="margin-top: 18px;">
+                            <div class="flexiTable makeModalFixed"
+                                 x-generate-table
+                                 x-forget-filters="true"
+                                 x-data="purchaseMatrixDetailTableData.data"
+                                 x-table-name="PurchaseMatrixDetails"
+                                 x-filter-function="show_purchase_matrix_detail()"
+                                 x-filter-object="searchKeywordForPurchaseMatrix">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer clearfix">
+                <div class="pull-left pl0" ng-if="totalAmount">
+                    <h6><strong>Total : {{totalAmount | currency:""}}</strong>
+                    </h6>
+                </div>
+                <div class="pull-right pr0">
+                    <button class="btn btn-cancel"
+                            type="button"
+                            data-dismiss="modal"><i class="fa fa-undo fa_display"></i>
+                        Cancel </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade"
+     id="show_account_child_account">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+
+            </div>
+            <div class="modal-body"
+                 style="overflow-x: initial !important">
+
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

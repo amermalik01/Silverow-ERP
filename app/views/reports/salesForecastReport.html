@@ -1,0 +1,164 @@
+<div ng-controller="SalesFigureController as table">
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+
+    <style>
+        body {
+            background-image: url(app/css/report-BG.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding-bottom: 10px;
+        }
+    </style>
+
+
+    <div class="a-content">
+        <div class="a-label-container">
+
+            <b class="a-title"
+               style="    width: 120px;">Start Date</b>
+
+            <select ng-model="filterReport.start_month"
+                    style="width: auto;margin-right: 5px;"
+                    ng-options="opt as opt.label for opt in arrMonths"
+                    class="select2me form-control a-date">
+                <option style="display:none"
+                        value=""></option>
+            </select>
+            <select class="select2me form-control a-date"
+                    ng-model="filterReport.start_year">
+                <option value="{{previous_year}}"
+                        ng-selected="filterReport.start_year == previous_year">{{previous_year}}</option>
+                <option value="{{current_year}}"
+                        ng-selected="filterReport.start_year == current_year">{{current_year}}</option>
+                <option value="{{next_year}}"
+                        ng-selected="filterReport.start_year == next_year"> {{next_year}}</option>
+            </select>
+
+            <b class="ib a-margin-left add-filter collapsed"
+               ng-hide="reportType == 'ECSalesList'"
+               data-toggle="collapse"
+               data-target="#demo">Add Filter(s)</b>
+
+            <div class="pull-right">
+                <button class="btn report-generate no-margin"
+                        type="button"
+                        ng-click="generateReport()">Generate Report</button>
+                <button class="btn report-clearfilter"
+                        type="button"
+                        ng-click="clearReport()">Clear Filter</button>
+                <!-- <button class="btn btn-default2" type="button" ng-click="showPdfModal()"> Print Preview</button> -->
+                <div class="dropdown report-excel">
+                    <button class="btn report-default dropdown-toggle"
+                            type="button"
+                            data-toggle="dropdown">Export As
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="generateReport('xlsx')">Excel</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-filter-panel collapse in"
+             id="demo" style="margin-top: 10px;">
+
+            <div class="report-box">
+                <b class="a-title"
+                   style="    width: 120px;">End Date</b>
+
+                <select ng-model="filterReport.end_month"
+                        style="width: auto;margin-right: 5px;"
+                        ng-options="opt as opt.label for opt in arrMonths"
+                        class="select2me form-control a-date">
+                    <option style="display:none"
+                            value=""></option>
+                </select>
+                <select class="select2me form-control a-date"
+                        ng-model="filterReport.end_year">
+                    <option value="{{previous_year}}"
+                            ng-selected="filterReport.end_year == previous_year">{{previous_year}}</option>
+                    <option value="{{current_year}}"
+                            ng-selected="filterReport.end_year == current_year">{{current_year}}</option>
+                    <option value="{{next_year}}"
+                            ng-selected="filterReport.end_year == next_year"> {{next_year}}</option>
+                </select>
+            </div>
+
+            <div class="report-box">
+                <b class="a-title a-title-relative"
+                   style="width: 120px;">Select Item(s)</b>
+                <div title="{{SelItemsTooltip}}"
+                     class="a-form-control"
+                     style="width: 334px;">
+                    <div class="panel-info pi2"
+                         ng-click="clearFiltersAndSelectItems()">
+                        <div class="panel-body"
+                             style="background-color: #fff;">
+                            <span ng-repeat="sp in items track by $index">
+                                <span ng-if="items.length == 1">{{sp.title}}</span>
+                                <span ng-if="items.length > 1">{{sp.title}}<span ng-if="$index < items.length && $index!=0">;&nbsp;</span></span>
+                            </span>
+                            <aside></aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="report-box"
+                 ng-if="filterReport.report_type ==1">
+                <b class="a-title a-title-relative"
+                   style="    width: 120px;">Select Salesperson(s)</b>
+                <div class="panel-info pi2 a-form-control"
+                     style="width: 334px;"
+                     ng-click="selectSaleperson()">
+                    <div class="panel-body"
+                         style="background-color: #fff;">
+                        <span ng-repeat="sp in salepersons track by $index">
+                            <span ng-if="salepersons.length == 1">{{sp.name}}</span>
+                            <span ng-if="salepersons.length > 1">{{sp.name}}<span ng-if="$index < salepersons.length && $index!=0">;&nbsp;</span></span>
+                        </span>
+                        <aside></aside>
+                    </div>
+                </div>
+            </div>
+
+            <div class="report-box"
+                 ng-if="filterReport.report_type==2">
+                <b class="a-title a-title-relative"
+                   style="    width: 120px;">Select Customer(s)</b>
+                <div title="{{SelcustomersTooltip}}"
+                     class="a-form-control"
+                     style="width: 334px;">
+                    <div class="panel-info pi2"
+                         ng-click="clearFiltersAndSelectCustomer()">
+                        <div class="panel-body"
+                             style="background-color: white;">
+                            <span ng-repeat="sp in customers track by $index">
+                                <span ng-if="customers.length == 1">{{sp.title}}</span>
+                                <span ng-if="customers.length > 1">{{sp.title}}<span ng-if="$index < customers.length && $index!=0">;&nbsp;</span></span>
+                            </span>
+                            <aside></aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="report-box">
+                <b class="a-title"
+                   style="    width: 120px;">Report By</b>
+                <select class="select2me form-control a-date"
+                        ng-model="filterReport.report_type">
+                    <option value="1">Salesperson</option>
+                    <option value="2">Customer</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div ng-include="'app/views/reports/_listingCustomerDetailModal.html'"></div>
+    <div ng-include="'app/views/reports/_listingSalepersonModal.html'"></div>
+    <div ng-include="'app/views/reports/_listingSupplierDetailModal.html'"></div>
+    <div ng-include="'app/views/reports/_listingItemDetailModal.html'"></div>
+
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

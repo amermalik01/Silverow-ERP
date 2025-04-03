@@ -1,0 +1,86 @@
+<div id="_areaModal"
+     class="modal fade"
+     role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Search Covered Areas</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-4">
+                    <label class="col-md-4  control-label2">Country</label>
+                    <div class="col-md-8 ">
+                        <ui-select ng-model="searchAreas.country">
+                            <ui-select-match placeholder="Country">{{$select.selected.country}}</ui-select-match>
+                            <ui-select-choices repeat="opt in area_covered_country | filter: $select.search">
+                                <div ng-bind-html="opt.country | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <form class="form-horizontal no-margin">
+                        <div>
+                            <div class="input-symbol">
+                                <input type="text"
+                                       Placeholder="Search"
+                                       class="form-control"
+                                       ng-model="searchAreas.$"
+                                       style="padding-left:4px;">
+                                <span id="date_msg_4"
+                                      ng-click="search_covered_areas()"> <i class="fa fa-search"></i></span></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-1 pr0">
+                    <button type="button"
+                            class="btn btn-default h31 m0auto"
+                            ng-click="search_covered_areas()"><i class="fa fa-search"
+                           aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="col-md-1 pr0">
+                    <button type="button"
+                            class="btn btn-default h31 m0auto"
+                            title="Clear Fields"
+                            ng-click="clearSearchAreas()"
+                            ng-model="strict"><i class="fa fa-refresh"
+                           aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <table class="table table-striped table-bordered table-hover"
+                       style="margin-bottom: 0px;">
+                    <thead>
+                        <tr class="bg-col">
+                            <th ng-repeat="column in columns_areas"
+                                ng-hide="column.field == 'id'">
+                                <span ng-if="column.title=='Name'">City/Town</span>
+                                <span ng-if="column.title!='Name'">{{column.title}}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <!-- rec in record_ship.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter: searchKeyword-->
+                    <tbody class="courser table-body">
+                        <tr ng-repeat="rec in record_areas"
+                            ng-click="confirm(rec)">
+                            <td ng-repeat="column in columns_areas"
+                                ng-hide="column.field == 'id'">{{rec[column.field]}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel"
+                            ng-click="clearCustomers()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

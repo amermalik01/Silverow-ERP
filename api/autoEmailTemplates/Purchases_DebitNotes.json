@@ -1,0 +1,9 @@
+{
+    "senderEmail": "",
+    "availablePlaceholders": {
+        "debit_note_no": "debitNoteCode"
+    },
+    "fileName": "DN.[[debit_note_no]].[[current_company_id]].pdf",
+    "templateSubject": "",
+    "templateBody": ""
+}

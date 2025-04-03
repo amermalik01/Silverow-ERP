@@ -1,0 +1,65 @@
+[
+    {
+        "title": "Supplier No.",
+        "field_name": "supplier_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Name",
+        "field_name": "name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Territory",
+        "field_name": "region",
+        "db_table": "crm_region",
+        "db_where": " status = 1 AND region_type IN (4, 34)",
+        "db_field": "title",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "123",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Selling Group",
+        "field_name": "selling_group",
+        "db_table": "crm_buying_group",
+        "db_where": " crm_buying_group_type = 2 ",
+        "db_field": "title",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Segment",
+        "field_name": "segment",
+        "db_table": "crm_segment",
+        "db_where": " segment_type = 2 ",
+        "db_field": "title",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Posting Group",
+        "field_name": "postingGrp",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "data_type": "string"
+    }
+]

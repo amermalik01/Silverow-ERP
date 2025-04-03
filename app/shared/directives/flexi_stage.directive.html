@@ -1,0 +1,17 @@
+<div class="flexi-stage">
+    <span ng-repeat="rec_check in stages" title="{{rec_check.name}}"
+            ng-click="selectStage($index)"
+            ng-class="{'dont-click': readOnly,'active':rec_check.state=='active', 
+            'span':rec_check.state=='outstanding', 
+            'completed':rec_check.chk, 
+            'missed':rec_check.state=='skipped'}">
+    <input type="checkbox" 
+            ng-disabled="readOnly"
+            onclick="event.stopPropagation();"
+            ng-click="completeStage($index);"
+            ng-model="rec_check.chk">
+    <label id="label">
+            {{rec_check.name}}
+    </label>   
+    </span>
+</div>

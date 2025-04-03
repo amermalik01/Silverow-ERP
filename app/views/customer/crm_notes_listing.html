@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-md-3">
+        <div class="input-symbol">
+            <input type="text" ng-model="SerachkeywordLoc" placeholder="Search" class="in-t-1" />
+            <span id="date_msg_4"> <i class="fa fa-search"></i></span></div>
+    </div>
+    <div class="col-md-9">
+        <a id="prompt"  ng-click="showNoteAddForm()" class="btn btn_add pull-right ">Add</a>
+    </div><!-- bringNamesForNotes(crm);  -->
+</div>
+<style>
+    .width_adjust {
+        width: 200px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body1 ">
+                <div id="dt_example" class="example_alt_pagination">
+                    <div class="table-responsive">
+
+                        <table class="table table-condensed table-striped table-hover table-bordered" id="data-table" ng-show="allowview_crm_location_tab == 1 || allowview_cust_location_tab == 1"
+                            ng-if="notes_columns.length > 0">
+
+                            <thead class="fixit">
+                                <tr class="bg-col" ng-show="notes_columns.length > 0">
+                                    <!-- <th x-col="{{column.title}}" ng-repeat="column in notes_columns" ng-if="column.title != 'Id' && column.field != 'created_by_email' && column.field != 'date_created' && column.field != 'tab_name' && column.field != 'created_by' && column.field != 'module_name' && column.field != 'receiver_name' ">
+                                        <span ng-if="column.title == 'Created By_name'">Created By</span>
+                                        <span ng-if="column.title == 'Date Created_without_seconds'">Date Created</span>
+                                        <span ng-if="column.title == 'Notes'">Location Notes</span>
+                                        <span ng-if="column.title == 'Countryname'">Country</span>
+                                        <span ng-if="column.title != 'Created By_name' && column.title != 'Date Created_without_seconds' && column.title != 'Countryname'">{{column.title}}</span>
+                                    </th> -->
+                                    <th x-col="Created By" width='200'>Created By</th>
+                                    <th x-col="Date Created" width='200'>Date Created</th>
+                                    <th x-col="Subject" width='200'>Subject</th>
+                                    <th x-col="Description">Description</th>
+                                    <th style="width: 8%; text-align:center !important;" class="ShowHideAction">Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="fixit">
+                                <tr ng-repeat="rec2 in record_coments_crm | filter:SerachkeywordLoc" ng-show="notes_columns.length > 0" ng-class="{'isPrimary':rec2.is_primary == 1, 'isDefault':rec2.is_default == 1}" >
+                                    <td ng-repeat="column in notes_columns" ng-click="editThisNote(rec2.id,1)" ng-if="column.title != 'Id' && column.field != 'created_by_email' && column.field != 'date_created' && column.field != 'tab_name' && column.field != 'created_by' && column.field != 'module_name' && column.field != 'receiver_name' " ng-class="{'width_adjust': column.field != 'description'}">
+
+                                        <!-- 
+
+                                            ng-if="column.title != 'Id' && column.field != 'country' && column.field != 'created_by' && column.field != 'is_default' && column.field != 'Pref Method_of_communication'"
+                                         -->
+                                        <!-- <span ng-if="rec2.is_primary == 1  && rec2.is_default != 1 && column.field == 'location' " class="isPrimaryLabel">Primary</span>
+                                        <span ng-if="rec2.is_default == 1  && rec2.is_primary != 1  && column.field == 'location' " class="isDefaultLabel">Default</span>
+                                        <span ng-if="rec2.is_primary == 1 && rec2.is_default == 1  && column.field == 'location' " class="isPrimaryLabel">Primary & efault</span>  ng-if="column.title != 'Notes' && column.title != 'Postcode'"-->
+
+                                        <span ng-class="{'dont-click':viewLocationPermission == 0}">{{rec2[column.field]}}</span>
+                                        <!-- <span ng-if="column.title == 'Notes'" title="{{rec2[column.field]}}" style="width: 80%;
+                                                        overflow: hidden;
+                                                        white-space: nowrap;
+                                                        text-overflow: ellipsis;
+                                                        display: block;"> {{rec2[column.field]}}</span> -->
+                                        <span ng-if="column.title == 'Postcode'" class="text-uppercase">{{rec2[column.field]}}</span>
+                                    </td>
+
+                                    <td style="width: 8%; text-align:center !important;" class="ShowHideAction">
+                                        <!-- <a ng-click="editThisNote(rec2.id,0)" title="Edit" class="btn" ng-class="{'dont-click':editLocationPermission == 0}">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a ng-if="rec2.is_primary != 1" ng-click="delete_location(rec2.id, $index, record_coments_crm)" title="Delete" class="btn" ng-class="{'dont-click':deleteLocationPermission == 0}">
+                                            <i class="fa fa-times"></i>
+                                        </a> -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                            <div ng-show="!notes_columns.length > 0" class="no-record">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

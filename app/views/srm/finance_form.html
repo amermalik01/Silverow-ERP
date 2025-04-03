@@ -1,0 +1,272 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="widget" style="background:none;">
+            <div class="widget-body" style="background:none;">
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Contact Person</label>
+
+                            <div class="col-lg-7">
+                                <input type="text" ng-model="rec.contact_person" id="contact_person"
+                                       class="form-control" ng-disabled="check_readonly"/>
+                                <input type="hidden" ng-model="rec.customer_no" id="customer_no" class="form-control"/>
+                                <input type="hidden" ng-model="rec.update_id" id="update_id" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Payment Terms</label>
+
+                            <div class="col-lg-7">
+                                <input type="text" ng-model="payment_term" id="payment_term" class="form-control"
+                                       ng-click="getPaymentTerms()" ng-disabled="check_readonly"/>
+                                <input type="hidden" ng-model="rec.payment_terms_id" id="payment_terms_id"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Email</label>
+
+                            <div class="col-lg-7">
+                                <input type="text" ng-model="rec.email" id="email" class="form-control"
+                                       ng-disabled="check_readonly"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Payment Method</label>
+
+                            <div class="col-lg-7">
+                                <select ng-model="drp.payment_method_id"
+                                        ng-options="opt as opt['Description'] for opt in paymentmet"
+                                        class="select2me form-control" ng-disabled="check_readonly">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Telephone</label>
+
+                            <div class="col-lg-7">
+                                <input type="text" ng-model="rec.phone" id="phone" class="form-control"
+                                       ng-disabled="check_readonly"/>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+                              <label class="col-lg-4 control-label">Finance Charges</label>
+                              <div class="col-lg-7">
+
+                                <select ng-model="drp.finance_charges_ids" ng-options="opt as opt['Charge'] | numberNoDecimalsIfZeroFilter:2 for opt in arr_finance_charges" ng-change="addNewCharges(drp.finance_charges_ids,1,'Finance Charges',drp)" class="select2me form-control"  ng-disabled ="check_readonly" >
+                                </select>
+                              </div>
+                            </div>-->
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Fax</label>
+
+                            <div class="col-lg-7">
+                                <input type="text" ng-model="rec.fax" id="fax" class="form-control"
+                                       ng-disabled="check_readonly"
+                                        />
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+                              <label class="col-lg-4 control-label">Insurance Charges</label>
+                              <div class="col-lg-7">
+
+                                <select ng-model="drp.insurance_charges_ids" ng-options="opt as opt['Charge'] | numberNoDecimalsIfZeroFilter:2 for opt in arr_insurance_charges" ng-change="addNewCharges(drp.insurance_charges_ids,2,'Insurance Charges',drp)" class="select2me form-control"  ng-disabled ="check_readonly">
+                                </select>
+                              </div>
+                            </div>-->
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label"  title="Alternate Contact Person">Alt. Contact Person</label>
+
+                            <div class="col-lg-7">
+                                <input type="text" ng-model="rec.alt_contact_person" id="alt_contact_person"
+                                       class="form-control" ng-disabled="check_readonly"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">VAT Number</label>
+
+                            <div class="col-lg-7">
+                                <input type="text" ng-model="rec.vat_number" id="vat_number" class="form-control"
+                                       ng-readonly="check_readonly"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label" title="Alternate Contact Email">Alt. Contact Email</label>
+
+                            <div class="col-lg-7">
+                                <input type="text" ng-model="rec.alt_contact_email" id="alt_contact_email"
+                                       class="form-control" ng-disabled="check_readonly"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">VAT Bus. Group <span class="required">*</span></label>
+
+                            <div class="col-lg-7">
+                                <select ng-model="drp.vat_bus_posting_group"
+                                        ng-options="opt as opt.name for opt in constants" class="select2me form-control"
+                                        ng-change="addNewPredefinedPopup(drp.vat_bus_posting_group,'VAT_BUS_POSTING_GROUP','VAT Bus. Group',drp)"
+                                        ng-disabled="check_readonly" required>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!--<div class="form-group">
+                              <label class="col-lg-4 control-label">Generate</label>
+                              <div class="col-lg-7">
+
+                                <ui-select multiple="" id="generat"  ng-model="drp.generate" theme="bootstrap" ng-disabled="check_readonly" >
+                                  <ui-select-match>{{$item.name}}</ui-select-match>
+                                  <ui-select-choices repeat="opt in arr_generate | propsFilter: {name: $select.search}">
+                                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                  </ui-select-choices>
+                                </ui-select>
+                              </div>
+                            </div>-->
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Supplier Group <span class="required">*</span></label>
+
+                            <div class="col-lg-7">
+                                <select ng-model="drp.customer_posting_group"
+                                        ng-options="opt as opt.name for opt in customer" class="select2me form-control"
+                                        ng-change="addNewPredefinedPopup(drp.customer_posting_group,'CUST_POSTING_GROUP','Supplier Group',drp)"
+                                        ng-disabled="check_readonly" required>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Payable Bank </label>
+
+                            <div class="col-lg-7">
+                                <input type="text" ng-model="bank_name" id="bank_name" class="form-control"
+                                       ng-click="getBankAccount()" ng-disabled="check_readonly"/>
+                                <input type="hidden" ng-model="rec.bank_account_id" id="bank_account_id"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Company Reg. No.</label>
+
+                            <div class="col-lg-7">
+                                <input type="text" ng-model="rec.company_reg_no" id="company_reg_no"
+                                       class="form-control" ng-disabled="check_readonly"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Bill to Supplier</label>
+
+                            <div class="col-lg-7">
+                                <input type="text" ng-model="bill_to_customer_name" id="bill_to_customer"
+                                       class="form-control" ng-click="getCustomers()" ng-readonly="check_readonly"/>
+                                <input type="hidden" ng-model="rec.bill_to_customer" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Overrider</label>
+
+                            <div class="col-lg-7">
+                                <!-- <input type="text" ng-model="rec.rebate" id="rebate" class="form-control"  ng-readonly="check_readonly"   /> -->
+                                <select ng-model="drp.overrider_ids"
+                                        ng-options="opt as opt.charge | numberNoDecimalsIfZeroFilter:2 for opt in arr_overrider"
+                                        ng-change="addNewCharges(drp.overrider_ids,3,'Overrider',drp)"
+                                        class="select2me form-control" ng-disabled="check_readonly">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div role="tablist" class="panel-group">
+                            <div class="panel">
+                                <div id="collapseListGroupHeading1" role="tab" class="">
+                                    <h4 class="panel-title">
+                                        <button aria-controls="collapseListGroup1" aria-expanded="false"
+                                                href="#collapseListGroup1" data-toggle="collapse"
+                                                class="collapsed btn btn-link no-padding"> Supplier Bank Account Details
+                                            <i class="fa fa-chevron-down"></i></button>
+                                    </h4>
+                                </div>
+                                <div aria-labelledby="collapseListGroupHeading1" role="tabpanel"
+                                     class="panel-collapse collapse" id="collapseListGroup1" aria-expanded="false"
+                                     style="height: 0px;">
+                                    <div class="vertical_space"></div>
+                                    <div class="vertical_space"></div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="col-lg-4 control-label">Account Name</label>
+
+                                                <div class="col-lg-7">
+                                                    <input type="text" ng-model="rec.account_name" id="account_name"
+                                                           class="form-control" ng-disabled="check_readonly"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-4 control-label">Sort Code</label>
+
+                                                <div class="col-lg-7">
+                                                    <input type="text" ng-model="rec.sort_code" id="sort_code"
+                                                           class="form-control" ng-disabled="check_readonly"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-4 control-label">Account No.</label>
+
+                                                <div class="col-lg-7">
+                                                    <input type="text" ng-model="rec.account_no" id="account_no"
+                                                           class="form-control" ng-disabled="check_readonly"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="col-lg-4 control-label">Bank Name</label>
+
+                                                <div class="col-lg-7">
+                                                    <input type="text" ng-model="rec.bill_bank_name" id="bill_bank_name"
+                                                           class="form-control" ng-disabled="check_readonly"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-4 control-label">Swift/BIC </label>
+
+                                                <div class="col-lg-7">
+                                                    <input type="text" ng-model="rec.swift_no" id="swift_no"
+                                                           class="form-control" ng-disabled="check_readonly"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-4 control-label">IBAN</label>
+
+                                                <div class="col-lg-7">
+                                                    <input type="text" ng-model="rec.iban" id="iban"
+                                                           class="form-control" ng-disabled="check_readonly"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="hr_line2"></div>
+            <div class="pull-right">
+                <button class="btn btn-submit" type="submit" ng-show="!check_readonly"><i
+                        class="fa fa-check fa_display"></i> Submit
+                </button>
+                <button class="btn btn-edit" type="button" ng-click="gotoedit()"
+                        ng-show="check_hrvalues_readonly"><i class="fa fa-edit fa_display"></i> Edit
+                </button>
+                <button type="button" class="btn btn-cancel" ui-sref="app.srm()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

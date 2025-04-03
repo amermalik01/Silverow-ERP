@@ -1,0 +1,123 @@
+<div id="excludedProdModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Select Item</h4>
+            </div>
+            <div class="modal-body" style="overflow:hidden !important;">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-symbol">
+                            <input type="text" Placeholder="Search" class="form-control" 
+                                ng-model="filterPurchaseItem.search">
+                            <span id="date_msg_4"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <ui-select 
+                            ng-model="filterPurchaseItem.category" >
+                            <ui-select-match placeholder="Select Category">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="opt in cat_prodcut_arr | filter: $select.search">
+                                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-md-2">
+                        <ui-select 
+                            ng-model="filterPurchaseItem.brand">
+                            <ui-select-match placeholder="Select Brand">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="opt in brand_prodcut_arr | filter: $select.search">
+                                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-md-2">
+                        <ui-select 
+                            ng-model="filterPurchaseItem.units" >
+                            <ui-select-match placeholder="Select U.O.M">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="opt in uni_prooduct_arr | filter: $select.search">
+                                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-md-1">
+                        <a type="button" class="btn clear-filter pull-left" 
+                            ng-click="filterPurchaseItem = {};" 
+                            ng-model="strict"></a>
+                    </div>
+                </div>
+                <div class="row" style="    margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                        <table class="table table-striped table-bordered table-condensed table-hover">
+                            <thead class="fixit">
+                                <tr class="bg-col">
+                                    <th style="width: 5%;text-align: center;">
+                                        <input type="checkbox" 
+                                            ng-model="selectedAllExcludedProd" 
+                                            ng-click="checkAllExcludedProd(selectedAllExcludedProd,filterPurchaseItem.category.id,filterPurchaseItem.brand.id,filterPurchaseItem.units.id)"
+                                            ng-checked="selectedAllExcludedProd">
+                                    </th>
+                                    <th style="width: 10%;">Item No.</th>
+                                    <th style="width: 20%;">Name</th>
+                                    <th style="width: 10%;">Category</th>
+                                    <th style="width: 10%;">Brand</th>
+                                    <th style="width: 10%;">U.O.M</th>                                    
+                                    <th style="width: 10%;" title="Recommended Purchase Price">Rec. Purchase Price</th>
+                                    <th style="width: 10%;">Supplier Price</th>
+                                    <th style="width: 10%;">Current Stock</th>
+                                    <th style="width: 10%;">Available Stock</th>
+                                    <th style="width: 10%;">Allocated Stock</th>                                     
+                                </tr>
+                            </thead>
+
+                            <tbody class="fixit">
+                                <tr 
+                                    ng-repeat="prod in tempExcludedProd | filter:filterPurchaseItem.search | filter:filterPurchaseItem.brand.name | filter: filterPurchaseItem.units.name.length>0 ?  {'unit_name' : filterPurchaseItem.units.name}:''  | filter:filterPurchaseItem.category.name">
+                                    <td style="width: 5%;text-align: center;">
+                                        <input type="checkbox" name="item {{$index}}" id="item {{$index}}" 
+                                            ng-click="checkedExcludedProd(prod.id)" 
+                                            ng-checked="prod.chk>0" 
+                                            ng-disabled="prod.disableCheck>0">
+                                    </td>
+                                    <td style="width: 10%;">{{prod.product_code}} </td>
+                                    <td style="width: 20%;">{{prod.description}}</td>
+                                    <td style="width: 10%;">{{prod.category_name}}</td>
+                                    <td style="width: 10%;">{{prod.brand_name}}</td>
+                                    <td style="width: 10%;">{{prod.unit_name}}</td>
+                                    <td style="width: 10%;">{{prod.standard_purchase_cost}}</td> 
+                                    <td style="width: 10%;">
+                                        <span ng-if="prod.price_offer > 0">
+                                           {{prod.price_offer}}
+                                           <a ui-sref="app.edit-supplier({id:rec.sell_to_cust_id, isPriceOffer:1})" class="btn" target="_blank">
+                                               <i class="fa fa-external-link" aria-hidden="true"></i>
+                                            </a>
+                                        </span>
+                                        <span ng-if="!prod.price_offer > 0">
+                                            -
+                                        </span>
+                                    </td>
+                                    <td style="width: 10%;">{{prod.current_stock}}</td>
+                                    <td style="width: 10%;">{{prod.available_stock}}</td>
+                                    <td style="width: 10%;">{{prod.current_stock - prod.available_stock}}</td>
+                                </tr>
+                                <tr ng-if="tempExcludedProd.length == 0">
+                                    <td colspan="7" class="text-center">No record found!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left">Selected:&nbsp;{{(tempExcludedProd| filter: {chk: true}).length}}</span>
+                <div class="pull-right">
+                    <button class="btn btn_add" type="button" 
+                        ng-click="addExcludedProd()">Add</button>
+                    <button type="button" class="btn btn-cancel" 
+                        ng-click="clearPendingExcludedProd()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

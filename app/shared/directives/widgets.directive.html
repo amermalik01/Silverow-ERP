@@ -1,0 +1,460 @@
+<div ng-class="{'klip-small':widget.widthtype==0, 'klip-medium':widget.widthtype==1, 'klip-large':widget.widthtype==2}"
+     ng-repeat="widget in widgets track by $index">
+    <div class="klip"
+         id="{{widget.id}}"
+         ng-class="{'highlight-delete-widget':removeFromDashboard}">
+        <div class="klip-toolbar klip-toolbar-x-small"
+             ng-class="{'klip-toolbar-move':allowReorder}">
+
+            <span class="klip-toolbar-title"
+                  ng-class="{'movetoright':allowReorder || removeFromDashboard}">{{widget.title}}</span>
+            <span ng-if="widget.id==1"
+                  class="total-value-header">
+                <span class="widgetOptionsTag"
+                      ng-include="'app/views/dashboard/widget_options_label.html'"></span>
+                <div class="total-value-header-margin"
+                     title="{{totalSalesValueSum | number: 2}} {{currencyCode}}"
+                     ng-if="totalSalesValueSum">
+                    <b>Total:</b> {{totalSalesValueRound}} {{currencyCode}}
+                    <!-- <b>Total:</b> {{totalSalesValue | currency : "" : decimal_range}} {{defaultCurrencyCode}} -->
+                </div>
+            </span>
+
+            <span ng-if="widget.id==2"
+                  class="total-value-header">
+                <span class="widgetOptionsTag"
+                      ng-include="'app/views/dashboard/widget_options_label.html'"></span>
+                <div class="total-value-header-margin"
+                     ng-if="totalItemQty">
+                    <b>Qty. Sold:</b> {{totalItemQty | number: 2}}
+                </div>
+                <div class="total-value-header-margin"
+                     title="{{totalItemRevenueSum | number: 2}} {{currencyCode}}"
+                     ng-if="totalItemRevenueSum">
+                    <b>Total:</b> {{totalItemRevenueRound}} {{currencyCode}}
+                    <!-- <b>Total:</b> {{totalItemRevenue | currency : "" : decimal_range}} {{defaultCurrencyCode}} -->
+                </div>
+            </span>
+
+            <span ng-if="widget.id==3"
+                  class="total-value-header">
+                <span class="widgetOptionsTag"
+                      ng-include="'app/views/dashboard/widget_options_label.html'"></span>
+                <div class="total-value-header-margin"
+                     title="{{totalOutstandingSalesSum | number: 2}} {{currencyCode}}"
+                     ng-if="totalOutstandingSalesSum">
+                    <b>Total:</b> {{totalOutstandingSalesRound}} {{currencyCode}}
+                    <!-- <b>Total:</b> {{totalOutstandingSales | currency : "" : decimal_range}} {{defaultCurrencyCode}} -->
+                </div>
+            </span>
+
+            <span ng-if="widget.id==7 && userTasks.length == 0"
+                  class="total-value-header">
+                <!-- <div class="total-value-header-margin">
+                    <b>Please add Tasks!</b>
+                </div> -->
+            </span>
+
+            <span ng-if="widget.id==8"
+                  class="total-value-header">
+                <!-- <span class="widgetOptionsTag"
+                      ng-include="'app/views/dashboard/widget_options_label.html'"></span> -->
+                <div class="total-value-header-margin">
+                    <!-- <b>Total:</b> {{totalOutstandingSalesRound}} {{currencyCode}} -->
+                    <!-- <b>Total:</b> {{totalOutstandingSales | currency : "" : decimal_range}} {{defaultCurrencyCode}} -->
+                </div>
+            </span>
+
+            <span ng-if="widget.id==9"
+                  class="total-value-header">
+                <span class="widgetOptionsTag"
+                      ng-include="'app/views/dashboard/widget_options_label.html'"></span>
+                <div class="total-value-header-margin"
+                     title="{{totalOutstandingPurchaseSum | number: 2}} {{currencyCode}}"
+                     ng-if="totalOutstandingPurchaseSum">
+                    <b>Total:</b> {{totalOutstandingPurchaseRound}} {{currencyCode}}
+                    <!-- <b>Total:</b> {{totalOutstandingSales | currency : "" : decimal_range}} {{defaultCurrencyCode}} -->
+                </div>
+            </span>
+
+            <span ng-if="widget.id==10"
+                  class="total-value-header">
+                <span class="widgetOptionsTag"
+                      ng-include="'app/views/dashboard/widget_options_label.html'"></span>
+                <div class="total-value-header-margin"
+                     title="{{totalPurchaseValueSum | number: 2}} {{currencyCode}}"
+                     ng-if="totalPurchaseValueSum">
+                    <b>Total:</b> {{totalPurchaseValueRound}} {{currencyCode}}
+                    <!-- <b>Total:</b> {{totalOutstandingSales | currency : "" : decimal_range}} {{defaultCurrencyCode}} -->
+                </div>
+            </span>
+
+            <span ng-if="widget.id==11"
+                  class="total-value-header">
+                <span class="widgetOptionsTag"
+                      ng-include="'app/views/dashboard/widget_options_label.html'"></span>
+                <div class="total-value-header-margin"
+                     title="{{totalSalespersonValueSum | number: 2}} {{currencyCode}}"
+                     ng-if="totalSalespersonValueSum">
+                    <b>Total:</b> {{totaltotalSalespersonRound}} {{currencyCode}}
+                    <!-- <b>Total:</b> {{totalOutstandingSales | currency : "" : decimal_range}} {{defaultCurrencyCode}} -->
+                </div>
+            </span>
+
+            <span ng-if="widget.id==12"
+                  class="total-value-header">
+                <span class="widgetOptionsTag"
+                      ng-include="'app/views/dashboard/widget_options_label.html'"></span>
+                <div class="total-value-header-margin"
+                     title="{{totalPurchaserValueSum | number: 2}} {{currencyCode}}"
+                     ng-if="totalPurchaserValueSum">
+                    <b>Total:</b> {{totalPurchaserRound}} {{currencyCode}}
+                    <!-- <b>Total:</b> {{totalOutstandingSales | currency : "" : decimal_range}} {{defaultCurrencyCode}} -->
+                </div>
+            </span>
+
+            <span ng-if="widget.id==13"
+                  class="total-value-header">
+                <span class="widgetOptionsTag"
+                      ng-include="'app/views/dashboard/widget_options_label.html'"></span>
+                <div class="total-value-header-margin"
+                     title="{{totalPurchaserValueSum | number: 2}} {{currencyCode}}"
+                     ng-if="totalPurchaserValueSum">
+                    <b>Total:</b> {{totalPurchaserRound}} {{currencyCode}}
+                    <!-- <b>Total:</b> {{totalOutstandingSales | currency : "" : decimal_range}} {{defaultCurrencyCode}} -->
+                </div>
+            </span>
+
+            <div class="klip-toolbar-buttons">
+                <div class="klip-move animated "
+                     ng-if="allowReorder">
+                    <i class="material-icons">drag_indicator</i>
+                </div>
+                <div class="klip-delete animated "
+                     ng-if="removeFromDashboard"
+                     ng-click="addRemoveWidgetToDashboard(widget,0,$index)">
+                    <i class="material-icons">clear</i>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Medium Widget Start  -->
+        <div class="klip-body"
+             ng-if="widget.id == 1">
+            <!-- Top Customer Sales -->
+            <table class="table table-condensed table-striped table-hover table-bordered ng-scope ng-table">
+                <thead class="fixit3">
+                    <tr>
+                        <th style="width: 76px;">Cust No. </th>
+                        <th>Name </th>
+                        <th style="text-align: right"
+                            class="padr16">Amount</th>
+                    </tr>
+                </thead>
+                <tbody class="fixit3">
+                    <tr ng-repeat="row in widget.query">
+                        <td style="width: 76px;">
+                            <a class="tooltips_clss btn hilight  ng-binding"
+                               ui-sref="app.editCustomer({id:row.id})"
+                               target="_blank">{{row.cust_code}}</a>
+                        </td>
+                        <td>{{row.name}}</td>
+                        <td class="text-right padr16">{{row.value | number:2}} {{defaultCurrencyCode}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Medium Widget End  -->
+
+        <!-- Medium Widget Start  -->
+        <div class="klip-body"
+             ng-if="widget.id == 2">
+            <!-- Top Item Revenue -->
+            <table class="table table-condensed table-striped table-hover table-bordered ng-scope ng-table">
+                <thead class="fixit3">
+                    <tr>
+                        <th style="    width: 21%;">Item No.</th>
+                        <th>Description</th>
+                        <th style="text-align: right;width: 13%;">U.O.M</th>
+                        <th style="text-align: right;width: 13%;">Qty.</th>
+                        <th style="text-align: right"
+                            class="padr16">Sales</th>
+                    </tr>
+                </thead>
+                <tbody class="fixit3">
+                    <tr ng-repeat="row in widget.query">
+                        <td style="    width: 21%;">
+                            <a class="tooltips_clss btn hilight  ng-binding"
+                               ui-sref="app.edit-item({id:row.id})"
+                               target="_blank">{{row.product_code}}</a>
+                        </td>
+                        <td>{{row.description}}</td>
+                        <td style="text-align: right;width: 13%;">{{row.unit_measure}}</td>
+                        <td style="text-align: right;width: 13%;">{{row.qtysold | number: 2}}</td>
+                        <td style="text-align: right"
+                            class="padr16">{{row.revenue | number:2}} {{defaultCurrencyCode}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="klip-body"
+             ng-if="widget.id == 3">
+            <!-- Outstanding Sales Orders -->
+            <table class="table table-condensed table-striped table-hover table-bordered ng-scope ng-table">
+                <thead class="fixit3">
+                    <tr>
+                        <th style="width: 11%;">SO No.</th>
+                        <th>Name</th>
+                        <th>Order Date</th>
+                        <th>Delivery Date</th>
+                        <th title="Requested Delivery Date">Req. Del. Date</th>
+                        <th class="rightAlign padr16">Amount</th>
+                    </tr>
+                </thead>
+                <tbody class="fixit3">
+                    <tr ng-repeat="row in widget.query">
+                        <td style="width: 11%;">
+                            <a class="tooltips_clss btn hilight  ng-binding"
+                               ui-sref="app.viewOrder({id:row.id})"
+                               target="_blank">{{row.sales_order_no}}</a>
+                        </td>
+                        <td>{{row.name}}</td>
+                        <td>{{row.order_date * 1000 | date:'dd/MM/yyyy'}}</td>
+                        <td>{{row.delivery_date * 1000 | date:'dd/MM/yyyy'}}</td>
+                        <td>{{(row.requested_delivery_date == '0' || row.requested_delivery_date == '') ? '-' :
+                            row.requested_delivery_date
+                            * 1000 | date:'dd/MM/yyyy'}}</td>
+                        <td class="rightAlign padr16">{{row.value | number:2}}
+                            {{defaultCurrencyCode}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="klip-body"
+             ng-if="widget.id == 4">
+            <div class="chart-container"
+                 style="position: relative;"
+                 ui-sref="app.opportunity-cycles">
+                <canvas id="pie"
+                        class="chart chart-pie chart-xs"
+                        chart-data="oppoCycleData"
+                        chart-labels="oppoCyclelabels"
+                        chart-options="oppoCycleOptions"
+                        style="margin: 0 auto;width:350px;"></canvas>
+            </div>
+
+            <!-- <div class="chart-container" style="position: relative;">
+                <canvas id="chart-area" 
+                    chart-data="oppoCycleData"
+                    chart-labels="oppoCyclelabels"
+                    chart-options="oppoCycleOptions"
+                style="margin: 0 auto;width:350px;"></canvas>
+            </div> -->
+        </div>
+        <div class="klip-body"
+             ng-if="widget.id == 7 && userTasks.length > 0">
+            <!-- Tasks -->
+            <table class="table table-condensed table-striped table-hover table-bordered ng-scope ng-table"
+                   ng-if="userTasks.length > 0">
+
+                <table class="table table-condensed table-striped table-hover table-bordered ng-scope ng-table">
+                    <thead class="fixit3">
+                        <tr>
+                            <th>Subject</th>
+                            <th>Comment</th>
+                            <th>Date/Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="fixit3">
+                        <tr ng-repeat="row in widget.query">
+                            <td>{{row.subject}}</td>
+                            <td>
+                                <span ng-if="row.comments.length > 0">{{row.comments}}</span>
+                                <span ng-if="row.comments.length == 0"
+                                      style="    color: gray;">No comments added</span>
+                            </td>
+                            <td>{{row.time}} on {{row.date * 1000 | date:'dd/MM/yyyy'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <div ng-repeat="row in widget.query"
+                     class="abc clearfix">
+                    <div class="def">{{row.subject}}</div>
+                    <div class="opq">{{(row.completed == '1') ? 'Completed' : 'InProgress'}}</div>
+                    <div class="hij"
+                         ng-if="row.comments.length > 0">{{row.comments}}</div>
+                    <div class="hij"
+                         ng-if="row.comments.length == 0"
+                         style="    opacity: 0.3;">No comments added</div>
+                    <div class="klm">
+                        <i class="fa fa-bell-o"
+                           aria-hidden="true"
+                           style="    margin-right: 5px;"></i>{{row.time}} on {{row.date * 1000 | date:'dd/MM/yyyy'}}</div>
+                </div> -->
+            </table>
+        </div>
+        <div class="klip-body"
+             ng-if="widget.id == 8">
+            <!-- Approvals -->
+            <table class="table table-condensed table-striped table-hover table-bordered ng-scope ng-table">
+                <thead class="fixit3">
+                    <tr>
+                        <th>Document Type</th>
+                        <th>Document No.</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody class="fixit3">
+                    <tr ng-repeat="row in widget.query">
+                        <td>{{row.ttype}}</td>
+                        <td>
+                            <a class="tooltips_clss btn hilight  ng-binding"
+                               ng-if="row.type == '1' || row.type == '2' "
+                               ui-sref="app.viewOrder({id:row.object_id})"
+                               target="_blank">{{row.object_code}}</a>
+                            <a class="tooltips_clss btn hilight  ng-binding"
+                               ng-if="row.type == '3' || row.type == '8' "
+                               ui-sref="app.viewReturnOrder({id:row.object_id})"
+                               target="_blank">{{row.object_code}}</a>
+                            <a class="tooltips_clss btn hilight  ng-binding"
+                               ng-if="row.type == '4' || row.type == '7'"
+                               ui-sref="app.viewsrmorder({id:row.object_id})"
+                               target="_blank">{{row.object_code}}</a>
+                            <a class="tooltips_clss btn hilight  ng-binding"
+                               ng-if="row.type == '5'"
+                               ui-sref="app.edithrvalues({id:row.detail_id,isTab:2})"
+                               target="_blank">{{row.object_code}}</a>
+                            <a class="tooltips_clss btn hilight  ng-binding"
+                               ng-if="row.type == '6'"
+                               ui-sref="app.edithrvalues({id:row.detail_id,isTab:1})"
+                               target="_blank">{{row.object_code}}</a>
+                        </td>
+                        <td>{{row.statuss}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="klip-body"
+             ng-if="widget.id == 9">
+            <!-- Outstanding Purchase Orders -->
+            <table class="table table-condensed table-striped table-hover table-bordered ng-scope ng-table">
+                <thead class="fixit3">
+                    <tr>
+                        <th style="width: 11%;">PO No.</th>
+                        <th>Name</th>
+                        <th>Order Date</th>
+                        <th>Reciept Date</th>
+                        <th title="Requested Delivery Date">Req. Del. Date</th>
+                        <th class="rightAlign padr16">Amount</th>
+                    </tr>
+                </thead>
+                <tbody class="fixit3">
+                    <tr ng-repeat="row in widget.query">
+                        <td style="width: 11%;">
+                            <a class="tooltips_clss btn hilight  ng-binding"
+                               ui-sref="app.viewsrmorder({id:row.id})"
+                               target="_blank">{{row.order_code}}</a>
+                        </td>
+                        <td>{{row.name}}</td>
+                        <td>{{row.order_date * 1000 | date:'dd/MM/yyyy'}}</td>
+                        <td>{{row.receiptDate * 1000 | date:'dd/MM/yyyy'}}</td>
+                        <td>{{(row.requested_delivery_date == '0' || row.requested_delivery_date == '') ? '-' :
+                            row.requested_delivery_date
+                            * 1000 | date:'dd/MM/yyyy'}}</td>
+                        <td class="rightAlign padr16">{{row.value | number:2}} {{defaultCurrencyCode}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="klip-body"
+             ng-if="widget.id == 10">
+            <!-- Top Supplier Purchases -->
+            <table class="table table-condensed table-striped table-hover table-bordered ng-scope ng-table">
+                <thead class="fixit3">
+                    <tr>
+                        <th>Supp. No.</th>
+                        <th>Name</th>
+                        <th style="text-align: right"
+                            class="padr16">Amount</th>
+                    </tr>
+                </thead>
+                <tbody class="fixit3">
+                    <tr ng-repeat="row in widget.query">
+                        <td>
+                            <a class="tooltips_clss btn hilight  ng-binding"
+                               ui-sref="app.edit-supplier({id:row.id})"
+                               target="_blank">{{row.supp_code}}</a>
+                        </td>
+                        <td>{{row.name}}</td>
+                        <td class="text-right padr16">{{row.value | number:2}} {{defaultCurrencyCode}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="klip-body"
+             ng-if="widget.id == 11">
+            <!-- Top Customer Sales -->
+            <table class="table table-condensed table-striped table-hover table-bordered ng-scope ng-table">
+                <thead class="fixit3">
+                    <tr>
+                        <th>Salesperson</th>
+                        <th style="text-align: right"
+                            class="padr16">Sales</th>
+                    </tr>
+                </thead>
+                <tbody class="fixit3">
+                    <tr ng-repeat="row in widget.query">
+                        <td>
+                            <span>{{row.name}}</span>
+                        </td>
+                        <td class="text-right padr16">{{row.value | number:2}} {{defaultCurrencyCode}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="klip-body"
+             ng-if="widget.id == 12">
+            <!-- Top Customer Sales -->
+            <table class="table table-condensed table-striped table-hover table-bordered ng-scope ng-table">
+                <thead class="fixit3">
+                    <tr>
+                        <th>Salesperson</th>
+                        <th style="text-align: right"
+                            class="padr16">Purchases</th>
+                    </tr>
+                </thead>
+                <tbody class="fixit3">
+                    <tr ng-repeat="row in widget.query">
+                        <td>
+                            {{row.name}}
+                            <!-- <a class="tooltips_clss btn hilight  ng-binding"
+                                ui-sref="app.edithrvalues({id:row.id})"
+                                target="_blank"> -->
+                        </td>
+                        <td class="text-right padr16">{{row.value | number:2}} {{defaultCurrencyCode}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="klip-body"
+             ng-if="widget.id == 13">
+            <table class="table table-condensed table-striped table-hover table-bordered ng-scope ng-table">
+                <thead class="fixit3">
+                    <tr>
+                        <th>Name</th>
+                        <th style="text-align: right"
+                            class="padr16">Profit</th>
+                    </tr>
+                </thead>
+                <tbody class="fixit3">
+                    <tr ng-repeat="row in widget.query">
+                        <td>
+                            1
+                        </td>
+                        <td class="text-right padr16">{{companyRevenue[0].value}} {{defaultCurrencyCode}}</td>
+                    </tr>
+                </tbody>
+        </div>
+    </div>
+</div>

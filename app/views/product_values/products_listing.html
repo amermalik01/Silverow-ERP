@@ -1,0 +1,104 @@
+<div 
+    ng-controller="ProductsListingController"><!--  as table -->
+    <div style="margin-bottom: 13px;">
+        <div 
+            ng-include="'app/views/_breadcrumb.html'"></div>
+    </div>
+    <div class="row" style="margin-top: -15px;">
+
+        <a id="prompt" ui-sref="app.add-item" class="btn btn_add pull-right oval" ng-if="allowadd_item==1"><i class="fa fa-plus"></i></a>
+
+    <style>
+        .hideAdd {
+            margin-top: 35px;
+            }
+    </style>
+        <!-- <div class="adv-filter" 
+            ng-show="showAddFill > 0">
+            <div class="close-filter"
+                ng-click="showAddFill = 0"> ✕</div>
+            <h4>Filter by :</h4>
+
+            <ui-select 
+                ng-model="searchKeyword.brand">
+                <ui-select-match placeholder="Select Brand">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="opt in brand_prodcut_arr | filter: $select.search">
+                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+            <ui-select 
+                ng-model="searchKeyword.cat_type">
+                <ui-select-match placeholder="Select Category">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="opt in cat_prodcut_arr | filter: $select.search">
+                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+            <ui-select 
+                ng-model="searchKeyword.unit">
+                <ui-select-match placeholder="Select Unit">{{$select.selected.title}}</ui-select-match>
+                <ui-select-choices repeat="opt in uni_prooduct_arr | filter: $select.search">
+                    <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+            <ui-select 
+                ng-model="searchKeyword.status">
+                <ui-select-match placeholder="Select Status">{{$select.selected.title}}
+                </ui-select-match>
+                <ui-select-choices repeat="opt in product_status_list | filter: $select.search">
+                    <div ng-bind-html="opt.title| highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+            <a class="clear-filter" 
+                ng-click="searchKeyword='';getitem_list();reset_single_value('product_sort_name')"></a>
+            <a class="btn btn-default2" style="width: 100%; margin-top: 9px;" 
+                ng-click="getitem_list();" >Search</a>
+        </div> -->
+    </div>
+    <div class="row" style="margin-top:-15px !important;">
+        <div class="col-md-12">
+            <!-- <div class="page-options" style="margin-top:-7px">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="col-md-4 show_record">Show Entries </label>
+                        <div class="col-md-4">
+                            <select class="form-control"
+                                ng-model="item_paging.pagination_limit" 
+                                ng-options="opt as opt.label for opt in pagination_arry"
+                                ng-change="getitem_list()">
+                                <option style="display:block" value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="text-center total_paging_center" 
+                        ng-if="record_data.length > 0">
+                        {{total_paging_record}}
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="text-right total_paging_record" 
+                        ng-if="record_data.length > 0">Total: {{total}}</div>
+                </div>
+            </div> -->
+        </div>
+        <div id="dt_example" class="example_alt_pagination col-md-12" 
+            ng-class="{}">
+            <div  style="margin-top: -13px;">
+                <div class="flexiTable" ng-class="{'hideAdd':!allowadd_item==1}" 
+                    x-generate-table 
+                    x-data="tableData.data" 
+                    x-table-name="Item" 
+                    x-filter-function="getitem_list()" 
+                    x-filter-object="searchKeyword">
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!-- <div 
+        ng-include="'app/views/stock_sheet/history_modal.html'"></div> -->
+    <!-- <div 
+        ng-include="'app/views/_confirm_modal.html'"></div> -->
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

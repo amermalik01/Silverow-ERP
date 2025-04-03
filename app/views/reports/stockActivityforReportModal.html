@@ -1,0 +1,113 @@
+<div id="stockActivityforReport"
+     class="modal fade"
+     role="dialog">
+    <div class="modal-dialog modal-lg"
+         dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Stock Activity</h4>
+            </div>
+            <div class="modal-body"
+                 style="overflow:hidden !important;">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-symbol">
+                            <input type="text"
+                                   Placeholder="Search"
+                                   class="form-control"
+                                   ng-model="filterStockActivity.search">
+                            <span id="date_msg_4"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row"
+                     style="    margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                        <table class="table table-striped table-bordered table-condensed table-hover">
+                            <thead class="fixit">
+                                <tr class="bg-col">
+                                    <th>No.</th>
+                                    <th>Supplier No.</th>
+                                    <th>Supplier Name</th>
+                                    <th>Warehouse</th>
+                                    <th class="text-right">Consignment No.</th>
+                                    <th class="text-right">Qty.</th>
+                                    <!-- <th>Order Date</th> -->
+                                    <th>Posting Date</th>
+                                    <th>Receive Date</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="fixit">
+                                <tr ng-repeat="rec in invRecordsRes | filter:filterStockActivity.search">
+                                    <td>
+                                        <a title="View Purchase Order"
+                                           class="tooltips_clss btn hilight  ng-binding"
+                                           style="font-size: 11px;"
+                                           ui-sref="app.viewsrmorder({id:rec.oid})"
+                                           ng-if="rec.doctype2 == 'purchase'"
+                                           target="_blank">{{rec.code}}</a>
+                                        
+                                        <a title="View Sales Order"
+                                           class="tooltips_clss btn hilight  ng-binding"
+                                           style="font-size: 11px;"
+                                           ui-sref="app.viewOrder({id:rec.oid})"
+                                           ng-if="rec.doctype2 == 'sales'"
+                                           target="_blank">{{rec.code}}</a>
+
+                                        <a title="View Credit Note"
+                                           class="tooltips_clss btn hilight  ng-binding"
+                                           style="font-size: 11px;"
+                                           ui-sref="app.viewReturnOrder({id:rec.oid})"
+                                           ng-if="rec.doctype2 == 'creditnote'"
+                                           target="_blank">{{rec.code}}</a>
+
+                                        <a title="View Debit Note"
+                                           class="tooltips_clss btn hilight  ng-binding"
+                                           style="font-size: 11px;"
+                                           ui-sref="app.viewsrmorderreturn({id:rec.oid})"
+                                           ng-if="rec.doctype2 == 'debitnote'"
+                                           target="_blank">{{rec.code}}</a>
+                                        
+                                        <a title="View Item Ledger"
+                                           class="tooltips_clss btn hilight  ng-binding"
+                                           style="font-size: 11px;"
+                                           ui-sref="app.view-receipt-journal-gl-item({id:rec.oid})"
+                                           ng-if="rec.doctype2 == 'itemLedger'"
+                                           target="_blank">{{rec.invoice_code}}</a>
+
+                                        <a title="Opening Balance"
+                                           class="tooltips_clss btn hilight  ng-binding"
+                                           style="font-size: 11px;"
+                                           ng-if="rec.doctype2 == 'StockOpenBalanc'"
+                                           target="_blank">Opening Balance</a>
+
+                                    </td>
+                                    <td>{{rec.user_no}}</td>
+                                    <td>{{rec.user_name}}</td>
+                                    <td>{{rec.warehousename}}</td>
+                                    <td class="text-right">{{rec.consignmentNo}}</td>
+                                    <td class="text-right">{{rec.qty2 | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                                    <!-- <td>{{rec.order_date}}</td> -->
+                                    <td>{{rec.posting_date}}</td>
+                                    <td>{{rec.date_received}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left"></span>
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel"
+                            data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

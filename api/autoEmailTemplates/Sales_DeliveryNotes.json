@@ -1,0 +1,9 @@
+{
+    "senderEmail": "",
+    "availablePlaceholders": {
+        "sales_order_no": "sale_order_code"
+    },
+    "fileName": "DLN.[[sales_order_no]].[[current_company_id]].pdf",
+    "templateSubject": "",
+    "templateBody": ""
+}

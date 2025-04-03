@@ -1,0 +1,237 @@
+<div class="row">
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <form class="form-horizontal no-margin" ng-submit="">
+        <div class="row">
+            <div class="col-lg-5 col-md-5">
+                <div class="form-group">
+                    <div class="col-sm-7">
+                        <div class="input-symbol">
+                            <input type="text" ng-model="Serachkeyword" placeholder="Code, Description"
+                                   class="form-control"/>
+                            <!-- <input type="submit"  style="display:none"   />-->
+                            <span id="date_msg_4"> <i class="fa fa-search"></i></span></div>
+                    </div>
+                    <!--<a id="prompt" ng-click="getItem()" class="btn btn_blue margin_bottom margin-right width_80"><i class="fa fa-search fa_display"></i>Search</a>
+
+                    <a id="prompt" ng-click="getItem('all')" class="btn btn_blue margin_bottom width_80"><i class="fa fa-check fa_display"></i>Show All</a> -->
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-7">
+                <div class="row">
+                    <div class="col-lg-12"><a ng-if="allowadd_charts_of_account" id="prompt"
+                                              ng-click="show_add_pop(0,0,0,0,0,0,0)"
+                                              class="btn btn_add pull-right "><i class="fa fa-plus fa_display"></i> Add
+                        New</a></div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-lg-12 col-md-12" >
+            <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+                <div class="">{{title}}</div>
+                <div class="" style="  overflow-y: scroll;    max-height: 500px;">
+                    <div ng-show="show_list">
+                        <!--    View    permision for Company User /superadmin -->
+                        <table class="table table-condensed table-striped table-hover table-bordered"
+                               id="data-table" ng-table="table.tableParams5" show-filter="true"
+                               ng-if="allowview_charts_of_account==1">
+                            <thead>
+                            <tr>
+                                <th>G/L Code</th>
+                                <th>Description</th>
+                                <th>VAT Rate</th>
+                                <th>Net Change</th>
+                                <th>Date Balance</th>
+                                <th> Balance</th>
+                                <th> Total</th>
+                                <!-- <th    style="width: 11%;">Action</th>-->
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!--     ng-click=
+            "show_add_pop(formFields.category_id,formFields.sub_cat_id,0,0,0,0,formFields.id)"><span ng-if="formFields.name != ''"-->
+                            <!-- | orderBy:'number':false-->
+                            <!--   | filter:filter | orderBy:sort:reverse    track by $index   | orderBy:'number':true  -->
+
+                            <tr ng-repeat="formFields in account_list  | filter:Serachkeyword">
+                                <td><span ng-if="formFields.code != ''"><strong>{{formFields.code}}</strong></span>
+                                    <span ng-if="formFields.number != ''">{{formFields.number}}</span></td>
+                                <td ng-click=
+                                            "show_history(formFields.id)"><span ng-if="formFields.name != ''"> <strong>
+                                    &nbsp;&nbsp;&nbsp;{{formFields.name}}</strong></span> <span
+                                        ng-if="formFields.desription != ''"> <span
+                                        ng-if="formFields.account_type == '2' "><strong style="font-style:italic;">{{formFields.description}} </strong></span> <span
+                                        ng-if="formFields.account_type == '0' "> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{formFields.description}} </span> </span>
+                                    <!--|  {{   total_sub	= 	formFields.net_change   } } number:decimal_range-->
+                                    <!--  {{total()}}--></td>
+                                <td> {{formFields.VAT_Rate}}</td>
+                                <td><span ng-if="formFields.net_change != '0.00' ">{{formFields.net_change}} </span>
+                                </td>
+                                <td><span ng-if="formFields.date_balance != '0.00' ">{{formFields.date_balance}} </span>
+                                </td>
+                                <td><span ng-if="formFields.balance != '0.00' ">{{formFields.balance}} </span></td>
+                                <td><span
+                                        ng-if="formFields.account_type != '0' "><strong>{{formFields.total_range}}</strong> </span>
+                                </td>
+                                <td ng-show="columns.length > 0" class="active-listing">
+                                    <!--   Edit    permision for Company User /superadmin -->
+                                    <a title="Edit"
+                                       ng-class="{'dont-click':allowedit_charts_of_account==0}"
+                                       ng-click=
+                                               "show_history(formFields.id)"
+                                       class="tooltips_clss btn"> <i class="fa fa-edit"> </i></a>
+
+                                    <!--    Delete   permision for Company User /superadmin -->
+                                    <a title="Delete" ng-if="allowdelete_charts_of_account==1"
+                                       ng-click="delete(rec.id,$index,record_data)"
+                                       class="tooltips_clss btn"><i class="fa fa-times"> </i></a></td>
+                                <!--   parent_id,cid,one,scd,trd,level,record_id,
+                                <span ng-if="formFields.level==55">
+
+                                <a title="Add"
+              ng-click=
+              "show_add_pop(formFields.parent_id,formFields.id,0,0,0,0,0)"
+              class="tooltips_clss btn "><i class="fa fa-plus"> </i></a> </span>
+
+              <span ng-if="formFields.level==0">
+                                <a title="Add"
+              ng-click=
+              "show_add_pop(formFields.category_id,formFields.sub_cat_id,0,0,0,0,0)"
+              class="tooltips_clss btn "><i class="fa fa-plus"> </i></a> <a
+              ng-click= "show_add_pop(formFields.category_id,formFields.sub_cat_id,formFields.parent_id,0,0,0,formFields.id)"
+              class="tooltips_clss btn "  > &nbsp; <i class="fa fa-edit"></i> </a>
+
+
+               <a title="Delete" ng-click="delete(formFields.id)"
+              class="tooltips_clss btn "><i class="fa fa-times"> </i></a> </span>
+
+               <span ng-if="formFields.level==1">
+                  <a title="Edit"
+              ng-click=
+              "show_add_pop(formFields.category_id,formFields.sub_cat_id,formFields.level_one,0,0,1,0)"
+              class="tooltips_clss btn "><i class="fa fa-plus"> </i></a> <a
+              ng-click= "show_add_pop(formFields.category_id,formFields.sub_cat_id,formFields.level_one,0,0,1,formFields.id)"
+              class="tooltips_clss btn "  > &nbsp; <i class="fa fa-edit"></i> </a>
+
+               <a title="Delete" ng-click="delete(formFields.id)"
+              class="tooltips_clss btn "><i class="fa fa-times"> </i></a> </span> <span ng-if="formFields.level==2">
+
+              <a   title="Edit"
+              ng-click= "show_add_pop(formFields.category_id,formFields.sub_cat_id,formFields.level_one,2,0,formFields.level,formFields.id)"
+              class="tooltips_clss btn "  > &nbsp; <i class="fa fa-edit"></i> </a>
+
+               <a title="Delete" ng-click="delete(formFields.id)"
+              class="tooltips_clss btn "><i class="fa fa-times"> </i></a> </span></td>-->
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ng-show="show_tree">
+                        <table ng-table="table.tableParams5"
+                               class="table table-condensed table-striped table-hover table-bordered" id="data-table"
+                               style="border: none !important;">
+                            <thead>
+                            <tr>
+                                <th style="border: none !important;width: 78%;"></th>
+                                <th style="border: none !important;">VAT Rate</th>
+                                <th style="border: none !important;">Net change</th>
+                                <th style="border: none !important;">Date Balance</th>
+                                <th style="border: none !important;"> Balance</th>
+                            </tr>
+                            </thead>
+                        </table>
+                        <!--   collapse out  or collapse in is used for + and -     -->
+                        <div class="tree" ng-init="counter_parent = 0">
+                            <!--	Category -->
+                            <div ng-repeat="formFields in category_list track by $index">
+                                <div class="tree-item "><i class="fa fa-plus pls_mins_sign "
+                                                           id="pls_mins_sign_{{formFields.name}}_{{formFields.id}}"
+                                                           href=".demo_{{formFields.name}}_{{formFields.id}}"
+                                                           data-toggle="collapse"></i> &nbsp; {{formFields.name}}
+                                </div>
+
+                                <!-- Sub category -->
+                                <div id="" class="collapse in demo_{{formFields.name}}_{{formFields.id}}"
+                                     style="padding-left: 10px;"
+                                     ng-repeat="formSelData in category_sub"
+                                     ng-if="formSelData.parent_id == formFields.id">
+                                    <div class="tree-item"><i class="fa fa-plus pls_mins_sign_second"
+                                                              href=".demo_{{formSelData.parent_id+'_'+formSelData.id}}"
+                                                              data-toggle="collapse"></i> &nbsp; {{formSelData.name}}
+                                    </div>
+
+                                    <!-- Level One-->
+
+                                    <div id="" class="collapse in demo_{{formSelData.parent_id+'_'+formSelData.id}}"
+                                         style="padding-left: 11px;"
+                                         ng-repeat="formSelone in category_list_data_one"
+                                         ng-if="formSelone.parent_id == formSelData.id">
+                                        <div class="tree-item "><i class="fa fa-plus pls_mins_sign_third"
+                                                                   href=".demo_{{formSelone.parent_id+'_'+formSelData.id+'_'+formSelone.parent_id}}"
+                                                                   data-toggle="collapse"></i> <a
+                                                ng-click="show_add_pop(formFields.id,formSelData.id,formSelone.id,0,2,formSelone.id,'')">
+                                            &nbsp; {{formSelone.name}} </a> <span ng-if="formSelone.VAT_Rate!=''"
+                                                                                  class="pull-right"> <span> {{formSelone.VAT_Rate}}  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                      
+                      <!-- <span ng-if="formSelone.net_change != '0.00' " >
+                   {{formSelone.net_change}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                   <span ng-if="formSelone.date_balance != '0.00' " >
+                   {{formSelone.date_balance}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                   <span ng-if="formSelone.balance != '0.00' " >
+                   {{formSelone.balance}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+
+                   --> 
+                      
+                      <span ng-if="formSelone.net_change!='0' "> {{formSelone.net_change}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <span
+                                                    ng-if="formSelone.date_balance!='0' "> {{formSelone.date_balance}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <span
+                                                    ng-if="formSelone.balance!='0' "> {{formSelone.balance}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> </span>
+                                        </div>
+
+                                        <!-- Level Two-->
+                                        <div id=""
+                                             class="collapse in demo_{{formSelone.parent_id+'_'+formSelData.id+'_'+formSelone.parent_id}}"
+                                             style="padding-left: 11px;"
+                                             ng-repeat="formSec in category_list_data_second"
+                                             ng-if="formSec.parent_id == formSelone.id">
+                                            <div class="tree-item"><i class="fa fa-plus pls_mins_sign_fourth"
+                                                                      href=".demo_{{formSec.parent_id+'_'+formSelone.id+'_'+formSelone.id+'_'+formSec.id}}"
+                                                                      data-toggle="collapse"></i> &nbsp; <a> &nbsp;
+                                                {{formSec.name}} </a> <span ng-if="formSec.VAT_Rate!=''"
+                                                                            class="pull-right"> <span> {{formSec.VAT_Rate}}  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <span
+                                                    ng-if="formSec.net_change!='0' "> {{formSec.net_change}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <span
+                                                    ng-if="formSec.date_balance!='0' "> {{formSec.date_balance}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <span
+                                                    ng-if="formSec.balance!='0' "> {{formSec.balance}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> </span>
+                                            </div>
+
+                                            <!-- Level Three-->
+                                            <div id=""
+                                                 class="collapse in demo_{{formSec.parent_id+'_'+formSelone.id+'_'+formSelone.id+'_'+formSec.id}}"
+                                                 style="padding-left: 11px;"
+                                                 ng-repeat="formthird in category_list_data_third"
+                                                 ng-if="formthird.parent_id == formSec.id">
+                                                <div class="tree-item"> &nbsp; <a> &nbsp; {{formthird.name}} </a> <span
+                                                        ng-if="formthird.VAT_Rate!=''" class="pull-right"> <span> {{formthird.VAT_Rate}}  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <span
+                                                        ng-if="formthird.net_change!='0' "> {{formthird.net_change}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <span
+                                                        ng-if="formthird.date_balance!='0' "> {{formthird.date_balance}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <span
+                                                        ng-if="formthird.balance!='0' "> {{formthird.balance}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include="'app/views/general_ledger/accounts_history.html'"></div>
+    <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form=""
+          novalidate="" ng-submit="addGeneral(formData)">
+        <div ng-include="'app/views/general_ledger/add_record_pop.html'"></div>
+    </form>
+</div>

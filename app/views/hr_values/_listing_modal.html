@@ -1,0 +1,42 @@
+<style type="text/css">
+    .ngdialog-content{padding: 0px !important;}
+</style>
+<div class="modal-header"><h4 class="modal-title">Line Manager</h4></div>
+<div class="clearfix"></div><br/>
+<div class="row">
+
+<div class="col-md-12">
+      <!-- START panel-->
+
+      <div class="panel panel-default">
+<!--         <div class="panel-heading">{{title}}</div>-->
+
+         <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;">
+            <!-- START table-responsive-->
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                     <tr class="bg-col">
+                        <th ng-repeat="column in columns" ng-hide="column.field == 'id'">{{column.title}}</th>
+                     </tr>
+                  </thead>
+                  <tbody class="courser table-body">
+                     <tr ng-repeat="rec in record" ng-click="confirm(rec)">
+                        <td ng-repeat="column in columns" ng-hide="column.field == 'id'">{{rec[column.field]}}</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <!-- END table-responsive-->
+         </div>
+
+      </div>
+
+      <!-- END panel-->
+   </div>
+
+</div>
+
+<div class="modal-footer">
+        <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+</div>

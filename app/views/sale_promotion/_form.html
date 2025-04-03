@@ -1,0 +1,309 @@
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<!-- 
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+ -->
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="widget animated fadeIn" style="    margin-top: -13px;">
+            <div class="widget-body nobg-widget-body">
+
+                <div class="row">
+                    <form autocomplete="off"
+                          class="form-horizontal no-margin"
+                          role="form"
+                          ng-submit="add_sale_promo(rec)"
+                          name="addForm"
+                          validate-form=""
+                          novalidate="">
+                        <div class="col-md-12 col-md-12">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Promotion No.
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <!-- <input type="text" ng-model="rec.promotion_code" class="form-control" ng-readonly="check_readonly" required="1"> -->
+                                        <input ng-readonly="product_type"
+                                               type="text"
+                                               ng-readonly="1"
+                                               ng-model="rec.promotion_code"
+                                               class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Promotion Name
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <input type="text"
+                                               ng-model="rec.promotion_name"
+                                               class="form-control"
+                                               ng-readonly="check_readonly"
+                                               required="1">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Strategy Type
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <ui-select ng-model="rec.strategy_type"
+                                                   ng-disabled="rec.id > 0 || check_readonly || 1"
+                                                   required>
+                                            <ui-select-match placeholder="Select Strategy Type">
+                                                {{$select.selected.name}}</ui-select-match>
+                                            <ui-select-choices
+                                                               repeat="opt in arr_strategy_type | filter: $select.search">
+                                                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Strategy
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <ui-select ng-model="rec.strategy"
+                                                   ng-disabled="rec.id > 0  || check_readonly || 1"
+                                                   required>
+                                            <ui-select-match placeholder="Select Strategy"
+                                                             title="{{$select.selected.name}}">{{$select.selected.name}}
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="opt in arr_strategy | filter: $select.search">
+                                                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="  control-label col-md-4 "> Discount Type
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3">
+                                        <select ng-disabled="check_readonly"
+                                                required
+                                                ng-change="onChangeDiscount()"
+                                                ng-model="rec.disc_type"
+                                                ng-options="opt as opt.name for opt in list_type"
+                                                id="type_1"
+                                                class="form-control">
+                                            <option style="display:none"></option>
+                                        </select>
+                                    </div>
+
+                                    <label class=" control-label col-md-2"> Discount
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-3">
+                                        <div class="input-symbol">
+                                            <input ng-readonly="check_readonly"
+                                                   type="number"
+                                                   step="any"
+                                                   required
+                                                   placeholder="0"
+                                                   ng-model="rec.discount"
+                                                   id="discount_value_1"
+                                                   min="0"
+                                                   max="999999999"
+                                                   class="form-control input_text"
+                                                   data-parsley-trigger="keyup"
+                                                   data-parsley-minlength="1"
+                                                   ng-model="rec.discount"
+                                                   id="discount_value_1"
+                                                   class="form-control input_text"
+                                                   data-parsley-minlength-message="only Decimal"
+                                                   data-parsley-type="number"
+                                                   data-parsley-type-message="Only Decimal"
+                                                   ng-change="onChangeDiscount()">
+                                            <span ng-if="rec.disc_type.id == 1">&#37;</span>
+                                            <span ng-if="rec.disc_type.id == 2">{{rec.currency.code}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Currency
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <select ng-model="rec.currency"
+                                                ng-options="opt as opt.code+' - '+opt.name for opt in arr_currency"
+                                                class="form-control"
+                                                ng-disabled="check_readonly"
+                                                required> </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Date
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-4 padr6">
+                                        <div class="from_date">
+                                            <div class="from_date_title">
+                                                Start:
+                                            </div>
+                                            <input jqdatepicker
+                                                   class="2date-picker form-control"
+                                                   id="ck12_sdate"
+                                                   ng-model="rec.start_date"
+                                                   ng-change="testdate_by_id('ck12_sdate','ck12_edate','date_msg_start_sale_promotion')"
+                                                   required
+                                                   readonly
+                                                   ng-disabled="check_readonly"
+                                                   ng-class="{'pickdate':!check_readonly}">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback"
+                                                  aria-hidden="true"
+                                                  style="right: -23px;"></span>
+                                        </div>
+                                        <span id="date_msg_start_sale_promotion"
+                                              style="color:#F00; display: none;">Ending Date is earlier then Start
+                                            Date</span>
+
+                                    </div>
+                                    <div class="col-md-4 padl6">
+                                        <div class="from_date">
+                                            <div class="from_date_title"
+                                                 style="left: 16px;">
+                                                End:
+                                            </div>
+                                            <input jqdatepicker
+                                                   class="2date-picker form-control"
+                                                   id="ck12_edate"
+                                                   ng-model="rec.end_date"
+                                                   ng-change="testdate_by_id('ck12_sdate','ck12_edate','date_msg_end_sale_promotion')"
+                                                   required
+                                                   readonly
+                                                   ng-class="{'pickdate':!check_readonly}"
+                                                   ng-disabled="check_readonly">
+                                            <span class="fa fa-calendar  new_ca  form-control-feedback"
+                                                  aria-hidden="true"></span>
+                                        </div>
+                                        <span id="date_msg_end_sale_promotion"
+                                              style="color:#F00; display: none;">Ending Date is earlier then Start
+                                            Date</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5 col-md-offset-2">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Items Promotion On
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <div class="panel-info pi2" style="    height: 44px;" ng-click="clearAndSearchItems(1)"
+                                             ng-class="{'dont-click readonly':check_readonly}">
+                                            <div class="panel-body"
+                                                 ng-class="{'max-height':selectedProducts.length>3}">
+                                                <span ng-repeat="prod in selectedProducts track by $index">
+                                                    <span ng-if="$index == 0">{{prod.description}} ({{prod.product_code}})</span>
+                                                    <span ng-if="$index > 0">,&nbsp;{{prod.description}} ({{prod.product_code}})</span>
+                                                </span>
+                                                <aside></aside>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Customer Promotion On
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        <div class="panel-info pi2" ng-click="clearFilterAndSelectCustomers(1)"
+                                             ng-class="{'dont-click readonly':check_readonly}" style="    height: 44px;">
+                                            <div class="panel-body"
+                                                 ng-class="{'max-height':selectedCustomers.length>2}">
+                                                <span ng-repeat="cust in selectedCustomers track by $index">
+                                                    <span ng-if="$index == 0">{{cust.name}} ({{cust.customer_code}})</span>
+                                                    <span ng-if="$index > 0">,&nbsp;{{cust.name}} ({{cust.customer_code}})</span>
+                                                </span>
+                                                <aside></aside>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">G/L No.
+                                        <span class="required">*</span>
+                                    </label>
+                                    <x-flexi-select x-flexi-select-title="'Select a G/L No.'"
+                                                    x-flexi-select-modal-id="'GLSelectModal'"
+                                                    x-flexi-select-output='gl_data'
+                                                    x-flexi-select-data="gl_accounts"
+                                                    x-flexi-select-readonly="check_readonly"
+                                                    x-flexi-select-show-cols="promotionShowCols"
+                                                    x-flexi-callback-function="assignCodes(param)"
+                                                    x-flexi-select-obj-return
+                                                    x-flexi-radio>
+                                    </x-flexi-select>
+                                    <!-- <label class="col-md-4 control-label ">G/L No.
+                                    </label>
+
+                                    <div class="col-md-8">
+
+                                        <aside style="position: relative;"></aside>
+                                        <div class="input-symbol">
+                                            <input type="text" title="{{formData.promotion_gl_codes}}" ng-model="rec.display_promotion_gl_code" class="form-control"
+                                                ng-disabled="check_readonly" ng-click="getGL_account_code('promotion_gl_id')"
+                                                readonly ng-class="{'pickdate':!check_readonly}" />
+                                            <input type="hidden" ng-model="rec.promotion_gl_id" class="form-control" />
+                                            <span>
+                                                <i class="fa fa-external-link"></i>
+                                            </span>
+                                        </div>
+                                    </div> -->
+                                </div>
+
+                                <div ng-include="'app/views/product_values/_item_gl_account_modal.html'"></div>
+
+                            </div>
+
+                            <div>
+                                <div class="col-md-12">
+                                    <div class="pull-right">
+                                        <button class="btn btn-submit  date_block"
+                                                ng-show="!check_readonly"
+                                                ng-class="{'whirl line back-and-forth dont-click':isSubmitting}"
+                                                type="submit">Save</button>
+                                        <button class="btn btn-edit"
+                                                type="button"
+                                                ng-click="showEditForm();"
+                                                ng-if="allowedit_sale_promotion_module"
+                                                ng-show="check_readonly">Edit </button>
+
+                                        <button class="btn btn-cancel width_80"
+                                                type="button"
+                                                ui-sref="{{btnCancelUrl}}">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-include="'app/views/_listing_modal.html'"></div>
+<div ng-include="'app/views/_listing_modal_2.html'"></div>
+
+<div ng-include="'app/views/sale_promotion/_listing_prod_modal.html'"></div>
+<div ng-include="'app/views/sale_promotion/_customer_popup.html'"></div>

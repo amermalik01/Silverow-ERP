@@ -1,0 +1,270 @@
+<style>
+    #no-display {
+        display: none
+    }
+
+    tbody.addclasshere tr td {
+        padding: 9px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+        width: 22px;
+    }
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: -9px;
+        right: -1px;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        /* background: white; */
+        cursor: inherit;
+        display: block;
+        width: 10px;
+    }
+</style>
+<div ng-class="{'whirl no-overlay':showLoader1}"></div>
+<div class="row expenses_font">
+    <div class="col-md-12 col-md-12">
+        <div class="whitebg1">
+            <div>
+                <div id="dt_example" class="example_alt_pagination">
+                    
+                        <div class="row">
+                                <div class="col-md-3">
+                                        <div class="input-symbol">
+                                            <input type="text" Placeholder="Search" class="form-control" id="searchKeyword1" ng-model="searchKeyword1">
+                                            <span id="date_msg_4"><i class="fa fa-search"></i></span>
+                                        </div>
+                                      </div>
+                            <div class="col-md-9">
+                                <button type="button" ng-click="addNewChoice_exp()" class="btn btn_add pull-right" ng-if="(expenseForm.expense_status.id <= 0 || expenseForm.expense_status.id == 3) && (allowaddhr_expenses==1 || userId == formData.id)" ng-disabled="check_expense_form_readonly"> Add
+                                </button>
+                            </div>
+                        </div>
+                        <table class="table table-condensed table-striped table-bordered pull-left">
+                            <thead>
+                            <tr>
+                                <th> Category</th>
+                                <th> Description</th>
+                                <th> Currency</th>
+                                <th class="text-right"> Amount</th>
+                                <th> Exchange Rate</th>
+                                <th> Comments</th>
+                                <th class="text-center"> Attachment</th>
+                                <th class="text-right"> Total Amount <span>({{defaultCurrencyCode}})</span></th>
+                                <th> Action</th>
+                            </tr>
+                            </thead>
+                            <tbody class="addclasshere">
+                            <!--ng-repeat="formDataExpense in  resultValue=(users)" -->
+                            <tr data-ng-repeat="formDataExpense in choices | limitedFilter:searchKeyword1:['catype', 'crtype', 'comments', 'exchange_description', 'total_sub', 'categoryName', 'amount', 'exchange_rate', 'currencyCode']">
+                                <td style="width:10%">
+                                    <div class="replace_reload {{'replace_button_' + formDataExpense.id}}">
+                                        <select ng-model="formDataExpense.category"  ng-disabled="check_expense_form_readonly"
+                                                class="form-control  {{'new_' + formDataExpense.id}}" id="category{{$index}}" >
+                                            <option value="" disabled selected>Select</option>
+                                            <option ng-repeat="value in category_expense"
+                                                    ng-selected="formDataExpense.category == value.id"
+                                                    value="{{value.id}}">{{value.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td style="width:24%" title="{{formDataExpense.exchange_description}}">
+                                    <div class="{{'replace_button_' + formDataExpense.id}}">
+                                        <input id="exchange_description{{$index}}" type="text" ng-disabled="check_expense_form_readonly"
+                                               ng-model="formDataExpense.exchange_description"
+                                               class="form-control" maxlength="40"/>
+                                    </div>
+                                </td>
+                                <td style="width:6%">
+                                    <div class="{{'replace_button_' + formDataExpense.id}}">
+
+                                        <!--  ng-options="opt as opt.name for opt in currency_list"-->
+
+                                        <!-- || formDataExpense.currency == {{defaultCurrency}}-->
+                                        <!--{{formDataExpense.currency}}-->
+                                        <!--{{currency_list}}-->
+                                       
+                                        <select ng-model="formDataExpense.currency" ng-if="formDataExpense.id > 0"
+                                                class="form-control  {{'new_' + formDataExpense.id}}"
+                                                id="currency{{$index}}" ng-change="change_exchange_rate({{$index}})" ng-disabled="check_expense_form_readonly">
+                                            <!-- <option value="">--- Select an option ---</option> -->
+                                            <option ng-repeat="value in currency_list"
+                                                    ng-selected="formDataExpense.currency == value.id"
+                                                    value="{{value.id}}">{{value.code}}<!--{{value.name}}-->
+                                            </option>
+                                        </select>
+                                        <select ng-model="formDataExpense.currency" ng-if="!(formDataExpense.id > 0)"
+                                                class="form-control  {{'new_' + formDataExpense.id}}"
+                                                id="currency{{$index}}" ng-change="change_exchange_rate({{$index}})" ng-disabled="check_expense_form_readonly">
+                                            <!-- <option value="">--- Select an option ---</option> -->
+                                            <option ng-repeat="value in currency_list"
+                                                    ng-selected="{{defaultCurrency}} == value.id"
+                                                    value="{{value.id}}">{{value.code}}<!--{{value.name}}-->
+                                            </option>
+                                        </select> 
+                                    </div>
+                                </td> 
+                                <td style="width:12%" class="text-right">
+                                    <div class="{{'replace_button_' + formDataExpense.id}}">
+                                          <input type="number" placeholder="0" value="0"
+                                               onkeydown="javascript: return (event.keyCode == 16 || event.keyCode == 69 || event.keyCode == 107  || event.keyCode == 109 || event.keyCode == 187 || event.keyCode == 189)? false : true" 
+                                               id="amount{{$index}}"
+                                               ng-if="!check_expense_form_readonly"
+                                               ng-disabled="check_expense_form_readonly"
+                                               step="any" data-parsley-trigger="keyup"
+                                               data-parsley-minlength="1" ng-model="formDataExpense.amount"
+                                               class="form-control text-right {{'new_' + formDataExpense.id}}"
+                                               data-parsley-minlength-message="only Decimal" data-parsley-type="number"
+                                               data-parsley-type-message="only Decimal" required>  
+
+                                        <div class="readonlydiv form-control text-right" ng-if="check_expense_form_readonly">{{formDataExpense.amount | currency:""}}</div>
+
+                                    </div>
+                                    <!-- ng-keydown="cal_single_amount({{$index}})"-->
+                                </td>
+                                <td style="width:5%">
+                                    <div class="{{'replace_button_' + formDataExpense.id}}"
+                                         ng-if="formDataExpense.currency">
+                                        <input type="number" placeholder="0" min="1" step="any"
+                                               onkeydown="javascript: return (event.keyCode == 16 || event.keyCode == 69 || event.keyCode == 107  || event.keyCode == 109 || event.keyCode == 187 || event.keyCode == 189)? false : true" 
+                                               ng-disabled="formDataExpense.currency == defaultCurrency || check_expense_form_readonly"
+                                               data-parsley-trigger="keyup"
+                                               data-parsley-minlength="1" ng-model="formDataExpense.exchange_rate"
+                                               id="exchange_rate{{$index}}"
+                                               class="form-control input_text {{'new_' + formDataExpense.id}}"
+                                               data-parsley-minlength-message="only Decimal" data-parsley-type="number"
+                                               data-parsley-type-message="only Decimal" required>
+                                    </div>
+                                    <div class="{{'replace_button_' + formDataExpense.id}}"
+                                         ng-if="!formDataExpense.currency">
+                                         <!-- value="{{ formDataExpense.exchange_rate= 1 }}" -->
+                                        <input type="number"  min="1"
+                                               step="any"
+                                               onkeydown="javascript: return (event.keyCode == 16 || event.keyCode == 69 || event.keyCode == 107  || event.keyCode == 109 || event.keyCode == 187 || event.keyCode == 189)? false : true" 
+                                               ng-disabled="formDataExpense.currency == defaultCurrency"
+                                               data-parsley-trigger="keyup"
+                                               data-parsley-minlength="1" ng-model="formDataExpense.exchange_rate"
+                                               id="exchange_rate{{$index}}"
+                                               class="form-control input_text {{'new_' + formDataExpense.id}}"
+                                               data-parsley-minlength-message="only Decimal" data-parsley-type="number"
+                                               data-parsley-type-message="only Decimal" required>
+                                    </div>
+                                </td>
+                                <td style="width:21%" title="{{formDataExpense.comments}}">
+                                    <div class="{{'replace_button_' + formDataExpense.id}}">
+                                        <input maxlength="40" type="text" id="comments{{$index}}" ng-model="formDataExpense.comments" ng-disabled="check_expense_form_readonly" 
+                                               class="form-control {{'new_' + formDataExpense.id}}"><!-- value="{{formDataExpense.exchange_rate}}"-->
+                                    </div>
+                                </td>
+
+                                <td style="    width: 6%;" class="text-center">
+                                    <span id="no-display{{$index}}" class="{{'new_button_' + formDataExpense.id}}"></span>
+
+                                    <div class="{{'replace_button_' + formDataExpense.id}}" style="    display: inline-block;">
+                                        <div>
+                                            <div ng-controller="ExpenseFileUploadController" > <!-- ng-if="!formData.emp_picture" -->
+                                                <div class="btn-file" title="Attach">
+                                                        <div ng-if="formDataExpense.exp_image == ''">
+                                                                <i class="fa fa-paperclip" aria-hidden="true"
+                                                                   style="    font-size: 10px;
+                                                                   padding: 3px 3.3px;
+                                                                   text-align: center;
+                                                                   border: 1px solid #d4d4d4;
+                                                                   border-radius: 2px;
+                                                                   color: gray;"></i>
+                                                                <input type="file" ngf-select="uploadFiles($files, $invalidFiles, formDataExpense, {id: formData.id, known_as: formData.user_code + ' - ' + formData.known_as})"
+                                                                    name="file" multiple="" accept=
+                                                                    ".xlsx, .xls, .ppt, .pptx, .doc, .docx, .pdf,.txt,.jpg,.jpeg,.png,.gif,.tiff" class="upload"
+                                                                     ng-disabled="check_expense_form_readonly"
+                                                                     ngf-max-size="1MB"/>
+                                                        </div>
+                                                </div>
+                                                        <div ng-if="formDataExpense.exp_image">
+                                                            <a target="_blank" title="View Attachment" 
+                                                            href="{{formDataExpense.exp_image}}" download>
+                                                                <i class="fa fa-eye" aria-hidden="true" ng-disabled="check_expense_form_readonly"> </i>
+                                                            </a>
+                                                        </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+
+                                <td style="width:12%">
+                                    <div class="input-symbol">
+                                            <input type="text" value="{{ formDataExpense.total_sub | number:2 }} "
+                                            class="form-control text-right" readonly="">
+                                    </div>
+                                    <!--{{(formDataExpense.amount *  formDataExpense.exchange_rate)>1? defaultCurrencyCode : ''}}-->
+                                    <!-- {{defaultCurrencyCode}}-->
+                                    <!---->
+                                    <!--   ng-change="net_total_amount()" -->
+                                    <!--  <td>{{formDataExpense.total_sub = row_amount(formDataExpense) | number:2}}&nbsp{{defaultCurrencyCode}}</td>-->
+                                </td>
+
+                                <td style="width: 2%;">
+                                    <!-- <input type="text"   ng-model="formDataExpense.sort_id" />   -->
+                                    <input type="hidden" ng-model="formData.expense_id"/>
+                                    <input type="hidden" ng-model="formDataExpense.id"/>
+                                    <a title="Delete"
+                                       ng-click="deletesubexpenses(formDataExpense.id,$index,choices,formDataExpense.amount)"
+                                       ng-disabled="check_expense_form_readonly"
+                                       class="tooltips_clss btn"><i class="fa fa-times"> </i></a></td>
+                            </tr>
+                            <tr style="background-color: #f9f9f9;border-bottom: 0;">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="2" class="text-right"><b style="color: black;">Grand Total</b></td>
+                                <td style="color: black;" class="text-right">{{net_total_amount() | number:decimal_range}} {{defaultCurrencyCode}}</td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+            <div class="vertical_space"></div>
+            <div class="row">
+                <div class="col-md-12" style="    margin-top: 17px;">
+
+
+                    <div class="pull-right">
+                        <button class="btn btn-delete" type="button" ng-click="deleteexpenses(expense_id)" ng-if="!check_expense_form_readonly && allowdeletehr_expenses">Delete
+                        </button>
+                        <button class="btn btn-default2" ng-click="GetApprovalStatus(expense_id, 5)" ng-if="check_expense_form_readonly && allowconverthr_expenses && expense_approval_req > 0 && 
+                                        ((arr_personal_expense != undefined && arr_personal_expense[0].id > 0) || 
+                                            (arr_company_expense != undefined && arr_company_expense[0].id > 0) || 
+                                            (choices != undefined && choices[0].id > 0))">Approval History</button>
+                        <button class="btn btn-default" type="button" ng-click="ConvertToPurchaseOrder(expense_id)" 
+                                ng-if="expenseForm.status == 1 && check_expense_form_readonly && allowconverthr_expenses && ((arr_personal_expense != undefined && arr_personal_expense[0].pid > 0) || (arr_company_expense != undefined && arr_company_expense[0].id
+                                > 0) || (choices != undefined && choices[0].id > 0))">Convert To Purchase Order
+                        </button>
+                        <button type="submit" ng-click="submitnew_all(formDataExpense)" class="btn btn-submit" ng-if="expenseForm.status == 1 && !check_expense_form_readonly && !expense_status_readonly"><i
+                                class="fa fa-check fa_display"></i> Save
+                        </button>
+                        <button class="btn btn-edit" type="button" ng-click="showExpenseEditForm()" ng-if="expenseForm.status == 1 && !expense_status_readonly && check_expense_form_readonly && (allowedithr_expenses==1 || userId == formData.id) "> Edit
+                        </button>
+                            <button type="button" class="btn btn-cancel" ng-click="getexpenses()"><i
+                                    class="fa fa-undo fa_display"></i> Cancel
+                            </button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

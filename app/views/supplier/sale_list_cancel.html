@@ -1,0 +1,57 @@
+
+<div class="modal fade" id="model_btn_cs"  >
+  <div class="modal-dialog "  style=" width:65% !important"  ><!--modal-lg-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Edit </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row"  >
+          <div class="col-lg-12">
+            <div class="form-group"><a id="prompt"  class="btn btn-info btn_blue margin_bottom"><i class="fa fa-search"></i>Search</a>
+              <div class="col-sm-7">
+                <input type="text" Placeholder="Search" class="form-control ng-valid ng-dirty" ng-model="searchKeyword">
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="panel panel-default" style=" margin-bottom:0px !important;"  >
+              <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;">
+                <div class="table-responsive">
+                  <input type="hidden"   ng-model="formData_customer.update_id"  />
+                  <input type="hidden"   ng-model="formData_customer.coverage_area2"  />
+                  <input type="hidden"   ng-model="formData_customer.coverage_area_id2"    />
+                  <input type="hidden" ng-model="formData_customer.coverage_price2"   />
+                  <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                      <tr class="bg-col">
+                        <th  > <input type="checkbox"  	 ng-click="checkAll_cancel()"
+				ng-model="selectedAll"    ng-true-value="'true'" ng-false-value="'false'"/></th>
+                        <th ng-repeat="column in columnss" 
+                         ng-if="column.title != 'Id' && column.title != 'Checked'" 
+                         
+                         >{{column.title}}</th>
+                      </tr>
+                    </thead>
+                    <tbody class="courser table-body">
+                      <tr     ng-repeat="item in selection_record  | filter: searchKeyword  "  >
+                        <td ><input type="checkbox"  ng-model="item.Selected" 
+                  	   id="selected_{{item.id}}" class="check" /></td>
+                        <td ng-repeat="column in columnss"   ng-hide="column.title == 'Id' || column.title == 'Checked'">{{item[column.field]}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer"> <span   class="pull-left"> <span   id="from_selected" style=" display:none;">{{selected_count}} </span> <span  id="from_ch_selected" style=" display:none;">{{calculateCheckedEdit()}}</span> customers selected </span>
+        <button class="btn btn-info btn_blue" type="submit"  ><i class="fa fa-check"></i> Edit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

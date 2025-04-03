@@ -1,0 +1,25 @@
+{
+    "tblMeta": {
+        "autoAdjust": true
+    },
+    "colMeta": [
+        {
+            "title": "Supplier No.",
+            "field_name": "supplier_code",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "100",
+            "data_type": "string"
+        },
+        {
+            "title": "Name",
+            "field_name": "name",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "180",
+            "data_type": "string"
+        }
+    ]
+}

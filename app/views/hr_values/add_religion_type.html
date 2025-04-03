@@ -1,0 +1,39 @@
+
+<div class="modal fade" id="religion_type"   >
+  <div class="modal-dialog"   >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close"ng-click="reload_popup(3,'religion_type')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add Religion </h4>
+      </div>
+      <div class="modal-body centerwidth">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="widget">
+              <div class="widget-body">
+                <div class="row">
+                  <div class="col-md-12 col-md-12">
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label "> Name </label>
+                      <div class="col-sm-7">
+                        <input  ng-readonly="check_sub_readonly" required id="name"  type="text"
+                        ng-model="formData2.name"  class="form-control" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-submit" type="submit" ng-show="!check_hrvalues_readonly">  Save</button>
+        <button class="btn btn_blue width_80" type="button" ng-click="showEditForm()"
+     		ng-show="check_hrvalues_readonly">  Edit</button>
+        <button type="button" class="btn btn-cancel" ng-click="reload_popup(3,'religion_type')" >Cancel</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+</div>

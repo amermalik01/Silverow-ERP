@@ -1,0 +1,12 @@
+	
+    
+    <div   ng-controller="ChatController" class="right-sidebar_chat" ng-init="getadminUser();">
+  <div id="main_container_chat" ng-if="user_admin_data">
+    <ul>
+      <li ng-repeat="bc in user_admin_data" > <a  
+            ng-click="chatWith(bc.name1,currentUser)"> {{bc.name}}</a> </li>
+    </ul>
+  </div>
+</div>
+
+

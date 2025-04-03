@@ -1,0 +1,176 @@
+<!-- <p ng-repeat="(key,val) in config">{{key}}: {{val}}</p>
+
+<p>Send to {{to}}</p> -->
+
+<!-- ng-class="{'dont-click disabled': !pdfReady }"  -->
+<button ng-style="{'display':hideButton?'none':'initial'}"
+        class="btn btn-default"
+        id="{{'emailerBtn'+pageName}}"
+        ng-click="openModal(pageName)">{{buttonTitle.length?buttonTitle:"Send Email"}}</button>
+
+<div id="confirmModal_{{pageName}}"
+     class="modal fade"
+     role="dialog">
+
+    <div class="modal-dialog modal-lg"
+         style="margin-top: 58px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        ng-click="destroyPdfModal();">&times;</button>
+                <h4 class="modal-title">{{modalTitle}}</h4>
+            </div>
+            <div class="modal-body"
+                 style="overflow: hidden;padding-bottom: 15px;max-height: 75vh;overflow: auto;">
+                <div ng-class="{'whirl no-overlay':emailLoader.showEmailLoader || showLoader}"></div>
+                <!--Compose Email START-->
+                <div class="email-area">
+                    <b style="width: 113.64px;">From</b>
+
+                    <div class="email-input form-control readonly">
+                        {{config.senderEmail.username}}
+                        <!-- <input type="text"
+                            ng-model="config.senderEmail.username"
+                            class="form-control"
+                            style="margin-bottom: 5px;
+                                                    width: 94%;"> -->
+                        <!-- <ui-select ng-model="config.senderEmail">
+                            <ui-select-match placeholder="Select Email">{{$select.selected.username}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="opt in fromEmails | filter: $select.search">
+                                <div ng-bind-html="opt.username| highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select> -->
+                        <!-- <select ng-if="fromEmails.length" ng-options="opt in fromEmails" class="form-control">
+                                        <option disabled value="">Select</option>
+                                </select>
+                            <input type="text" ng-model="config.senderEmail" class="form-control" style="margin-bottom: 5px;
+                            width: 94%;">  -->
+                    </div>
+                </div>
+
+                <div ng-show="!internalToArray"
+                     class="email-area">
+                    <b style="width: 113.64px !important;">To <span class="required">*</span></b>
+                    <div class="email-input">
+                        <input type="text"
+                               ng-model="to"
+                               disabled
+                               class="form-control"
+                               placeholder="To : Recipients">
+                    </div>
+                </div>
+
+                <div ng-show="internalToArray"
+                     class="email-area">
+                    <b style="width: 113.64px !important;">To <span class="required">*</span></b>
+                    <div class="email-input">
+                        <ui-select multiple
+                                   tagging="tagTransform"
+                                   tagging-tokens="ENTER|TAB|,|;"
+                                   tagging-label="false"
+                                   ng-model="multipleTo.records">
+                            <ui-select-match placeholder="Select To">{{$item.username}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="opt in internalToArray | filter: $select.search">
+                                <div>
+                                    <span style="font-weight: bold"
+                                          ng-bind-html="opt.type| highlight: $select.search"></span>:
+                                    <span ng-bind-html="opt.username| highlight: $select.search"></span>
+                                </div>
+
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+
+                <div ng-show="internalToArray"
+                     class="email-area">
+                    <b style="width: 113.64px !important;">Cc</b>
+                    <div class="email-input">
+                        <ui-select multiple
+                                   tagging="tagTransform"
+                                   tagging-tokens="ENTER|TAB|,|;"
+                                   tagging-label="false"
+                                   ng-model="multipleCC.records">
+                            <ui-select-match placeholder="Select Cc">{{$item.username}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="opt in internalToArray | filter: $select.search">
+                                <span style="font-weight: bold"
+                                      ng-bind-html="opt.type| highlight: $select.search"></span>:
+                                <span ng-bind-html="opt.username| highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+
+                <div class="email-area">
+                    <b style="width: 113.64px !important;">Subject <span class="required">*</span></b>
+                    <div class="email-input">
+                        <input type="text"
+                               class="form-control"
+                               ng-model="config.templateSubject"
+                               placeholder="Subject">
+                    </div>
+                </div>
+                <div ng-show="pdfReady"
+                     class="attachment_area">
+                    <b style="width: 106.64px;">Attachment(s)</b>
+
+                    <span ng-show="!pdfReady.includes('alpha')">
+                        <a
+                           ng-click="fileAuthentication.getFile({fileName: pdfReady.split('/').pop(), downloadName: pdfReady.split('/').pop().split('.')[1] + '.pdf'})">
+                            {{pdfReady.split('/').pop().split('.')[1] + '.pdf'}}
+                        </a>
+                    </span>
+                    <span ng-show="pdfReady.includes('alpha')">
+                        <a
+                           href="{{pdfReady}}" download>{{config.fileName.split('.')[1] + '.pdf'}}
+                        </a>
+                    </span>
+                </div>
+                <div class="fixSummernote3">
+                    <summernote ng-if="emailSummerNoteConfig"
+                                config="emailSummerNoteConfig"
+                                id="internalEmail"
+                                ng-model="config.templateBody"></summernote>
+                </div>
+                <!-- <div ng-if="!pdfReady"
+                     class="attachment_area animateGlobalClass"
+                     style="background: #f5f5f5 !important;
+                    text-align: center !important;">
+                    <i class="material-icons">&#xE863;</i>
+                </div> -->
+                <!--Compose Email END-->
+
+
+
+            </div>
+            <div class="modal-footer"
+                 style="border-top: 1px solid gainsboro;padding-top: 7px;padding-bottom: 7px;">
+                <div class="pull-left">
+
+                    <!-- <div class="fileUpload btn btn-default2 " style="    margin-right: 6px;">
+                        <span class="fa fa-paperclip"></span>
+                        <input type="file" ngf-select="onFileSelect($files, $invalidFiles)" name="file" multiple="" class="upload">
+                    </div>
+                    <label>
+                        <input type="radio"> Private
+                    </label>
+                    <label>
+                        <input type="radio"> Public
+                    </label> -->
+                </div>
+                <a ng-if="config.templateSubject && config.templateBody" class="btn btn-submit2"
+                   ng-click="sendEmail()">Send</a>
+                <button type="button"
+                        class="btn btn-cancel2"
+                        data-dismiss="modal"
+                        ng-click="destroyPdfModal();">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>

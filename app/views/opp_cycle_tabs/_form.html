@@ -1,0 +1,105 @@
+<div class="col-md-12">
+    <div class="panel-title2">Opportunity Cycle Stage
+        <!--Tabs-->
+    </div>
+    <div class="col-md-5">
+        <div class="form-group">
+            <label class="col-md-5 control-label">Stage Name<span class="required">*</span></label>
+
+            <div class="col-md-7">
+                <input ng-readonly="check_readonly"
+                       type="text"
+                       data-parsley-trigger="keyup"
+                       required
+                       ng-model="rec.name"
+                       class="form-control ">
+                <!-- data-parsley-minlength-message="Max Limit is 25" required
+                data-parsley-type-message="Max Limit is 25" data-parsley-error-message="Max Limit is 25"
+                data-parsley-pattern="/^(?=.*[0-9a-zA-Z])\d{0,25}(?:\.\d{0,25})?$/"-->
+            </div>
+        </div>
+        <!--<div class="form-group" ng-show="show_default && user_type == 1">
+        <label class="col-md-5 control-label" for="userName">Is Default</label>
+        <div class="col-md-7">
+        <div data-toggle="buttons" class="btn-group select-btn">
+        <label class="btn btn-hl" ng-class="{'active':is_defaults == 1}"  ng-click='setDefault(1);'><input type="radio" name="is_defualt"  autocomplete="off">YES</label>
+        <label class="btn btn-hl" ng-class="{'active':is_defaults == 0}"  ng-click='setDefault(0);'><input type="radio" name="is_defualt"  autocomplete="off">NO</label>
+        </div>
+        </div>
+        </div>-->
+        <div class="form-group">
+            <label class="col-md-5 control-label">Stage Order within Opp. Cycle<span class="required">*</span></label>
+
+            <div class="col-md-7">
+                <!-- required="required" -->
+                <ui-select ng-model="rec.tab_postion"
+                           ng-disabled="check_readonly"
+                           ng-change="OnChangeStageOrder();"
+                           tabindex="4">
+                    <ui-select-match placeholder="Select Stage Order">{{$select.selected.label}}</ui-select-match>
+                    <ui-select-choices repeat="opt in arr_position | filter: $select.search">
+                        <div ng-bind-html="opt.label | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <!-- ng-if="rec.tab_postion.value != 2" -->
+        <div class="form-group"
+             ng-if="rec.tab_postion.value != 2">
+            <label class="col-md-5 control-label">Probability<span class="required">*</span></label>
+
+            <div class="col-md-7">
+                <div class="input-symbol">
+                    <input type="number"
+                           required
+                           ng-model="rec.percentage"
+                           class="form-control"
+                           data-parsley-trigger="keyup"
+                           data-parsley-minlength-message="Invalid Value"
+                           ng-readonly="check_readonly"
+                           data-parsley-type-message="Invalid Value"
+                           data-parsley-error-message="Required!"
+                           min="1"
+                           max="99"
+                           data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/" />
+                    <span>%</span>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="form-group" ng-if="rec.tab_postion.value == 2">
+                <label class="col-md-5 control-label">Probability</label>
+                
+                <div class="col-md-7">
+                    <div class="input-symbol">
+                        <input type="radio" ng-model="rec.percentage" value="100"> Won <br/>
+                        <input type="radio" ng-model="rec.percentage" value="0"> Lost <br/>
+                    </div>
+                </div>
+            </div> -->
+        <div class="form-group">
+            <label class="col-md-5 control-label">Status<span class="required">*</span></label>
+
+            <div class="col-md-7">
+                <!--{{rec.restrict_status_change}}-->
+
+                <ui-select ng-model="rec.tab_status"
+                           ng-disabled="check_readonly || rec.restrict_status_change>0">
+                    <ui-select-match placeholder="Select Status">{{$select.selected.label}}</ui-select-match>
+                    <ui-select-choices repeat="opt in arr_status | filter: $select.search">
+                        <div ng-bind-html="opt.label | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="row">
+<div class="col-md-6">
+<div class="form-group">
+<label class="col-md-5 control-label">Module<span class="required">*</span></label>
+<div class="col-md-7">
+<select ng-model="rec.tab_module_id" ng-options="opt as opt.module_title for opt in arr_modules" class="select2me form-control" ng-disabled="check_readonly" required tabindex="1"><option style="display:none" value=""></option>  </select>
+</div>
+</div>
+</div>
+</div> -->

@@ -1,0 +1,88 @@
+[
+    {
+        "id": 100,
+        "product": 0,
+        "childs": [
+            {
+                "id": 200,
+                "description": {
+                    "id": 0,
+                    "name": "Home",
+                    "url": "home"
+                }
+            }
+        ]
+    },
+    {
+        "id": 100,
+        "description": {
+            "id": 0,
+            "name": "services",
+            "url": "services"
+        },
+        "parent": null,
+        "childs": [
+            {
+                "id": 200,
+                "description": {
+                    "id": 0,
+                    "name": "Ser1",
+                    "url": "Ser1"
+                },
+                "productCount": 0,
+                "childs": [
+                    {
+                        "id": 250,
+                        "description": {
+                            "id": 0,
+                            "name": "ser2",
+                            "url": "Ser2"
+                        },
+                        "childs": []
+                    },
+                    {
+                        "id": 251,
+                        "description": {
+                            "id": 0,
+                            "name": "ser3",
+                            "url": "ser3"
+                        },
+                        "productCount": 0,
+                        "childs": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 201,
+        "description": {
+            "id": 0,
+            "name": "About",
+            "url": "about"
+        },
+        "productCount": 0,
+        "childs": [
+            {
+                "id": 203,
+                "description": {
+                    "id": 0,
+                    "name": "abt1",
+                    "url": "underground"
+                },
+                "productCount": 0,
+                "childs": []
+            }
+        ]
+    },
+    {
+        "id": 202,
+        "description": {
+            "id": 0,
+            "name": "Contact",
+            "url": "con"
+        },
+        "productCount": 0,
+        "childs": []
+    }
+]

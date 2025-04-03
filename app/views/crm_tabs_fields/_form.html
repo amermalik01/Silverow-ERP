@@ -1,0 +1,119 @@
+<div class="row">
+  <div class="col-lg-6">
+    <div class="form-group">
+        <label class="col-lg-4 control-label">Field Label<span class="required">*</span></label>
+        <div class="col-lg-8">
+   <input type="text" ng-model="rec.label" id="label" ng-keyup="setFieldName(rec.label)" name="label" class="form-control" tabindex="1" required ng-readonly="check_readonly" />
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+	<div class="col-lg-6">
+		<div class="form-group">
+  			<label class="col-lg-4 control-label">Field Name<span class="required">*</span></label>
+  			<div class="col-lg-8">
+   <input type="text" ng-model="rec.field_name" id="field_name" ng-blur="checkFieldName(rec)" name="field_name" class="form-control" tabindex="1" required ng-readonly="check_readonly" />
+  			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-6">
+		<div class="form-group">
+  			<label class="col-lg-4 control-label">Tab Name<span class="required">*</span></label>
+  			<div class="col-lg-8">
+  				<select ng-model="rec.field_tab" ng-options="opt as opt.name for opt in " class="select2me form-control" ng-disabled="check_readonly" ng-change="checkFieldName(rec)" required tabindex="1"><option style="display:none" value=""></option>  </select>
+            </div>
+		</div>
+	</div>
+</div>
+
+<div class="row" ng-show="show_default">
+  <div class="col-lg-6">
+    <div class="form-group">
+        <label class="col-lg-4 control-label">Type<span class="required">*</span></label>
+        <div class="col-lg-8">
+          <select ng-model="rec.field_type" ng-options="opt as opt.name for opt in arr_field_type" ng-change="getModules()" class="select2me form-control" ng-disabled="check_readonly" ng-required="show_default" tabindex="1"><option style="display:none" value=""></option>  </select>
+            </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-show="show_module_list" ng-show="show_default">
+  <div class="col-lg-6">
+    <div class="form-group">
+        <label class="col-lg-4 control-label">Fill Dropdown With<span class="required">*</span></label>
+        <div class="col-lg-8">
+          <select ng-model="rec.field_module_id" ng-options="opt as opt.module_title for opt in arr_modules" class="select2me form-control" ng-disabled="check_readonly" ng-required="show_module_list && show_default" tabindex="1"><option style="display:none" value=""></option>  </select>
+            </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+	<div class="col-lg-6">
+		<div class="form-group">
+  			<label class="col-lg-4 control-label">Description</label>
+  			<div class="col-lg-8">
+    			<textarea name="rec.description" cols="160" rows="5" id="description" ng-model="rec.description" class="form-control" ng-readonly="check_readonly" tabindex="2"></textarea>
+  			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-lg-6">
+		<div class="form-group">
+  			<label class="col-lg-4 control-label">Status<span class="required">*</span></label>
+  			<div class="col-lg-8">
+    			<select ng-model="rec.field_status" ng-options="opt as opt.label for opt in arr_status" class="select2me form-control" required="required" ng-disabled="check_readonly" id="status" tabindex="4" ><option style="display:none" value=""></option>  </select>
+  			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-6">
+		<div class="form-group">
+      <label class="col-sm-4 control-label" for="userName">Is Required</label>
+      <div class="col-sm-8">
+            <div data-toggle="buttons" class="btn-group">
+                <label class="btn btn-primary" ng-class="{'active':is_required == 1}"  ng-click='setRequired(1);'><input type="radio" name="is_required"  autocomplete="off">YES</label>
+                <label class="btn btn-primary" ng-class="{'active':is_required == 0}"  ng-click='setRequired(0);'><input type="radio" name="is_required"  autocomplete="off">NO</label>
+              </div>
+      </div>
+    </div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-6">
+		<div class="form-group">
+      <label class="col-sm-4 control-label" for="userName">Column</label>
+      <div class="col-sm-8">
+            <div data-toggle="buttons" class="btn-group">
+                <label class="btn btn-primary" ng-class="{'active':column == 'Left'}"  ng-click='setColumn("Left");'><input type="radio" name="column"  autocomplete="off">Left</label>
+                <label class="btn btn-primary" ng-class="{'active':column == 'Right'}"  ng-click='setColumn("Right");'><input type="radio" name="column"  autocomplete="off">Right</label>
+              </div>
+      </div>
+    </div>
+	</div>
+</div>
+
+<div class="row" ng-show="show_default">
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-sm-4 control-label" for="userName">Is Default</label>
+      <div class="col-sm-8">
+            <div data-toggle="buttons" class="btn-group">
+                <label class="btn btn-primary" ng-class="{'active':is_defaults == 1}"  ng-click='setDefault(1);'><input type="radio" name="is_defualt"  autocomplete="off">YES</label>
+                <label class="btn btn-primary" ng-class="{'active':is_defaults == 0}"  ng-click='setDefault(0);'><input type="radio" name="is_defualt"  autocomplete="off">NO</label>
+              </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+Array
+(
+    [(BA404) Email] => "jo.lubbock@kisharon.org.uk,info@kisharon.org.uk,shop@equal.org.uk,tuffkid@kisharon.org.uk,info@kisharonschool.org.uk,aviva.braunold@kisharon.org.uk,hadassa.kessler@kisharon.org.uk,creative@equal.org.uk,albc@kisharon.org.uk,richard.franklin@kisharon.org.uk,paul.darnell@kisharon.org.uk,adele.busse@kisharon.org.uk,micki.herzog@kisharon.org.uk,avni.thakrar@kisharon.org.uk,recruitment@kisharon.org.uk,workwithus@kisharonschool.org.uk,creative@kisharon.org.uk,natalie.kennard@kisharon.org.uk,3aaviva.braunold@kisharon.org.uk" is too long
+)
+

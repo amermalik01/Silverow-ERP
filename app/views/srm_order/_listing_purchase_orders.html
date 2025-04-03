@@ -1,0 +1,80 @@
+<div id="_PurchaseOrdersModal"
+     class="modal fade"
+     role="dialog">
+    <div class="modal-dialog modal-lg"
+         dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Purchase Order(s)</h4>
+            </div>
+            <div class="modal-body"
+                 style="overflow:hidden !important;">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-symbol">
+                            <input type="text"
+                                   Placeholder="Search"
+                                   class="form-control"
+                                   ng-model="filterPurchaseOrder.search">
+                            <span id="date_msg_4"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row"
+                     style="    margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                        <table class="table table-striped table-bordered table-condensed table-hover">
+                            <thead class="fixit">
+                                <tr class="bg-col">
+                                    <th>PO No.</th>
+                                    <th>Supplier No.</th>
+                                    <th>Supplier Name</th>
+                                    <th class="text-right">Amount</th>
+                                    <th class="text-right">Amount Incl. VAT</th>
+                                    <th>Order Date</th>
+                                    <th title="Requested Receive Date">Req. Rec. Date</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="fixit">
+                                <tr ng-repeat="PurchaseOrder in PurchaseOrderArr | filter:filterPurchaseOrder.search">
+                                    <td>
+                                        <a title="View Purchase Order"
+                                           class="tooltips_clss btn hilight  ng-binding"
+                                           style="font-size: 11px;"
+                                           ui-sref="app.viewsrmorder({id:PurchaseOrder.id})"
+                                           target="_blank">{{PurchaseOrder.order_code}}</a>
+                                    <td  ng-click="selectShippingPO(PurchaseOrder)">{{PurchaseOrder.sell_to_cust_no}}</td>
+                                    <td  ng-click="selectShippingPO(PurchaseOrder)">{{PurchaseOrder.sell_to_cust_name}}</td>
+                                    <td  ng-click="selectShippingPO(PurchaseOrder)" class="text-right">{{PurchaseOrder.net_amount | currency:""}}</td>
+                                    <td  ng-click="selectShippingPO(PurchaseOrder)" class="text-right">{{PurchaseOrder.grand_total | currency:""}}</td>
+                                    <td  ng-click="selectShippingPO(PurchaseOrder)">{{PurchaseOrder.order_date}}</td>
+                                    <td  ng-click="selectShippingPO(PurchaseOrder)">{{PurchaseOrder.rq_delivery_date}}</td>
+                                </tr>
+                                <tr ng-if="PurchaseOrderArr.length == 0">
+                                    <td colspan="7"
+                                        class="text-center">No record found!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left"></span>
+                <div class="pull-right">
+                    <button class="btn btn_add"
+                            type="button" 
+                            ng-click="removeLinkedPO()"
+                            ng-if="rec.selectedShippingPOid>0">Remove Linked PO</button> 
+                    <button type="button"
+                            class="btn btn-cancel"
+                            data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

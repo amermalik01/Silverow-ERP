@@ -1,0 +1,68 @@
+<div ng-controller="OverriderController as table">
+  <div class="row">
+      <div ng-include="'app/views/_breadcrumb.html'" class="col-md-12"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a id="prompt" ui-sref="app.add-overrider" class="btn btn_add pull-right">Add</a>
+    </div>
+  </div>
+
+  <!-- Row starts -->
+  <div class="row">
+
+    <div class="col-md-12 col-md-12" >
+      <div class="widget">
+       <!--  <div class="widget-header">
+          <div class="title">
+            Insurance Charges
+          </div>
+          </div> -->
+        <div class="widget-body ">
+            <div id="dt_example" class="example_alt_pagination">
+    <table ng-table="table.tableParams5" class="table table-condensed table-striped table-hover table-bordered" id="data-table" show-filter="true">
+      <thead >
+        <tr ng-show="columns.length > 0" >
+          <th ng-repeat="column in columns"
+                    class="sortable sort-asc" ng-class="{
+                    'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),
+                    'sort-desc': !table.tableParams5.isSortBy(column.field, 'desc')
+                  }"
+                    ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"  ng-if="column.field != 'id'"> {{column.title}} </th>
+                <th  class="active-listing"
+ style="width: 160px;">Action</th>
+        </tr>
+
+
+      </thead>
+     <!--  <tr >
+          <td ng-repeat="column in columns"
+                    ng-show="column.visible"
+                    class="sortable"
+                        > <input type="text" class="form-control"
+                           ng-model="MyCustomeFilters[column.field] "/>
+          </td>
+        </tr> -->
+        <tbody class="table-body courser ">
+        <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+        <tr ng-repeat="rec in $data" ng-show="columns.length > 0">
+          <td ng-repeat="column in columns"  sortable="column.title" ui-sref="app.view-overrider({id:rec.id})" ng-if="column.field != 'id'">
+           <!-- <span ng-if="column.field != 'Charge'">{{rec[column.field]}}</span> --><span >{{rec[column.field] | numberNoDecimalsIfZeroFilter:2}}<span>&#37;</span></span> </td>
+
+          <td class="active-listing"
+>
+
+            <a ui-sref="app.edit-overrider({id:rec.id})" title="Edit" class="btn btn-primary icon_square"><i class="fa fa-edit"></i></a>
+            <a ng-click="delete(rec.id,$index,$data)" title="Delete" class="btn btn-primary icon_square"><i class="fa fa-times"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

@@ -1,0 +1,271 @@
+<!-- Modal Starts -->
+<div class="modal fade" id="itemRebatModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div ng-class="{'whirl no-overlay':showLoader22}"></div>
+    <div ng-class="{'loader_pop':loader_pop}"></div>
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{title}}</h4>
+            </div>
+            <div class="modal-body" style="overflow:hidden;">
+                <!-- Filter Start -->
+                <div class="row" ng-init="get_category_list();get_brand_list();"><!-- get_uom_list();-->
+                    <div class="col-md-4 "><!--pl0-->
+                        <div class="form-group">
+                            <form autocomplete="off" class="form-horizontal no-margin" role="form"
+                                  ng-submit="getItemsRebate()">
+                                <div class="input-symbol">
+                                    <input type="text" ng-blur="getItemsRebate()"
+                                           Placeholder="Search" class="form-control"
+                                           ng-model="searchKeyword_price.searchBox">
+                                    <span id="date_msg_4"> <i class="fa fa-search"></i></span></div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select ng-model="searchKeyword_price.category_names"
+                                ng-options="opt as opt.name for opt in cat_prodcut_arr" class=" form-control"
+                                ng-change="getItemsRebate()">
+                            <option value="" disabled selected>Select Category</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select ng-model="searchKeyword_price.brand_names"
+                                ng-options="opt as opt.name for opt in brand_prodcut_arr" class=" form-control"
+                                ng-change="getItemsRebate()">
+                            <option value="" disabled selected>Select Brand</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-1">
+                        <button type="button" class="btn btn-default pull-right" title="Clear Fields"
+                                ng-click="getItemsRebate(77,1);" ng-model="strict"><i class="fa fa-refresh"></i>
+                        </button>
+                    </div>
+                </div>
+                <!--<div class="row" ng-init="get_uom_list();">
+                    <div class="col-md-6">
+                        <div class="col-md-6">
+                            <select ng-model="searchKeyword_price.units"
+                                    ng-options="opt as opt.title for opt in uni_prooduct_arr" class=" form-control"
+                                    ng-change="getItemsRebate()">
+                                <option value="" disabled selected>Select Unit of Measure</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-default pull-right" title="Clear Fields"
+                                    ng-click="getItemsRebate(77,1);" ng-model="strict"><i class="fa fa-refresh"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>-->
+                <div>
+                    <!--paging options start-->
+                    <div class="page-options" style="margin-top:5px">
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-6 show_record">Show Entries </label>
+
+                                <div class="col-md-4">
+                                    <select ng-model="item_paging.pagination_limit"
+                                            ng-options="opt as opt.label for opt in pagination_arry" class="in-t-1"
+                                            ng-change="getItemsRebate()">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="text-center total_paging_center" ng-if="products_rebate.length > 0">
+                                {{total_paging_record}}
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="text-right total_paging_record" ng-if="products_rebate.length > 0">Total:
+                                {{total}}
+                            </div>
+                        </div>
+                    </div>
+                    <!--paging options end-->
+                </div>
+
+                <div>
+                    <table class="table table-striped table-bordered table-hover no-margin">
+                        <thead class="fixit">
+                        <tr class="bg-col">
+                            <!--<th style="width: 5%;">&nbsp;</th>-->
+                            <th style="width: 5%;">
+                                <input type="checkbox" class="checkAllRebateItem">
+                            </th>
+                            <!--ng-if="searchKeyword_price.units.id>0"-->
+                            <th ng-repeat="column in columns"
+                                ng-show="column.title != 'Id' && column.title != 'Current Stock' && column.title != 'Brand Id' && column.title != 'Category Id' && column.title != 'Unit Id'  && column.title != 'Chk'  ">
+                                {{column.title}}
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="courser table-body fixit" style="max-height:300px;">
+                        <!--  | filter:searchKeyword_price:strict  track by $index  -->
+                        <tr ng-repeat="prod in  products_rebate"><!--ng-click="confirm2(prod)"-->
+                            <td style="width: 5%;">
+                                <input type="checkbox" ng-checked="prod.chk" ng-click="selectItemRebate(prod)">
+                            </td>
+                            <!--ng-if="searchKeyword_price.units.id>0"-->
+                            <td ng-repeat="column in columns"
+                                ng-show="column.title != 'Id' && column.title != 'Current Stock' && column.title != 'Brand Id' && column.title != 'Category Id' && column.title != 'Unit Id'  && column.title != 'Chk' ">
+                                <span> {{prod[column.field]}}</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div ng-if="products_rebate.length > 0" class="pull-left" style="    margin-top: -8px;">
+                    <div class="pull-right">
+                        <ul class="pagination" style="margin: 0px !important;" ng-show="item_paging.total_pages > 1">
+                            <li ng-class="{'disabled': item_paging.cpage == 1}" class=""><a
+                                    ng-click="itemselectPage(item_paging.ppage); getItemsRebate(1,item_paging.ppage);"
+                                    href="javascript: void(0);" class="">«</a></li>
+                            <li ng-repeat="(key,value) in item_paging.pages"
+                                ng-class="{'active': value == item_paging.cpage}"><a
+                                    ng-click="itemselectPage(value); getItemsRebate(1,value);"
+                                    href="javascript: void(0);"><span
+                                    ng-bind="value"></span></a></li>
+                            <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}"><a
+                                    ng-click="itemselectPage(item_paging.npage); getItemsRebate(1,item_paging.npage);"
+                                    href="javascript: void(0);">»</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--<span class="pull-left">Selected:&nbsp;{{(products_rebate | filter: {chk: true}).length}}</span>-->
+                Selected:&nbsp;{{(products_rebate | filter: {chk: true}).length}}
+                <button class="btn btn-submit" data-dismiss="modal" style="margin:10px;" type="button"><i
+                        class="fa fa-check fa_display"></i>save
+                </button>
+                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--<div class="modal fade" id="itemServRebatModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header remove_head">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-md-12 col-md-12">
+                        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+                            <tabset>
+                                <tab heading="Items" ng-click="getItemsList()" id="rebatItemTab" ng-if="selectItm">
+                                    <div style="  overflow-y: scroll;    max-height: 325px;">
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                            <tr class="bg-col" ng-show="rec.universal_types.id == 2">
+                                                <th>Product Code</th>
+                                                <th>Descripton</th>
+                                                <th>Brand</th>
+                                                <th>Unit Of Measure</th>
+                                            </tr>
+                                            <tr class="bg-col" ng-show="rec.universal_types.id != 2">
+                                                <th><input type="checkbox" class="checkAll"></th>
+                                                <th>Item Code</th>
+                                                <th>Descripton</th>
+                                                <th>Brand</th>
+                                                <th>Unit Of Measure</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="courser table-body"
+                                                   ng-class="{'whirl no-overlay':items.length == 0}">
+                                            <tr ng-repeat="item in items" ng-click="selectItem(item,1)"
+                                                ng-show="rec.universal_types.id == 2">
+                                                <td>{{item.product_code}}</td>
+                                                <td>{{item.description}}</td>
+                                                <td>{{item.brand_name}}</td>
+                                                <td>{{item.unit_of_measure_name}}</td>
+                                            </tr>
+                                            <tr ng-repeat="item in items" ng-show="rec.universal_types.id != 2">
+                                                <td><input type="checkbox" ng-checked="item.chk"
+                                                           ng-click="selectItem(item)"></td>
+                                                <td>{{item.item_code}}</td>
+                                                <td>{{item.description}}</td>
+                                                <td>{{item.brand_name}}</td>
+                                                <td>{{item.unit_of_measure_name}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </tab>
+                                <tab heading="Services" ng-click="getServices()" ng-if="showServices && selectServ"
+                                     id="rebatServiceTab">
+                                    <div style="  overflow-y: scroll;    max-height: 325px;">
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                            <tr class="bg-col" ng-show="rec.universal_types.id == 2">
+                                                &lt;!&ndash; <th><input type="checkbox" class="checkAll"></th> &ndash;&gt;
+                                                <th>Service Code</th>
+                                                <th>Descripton</th>
+                                                <th>Brand</th>
+                                                <th>Unit Of Measure</th>
+                                            </tr>
+                                            <tr class="bg-col" ng-show="rec.universal_types.id != 2">
+                                                <th><input type="checkbox" class="checkAll"></th>
+                                                <th>Service Code</th>
+                                                <th>Descripton</th>
+                                                <th>Brand</th>
+                                                <th>Unit Of Measure</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="courser table-body"
+                                                   ng-class="{'whirl no-overlay':items.length == 0}">
+                                            <tr ng-repeat="item in items" ng-click="selectItem(item,2)"
+                                                ng-show="rec.universal_types.id == 2">
+                                                &lt;!&ndash; <td><input type="checkbox" ng-checked="item.chk" ng-click="selectItem(item.id)"></td> &ndash;&gt;
+                                                <td>{{item.code}}</td>
+                                                <td>{{item.description}}</td>
+                                                <td>{{item.brand_name}}</td>
+                                                <td>{{item.unit_of_measure_name}}</td>
+                                            </tr>
+                                            <tr ng-repeat="item in items" ng-show="rec.universal_types.id != 2">
+                                                <td><input type="checkbox" ng-checked="item.chk"
+                                                           ng-click="selectItem(item)"></td>
+                                                <td>{{item.code}}</td>
+                                                <td>{{item.description}}</td>
+                                                <td>{{item.brand_name}}</td>
+                                                <td>{{item.unit_of_measure_name}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </tab>
+                            </tabset>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <span class="pull-left">Selected:&nbsp;{{(items | filter: {chk: true}).length}}</span>
+                <button ng-show="rec.universal_types.id != 2" class="btn btn_blue width_80" data-dismiss="modal"
+                        style="margin:10px;" type="button"><i class="fa fa-check fa_display"></i>Add
+                </button>
+                <button type="button" class="btn default width_80" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- Modal Ends -->

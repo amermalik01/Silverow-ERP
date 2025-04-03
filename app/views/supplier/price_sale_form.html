@@ -1,0 +1,330 @@
+<div class="row">
+  <div class="col-md-12 col-md-12">
+    <div class="widget">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"> Supplier Item Level </h3>
+        </div>
+        <div class="clearfix"></div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <input type="hidden" 
+                    ng-model="itemLevelFormData.product_id" />
+                  <label class="col-md-4 control-label">Item Code<span class="required">*</span></label>
+                  <div class="col-md-8" style="margin-top: 7px;">
+                    <input type="text" required readonly class="form-control input_text"
+                      ng-model="itemLevelFormData.product_code" 
+                      ng-click="getSupplierItemModal()" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Item Name<span class="required">*</span></label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control " required readonly
+                      ng-model="itemLevelFormData.product_description" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Supplier Item Code</label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control " 
+                      ng-model="itemLevelFormData.supplierItemCode" 
+                      ng-readonly="checkItemLevelReadonly"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Status </label>
+                  <div class="col-md-8">
+                    <ui-select required
+                      ng-model="itemLevelFormData.status_id" 
+                      ng-disabled="checkItemLevelReadonly">
+                      <ui-select-match placeholder="Select Status">{{$select.selected.title}}</ui-select-match>
+                      <ui-select-choices repeat="opt in product_status_list | filter: $select.search">
+                        <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Status Change Date</label>
+                  <div class="col-md-8">
+                    <input type="text" jqdatepicker class="form-control" id="sdate" readonly
+                      ng-model="itemLevelFormData.status_date"/>
+                    <span class="fa fa-calendar new_ca form-control-feedback" style="position: absolute;right: -12px;top: 7px;"></span>
+                  </div>
+                </div>
+                <div class="form-group" ng-show="hide_status_info">
+                  <label class="col-md-4 control-label">Unit of Measure<span class="required">*</span></label>
+                  <div class="col-md-8">
+                    <!-- <ui-select required
+                      ng-model="itemLevelFormData.purchase_measure"
+                      ng-disabled="checkItemLevelReadonly"
+                      ng-change="check_min_max_order(2);chkPrice()">
+                            <ui-select-match placeholder="Select Unit of Measure">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="opt in itemUnitOfMeasure | filter: $select.search">
+                                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select> -->
+                    <ui-select required
+                      ng-model="itemLevelFormData.purchase_measure" 
+                      ng-disabled="checkItemLevelReadonly"
+                      ng-change="itemLevelValidatePrice(itemLevelFormData.priceCost)" >
+                      <ui-select-match placeholder="Select Unit Of Measure">{{$select.selected.name}}</ui-select-match>
+                      <ui-select-choices repeat="opt in itemUnitOfMeasure | filter: $select.search">
+                        <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+                </div>
+                <!-- <div class="form-group" 
+                  ng-show="hide_status_info">
+                  <label class="col-md-4 control-label">Currency</label>
+                  <div class="col-md-8">
+                    <ui-select ng-model="itemLevelFormData.currencys"  ng-disabled="PriceList_check_readonly"
+                        ng-change="PriceOffer_validatePrice(PriceOffer_rec.price_offered)"
+                        tabindex="26"
+                        ng-class="{'not-click-allow':disableClass > 0}">
+                        <ui-select-match placeholder="Select Currency">{{$select.selected.code}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="opt in arr_currency | filter: $select.search">
+                            <div ng-bind-html="opt.code | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                  </div>
+                </div> -->
+                <div class="form-group">
+                    <label class="col-lg-4 control-label">Purchase Cost<span class="required">*</span></label>
+                    <div class="col-lg-4 padr6">
+                        <div class="input-symbol">
+                            <input type="number" id="priceCost" class="form-control" required
+                              ng-model="itemLevelFormData.priceCost"
+                              ng-readonly="checkItemLevelReadonly"
+                              ng-blur="itemLevelValidatePrice(itemLevelFormData.priceCost)">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 padl6">
+                      <ui-select 
+                        ng-model="itemLevelFormData.currency_id"  
+                        ng-disabled="checkItemLevelReadonly"
+                        ng-change="itemLevelValidatePrice(itemLevelFormData.priceCost)">
+                        <ui-select-match placeholder="Select Currency">{{$select.selected.code}}</ui-select-match>
+                        <ui-select-choices repeat="opt in arr_currency | filter: $select.search">
+                          <div ng-bind-html="opt.code | highlight: $select.search"></div>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+                </div>
+                <!-- <div class="form-group" 
+                  ng-show="hide_status_info">
+                  <label class="col-md-4 control-label">Purchase Cost<span class="required">*</span></label>
+                  <div class="col-md-8">
+                    <div class="input-symbol">
+                      <input required type="text" class="form-control input_text"
+                        ng-readonly="checkItemLevelReadonly" 
+                        ng-model="itemLevelFormData.unit_price"
+                        ng-change="change_number_format();change_unit_price();chkPrice()" 
+                        data-parsley-trigger="keyup"
+                        data-parsley-minlength-message="Invalid Value" 
+                        data-parsley-type-message="Invalid Value" 
+                        data-parsley-error-message="Invalid Value"
+                        data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/">
+                      <span> {{itemLevelFormData.currency_id.code}} /{{itemLevelFormData.purchase_measure.name}} </span> 
+                    </div>
+                  </div>
+                </div> -->
+                <div class="form-group">
+                    <label class="col-lg-4 control-label">Local Currency <span class="required">*</span></label>
+                    <div class="col-lg-8">
+                            <div class="input-symbol">
+                                <input type="text" ng-model="itemLevelFormData.converted_price" class="form-control"
+                                        ng-readonly="1">
+                                <span>{{defaultCurrencyCode}} / {{itemUnitOfMeasure[0].name}}</span>
+                            </div>
+                        </div>
+                    <!-- <div class="col-md-3">
+                        <label for="">                               
+                          <input type="checkbox" ng-model="PriceOffer_rec.vat_chk"
+                        ng-checked="PriceOffer_rec.vat_chk>0" id="vat_chk" style="margin-top: 13px;">
+                        Incl. VAT 
+                    </label>
+
+                    </div> -->
+                </div>
+                <!-- <div class="form-group">
+                  <label class="col-md-4 control-label">Converted Price<span class="required">*</span></label>
+                  <div class="col-md-8">
+                    <div class="input-symbol">
+                      <input type="text" class="form-control ng-pristine ng-untouched ng-valid" readonly
+                        ng-model="itemLevelFormData.converted_price" >
+                      <span class="ng-binding">{{defaultCurrencyCode}}</span> 
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+              <div class="col-md-5 col-md-offset-2" 
+                ng-show="hide_status_info">
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Lead Time</label>
+                  <div class="col-md-8">
+                    <div class="col-sm-4 no-padding">
+                      <input 
+                        ng-readonly="checkItemLevelReadonly" type="text" class="form-control input_text"                        
+                        ng-model="itemLevelFormData.lead_time"                        
+                        data-parsley-trigger="keyup" 
+                        data-parsley-minlength-message="Invalid Value" 
+                        data-parsley-type-message="Invalid Value"
+                        data-parsley-error-message="Invalid Value" 
+                        data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/">
+                    </div>
+                    <div class="col-sm-8 remove-right-pad">
+                      <select class=" form-control"
+                        ng-disabled="checkItemLevelReadonly" 
+                        ng-model="itemLevelFormData.lead_type" 
+                        ng-options="opt as opt.label for opt in lead_types">
+                    </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Min. Order Qty.<span class="required">*</span></label>
+                  <div class="col-md-8">
+                    <div class="input-symbol">
+                      <input class="form-control input_text" required type="number" id="p_min_quantity" 
+                        ng-readonly="checkItemLevelReadonly"                          
+                        ng-change="check_min_max_order(2)"
+                        ng-model="itemLevelFormData.min_quantity"                          
+                        data-parsley-trigger="keyup" 
+                        data-parsley-minlength-message="Invalid Value"
+                        data-parsley-type-message="Invalid Value" 
+                        data-parsley-error-message="Invalid Value" 
+                        data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                      <span>{{itemLevelFormData.purchase_measure.name}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Max. Order Qty.<span class="required">*</span></label>
+                  <div class="col-md-8">
+                    <div class="input-symbol">
+                      <input class="form-control input_text" required type="number" id="p_max_quantity" 
+                        ng-readonly="checkItemLevelReadonly"                         
+                        ng-change="check_min_max_order(2)"
+                        ng-model="itemLevelFormData.max_quantity" 
+                        data-parsley-trigger="keyup" 
+                        data-parsley-minlength-message="Invalid Value"
+                        data-parsley-type-message="Invalid Value" 
+                        data-parsley-error-message="Invalid Value" 
+                        data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                      <span>{{itemLevelFormData.purchase_measure.name}}</span> 
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Start Date</label>
+                  <div class="col-md-8">
+                    <input jqdatepicker class="2date-picker form-control ck_sdate" id="ck_sdate" readonly
+                      ng-model="itemLevelFormData.start_date" 
+                      ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_start_supplier')">
+                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                    <span id="date_msg_start_supplier" style="color:#F00; display: none;">Start Date Required</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label">End Date</label>
+                  <div class="col-md-8">
+                    <input jqdatepicker class="2date-picker form-control ck_edate" id="ck_edate" readonly
+                      ng-model="itemLevelFormData.end_date" 
+                      ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_end_supplier')">
+                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                    <span id="date_msg_end_supplier" style="color:#F00; display: none;">Leaving Date is earlier then Start Date</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Comment for PO</label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control input_text"
+                      ng-disabled="checkItemLevelReadonly" 
+                      ng-model="itemLevelFormData.purchase_message"
+                      data-parsley-trigger="keyup">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-4 control-label">Last PO Date</label>
+                  <div class="col-md-8">
+                    <input readonly type="text" class="form-control input_text" data-parsley-trigger="keyup" 
+                      ng-model="itemLevelFormData.last_po_date" >
+                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+              <div class="clearfix"></div>
+                <div class="col-md-12" style=" border-top: 1px solid #d4d4d4; border-bottom: 1px solid #d4d4d4; padding-top: 13px; padding-bottom: 13px;">
+                  <div class="col-md-4 ">
+                    <div class="form-group">
+                      <label class="col-md-4 control-label">Average Cost</label>
+                      <div class="col-md-8">
+                        <div class="input-symbol">
+                          <input readonly class="form-control input_text"
+                            ng-model="itemLevelFormData.average_cost" >
+                          <span>{{itemLevelFormData.currency_id.code}} </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 ">
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">Start Date</label>
+                      <div class="col-md-7">
+                        <input jqdatepicker class="2date-picker form-control ck_angsdate" id="ck_sdate1" readonly
+                          ng-model="itemLevelFormData.average_year_start"
+                          ng-change="testdate_by_id('ck_sdate1','ck_edate1','date_msg_start_supplier1')">
+                        <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                        <span id="date_msg_start_supplier1" style="color:#F00; display: none;">Start Date Required</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 ">
+                    <div class="form-group">
+                      <label class="col-md-3 control-label">End Date</label>
+                      <div class="col-md-7">
+                        <input jqdatepicker class="2date-picker form-control ck_angedate" id="ck_edate1" readonly
+                          ng-model="itemLevelFormData.average_year_end"
+                          ng-change="testdate_by_id('ck_sdate1','ck_edate1','date_msg_end_supplier1')" >
+                        <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                        <span id="date_msg_end_supplier1" style="color:#F00; display: none;">Leaving Date is earlier then Start Date</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+          <div class="row">
+              <div class="col-md-12">
+                <div class="pull-right">
+                  <button class="btn  btn-default" type="button" 
+                    ng-show=" supplier_iteminfo_tab_module>0" 
+                    ng-click="set_document_internal(supplier_iteminfo_tab_module)"><span class="int-doc">{{document_title}}<img src="app/img/infile.png" style="width:16px;" class="doc-icon"></span> </button>
+                  
+                  <button class="btn btn-submit pic_block max_block cat_block cur_block pic_block_avg_date" 
+                    ng-if="!checkItemLevelReadonly" type="submit"><i class="fa fa-check fa_display"></i>Save</button>
+
+                  <button class="btn  btn-edit" type="button" 
+                    ng-click="enableItemLevelForm()" 
+                    ng-if="checkItemLevelReadonly"><i class="fa fa-edit fa_display"></i> Edit</button>
+
+                  <button class="btn btn-cancel" type="button" 
+                    ng-click="getSupplierItemLevel()"><i class="fa fa-undo fa_display"></i> Cancel</button>
+                </div><!-- get_purchase_sale_price(itemLevelFormData.type) -->
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--<div ng-include="'app/views/_listing_modal_sales.html'" ></div>-->

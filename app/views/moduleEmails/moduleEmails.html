@@ -1,0 +1,47 @@
+<div ng-if="tableData.data.ack" style="margin-top: 0;float: left;width: 100%;">
+    <div class="flexiTable" x-generate-table x-data="tableData.data" x-table-name="EmailListing" 
+    x-row-click="updateFocused(file)"
+    x-filter-function="getModuleEmails"
+        x-filter-object="searchKeyword">
+    </div>
+</div>
+
+<!-- Trigger the modal with a button -->
+<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#emailInfoModal">Open Modal</button> -->
+
+<!-- Modal -->
+<div id="emailInfoModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{focused.email_subject}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="moduleEmails_sender">
+          <div class="moduleEmails_sender_avatar">
+              {{focused.sender_name.split(' ')[0].charAt(0)}}{{focused.sender_name.split(' ')[1].charAt(0)}}
+          </div>
+          <div class="moduleEmails_sender_info">
+              <div class="moduleEmails_sender_from"><span><b>{{focused.sender_name}}</b></span><span class="moduleEmails_sender_from_email">{{focused.email_address_from}}</span></div>
+              <div class="moduleEmails_sender_to"><span>To:</span>{{focused.email_address_to}}</div>
+              <div class="moduleEmails_sender_time"><span>On:</span>{{focused.date_added}}</div>  
+          </div>
+        </div>
+        <div class="moduleEmails_body">
+            <div ng-bind-html="focused.email_body"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="pull-left">
+            <a id='dwnldLnk' download='Download.pdf' style="display:none;" /> 
+            <button class="btn btn-default2 no-margin" ng-click="downloadPDF()">Download Attachments</button>  
+        </div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>

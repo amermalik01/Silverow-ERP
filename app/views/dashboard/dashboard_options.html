@@ -1,0 +1,22 @@
+<div class="dropdown pull-right ib klip-widget-dropdown"
+     style="margin-top: 4px;"
+     ng-hide="allowReorder || removeFromDashboard">
+	<a class="btn btn-default2"
+	   type="button"
+	   data-toggle="dropdown"
+	   style="padding: 5px 8px;">
+		<i class="fa fa-cog"></i> Dashboard
+	</a>
+	<ul class="dropdown-menu widget-options-dropdown ">
+		<li>
+			<span data-toggle="modal"
+			      data-target="#myModal">Add Widget</span>
+		</li>
+		<li ng-class="{'low-op2 dont-click5':!activeWidgets}">
+			<span ng-click="reorderWidget()">Reorder</span>
+		</li>
+		<li ng-class="{'low-op2 dont-click5':!activeWidgets}">
+			<span ng-click="removeWidget()">Remove</span>
+		</li>
+	</ul>
+</div>

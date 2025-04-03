@@ -1,0 +1,4 @@
+Contact Name 	CRM Previous Code	Contact Previous Code	Job title	Direct Line	Mobile	Email	Telephone	Fax	Pref. Method Of Comm.	Is Primary	Notes	Social Media 1 – ID	Social Media 1 - Name	Social Media 2 – ID	Social Media 2 - Name	Social Media 3 – ID	Social Media 3 - Name	Social Media 4 – ID	Social Media 4 - Name	Social Media 5 – ID	Social Media 5 - Name	 Error Status
+Rehman	CRM1111	CCC1	Saleperson	56565	23456	abc@xyz.com	3476324	555	Email	1	xyz123	Twitter	telepak_contact1	facebook	telepak_contact2	linkedin	telepak3	Instagram	telepak4	Skype	telepak5	
+Rehan	CRM1112	CCC5	Saleperson	56565	23456	abc@xyz.com	3476324	555	Email	0	xyz123	Twitter	telepak_contact1	facebook	telepak_contact2	linkedin	telepak3	Instagram	telepak4	Skype	telepak5	Previous code is not valid
+james	CRM1112	CCC6	Saleperson	8989	4545	abc2@xyz.com	3476324	777	Email	1	xyz124	facebook	atelepak1	Skype	atelepak2	Twitter	atelepak3	linkedin	atelepak4	Instagram	atelepak5	Previous code is not valid

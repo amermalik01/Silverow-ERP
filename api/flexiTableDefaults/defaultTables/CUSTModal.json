@@ -1,0 +1,25 @@
+{
+    "tblMeta": {
+        "autoAdjust": true
+    },
+    "colMeta": [
+        {
+            "title": "Customer No.",
+            "field_name": "customer_code",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "0",
+            "data_type": "string"
+        },
+        {
+            "title": "Name",
+            "field_name": "name",
+            "visible": "1",
+            "pinned": "0",
+            "color": "#ffffff",
+            "width": "0",
+            "data_type": "string"
+        }
+    ]
+}

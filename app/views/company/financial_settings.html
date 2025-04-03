@@ -1,0 +1,504 @@
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel-title2">Financial Settings</div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"
+                                       style="    white-space: normal;">Business Type
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-8">
+                                    <ui-select ng-model="finance.type_of_business_ownerships"
+                                               ng-disabled="check_readonly"
+                                               id="type_of_business_ownership"
+                                               ng-change="onChangeTypeBusOwnership()"
+                                               required>
+                                        <ui-select-match placeholder="Select Business Type">{{$select.selected.label}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in arr_type_of_Business | filter: $select.search">
+                                            <div ng-bind-html="opt.label | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Wholesaler
+                                </label>
+                                <div class="col-md-8">
+                                    <input type="checkbox"
+                                           ng-model="finance.is_whole_seller"
+                                           id="is_whole_seller"
+                                           ng-disabled="check_readonly"
+                                           ng-checked="finance.is_whole_seller > 0">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Financial Year Start Date
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="col-md-8">
+                                    <input jqdatepicker
+                                           class="2date-picker form-control "
+                                           id="financeYearStartDate"
+                                           ng-disabled="check_readonly"
+                                           required
+                                           ng-model="finance.year_start_date"
+                                           ng-class="{'pickdate':!check_readonly}"
+                                           ng-change="testdate_by_id('financeYearStartDate','financeYearEndDate','dateMsgFinanceDate')">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                    <input type="hidden"
+                                           class="form-control"
+                                           ng-model="finance.id">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Financial Year End Date
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="col-md-8">
+                                    <input jqdatepicker
+                                           class="2date-picker form-control "
+                                           id="financeYearEndDate"
+                                           ng-disabled="check_readonly"
+                                           required
+                                           ng-model="finance.year_end_date"
+                                           ng-class="{'pickdate':!check_readonly}"
+                                           ng-change="testdate_by_id('financeYearStartDate','financeYearEndDate','dateMsgFinanceDate')">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                    <input type="hidden"
+                                           class="form-control"
+                                           ng-model="finance.id">
+                                    <span id="dateMsgFinanceDate"
+                                          style="color:#F00; display: none;">Financial Year End Date is Earlier Than
+                                        Start Date</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Date of Incorporation</label>
+
+                                <div class="col-md-8">
+                                    <input jqdatepicker
+                                           class="2date-picker form-control "
+                                           ng-disabled="check_readonly"
+                                           ng-model="finance.date_of_incorporation"
+                                           ng-class="{'pickdate':!check_readonly}">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                            <!-- ng-show="is_comp_reg_no" -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" style="padding-top: 0;
+                                                                             line-height: 14px;">Company Reg. No.
+                                    <small class="pull-left">(If applicable)</small>
+                                </label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           class="form-control"
+                                           ng-model="finance.company_reg_no"
+                                           ng-readonly="check_readonly">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">VAT Scheme</label>
+
+                                <div class="col-md-8">
+                                    <!-- ng-disabled="true"  -->
+                                    <ui-select ng-model="finance.vat_schemee"
+                                               ng-disabled="check_readonly"
+                                               ng-change="changes_for_vat()"
+                                               id="vat_scheme">
+                                        <ui-select-match placeholder="Select VAT Scheme">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in arr_vat_scheme | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">VAT Reg. No.</label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           ng-readonly="vat_freq_readonly || check_readonly"
+                                           ng-model="finance.vat_reg_no"
+                                           id="vat_reg_no"
+                                           x-validity="regx.vrn"
+                                           class="form-control"
+                                           ng-readonly="check_readonly" />
+                                </div>
+                                <!--data-parsley-pattern="^((AT)?U[0-9]{8}|(BE)?0[0-9]{9}|(BG)?[0-9]{9,10}|(CY)?[0-9]{8}L|
+                                                        (CZ)?[0-9]{8,10}|(DE)?[0-9]{9}|(DK)?[0-9]{8}|(EE)?[0-9]{9}|
+                                                        (EL|GR)?[0-9]{9}|(ES)?[0-9A-Z][0-9]{7}[0-9A-Z]|(FI)?[0-9]{8}|
+                                                        (FR)?[0-9A-Z]{2}[0-9]{9}|(GB)?([0-9]{9}([0-9]{3})?|[A-Z]{2}[0-9]{3})|
+                                                        (HU)?[0-9]{8}|(IE)?[0-9]S[0-9]{5}L|(IT)?[0-9]{11}|
+                                                        (LT)?([0-9]{9}|[0-9]{12})|(LU)?[0-9]{8}|(LV)?[0-9]{11}|(MT)?[0-9]{8}|
+                                                        (NL)?[0-9]{9}B[0-9]{2}|(PL)?[0-9]{10}|(PT)?[0-9]{9}|(RO)?[0-9]{2,10}|
+                                                        (SE)?[0-9]{12}|(SI)?[0-9]{8}|(SK)?[0-9]{10})$"-->
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"
+                                       title="VAT Submission Frequency">VAT Submission Freq.</label>
+
+                                <div class="col-md-8">
+                                    <!-- true ||  -->
+                                    <ui-select ng-disabled="check_readonly"
+                                               ng-model="finance.submission_frequencys">
+                                        <ui-select-match placeholder="Select VAT Submission Freq.">{{$select.selected.label}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in arr_submiss_frequency | filter: $select.search">
+                                            <div ng-bind-html="opt.label | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <!--<div class="form-group">
+                                <label class="col-md-4 control-label">VAT On Sales</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="finance.vat_sale_gl_account" class="form-control"
+                                           readonly/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">VAT On Purchases</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="finance.vat_purchase_gl_account" class="form-control"
+                                           readonly/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">VAT On Liability / Receivable</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="finance.vat_lieability_receve_gl_account"
+                                           class="form-control"
+                                           readonly/>
+                                </div>
+                            </div>-->
+
+                            
+                            <div class="form-group" ng-if="defaultCompany == 133">
+                                <label class="col-md-4 control-label" 
+                                    style="padding-top: 0;line-height: 14px;">Tax Office Name
+                                </label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           class="form-control"
+                                           ng-model="finance.taxOfficeName"
+                                           ng-readonly="check_readonly">
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <!--   <div class="row">
+                    <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="col-md-4 control-label" >Company Reg. No.</label>
+                            <div class="col-md-8">
+                              <input type="text" ng-model="finance.company_reg_no" id="company_reg_no" class="form-control" ng-readonly="check_readonly"  />
+                            </div>
+                          </div>
+                      </div>
+                    </div> -->
+
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                <button class="btn btn-submit"
+                                        type="submit"
+                                        ng-show="!check_readonly">Save
+                                </button>
+                                <button class="btn btn-edit"
+                                        type="button"
+                                        ng-click="gotoEdit('financial_setting')"
+                                        ng-show="check_readonly">Edit
+                                </button>
+                                <!-- <button class="btn btn-delete" type="button" ng-click="delete({id:id,tab:'financial_setting'})" ng-show="check_readonly">Delete
+                            </button> -->
+                                <button class="btn btn-cancel"
+                                        type="button"
+                                        ui-sref="{{btnCancelUrl}}">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-12 control-label"><b>Sales Invoice & Credit Note</b></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">&nbsp;</label>
+                                <label class="col-md-3 control-label">Debtors</label>
+                                <label class="col-md-3 control-label">Sales</label>
+                                <label class="col-md-3 control-label">Sales VAT Account</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">UK</label>
+
+                                <div class="col-md-3">
+
+                                    <input type="text" ng-model="finance.sales_gl_ac_uk_debators_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('sales_gl_ac_uk_debators')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.sales_gl_ac_uk_debators"
+                                           class="form-control"/>
+                                </div>
+
+                                <div class="col-md-3">
+
+
+                                    <input type="text" ng-model="finance.sales_gl_ac_uk_sales_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('sales_gl_ac_uk_sales')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.sales_gl_ac_uk_sales"
+                                           class="form-control"/>
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <input type="text" ng-model="finance.sales_gl_ac_uk_sales_vat_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('sales_gl_ac_uk_sales_vat')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.sales_gl_ac_uk_sales_vat"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">EU</label>
+
+                                <div class="col-md-3">
+
+                                    <input type="text" ng-model="finance.sales_gl_ac_eu_debators_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('sales_gl_ac_eu_debators')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.sales_gl_ac_eu_debators"
+                                           class="form-control"/>
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <input type="text" ng-model="finance.sales_gl_ac_eu_sales_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('sales_gl_ac_eu_sales')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.sales_gl_ac_eu_sales"
+                                           class="form-control"/>
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <input type="text" ng-model="finance.sales_gl_ac_eu_sales_vat_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('sales_gl_ac_eu_sales_vat')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.sales_gl_ac_eu_sales_vat"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Outside EU</label>
+
+                                <div class="col-md-3">
+
+                                    <input type="text" ng-model="finance.sales_gl_ac_eu_out_debators_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('sales_gl_ac_eu_out_debators')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.sales_gl_ac_eu_out_debators"
+                                           class="form-control"/>
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <input type="text" ng-model="finance.sales_gl_ac_eu_out_sales_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('sales_gl_ac_eu_out_sales')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.sales_gl_ac_eu_out_sales"
+                                           class="form-control"/>
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <input type="text" ng-model="finance.sales_gl_ac_eu_out_sales_vat_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('sales_gl_ac_eu_out_sales_vat')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.sales_gl_ac_eu_out_sales_vat"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-12 control-label"><b>Purchase Invoice & Debit Note</b></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">&nbsp;</label>
+                                <label class="col-md-3 control-label">Creditors</label>
+                                <label class="col-md-3 control-label">Purchases</label>
+                                <label class="col-md-3 control-label">Purchase VAT Account</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">UK</label>
+
+                                <div class="col-md-3">
+
+                                    <input type="text" ng-model="finance.Purchase_gl_ac_uk_creditors_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('Purchase_gl_ac_uk_creditors')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.Purchase_gl_ac_uk_creditors"
+                                           class="form-control"/>
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <input type="text" ng-model="finance.Purchase_gl_ac_uk_purch_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('Purchase_gl_ac_uk_purch')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.Purchase_gl_ac_uk_purch"
+                                           class="form-control"/>
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <input type="text" ng-model="finance.Purchase_gl_ac_uk_purch_vat_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('Purchase_gl_ac_uk_purch_vat')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.Purchase_gl_ac_uk_purch_vat"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">EU</label>
+
+                                <div class="col-md-3">
+
+                                    <input type="text" ng-model="finance.Purchase_gl_ac_eu_creditors_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('Purchase_gl_ac_eu_creditors')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.Purchase_gl_ac_eu_creditors"
+                                           class="form-control"/>
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <input type="text" ng-model="finance.Purchase_gl_ac_eu_purch_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('Purchase_gl_ac_eu_purch')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.Purchase_gl_ac_eu_purch"
+                                           class="form-control"/>
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <input type="text" ng-model="finance.Purchase_gl_ac_eu_purch_vat_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('Purchase_gl_ac_eu_purch_vat')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.Purchase_gl_ac_eu_purch_vat"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Outside EU</label>
+
+                                <div class="col-md-3">
+
+                                    <input type="text" ng-model="finance.Purchase_gl_ac_eu_out_creditors_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('Purchase_gl_ac_eu_out_creditors')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.Purchase_gl_ac_eu_out_creditors"
+                                           class="form-control"/>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <input type="text" ng-model="finance.Purchase_gl_ac_eu_out_purch_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('Purchase_gl_ac_eu_out_purch')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.Purchase_gl_ac_eu_out_purch"
+                                           class="form-control"/>
+                                </div>
+
+                                <div class="col-md-3">
+
+                                    <input type="text" ng-model="finance.Purchase_gl_ac_eu_out_purch_vat_code"
+                                           class="form-control"
+                                           ng-click="getGL_account_code('Purchase_gl_ac_eu_out_purch_vat')"
+                                           ng-readonly="check_readonly"
+                                           required/>
+                                    <input type="hidden" ng-model="finance.Purchase_gl_ac_eu_out_purch_vat"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <button class="btn btn-submit" type="submit" ng-click="addFinancialSetting(finance)"
+                                    ng-show="!check_readonly">Save
+                            </button>
+                            <button class="btn btn-edit" type="button" ng-click="gotoEdit('financial_setting')"
+                                    ng-show="check_readonly">Edit
+                            </button>
+                            <button class="btn btn-delete" type="button"
+                                    ng-click="delete({id:id,tab:'financial_setting'})" ng-show="check_readonly">Delete
+                            </button>
+                            <button class="btn btn-cancel" type="button" ui-sref="{{btnCancelUrl}}">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'app/views/company/_finance_setting_gl_account_modal.html'"></div>-->

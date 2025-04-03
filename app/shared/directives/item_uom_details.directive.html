@@ -1,0 +1,450 @@
+<table class="table table-striped table-bordered narrow_table small_fields"
+       id="uom_details_tbl">
+    <thead class="fixit">
+        <tr>
+            <th>Unit of Measure</th>
+            <th style="    width: 2%;"></th>
+            <th>Quantity</th>
+            <th>Reference U.O.M</th>
+            <th style="    width: 16%;">Base U.O.M Qty.</th>
+            <th style="width:5% ">
+                Action
+            </th>
+            <th style="width:5% ">
+                <a ng-click="pushNewUOM()"
+                   class="ib add-dis-btn"
+                   ng-if="data.length < 5"
+                   title="Add U.O.M">
+                    <i class="material-icons">&#xE147;</i>
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody class="fixit"
+           style="max-height: 146px !important;">
+        <tr ng-repeat="item in data track by $index"
+            ng-init="parentIndex = $index"
+            ng-class="{'selectedItem':$index == selectedRow}"
+            ng-click="showUOMDetails($index)">
+
+            <td>
+                <select class="form-control"
+                        ng-model="item.cat_id"
+                        ng-disabled="{{parentIndex == 0}}"
+                        ng-change="ValidateUOMEntry(parentIndex, 'uom');"
+                        ng-options="opt as opt.title for opt in item.UOM">
+                    <option value=""
+                            disabled
+                            selected>Select Unit of Measure</option>
+                </select>
+            </td>
+            <td style="    width: 2%;">
+                =
+            </td>
+
+            <td>
+                <input type="number"
+                       step="any"
+                       class="form-control"
+                       id="quantity"
+                       ng-model="item.quantity"
+                       ng-change="ValidateUOMEntry(parentIndex, 'quantity');"
+                       ng-disabled="{{parentIndex == 0}}">
+            </td>
+            <td>
+                <select class="form-control"
+                        ng-model="item.ref_unit_id"
+                        ng-change="ValidateUOMEntry(parentIndex, 'refUOM');"
+                        ng-options="opt as opt.title for opt in item.refUOM"
+                        ng-disabled="{{parentIndex == 0}}">
+                    <option value=""
+                            disabled
+                            selected>Reference U.O.M</option>
+                </select>
+            </td>
+
+            <td style="    width: 16%;">
+                {{item.ref_quantity}} <span ng-if="item.ref_quantity != ''"> {{data[0].cat_id.title}} </span>
+            </td>
+
+            <td style="width: 5%;">
+                <a ng-if="!item.isDeleteAllowed && $index != 0">
+                    <i class="fa fa-times"
+                       aria-hidden="true"
+                       ng-click="removeUOM($index);"></i>
+                </a>
+            </td>
+            <td style="width:5% "></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="row">
+    <div class="col-md-12">
+        <h6 style="margin: 16px 0 4px;
+            color: #000000;
+            font-size: 13px;
+            font-weight: bold;">
+            {{infocusDetailsTbl.cat_id.title}} Details</i>
+        </h6>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="col-md-4 control-label "> Type</label>
+            <div class="col-md-8">
+                <select class="form-control"
+                        ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id)"
+                        ng-model="infocusDetailsTbl.DimensionType"
+                        ng-change="onSelectDimension();">
+                    <option value=""
+                            disabled
+                            selected>Select Type</option>
+                    <option value="1">Linear</option>
+                    <option value="2">Cylindrical </option>
+                    <option value="3">Spherical </option>
+                </select>
+            </div>
+            <!-- <div class="col-md-2 pl0"
+                 style="font-size: 11px;">
+                <label class="v-align">
+                    <input type="checkbox"
+                           ng-checked="infocusDetailsTbl.isCustomCalculated == 1"
+                           ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id)"
+                           ng-model="infocusDetailsTbl.isCustomCalculated"
+                           ng-click="onClickCustom();">Custom
+                </label>
+            </div> -->
+        </div>
+        <div ng-if="infocusDetailsTbl.DimensionType == 1">
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Dimension 1</label>
+                <div class="col-md-4 padr6">   
+                    <select class="form-control"
+                            ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id)"
+                            ng-change="onSelectDimension();"
+                            ng-model="infocusDetailsTbl.Dimensions.d1_type">
+                        <option value=""
+                                disabled
+                                selected>Select Dimension</option>
+                        <option ng-repeat="opt in lengthUnitArr track by opt.id" 
+                                ng-disabled="opt.selectable"
+                                ng-selected="opt.id == infocusDetailsTbl.Dimensions.d1_type"
+                                ng-value="opt.id"> {{opt.title}}</option>
+                    </select>
+                </div>
+                <div class="col-md-2 padl6 padr6">
+                    <input type="number"
+                           class="form-control"
+                           ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id) || !infocusDetailsTbl.Dimensions.d1_type"
+                           ng-model="infocusDetailsTbl.Dimensions.d1_val"
+                           ng-change="CalculateVolume();">
+                </div>
+                <div class="col-md-2 padl6">
+                    <select class="form-control"                            
+                            ng-model="infocusDetailsTbl.Dimensions.d1_unit"
+                            ng-change="onChangeDimension1()" ng-disabled="!infocusDetailsTbl.isCustomCalculated">
+                            <!-- ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id)" -->
+                        <!-- <option value="1">mm</option> -->
+                        <option value="2">cm</option>
+                        <!-- <option value="3">in</option>
+                        <option value="4">m</option> -->
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Dimension 2</label>
+                <div class="col-md-4 padr6">
+                    <select class="form-control"
+                            ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id)"
+                            ng-change="onSelectDimension();"
+                            ng-model="infocusDetailsTbl.Dimensions.d2_type">
+                        <option value=""
+                                disabled
+                                selected>Select Dimension</option>
+                                <option ng-repeat="opt in lengthUnitArr track by opt.id" 
+                                ng-disabled="opt.selectable"
+                                ng-selected="opt.id == infocusDetailsTbl.Dimensions.d2_type"
+                                ng-value="opt.id"> {{opt.title}}</option>
+                    </select>
+                </div>
+                <div class="col-md-2 padl6 padr6">
+                    <input type="number"
+                           step="any"
+                           class="form-control"
+                           ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id) || !infocusDetailsTbl.Dimensions.d2_type"
+                           ng-model="infocusDetailsTbl.Dimensions.d2_val"
+                           ng-change="CalculateVolume();">
+                </div>
+                <div class="col-md-2 padl6">
+                    <select class="form-control"
+                            ng-model="infocusDetailsTbl.Dimensions.d2_unit"
+                            ng-disabled="!infocusDetailsTbl.isCustomCalculated" ng-disabled="!infocusDetailsTbl.isCustomCalculated">
+                        <!-- <option value="1">mm</option> -->
+                        <option value="2">cm</option>
+                        <!-- <option value="3">in</option>
+                        <option value="4">m</option> -->
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Dimension 3</label>
+                <div class="col-md-4 padr6">
+                    <select class="form-control"
+                            ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id)"
+                            ng-change="onSelectDimension();"
+                            ng-model="infocusDetailsTbl.Dimensions.d3_type">
+                        <option value=""
+                                disabled
+                                selected>Select Dimension</option>
+                                <option ng-repeat="opt in lengthUnitArr track by opt.id" 
+                                ng-disabled="opt.selectable"
+                                ng-selected="opt.id == infocusDetailsTbl.Dimensions.d3_type"
+                                ng-value="opt.id"> {{opt.title}}</option>
+                    </select>
+                </div>
+                <div class="col-md-2 padl6 padr6">
+                    <input type="number"
+                           step="any"
+                           class="form-control"
+                           ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id) || !infocusDetailsTbl.Dimensions.d3_type"
+                           ng-model="infocusDetailsTbl.Dimensions.d3_val"
+                           ng-change="CalculateVolume();">
+                </div>
+                <div class="col-md-2 padl6">
+                    <select class="form-control"
+                            ng-model="infocusDetailsTbl.Dimensions.d3_unit"
+                            ng-disabled="!infocusDetailsTbl.isCustomCalculated" ng-disabled="!infocusDetailsTbl.isCustomCalculated">
+                        <!-- <option value="1">mm</option> -->
+                        <option value="2">cm</option>
+                        <!-- <option value="3">in</option>
+                        <option value="4">m</option> -->
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div ng-if="infocusDetailsTbl.DimensionType == 2">
+            <div class="form-group">
+                <label class="col-md-4 control-label "> Radial Dimension</label>
+                <div class="col-md-4 padr6">
+                    <select class="form-control"
+                            ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id)"
+                            ng-model="infocusDetailsTbl.Dimensions.d1_type">
+                        <option value=""
+                                disabled
+                                selected>Select Dimension</option>
+                        <option value="1">Radius</option>
+                        <option value="2">Diameter</option>
+                    </select>
+                </div>
+                <div class="col-md-2 padl6 padr6">
+                    <input type="number"
+                           step="any"
+                           class="form-control"
+                           ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id) || !infocusDetailsTbl.Dimensions.d1_type"
+                           ng-model="infocusDetailsTbl.Dimensions.d1_val"
+                           ng-change="CalculateVolume();">
+                </div>
+                <div class="col-md-2 padl6">
+                    <select class="form-control"
+                            ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id)"
+                            ng-model="infocusDetailsTbl.Dimensions.d1_unit"
+                            ng-change="onChangeDimension1()" ng-disabled="!infocusDetailsTbl.isCustomCalculated">
+                        <!-- <option value="1">mm</option> -->
+                        <option value="2">cm</option>
+                        <!-- <option value="3">in</option>
+                        <option value="4">m</option> -->
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Dimension 2</label>
+                <div class="col-md-4 padr6">
+                    <select class="form-control"
+                            ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id)"
+                            ng-change="onSelectDimension();"
+                            ng-model="infocusDetailsTbl.Dimensions.d2_type">
+                        <option value=""
+                                disabled
+                                selected>Select Dimension</option>
+                                <option ng-repeat="opt in lengthUnitArr track by opt.id" 
+                                ng-disabled="opt.selectable"
+                                ng-selected="opt.id == infocusDetailsTbl.Dimensions.d2_type"
+                                ng-value="opt.id"> {{opt.title}}</option>
+                    </select>
+
+                </div>
+                <div class="col-md-2 padl6 padr6">
+                    <input type="number"
+                           step="any"
+                           class="form-control"
+                           ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id) || !infocusDetailsTbl.Dimensions.d2_type"
+                           ng-model="infocusDetailsTbl.Dimensions.d2_val"
+                           ng-change="CalculateVolume();">
+                </div>
+                <div class="col-md-2 padl6">
+                    <select class="form-control"
+                            ng-model="infocusDetailsTbl.Dimensions.d2_unit"
+                            ng-disabled="!infocusDetailsTbl.isCustomCalculated" ng-disabled="!infocusDetailsTbl.isCustomCalculated">
+                        <!-- <option value="1">mm</option> -->
+                        <option value="2">cm</option>
+                        <!-- <option value="3">in</option>
+                        <option value="4">m</option> -->
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div ng-if="infocusDetailsTbl.DimensionType == 3">
+            <div class="form-group">
+                <label class="col-md-4 control-label "> Radial Dimension</label>
+                <div class="col-md-4 padr6">
+                    <select class="form-control"
+                            ng-change="CalculateVolume();"
+                            ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id)"
+                            ng-model="infocusDetailsTbl.Dimensions.d1_type">
+                        <option value=""
+                                disabled
+                                selected>Select Dimension</option>
+                        <option value="1">Radius</option>
+                        <option value="2">Diameter</option>
+                    </select>
+                </div>
+                <div class="col-md-2 padl6 padr6">
+                    <input type="number"
+                           step="any"
+                           class="form-control"
+                           ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id) || !infocusDetailsTbl.Dimensions.d1_type"
+                           ng-model="infocusDetailsTbl.Dimensions.d1_val"
+                           ng-change="CalculateVolume();">
+                </div>
+                <div class="col-md-2 padl6">
+                    <select class="form-control"
+                            ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id)"
+                            ng-model="infocusDetailsTbl.Dimensions.d1_unit"
+                            ng-change="onChangeDimension1()" ng-disabled="!infocusDetailsTbl.isCustomCalculated">
+                        <!-- <option value="1">mm</option> -->
+                        <option value="2">cm</option>
+                        <!-- <option value="3">in</option>
+                        <option value="4">m</option> -->
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label ">Volume </label>
+            <div class="col-md-6 padr6">
+                <input type="number"
+                       step="any"
+                       class="form-control"
+                       ng-model="infocusDetailsTbl.volume"
+                       ng-disabled="!infocusDetailsTbl.isCustomCalculated">
+            </div>
+            <div class="col-md-2 padl6">
+                <select ng-model="infocusDetailsTbl.volume_unit"
+                        ng-disabled="!infocusDetailsTbl.isCustomCalculated"
+                        class=" form-control"
+                        ng-disabled="!infocusDetailsTbl.isCustomCalculated">
+
+                    <!-- <option value="1">mm
+                        <sup>3</sup>
+                    </option> -->
+                    <option value="2">cm&sup3;
+                    </option>
+                    <!-- <option value="3">in
+                        <sup>3</sup>
+                    </option> -->
+                    <!-- <option value="4">m
+                        <sup>3</sup>
+                    </option> -->
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="col-md-4 control-label ">Net Weight</label>
+            <div class="col-md-6 padr6">
+                <input type="number"
+                       step="any"
+                       class="form-control"
+                       ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id)"
+                       ng-change="CalculateVolume();"
+                       ng-model="infocusDetailsTbl.netweight">
+            </div>
+            <div class="col-md-2 padl6">
+                <select class=" form-control"                        
+                        ng-model="infocusDetailsTbl.weightUnit"  ng-disabled="1">
+                        <!-- ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id)" -->
+                    <!-- <option value="1"> g </option> -->
+                    <option value="2"> kg </option>
+                    <!-- <option value="3"> lb </option>
+                    <option value="4"> oz </option>
+                    <option value="5"> UK ton </option>
+                    <option value="6"> US ton </option> -->
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label ">
+                Packaging Weight
+            </label>
+            <div class="col-md-6 padr6">
+                <input type="number"
+                       step="any"
+                       class="form-control"
+                       ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id)"
+                       ng-change="CalculateVolume();"
+                       ng-model="infocusDetailsTbl.packagingWeight">
+            </div>
+            <div class="col-md-2 padl6">
+                <select class=" form-control"
+                        ng-change="onChanglist(formData_rec,$index,2)"
+                        ng-model="infocusDetailsTbl.weightUnit"
+                        ng-disabled="1">
+                    <!-- <option value="1"> g </option> -->
+                    <option value="2"> kg </option>
+                    <!-- <option value="3"> lb </option>
+                    <option value="4"> oz </option>
+                    <option value="5"> UK ton </option>
+                    <option value="6"> US ton </option> -->
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label ">Gross Weight</label>
+            <div class="col-md-6 padr6">
+                <input type="number"
+                       step="any"
+                       class="form-control"
+                       ng-model="infocusDetailsTbl.gross_weight"
+                       ng-disabled="1">
+            </div>
+            <div class="col-md-2 padl6">
+                <select class=" form-control"
+                        ng-disabled="1"
+                        ng-change="onChanglist(formData_rec,$index,2)"
+                        ng-model="infocusDetailsTbl.weightUnit">
+                    <!-- <option value="1"> g </option> -->
+                    <option value="2"> kg </option>
+                    <!-- <option value="3"> lb </option>
+                    <option value="4"> oz </option>
+                    <option value="5"> UK ton </option>
+                    <option value="6"> US ton </option> -->
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label "> Barcode</label>
+            <div class="col-md-8">
+                <input type="text"
+                       class="form-control"
+                       onkeydown="javascript: return (event.keyCode == 44)? false : true"
+                       ng-disabled="!(infocusDetailsTbl.cat_id && infocusDetailsTbl.quantity && infocusDetailsTbl.ref_unit_id)"
+                       ng-model="infocusDetailsTbl.barcode">
+            </div>
+        </div>
+
+    </div>
+</div>

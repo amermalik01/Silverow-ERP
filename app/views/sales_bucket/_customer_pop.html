@@ -1,0 +1,398 @@
+<div class="modal fade" id="groupInfoModal_detail" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div ng-class="{'whirl no-overlay':showLoader}"></div>
+  <div ng-class="{'loader_pop':loader_pop}"></div>
+  <div class="modal-dialog modal-lg" style="    width: 80%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Create Custom Filter</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <!-- Filter Start -->
+          <div class="col-md-12">
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr class="bg-col">
+                  <th>Filter</th>
+                  <th>Operator</th>
+                  <th>Search</th>
+                  <th>Logical</th>
+                  <th style="width:10%">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-ng-repeat="formDataExpense in array_dynamic_filter  | orderBy:'formDataExpense.sort_id' track by $index ">
+                  <td style="width:17%; overflow: visible;">
+                    <!--  {{formDataExpense.sort_id}}-->
+                    <ui-select ng-model="formDataExpense.normal_filter" ng-change="get_filter_pop_list(formDataExpense.normal_filter.id,$index)">
+                        <ui-select-match placeholder="Select Filter">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="opt in arr_filter | filter: $select.search">
+                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+
+
+                  </td>
+                  <td style="width:14%; overflow: visible;">
+
+                    <ui-select ng-model="formDataExpense.operator_filter" >
+                        <ui-select-match placeholder="Select Operator">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="opt in arr_operator | filter: $select.search">
+                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+
+
+                  </td>
+                  <td style="overflow: visible;"><input type="text" ng-model="formDataExpense.operator_search" class="form-control" /></td>
+
+
+                  <td style="width:14%; overflow: visible;">
+                    <ui-select ng-model="formDataExpense.logical_filter" ng-change="addNewChoice(formDataExpense)">
+                        <ui-select-match placeholder="Select Operator">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="opt in arr_logic_operator | filter: $select.search">
+                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+
+                  </td>
+                  <td ><a title="Delete" ng-if="$index>0" ng-click="remove_choice(formDataExpense,$index)" class="tooltips_cls btn "> <i class="fa fa-times"></i> </a></td>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-12" style="margin-top:10px;margin-bottom: 10px;"> <span class="pull-right">
+            <button type="submit"class="btn btn-default"  ng-click="getcustomer_filter(1,0,1);"  >Search </button>
+            <button type="button" class="btn btn-default"
+					ng-click="clear_search()"   ng-model="strict" title="Clear Fields"> <i class="fa fa-refresh" aria-hidden="true"></i></button>
+
+            <!--<button style="margin-left:10px;" type="button" class="btn btn-default"
+					ng-click="show_all_search()"   ng-model="strict" > Show All </button>-->
+            </span> </div>
+          <!-- Filter  End -->
+
+          <div class="col-md-12" ng-if="columnss.length > 0">
+            <!--paging options start-->
+            <div class="page-options" style="margin-top:5px">
+              <div class="col-xs-4">
+                <div class="form-group">
+                  <label class="col-md-6 show_record">Show Entries </label>
+                  <div class="col-md-4">
+                    <select ng-model="item_paging.pagination_limit" ng-options="opt as opt.label for opt in pagination_arry" class="in-t-1" ng-change="getcustomer_filter()">
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-4">
+                <div class="text-center total_paging_center" ng-if="arr_customer_all.length > 1">{{total_paging_record}} </div>
+              </div>
+              <div class="col-xs-4">
+                <div class="text-right total_paging_record" ng-if="arr_customer_all.length > 1">Total: {{total}}</div>
+              </div>
+            </div>
+            <!--paging options end-->
+          </div>
+          <div class="col-md-12">
+            <table class="table table-striped table-bordered table-hover" ng-if="columnss.length > 0">
+              <thead class="fixit">
+                <tr class="bg-col">
+                  <th> <input type="checkbox" class="checkAll_Customer"> &nbsp;
+                  </th>
+                  <th ng-repeat="column in columnss" ng-if="column.title != 'Id'  && column.title!= 'Action' && column.title!= 'Type' && column.title!= 'Location'  && column.title!= 'Bucket' && column.title!= 'Bid'  && column.title!= 'Select Saleperson' "> {{column.title}} </th>
+                  <th>Sales Person </th>
+                  <th>Bucket </th>
+                  <th>Location </th>
+                </tr>
+              </thead>
+              <tbody class="fixit">
+                <!--| filter:searchKeyword:strict -->
+                <tr ng-repeat="cust in arr_customer_all  track by $index  ">
+                  <td><input type="checkbox" ng-checked="cust.chk" ng-click="selectCustomer_bucket(cust)"></td>
+                  <td ng-repeat="column in columnss" ng-if="column.title != 'Id'  && column.title!= 'Action' && column.title!= 'Type' && column.title!= 'Location'  && column.title!= 'Bucket' && column.title!= 'Bid'  && column.title!= 'Select Saleperson' ">{{cust[column.field]}}</td>
+                  <td><select ng-model="cust.select_saleperson" ng-options="opt.id as opt.first_name  for opt in dropdown_crm_bucket" class="form-control">
+                    </select>
+
+                    <!--ng-selected="{{ opt.isPrimary == true }}"    value="{{ opt.isPrimary }}" -->
+                  </td>
+                  <td ng-if="cust.bucket>0"><a title="Open" ng-click="crm_bucket_detail(cust.id)" class="tooltips_cls btn "> <i style="  font-size: 20px;	position: relative;	top: 3px;" class="material-icons">&#xE89D;</i> </a></td>
+                  <td ng-if="cust.location=='Yes'"><a title="Open " ng-click="get_customer_loc(cust.id)" class="tooltips_cls btn "> <i style="  font-size: 20px;	position: relative;	top: 3px;" class="material-icons">&#xE89D;</i> </a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-lg-12" ng-if="arr_customer_all.length > 1">
+            <div class="form-group" style="text-align: left;">
+              <ul class="pagination" style="margin: 0px !important;" ng-show="item_paging.total_pages > 1">
+                <li ng-class="{'disabled': item_paging.cpage == 1}" class=""> <a ng-click="itemselectPage(item_paging.ppage); getcustomer_filter();" href="javascript: void(0);" class="">«</a> </li>
+                <li ng-repeat="(key,value) in item_paging.pages" ng-class="{'active': value == item_paging.cpage}"> <a ng-click="itemselectPage(value); getcustomer_filter();" href="javascript: void(0);"><span ng-bind="value"></span></a> </li>
+                <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}"> <a ng-click="itemselectPage(item_paging.npage); getcustomer_filter();" href="javascript: void(0);">»</a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <span class="pull-left"> Selected:&nbsp;{{(arr_customer_all | filter: {chk: true,}).length}}</span>
+        <div class="pull-right">
+          <button class="btn btn-submit " ng-click="rec.id>0 && add_bucket_customer(rec.id,1)" data-dismiss="modal">Save Filter</button>
+          <button type="button" class="btn  btn-default " data-dismiss="modal" ng-click="rec.id>0 && show_assign_cnfrm()" ng-model="strict"> Assign Bucket to Customer </button>
+          <!--ng-click="rec.id>0 && add_bucket_to_customer(rec.id,1)" -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="show_assign_cnfrm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div ng-class="{'whirl no-overlay':showLoader}"></div>
+  <div ng-class="{'loader_pop':loader_pop}"></div>
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Conform Bucket</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6 ">
+            <button type="button" class="btn  btn-default " data-dismiss="modal" ng-click="add_bucket_to_customer(rec.id,1,1)" ng-model="strict"> Replace Bucket </button>
+          </div>
+          <div class="col-md-6 ">
+            <button type="button" class="btn  btn-default " data-dismiss="modal" ng-click="add_bucket_to_customer(rec.id,1,2)" ng-model="strict"> Additional Bucket</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="nested_popup_sp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div ng-class="{'whirl no-overlay':showLoader}"></div>
+  <div ng-class="{'loader_pop':loader_pop}"></div>
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Select {{title}}</h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="input-symbol">
+                <input type="text" Placeholder="Search" class="form-control" ng-model="rec.searchKeywordpop2">
+                <span id="date_msg_4"> <i class="fa fa-search"></i></span> </div>
+            </div>
+            <!-- <div class="col-md-4">
+              <button style="margin-left:10px;" type="button" class="btn btn-default" ng-click="searchKeywordpop2=''" ng-model="strict"> Clear </button>
+            </div> -->
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped table-bordered table-hover">
+                <thead class="fixit">
+                  <tr>
+                    <th> Name </th>
+                  </tr>
+                </thead>
+                <tbody class="fixit">
+                  <tr ng-show="type==2" ng-repeat="sp in country_type_arr | filter:rec.searchKeywordpop2 track by $index " ng-click="confirm(sp,array_dynamic_filter,main_index,type)">
+                    <td style="display:none !important">{{sp.id}}</td>
+                    <td>{{sp.name}}</td>
+                  </tr>
+                  <tr ng-show="type==6" ng-repeat="sp in region_customer_arr | filter:rec.searchKeywordpop2 track by $index " ng-click="confirm(sp,array_dynamic_filter,main_index,type)">
+                    <td style="display:none !important">{{sp.id}}</td>
+                    <td>{{sp.title}}</td>
+                  </tr>
+                  <tr ng-show="type==7" ng-repeat="sp in region_segment_arr | filter:rec.searchKeywordpop2 track by $index " ng-click="confirm(sp,array_dynamic_filter,main_index,type)">
+                    <td style="display:none !important">{{sp.id}}</td>
+                    <td>{{sp.title}}</td>
+                  </tr>
+                  <tr ng-show="type==8" ng-repeat="sp in bying_group_customer_arr | filter:rec.searchKeywordpop2 track by $index " ng-click="confirm(sp,array_dynamic_filter,main_index,type)">
+                    <td style="display:none !important">{{sp.id}}</td>
+                    <td>{{sp.title}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="customer_location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Customer Locations</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 ">
+            <div class="panel-body" style=" max-height:200px;">
+              <table class="table table-condensed table-striped table-hover table-bordered">
+                <thead>
+                  <tr class="bg-col" ng-show="columns_customer_loc_record.length > 0">
+                    <th ng-repeat="column in columns_customer_loc_record" class="sortable sort-asc" ng-class="{ 'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),   'sort-desc': !table.tableParams5.isSortBy(column.field, 'desc')   }" ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"
+                      ng-if="column.title!= 'Id' && column.title!= 'Action'  && column.field != 'unit'" sortable="column.title"> {{column.title}} </th>
+                  </tr>
+                </thead>
+                <tbody class="table-body courser ">
+                  <tr ng-repeat="rec2 in customer_loc_record" ng-show="columns_customer_loc_record.length > 0">
+                    <td ng-repeat="column in columns_customer_loc_record" sortable="column.title" ng-if="column.title!= 'Id' && column.title!= 'Action' ">{{rec2[column.field]}} </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="crm_bucket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">CRM Bucket </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 ">
+            <div class="panel-body" style="    max-height:200px;">
+              <table class="table table-condensed table-striped table-hover table-bordered">
+                <thead>
+                  <tr class="bg-col" ng-show="bucket_selected_array.length > 0">
+                    <th> Name </th>
+                    <th> Sales Person </th>
+                    <th> Action</th>
+                  </tr>
+                </thead>
+                <tbody class="table-body courser ">
+                  <tr ng-repeat="rec3 in bucket_selected_array track by $index " ng-show="bucket_selected_array.length > 0">
+                    <td> {{rec3.name}} </td>
+                    <td>
+                      <saan ng-repeat="sp in selectedSalespersons_bucket " ng-if="rec3.bucket_id==sp.bucket_id">
+                        <span ng-if="$index == 0"><span ng-class="{'hilight':sp.isPrimary}">{{sp.name }}( {{sp.job_title}}  )</span></span> <span ng-if="$index > 0"> ;&nbsp;<span ng-class="{'hilight':sp.isPrimary}">{{sp.name}}( {{sp.job_title}}  )</span></span>
+                        </sapn>
+                    </td>
+                    <td><a title="Delete" ng-click="delete_bucket_frm_customer(rec3.id,$index,$data)" class="tooltips_cls btn "> <i class="fa fa-times"></i> </a> </a>
+
+                      <!--<a title="Open"
+                  ng-click="get_bucket_salesperson(rec3.bucket_id)" class="tooltips_cls btn "> <i style="  font-size: 20px;	position: relative;	top: 3px;" class="material-icons">&#xE89D;</i> </a>--></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="salesperson_bucket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Bucket Sales person</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 ">
+            <div class="panel-body" style="    max-height:200px;">
+              <table class="table table-condensed table-striped table-hover table-bordered">
+                <thead>
+                  <tr class="bg-col" ng-show="selectedSalespersons_bucket.length > 0">
+                    <th> Name </th>
+                    <th> Job Title </th>
+                    <th> Department </th>
+                  </tr>
+                </thead>
+                <tbody class="table-body courser ">
+                  <tr ng-repeat="rec4 in selectedSalespersons_bucket" ng-show="selectedSalespersons_bucket.length > 0">
+                    <!-- <td ng-if="rec.is_primary==1">YES</td>
+                    <td ng-if="rec.is_primary==0">NO</td>-->
+                    <td> {{rec4.name}} </td>
+                    <td> {{rec4.job_title}} </td>
+                    <td> {{rec4.dep_name}} </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="row">
+<div class="col-md-2"  >
+<label class="  control-label">Filter </label>
+<div class=" ">
+
+
+<select ng-model="searchKeyword.normal_filter"
+ng-options="opt as opt.name for opt in arr_filter"
+class="form-control"      >
+<option style="display:block" value=""></option>
+</select>
+</div>
+</div>
+<div class="col-md-2" >
+<label class="  control-label">Operator </label>
+<div class=" ">
+<select ng-model="searchKeyword.operator_filter"
+ng-options="opt as opt.name for opt in arr_operator"
+class="form-control"      >
+<option style="display:block" value=""></option>
+</select>
+</div>
+</div>
+<div class="col-md-3" >
+<label class="  control-label"> Search </label>
+<div class=" ">
+<input   type="text"   ng-model="searchKeyword.operator_search"    class="form-control" />
+</div>
+</div>
+<div class="col-md-2" >
+<label class="  control-label">Logical </label>
+<div class=" ">
+<select ng-model="searchKeyword.logical_filter"
+ng-options="opt as opt.name for opt in arr_logic_operator"
+class="form-control"      >
+<option style="display:block" value=""></option>
+</select>
+</div>
+</div>
+<div class="col-md-12">
+<div class="col-md-6" >
+<label class="  control-label"> </label>
+<div class=" ">
+<button type="submit" class="btn btn-default"  ng-click="getcustomer_filter()"  >Search </button>
+<button style="margin-left:10px;" type="button" class="btn btn-default"
+ng-click="clear_search()"   ng-model="strict" > Show All </button>
+</div>
+</div>
+</div>
+</div>-->

@@ -1,0 +1,91 @@
+<div ><!-- ng-controller="CurrencyMovementAddController as table" -->
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+  <!-- <div class="row">
+  <div class="col-md-12">
+    <div class="col-md-12">
+      <div class="col-md-5"> -->
+  <div class="row">
+    <div class="col-md-12 col-md-12">
+      <div class="widget">
+        <div class="widget-body ">
+          <div id="dt_example" class="example_alt_pagination">
+            <div class="row">
+              <div class="col-lg-12 col-md-12">
+                <div class="widget animated fadeIn">
+                  <div class="widget-body nobg-widget-body" style="padding-top: 0px !important;margin-top: 10px;">
+                    <div class="row">
+                      <div class="col-md-12 col-md-12">
+                        <b class="bit" style="background: white; border: 0; text-align: center; font-weight: bold; font-size: 13px; padding: 9px 2px; border-bottom: 1px solid #dddddd !important; margin-bottom: 20px;">G/L Account(s) Setup for Foreign Currency Movement</b>
+                        <div class="col-md-5 form-horizontal">
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Realised Currency Gain <span class="required">*</span></label>
+                            <div class="col-md-8">
+                              <div class="input-symbol" ng-click="getGLcode(1);" ng-class="{'dont-click':currencyMovementReadonly}">
+                                <input type="text" class="form-control " ng-model="rec.realised_gain_gl_display_name" ng-class="{'pickdate':!currencyMovementReadonly}"
+                                  ng-disabled="currencyMovementReadonly" readonly 
+                                />
+                                <!-- required -->
+                                <span id="date_msg_4"><i class="fa fa-external-link"></i></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Realised Currency Loss <span class="required">*</span></label>
+                            <div class="col-md-8">
+                              <div class="input-symbol" ng-click="getGLcode(2);" ng-class="{'dont-click':currencyMovementReadonly}">
+                                <input type="text" class="form-control " ng-model="rec.realised_loss_gl_display_name" ng-class="{'pickdate':!currencyMovementReadonly}"
+                                  ng-disabled="currencyMovementReadonly" readonly 
+                                />
+                                <!-- required -->
+                                <span id="date_msg_4"><i class="fa fa-external-link"></i></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Un-Realised Currency Gain <span class="required">*</span></label>
+                            <div class="col-md-8">
+                              <div class="input-symbol" ng-click="getGLcode(3);" ng-class="{'dont-click':currencyMovementReadonly}">
+                                <input type="text" class="form-control " ng-model="rec.unrealised_gain_gl_display_name" ng-class="{'pickdate':!currencyMovementReadonly}"
+                                  ng-disabled="currencyMovementReadonly" readonly 
+                                />
+                                <!-- required -->
+                                <span id="date_msg_4"><i class="fa fa-external-link"></i></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-md-4 control-label">Un-Realised Currency Loss <span class="required">*</span></label>
+                            <div class="col-md-8">
+                              <div class="input-symbol" ng-click="getGLcode(4);" ng-class="{'dont-click':currencyMovementReadonly}">
+                                <input type="text" class="form-control " ng-model="rec.unrealised_loss_gl_display_name" ng-class="{'pickdate':!currencyMovementReadonly}"
+                                  ng-disabled="currencyMovementReadonly" readonly 
+                                />
+                                <!-- required -->
+                                <span id="date_msg_4"><i class="fa fa-external-link"></i></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+
+                        <div class="pull-right" style="    padding-right: 20px;">
+                          <button type="button" class="btn btn-submit2" ng-click="add(rec)" ng-if="!currencyMovementReadonly">Save</button>
+                          <button class="btn btn-edit" ng-if="currencyMovementReadonly" type="button" ng-click="gotoEdit()"><i class="fa fa-edit fa_display"></i> Edit</button>
+                          <button class="btn btn-cancel" type="button" ui-sref="{{btnCancelUrl}}" ng-click="gotoFinanceTab()"><i class="fa fa-undo fa_display"></i> Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div ng-include="'app/views/currency_movement/_gl_account_modal.html'"></div>
+  </div>
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

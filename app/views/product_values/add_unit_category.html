@@ -1,0 +1,149 @@
+
+<div class="modal fade" id="add_unit_category"  >
+  <div class="modal-dialog"  style="width:65% !important;"> <!--modal-lg-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close"  data-dismiss="modal"  aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Setup Hierarchy of Unit of Measure </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="widget">
+              <div class="widget-body">
+                <div class="row">
+                  <div class="col-md-12 ">
+                    <div class="panel panel-default no-padding no-border no-margin">
+                      <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;">
+                        <table class="table table-striped table-bordered narrow_table small_fields">
+                          <thead>
+                            <tr> 
+                              <!-- <th style=" width:5% !important; "></th>-->
+                              <th style=" width:15% !important; ">Unit of Measure</th>
+                              <th style=" width:1% !important; "></th>
+                              <th style=" width:15% !important; ">Quantity</th>
+                              <th style=" width:15% !important; ">Primary Unit of Measure</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- {{ $index > 0 }}  $first--> 
+                            
+                            <!-- | orderBy:'quantity':false--> 
+                            <!--   | filter:filter | orderBy:sort:reverse-->
+                            
+                            <tr ng-repeat="formData_rec in unit_measures_category_record track by $index" ng-if="$index < 0"> 
+                              <!--<div class="checkbox" style="height: 14px !important;">
+                              <label>
+                                <input ng-readonly="check_item_readonly" 
+                                     type="checkbox" ng-model="formData_rec.check_id"  
+                                       name="formData_rec.list_values[]"   style="height: 14px !important;">
+                                {{formData_rec.title}} </label>
+                            </div>--> 
+                              
+                              <!--<div class="checkbox" style="height: 14px !important;">
+                              <label>
+                                <input ng-readonly="check_item_readonly" 
+                                     type="checkbox" ng-model="formData_rec.check_id"  
+                                       name="formData_rec.list_values[]"  
+                                       id="selected_{{formData_rec.id}}" 
+                                        style="height: 14px !important;">
+                              </label>
+                            </div>
+                            --> 
+                              <!--  <input type="checkbox" 
+                          ng-model="formData_rec.check_id"  class="check"   id="selected_{{formData_rec.id}}"  />
+                         </td>  --> <!-- <label> {{formData_rec.title}} </label>--> 
+                              <!--<select  ng-disabled="check_item_readonly"  
+                             ng-model="formData_rec.cat_id"  ng-options="opt as opt.title for opt in unit_measures_category"
+                          class="form-control"   >
+                              
+                            </select>
+                            -->
+                              <td><!--<span style="    float: left;    margin: 5px;"> 1</span>-->
+                                
+                                <select  disabled        
+                            ng-model="formData_rec.cat_id" id="category"    class="form-control"     >
+                                  <option value=""></option>
+                                  <option ng-repeat="value in unit_measures_category"
+                      ng-selected="formData4.unit_id == value.id"
+                      value="{{value.id}}">{{value.title}} </option>
+                                </select>
+                                
+                                <!--   <input      type="text"   ng-model="formData4.unit_id"    />
+            --></td>
+                              <td><span style="   margin-left: 6px;"> =</span></td>
+                              <td><input readonly class="form-control input_text" data-parsley-trigger="keyup"     data-parsley-type="number"     data-parsley-error-message="Invalid Value."   
+            type="text"   ng-model="formData_rec.quantity"  ng-value="1" id="quantity_first"   /></td>
+                              <td> {{formData4.unit_name}} </td>
+                            </tr>
+                            
+                            <tr ng-repeat="formData_rec in unit_measures_category_record  track by $index"
+                                 ng-show=" $index == 0 ">
+                              <td  ><!--<select  disabled     
+                            ng-model="formData_rec.cat_id" id="category"    class="form-control"     >
+                                  <option value=""></option>
+                                  <option ng-repeat="value in unit_measures_category"
+                      ng-selected="formData4.unit_id == value.id"  
+                      value="{{value.id}}">{{value.title}} </option>
+                                </select>-->
+                                <select disabled
+                                         ng-model="formData_rec.cat_id"
+                                          ng-options="opt as opt.title for opt in unit_measures_category"
+                                         class="form-control"    >
+                                </select></td>
+                              <td ><span style="   margin-left: 6px;"> =</span></td>
+                              <td ><input readonly class="form-control input_text" data-parsley-trigger="keyup"     data-parsley-type="number"     data-parsley-error-message="Invalid Value."    
+            type="text"   ng-model="formData_rec.quantity"  ng-value="1" id="quantity_first"   /></td>
+                              <td > {{formData4.unit_name}} </td>
+                            </tr>
+                            
+                            <tr ng-repeat="formData_rec in unit_measures_category_record track by $index"
+                              ng-show=" $index > 0 " > 
+                              
+                              <!--  ng-change="check_duplicate(formData_rec.cat_id, 1)"   -->
+                              <td ><!--<span style="    float: left;    margin: 5px;"> 1</span>--> 
+                                <!-- style="width:75% !important; float: left;"--> 
+                                
+                                <!--<select  ng-disabled="check_item_readonly"   
+                            ng-model="formData_rec.cat_id" id="category"    class="form-control"  
+                               >
+                                  <option value=""></option>
+                                  <option ng-repeat="value in unit_measures_category"
+                      ng-selected="formData_rec.cat_id == value.id"
+                      value="{{value.id}}">{{value.title}} </option>
+                                </select>-->
+                                
+                                <select  ng-disabled="check_item_readonly"   
+                                         ng-model="formData_rec.cat_id"
+                                          ng-options="opt as opt.title for opt in unit_measures_category"
+                                         class="form-control"    ng-blur="check_duplicate(formData_rec.cat_id, 1)" >
+                                </select></td>
+                              <td ><!--{{$index}}--><span style="margin-left: 6px;"> =</span></td>
+                              <td ><input ng-readonly="check_item_readonly" string-to-number="" type="number" data-parsley-trigger="keyup"   min="0" step="0.01" data-parsley-minlength="1" ng-model="formData_rec.quantity" id="quantity" class="form-control input_text ng-pristine ng-valid-min ng-invalid ng-invalid-required ng-touched" data-parsley-minlength-message="Invalid Value" data-parsley-type="number" data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value"
+                              ng-blur="check_duplicate(formData_rec.quantity, 2)"
+                                 ></td>
+                              <td > {{formData4.unit_name}} </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!--/*        {{.unit_measures_category_record}} */--> 
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn_blue pic_block width_80" type="submit" ng-show="!check_item_readonly"><i class="fa fa-check fa_display"></i> Submit</button>
+        <button class="btn btn_blue" type="button" ng-click="showEditForm()"
+     		ng-show="check_hrvalues_readonly"><i class="fa fa-edit fa_display"></i> Edit</button>
+        <button type="button" class="btn default width_80" data-dismiss="modal" >Cancel</button>
+      </div>
+    </div>
+    <!-- /  data-dismiss="modal"  ng-click="reload_popup(2,'add_unit_category')"  --> 
+  </div>
+</div>

@@ -1,0 +1,580 @@
+<style>
+    [data-style=itemname]+.popover {
+        min-width: 240px;
+    }
+</style>
+<div class="widget"
+     style="background:none;">
+    <div class="widget-body"
+         style="background:none;">
+        <div class="panel-title2">Price Offer</div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Name
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-8">
+                    <input type="text"
+                           class="form-control"
+                           required
+                           ng-model="PriceOffer_rec.name"
+                           ng-readonly="PriceOffer_check_readonly">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Offered By
+                    <!-- <span class="required" ng-if="(supplierPrice && record_data_contact != undefined && record_data_contact.length != 0) || (!supplierPrice && selectedSalespersons != undefined && selectedSalespersons.length != 0)">*</span> -->
+                </label>
+                <style>
+                    .col-lgs .col-md-8 {
+                        width: 100%;
+                        padding: 0;
+                    }
+                </style>
+                <div class="col-md-8 col-lgs">
+
+                    <div ng-if="!supplierPrice"
+                         style="margin-top: 3px; color: gray;">
+                        <span ng-if="selectedSalespersons == undefined || selectedSalespersons.length == 0">Please
+                            select Salesperson in General tab.</span>
+                        <x-flexi-select ng-if="selectedSalespersons.length"
+                                        x-flexi-select-title="'Offered By'"
+                                        x-flexi-select-modal-id="'offeredBySelectModal'"
+                                        x-flexi-select-output='PriceOffer_rec.offeredByID'
+                                        x-flexi-select-output-comp-arr='PriceOffer_rec.offeredByArr'
+                                        x-flexi-select-data="selectedSalespersons"
+                                        x-flexi-select-readonly="PriceOffer_check_readonly"
+                                        x-flexi-select-show-cols="offeredByColumnsShow"
+                                        x-flexi-radio>
+                        </x-flexi-select>
+                    </div>
+
+                    <div class=""
+                         ng-if="supplierPrice"
+                         ng-click="">
+                        <span ng-if="record_data_contact == undefined || record_data_contact.length == 0">Please add
+                            Contact Persons.</span>
+                        <x-flexi-select ng-if="record_data_contact.length"
+                                        x-flexi-select-title="'Offered By'"
+                                        x-flexi-select-modal-id="'offeredBySelectModal'"
+                                        x-flexi-select-output='PriceOffer_rec.offeredByID'
+                                        x-flexi-select-output-comp-arr='PriceOffer_rec.offeredByArr'
+                                        x-flexi-select-data="record_data_contact"
+                                        x-flexi-select-readonly="PriceOffer_check_readonly"
+                                        x-flexi-select-show-cols="offeredByColumnsShowSrm"
+                                        x-flexi-radio>
+                        </x-flexi-select>
+
+                        <!-- <input type="text" id="offered_by" class="form-control" required ng-model="PriceOffer_rec.offered_by" ng-disabled="PriceOffer_check_readonly"
+                        />
+                        <input type="hidden" id="offeredByID" class="form-control" ng-model="PriceOffer_rec.offeredByID" />
+                        <input type="hidden" id="update_id" class="form-control" ng-model="PriceOffer_rec.id" />
+                        <span>
+                            <i class="fa fa-external-link" aria-hidden="true"></i>
+                        </span> -->
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Offer Method </label>
+                <div class="col-md-8">
+                    <ui-select ng-model="PriceOffer_rec.offer_method_ids"
+                               ng-disabled="PriceOffer_check_readonly">
+                        <ui-select-match placeholder="Select Offer Method">{{$select.selected.title}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="opt in arr_OfferMethod | filter: $select.search">
+                            <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <!-- ng-change="addNewPredefinedPopup(PriceOffer_rec.offer_method_ids, 'OFFER_METHOD', 'Offer Method')" -->
+            <!-- <div class="form-group">
+                <div class="col-md-4">
+                    <button class="btn btn_add2"
+                            type="button"
+                            ng-click="selectPriceItems(1)"
+                            ng-if="!(tbl_records.data.length > 0)"
+                            ng-disabled="!PriceOffer_rec.name.length>0 || PriceOffer_check_readonly">
+                        Add Item(s)</button>
+                </div>
+            </div>  -->
+        </div>
+        <div class="col-md-5 col-md-offset-2">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Start Date
+                    <span class="required">*</span>
+                </label>
+
+                <div class="col-md-8">
+                    <input jqdatepicker
+                           class="form-control"
+                           id="ck_startdate"
+                           placeholder="dd/mm/yyyy"
+                           ng-disabled="PriceOffer_check_readonly || (tbl_records.data.length > 0 && !isClone)"
+                           ng-model="PriceOffer_rec.offer_date"
+                           ng-class="{'pickdate':!PriceOffer_check_readonly}"
+                           ng-change="testdate_by_id('ck_startdate', 'ck_Enddate', 'date_msg_end')"
+                           required
+                           readonly>
+                    <span class="fa fa-calendar new_ca form-control-feedback"
+                          aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">End Date
+                    <span class="required">*</span>
+                </label>
+
+                <div class="col-md-8">
+                    <input jqdatepicker
+                           class="form-control"
+                           id="ck_Enddate"
+                           placeholder="dd/mm/yyyy"
+                           readonly
+                           ng-disabled="PriceOffer_check_readonly "
+                           ng-model="PriceOffer_rec.offer_valid_date"
+                           ng-class="{'pickdate':!PriceOffer_check_readonly}"
+                           ng-change="testdate_by_id('ck_startdate', 'ck_Enddate', 'date_msg_end')"
+                           required><!--  || (tbl_records.data.length > 0 && !isClone) -->
+
+                    <span class="fa fa-calendar new_ca form-control-feedback"></span>
+                    <span id="date_msg_end"
+                          style="color:#F00; display: none;">End Date is earlier then Start Date</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Currency
+                    <span class="required">*</span>
+                </label>
+                <div class="col-md-8">
+                    <!-- ng-disabled="PriceOffer_check_readonly"  -->
+                    <ui-select ng-model="PriceOffer_rec.currencys"
+                               ng-disabled="1"
+                               ng-change="PriceOfferValItemsPrice(directiveSelectedPriceItems)"
+                               ng-class="{'not-click-allow':disableClass > 0}">
+                        <ui-select-match placeholder="Select Currency">
+                            {{$select.selected.name + ' ' + '- ' + ($select.selected.code)}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="opt in arr_currency | filter: $select.search">
+                            <div ng-bind-html="opt.name + ' ' + '- ' + opt.code   | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <!-- <button class="btn btn_add2"
+                    type="button"
+                    ng-click="selectPriceItems(1)"
+                    ng-disabled="!PriceOffer_rec.name.length>0 || PriceOffer_check_readonly">
+                Add Item(s)</button> -->
+
+            <a title="Add Item(s)"
+                class="ib add-dis-btn"
+                style="text-align:right; position: absolute; z-index: 5; right: 20px; bottom: -45px;"
+                ng-click="selectPriceItems(1)"
+                
+                ng-disabled="!PriceOffer_rec.name.length>0 || PriceOffer_check_readonly"
+                ng-class="{'dont-click':!PriceOffer_rec.name.length>0 || PriceOffer_check_readonly}">
+                <i class="material-icons">&#xE147;</i>
+            </a><!-- ng-if="tbl_records.data.length > 0" -->
+            <!-- <div class="form-group">
+                <div class="col-md-4  col-md-offset-8"  style="text-align:right;">
+                    <a title="Add Item(s)"
+                        class="ib add-dis-btn"
+                        ng-click="selectPriceItems(1)"
+                        ng-if="!(tbl_records.data.length > 0)"
+                        ng-disabled="!PriceOffer_rec.name.length>0 || PriceOffer_check_readonly"
+                        ng-class="{'dont-click':!PriceOffer_rec.name.length>0 || PriceOffer_check_readonly}">
+                        <i class="material-icons">&#xE147;</i>
+                    </a>
+                </div>
+            </div> -->
+        </div>
+        <div ng-if="tbl_records.data.length > 0">
+            <x-price-offer-tbl headers="tbl_records.headers"
+                               data="tbl_records.data"
+                               price-offer-rec="PriceOffer_rec"
+                               currency-conversion-rate="currencyConversionRate"
+                               read-only-flg="PriceOffer_check_readonly"
+                               price-list-type="priceListType"
+                               temp-prod-arr="tempProdArr"
+                               inventory-setup="{{inventorySetup}}">
+            </x-price-offer-tbl>
+        </div>
+
+        <div class="col-md-12 ng-scope" style="margin-top:10px;" ng-if="!(tbl_records.data.length > 0)">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="fixit">
+                    <tr class="bg-col">
+                        <th style="white-space: normal;">
+                            <span>Item No.</span>
+                        </th>
+                        <th style="white-space: normal;">
+                            <span>Description</span>
+                        </th>
+                        <th style="white-space: normal;">
+                            <span>Category</span>
+                        </th>
+                        <th style="white-space: normal;">
+                            <span>U.O.M</span>
+                        </th>
+                        <th style="white-space: normal;" class="text-right">
+                            <span style="width: 8%;">Standard Price ({{defaultCurrencyCode}})</span>
+                        </th>
+                        <th style="white-space: normal;" class="text-right">
+                            <span style="width: 8%;">Price Offer ({{PriceOffer_rec.currencys.code}})</span>
+                        </th>
+                        <th style="white-space: normal;" class="text-right">
+                            <span style="width: 8%;">Price Offer LCY ({{defaultCurrencyCode}})</span>
+                        </th>
+                        <th style="white-space: normal;" class="minwidth text-right">
+                            <span style="width: 8%;">Min. Order Qty. </span>
+                        </th>
+                        <th style="white-space: normal;" class="minwidth text-right">
+                            <span style="width: 8%;">Max. Order Qty. </span>
+                        </th>
+                        <th class="text-center">
+                            Volume Discount
+                        </th>
+                        <th class="text-center">
+                            Action
+                        </th>
+                    </tr>
+                    
+                </thead>
+                <tbody class="fixit" style="max-height: 560px;"></tbody>
+            </table>
+        </div>
+        <!-- price-offer-landing-cost="PriceOfferLandingCost" -->
+        <!--  d-currency="defaultCurrency" -->
+        <div class="row">
+            <div class="col-md-12"
+                 style="margin-top: 16px;">
+                <div class="col-md-5" ng-if="tbl_records.data.length > 0 && PriceOffer_rec.id > 0 && priceListType == 'List' && !isCrm && !isSrm ">
+                    <!-- pull-left && !PriceOffer_check_readonly -->
+                    <div class="form-group">
+                        <div class="col-md-8">
+                            <input type="text"
+                                    x-validity="regx.multiEmail"
+                                    id="emailPriceList"
+                                    class="form-control"
+                                    ng-model="PriceOffer_rec.emailPriceList"
+                                    ng-disabled="!PriceOffer_check_readonly" />
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-default2 active-btns"
+                                    type="button"
+                                    ng-if="PriceOffer_rec.id > 0 && priceListType == 'List' && !isCrm && !isSrm"
+                                    ng-disabled="!PriceOffer_check_readonly"
+                                    ng-click="sendEmailPriceList(PriceOffer_rec)">Send Email</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-right"
+                     style="margin-right: 1%;">
+                    <!-- <button class="btn btn-default"
+                            data-toggle="modal"
+                            data-target="#price-offer-email">Send Email</button> -->
+                    <!--  || PriceOffer_rec.priceType == 3 -->
+                    <button class="btn btn-default2 active-btns"
+                            type="button"
+                            ng-if="PriceOffer_rec.id > 0 && priceListType == 'List' && !isCrm && !isSrm && PriceOffer_check_readonly"
+                            ng-click="ClonePriceList(PriceOffer_rec)"> Clone </button>
+                    
+                    <button class="btn btn-default2 active-btns"
+                            type="button"
+                            ng-if="PriceOffer_rec.id > 0 && priceListType == 'List' && !isCrm && !isSrm"
+                            ng-disabled="!PriceOffer_check_readonly"
+                            ng-click="downloadPDFPriceList(PriceOffer_rec)"> Download PDF </button>
+
+                    <!-- PriceOffer_rec.priceType == 1 # 2 PriceOffer_rec.priceType == 2-->
+                    <button class="btn btn-default2 active-btns"
+                            type="button"
+                            ng-if="PriceOffer_rec.id > 0 && PriceOffer_rec.priceType == 1  && convertPriceTabPermission && !isCrm && !isSrm && PriceOffer_check_readonly"
+                            ng-click="moveToPriceList(PriceOffer_rec.id)"> Convert to Price List </button>
+                    <button class="btn btn-delete"
+                            type="button"
+                            ng-click="deletePriceOffer(PriceOffer_rec)"
+                            ng-if="PriceOffer_rec.id > 0 && !PriceOffer_check_readonly && deletePriceTabPermission">Delete</button>
+                    <button class="btn btn-submit"
+                            type="button"
+                            ng-if="!PriceOffer_check_readonly"
+                            ng-click="addPriceList(PriceOffer_rec,1,1)"
+                            ng-class="{'btn-submit':!isAdded,'btn-submit dont-click':isAdded}">Save</button>
+                    <button class="btn btn-edit"
+                            type="button"
+                            ng-click="showCRMPriceInfoEditForm();showSRMPriceInfoEditForm();"
+                            ng-if="PriceOffer_check_readonly && editPriceTabPermission">Edit</button>
+                    <button class="btn btn-cancel"
+                            type="button"
+                            ng-click="getPriceOffer()"
+                            ng-if="!deletebtn && PriceOffer_rec.priceType == 1">Cancel</button>
+                    <button class="btn btn-cancel"
+                            type="button"
+                            ng-click="getPriceOfferList()"
+                            ng-if="!deletebtn && (PriceOffer_rec.priceType == 2 ||PriceOffer_rec.priceType == 3)">Cancel</button>
+                    <button class="btn btn-cancel"
+                            type="button"
+                            ng-click="deletePriceOffer(PriceOffer_rec)"
+                            ng-if="deletebtn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="modal fade template-design"
+     id="price-offer-email">
+    <div class="modal-dialog"
+         style=" margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 style="height: 80vh;overflow: auto;padding: 2cm;">
+                <htmlpageheader name="MyCustomHeader">
+                    <div style="clear: both">
+                        <div class="temp-left-area">
+                            <div class="temp-logo">
+                               <img ng-src="{{imagePath+defaultLogo}}"
+                                     ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            </div>
+                            <div class="temp-company-address">
+                                <table class="table-no-padding">
+                                    <tr>
+                                        <td style="padding-left: 0 !important;">
+                                            Company Name
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 0 !important;">
+                                            Address Line 1
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 0 !important;">
+                                            Address Line 2
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 0 !important;">
+                                            City
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 0 !important; text-transform: uppercase">
+                                            TWOP019
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 0 !important;">
+                                            <b>Tel.&nbsp;</b>0123123
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="temp-right-area">
+
+                            <table align="right"
+                                   style="  width: 100%;"
+                                   class="table-no-padding">
+                                <tr>
+                                    <td class="template-name">
+                                        Price Offer
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table align="right"
+                                   class="table-no-padding"
+                                   style="margin-top: 15px;">
+                                <tr>
+                                    <td class="temp-pad-left">
+                                        <b>Price Offered By</b>
+                                    </td>
+                                    <td class="template-text-right">
+                                        <b>John Harris</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="temp-pad-left">
+                                        <b>Price Start Date</b>
+                                    </td>
+                                    <td class="template-text-right">
+                                        <b>10/10/2019</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="temp-pad-left">
+                                        <b>Price End Date</b>
+                                    </td>
+                                    <td class="template-text-right">
+                                        <b>21/12/2019</b>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </htmlpageheader>
+
+                <sethtmlpageheader name="MyCustomHeader"
+                                   page="ALL"
+                                   value="on"
+                                   show-this-page="1" />
+                <sethtmlpageheader name="MyCustomHeader"
+                                   page="E"
+                                   value="on" />
+                <pagefooter name="MyFooter1"
+                            content-right="Page {PAGENO} of {nb}"
+                            footer-style="color:#00000;font-size: 11px" />
+
+                <setpagefooter name="MyFooter1"
+                               page="ALL"
+                               value="on"
+                               show-this-page="1" />
+                <div style="clear: both;padding-top: 10px;"
+                     class="temp-body">
+                    <div style="float: left;width: 40%">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="temp-no-pad"
+                                        style="padding-right: 60px;padding-left: 0 !important;">
+                                        <table class="table-no-padding">
+                                            <tr>
+                                                <td class="temp-text-uppercase temp-no-pad"
+                                                    style="padding-left: 0 !important;">
+                                                    <b style="color: #2196F3;font-size: 14px;">Customer</b>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="temp-no-pad"
+                                                    style="padding-left: 0 !important;">
+                                                    Customer Name
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="temp-no-pad"
+                                                    style="padding-left: 0 !important;">
+                                                    Customer Address Line 1
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="temp-no-pad"
+                                                    style="    padding-left: 0 !important;">
+                                                    Customer Address Line 2
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="temp-no-pad"
+                                                    style="padding-left: 0 !important;">
+                                                    City
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="temp-no-pad"
+                                                    style="text-transform: uppercase;padding-left: 0 !important;">
+                                                    TQ9020
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left: 0 !important;">
+                                                    <b>Tel.&nbsp;</b>0123123
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="temp-main-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Item No.
+                                </th>
+                                <th>
+                                    Item Description
+                                </th>
+                                <th>
+                                    UOM
+                                </th>
+                                <th class="rightAlign">
+                                    Unit Price
+                                </th>
+                                <th>
+                                    Currency
+                                </th>
+                                <th class="rightAlign">
+                                    Min Qty.
+                                </th>
+                                <th class="rightAlign">
+                                    Max Qty.
+                                </th>
+                                <th style="text-align: center">
+                                    Vol. Disc.
+                                </th>
+                                <th class="rightAlign">
+                                    Min. Order Qty.
+                                </th>
+                                <th class="rightAlign">
+                                    Disc. By
+                                </th>
+                                <th class="rightAlign">
+                                    Disc. Price
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    ITEM112
+                                </td>
+                                <td>
+                                    Saka Water 5L
+                                </td>
+                                <td>
+                                    Case
+                                </td>
+                                <td class="rightAlign">
+                                    122.12
+                                </td>
+                                <td>
+                                    GBP
+                                </td>
+                                <td class="rightAlign">
+                                    12
+                                </td>
+                                <td class="rightAlign">
+                                    20
+                                </td>
+                                <td style="text-align: center">
+                                    Yes
+                                </td>
+                                <td class="rightAlign">122</td>
+                                <td class="rightAlign">2</td>
+                                <td class="rightAlign">125.90</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            data-dismiss="modal">Cancel</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

@@ -1,0 +1,175 @@
+
+<div class="container  btn btn-info btn-lg mdlFire" attr="data-target" >
+  <div class="modal fade mymodal" id="model_record_list_delete"  role="dialog">
+    <div class="modal-dialog modal-lg"  ng-show="columns_del.length > 0"  >
+      <div class="modal-content">
+        <div class="modal-header" >
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+          <!-- <button type="button" class="close" data-dismiss="modal"> <i class='fa fa-times'></i> </button>
+            <button type="button" class="close modalMinimize"> <i class='fa fa-minus'></i> </button>-->
+          
+          <h4 class="modal-title"> List of Deleted Product(s) </h4>
+        </div>
+        <div class="modal-body">
+          <div class="row"  >
+            <div class="col-md-12">
+              <div class="panel panel-default"  >
+                <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" ng-table="table.tableParams5"  id="data-table" show-filter="true">
+                      <thead>
+                        <!--ng-if="  column.field == 'checked' "-->
+                        <tr class="bg-col"  ng-show="columns_del.length > 0">
+                          <th ng-repeat="column in columns_del"
+                     ng-if="  column.field != 'id' "    > {{column.title}}</th>
+                          <th style=" width:10% !important; ">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody class="courser table-body">
+                        <tr  ng-repeat="item in selection_record_del " ng-show="columns_del.length > 0" >
+                          <td ng-repeat="column in columns_del"
+                        ng-if="  column.field != 'id' "   > {{item[column.field]}}</td>
+                          <td  ><a title="Delete"   ng-click="delete_del_product(item.rec_id,$index,selection_record_del)"
+                                class="tooltips_clss btn "> <i class="fa fa-times"> </i></a></td>
+                        </tr>
+                        <tr  ng-show="columns_del.length == 0" >
+                          <td  >No Record found .</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="col-md-12 " >
+            <button type="button" class="btn btn-cancel" data-dismiss="modal" >Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="minmaxCon"></div>
+
+<!--
+<script>
+
+  $(document).ready(function(){ 
+      
+
+      var $content, $modal, $apnData, $modalCon; 
+
+      $content = $(".min");   
+
+
+      //To fire modal
+      $(".mdlFire").click(function(e){
+
+          e.preventDefault();
+
+          var $id = $(this).attr("data-target"); 
+
+          $($id).modal({backdrop: false, keyboard: false}); 
+
+        }); 
+ 
+
+      $(".modalMinimize").on("click", function(){
+
+                  $modalCon = $(this).closest(".mymodal").attr("id");  
+
+                  $apnData = $(this).closest(".mymodal");
+
+                  $modal = "#" + $modalCon;
+
+                  $(".modal-backdrop").addClass("display-none");   
+
+                  $($modal).toggleClass("min");  
+
+                    if ( $($modal).hasClass("min") ){ 
+
+                        $(".minmaxCon").append($apnData);  
+
+                        $(this).find("i").toggleClass( 'fa-minus').toggleClass( 'fa-clone');
+
+                      } 
+                      else { 
+
+                              $(".container").append($apnData); 
+
+                              $(this).find("i").toggleClass( 'fa-clone').toggleClass( 'fa-minus');
+
+                            };
+
+                  });
+
+        $("button[data-dismiss='modal']").click(function(){   
+
+                $(this).closest(".mymodal").removeClass("min");
+
+                $(".container").removeClass($apnData);   
+
+                $(this).next('.modalMinimize').find("i").removeClass('fa fa-clone').addClass( 'fa fa-minus');
+
+         }); 
+
+  });
+
+</script>
+ <style type="text/css"> 
+.modal-header .btnGrp {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
+
+.min {
+  width: 250px;
+  height: 35px;
+  overflow: hidden !important;
+  padding: 0px !important;
+  margin: 0px;
+  float: left;
+  position: static !important;
+}
+
+.min .modal-dialog, .min .modal-content {
+  height: 100%;
+  width: 100%;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.min .modal-header {
+  height: 100%;
+  width: 100%;
+  margin: 0px !important;
+  padding: 3px 5px !important;
+}
+
+.display-none { display: none; }
+
+button .fa {
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+.min .fa { font-size: 14px; }
+
+.min .menuTab { display: none; }
+
+button:focus { outline: none; }
+
+.minmaxCon {
+  height: 35px;
+  bottom: 1px;
+  left: 1px;
+  position: fixed;
+  right: 1px;
+  z-index: 9999;
+}
+  </style>--> 
+

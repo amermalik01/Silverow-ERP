@@ -1,0 +1,206 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="widget">
+      <div class="widget-body">
+        <input type="hidden"   ng-model="formData.sale_id"  id="sale_id"/>
+        <input type="hidden"   ng-model="formData.tab_id_2"   value="6"/>
+        <div class="row">
+          <div class="col-lg-6 col-md-6"> 
+            
+            <!--<div class="form-group">
+                <label class="col-sm-3 control-label">Purchase Volume Discount </label>
+                <div class="col-sm-7">
+                  <input  ng-readonly="check_item_readonly"  type="text" ng-model="formData.document_code" class="form-control" 
+             />
+                </div>
+              </div>-->
+            
+            <div class="form-group"  >
+              <label class="col-sm-3 control-label"> Discount On<span class="required">*</span> </label>
+              <div class="col-sm-7" style="    margin-top: 7px;"> 
+                <!--  <input ng-readonly="check_item_readonly" type="checkbox"    ng-change="show_price()"
+                  ng-true-value="1" ng-false-value="0" ng-checked="1 == formData.sale_selling_check" name="sale_selling_check"  ng-model="formData.sale_selling_check"        />
+                  -->
+                
+                <select id="saleSellingCheckId"  ng-disabled="check_item_readonly" required  ng-model="formData.sale_selling_check"
+                   ng-options="opt as opt.value for opt in list_discount_on"      
+                          class="select2me form-control"    ng-change="discount_check()" >
+                </select>
+              </div>
+            </div>
+            
+            <!--    <option ng-repeat="sel in list_discount_on" ng-selected="sale_selling_check == sel.value" value="{{sel.value}}">{{sel.value}}</option>   --> 
+            
+            <!--<div class="form-group"   ng-show="promotion_price" >
+              <label class="col-sm-3 control-label">Promotion Price </label>
+              <div class="col-sm-7" >
+                <input ng-readonly="check_item_readonly" type="text"  placeholder="0"     min="1"  max="1000" step="100"   data-parsley-trigger="keyup"  ng-change="show_price_calculate()"
+           data-parsley-minlength="1"  ng-model="formData.sale_unit_cost"  id="sale_unit_cost"  
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" data-parsley-type="number" 
+           data-parsley-type-message="Invalid Value"     >
+              </div>
+            </div>-->
+            <div class="form-group" ng-show="selected_discount_on" ><!--ng-show="sale_price"-->
+              <label class="col-sm-3 control-label"> Standard Selling Price</label>
+              <div class="col-sm-7">
+                
+           
+           
+                <input class="form-control input_text"   ng-change="show_price_calculate()"
+                 data-parsley-trigger="keyup"       
+             ng-model="formData.sale_selling_price"  id="sale_selling_price"data-parsley-type="number" 
+               data-parsley-error-message="Invalid Value."  ng-required="required_checked"  
+            type="text"     />
+            
+            
+              </div>
+              <!-- <div class="col-sm-3 no-padding">
+                  <p class="base_price"> {{ base_currency}} </p>
+                </div>--> 
+            </div>
+            <!-- <div class="col-sm-3 no-padding">
+                  <p class="base_price"> {{ base_currency}} </p>
+                </div>-->
+            
+            <div class="form-group">
+              <label class="col-sm-3 control-label ">Discount Type<span class="required">*</span> </label>
+              <div class="col-sm-7"><!--ng-change="setSymbol_calculatevalue(11)" -->
+                <select  ng-disabled="check_item_readonly"   ng-model="formData.supplier_type"
+                        required       ng-options="opt as opt.name for opt in list_type"         
+                                id="type_11"	
+                                    ng-change="setSymbol(11);show_price_calculate()" 
+                          class="select2me form-control"    >
+                  
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label"> Discount<span class="required">*</span> </label>
+              <div class="col-sm-7 input-symbol">
+                <input ng-readonly="check_item_readonly" type="number"  placeholder="0"     min="0.01"  step="0.01"    data-parsley-trigger="keyup"  required ng-change="show_price_calculate()"
+           data-parsley-minlength="1"  ng-model="formData.discount_value"  id="discount_value"  
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value" data-parsley-type="number" 
+           data-parsley-type-message="Invalid Value"    data-parsley-error-message="Invalid Value" >
+                <span  id="date_msg_11" style=" display: none; right: 20px !important;" >&#37;</span> </div>
+            </div>
+            <div class="form-group" ng-show="selected_discount_on">
+              <label class="col-sm-3 control-label"> Discounted  Price </label>
+              <!--<div class="col-sm-6">
+                  <input   type="text"  data-parsley-trigger="keyup"  readonly
+           data-parsley-minlength="1"  data-parsley-maxlength="100" ng-model="formData.discount_price"  id="discount_price"  
+           class="form-control input_text"  data-parsley-type="number" 
+               min="1"  max="1000" step="100"  
+           data-parsley-type-message="This value  must  be greater than  0."  
+           
+            >
+                </div>-->
+              
+              <div class="col-sm-7"> 
+                <!--      <input   type="text"  data-parsley-trigger="keyup"  readonly
+            ng-model="formData.discount_price"  id="discount_price"  
+           class="form-control input_text"  data-parsley-type="number" 
+               min="1"  max="1000" step="100"     data-parsley-type-message="This value  must  be greater than  0."  
+           
+            >--> 
+                <!--data-parsley-required="true" --><!--ng-required="required_checked" -->
+                
+            
+            
+               <input class="form-control input_text" 
+                 data-parsley-trigger="keyup"   readonly  ng-required="required_checked" 
+             ng-model="formData.discount_price" data-parsley-type="number" 
+               data-parsley-error-message="Invalid Value."   
+            type="text"     />
+                
+                <!--  data-parsley-trigger="change focusout" --> 
+              </div>
+              <!-- <div class="col-sm-3 no-padding">
+                  <p class="base_price"> {{ base_currency}} </p>
+                </div>--> 
+            </div>
+          </div>
+            <div class="col-lg-6 col-md-6"> 
+            <!--<div class="form-group">
+                <label class="col-sm-3 control-label"> Customer Code </label>
+                <div class="col-sm-7">
+                  <input  ng-readonly="check_item_readonly"  type="text" ng-model="formData.sale_code" class="form-control" 
+             />
+                </div>
+              </div>-->
+            <div class="form-group" ng-show="customers_list">
+              <label class="col-sm-3 control-label">Customer(s) <span class="required">*</span></label>
+              <div class="col-sm-7"> 
+                
+                <!--<input    type="text"   style="   border: none;width: 100%;"   ng-model="formData.sale_name"  />--> 
+                <!--    <input  ng-readonly="check_item_readonly" required type="text" 
+                  ng-model="formData.sale_name" class="form-control panel panel-info no-margin" ng-click="getcustomer('saleperson')" 
+             />-->
+                <input type="hidden" ng-model="formData.sale_name_id"  class="form-control" />
+                <input type="hidden" ng-model="formData.sale_name"  class="form-control" />
+                <input type="hidden" ng-model="formData.customer_price"  class="form-control" />
+                <!--  <div class="panel panel-info no-margin" style="   width: 300px;overflow-x: scroll;">
+                  <div class="panel-body"  style="width: 500px;"ng-click="get_all_list_customer(1)"  id="display_record" > </div>
+                </div>-->
+                
+                <div class="panel panel-info no-margin"style="white-space: nowrap;overflow-x: scroll;" >
+                  <div class="panel-body"   
+                  ng-click="get_all_list_customer(1)"  id="display_record" > </div>
+                </div>
+                
+                <!-- ng-click="getcustomer('saleperson')"ng-click="viewAllCustomers(0)"--> 
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Start Date <span class="required">*</span></label>
+              <div class="col-sm-7">
+                <p class="input-group"> 
+                  
+                  <!--   <input type="hidden"   ng-model="formData.start_date"  id="start_date"/>
+                    <input type="hidden"   ng-model="formData.end_date"  id="end_date"/>
+                  --> 
+                  <!-- {{formData.start_date * 1000 | date:'dd-MM-yyyy'}} -->
+                  <input   readonly="readonly" required
+                      type="text" class="form-control" ng-model="formData.s_start_date"    
+ ng-change="testdate(formData.s_start_date,formData.s_end_date,117)"  
+datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" 
+is-open="datePicker.instances['s_start_date']" 
+close-text="Close" 
+data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" 
+/>
+                  <span class="input-group-btn">
+                  <button   type="button"   ng-disabled="check_item_readonly"  
+            class="btn btn-default" ng-click="datePicker.open($event, 's_start_date')"> <i class="fa fa-calendar"></i></button>
+                  </span> </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">End Date <span class="required">*</span></label>
+              <div class="col-sm-7"><!-- min-date="newD" -->
+                <p class="input-group">
+                  <input readonly="readonly" required
+                      type="text" class="form-control" ng-model="formData.s_end_date" 
+ ng-change="testdate(formData.s_start_date,formData.s_end_date,117)"  
+ datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" is-open="datePicker.instances['s_end_date']"  
+close-text="Close"  data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+                  <span class="input-group-btn">
+                  <button type="button" ng-disabled="check_item_readonly" class="btn btn-default"
+ng-click="datePicker.open($event, 's_end_date')"><i class="fa fa-calendar"></i></button>
+                  </span> </p>
+                <span id="date_msg_leave_117" style="color:#F00; display: none;"  >End Date is earlier  then Start Date</span> </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="hr_line2"></div>
+            <div class="pull-right">
+              <button class="btn btn-info btn_blue" type="submit" ng-show="perreadonly"><i class="fa fa-check"></i> Submit</button>
+              <button class="btn btn-info btn_blue" type="button" ng-click="showEditForm()" ng-show="check_item_readonly"><i class="fa fa-edit"></i> Edit</button>
+              <button class="btn default" type="button" ui-sref="{{btnCancelUrl}}"><i class="fa fa-undo"></i> Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+<div ng-include="'app/views/_listing_modal_sales.html'" ></div>--> 

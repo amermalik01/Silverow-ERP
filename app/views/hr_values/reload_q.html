@@ -1,0 +1,7 @@
+ reload_q.html
+<select   style="width:150px"  
+          	 ng-model="formData.category"
+            ng-options="opt as opt.name for opt in category_expense"
+              class="select2me form-control  {{'new_' + formData.id}}"    disabled="true"   id="category" >
+  
+</select>

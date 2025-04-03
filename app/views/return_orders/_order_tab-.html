@@ -1,0 +1,168 @@
+<!-- <div class="row">
+        <div class="col-md-4 pull-right">
+          <button class="btn btn-primary pull-right" ng-hide="check_so_readonly" style="margin-top:10px;" type="button" ng-click="selectItem()"><em class="fa fa-plus-circle fa-fw mr-sm"></em>Add Item</button>
+           <select style="margin-top:10px; margin-right:10px; width:40%;" ng-hide="check_so_readonly" ng-model="item_types" ng-options="opt as opt.label for opt in arrItems" class="form-control col-md pull-right"></select>
+
+        </div>
+      </div> -->
+<!-- START table-responsive-->
+<div class="table-responsive">
+		<table class="table table-striped table-bordered table-hover narrow_table no-readonly">
+				<thead>
+						<tr class="bg-col">
+								<th width="8%">Type</th>
+								<th width="8%">Item No. / G/L No.</th>
+								<th width="11%">Description</th>
+								<th width="5%">Qty.</th>
+								<th width="8%">Unit Of Measure</th>
+								<th width="8%">Location</th>
+								<th width="8%">Unit Price</th>
+								<th width="8%">Discount Type</th>
+								<th width="8%">Discount</th>
+								<th width="8%">VAT</th>
+								<th width="8%">Total</th>
+								<th width="8%">Action</th>
+						</tr>
+				</thead>
+				<tbody class="courser table-body">
+						<tr ng-repeat="(key,item) in items"  ng-class="{'in-comp-alloc' : item.sale_status && item.remainig_qty > 0, 'comp-alloc': item.sale_status && item.remainig_qty == 0, 'item-dispatch-comp' : item.sale_status == 2}">
+							<td ng-if="item.item_type == 0"><select disabled="disabled" class="form-control col-md">
+												<option>Item</option>
+										</select></td>
+								<td ng-if="item.item_type == 2"><select disabled="disabled" class="form-control col-md">
+												<option>Service</option>
+										</select></td>
+								<td ng-if="item.item_type == 1"><select disabled="disabled" class="form-control col-md">
+												<option>G/L No.</option>
+										</select></td>
+								<td>{{item.product_code}}</td>
+								<td  ><input type="text" ng-model="item.description" ng-readonly="check_so_readonly" class="form-control col-md" style="color:#000000"></td>
+								<td><input type="number" ng-model="item.qty" ng-blur="checkQty(item,$index)" class="form-control col-md" ng-readonly="item.remainig_qty " style="color:#000000" required></td>
+								<td ><select ng-if="item.item_type == 0"ng-model="item.units"    ng-options="opt as opt.name+'('+opt.quantity+')' for opt in item.arr_units"   class="form-control">
+												<option style="display:none" value=""></option>
+										</select> <select ng-if="item.item_type == 2" ng-model="item.units" ng-disabled="check_so_readonly"    ng-options="opt as opt.title for opt in arr_service_units"   ng-readonly ="check_so_readonly" class="form-control">
+												<option style="display:none" value=""></option>
+										</select>
+										<select ng-model="item.units" ng-if="item.item_type == 1"
+                        ng-options="opt as opt.title for opt in glarr_units"
+                        ng-readonly="check_so_readonly" class="form-control" required>
+												<option style="display:none" value=""></option>
+												<!--+'('+opt.quantity+')'-->
+										</select></td>
+								<td ng-if="item.item_type == 0 || item.item_type == 2"><select ng-model="item.warehouses" ng-change="checkDuplWHItem(item,$index)"   ng-options="opt as opt.name for opt in arr_warehouse"    ng-disabled="check_so_readonly"  class="form-control">
+												<option style="display:none" value=""></option>
+										</select></td>
+
+
+								<td ng-if="item.item_type == 1">&nbsp </td>
+								<td><div class="input-symbol">
+												<input type="text" ng-model="item.standard_price"  class="form-control col-md" required  style="color:#000000" >
+												<span>{{rec.currency_id.code}}</span> </div></td>
+								<td><select ng-model="item.discount_type_id"   ng-options="opt as opt.name for opt in arr_discount_type"     class="form-control"ng-disabled="check_so_readonly" >
+												<option style="display:none" value=""></option>
+										</select></td>
+								<td><div class="input-symbol">
+												<input  ng-disabled="check_so_readonly"   type="text"   data-parsley-trigger="keyup"         ng-model="item.discount"      style="color:#000000"    class="form-control input_text" data-parsley-minlength-message="Invalid Value"        data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"   data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/"   ng-required="item.discount_type_id.id && item.discount_type_id.id !='None'"
+   data-parsley-type="digits" ng-min="item.discount_type_id.id && item.discount_type_id.id !='None'?0:''"
+                 >
+												<span ng-show="item.discount_type_id.id =='Percentage'">&#37;</span> </div></td>
+								<td><select ng-model="item.vats"   ng-options="opt as opt.name for opt in arr_vat"    class="form-control"  ng-disabled="check_so_readonly" >
+												<option style="display:none" value=""></option>
+										</select>
+
+										<!-- <input type="text" ng-model="item.vat" class="form-control col-md" ng-readonly="check_so_readonly" style="color:#000000"> --></td>
+								<td>{{item.total_price = rowTotal(item) | number:decimal_range}}&nbsp{{rec.currency_id.code}}</td>
+								<!-- || !item.total_price || item.total_price!=''-->
+								<ul class="parsley-errors-list filled" ng-show="item.total_price <  0 ">
+										<li class="parsley-type">This value should be greater than zero.</li>
+								</ul>
+										</td>
+								<!-- <td><span title="Delete" style="color:red;" ng-click="delete($index,item.update_id)" ng-hide="check_so_readonly"><i class="fa fa-trash-o"></i></span></td> -->
+								<td ><a   ng-if="item.stock_check==1"
+								ng-click="item.sale_status != 2 && item.warehouses.id > 0?get_warehouse(item):return;" style="padding:3px 9px; "  title="{{ item.sale_status == 2 ? 'Stock Allocation Completed' : 'Allocate Stock'}}"
+                        class="btn "><i class="fa fa-cubes"></i></a> <a ng-click="delete_sub($index,item,items)" title="Delete" class="btn "><i class="fa fa-times"></i></a>
+
+								</td>
+						</tr>
+						<tr ng-hide="check_so_readonly">
+								<td class="text-left"><select ng-model="rec.item_types" ng-change="selectItem(rec)" ng-options="opt as opt.label for opt in arrItems" class="form-control col-md pull-left">
+										</select></td>
+								<td>N/A</td>
+								<td>N/A</td>
+								<td><input type="text" value="0" class="form-control col-md" readonly="readonly" style="color:#000000"></td>
+								<td><input type="text" ng-class="{'dont-click':check_so_readonly}" readonly="readonly" value="N/A" class="form-control col-md"  style="color:#000000"></td>
+								<td><input type="text" value="N/A" readonly="readonly" class="form-control col-md"  style="color:#000000"></td>
+								<td><input type="text" value="0" readonly="readonly" class="form-control col-md"  style="color:#000000"></td>
+								<td><select disabled="disabled"   ng-readonly ="check_so_readonly" class="form-control">
+												<option style="display:none" value=""></option>
+										</select></td>
+								<td><div class="input-symbol">
+												<input type="text" value="0" class="form-control col-md" readonly="readonly" style="color:#000000">
+										</div></td>
+								<td><input type="text" ng-class="{'dont-click':check_so_readonly}" readonly="readonly" value="N/A" class="form-control col-md"  style="color:#000000"></td>
+								<td>0</td>
+								<td>&nbsp;</td>
+						</tr>
+				</tbody>
+		</table>
+</div>
+<!-- END table-responsive-->
+
+<div class="col-md-9" style="padding-left: 0;">
+		<textarea ng-model="rec2.note" class="in-t-1" style="width: 100%;resize: none;height: 77px;" rows="4"  cols="30"
+              ng-change="showWordsLimits_invoice(rec2.note.length)" maxlength="500"
+              placeholder="Add Note">{{rec.note}}</textarea>
+		<span class="word-counter">{{wordsLength}}/500</span> </div>
+<div class="col-md-3 no-padding" id="total-amout">
+		<div class="w-55">Amount Exc. VAT</div>
+		<div class="w-45">{{netTotal() | number:decimal_range}}&nbsp{{rec.currency_id.code}}</div>
+		<div class="w-55">VAT</div>
+		<div class="w-45">{{calcVat() | number:decimal_range}}&nbsp{{rec.currency_id.code}}</div>
+		<!-- <tr>
+                      <th>Discount</th>
+                      <td align="right">0.00 {{calcDiscount() | number:decimal_range}}&nbsp{{rec.currency_id.code}} </td>
+                    </tr> -->
+
+    <div class="w-55">Amount Inc. VAT</div>
+		<div class="w-45">{{grandTotal() | number:decimal_range}}&nbsp{{rec.currency_id.code}}</div>
+
+    <div ng-show="type==2">
+	<div class="w-55">Settled Amount</div>
+	<div class="w-45">{{paid_amount | number:decimal_range}}&nbsp{{rec.currency_id.code}}</div>
+
+    <div class="w-55">Payable Amount</div>
+    <div class="w-45">{{grandTotal()- paid_amount | number:decimal_range}}&nbsp{{rec.currency_id.code}}</div>
+    </div>
+</div>
+<div class="clearfix">&nbsp;</div>
+
+<div class="row"  >
+		<div class="col-md-12">
+				<div class="hr_line2"></div>
+
+				<div class="pull-left"> <span class="margin-right"><i class="fa fa-circle" style="color:#ef7372;"></i> Partially Allocated </span> <span class="margin-right"><i class="fa fa-circle"  style="color:#25b726;"></i> Allocated Stock </span> <span class="margin-right"><i class="fa fa-circle"  style="color:#ffd351;"></i> Received Stock </span> </div>
+				<div class="pull-right">
+
+                    <div ng-show="grandTotal() - paid_amount> 0">
+					<div ng-show="type==2" class="btn btn_blue" ng-click="get_invoice_list(grandTotal() - paid_amount)"  > <i class="fa fa-check fa_display"></i>Settle Invoice</div>
+                </div>
+					<div ng-show="type==1">
+					<button class="btn btn-default" ng-click="dispatchStock()"   type="button"
+							ng-class=""    ng-show="items.length > 0 || enable_btn_invoice"
+					> <i class="fa fa-check fa_display"></i>Post Credit Note</button>
+
+
+
+
+						<button class="btn btn-submit" type="submit" ng-show="!check_so_readonly && items.length > 0">Save</button>
+						<button class="btn btn-edit" type="button" ng-click="showEditForm()" ng-show="check_so_readonly">Edit</button>
+						<button class="btn btn-cancel" type="button" ui-sref="app.return-orders()">Cancel</button>
+					</div>
+				</div>
+		</div>
+</div>
+<style type="text/css">
+.table-body input.ng-invalid {
+border: 1px solid red;
+}
+</style>

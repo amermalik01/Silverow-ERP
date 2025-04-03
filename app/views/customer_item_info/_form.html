@@ -1,0 +1,282 @@
+<div class="row">
+
+<div class="col-lg-12 col-md-12">
+<div class="widget" style="background:none;">
+<!-- <div class="widget-header">
+  <div class="title">
+    Add Company General Information
+  </div>
+ 
+</div> -->
+<div class="widget-body" style="background:none;"> 
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label class="col-lg-4 control-label">Type<span class="required">*</span></label>
+        <div class="col-lg-8">
+          <select ng-model="rec.cust_prod_type" ng-options="opt as opt.title for opt in arr_cust_prod_type" class="form-control" ng-disabled="rec.id > 0 || isAdded" ng-change="onChangeType(rec.cust_prod_type.id)" required><option value="" style="display:none;"></option> </select> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-if="rec.cust_prod_type.id == 1">
+      <label class="col-lg-4 control-label">Customer(s)</label>
+      <div class="col-lg-8">
+        <div style="  overflow-y: scroll;    max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click readonly':cust_div_readonly || isAdded}" >
+                  <div class="panel-body" ng-click="getCustomers()" style="padding:10px !important; min-height:30px;">
+                      <span ng-repeat="cust in selectedCustomers track by $index">
+                        <span ng-if="$index == 0">{{cust.customer_name}}</span>
+                        <span ng-if="$index > 0">;&nbsp;{{cust.customer_name}}</span>
+                      </span>
+                  </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-if="rec.cust_prod_type.id == 2">
+        <label class="col-lg-4 control-label">Customer<span class="required">*</span></label>
+        <div class="col-lg-8">
+          <input type="text" ng-model="rec.customer_name" class="form-control" ng-readonly="rec.id > 0" ng-click="getCustomer()" ng-required="rec.cust_prod_type.id == 2">
+          <!-- <select ng-model="rec.customer" ng-options="opt as opt.Name for opt in arr_customers" class="form-control" ng-disabled="rec.id > 0" ng-change="selectAltLocation()"> </select> --> 
+
+        </div>
+    </div>
+
+    <!-- <div class="form-group" ng-if="rec.cust_prod_type.id == 2">
+        <label class="col-lg-4 control-label">Alt. Location<span class="required">*</span></label>
+        <div class="col-lg-8">
+          <select ng-model="rec.alt_location" ng-options="opt as opt.Location_Name for opt in arr_alt_location" class="form-control" ng-required="rec.cust_prod_type.id == 2" ng-disabled="rec.id > 0"> </select> 
+        </div>
+    </div> -->
+
+    <div class="form-group" ng-if="rec.cust_prod_type.id == 2">
+      <label class="col-lg-4 control-label">Alt. Location<span class="required">*</span></label>
+      <div class="col-lg-8">
+        <div style="  overflow-y: scroll; max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click readonly':rec.id > 0 || isAdded}" >
+                  <div class="panel-body" ng-click="getAltLocations()" style="padding:10px !important; min-height:30px;">
+                      <span ng-repeat="cust in selectedLocations track by $index">
+                        <span ng-if="$index == 0">{{cust.Location_Name}}</span>
+                        <span ng-if="$index > 0">;&nbsp;{{cust.Location_Name}}</span>
+                      </span>
+                  </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="form-group" ng-if="rec.cust_prod_type.id == 3">
+        <label class="col-lg-4 control-label">Region<span class="required">*</span></label>
+        <div class="col-lg-8">
+          <select ng-model="rec.region"  ng-options="opt as opt.title for opt in arr_regions" class="form-control" ng-required="rec.cust_prod_type.id == 3" ng-change="addNewPredefinedPopup(rec.region,'REGION','Region')" ng-disabled="rec.id > 0"> </select> 
+        </div>
+    </div> -->
+
+    <div class="form-group" ng-if="rec.cust_prod_type.id == 3">
+      <label class="col-lg-4 control-label">Region(s)</label>
+      <div class="col-lg-8">
+        <div style="  overflow-y: scroll; max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click readonly':cust_div_readonly || isAdded}" >
+                  <div class="panel-body" ng-click="getGroups()" style="padding:10px !important; min-height:30px;">
+                      <span ng-repeat="cust in selectedGroups track by $index">
+                        <span ng-if="$index == 0">{{cust.title}}</span>
+                        <span ng-if="$index > 0">;&nbsp;{{cust.title}}</span>
+                      </span>
+                  </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="form-group" ng-if="rec.cust_prod_type.id == 4">
+        <label class="col-lg-4 control-label">Segment<span class="required">*</span></label>
+        <div class="col-lg-8">
+          <select ng-model="rec.segment" ng-options="opt as opt.title for opt in arr_segments" class="form-control" ng-required="rec.cust_prod_type.id == 4" ng-change="addNewPredefinedPopup(rec.segment,'SEGMENT','Segment')" ng-disabled="rec.id > 0"> </select> 
+        </div>
+    </div> -->
+
+    <div class="form-group" ng-if="rec.cust_prod_type.id == 4">
+      <label class="col-lg-4 control-label">Segment(s)</label>
+      <div class="col-lg-8">
+        <div style="  overflow-y: scroll; max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click readonly':cust_div_readonly || isAdded}" >
+                  <div class="panel-body" ng-click="getGroups()" style="padding:10px !important; min-height:30px;">
+                      <span ng-repeat="cust in selectedGroups track by $index">
+                        <span ng-if="$index == 0">{{cust.title}}</span>
+                        <span ng-if="$index > 0">;&nbsp;{{cust.title}}</span>
+                      </span>
+                  </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="form-group" ng-if="rec.cust_prod_type.id == 5">
+        <label class="col-lg-4 control-label">Buying Group<span class="required">*</span></label>
+        <div class="col-lg-8">
+          <select ng-model="rec.buying_group" ng-options="opt as opt.title for opt in arr_buying_groups" class="form-control" ng-required="rec.cust_prod_type.id == 5" ng-change="addNewPredefinedPopup(rec.buying_group,'BUYING_GROUP','Buying Group')" ng-disabled="rec.id > 0"> </select> 
+        </div>
+    </div> -->
+
+    <div class="form-group" ng-if="rec.cust_prod_type.id == 5">
+      <label class="col-lg-4 control-label">Buying Group(s)</label>
+      <div class="col-lg-8">
+        <div style="  overflow-y: scroll; max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click readonly':cust_div_readonly || isAdded}" >
+                  <div class="panel-body" ng-click="getGroups()" style="padding:10px !important; min-height:30px;">
+                      <span ng-repeat="cust in selectedGroups track by $index">
+                        <span ng-if="$index == 0">{{cust.title}}</span>
+                        <span ng-if="$index > 0">;&nbsp;{{cust.title}}</span>
+                      </span>
+                  </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-if="rec.cust_prod_type.id > 2">
+      <label class="col-lg-4 control-label">Excluded Customer List</label>
+      <div class="col-lg-8">
+        <div style="  overflow-y: scroll;    max-height: 325px;">
+        <div class="panel panel-info no-margin" style="border-radius: 5px;" ng-class="{'dont-click readonly':check_readonly || isAdded}" >
+                  <div class="panel-body" ng-click="getExcCustomers()" style="padding:10px !important; min-height:30px;">
+                      <span ng-repeat="cust in selectedCustomers track by $index">
+                        <span ng-if="$index == 0">{{cust.customer_name}}</span>
+                        <span ng-if="$index > 0">;&nbsp;{{cust.customer_name}}</span>
+                      </span>
+                  </div>
+                   
+                </div>
+        </div>
+      </div>
+    </div>
+
+
+      <div class="form-group">
+      <label class="col-lg-4 control-label">Unit Of Measure<span class="required">*</span></label>
+      <div class="col-lg-8">
+        <select ng-model="rec.unit_of_measures" ng-options="opt as opt.name for opt in arr_unit_of_measure" class="select2me form-control"  ng-disabled ="check_readonly" required >
+          <option style="display:none;" value=""></option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-4 control-label">Currency <span class="required">*</span></label>
+        <div class="col-lg-8">
+          <div class="input-symbol">
+          <select ng-model="rec.currencys" ng-options="opt as opt.code +' - '+ opt.name for opt in arr_currency" class="select2me form-control" ng-disabled="check_readonly" ng-change="addNewCurrencyPopup(rec); onCurrencyChange()" tabindex="26" ng-class="{'not-click-allow':disableClass > 0}"> </select> 
+        </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-4 control-label">Price <span class="required">*</span></label>
+        <div class="col-lg-8">
+          <input type="text" ng-model="rec.price_offered" id="price_offered" ng-blur="chkPrice(rec.price_offered)" class="form-control" ng-readonly="check_readonly" required="1">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-4 control-label">Converted Price <span class="required">*</span></label>
+        <div class="col-lg-8">
+         <div class="input-symbol">
+          <input type="text" ng-model="rec.converted_price" class="form-control" ng-readonly="1">
+          <span>{{defaultCurrencyCode}} </span> 
+          </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-lg-4 control-label">Last SO Date</label>
+        <div class="col-lg-8">
+          <input type="text" ng-model="rec.last_so_date" class="form-control" readonly="readonly">
+        </div>
+    </div>
+
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+      <label class="col-lg-4 control-label">Offered By <span class="required">*</span></label>
+      <div class="col-lg-8">
+        <input type="text" ng-model="rec.offered_by" id="offered_by" class="form-control"  ng-disabled ="check_readonly" tabindex="1" ng-click="getOffer(formData)" required />
+        <input type="hidden" ng-model="rec.offered_by_id" id="offered_by_id" class="form-control" />
+        <input type="hidden" ng-model="rec.id" id="update_id" class="form-control" />
+      </div>
+     </div>
+      <div class="form-group">
+      <label class="col-lg-4 control-label">Offer Method <span class="required">*</span></label>
+      <div class="col-lg-8">
+        <select ng-model="rec.offer_method_ids" ng-options="opt as opt.title for opt in arr_OfferMethod" class="select2me form-control" ng-change="addNewPredefinedPopup(rec.offer_method_ids,'OFFER_METHOD','Offer Method')"  ng-disabled ="check_readonly" required tabindex="5"><option style="display:none;" value=""></option>
+        </select>
+      </div>
+    </div>
+     <div class="form-group">
+        <label class="col-lg-4 control-label">Min. Order Qty.<span class="required">*</span></label>
+        <div class="col-lg-8"><!-- ng-blur="checkQty('min');" -->
+          <div class="input-symbol">
+          <input ng-readonly="check_readonly" type="text" data-parsley-trigger="keyup" id="min_quantity" ng-model="rec.min_order_qty" ng-blur="checkQty('min')" required class="form-control input_text ng-valid ng-touched ng-dirty ng-valid-parse" data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/">
+          <span>{{rec.unit_of_measures.name}} </span> 
+          </div>
+        </div>
+    </div>
+     <div class="form-group">
+        <label class="col-lg-4 control-label">Max. Order Qty.<span class="required">*</span></label>
+        <div class="col-lg-8"><!-- ng-blur="checkQty('max');" -->
+          <div class="input-symbol">
+          <input ng-readonly="check_readonly" type="text" data-parsley-trigger="keyup" id="min_quantity" ng-model="rec.max_order_qty" ng-blur="checkQty('max')" required class="form-control input_text ng-valid ng-touched ng-dirty ng-valid-parse" data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/">
+          <span>{{rec.unit_of_measures.name}} </span> 
+          </div>
+        </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Start Date<span class="required">*</span></label>
+      <div class="col-lg-8">
+        <input jqdatepicker class="2date-picker form-control" id="ck_sdate" ng-model="rec.offer_date" ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_start_customer_item_info')"  required readonly >
+        <span id="date_msg_start_customer_item_info" style="color:#F00; display: none;"  >Start Date Required</span>
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-4 control-label">End Date<span class="required">*</span></label>
+      <div class="col-lg-8">
+        <input jqdatepicker class="2date-picker form-control" id ="ck_edate" ng-model="rec.offer_valid_date" ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_end_customer_item_info')" required readonly >
+     	<span id="date_msg_end_customer_item_info" style="color:#F00; display: none;"  >Leaving Date is earlier  then Start Date</span>
+      </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-4 control-label">Message</label>
+        <div class="col-lg-8">
+          <input type="text" ng-model="rec.message" class="form-control">
+        </div>
+    </div>
+  </div>
+</div>
+      
+
+   <div class="row">
+                <div class="col-lg-12">
+                  <div class="hr_line2"></div>
+                      <div class="pull-right">
+                      <button class="btn btn-info btn_blue" ng-class="{'btn-info btn_blue':!isAdded,'default dont-click':isAdded}" type="submit" ng-show="!check_readonly"><i class="fa fa-check"></i> Submit</button>
+                      <button class="btn btn-info btn_blue" type="button" ng-click="showCustItemInfoEditForm()" ng-show="check_readonly"><i class="fa fa-edit"></i> Edit</button>
+                      <button class="btn default" type="button" ng-click="showCustItemInfoListing()"><i class="fa fa-undo"></i> Cancel</button>
+                      </div>
+                </div>
+                </div>
+</div>
+</div>
+</div>
+<div ng-include="'app/views/sale_item_info/_customer_popup.html'"></div>
+<div ng-include="'app/views/sale_item_info/_customer_popup_for_groups.html'"></div>
+<div ng-include="'app/views/sale_item_info/_customer_popup2.html'"></div>
+<div ng-include="'app/views/sale_item_info/_customer_groups_popup.html'"></div>
+<div ng-include="'app/views/sale_item_info/_alt_locations_popup.html'"></div>
+<div ng-include="'app/views/_listing_modal_2.html'"></div>
+<div ng-include="'app/views/crm/add_volume.html'"></div>
+
+

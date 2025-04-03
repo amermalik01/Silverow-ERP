@@ -1,0 +1,359 @@
+[
+    {
+        "title": "Posting Date",
+        "field_name": "posting_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "date"
+    },
+    {
+        "title": "Order Date",
+        "field_name": "order_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "date"
+    },
+    {
+        "title": "Receipt Date",
+        "field_name": "receipt_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "date"
+    },
+    {
+        "title": "Supplier No.",
+        "field_name": "sell_to_cust_no",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Name",
+        "field_name": "supplier_name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Document Type",
+        "field_name": "docType",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Document No.",
+        "field_name": "invoice_code",
+        "event": {
+            "name": "openDocumentLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Supplier Ref. No.",
+        "field_name": "cust_order_no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Our Ref. No.",
+        "field_name": "order_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "130",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Consignment No.",
+        "field_name": "consignment_no",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "120",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Allocate Amount",
+        "field_name": "button1",
+        "event": {
+            "name": "getPaymentEntries",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "htmlTemplate": "<i class=\"fa fa-external-link\"></i>",
+        "condition": "Math.abs(scope.cellData.remaining_amount) > 0",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "120",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "View Allocated Amount",
+        "field_name": "button2",
+        "event": {
+            "name": "getPaidEntries",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "htmlTemplate": "<i class=\"fa fa-eye\"></i>",
+        "condition": "Math.abs(scope.cellData.grand_total - scope.cellData.remaining_amount) > 0",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Currency",
+        "field_name": "currency_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "90",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Amount",
+        "field_name": "amount_without_vat",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "number"
+    },
+    {
+        "title": "Amount (LCY)",
+        "field_name": "grand_total_converted",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "number"
+    },
+    {
+        "title": "VAT",
+        "field_name": "tax_amount",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "number"
+    },
+    {
+        "title": "Amount Incl. VAT",
+        "field_name": "grand_total",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "number"
+    },
+    {
+        "title": "Remaining Amount",
+        "field_name": "remaining_amount",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "number"
+    },
+    {
+        "title": "Remaining Amount (LCY)",
+        "field_name": "remaining_amount_lcy",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "170",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "number"
+    },
+    {
+        "title": "Open",
+        "field_name": "opened_closed",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "60",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "On Hold",
+        "field_name": "button3",
+        "event": {
+            "name": "CheckOnHold",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "htmlTemplate": "<i class=\"fa fa-external-link\"></i>",
+        "placeholder": "on_hold_message",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "80",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Due Date",
+        "field_name": "due_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "date"
+    },
+    {
+        "title": "Purchaser",
+        "field_name": "purchaser",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "drop_down",
+        "db_table": "employees",
+        "db_field": "CONCAT(first_name,' ',last_name)"
+    },
+    {
+        "title": "Contact Person",
+        "field_name": "contact_person",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Shipping City",
+        "field_name": "collection_city",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Shipping Postcode",
+        "field_name": "collection_postcode",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "130",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Posting Group",
+        "field_name": "posting_group",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "110",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Balancing G/L Name",
+        "field_name": "gl_account_name",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "160",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Balancing G/L No.",
+        "field_name": "gl_account_code",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Linked SO",
+        "field_name": "link_to_so",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "Entry No.",
+        "field_name": "entry_no",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    },
+    {
+        "title": "User ID",
+        "field_name": "posted_by",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "conditional_classes": " 'onHoldRed': value.on_hold ",
+        "data_type": "string"
+    }
+]

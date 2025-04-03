@@ -1,0 +1,62 @@
+{
+        "tblMeta": {
+                "autoAdjust": true,
+                "hideSetup": true
+        },
+        "colMeta": [
+                {
+                        "title": "Category",
+                        "field_name": "rebate_type_name",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Rebate Type",
+                        "field_name": "universal_type_name",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Price Type",
+                        "field_name": "rebate_price_type",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Rebate",
+                        "field_name": "rebate_price",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "string"
+                },
+                {
+                        "title": "Start Date",
+                        "field_name": "start_date",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "date"
+                },
+                {
+                        "title": "End Date",
+                        "field_name": "end_date",
+                        "visible": "1",
+                        "pinned": "0",
+                        "color": "#ffffff",
+                        "width": "0",
+                        "data_type": "date"
+                }
+        ]
+}

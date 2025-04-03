@@ -1,0 +1,153 @@
+<style>
+    tbody.set-mar tr td {
+        padding: 10px !important;
+        border-left: 0px;
+    }
+</style>
+<div class="modal fade" id="add_purchase_cost_detail">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Landing Costs Setup</h4>
+            </div>
+            <div class="modal-body" style="min-height: 480px !important; max-height: 500px !important;">
+                <div class="row" ng-if="enable_purchase_cost_form==0">
+                    <div class="col-md-12 ">
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn_add pull-right block_ref blocksubmit" ng-show="!check_item_readonly_purchase" type="submit" ng-click="open_purchase_cost_form()">
+                                <i class="fa fa-plus fa_display"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-if="enable_purchase_cost_form>0">
+                    <div>
+                        <input type="hidden" ng-model="array_purchase_cost.id" class="form-control" ng-readonly="check_readonly" />
+
+                        <div class="col-md-3">
+                            <!--<div class="input-symbol">-->
+                            <input placeholder="Description " ng-disabled="edit_readonly || default_value_readonly" required type="text" data-parsley-trigger="keyup"
+                                ng-model="array_purchase_cost.title" class="form-control input_text" data-parsley-minlength-message="Invalid Value"
+                                data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value">
+                            <!--ng-blur="check_duplicate_ref(array_submit_unit, 3)" data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/"-->
+                            <!--</div>-->
+                        </div>
+                        <div class="col-md-1">
+                            <label class="control-label ">Cost<span class="required">*</span> </label>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-symbol">
+                                <input ng-disabled="edit_readonly || default_value_readonly" required type="text" data-parsley-trigger="keyup" ng-model="array_purchase_cost.cost"
+                                    class="form-control input_text" data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value"
+                                    data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/"
+                                    ng-keyup="chkPrice_conversion()">
+                                <!--ng-blur="check_duplicate_ref(array_submit_unit, 3)"-->
+                                <!--  <span>{{defaultCurrencyCode}}/-{{formData.unit_id.title}} </span>-->
+                                <input type="hidden" ng-model="array_purchase_cost.landing_conversion_cost" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="control-label">Currency<span class="required">*</span></label>
+                        </div>
+                        <div class="col-md-2">
+                            <select ng-model="array_purchase_cost.landing_cost_currency" ng-options="opt as opt.code for opt in arr_currency" ng-change="chkPrice_conversion()"
+                                class=" form-control" required>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="control-label" title="Unit Of Measure">U.O.M<span
+                                    class="required">*</span></label>
+                        </div>
+                        <div class="col-md-2">
+                            <select ng-model="array_purchase_cost.landing_cost_unit_of_measure" ng-options="opt as opt.name for opt in arr_unit_of_measure"
+                                ng-change="chkPrice_conversion()" class=" form-control" required>
+                            </select>
+                        </div>
+                        <div class="col-md-4" style="margin-top:15px;">
+                            <input type="text" placeholder="G/L No." title="G/L No." ng-model="array_purchase_cost.landing_cost_gl_code" class="in-t-1"
+                                readonly required ng-click="getGL_account_code('landing_cost_gl')" />
+                            <!--ng-readonly="check_readonly" -->
+                            <input type="hidden" ng-model="array_purchase_cost.landing_cost_gl" class="form-control" />
+                        </div>
+                        <div class="col-md-7">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-show="purchase_cost_detail_record.length>0">
+                    <div class="col-md-12 ">
+                        <div class="panel panel-default no-padding no-border no-margin">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered narrow_table small_fields">
+                                        <thead>
+                                            <tr>
+                                                <th style=" width:15% !important; " title="Description">Description</th>
+                                                <!--<th style=" width:15% !important; ">Currency
+                                            </th>-->
+                                                <th style=" width:25% !important; ">G/L No. Details
+                                                </th>
+                                                <th style=" width:15% !important; " title="Cost">Cost</th>
+                                                <th style=" width:15% !important; " title="Conversion Cost ({{defaultCurrencyCode}} / {{formData.unit_id.title}})">
+                                                    Conversion Cost
+                                                </th>
+                                                <th style=" width:10% !important; text-align: center !important; " ng-show="!check_item_readonly_purchase" title="Action">Action
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-ng-repeat="formData_purchase_cost in purchase_cost_detail_record track by $index" ng-show="purchase_cost_detail_record.length>0">
+                                                <td style="width:15%"> {{formData_purchase_cost.title}}</td>
+                                                <td style="width:25%"> {{formData_purchase_cost.account_code}} - {{formData_purchase_cost.name}}
+                                                </td>
+                                                <td style="width:15%"> {{formData_purchase_cost.cost}} &nbsp;&nbsp; <span>{{formData_purchase_cost.currency_code}} </span>
+                                                    <!--{{defaultCurrencyCode}}/-->
+                                                    <!--{{formData.unit_id.title}}-->
+                                                </td>
+                                                <td style="width:15%;"> {{formData_purchase_cost.landing_conversion_cost}} &nbsp;&nbsp; <span>{{defaultCurrencyCode}}</span>
+                                                </td>
+                                                <!--text-align: right;-->
+                                                <!--<td style="width:17%"> {{formData_purchase_cost.currency_code}}</td>-->
+                                                <!-- {{formData_purchase_cost.gl}}-->
+                                                <td style="text-align: center; " ng-show="!check_item_readonly_purchase">
+                                                    <a title="Edit" class="tooltips_cls btn " ng-click="edit_purchase_cost_detail(formData_purchase_cost.rec_id)">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                    <a title="Delete" class="tooltips_cls btn " ng-click="delete_purchase_cost_detail(formData_purchase_cost.rec_id)">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                                </td>
+                                                <!-- ng-if="$index>0"-->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="col-md-8"></div>
+                        <label class="control-label col-md-4 text-right"> Total Landing Cost:
+                            {{total_landing_cost}}&nbsp;&nbsp;
+                            <span>{{defaultCurrencyCode}} </span>
+                        </label>
+                        <!-- style="padding-left: 50px;"-->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-submit block_ref blocksubmit" ng-if="enable_purchase_cost_form>0" type="button" ng-click="add_purchase_cost_detail()">
+                    <i class="fa fa-check fa_display"></i> Save
+                </button>
+                <!--pull-right -->
+                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+            </div>
+            <div ng-include="'app/views/product_values/_landing_gl_account_modal.html'"></div>
+        </div>
+        <!-- /  data-dismiss="modal"  ng-click="reload_popup(2,'add_unit_category')"  -->
+    </div>
+</div>

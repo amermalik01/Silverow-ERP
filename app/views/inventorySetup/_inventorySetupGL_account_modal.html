@@ -1,0 +1,63 @@
+<style>
+    .selchk{
+        background-color: #ececec !important;
+    }
+    .selchk td {
+        font-weight: bold !important;
+    }
+</style>
+<div class="modal fade" id="inventorySetupGL_account_modal">
+    <div class="modal-dialog" dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{title}}</h4>
+                <h5 class="modal-title">{{sub_title}}</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-5 pl0" >
+                                <input type="text" Placeholder="Search" class="form-control ng-valid ng-dirty"
+                                       ng-model="filter.searchKeyword2">
+                            </div>
+                            <div class="col-md-5" ng-if="!showAllOption">
+                                <label class="control-label">
+                                <input type="checkbox" ng-click="showAllGLAccountCodeSetup(showAll)"
+                                       ng-model="showAll">Show All G/L Accounts</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:0 !important;">
+                    <div class="col-md-12">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="fixit">
+                            <tr class="bg-col">
+                                <th style="width: 13%;">G/L No.</th>
+                                <th>G/L Name</th>
+                            </tr>
+                            </thead>
+                            <tbody class="fixit">
+                            <tr ng-repeat="gl in gl_account | limitedFilter:filter.searchKeyword2:['code','name']"
+                                ng-click="selectGL_Account(gl);"
+                                ng-class="{selchk:gl.selchk>0}">
+                                <td style="width: 13%;">{{gl.code}}</td>
+                                <td>{{gl.name}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-submit2" 
+                    ng-click="assignCodesGL_Account();">Save</button>
+                <button type="button" class="btn btn-cancel pull-right width_80" 
+                    ng-click="cancelGL_Account();">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

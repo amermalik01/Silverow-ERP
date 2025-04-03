@@ -1,0 +1,163 @@
+<div class="modal fade"
+     id="benefits_pop">
+    <div class="modal-dialog modal-lg">
+        <!--modal-lg   style=" width:65% !important" -->
+        <div class="modal-content">
+            <form autocomplete="off"
+                  ng-submit="submit_benefits()"
+                  class="form-horizontal no-margin"
+                  role="form"
+                  validate-form=""
+                  novalidate="">
+                <div class="modal-header">
+                    <button type="button"
+                            class="close"
+                            ng-click="clearOtherBenefits()"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title"> {{title}} </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden"
+                               ng-model="formData.benefit_id"
+                               class="form-control" />
+
+                        <div
+                             class="col-md-12 no-padding">
+                            <!--<input type="hidden" ng-model="array_submit_comision.id"  class="form-control"   ng-readonly="check_readonly" />-->
+                            <div class="col-md-3">
+                                <label class="  control-label">Benefit
+                                    <span class="required">*</span>
+                                </label>
+                                <!-- Title -->
+
+                                <div class=" ">
+                                    <input ng-required="'true'"
+                                           type="text"
+                                           ng-model="formData.benefits_title"
+                                           class="form-control"
+                                           required
+                                           data-parsley-trigger="keyup"
+                                           data-parsley-minlength-message="This field is required."
+                                           data-parsley-type-message="This field is required."
+                                           data-parsley-error-message="This field is required." />
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="  control-label ">Start Date
+                                    <span class="required">*</span>
+                                </label>
+                                <input jqdatepicker
+                                       style="background-color: white;"
+                                       class="2date-picker form-control"
+                                       id="benefits_start_date"
+                                       ng-model="formData.benefits_start_date"
+                                       ng-change="testdate_by_id('benefits_start_date','benefits_end_date','date_benefits_validate')"
+                                       required=""
+                                       readonly="">
+                                <span class="fa fa-calendar  new_ca  form-control-feedback"
+                                      style="    top: 33px;
+                                right: -12px;"></span>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="  control-label ">End Date
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input jqdatepicker
+                                       style="background-color: white;"
+                                       class="2date-picker form-control"
+                                       id="benefits_end_date"
+                                       ng-model="formData.benefits_end_date"
+                                       ng-change="testdate_by_id('benefits_start_date','benefits_end_date','date_benefits_validate')"
+                                       required=""
+                                       readonly="">
+                                <!--required=""-->
+                                <span class="fa fa-calendar  new_ca  form-control-feedback"
+                                      style="    top: 33px;
+                                right: -12px;"></span>
+                                <span id="date_benefits_validate"
+                                      style="color:#F00; display: none;">End Date is earlier than Start Date</span>
+
+                            </div>
+                            <div class="col-md-4 " ng-class="{'col-md-3':formData.benefit_id > 0}">
+                                <label class="control-label">Description </label>
+                                <input type="text"
+                                       ng-model="formData.comments"
+                                       class="form-control"
+                                       maxlength="100" />
+                                <!--<textarea class="form-control" ng-model="formData.comments" maxlength="100"
+                                              style="width:100%; min-height:50px;"></textarea>-->
+
+                                <!--<label class="col-md-1 control-label">{{formData.comments.length}}/100 </label>-->
+
+                            </div>
+                            <div class="col-md-1" style="padding-left: 0;" ng-if="formData.benefit_id > 0">
+                                <label class="control-label"
+                                       style="    display: block;">&nbsp;</label>
+                                <button type="button"
+                                        class="btn btn-delete"
+                                        ng-if="allowdeletehr_benifit"
+                                        ng-click="delete_benefits(formData.benefit_id)">
+                                    Delete
+                                </button>
+                            </div>
+
+                            <div class="col-md-1 " style="padding-left: 0;">
+                                <label class="control-label"
+                                       style="    display: block;">&nbsp;</label>
+                                <button ng-if="(formData.benefit_id && allowedithr_benifit) || (!formData.benefit_id && allowaddhr_benifit)"
+                                        class="btn block_ref blocksubmit no-margin"
+                                        type="submit"
+                                        style="width: 61px;"
+                                        ng-class="formData.benefit_id?'btn-submit2':'btn_add2'">
+                                    {{formData.benefit_id?"Save":"Add"}}
+                                    <!--Add-->
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <table class="table table-striped table-bordered table-hover"
+                           ng-show="columns_benefits.length > 0">
+                        <thead class="fixit">
+                            <tr class="bg-col">
+                                <th ng-repeat="column in columns_benefits"
+                                    ng-if="column.field != 'id' && column.field != 'end_date_temp'">
+                                    {{column.title}}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="fixit">
+                            <tr ng-repeat="rec in benefits_data"
+                                ng-click="edit_other_Benifit(rec)"
+                                ng-class="{'activeRowBenefit':activeBenefit == rec.id }"
+                                ng-show="columns_benefits.length > 0">
+                                <td ng-repeat="column in columns_benefits"
+                                    sortable="column.title"
+                                    ng-if="column.field != 'id'  && column.field != 'end_date_temp'">
+                                    {{rec[column.field]}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <!--<input type="text" value="{{net_total_amount() | number:2}}" ng-model="total_grand"  class="form-control" aria-describedby="basic-addon1" readonly="">-->
+                <div class="modal-footer">
+                    <!--<button class="btn btn-submit "   type="submit"    ng-click="submit_commision(formDataExpense)"><i class="fa fa-check fa_display"></i> Submit</button>-->
+                    <button type="button"
+                            class="btn btn-default2"
+                            ng-click="clearOtherBenefits()"
+                            data-dismiss="modal">{{formData.benefit_id?"Cancel":"Close"}}</button>
+
+                </div>
+            </form>
+        </div>
+        <!-- /  data-dismiss="modal"  ng-click="reload_popup(2,'add_unit_category')"  -->
+    </div>
+</div>

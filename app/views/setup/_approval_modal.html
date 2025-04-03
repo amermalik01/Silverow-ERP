@@ -1,0 +1,160 @@
+<div id="setupApproval"
+     class="modal fade"
+     role="dialog">
+    <div class="modal-dialog modal-lg" dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Approval</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table style="width: 100%;">
+                            <tbody>
+                                <tr class="hoverOnApproval">
+                                    <td style="width: 35%;">
+                                        <b>Sales Order Profit Margin</b>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox" ng-model="approval.status_1"/>
+                                    </td>
+                                    <td style="width: 40%;">
+                                        <div class="input-symbol" ng-class="{'dont-click':check_so_readonly}">
+                                            <input type="text" class="form-control" ng-model="approval.selected_emps_codes_type_1" ng-click="getEmployeeList(1)"
+                                                readonly ng-class="{'white_bg':!check_so_readonly}" />
+                                            <span><i class="fa fa-external-link"></i></span>
+                                        </div>
+                                        <!-- <x-flexi-select x-flexi-select-title="'Employees'" x-flexi-select-modal-id="'ApprovalEmployees2'" x-flexi-select-output='approval.status_2_emps'
+                                            x-flexi-select-data="emp_list_type_2" x-flexi-select-modal-width="'100%'" x-flexi-select-readonly="check_hrvalues_readonly">
+                                        </x-flexi-select> -->
+                                    </td>
+                                    <td> 
+                                        <div class="input-symbol">
+                                            <input type="number" class="form-control" ng-model="approval.criteria_1" />
+                                            <span>&#37;</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="hoverOnApproval">
+                                    <td style="width: 35%;">
+                                        <b>Sales Order Exceeding Credit Limit</b>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox" ng-model="approval.status_2"/>
+                                    </td>
+                                    <td style="width: 40%;">
+                                        <div class="input-symbol" ng-class="{'dont-click':check_so_readonly}">
+                                            <input type="text" class="form-control" ng-model="approval.selected_emps_codes_type_2" ng-click="getEmployeeList(2)" readonly ng-class="{'white_bg':!check_so_readonly}"
+                                            />
+                                            <span><i class="fa fa-external-link"></i></span>
+                                        </div>
+                                    </td>
+                                    <td> </td>
+                                </tr>
+                                <tr class="hoverOnApproval">
+                                    <td style="width: 35%;">
+                                        <b>Credit Note</b>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox"  ng-model="approval.status_3"/>
+                                    </td>
+                                    <td style="width: 40%;">
+                                        <div class="input-symbol" ng-class="{'dont-click':check_so_readonly}">
+                                            <input type="text" class="form-control" ng-model="approval.selected_emps_codes_type_3" ng-click="getEmployeeList(3)" readonly ng-class="{'white_bg':!check_so_readonly}"
+                                            />
+                                            <span><i class="fa fa-external-link"></i></span>
+                                        </div>
+                                    </td>
+                                    <td> </td>
+                                </tr>
+                                <tr class="hoverOnApproval">
+                                    <td style="width: 35%;">
+                                        <b>Purchase Order</b>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox"  ng-model="approval.status_4"/>
+                                    </td>
+                                    <td style="width: 40%;">
+                                        <div class="input-symbol" ng-class="{'dont-click':check_so_readonly}">
+                                            <input type="text" class="form-control" ng-model="approval.selected_emps_codes_type_4" ng-click="getEmployeeList(4)" readonly ng-class="{'white_bg':!check_so_readonly}"
+                                            />
+                                            <span><i class="fa fa-external-link"></i></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-symbol">
+                                            <input type="number" ng-model="approval.criteria_4" />
+                                            <span>{{defaultCurrencyCode}}</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="hoverOnApproval">
+                                    <td style="width: 35%;">
+                                        <b>Employee Expenses</b>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox"  ng-model="approval.status_5"/>
+                                    </td>
+                                    <td style="width: 40%;">
+                                        <div class="input-symbol" ng-class="{'dont-click':check_so_readonly}">
+                                            <input type="text" class="form-control" ng-model="approval.selected_emps_codes_type_5" ng-click="getEmployeeList(5)" readonly ng-class="{'white_bg':!check_so_readonly}"
+                                            />
+                                            <span><i class="fa fa-external-link"></i></span>
+                                        </div>
+                                    </td>
+                                    <td> </td>
+                                </tr>
+                                <tr class="hoverOnApproval">
+                                    <td style="width: 35%;">
+                                        <b>Employee Holiday Request</b>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox"  ng-model="approval.status_6"/>
+                                    </td>
+                                    <td style="width: 40%;">
+                                        <div class="input-symbol" ng-class="{'dont-click':check_so_readonly}">
+                                            <input type="text" class="form-control" ng-model="approval.selected_emps_codes_type_6" ng-click="getEmployeeList(6)" readonly ng-class="{'white_bg':!check_so_readonly}"
+                                            />
+                                            <span><i class="fa fa-external-link"></i></span>
+                                        </div>
+                                    </td>
+                                    <td> </td>
+                                </tr>
+                                <tr class="hoverOnApproval">
+                                    <td style="width: 35%;">
+                                        <b>Sales Forecast</b>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox" ng-model="approval.status_7" />
+                                    </td>
+                                    <td style="width: 40%;">
+                                        <div class="input-symbol" ng-class="{'dont-click':check_so_readonly}">
+                                            <input type="text" class="form-control" ng-model="approval.selected_emps_codes_type_7" ng-click="getEmployeeList(7)" readonly
+                                                ng-class="{'white_bg':!check_so_readonly}" />
+                                            <span><i class="fa fa-external-link"></i></span>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-submit2"
+                        ng-click="addApprovals()"
+                        >Save</button>
+                <button type="button"
+                        class="btn btn-default"
+                        data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>

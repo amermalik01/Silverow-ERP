@@ -1,0 +1,149 @@
+<div class="row">
+    <div class="col-md-12">
+      <a id="prompt" ng-click="showCrmRebateForm()" class="btn btn_add pull-right"><i class="fa fa-plus fa_display"></i> Add New</a>
+    </div>
+  </div>
+
+  <!-- Row starts -->
+  <div class="row">
+
+    <div class="col-md-12 col-md-12" >
+      <div class="widget">
+        <!-- <div class="widget-header">
+          <div class="title">
+            Additional Address(es)
+          </div>
+
+        </div> -->
+         <div class="widget-body ">
+            <div id="dt_example" class="example_alt_pagination">
+
+<div class="panel panel-default" ng-controller="CrmRebateController as table">
+     <!-- <div class="panel-heading">
+         <div class="panel-title">Alt. Contact Listing</div>
+      </div>-->
+  <div class="table-responsive">
+    <table ng-table="table.tableParams5" class="table table-bordered table-striped" show-filter="true">
+      <thead>
+        <tr class="bg-col">
+         <!-- <th ng-repeat="column in columns" ng-if="column.field != 'id'" ng-show="column.visible" class="sortable sort-asc" ng-class="{ 'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'), 'sort-desc': table.tableParams5.isSortBy(column.field, 'desc')
+                  }"  ng-click="table.tableParams5.sorting(column.field, !tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"> {{column.title}}</th> -->
+                  <th  class="sortable sort-asc" ng-class="{ 'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'), 'sort-desc': table.tableParams5.isSortBy(column.field, 'desc')
+                  }"  ng-click="table.tableParams5.sorting(column.field, !tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"> Offer To</th>
+                  <th  class="sortable sort-asc" ng-class="{ 'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'), 'sort-desc': table.tableParams5.isSortBy(column.field, 'desc')
+                  }"  ng-click="table.tableParams5.sorting(column.field, !tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"> Rebate</th>
+                  <th  class="sortable sort-asc" ng-class="{ 'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'), 'sort-desc': table.tableParams5.isSortBy(column.field, 'desc')
+                  }"  ng-click="table.tableParams5.sorting(column.field, !tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"> Rebate Date</th>
+                  <th  class="sortable sort-asc" ng-class="{ 'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'), 'sort-desc': table.tableParams5.isSortBy(column.field, 'desc')
+                  }"  ng-click="table.tableParams5.sorting(column.field, !tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"> Start Date</th>
+                  <th  class="sortable sort-asc" ng-class="{ 'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'), 'sort-desc': table.tableParams5.isSortBy(column.field, 'desc')
+                  }"  ng-click="table.tableParams5.sorting(column.field, !tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"> End Date</th>
+                  <th  class="sortable sort-asc" ng-class="{ 'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'), 'sort-desc': table.tableParams5.isSortBy(column.field, 'desc')
+                  }"  ng-click="table.tableParams5.sorting(column.field, !tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"> Type</th>
+
+                  <th ng-show="columns.length > 0"  class="sortable sort-asc" style="width: 81px;">Action</th>
+        </tr>
+
+        </tr>
+        <!-- <tr>
+          <th ng-repeat="column in columns" ng-if="column.field != 'One_Four_Pallet' && column.field != 'Half_Load' && column.field != 'Full_Load' && column.field != 'Primary' " ng-show="column.visible" class="sortable">
+          <input type="text" class="form-control" ng-model="MyCustomeFilters[column.title] "/>
+          </th>
+          <th class="sortable">
+          <input type="text" class="form-control"/>
+          </th>
+        </tr> -->
+      </thead>
+      <tbody class="table-body">
+        <tr ng-repeat="rec in $data">
+
+          <!-- <td ng-repeat="column in columns" ng-show="column.visible" ng-click="detail(rec.id)" sortable="column.field" ng-if="column.field != 'id'" >
+            <span ng-if="column.field =='price_offered'">{{rec[column.field]}}<span>&#37;</span></span>
+            <span ng-if="column.field =='type'">
+              <span ng-if="rec['type'] == 'Customer'">Universal Rebate for the Customer</span>
+              <span ng-if="rec['type'] == 'Category'">Separate Rebate for Category(ies)</span>
+              <span ng-if="rec['type'] == 'Item'">Separate Rebate for Item(s)</span>
+            </span>
+           <span ng-if="column.field =='offer_date' || column.field =='offer_valid_date' || column.field =='created_date'">{{rec[column.field] | date: dateFormats[defaultDateFormat]}}</span>
+           <span ng-if="column.field =='offer_to'">
+            <span ng-if="rec['type'] == 'Customer'">{{rec[column.field]}}</span>
+            <span ng-if="rec['type'] == 'Category'" class="tooltips_cls">
+              <span ng-repeat="cat in rec[column.field]" ng-if="$index ==0">{{cat.cat_name}}....</span>
+              <ul ng-if="rec[column.field].length > 0">
+                  <li ng-repeat="cat in rec[column.field]">{{cat.cat_name}}</li>
+              </ul>
+            </span>
+            <span ng-if="rec['type'] == 'Item'" class="tooltips_cls">
+              <span ng-repeat="item in rec[column.field]" ng-if="$index ==0">{{item.item_description}}...</span>
+              <ul ng-if="rec[column.field].length > 0">
+                  <li ng-repeat="item in rec[column.field]">{{item.item_description}}</li>
+              </ul>
+              </span>
+           </td> -->
+
+           <td  ng-click="detail(rec.id)" >
+            <span ng-if="rec.type == 1">{{rec.offer_to}}</span>
+            <span ng-if="rec.type == 2" class="tooltips_cls">
+              <span ng-repeat="cat in rec.offer_to" ng-if="$index ==0">{{cat.cat_name}}....</span>
+              <ul ng-if="rec.offer_to.length > 0">
+                  <li ng-repeat="cat in rec.offer_to">{{cat.cat_name}}</li>
+              </ul>
+            </span>
+            <span ng-if="rec.type == 3" class="tooltips_cls">
+              <span ng-repeat="item in rec.offer_to" ng-if="$index ==0">{{item.item_description}}...</span>
+              <ul ng-if="rec[column.field].length > 0">
+                  <li ng-repeat="item in rec.offer_to">{{item.item_description}}</li>
+              </ul>
+              </span>
+           </td>
+
+           <td ng-click="detail(rec.id)" >
+            <span ng-if="rec.type == 2 || rec.type == 3 || rec.universal_type == 1">{{rec.price_offered}}</span>
+            <span ng-if="rec.universal_type == 2" class="tooltips_cls">
+              <span>{{rec.rbt_volume_1}}&nbsp;:&nbsp;{{rec.volume_rebate_1}}</span>
+              <ul ng-if="rec.volume_1 > 0 || rec.volume_2 > 0 || rec.volume_3 > 0 || rec.volume_rebate_1 > 0 || rec.volume_rebate_2 > 0 || rec.volume_rebate_3 > 0">
+                  <li ng-if="rec.volume_1 > 0 || rec.volume_rebate_1 > 0">{{rec.rbt_volume_1}}&nbsp;:&nbsp;{{rec.volume_rebate_1}}</li>
+                  <li ng-if="rec.volume_2 > 0 || rec.volume_rebate_2 > 0">{{rec.rbt_volume_2}}&nbsp;:&nbsp;{{rec.volume_rebate_2}}</li>
+                  <li ng-if="rec.volume_3 > 0 || rec.volume_rebate_3 > 0">{{rec.rbt_volume_3}}&nbsp;:&nbsp;{{rec.volume_rebate_3}}</li>
+              </ul>
+            </span>
+            <span ng-if="rec.universal_type == 3" class="tooltips_cls">
+              <span ng-if="" >{{rec.revenue_1}}&nbsp;:&nbsp;{{rec.revenue_rebate_1}}</span>
+              <ul ng-if="rec.revenue_1 > 0 || rec.revenue_2 > 0 || rec.revenue_3 > 0 || rec.revenue_rebate_1 > 0 || rec.revenue_rebate_2 > 0 || rec.revenue_rebate_3 > 0">
+                  <li ng-if="rec.revenue_1 > 0 || rec.revenue_rebate_1 > 0">{{rec.revenue_1}}&nbsp;:&nbsp;{{rec.revenue_rebate_1}}</li>
+                  <li ng-if="rec.revenue_2 > 0 || rec.revenue_rebate_2 > 0">{{rec.revenue_2}}&nbsp;:&nbsp;{{rec.revenue_rebate_2}}</li>
+                  <li ng-if="rec.revenue_3 > 0 || rec.revenue_rebate_3 > 0">{{rec.revenue_3}}&nbsp;:&nbsp;{{rec.revenue_rebate_3}}</li>
+              </ul>
+            </span>
+           </td>
+           <td ng-click="detail(rec.id)"  >
+                {{rec.created_date | date: dateFormats[defaultDateFormat]}}
+           </td>
+           <td ng-click="detail(rec.id)" >
+                {{rec.offer_date | date: dateFormats[defaultDateFormat]}}
+           </td>
+           <td ng-click="detail(rec.id)" >
+                {{rec.offer_valid_date | date: dateFormats[defaultDateFormat]}}
+           </td>
+           <td ng-click="detail(rec.id)">
+                <span ng-if="rec.type == 1">Universal Rebate for the Customer</span>
+                <span ng-if="rec.type == 2">Separate Rebate for Category(ies)</span>
+                <span ng-if="rec.type == 3">Separate Rebate for Item(s)</span>
+           </td>
+
+
+        <td class="text-left "   ng-show="columns.length > 0">
+            <a ng-click="editForm(rec.id)" title="Edit" class="btn"><i class="fa fa-edit"></i></a>
+            <a ng-click="delete(rec.id,$index,$data)" title="Delete" class="btn"><i class="fa fa-times"></i></a>
+          </td>
+        </tr>
+        <tr ng-show="!$data"><td class="text-center" colspan="{{columns.length+1}}">No record found!</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  </div>
+</div>
+</div>
+</div>
+</div>

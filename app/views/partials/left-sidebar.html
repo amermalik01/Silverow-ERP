@@ -1,0 +1,169 @@
+<div class="left-sidebar"  style="background: #103701;">
+
+  <ul class="stats" ng-if="userForPortal !=1">
+
+    <li ui-sref="app.dashboard()">
+
+      <span class="mbri-home"></span>
+
+      <span class="left-tooltip">Home</span>
+
+    </li>
+
+    <li style="height: 44px;"
+
+        class="noselect"  ng-if="noRoleAssigned !=1">
+
+      <sidebar-notes></sidebar-notes>
+
+      <span class="left-tooltip">Notes</span>
+
+    </li>
+
+    <li ng-controller="TaskController"
+
+        style="height: 44px;"
+
+        class="noselect" ng-if="noRoleAssigned !=1">
+
+      <span class="left-tooltip">Tasks</span>
+
+      <sidebar-tasks name="Task"
+
+                     modules="sidebarModules"
+
+                     submit="addTask(formData)"
+
+                     delete="deleteTask(id)"
+
+                     get-records="tasks(q)"
+
+                     add-template="app/shared/directives/sidebar_tasks.add.html"
+
+                     focused-template="app/shared/directives/sidebar_tasks.focused.html"></sidebar-tasks>
+
+    </li>
+
+    <li style="height: 44px;"
+
+        class="noselect" ng-if="noRoleAssigned !=1">
+
+      <span class="left-tooltip">Email</span>
+
+      <sidebar-email></sidebar-email>
+
+    </li>
+
+    <li style="height: 44px;"
+
+        class="noselect" ng-if="noRoleAssigned !=1">
+
+      <div class="left-tooltip">Documents</div>
+
+      <sidebar-attachment></sidebar-attachment>
+
+    </li>
+
+    <a ui-sref="app.setup"
+
+       ng-show="setup_main"
+
+       style="position: absolute;
+
+              border: 0;
+
+              left: 0;
+
+              right: 0;
+
+              bottom: 20px">
+
+      <div class="left-tooltip">Setup</div>
+
+      <span class="mbri-setting3"></span>
+
+    </a>
+
+    <div 
+
+         class="text-center"
+
+         title="Updated on {{silverowVersionDate}}"
+
+         style="position: absolute;
+
+                bottom: 6px;
+
+                left: 4px;
+
+                cursor: help;
+
+                color: #757575;">
+
+      {{silverowVersionNumber}}
+
+    </div>
+
+  </ul>
+
+</div>
+
+
+
+
+
+<script>
+
+
+
+  $(".stats li:not(.noselect)").click(function () {
+
+    $(".stats li").removeClass('selected');
+
+    $(".stats a").removeClass('selected');
+
+    $(this).addClass('selected');
+
+  });
+
+
+
+  $(".stats a:not(.noselect)").click(function () {
+
+    $(".stats a").removeClass('selected');
+
+    $(".stats li").removeClass('selected');
+
+    $(this).addClass('selected');
+
+  })
+
+  $(".noselect").click(function () {
+
+    $(".stats a").removeClass('selected');
+
+    $(".stats li").removeClass('selected');
+
+  });
+
+
+
+  $(".btn").on("click", function (e) {
+
+    $(".tooltip-styling").hide();
+
+  });
+
+</script>
+
+
+
+<style>
+
+  .modal .nav-tabs {
+
+    display: block !important;
+
+  }
+
+</style>

@@ -1,0 +1,234 @@
+
+<div class="row animated fadeIn">
+  <div class="col-lg-12 col-md-12">
+    <div class="widget" style="background:none;">
+      <div class="widget-body" style="background:none;">
+        <div class="row" >
+          <div class="col-lg-12">
+          <div class="col-lg-6">
+            <input type="hidden" ng-model="rec.id"   class="form-control" />
+            <div class="form-group">
+              <label class="col-lg-4 control-label">Offered By <span class="required">*</span></label>
+              <div class="col-lg-8">
+                <input type="text" ng-model="rec.offered_by" id="offered_by" class="form-control"  ng-disabled ="check_readonly"   ng-click="getOffer('emp')" required />
+                <input type="hidden" ng-model="rec.offered_by_id" id="offered_by_id" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-4 control-label"> <span ng-show="rec.type != 2">Item Code</span> <span ng-show="rec.type == 2">Service Code</span><span class="required">*</span></label>
+              <div class="col-lg-8">
+                <input type="text" ng-model="product_code" id="product_id" ng-click="getProduct()"  class="form-control"  ng-disabled ="check_readonly" required />
+                <input type="hidden" ng-model="rec.product_id" />
+
+                <!--<input type="text" ng-model="rec.product_code" id="product_code"    class="form-control"  ng-disabled ="check_readonly" ng-click="getProduct('prd')" rrequired/>-->
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-4 control-label"> <span ng-show="rec.type != 2">Item Description</span> <span ng-show="rec.type == 2">Service Description</span> </label>
+              <div class="col-lg-8">
+                <input type="text" ng-model="product_description" id="product_description" class="form-control"  readonly="readonly"/>
+
+                <!--<input type="text" ng-model="rec.product_description" ng-disabled ="check_readonly"id="product_description" class="form-control"   />-->
+              </div>
+            </div>
+            <!--<div class="form-group">
+              <label class="col-lg-4 control-label">List Price <span class="required">*</span></label>
+              <div class="col-lg-8">
+                <input type="text" ng-model="rec.volume_1_price" ng-disabled ="check_readonly"id="volume_1_price" class="form-control"   />
+              </div>
+            </div>-->
+            <!--<div class="form-group">
+              <label class="col-lg-4 control-label">Offer Date</label>
+              <div class="col-lg-8">
+                <input readonly="readonly" type="text" class="form-control" ng-model="offer_date">
+              </div>
+            </div>-->
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="col-lg-4 control-label">Offer Method <span class="required">*</span></label>
+              <div class="col-lg-8"><!--  -->
+                <select ng-model="rec.offer_method_ids" id="offer_method_ids"
+                ng-change="onChangeprice()"
+                    ng-options="opt as opt.name for opt in price_method_list"
+
+                     class=" form-control"   ng-disabled ="check_readonly" required>
+
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-4 control-label">Start Date <span class="required">*</span></label>
+              <div class="col-lg-8">
+
+
+
+         <input jqdatepicker class="2date-picker form-control " id="ck_sdate"
+ ng-model="rec.offer_date"
+ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_start_srm')"
+                                                               required readonly>
+                            <span id="date_msg_start_srm" style="color:#F00; display: none;"  >Start Date Required</span>
+
+
+              
+
+
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-4 control-label">End Date <span class="required">*</span></label>
+              <div class="col-lg-8">
+
+
+
+
+
+                 <input jqdatepicker class="2date-picker form-control " id="ck_edate"
+ ng-model="rec.offer_valid_date"
+ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_end_srm')"
+required="" readonly >
+<span id="date_msg_end_srm" style="color:#F00; display: none;"  >Leaving Date is earlier  then Start Date</span>
+
+
+               
+                <span id="date_msg_leave_117" style="color:#F00; display: none;"  >End Date is earlier  then Start Date</span> </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label class="col-lg-6 control-label">Price Offered<span class="required">*</span></label>
+            <div class="col-lg-6">
+              <input ng-readonly="check_readonly"
+              type="text"   data-parsley-trigger="keyup"
+            ng-model="rec.volume_1_price"   id="discount_price_1"
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value"
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label class="col-lg-5 control-label">Unit Of Measure<span class="required">*</span></label>
+            <div class="col-lg-7">
+              <select ng-model="rec.unit_of_measure_1s" ng-options="opt as opt.name for opt in arr_unit_of_measure" class="select2me form-control"  ng-disabled ="check_readonly" data-parsley-required="true" >
+                   <option style="display:none" value=""></option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label class="col-lg-4 control-label">Volume 1<span class="required">*</span> </label>
+            <div class="col-lg-8">
+              <select ng-model="rec.volume_1s" ng-options="opt as opt.name for opt in arr_volume_1" class=" form-control"  ng-change="onChange_vol_1(1,'sale')"  ng-disabled ="check_readonly" data-parsley-required="true"  >
+                 <option style="display:none" value=""></option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label class="col-lg-6 control-label">Price Offered</label>
+            <div class="col-lg-6">
+              <input ng-readonly="check_readonly"
+              type="text"   data-parsley-trigger="keyup"
+            ng-model="rec.volume_2_price"   id="volume_2_price"
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value"
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label class="col-lg-5 control-label">Unit Of Measure</label>
+            <div class="col-lg-7">
+              <select ng-model="rec.unit_of_measure_2s" ng-options="opt as opt.name for opt in arr_unit_of_measure" class="select2me form-control"  ng-disabled ="check_readonly"  >
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label class="col-lg-4 control-label">Volume 2 </label>
+            <div class="col-lg-8">
+              <select ng-model="rec.volume_2s" ng-options="opt as opt.name for opt in arr_volume_2" class="select2me form-control" ng-change="onChange_vol_1(2,'sale')"  ng-disabled ="check_readonly"  >
+
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label class="col-lg-6 control-label">Price Offered</label>
+            <div class="col-lg-6">
+              <input ng-readonly="check_readonly"
+              type="text"   data-parsley-trigger="keyup"
+            ng-model="rec.volume_3_price"   id="volume_3_price"
+           class="form-control input_text" data-parsley-minlength-message="Invalid Value"
+           data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"
+            data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label class="col-lg-5 control-label">Unit Of Measure</label>
+            <div class="col-lg-7">
+              <select ng-model="rec.unit_of_measure_3s" ng-options="opt as opt.name for opt in arr_unit_of_measure" class="select2me form-control"   ng-disabled ="check_readonly"  >
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label class="col-lg-4 control-label">Volume 3 </label>
+            <div class="col-lg-8">
+              <select ng-model="rec.volume_3s" ng-options="opt as opt.name for opt in arr_volume_3" class="select2me form-control" ng-change="onChange_vol_1(3,'sale')" ng-disabled ="check_readonly" >
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="row" >
+        <div class="col-lg-12">
+          <div class="pull-right">
+           <button class="btn  btn-default" type="button"
+            ng-show=" srm_price_tab_module>0" ng-click="set_document_internal(srm_price_tab_module)"  > <span class="int-doc">{{document_title}}<img src="app/img/infile.png" style="width:16px;" class="doc-icon"></span> </button>
+            <button class="btn btn-submit date_block_start_po" type="submit" ng-show="!check_readonly"><i class="fa fa-check fa_display"></i> Save</button>
+            <button class="btn btn-edit" type="button" ng-click="gotoedit()" ng-show="check_readonly"><i class="fa fa-edit fa_display"></i> Edit</button>
+            <button class="btn btn-cancel" type="button" ng-click="get_price_list()"><i class="fa fa-undo fa_display"></i> Cancel</button>
+          </div>
+        </div>
+      </div>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+<!--
+ng-change="addNewUnitPopup(rec.unit_of_measure_1s,'Volume 1','Add Unit Of Measure')"
+
+ng-change="addNewVolumePopup(rec.volume_1s,'Volume 1','Add Volume 1')"
+-->

@@ -1,0 +1,101 @@
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Standard Item Price</h3>
+                </div>
+                <div class="clearfix"></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <div class="col-md-6 ">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label ">Average Sale Price </label>
+
+                                    <div class="col-md-7">
+                                        <div class="input-symbol">
+                                            <input readonly
+                                                   type="text" data-parsley-trigger="keyup" placeholder="0"
+                                                   ng-model="formData.average_sale_price"
+                                                   class="form-control input_text">
+                                            <span>{{defaultCurrencyCode}}/{{formData.unit_id.title}} </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label ">Overall margin </label>
+
+                                    <div class="col-md-7">
+                                        <div class="input-symbol">
+
+                                            <input readonly
+                                                   type="text" data-parsley-trigger="keyup" placeholder="0"
+                                                   ng-model="formData.overall_margin" class="form-control input_text">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label ">Standard Sale Price </label>
+
+                                    <div class="col-md-7">
+                                        <input
+                                                type="text" data-parsley-trigger="keyup"
+                                                placeholder="0"
+                                                ng-model="formData.standard_price" class="form-control input_text"
+                                                >
+
+                                        <!--<input  readonly
+                                  type="text"   data-parsley-trigger="keyup"
+                                ng-model="formData.standard_price"   ng-chnage="valueEnteredChanged()"
+                               class="form-control input_text" data-parsley-minlength-message="Invalid Value"
+                               data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"
+                                data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label ">Minimum Price</label>
+
+                                    <div class="col-md-7">
+                                        <input
+                                                type="text" data-parsley-trigger="keyup"
+                                                placeholder="0"
+                                                ng-model="formData.absolute_minimum_price"
+                                                class="form-control input_text"
+                                                >
+
+                                        <!--<input ng-readonly="check_item_readonly"
+                                  type="text"   data-parsley-trigger="keyup"
+                                ng-model="formData.absolute_minimum_price"
+                               class="form-control input_text" data-parsley-minlength-message="Invalid Value"
+                               data-parsley-type-message="Invalid Value"  data-parsley-error-message="Invalid Value"
+                                data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/" >-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="hr_line2"></div>
+                            <div class="pull-right">
+                                <button class="btn  btn-default" type="button"
+                                        ng-show="formData.id>0 &&  item_sale_tab_module>0"
+                                        ng-click="set_document_internal(item_sale_tab_module)"><span class="int-doc">{{document_title}}<img
+                                        src="app/img/infile.png" style="width:16px;" class="doc-icon"></span></button>
+                                <button class="btn btn-info btn_blue width_80  " type="submit"
+                                        ng-show="!check_item_readonly"><i class="fa fa-check   fa_display"></i> Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

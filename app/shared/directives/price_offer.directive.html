@@ -1,0 +1,412 @@
+<div class="col-md-12"
+     style="margin-top:10px;"
+     ng-if="data.length>0">
+    <table class="table table-striped table-bordered table-hover"
+           ng-show="data.length>0">
+        <thead class="fixit">
+            <tr class="bg-col">
+                <th style="white-space: normal;"
+                    x-col="{{oTableHeader}}"
+                    ng-repeat="oTableHeader in outerTableHeaders"
+                    ng-class="{ 'despwidth3':oTableHeader=='Description',
+                                'uomwidth':oTableHeader=='UOM',
+                                'minwidth':oTableHeader=='Min' || oTableHeader=='Max',
+                                'text-right':oTableHeader=='StdPrice' || oTableHeader=='priceoffer' || oTableHeader=='lCY' || oTableHeader=='Min' || oTableHeader=='Max'  }">
+
+                    <span ng-if="oTableHeader=='Description'">{{oTableHeader}}</span>
+                    <span ng-if="oTableHeader=='Category'">{{oTableHeader}}</span>
+                    <span ng-if="oTableHeader=='StdPrice'"
+                          style="width: 8%;">Standard Price ({{defaultCurrency}})</span>
+                    <span ng-if="oTableHeader=='Item'">Item No.</span>
+                    <span ng-if="oTableHeader=='UOM'">U.O.M</span>
+                    <span ng-if="oTableHeader=='StdPricelCY'"
+                          style="width: 8%;">Standard Price LCY</span>
+                    <span ng-if="oTableHeader=='priceoffer'"
+                          style="width: 8%;">Price Offer ({{priceOfferRec.currencys.code}})</span>
+                    <span ng-if="oTableHeader=='lCY'"
+                          style="width: 8%;">Price Offer LCY ({{defaultCurrency}})</span>
+                    <span ng-if="oTableHeader=='Min'"
+                          style="width: 8%;">Min. Order Qty. </span><!-- <span class="required">*</span> -->
+                    <span ng-if="oTableHeader=='Max'"
+                          style="width: 8%;">Max. Order Qty. </span><!-- <span class="required">*</span> -->
+                </th>
+                <th class="text-center">
+                    Volume Discount
+                </th>
+                <th class="text-center"
+                    title="Additional Cost"
+                    ng-if="showPriceAdditionalCost>0 && inventorySetup != 2 && priceListType == 'List' ">
+                    <!--{{statename}} -->
+                    Add. Cost
+                </th>
+                <th class="text-center">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody class="fixit"
+               style="max-height: 560px;"><!-- 229px; -->
+            <tr ng-repeat="item in data track by $index"
+                ng-click="showpriceDetails($index)"
+                ng-class="{'selectedItem':$index == selectedRow}">
+                <td ng-repeat="itemAttr in outerTableHeaders"
+                    x-col="{{itemAttr}}"
+                    ng-class="{'despwidth3':itemAttr== 'Description',
+                               'text-right':itemAttr=='StdPrice' || itemAttr=='lCY' || itemAttr=='priceoffer' || itemAttr=='Min' || itemAttr=='Max' }">
+
+                    <span ng-if="itemAttr=='Item'">{{item.itemData[itemAttr]}}</span>
+                    <select class="form-control"
+                            ng-if="itemAttr=='UOM'"
+                            ng-model="item.itemData.UOM"
+                            ng-focus="onFocusItem(item)"
+                            ng-options="opt.name for opt in item.itemData['arr_unit_of_measure']"
+                            disabled                            
+                            ng-change="onBlurItem(item.itemData, 'UOM', $index)">
+                    </select><!-- ng-disabled="readOnlyFlg" -->
+
+                    <span
+                          ng-if="itemAttr=='StdPrice' || itemAttr=='StdPricelCY' || itemAttr=='lCY' ">{{item.itemData[itemAttr] | unitPriceFilter}}</span>
+                    <span ng-if="itemAttr=='Description' || itemAttr=='Category'">{{item.itemData[itemAttr]}}</span>
+
+                    <input type="number" step="any" style="color:black"
+                           id="priceoffer" class="form-control col-md text-right"
+                           ng-model="item.itemData.priceoffer"
+                           ng-disabled="readOnlyFlg"
+                           ng-blur="onBlurItem(item.itemData, 'priceoffer', $index)"
+                           ng-if="itemAttr=='priceoffer'"
+                           ng-change="validateDecimalPoints(item.itemData, 2)"><!--  && !readOnlyFlg -->
+                    <!-- <span 
+                          ng-if="itemAttr=='priceoffer' && readOnlyFlg">{{item.itemData.priceoffer | unitPriceFilter}}</span> -->
+
+                    <script>
+                        $(document).ready(function () {
+                            $('[data-toggle="popover"]').popover();
+                        });
+                    </script>
+                    <!-- required -->
+                    <input type="number"
+                           max="2147483648"
+                           step="1"
+                           id="min_quantity"
+                           class="form-control text-right"
+                           ng-if="itemAttr=='Min' && !readOnlyFlg"
+                           ng-disabled="readOnlyFlg"
+                           data-parsley-error-message="Min Quantity length is 4 bytes"
+                           ng-blur="onBlurItem(item.itemData,'min', $index)"
+                           ng-focus="onFocusItem(item)"
+                           ng-model="item.itemData.Min">
+                    <span ng-if="itemAttr=='Min' && readOnlyFlg && item.itemData.Min > 0">{{item.itemData.Min | numberNoDecimalsIfZeroFilter:2:''}}</span>
+                    <!-- required -->
+                    <input type="number"
+                           max="2147483648"
+                           step="1"
+                           id="max_quantity"
+                           class="form-control text-right"
+                           ng-if="itemAttr=='Max' && !readOnlyFlg"
+                           ng-disabled="readOnlyFlg"
+                           data-parsley-error-message="Max Quantity length is 4 bytes"
+                           ng-blur="onBlurItem(item.itemData,'max', $index)"
+                           ng-focus="onFocusItem(item)"
+                           ng-model="item.itemData.Max">
+                         <span ng-if="readOnlyFlg && itemAttr=='Max' && item.itemData.Max > 0 ">{{item.itemData.Max | numberNoDecimalsIfZeroFilter:2:''}}</span>
+                </td>
+                <td class="text-center">
+                    <input type="checkbox"
+                           value="$index"
+                           ng-checked="item.discountDetails.rows.length > 0"
+                           ng-disabled="item.discountDetails.rows.length > 0 || readOnlyFlg || 
+                                item.itemData.Min == null || item.itemData.Min == '' || item.itemData.Min == 0 || 
+                                item.itemData.Max == null || item.itemData.Max == '' || item.itemData.Max == 0"
+                           ng-click="onFocusItem(item); onClickAvailableDiscounts($index);" />
+                </td><!--  pushNewAdditionalCosts() -->
+                <td class="text-center"
+                    ng-if="showPriceAdditionalCost>0 && inventorySetup != 2 && priceListType == 'List'">
+                    <!--{{statename}} -->
+                    <!-- {{item.additionalCosts.rows.length}} -->
+                    <a title="Additional Cost"
+                       class="ib add-dis-btn"
+                       ng-click="onFocusItem(item); onClickAvailableAdditionalCosts($index,item.itemData);"
+                       ng-class="{'recAddCostExist':item.additionalCosts.rows.length >0}">
+                        <i class="material-icons">&#xE147;</i>
+                    </a><!-- ,'disable-el dont-click':readOnlyFlg -->
+                </td>
+                <td class="text-center">
+                    <a ng-class="{'dont-click':readOnlyFlg}"><i class="fa fa-times"
+                           aria-hidden="true"
+                           ng-click="removePriceItem($index, item.itemData)"></i></a>
+                </td>
+            </tr>
+    </table>
+    
+    <div ng-if="infocusDetailsTbl.discountDetails.isDiscountAvailable>0">
+        <div class="col-md-7 pl0"
+             style="margin: 15px 0 5px 0;">
+            <h6 class="col-md-6 pl0"
+                style="color: #000000;font-size: 13px;font-weight: bold;">Volume Discount for
+                <span ng-if="selecteditem.itemData.Description.length>0">{{selecteditem.itemData.Description}} -
+                    ({{selecteditem.itemData.Item}}) </span></h6>
+            <div class="col-md-4 col-md-offset-2 pr0">
+                <div class="pr0"
+                     style="margin-top: 3px;">
+                    <ui-select required
+                               id="type_1"
+                               ng-disabled="check_volume_readonly || infocusDetailsTbl.discountDetails.rows.length>0"
+                               ng-model="selecteditem.discountType"
+                               ng-change="onChangeCalculateDiscounts(infocusDetailsTbl.discountDetails.rows, selecteditem)">
+                        <ui-select-match placeholder="Select Discount Type">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="opt in list_type | filter: $select.search">
+                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 pl0">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="fixit">
+                    <tr class="bg-col">
+                        <th ng-repeat="innerTableHeader in innerTableHeaders"
+                            x-col="{{innerTableHeader}}"
+                            ng-class="{'text-right': innerTableHeader=='Min' || innerTableHeader=='Discount' || innerTableHeader=='Price' || innerTableHeader=='actualDiscount' ||      innerTableHeader=='priceOfferLCY'}">
+                            <span ng-if="innerTableHeader=='Min'"
+                                  style="width: 8%;">Min. Order Qty.</span>
+                            <span ng-if="innerTableHeader=='Discount'"
+                                  style="width: 8%;">Discount By</span>
+                            <span ng-if="innerTableHeader=='Price'"
+                                  style="width: 8%;">Discounted Price <br />({{priceOfferRec.currencys.code}})</span>
+                            <span ng-if="innerTableHeader=='actualDiscount'"
+                                  style="width: 8%;">Actual Discount<br />({{priceOfferRec.currencys.code}})</span>
+                            <span ng-if="innerTableHeader=='priceOfferLCY'"
+                                  style="width: 8%;">Discount Price <br /> Offer LCY ({{defaultCurrency}})</span>
+                        </th>
+                        <th class="text-center"
+                            style="    width: 9%;">Action</th>
+                        <th style="    width: 6%;">
+                            <a class="ib add-dis-btn"
+                               title="Add Volume Discount">
+                                <i class="material-icons"
+                                   ng-class="{'disable-el dont-click':readOnlyFlg}"
+                                   ng-click="pushNewVolumeDiscount()">&#xE147;</i>
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="fixit"
+                       style="max-height:229px;">
+                    <tr ng-repeat="discount in infocusDetailsTbl.discountDetails.rows"
+                        ng-init="sectionIndex = $index">
+                        <td ng-repeat="innerTableHeader in innerTableHeaders"
+                            ng-class="{'text-right': 
+                        innerTableHeader=='Price' || innerTableHeader=='actualDiscount' || innerTableHeader == 'priceOfferLCY'}">
+                            <span ng-if="innerTableHeader=='Discount'">
+                                <div class="input-symbol">
+                                    <!-- required -->
+                                    <input type="number"
+                                           step="any"
+                                           class="form-control text-right"
+                                           ng-class="{'padright19':selecteditem.discountType.id == 1,'padright32':selecteditem.discountType.id == 2}"
+                                           id="priceoffer"
+                                           ng-model="discount.discount"
+                                           ng-blur="onBlurItemVolume(discount,'discount',selecteditem, sectionIndex)"
+                                           ng-focus="onFocusItemVolume(discount, sectionIndex)"
+                                           ng-if="innerTableHeader=='Discount'"
+                                           ng-readonly="readOnlyFlg">
+                                    <span ng-if="selecteditem.discountType.id == 1">%</span>
+                                    <span
+                                          ng-if="selecteditem.discountType.id == 2">{{priceOfferRec.currencys.code}}</span>
+                                </div>
+                            </span>
+                            <span ng-if="innerTableHeader=='Min'">
+                                <input type="number"
+                                       step="1"
+                                       id="min_quantity"
+                                       class="form-control text-right"
+                                       ng-if="innerTableHeader=='Min' && !readOnlyFlg"
+                                       ng-readonly="readOnlyFlg"
+                                       ng-blur="onBlurItemVolume(discount,'min',selecteditem, sectionIndex)"
+                                       ng-focus="onFocusItemVolume(discount, sectionIndex)"
+                                       ng-model="discount.Min">
+
+                                       <span class="form-control readonlydiv text-right" 
+                                       ng-if="innerTableHeader=='Min' && readOnlyFlg">{{discount.Min | numberNoDecimalsIfZeroFilter:2:''}}</span>
+                            </span>
+                            <span
+                                  ng-if="innerTableHeader=='Price' || innerTableHeader=='actualDiscount' || innerTableHeader == 'priceOfferLCY'">{{discount[innerTableHeader] | unitPriceFilter}}
+                            </span>
+                        </td>
+                        <td class="text-center"
+                            style="    width: 9%;">
+                            <a ng-class="{'dont-click':readOnlyFlg}"><i class="fa fa-times"
+                                   aria-hidden="true"
+                                   ng-click="removePriceItemVolume($index, discount.id)"></i></a>
+                        </td>
+                        <td style="    width: 6%;"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade"
+     id="add_purchase_cost_detail"
+     ng-if="priceListType == 'List'"
+     role="dialog">
+    <div class="modal-dialog modal-lg"
+         dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">{{ItemName}} Additional Costs Setup</h4>
+            </div>
+            <div class="modal-body"
+                 style="min-height: 250px !important; max-height: 320px !important;">
+                <div class="row"
+                     ng-if="!readOnlyFlg">
+                    <div class="col-md-3">
+                        <label class="control-label ">Item Additional Cost<span class="required">*</span> </label>
+                        <ui-select id="descriptionID"
+                                   ng-model="recAdditionalCost.descriptionID"
+                                   ng-disabled="edit_readonly || default_value_readonly">
+                            <ui-select-match placeholder="Select Item Additional Cost">{{$select.selected.name}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="opt in itemAdditionalCostArr | filter: $select.search">
+                                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="control-label">Cost<span class="required">*</span> </label>
+                        <div class="input-symbol">
+                            <input class="form-control input_text"
+                                   type="number"
+                                   min="0"
+                                   step="any"
+                                   ng-disabled="edit_readonly || default_value_readonly"
+                                   ng-model="recAdditionalCost.cost"
+                                   data-parsley-trigger="keyup"
+                                   data-parsley-minlength-message="Invalid Value"
+                                   data-parsley-type-message="Invalid Value"
+                                   data-parsley-error-message="Invalid Value"
+                                   data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                            <span>{{UOMName}}</span><!-- {{currencyCode}}/ -->
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <label class="control-label">Currency<span class="required">*</span> </label>
+                        <ui-select ng-model="recAdditionalCost.currencys">
+                            <ui-select-match placeholder="Select Currency">{{$select.selected.code}}</ui-select-match>
+                            <ui-select-choices repeat="opt in arr_currency | filter: $select.search">
+                                <div ng-bind-html="opt.code | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-md-4"
+                         ng-class="{'col-md-3':recAdditionalCost.id > 0}">
+                        <label class="control-label ">G/L No.<span class="required">*</span> </label>
+                        <div class="input-symbol">
+                            <input type="text"
+                                   readonly
+                                   class="form-control"
+                                   ng-model="recAdditionalCost.cost_gl_code"
+                                   ng-click="glaccounts()"
+                                   ng-class="{'white_bg':!readOnlyFlg}" />
+                            <span><i class="fa fa-external-link"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="pl0"
+                         ng-class="{'col-md-2':recAdditionalCost.id > 0, 'col-md-1':recAdditionalCost.id == 0}">
+                        <label class="control-label"
+                               style="display: block;">&nbsp;</label>
+                        <button type="button"
+                                class="btn btn-delete"
+                                ng-if="recAdditionalCost.id > 0"
+                                ng-click="removePriceAdditionalCost(recAdditionalCost.indexNo, recAdditionalCost.id)">Delete
+                        </button>
+                        <button class="btn block_ref blocksubmit no-margin"
+                                type="button"
+                                style="width: 61px;"
+                                ng-class="recAdditionalCost.id?'btn-submit2':'btn_add2'"
+                                ng-click="add_purchase_cost_detail(recAdditionalCost,selecteditem)">
+                            {{recAdditionalCost.id?"Save":"Add"}}
+                        </button>
+                        <!-- <label class="control-label ">&nbsp;</label>
+                        <button class="btn btn_add2 pull-right "
+                                type="button"
+                                ng-click="add_purchase_cost_detail(recAdditionalCost,selecteditem)">
+                            <i class="fa fa-plus fa_display"></i> Add
+                        </button> -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="panel panel-default no-padding no-border no-margin">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead class="fixit">
+                                            <tr class="bg-col">
+                                                <th ng-repeat="rec in additionalCostTableHeaders"
+                                                    ng-class="{'text-right': rec=='Price'}">
+                                                    <span ng-if="rec=='LandingCost'">Description</span>
+                                                    <span ng-if="rec=='Price'">Cost ({{UOMName}})</span>
+                                                    <span ng-if="rec=='Currency'">Currency</span>
+                                                    <span ng-if="rec=='SelectedGL'">G/L No.</span>
+                                                </th>
+                                                <!-- <th ng-if="!readOnlyFlg"
+                                                    class="text-center">Action
+                                                </th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fixit">
+                                            <tr ng-repeat="additionalCost in infocusDetailsTbl.additionalCosts.rows track by $index"
+                                                ng-class="{'dont-click':readOnlyFlg,'activeRowBenefit':activeAddCost == additionalCost.id}"
+                                                ng-click="editPriceAdditionalCost(additionalCost,$index)">
+                                                <td ng-repeat="rec in additionalCostTableHeaders"
+                                                    ng-class="{'text-right': rec=='Price'}">
+                                                    <span
+                                                          ng-if="rec=='LandingCost'">{{additionalCost.description}}</span>
+                                                    <span
+                                                          ng-if="rec=='Price'">{{additionalCost.cost | unitPriceFilter}}</span>
+                                                    <span ng-if="rec=='Currency'">{{additionalCost.currencyCode}}</span>
+                                                    <span ng-if="rec=='SelectedGL'">{{additionalCost.cost_gl_code}}
+                                                    </span>
+                                                </td>
+                                                <!-- <td ng-if="!readOnlyFlg"
+                                                    class="text-center">
+                                                    <a>
+                                                        <i class="fa fa-edit"
+                                                           aria-hidden="true"></i>
+                                                    </a>
+                                                    <a>
+                                                        <i class="fa fa-times"
+                                                           aria-hidden="true"
+                                                           ng-click="removePriceAdditionalCost($index, additionalCost.id)"></i>
+                                                    </a>
+                                                </td> -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-left">
+                </div>
+                <button type="button"
+                        class="btn btn-cancel"
+                        data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'app/views/price/_finance_setting_gl_account_modal.html'"></div>

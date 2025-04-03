@@ -1,0 +1,95 @@
+<div class="modal fade"
+     id="gl_account_popup">
+    <div class="modal-dialog">
+        <!--modal-lg   style=" width:65% !important" -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Select G/L No.</h4><!-- G/L No.-->
+            </div>
+            <div class="modal-body">
+                <div class="row"
+                     ng-init=""
+                     style="    margin-bottom: 0 !important;">
+                    <!-- Filter Start -->
+                    <div>
+                        <div>
+                            <form class="form-horizontal no-margin"
+                                  ng-submit="">
+                                <div>
+                                    <div class="col-lg-5 col-md-5"
+                                         style="    margin-bottom: 7px;">
+                                        <div class="input-symbol">
+                                            <input type="text"
+                                                   ng-model="Serachkeyword.search"
+                                                   placeholder="Search"
+                                                   class="form-control" />
+                                            <!-- <input type="submit"  style="display:none"   />-->
+                                            <span id="date_msg_4"> <i class="fa fa-search"></i></span></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Filter End -->
+
+                </div>
+                <div class="row"
+                     style="    margin-bottom: 0 !important;">
+
+                    <div class="col-md-12">
+                        <div>
+                            <div>
+                                <div>
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead class="fixit">
+                                            <tr class="bg-col">
+                                                <th style="width: 14%;">G/L No.</th>
+                                                <th>G/L Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fixit">
+                                            <tr ng-repeat="gl in gl_account | limitedFilter:Serachkeyword.search:['code','name']"
+                                                ng-click="assignCodes(gl, gl_type);">
+                                                <!--add_gl_account_values(gl)-->
+                                                <td style="width: 14%;">{{gl.code}}</td>
+                                                <td>{{gl.name}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="col-lg-12" ng-show="item_paging.total_pages > 1">
+                        <div class="form-group" style="text-align: left;">
+                            <ul class="pagination" style="margin: 0px !important;"
+                                ng-show="item_paging.total_pages > 1">
+                                <li ng-class="{'disabled': item_paging.cpage == 1}" class=""><a
+                                        ng-click="itemselectPage(item_paging.ppage); getGLcode();"
+                                        href="javascript: void(0);" class="">&#xab;</a></li>
+                                <li ng-repeat="(key,value) in item_paging.pages"
+                                    ng-class="{'active': value == item_paging.cpage}"><a
+                                        ng-click="itemselectPage(value); getGLcode()"
+                                        href="javascript: void(0);"><span
+                                        ng-bind="value"></span></a></li>
+                                <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}"><a
+                                        ng-click="itemselectPage(item_paging.npage); getGLcode();"
+                                        href="javascript: void(0);">&#xbb;</a></li>
+                            </ul>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn  pull-right btn-cancel2"
+                        data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

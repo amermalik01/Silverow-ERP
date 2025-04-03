@@ -1,0 +1,352 @@
+<div class="modal fade template-design"
+     id="transferOrderReport2">
+    <div class="modal-dialog modal-md"
+         style="margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 style="max-height: 80vh;overflow: auto;padding: 1.5cm;"
+                 id="transferOrderReport">
+
+                <div style="clear: both;">
+                    <htmlpageheader name='MyCustomHeader'>
+                        <div class='reportHeading'>
+                            <div class='reportHeading__left'>
+                                <div class="temp-logo">
+                                    <img ng-src="{{imagePath+defaultLogo}}"
+                                         ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                                </div>
+                                <div class="temp-company-address">
+                                    <table class="table-no-padding">
+                                        <tr>
+                                            <td style="padding-left: 0 !important;">
+                                                {{rec.company_details.name}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 0 !important;">
+                                                {{rec.company_details.address}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 0 !important;">
+                                                {{rec.company_details.address_2}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 0 !important;">
+                                                {{rec.company_details.postcode}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="    padding-left: 0 !important;">
+                                                {{rec.company_details.telephone}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class='reportHeading__right'>
+                                <div class='reportHeading__left__reportname template-name'
+                                     style="width: 100%;padding-bottom: 10px !important;">Transfer Stock</div>
+                                <table align="right">
+                                    <tbody>
+                                        <tr>
+                                            <td class="temp-no-pad rightAlign"></td>
+                                            <td class="temp-no-pad rightAlign">
+                                                <b>Stock No.</b>&nbsp;{{rec.code}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="temp-no-pad rightAlign"></td>
+                                            <td class="temp-no-pad rightAlign"
+                                                style="    padding-bottom: 15px;">
+                                                <b>Transfer Stock Date</b>&nbsp;{{rec.order_date}}
+                                            </td>
+                                        </tr>
+                                        <tr ng-if="rec.shipping_agent_name">
+                                            <td></td>
+                                            <td class="temp-no-pad rightAlign"><b>{{rec.shipping_agent_name}}</b>
+                                            </td>
+                                        </tr>
+                                        <tr ng-if="rec.shipping_address_1">
+                                            <td></td>
+                                            <td class="temp-no-pad rightAlign">{{rec.shipping_address_1}}</td>
+                                        </tr>
+                                        <tr ng-if="rec.shipping_address_2">
+                                            <td></td>
+                                            <td class="temp-no-pad rightAlign">{{rec.shipping_address_2}}</td>
+                                        </tr>
+                                        <tr ng-if="rec.shipping_phone">
+                                            <td></td>
+                                            <td class="temp-no-pad rightAlign">
+                                                <b>Tel:</b>&nbsp;{{rec.shipping_phone}}</td>
+                                        </tr>
+                                        <tr ng-if="rec.shipping_ref_no">
+                                            <td></td>
+                                            <td class="temp-no-pad rightAlign"><b>Shipper
+                                                    Ref.</b>&nbsp;{{rec.shipping_ref_no}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </htmlpageheader>
+                    <sethtmlpageheader name='MyCustomHeader'
+                                       page='ALL'
+                                       value='on'
+                                       show-this-page='1' />
+                    <pagefooter name='MyFooter1'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+                    <setpagefooter name="MyFooter1"
+                                   page="ALL"
+                                   value="on"
+                                   show-this-page="1" />
+                    <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter1;
+                        }
+                    </style>
+                </div>
+                <table style="width: 54%;">
+                    <tbody>
+                        <tr>
+                            <td style="padding-left: 0 !important;">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding-left: 0 !important;">
+                                                <b style="color: #2196F3;font-size: 15px;">Collection From</b>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td
+                                                style="padding-left: 0 !important;padding-top: 4px;padding-bottom: 4px;">
+                                                <b>{{rec.warehouse_from_name}}</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td
+                                                style="padding-left: 0 !important;padding-top: 4px;padding-bottom: 4px;">
+                                                {{rec.warehouse_from_address_1}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td
+                                                style="padding-left: 0 !important;padding-top: 4px;padding-bottom: 4px;">
+                                                {{rec.warehouse_from_address_2}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td
+                                                style="padding-left: 0 !important;padding-top: 4px;padding-bottom: 4px;">
+                                                {{rec.warehouse_from_city}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td
+                                                style="padding-left: 0 !important;padding-top: 4px;padding-bottom: 4px;">
+                                                {{rec.warehouse_from_county}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td style="padding-left: 0">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding-left: 0;">
+                                                <b style="color: #2196F3;font-size: 15px;">Deliver To</b>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 0;padding-top: 4px;padding-bottom: 4px;">
+                                                <b>{{rec.warehouse_to.warehouse_name}}</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 0;padding-top: 4px;padding-bottom: 4px;">
+                                                {{rec.warehouse_to_address_1}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 0;padding-top: 4px;padding-bottom: 4px;">
+                                                {{rec.warehouse_to_address_2}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 0;padding-top: 4px;padding-bottom: 4px;">
+                                                {{rec.warehouse_to_city}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left: 0;padding-top: 4px;padding-bottom: 4px;">
+                                                {{rec.warehouse_to_county}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table style="width: 100%;margin-top: 19px;"
+                       class="tabletopmargin">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Description</th>
+                            <th>Ref. No.</th>
+                            <th>Batch No.</th>
+                            <th>W/H From - Storage Loc.</th>
+                            <th>W/H To - Storage Loc.</th>
+                            <th>U.O.M</th>
+                            <th class="rightAlign">Qty.</th>
+                            <th ng-if="rec.volume_permission>0">Volume</th>
+                            <th ng-if="rec.weight_permission>0">Weight</th>
+                        </tr>
+                    </thead>
+                    <tbody class="pad5">
+                        <tr ng-repeat="item in rec.pdf_items track by $index">
+                            <td>{{item.item_code}}</td>
+                            <td>{{item.item_name}}</td>
+                            <td> {{item.container_no}}</td>
+                            <td>{{item.batch_no}}</td>
+                            <td>{{item.location_from}}</td>
+                            <td>{{item.location_to}}</td>
+                            <td>{{item.uom_name}}</td>
+                            <td class="rightAlign">{{item.quantity | numberNoDecimalsIfZeroFilter:2:''}}</td>
+                            <td ng-if="rec.volume_permission>0">
+                                {{item.volume | numberNoDecimalsIfZeroFilter:2:''}} <span
+                                      ng-if="item.volume_unit == 'cm3'">cm&sup3</span>
+                                <span ng-if="item.volume_unit != 'cm3'">{{item.volume_unit}}</span>
+                            </td>
+                            <td ng-if="rec.weight_permission>0">
+                                {{item.weight | numberNoDecimalsIfZeroFilter:2:''}} {{item.weightunit}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- 
+                <div style="width: 30%;float: right;margin-top: 30px;">
+                    <table align="right">
+
+                        <tr>
+                            <td style="color: #2196F3;padding-right: 10px;font-size: 14px;">
+                                <b>Total Case:</b>
+                            </td>
+                            <td style="text-align: right;color: #2196F3;font-size: 14px;">
+                                <b>00</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color: #2196F3;padding-right: 10px;font-size: 14px;">
+                                <b>Total Pallets:</b>
+                            </td>
+                            <td style="text-align: right;color: #2196F3;font-size: 14px;">
+                                <b>00</b>
+                            </td>
+                        </tr>
+                    </table>
+                </div> -->
+
+                <div style="width: 30%;float: right;margin-top: 30px;">
+                    <table align="right">
+                        <tr ng-repeat="vol in volume_total"
+                            ng-if="vol.total_qty!=0">
+                            <td style="color: #2196F3;padding-right: 10px;">
+                                <b>Total Volume</b>
+                            </td>
+                            <td style="text-align: right;color: #2196F3;">
+                                <b>{{vol.total_qty | numberNoDecimalsIfZeroFilter:2:''}} <span
+                                          ng-if="vol.volume_unit == 'cm3'">cm&sup3</span><span
+                                          ng-if="vol.volume_unit != 'cm3'">{{vol.volume_unit}}</span></b>
+                            </td>
+                        </tr>
+
+                        <tr ng-repeat="weight in weight_total"
+                            ng-if="weight.total_qty!=0">
+                            <td style="color: #2196F3;padding-right: 10px;">
+                                <b>Total Weight</b>
+                            </td>
+                            <td style="text-align: right;color: #2196F3;">
+                                <b>{{weight.total_qty | numberNoDecimalsIfZeroFilter:2:''}} {{weight.weightunit}}</b>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+
+                <div class="reportHeading__left">
+                    <table style="float: left;margin-top: 150px;">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <h6><b style="color: #000000;">Received By</b></h6>
+                                </td>
+                                <td style="padding: 8px !important;">___________________________</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6><b style="color: #000000;">Signed By</b></h6>
+                                </td>
+                                <td style="padding: 8px !important;">___________________________</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6><b style="color: #000000;">Date</b></h6>
+                                </td>
+                                <td style="padding: 8px !important;">___________________________</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h6><b style="color: #000000;">Comments</b></h6>
+                                </td>
+                                <td style="padding: 8px !important;">___________________________</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            data-dismiss="modal">Cancel</button>
+                    <!-- <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label> -->
+                    <!-- data-dismiss="modal" -->
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-disabled="generatingPDF"
+                       ng-click="generatePdf('transferOrderReport')">
+                        <i class="fa fa-download"
+                           aria-hidden="true"
+                           style="color:#444444;"></i>
+                    </a>
+                    <a href="app/views/invoice_templates_pdf/transferOrderReport.pdf"
+                       target="_blank"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       id="displayPdf"
+                       style="display:none">
+                        <i class="fa fa-download"
+                           aria-hidden="true"></i>
+                    </a>
+                    <span class='generatingPDF'
+                          style="right: -30px;"
+                          ng-if="generatingPDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                        Generating PDF
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

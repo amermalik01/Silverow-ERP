@@ -1,0 +1,82 @@
+<div class="modal fade"
+     id="accthead_modal">
+    <div class="modal-dialog modal-md">
+        <!--modal-lg   style=" width:65% !important" -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        ng-disabled="!(order_id>0)"
+                        data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">G/L No.</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-symbol">
+                            <input type="text"
+                                   Placeholder="Search"
+                                   class="in-t-1"
+                                   ng-model="filterGL.search"
+                                   style="padding-left:4px;">
+                            <span id="date_msg_4"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row"
+                     style="    margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+                        <table class="table table-striped table-bordered table-condensed table-hover">
+                            <thead class="fixit">
+                                <tr class="bg-col">
+                                    <th style="width: 5%;text-align: center;">
+                                        <!-- <input type="checkbox"
+                                               ng-model="selectedAllGL"
+                                               ng-click="checkAllGL(selectedAllGL)"
+                                               ng-checked="selectedAllGL"> -->
+                                    </th>
+                                    <th style="width: 12%;">G/L No.</th>
+                                    <th>G/L Name</th>
+                                </tr>
+                            </thead>
+                            <tbody class="fixit">
+                                <!-- ng-click="add_gl_account_values(gl)" -->
+                            <tr ng-repeat="gl in gl_account | limitedFilter:filterGL.search:['code','name']"
+                                    ng-class="{'dont-click4':gl.status==0}">
+                                    <td style="width: 5%;text-align: center;">
+                                        <input type="checkbox"
+                                               name="item {{$index}}"
+                                               id="item {{$index}}"
+                                               ng-click="checkedGL(gl.id)"
+                                               ng-checked="gl.chk>0"
+                                               ng-disabled="gl.status==0">
+                                    </td>
+                                    <td style="width: 12%;">{{gl.code}}</td>
+                                    <td>{{gl.name}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-left">Selected:&nbsp;{{(gl_account| filter: {chk: true}).length}}</span>
+
+                <!-- <button type="button" class="btn default pull-right width_80" data-dismiss="modal">Cancel</button> -->
+                <div class="pull-right">
+                    <button class="btn btn_add"
+                            type="button"
+                            ng-click="add_gl_account_values()"
+                            ng-disabled="!(order_id>0) || (gl_account| filter: {chk: true}).length == 0">Add</button>
+                    <button type="button"
+                            class="btn btn-cancel"
+                            ng-disabled="!(order_id>0)"
+                            ng-click="clearPendingGLitems()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

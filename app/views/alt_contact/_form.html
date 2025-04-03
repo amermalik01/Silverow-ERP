@@ -1,0 +1,214 @@
+
+<div class="row animated fadeIn">
+		<div class="col-md-12 col-md-12">
+				<div class="widget" style="background:none;"> 
+						<!-- <div class="widget-header">
+          <div class="title">
+            Add Company General Information
+          </div>
+
+        </div> -->
+						<div class="widget-body pb0" style="background:none;">
+								<div class="row">
+										<div class="col-md-12">
+												<div class="panel-title2">Contacts</div>
+												<div class="col-md-5"> 
+														
+														<!-- <div class="form-group">
+                                        <label class="col-md-4 control-label">Location</label>
+                                        <div class="col-md-8">
+                                          <select ng-model="rec.location" ng-options="opt as opt.Location_Name for opt in arr_locations" class="select2me form-control"  ng-disabled ="check_contact_readonly">
+                                          </select>
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label class="col-md-4 control-label">Type</label>
+                                        <div class="col-md-8">
+                                          <select ng-model="rec.types" ng-options="opt as opt.name for opt in arr_types" class="select2me form-control"  ng-disabled ="check_contact_readonly">
+                                          </select>
+                                        </div>
+                                      </div> -->
+														<div class="form-group">
+																<label class="col-md-4 control-label">Contact Name <span class="required">*</span></label>
+																<div class="col-md-8">
+																		<input type="text" ng-model="rec.contact_name" id="contact_name" class="form-control"  ng-disabled ="check_contact_readonly" required />
+																</div>
+														</div>
+														<div class="form-group">
+																<label class="col-md-4 control-label">Job Title </label>
+																<div class="col-md-8">
+																		<input type="text" ng-model="rec.job_title" id="job_title" class="form-control"  ng-disabled ="check_contact_readonly" />
+																</div>
+														</div>
+														<div class="form-group">
+																<label class="col-md-4 control-label">Direct Line </label>
+																<div class="col-md-8">
+																		<input type="text" ng-model="rec.direct_line" id="direct_line" class="form-control"  ng-disabled ="check_contact_readonly"  />
+																</div>
+														</div>
+														<div class="form-group">
+																<label class="col-md-4 control-label">Mobile</label>
+																<div class="col-md-8">
+																		<input type="text" ng-model="rec.mobile" id="mobile" class="form-control"  ng-disabled ="check_contact_readonly"  />
+																</div>
+														</div>
+														<div class="form-group">
+																<label class="col-md-4 control-label">Email <span class="required">*</span> </label>
+																<div class="col-md-8">
+																		<input type="text"   ng-model="rec.email" id="email" class="form-control"  ng-disabled ="check_contact_readonly" data-parsley-type="email" required/>
+																</div>
+														</div>
+														<div class="form-group">
+																<label class="col-md-4 control-label">Telephone </label>
+																<div class="col-md-8">
+																		<input type="text" ng-model="rec.phone" id="phone" class="form-control"  ng-disabled ="check_contact_readonly"   />
+																</div>
+														</div>
+														<div class="form-group">
+																<label class="col-md-4 control-label">Fax </label>
+																<div class="col-md-8">
+																		<input type="text" ng-model="rec.fax" id="fax" class="form-control"  ng-disabled ="check_contact_readonly"  />
+																</div>
+														</div>
+														<div class="form-group">
+																<label class="col-md-4 control-label" title="Prefered Method Of Communication">Pref. Method Of Comm.</label>
+																<div class="col-md-8">
+																		<select ng-model="drp.pref_mthod_of_comm" ng-options="opt as opt.title for opt in arr_pref_method_comm" class="select2me form-control" ng-change="addNewPredefinedPopup(drp.pref_mthod_of_comm, 'PREFER_METHOD', 'Preferred Method Of Communication', drp)" ng-disabled="check_contact_readonly" ng-class="{'not-click-allow':disableClass > 0}">
+																		</select>
+																</div>
+														</div>
+												</div>
+												<div class="col-md-5 col-md-offset-2">
+														<div class="form-group" ng-hide="rec.id > 0">
+																<label class="col-md-4 control-label">Same As General</label>
+																<div class="col-md-8">
+																		<input ng-disabled="rec.id > 0" type="checkbox" ng-click="sameAsGeneral()" ng-model="rec.is_same_as_general" style="position: relative;
+                                           top: 7px;
+                                           }">
+																</div>
+														</div>
+														<div class="form-group">
+																<label class="col-md-4 control-label">Location Name</label>
+																<div class="col-md-8">
+																		<input type="text" ng-model="rec.depot" id="depot" class="form-control" ng-required="rec.is_same_as_general"  ng-disabled ="check_contact_readonly"  />
+																		<input type="hidden" ng-model="rec.id" id="update_id" class="form-control"/>
+																</div>
+														</div>
+														<div class="form-group">
+																<label class="col-md-4 control-label">Address </label>
+																<div class="col-md-8">
+																		<input type="text" ng-model="rec.address_1" id="address_1" class="form-control"  ng-disabled ="check_contact_readonly" />
+																</div>
+														</div>
+														<div class="form-group">
+																<label class="col-md-4 control-label">Address 2 </label>
+																<div class="col-md-8">
+																		<input type="text" ng-model="rec.address_2" id="address_2" class="form-control"  ng-disabled ="check_contact_readonly" />
+																</div>
+														</div>
+														<div class="form-group">
+																<label class="col-md-4 control-label">City </label>
+																<div class="col-md-8">
+																		<input type="text" ng-model="rec.city" id="city" class="form-control"  ng-disabled ="check_contact_readonly" />
+																</div>
+														</div>
+														<div class="form-group">
+																<label class="col-md-4 control-label">County </label>
+																<div class="col-md-8">
+																		<input type="text" ng-model="rec.county" id="county" class="form-control"  ng-disabled ="check_contact_readonly" />
+																</div>
+														</div>
+														<div class="form-group">
+																<label class="col-md-4 control-label">Postcode </label>
+																<div class="col-md-8">
+																		<input type="text" ng-model="rec.postcode" id="postcode" class="form-control"  ng-disabled ="check_contact_readonly" />
+																</div>
+														</div>
+														<div class="form-group">
+																<label class="col-md-4 control-label">Country <span class="required">*</span></label>
+																<div class="col-md-8">
+																		<select ng-model="rec.alt_country_id" ng-options="opt as opt.name for opt in country_type_arr track by opt.id" class="select2me form-control"  ng-disabled ="check_contact_readonly" required >
+																		</select>
+																</div>
+														</div>
+												</div>
+										</div>
+								</div>
+								<div>
+										<div class="col-md-12">
+												<div class="pull-right">
+														<div class="dropdown ib" ng-show="rec.id > 0 && crm_contact_tab > 0">
+																<button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown"><i class="dte-ico"></i></button>
+																<ul class="dropdown-menu dte animated fadeIn">
+																		<span ng-click="set_document_internal(crm_contact_tab)"><i class="fa fa-file-text-o" aria-hidden="true"></i> Add Document</span> <span><i class="fa fa-check" aria-hidden="true"></i> Add Task</span> <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Compose Email</span>
+																</ul>
+														</div>
+														<button class="btn btn-submit" type="submit" ng-show="!check_contact_readonly">Save</button>
+														<button class="btn btn-edit" type="button" ng-click="showEditForm()" ng-show="check_contact_readonly">Edit</button>
+														<button class="btn btn-cancel" type="button" ng-click="showAltContListing()">Cancel</button>
+												</div>
+										</div>
+								</div>
+								<div class="clearfix"></div>
+								<br/>
+						</div>
+						<div class="panel panel-default pad15" ng-show="rec.id > 0" style="margin-top: -9px;padding-bottom: 6px;">
+								<div class="panel-heading">
+										<h3 class="panel-title"> Social Media</h3>
+								</div>
+								<div class="panel-body">
+										<div ng-show="!alt_contact_media_form">
+												<div> <a id="prompt" style="position:relative; top:-45px;" ng-click="showAltContactMediaForm()" class="btn btn_add pull-right"><i class="fa fa-plus fa_display"></i> Add</a> </div>
+												<div>
+														<table class="table table-striped table-bordered table-hover" style="    position: relative;
+                                   top: -23px;">
+																<thead>
+																		<tr class="bg-col" ng-show="columns_alt_contact_social.length > 0">
+																				<th ng-repeat="column in columns_alt_contact_social" ng-if="column.title != 'Id'"> {{column.title}} </th>
+																				<th style="width:7%">Action</th>
+																		</tr>
+																</thead>
+																<tbody class="courser table-body">
+																		<tr ng-repeat="recs in alt_contact_social_medias track by $index" ng-show="columns_alt_contact_social.length > 0">
+																				<td> {{recs.social_media| capitalize}} </td>
+																				<td> {{recs.address}} </td>
+																				<td><a ng-click="delete_alt_contact_social_media(recs.id)" title="Delete" class="btn"><i class="fa fa-times"></i></a></td>
+																		</tr>
+																</tbody>
+														</table>
+												</div>
+										</div>
+										<div class="col-md-12 " ng-show="alt_contact_media_form">
+												<div class="row animated fadeIn" >
+														<div class="col-md-5">
+																<div class="form-group">
+																		<label class="col-md-4 pl0 control-label">Social Media <span class="required">*</span></label>
+																		<div class="col-md-8">
+																				<select ng-model="altContactMediaForm.media" ng-options="opt as opt.name for opt in social_medias" class=" form-control" ng-change="add_social_popup(altContactMediaForm.media, 2)" ng-disabled="check_contact_readonly" ng-class="{'not-click-allow':disableClass > 0}">
+																				</select>
+																		</div>
+																</div>
+														</div>
+														<div class="col-md-5 col-md-offset-2">
+																<div class="form-group">
+																		<label class="col-md-4 control-label">Social Media ID <span class="required">*</span></label>
+																		<div class="col-md-8">
+																				<input type="text" ng-model="altContactMediaForm.address" class="form-control" >
+																		</div>
+																</div>
+														</div>
+														<div class="col-md-12">
+																<div class="pull-right">
+																		<button class="btn btn-submit" type="button" ng-show="!check_crm_media_readonly" ng-click="add_alt_contact_social_media();">Save</button>
+																		<button class="btn btn-info btn_blue" type="button" ng-click="gotoEdit()" ng-show="check_crm_media_readonly"><i class="fa fa-edit"></i> Edit</button>
+																		<button class="btn btn-cancel" type="button" ng-click="hideAltContactMediaForm();">Cancel</button>
+																</div>
+														</div>
+												</div>
+										</div>
+								</div>
+						</div>
+				</div>
+		</div>
+</div>
+

@@ -1,0 +1,268 @@
+<style>
+    .smallwidget {
+        width: 24%;
+        margin-top: 5px;
+    }
+
+    .smallwidget span {
+        font-weight: normal;
+        font-size: 11px;
+    }
+</style>
+<div id="stockAllocationModal"
+     class="modal fade"
+     role="dialog">
+    <div class="modal-dialog modal-lg"
+         style="width:90% !important;"
+         dragable>
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        ng-click="updateAllocationResults()">&times;</button><!-- data-dismiss="modal" -->
+                <h4 class="modal-title">Stock Deallocation - Debit Note ({{rec.debitNoteCode}}) </h4>
+            </div>
+            <div class="modal-body">
+                <form id="stock_all_modal">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group"
+                                 style="margin-bottom: 0px !important;">
+                                <label class="col-md-3 control-label pl0">Item</label>
+                                <label class="col-md-9 control-label normal-font"> {{stock_item.product_code}} -
+                                    {{stock_item.product_name}}&nbsp;</label>
+                            </div>
+                            <div class="form-group"
+                                 style="margin-bottom: 0px !important;">
+                                <label class="col-md-3 control-label pl0">Warehouse</label>
+                                <label class="col-md-9 control-label normal-font "> {{formData.warehouses_name}}
+                                    &nbsp;</label>
+                            </div>
+                            <div class="form-group"
+                                 style="margin-bottom: 0px !important;">
+                                <label class="col-md-3 control-label pl0">Supplier</label>
+                                <label class="col-md-9 control-label normal-font ">{{rec.supplierNo}} -
+                                    {{rec.supplierName}} &nbsp;</label>
+                            </div>
+                        </div>
+                        <div class="col-md-8 pl0">
+                            <div class="smallwidget">
+                                <div>
+                                    Order Qty.
+                                </div>
+                                <div>
+                                    {{stock_item.qty | numberNoDecimalsIfZeroFilter:2:''}} <span>{{stock_item.unit_of_measure_name}}</span>
+                                </div>
+                            </div>
+                            <div class="smallwidget"
+                                 ng-class="{'belowzero2 && !hide_dispatch_btn':stock_item.remainig_qty>0}">
+                                <div>
+                                    Qty. To Deallocate
+                                </div>
+                                <div ng-class="{'belowzero && !hide_dispatch_btn':stock_item.remainig_qty>0}">
+                                    {{stock_item.remainig_qty | numberNoDecimalsIfZeroFilter:2:''}}
+                                    <span>{{stock_item.unit_of_measure_name}}</span>
+
+                                </div>
+                            </div>
+                            <div class="smallwidget"
+                                 ng-class="{'StkAllocated && !hide_dispatch_btn':stock_item.remainig_qty==0}">
+                                <div>
+                                    Deallocated Stock
+                                </div>
+                                <div>
+                                    {{stock_item.qty - stock_item.remainig_qty | numberNoDecimalsIfZeroFilter:2:'' }}
+                                    <span>{{stock_item.unit_of_measure_name}}</span>
+
+                                </div>
+                            </div>
+                            <!-- <div class="smallwidget point" ng-click="showOrderTrail(all_wh_stock[0])" style="cursor:pointer;">
+                                <div>
+                                    Available Stock <span>{{stock_item.unit_of_measure_name}}</span>
+                                    <i class="fa fa-external-link" aria-hidden="true"></i>
+                                </div>
+                                <div>   
+                                     {{stock_item.total_available_qty}}
+                                     <span>{{stock_item.unit_of_measure_name}}</span>
+                                </div>
+                            </div> -->
+                            <div class="smallwidget "
+                                 ng-class="currentStock && !hide_dispatch_btn">
+                                <div>
+                                    Current Stock
+                                </div>
+                                <div>
+                                    {{current_stock | numberNoDecimalsIfZeroFilter:2:''}} <span>{{stock_item.unit_of_measure_name}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- added from purchase stock popup -->
+                <hr style="margin: 14px 0 13px 0;">
+                <div class="row">
+                    <div class="col-md-3"
+                         style="margin-bottom: 6px;">
+                        <div class="input-symbol">
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Search"
+                                   ng-model="searchKeyword.search">
+                            <!-- <span>
+                                <i class="fa fa-search"></i>
+                            </span> -->
+                            <span id="date_msg_4">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+
+                        <button class="btn btn-default2"
+                                type="button"
+                                ng-click="searchKeyword = {};"
+                                ng-model="strict">Clear Filter</button>
+                    </div>
+                    <div class="col-md-12">
+                        <div>
+                            <div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover1">
+                                        <thead class="fixit">
+                                            <tr class="bg-col">
+                                                <th>Invoice Date</th>
+                                                <th> Invoice No. </th>
+                                                <th title="Production Date">Prod. Date</th>
+                                                <th>Date Received</th>
+                                                <th>Use By Date</th>
+                                                <th>Ref. No.</th>
+                                                <!-- <th>Warehouse </th> -->
+                                                <th title="Storage Location">Storage Loc.</th>
+                                                <th class="text-right"> Qty. Purchased
+                                                    <!-- Sold -->
+                                                </th>
+                                                <th class="text-right"> Qty. Available </th>
+                                                <!-- <th> Qty. Returned </th> -->
+                                                <!-- <th> Qty. Available for Return </th> -->
+                                                <th title="Qty. Currently Returned" class="text-right"> Current Returned </th>
+                                                <!-- <th> Target Location </th> -->
+                                                <th class="text-right" ng-if="!check_sr_readonly && stock_item.sale_status !=2">
+                                                    Qty. <br/>({{stock_item.units.name}})
+                                                </th>
+                                                <th class="text-center"
+                                                    ng-if="!check_sr_readonly && stock_item.sale_status !=2">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fixit">
+                                            <tr ng-repeat="stock in all_wh_stock | filter:searchKeyword.search"
+                                                ng-class="{'stock-done2':stock.qty_currently_returned>0, 'active-items':stock.active_line}">
+                                                <td> {{stock.invoice_date}} </td>
+                                                <!-- <td>
+                                                    <a title="View Sales Order" class="tooltips_clss btn hilight " 
+                                                            style="font-size: 11px;" ui-sref="app.viewOrder({id:stock.order_id})" target="_blank" > {{stock.sale_order_code}} </a>
+                                                </td> -->
+                                                <td>
+                                                    <a title="View Purchase Invoice"
+                                                       class="tooltips_clss btn hilight "
+                                                       style="font-size: 11px;"
+                                                       ui-sref="app.viewsrminvoice({id:stock.order_id})"
+                                                       target="_blank"> {{stock.invoice_code}} </a>
+                                                </td>
+                                                <td>{{stock.prod_date}}</td>
+                                                <td>{{stock.date_received}}</td>
+                                                <td>{{stock.use_by_date}}</td>
+                                                <td>{{stock.container_no}}</td>
+                                                <!-- <td title="{{stock.warehouse_name}}"> {{stock.warehouse_name}}  </td> -->
+                                                <td title="{{stock.location}}">
+                                                    {{stock.location}}
+                                                </td>
+                                                <td class="text-right">
+                                                    {{stock.qty_purchase | numberNoDecimalsIfZeroFilter:2:''}}
+                                                    <!-- {{stock.total_qty}} -->
+                                                </td>
+                                                <td class="text-right">
+                                                    <!-- {{stock.avail_qty}} -->
+                                                    <span ng-if="!show_recieve_list">{{stock.qty_purchase - stock.qty_returned - stock.qty_currently_returned |numberNoDecimalsIfZeroFilter:2:''}}</span>
+                                                    <span ng-if="show_recieve_list">{{stock.qty_purchase - stock.qty_returned |numberNoDecimalsIfZeroFilter:2:''}}</span>
+                                                </td>
+                                                <!-- <td>
+                                                    <span ng-click="stock.qty_returned > 0 ? showOrderTrail(stock, 4) : return;">
+                                                        {{stock.qty_returned}}
+                                                        <i class="fa fa-external-link" aria-hidden="true" ng-if="stock.qty_returned > 0" ></i>
+                                                     </span>
+                                                </td> -->
+                                                <!-- <td> {{stock.qty_sold - stock.qty_returned}} </td> -->
+                                                <!-- <td> {{stock.allocated_qty}}
+                                                </td> -->
+                                                <td class="text-right">
+                                                    {{stock.qty_currently_returned | numberNoDecimalsIfZeroFilter:2:''}}
+                                                    <!-- {{check_sr_readonly}}{{hide_dispatch_btn}} -->
+                                                </td>
+                                                <!-- <td>
+                                                    <select class="form-control" ng-model="stock.wh_location" ng-disabled="stock.qty_currently_returned > 0 || (stock.qty_sold - stock.qty_returned) == 0 || readonly">
+                                                        <option value=""> Select </option>
+                                                        <option ng-repeat="opt in selected_wh_locations" 
+                                                                ng-selected="{{opt.id == stock.wh_location}}"
+                                                            value="{{opt.id}}"> {{opt.Storage_location}} </option>
+                                                    </select>
+                                                </td> -->
+                                                <td ng-if="!check_sr_readonly">
+                                                    <!--  && !hide_dispatch_btn -->
+                                                    <div class="input-symbol">
+                                                        <input type="number"
+                                                               step="any"
+                                                               style="width:100%;"
+                                                               class="form-control text-right"
+                                                               ng-model="stock.req_qty"
+                                                               ng-focus="OnFocusQty(stock);"
+                                                               ng-click="OnFocusQty(stock);"
+                                                               ng-blur="OnBlurQty(stock);"
+                                                               ng-class="{'readonly dont-click':check_sr_readonly}">
+                                                        <!--  ng-disabled="(stock.qty_sold - stock.qty_returned) == 0" -->
+                                                        <!-- !(stock.avail_qty>0) ||  || stock_item.sale_status ==2 -->
+                                                        
+                                                    </div>
+                                                </td>
+                                                <!--  && stock_item.sale_status !=2 -->
+                                                <td class="text-center allo"
+                                                    ng-if="!check_sr_readonly">
+                                                    <i class="fa fa-plus"
+                                                       title="Allocate"
+                                                       ng-class="{'disable-el':!stock.active_line || disableBtnStock}"
+                                                       ng-click="addStockItem(stock,stock_item)"></i>
+                                                    <!-- ng-if="remainig_qty>0 && (stock.qty_sold - stock.qty_returned) > 0" -->
+                                                    <i class="fa fa-minus"
+                                                       title="Un-Allocate"
+                                                       ng-click="delStockItem(stock, stock_item)"
+                                                       ng-if="stock.qty_currently_returned > 0"
+                                                       ng-class="{'disable-el':!stock.active_line || disableBtnStock}"></i>
+                                                </td>
+                                            </tr>
+                                            <tr ng-if="all_wh_stock.length == 0">
+                                                <td colspan="10"
+                                                    class="text-center">No record found!</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <!-- <button class="btn btn-submit" type="button"  ng-click="allocate_stock();" style="width:130px;">Un-Allocate Stock</button>
+                    <button class="btn btn-submit" type="button" ng-click="un_allocate_stock();" style="width:130px;">Allocate Stock </button> -->
+                    <button type="button"
+                            class="btn btn-cancel"
+                            ng-click="updateAllocationResults()">Close</button>
+                </div>
+                <!-- class="btn btn-default pull-right"  style="margin-left:10px;" data-dismiss="modal" -->
+                <!--<button type="button" class="btn btn-default pull-right btn_blue" ng-click="stock_allocate_detail(stock_item.id,1)">Detail</button>-->
+            </div>
+        </div>
+    </div>
+</div>

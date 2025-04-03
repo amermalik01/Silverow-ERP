@@ -1,0 +1,53 @@
+<script type="text/ng-template" id="modalDialogId">
+    <style type="text/css">
+        .ngdialog-content{padding: 0px !important;}
+    </style>
+
+    <div class="modal-header"><h4 class="modal-title">{{title}}</h4></div>
+
+    <div class="row" style="padding-left: 20px !important; padding-right: 20px !important;">
+        <div class="col-md-12">
+            <!-- START panel-->
+            <div class="panel panel-default">
+                <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;">
+                    <!-- START table-responsive-->
+                    <div class="table-responsive">
+
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr class="bg-col">
+                                
+                    
+                    
+                    
+                    
+                    
+                                <th ng-repeat="column in columns" ng-hide="column.field == 'id' || column.field == 'cldirect_line' || column.field == 'clmobile' || column.field == 'cljob_title' || 
+                                    column.field == 'clemail' || column.field == 'clphone' || column.field == 'clfax' || column.field == 'is_primary' || column.field == 'is_default' || 
+                                    column.field == 'depo_country_id' || column.field == 'is_delivery_collection_address' || column.field == 'is_invoice_address'  || column.field == 'is_billing_address' 
+                                    || column.field == 'country' || column.field == 'county' || column.field == 'clcontact_name'
+
+                                                                            ">{{column.title}}</th>
+                            </tr>
+                            </thead>
+                            <tbody class="courser table-body">
+                            <tr ng-repeat="rec in record" ng-click="confirm(rec)">
+                                <td ng-repeat="column in columns" ng-hide="column.field == 'id' || column.field == 'cldirect_line' || column.field == 'clmobile' || column.field == 'cljob_title' || 
+                                    column.field == 'clemail' || column.field == 'clphone' || column.field == 'clfax' || column.field == 'is_primary' || column.field == 'is_default' || 
+                                    column.field == 'depo_country_id' || column.field == 'is_delivery_collection_address' || column.field == 'is_invoice_address'  || column.field == 'is_billing_address' || 
+                                    column.field == 'country' || column.field == 'county' || column.field == 'clcontact_name'">
+                                    {{rec[column.field]}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- END table-responsive-->
+                </div>
+            </div>
+            <!-- END panel-->
+        </div>
+    </div>
+    <div class="modal-footer">
+
+    </div>
+</script>

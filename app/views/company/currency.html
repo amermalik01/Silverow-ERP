@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="col-md-3">
+      <div class="input-symbol">
+          <input type="text" Placeholder="Search" class="form-control"
+                 ng-model="searchKeyword.search">
+          <span id="date_msg_4"><i class="fa fa-search"></i></span>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <a id="prompt" ng-click="showCurrencyFrom()" class="btn btn_add pull-right">
+          Add</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div>
+            <div>
+                <div id="dt_example" class="example_alt_pagination">
+                    <div class="table-responsive">
+
+                        <table class="table table-condensed table-striped table-hover table-bordered" id="data-table" ng-show="columns.length > 0">
+                            <thead class="fixit">
+                            <tr class="bg-col">
+                                <th ng-repeat="column in columns" 
+                                    ng-show="column.show" 
+                                    ng-hide="column.title == 'Id'" 
+                                    ng-if="column.title != 'End Date' && column.title != 'Symbol' && column.title != 'Exchange Rate' && column.title != 'Conversion Rate'">
+                                    <span ng-if="column.title == 'Actualexchangerate'">Exchange Rate</span>
+                                    <span ng-if="column.title == 'Invertedexchangerate'">Inverted Exchange Rate</span>
+                                    <span ng-if="column.title != 'Actualexchangerate' && column.title != 'Invertedexchangerate'">{{column.title}}</span>
+                                    
+                                </th>
+                               <!--  <th ng-show="columns.length > 0" class="sortable sort-asc" style="width: 160px;">
+                                    Inversion Rate
+                                </th> -->
+                                <th ng-show="columns.length > 0" class="ShowHideAction">Action</th>
+                            </tr>
+
+                            </thead>
+
+                            <tbody class="fixit">
+                            <tr 
+                                ng-repeat="rec in currencyData | filter:searchKeyword.search"
+                                ng-click="showViewCurrencyForm(rec.id);">
+                                <!-- ng-click="showViewCurrencyForm(rec.id)" -->
+                                <td sortable="column.title"
+                                    ng-repeat="column in columns" 
+                                    ng-hide="column.title == 'Id'" 
+                                    ng-if="column.title != 'End Date' && column.title != 'Symbol' && column.title != 'Exchange Rate' && column.title != 'Conversion Rate'" 
+                                    > {{rec[column.field]}}
+                                </td>
+                                <!-- <td class="text-left " ng-show="columns.length > 0">{{1/rec['Conversion_Rate'] |
+                                    currency:'':2}}
+                                </td> -->
+                                <td ng-show="columns.length > 0" class="ShowHideAction">
+
+                                    <a ng-click="currencyConvRateHistory(rec.id,rec.name)" title="Conversion Rate History"
+                                       class="btn"><i class="fa fa-history"></i></a>
+                                    <a ng-click="showCurrencyEditForm(rec.id)" ng-if="rec.code!=defaultCurrencyCode" title="Edit" class="btn">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr ng-show="columns.length == 0 && !showLoader">
+                                <td>No currency found agaist this entity! Please add.</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div ng-show="!columns.length > 0" class="no-record">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- <a ng-click="deleteCurrency(rec.id,$index,currencyData)" ng-if="rec.code!=defaultCurrencyCode" title="Delete"
+    class="btn btn"><i class="fa fa-times"></i></a> -->

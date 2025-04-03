@@ -1,0 +1,32 @@
+Vestro
+"Stock Availability Report"
+"As At 06/07/2021"
+
+"Item No.",Description,"Unit of Measure",Warehouse,"Available Quantity","Allocated Quantity","Current Quantity"
+
+VP001,"1oz Hinged Sauce Cups -1000 pcs",Case,"WRH0001-Wembley (Techno Packaging Ltd)",685,0,685.00
+VP002,"2oz Hinged Sauce Cups -1000 pcs",Case,"WRH0001-Wembley (Techno Packaging Ltd)",51,0,51.00
+,,,Total,736,0,736.00
+VH002,"Clear Hand Wrap Ext 20mu, 400x250 x6",Case,"WRH0003-Burhill Logistics",243,0,243.00
+VH003,"Clear Hand Wrap St 20mu, 400x250 x6",Case,"WRH0003-Burhill Logistics",92,0,92.00
+VC001,"HI-TENSILE Vest Carriers Jumbo (12x18x24'')",Case,"WRH0003-Burhill Logistics",167,0,167.00
+VC002,"HI-TENSILE Vest Carriers Large (11x17x21'')",Case,"WRH0003-Burhill Logistics",1411,0,1411.00
+VC003,"HD Vest Carriers Medium (10x15x18'')",Case,"WRH0003-Burhill Logistics",1260,0,1260.00
+VB003,"Eros- Black Sacks (18x33x39'')",Case,"WRH0003-Burhill Logistics (PD Port)",240,0,240.00
+VB001,"Tron1 - Flat Black Bags (18x29x39"")",Case,"WRH0003-Burhill Logistics",92,0,92.00
+VB004,"Kenzo - Black Compactor Sacks (22x34x47"")",Case,"WRH0003-Burhill Logistics (PD Port)",399,0,399.00
+VH043,"Black Hand Wrap Ext 23mu, 400x250 x6",Case,"WRH0003-Burhill Logistics (PD Port)",316,0,316.00
+,,,Total,4220,0,4220.00
+VM002,"Machine Roll 16kg, 23mu",Unit,"WRH0004-Burhill Logistics Ltd C/O Pentalver",368,0,368.00
+VB003,"Tron1- Flat Black Bag (18x33x39'') LDPE",Case,"WRH0004-PD Logistics (Burhill)",432,0,432.00
+VP001,"1oz Hinged Sauce Cups -1000 pcs",Case,"WRH0004-Burhill Logistics Ltd C/O Pentalver",3191,0,3191.00
+VP002,"2oz Hinged Sauce Cups -1000 pcs",Case,"WRH0004-Burhill Logistics Ltd C/O Pentalver",2277,0,2277.00
+VB001,"Tron2 - Flat Black Bags (18x29x39"") LDPE",Case,"WRH0004-PD Logistics (Burhill)",2782,0,2782.00
+VB004,"Kenzo - Compactor Black Bags (22x34x47"")",Case,"WRH0004-PD Logistics (Burhill)",712,0,712.00
+VB005,"Zeal - Heavy Duty Refuse Black Bag Roll (20x20)",Case,"WRH0004-PD Logistics (Burhill)",233,0,233.00
+VB002,"Tron2 - Heavy Duty Black Sacks (18x29x39"")",Case,"WRH0004-Burhill Logistics Ltd C/O Pentalver",338,0,338.00
+PROD0013,"Merlin 18x32x39"" (H-Pack)",Case,"WRH0004-Burhill Logistics Ltd C/O Pentalver",315,0,315.00
+PROD0014,"Hawk 18x29x39"" (H-Pack)",Case,"WRH0004-Burhill Logistics Ltd C/O Pentalver",3168,0,3168.00
+VB006,"Zeal 10-Refuse Black Sacks (10x20) Roll",Case,"WRH0004-Burhill Logistics Ltd C/O Pentalver",430,0,430.00
+,,,Total,14246,0,14246.00
+,,,"Grand Total",19202,0,19202.00

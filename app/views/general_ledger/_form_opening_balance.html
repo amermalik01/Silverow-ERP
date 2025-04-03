@@ -1,0 +1,272 @@
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<div class="row" ng-show="OpeningBalance_list">
+  <div>
+    <div>
+      <form class="form-horizontal no-margin" role="form" ng-submit="get_OpeningBalance_main_list()" name="addForm" validate-form="" novalidate="">
+        <div class="col-md-5 col-md-5 pl0">
+          <div>
+            <div class="col-sm-7">
+              <div class="input-symbol">
+                <input type="text" ng-model="rec.serachkeyword" placeholder="Code" class="in-t-1" />
+                <span id="date_msg_4"> <i class="fa fa-search"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="col-md-7 col-md-7">
+        <a id="prompt" ng-click="showAddOpeningBalance()" class="btn btn_add pull-right">Add</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12" style=" margin-top: 16px;">
+    <table class="table table-striped table-condensed table-bordered narrow_table small_fields">
+      <thead class="fixit">
+        <tr class="bg-col" ng-if="OpeningBalance_record_main.length > 0">
+          <th ng-repeat="column in columns_OpeningBalance_main" ng-if="column.field != 'id'"> {{column.title}}
+          </th>
+          <th style="    width: 6%;">Action</th>
+        </tr>
+      </thead>
+      <tbody class="fixit" style="max-height:500px;">
+        <tr ng-repeat="recmian in OpeningBalance_record_main  track by $index" ng-if="OpeningBalance_record_main.length > 0">
+          <td ng-repeat="column in columns_OpeningBalance_main" ng-if="column.field != 'id'">
+            {{recmian[column.field]}}
+          </td>
+          <td style="    width: 6%;">
+            <a title="Edit" rec.status.id==1 ng-click="showEditOpeningBalance(recmian.id)" class="tooltips_cls btn ">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a ng-show="rec.status.id == 1" title="Delete" ng-click="showDeletReceipt_main(recmian.id, $index, OpeningBalance_record_main, recmian.discount_value)" class="tooltips_clss btn">
+              <i class="fa fa-times"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row" ng-show="OpeningBalance_form">
+  <div class="col-md-12 ">
+    <div class="nav nav-tabs" style="    padding-bottom: 12px !important;padding-top: 11px !important;">
+      <form class="form-horizontal no-margin" autocomplete="off" ng-submit="addOpeningBalance_main()" role="form" validate-form="" novalidate="">
+        <input type="hidden" ng-model="OpeningBalance_form_rec.id" class="in-t-1" />
+
+        <div>
+          <div class="col-md-2">
+            <label class="control-label2 col-md-4">Code<span class="required">*</span> </label>
+
+            <div class="col-md-8">
+              <input ng-readonly="opening_balance_readonly" type="text" ng-model="OpeningBalance_form_rec.acc_code" class="form-control" required/>
+              <input type="hidden" ng-model="OpeningBalance_form_rec.code_type" />
+              <input type="hidden" ng-model="OpeningBalance_form_rec.acc_no" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="  control-label2 col-md-4"> Opening Balance Name<span class="required">*</span>
+                        </label>
+
+            <div class="col-md-7">
+              <input type="text" required ng-model="OpeningBalance_form_rec.opening_balance_title" class="in-t-1 input_text">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="pull-right">
+              <button class="btn btn_add" type="submit"><i class="fa fa-check fa_display"></i>
+                                {{main_title}}
+                            </button>
+              <!--{{OpeningBalance_form_rec.id}}-->
+              <button class="btn btn-cancel" type="button" ng-click="get_OpeningBalance_main_list(1)"><i
+                                    class="fa fa-undo fa_display"></i> Cancel
+                            </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div ng-show="OpeningBalance_form_rec.id > 0">
+    <div class="col-md-12 " style="margin-top:18px;">
+      <div class="panel panel-default">
+        <div class="panel-heading" style="    padding-top: 26px;
+    padding-bottom: 20px !important;">
+          <h3 class="panel-title">Opening Balance </h3>
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped table-bordered small_fields">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th title="Opening Balance Type">Type</th>
+                <th>Account Number</th>
+                <th>Description</th>
+                <th>Doc Number</th>
+                <th>Currency</th>
+                <th>Debit</th>
+                <th>Credit</th>
+                <th>Converted Price</th>
+                <th>Balancing Account</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-ng-repeat="OpeningBalance_sub_rec in OpeningBalance_sub_rec_main track by $index">
+                <td>
+                  <input jqdatepicker class="2date-picker in-t-1 form-control" ng-model="OpeningBalance_sub_rec.opening_balnc_date" id="test_{{$index}}" required ng-click="load_date_picker('load');" readonly="readonly">
+                  <!--test_date_duplicate(OpeningBalance_sub_rec,$index)-->
+                </td>
+                <td>
+                  <select ng-model="OpeningBalance_sub_rec.opening_balnc_type_id" ng-options="opt as opt.name for opt in opening_balnc_type_array" class="in-t-1" required ng-change="add_new_opening_balnc_rec(OpeningBalance_sub_rec, $index)">
+                                        <option style="display:block" value=""></option>
+                                    </select>
+                </td>
+                <td>
+                  <input type="text" ng-model="OpeningBalance_sub_rec.account_code" readonly required class="in-t-1 setshow" ng-click="getGLOpeningBalance(OpeningBalance_sub_rec, $index, 1)" />
+                  <input type="hidden" ng-model="OpeningBalance_sub_rec.doc_type" />
+                </td>
+                <td>
+                  <input type="text" ng-model="OpeningBalance_sub_rec.description" class="in-t-1 input_text">
+                </td>
+                <td>
+                  <input type="text" ng-model="OpeningBalance_sub_rec.doc_num" class="in-t-1 input_text" ng-show="OpeningBalance_sub_rec.show_field">
+                </td>
+                <td>
+                  <select ng-model="OpeningBalance_sub_rec.currency_id" class="in-t-1" ng-options="opt as opt.code  for opt in arr_currency" ng-show="OpeningBalance_sub_rec.show_field">
+                                        <option style="display:block" value=""></option>
+                                    </select>
+                  <!--ng-change="validatePrice(OpeningBalance_sub_rec,'loop',$index)"-->
+                </td>
+                <td>
+                  <input type="text" data-parsley-trigger="keyup" ng-readonly="OpeningBalance_sub_rec.chk_debit" ng-class="{'dont-click setshow':OpeningBalance_sub_rec.chk_debit == 1}" ng-model="OpeningBalance_sub_rec.debit_amount" class="in-t-1 input_text" data-parsley-minlength-message="Invalid Value"
+                    data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                  <!--test_date_duplicate(OpeningBalance_sub_rec,$index)-->
+                  <!--
+                                           ng-blur="validatePrice(OpeningBalance_sub_rec,'lev2');"-->
+                </td>
+                <td>
+                  <input type="text" data-parsley-trigger="keyup" ng-readonly="OpeningBalance_sub_rec.chk_credit" ng-class="{'dont-click setshow':OpeningBalance_sub_rec.chk_credit == 1}" ng-model="OpeningBalance_sub_rec.credit_amount" class="in-t-1 input_text" data-parsley-minlength-message="Invalid Value"
+                    data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/">
+                  <!-- ng-blur="validatePrice(OpeningBalance_sub_rec,'lev1');test_date_duplicate(OpeningBalance_sub_rec,$index)"-->
+                </td>
+                <td>
+                  <div class="input-symbol" ng-show="OpeningBalance_sub_rec.show_field">
+                    <input type="text" ng-model="OpeningBalance_sub_rec.converted_price" class="in-t-1 " readonly/>
+                    <span> {{defaultCurrencyCode}} </span>
+                  </div>
+                </td>
+                <td>
+                  <input type="text" ng-model="OpeningBalance_sub_rec.balance_code" required readonly class="setshow  in-t-1 input_text" ng-click="getGLOpeningBalance(OpeningBalance_sub_rec, $index, 2)" />
+                  <!--ng-class="{'dont-click setshow':OpeningBalance_sub_rec.module_type.value==1}"-->
+                  <input type="hidden" ng-model="OpeningBalance_sub_rec.balance_id" />
+                </td>
+                <td>
+                  <a ng-click="showDeletOpeningBalance(OpeningBalance_sub_rec.id, $index, OpeningBalance_sub_rec_main)" title="Delete" class="btn"> <i class="fa fa-times"></i>
+                  </a>
+                </td>
+              </tr>
+              <!--<tr>
+                                <td colspan="7"></td>
+                                <td colspan="1">Difference</td>
+                                <td colspan="2">
+                                    <div style="font-size: 14px;font-weight: 600;"> {{netBalanceRecipt() |
+                                        number:decimal_range}}
+                                    </div>
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>-->
+            </tbody>
+          </table>
+          <div class="col-md-12 no-padding">
+            <div class="pull-right " ng-show="OpeningBalance_sub_rec_main.length > 0">
+              <!--<button class="btn btn-default " type="submit"
+                                    ng-class="{'dont-click setshow':(netBalanceRecipt()>0 || enable_date_check) }"
+                                    ng-click="(netBalanceRecipt()==0 && backend_data==1) && recptconvertposting()"
+                                    style="margin-left:5px;"><i class="fa fa-check fa_display"></i> Posting
+                            </button>-->
+              <button class="btn btn-submit cur_block  " ng-click="add_OpeningBalance()" type="button">
+                                Save
+                            </button>
+              <button class="btn btn-cancel" type="button" ng-click="get_OpeningBalance_main_list(1)"><i
+                                    class="fa fa-undo fa_display"></i> Cancel
+                            </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<div ng-include="'app/views/_conform_to_continue.html'"></div>
+<div ng-include="'app/views/general_ledger/account_modal.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<!--<div id="RecptAccountpop" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{module_name}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-5 no-padding">
+                            <input type="text" ng-blur="getGLRecipt(module_type,account_index,gltype)"
+                                   placeholder="Code , Name" class="in-t-1 ng-pristine ng-valid ng-touched"
+                                   ng-model="module_type.searchKeyword2" style="padding-left:4px;">
+                        </div>
+                        <div class="col-md-7"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover1">
+                                        <thead>
+                                        <tr class="">
+                                            <th width="50%"> Code</th>
+                                            <th width="50%">Name</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="courser table-body">
+                                        &lt;!&ndash;module_type.searchKeyword2 &ndash;&gt;
+                                        <tr ng-repeat="record in category_list   "
+                                            ng-click="assignreciptselect(record);">
+                                            <td>{{record.code}}</td>
+                                            <td>{{record.name}}</td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="item_paging.total_pages > 1">
+                            <div class="form-group">
+                                <ul class="pagination" style="margin: 0px !important;"
+                                    ng-show="item_paging.total_pages > 1">
+                                    <li ng-class="{'disabled': item_paging.cpage == 1}" class=""><a
+                                            ng-click="itemselectPage(item_paging.ppage); getGLRecipt(module_type,account_index,gltype);"
+                                            href="javascript: void(0);" class="">&#xab;</a></li>
+                                    <li ng-repeat="(key,value) in item_paging.pages"
+                                        ng-class="{'active': value == item_paging.cpage}"><a
+                                            ng-click="itemselectPage(value); getGLRecipt(module_type,account_index,gltype);"
+                                            href="javascript: void(0);"><span
+                                            ng-bind="value"></span></a></li>
+                                    <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}"><a
+                                            ng-click="itemselectPage(item_paging.npage); getGLRecipt(module_type,account_index,gltype);"
+                                            href="javascript: void(0);">&#xbb;</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancel pull-right" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>-->

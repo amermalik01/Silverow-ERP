@@ -1,0 +1,213 @@
+<div class="modal fade" id="price_sale_list_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+        <!--modal-lg   style=" width:65% !important" -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Add <span ng-bind="price_sale_user"></span></h4>
+            </div>
+            <div class="modal-body">
+                <!-- Filter Start -->
+                <div class="row"><!--  ng-init="get_segment_list();get_country_list();itemselectPage(1)" -->
+                    <div>
+                        <!--<div class="col-md-4">
+                            <label class="  control-label">Search </label>
+
+                            <div class=" ">
+                                <div class="input-symbol">
+                                    <input type="text"
+                                           Placeholder="Search" class="form-control" ng-model="searchKeyword_sup.$">
+                                    <span id="date_msg_4"> <i class="fa fa-search"></i></span></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="  control-label">Segment </label>
+
+                            <div class=" ">
+                                <select ng-model="searchKeyword_sup.segment"
+                                        ng-options="opt as opt.title for opt in region_segment_arr"
+                                        class=" form-control" ng-change="get_all_list_customers(1)">
+                                    <option style="display:block" value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="  control-label">Country </label>
+
+                            <div class=" ">
+                                <select ng-model="searchKeyword_sup.country" ng-change="get_all_list_customers(1)"
+                                        ng-options="opt as opt.name for opt in country_type_arr" class=" form-control">
+                                    <option style="display:block" value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="  control-label"> </label>
+
+                            <div class=" ">
+                                <button type="button" class="btn btn-default" ng-click="get_all_list_customers(1)"
+                                        ng-model="strict">Clear
+                                </button>
+                            </div>
+                        </div>-->
+                        <div class="col-md-12">
+                            <div class="col-md-4">
+                                <form class="form-horizontal no-margin ng-pristine ng-valid" ng-submit="get_all_list_customers()">
+                                    <div class="form-group">
+                                        <div class="input-symbol">
+                                            <input type="text" placeholder="Search  " class="form-control ng-pristine ng-untouched ng-valid" ng-model="searchKeyword_sup.$"
+                                                style="padding-left:4px;">
+                                            <span id="date_msg_4"> <i class="fa fa-search"></i></span></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <select ng-model="searchKeyword_sup.segment" ng-options="opt as opt.title for opt in region_segment_arr" class="form-control ng-pristine ng-untouched ng-valid"
+                                        ng-change="get_all_list_customers()">
+                                            <option value="" disabled selected>Select Segment</option>
+                                        </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select ng-model="searchKeyword_sup.country_type" ng-options="opt as opt.name for opt in country_type_arr" class="form-control ng-pristine ng-untouched ng-valid"
+                                        ng-change="get_all_list_customers()">
+                                            <<option value="" disabled selected>Select Country</option>
+                                        </select>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-default m0auto ng-pristine ng-untouched ng-valid" ng-click="searchKeyword_sup.$='';searchKeyword_sup.segment='';searchKeyword_sup.country_type='';get_all_list_customers(); "
+                                        ng-model="strict" title="Clear Fields"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                                    <!--get_supplier(0) clear_supplier_filter()  searchKeyword_sup='';-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <!--paging options start-->
+                        <div class="page-options" style="margin-top:5px">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label class="col-md-5 show_record">Show Entries </label>
+
+                                    <div class="col-md-4">
+                                        <select ng-model="item_paging.pagination_limit" ng-options="opt as opt.label for opt in pagination_arry" class="form-control"
+                                            ng-change="get_all_list_customers()">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="text-center total_paging_center" ng-if="record.length > 0">
+                                    {{total_paging_record}}
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="text-right total_paging_record" ng-if="record.length > 0">Total: {{total}}
+                                </div>
+                            </div>
+                        </div>
+                        <!--paging options end-->
+                    </div>
+                </div>
+                <!-- Filter End -->
+                <div class="row" style="margin-top:-13px;">
+
+
+                    <div class="col-md-12">
+                        <div class="panel panel-default" style=" margin-bottom:0px !important;">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover" ng-table="table.tableParams5" id="data-table" show-filter="true">
+                                        <thead class="fixit">
+                                            <tr class="bg-col" ng-show="columns.length > 0 ">
+                                                <!--<th  > <input type="checkbox"  	 ng-change="checkAll_price()"
+                                    ng-model="selectedAll"    id="selecctall_2" ng-true-value="'true'" ng-false-value="'false'"
+                                    style="      position: relative;    top: 3px;"/>
+                                            </th>-->
+
+                                                <th ng-repeat="column in columns" class="sortable sort-asc" ng-class="{ 'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),   'sort-desc': !table.tableParams5.isSortBy(column.field, 'desc')   }"
+                                                    ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"
+                                                    ng-if="column.title != 'Id' && column.title != 'Currency Id'&& column.title!= 'Action'  && column.title!= 'Type' && column.title!= 'Status Name' && column.title!= 'Status Date'"
+                                                    sortable="column.title" filter="{ column.title: 'text'}"> {{column.title}}
+                                                </th>
+
+                                                <!--<th ng-repeat="column in columnss_get"
+                                                ng-if="column.field != 'currency_id' && column.field != 'id'   ">
+                                                {{column.title}}
+                                            </th>-->
+                                            </tr>
+                                        </thead>
+                                        <tbody class="courser table-body fixit" style="max-height:198px;">
+
+                                            <tr ng-repeat="rec in record" ng-click="add_sale_list_single(rec)">
+                                                <!-- confirm_supp_single(rec)-->
+                                                <td ng-repeat="column in columns" sortable="column.title" ng-if="column.title != 'Id' && column.title != 'Currency Id' && column.title!= 'Action' && column.title!= 'Type'  && column.title!= 'Status Name' && column.title!= 'Status Date'"><span ng-if="column.field != 'status_date' "> {{rec[column.field]}}</span>
+                                                </td>
+
+                                            </tr>
+
+                                            <!--<tr ng-repeat="item in selection_record_get  "
+                                            ng-show="columnss_get.length > 0 "
+                                            ng-click="add_sale_list_single(item)"
+                                                >
+                                            <td ng-repeat="column in columnss_get"
+                                                ng-if="column.field != 'currency_id'&& column.field != 'id'  ">
+                                                {{item[column.field]}}
+                                            </td>
+                                        </tr>
+                                        <tr ng-show="columnss_get.length == 0 && !showLoader">
+                                            <td>No Record found ! Please add.</td>
+                                        </tr>-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <!--<div class="col-lg-12" ng-if="selection_record_get.length > 0">
+                        <div class="form-group" style="text-align: left;">
+                            <ul class="pagination" style="margin: 0px !important;"
+                                ng-show="item_paging.total_pages > 1">
+                                <li ng-class="{'disabled': item_paging.cpage == 1}" class=""><a
+                                        ng-click="itemselectPage(item_paging.ppage); get_all_list_customers(1);"
+                                        href="javascript: void(0);" class="">«</a></li>
+                                <li ng-repeat="(key,value) in item_paging.pages"
+                                    ng-class="{'active': value == item_paging.cpage}"><a
+                                        ng-click="itemselectPage(value); get_all_list_customers(1);"
+                                        href="javascript: void(0);"><span ng-bind="value"></span></a></li>
+                                <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}"><a
+                                        ng-click="itemselectPage(item_paging.npage); get_all_list_customers(1);"
+                                        href="javascript: void(0);">»</a></li>
+                            </ul>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-left" ng-show="item_paging.total_pages > 1">
+                    <div style="text-align: left;">
+                        <ul class="pagination" style="margin: 0px !important;margin-top: -8px !important;" ng-show="item_paging.total_pages > 1">
+                            <li ng-class="{'disabled': item_paging.cpage == 1}" class=""><a ng-click="itemselectPage(item_paging.ppage); get_all_list_customers();" href="javascript: void(0);"
+                                    class="">&#xab;</a></li>
+                            <li ng-repeat="(key,value) in item_paging.pages" ng-class="{'active': value == item_paging.cpage}"><a ng-click="itemselectPage(value); get_all_list_customers();" href="javascript: void(0);"><span
+                                  ng-bind="value"></span></a></li>
+                            <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}"><a ng-click="itemselectPage(item_paging.npage); get_all_list_customers();" href="javascript: void(0);">&#xbb;</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

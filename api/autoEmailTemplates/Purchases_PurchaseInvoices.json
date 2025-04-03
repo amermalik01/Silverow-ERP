@@ -1,0 +1,9 @@
+{
+    "senderEmail": "",
+    "availablePlaceholders": {
+        "purchase_invoice_no": "invoice_code"
+    },
+    "fileName": "PI.[[purchase_invoice_no]].[[current_company_id]].pdf",
+    "templateSubject": "",
+    "templateBody": ""
+}

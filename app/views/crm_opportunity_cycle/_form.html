@@ -1,0 +1,27 @@
+<div class="row animated fadeIn">
+<div class="col-md-12 col-md-12">
+  <div class="widget" style="background:none;"> 
+    <!-- <div class="widget-header">
+  <div class="title">
+    Add Company General Information
+  </div>
+
+</div> -->
+    <div class="widget-body" style="background:none;">
+      <div ng-controller="CrmOpportunityCycleAddController" id="crm-opp-cycle">
+        <tabset> <tab ng-repeat="tab in arr_tabs" heading="{{tab.name}}" id="{{tab.id}}" ng-click="onTabSelect(tab.id,parent_id)">
+          <div ng-include="'app/views/crm_opportunity_cycle/_form_body.html'"></div>
+          </tab> 
+            <!--            <tab heading="Documents" class="document">
+                      <div ng-include="'app/views/crm_opportunity_cycle/_doc_form.html'" ng-show="show_opp_doc_form" ></div>
+                      <div ng-include="'app/views/crm_opportunity_cycle/_doc_listing.html'" ng-show="show_opp_doc_listing" ></div>
+                      </tab> -->
+            <i class="fa fa-plus-square"
+            style="margin-top: 10px;color: #2189db;font-size: 20px;float: right;margin-right: 10px;cursor: pointer;"
+          title="Add new tab" ng-click="addNewTabPopup()" ng-if="arr_tabs.length < 9"> </i> </tabset>
+      </div>
+      <!--  <div ng-include="'app/views/task/_task_form.html'"></div>
+        <div ng-include="'app/views/task/_opp_cycle_tasks.html'"></div> --> 
+    </div>
+  </div>
+</div>

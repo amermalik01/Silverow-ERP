@@ -1,0 +1,152 @@
+<div class="modal fade" id="model_srm_purchaser"  >
+<div ng-class="{'whirl no-overlay':showLoader}"></div>
+  <div ng-class="{'loader_pop':loader_pop}"></div>
+  <div class="modal-dialog modal-lg"  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{title}}</h4>
+      </div>
+      <div class="modal-body">
+    
+              <div class="row" ng-init="get_region_list();get_employee_type_list();get_department_list();">
+                  
+          <div style="    position: relative;   top: -5px;">
+            <div class="col-md-4" >
+              <label class="  control-label"> Search</label>
+              <div>
+                <div class="input-symbol">
+                  <input type="text"    Placeholder="Search"  class="form-control" ng-model="searchKeyword_purch.searchBox"  ng-blur="get_purchase_code_emp(2)">
+                  <span  id="date_msg_4" > <i class="fa fa-search"></i></span> </div>
+              </div>
+            </div>
+            <!--<div class="col-md-2" >
+              <label class="  control-label">Region </label>
+              <div class=" ">
+                 <select ng-model="searchKeyword_purch.region"  
+                  ng-options="opt as opt.title for opt in region_customer_arr"
+                   class=" form-control" ng-change="get_purchase_code_emp(2)">
+                <option style="display:block" value=""></option>
+              </select>
+              </div>
+            </div>-->
+            <div class="col-md-3" >
+              <label class="  control-label">Depatment </label>
+              <div class=" ">
+                 <select ng-model="searchKeyword_purch.department"  
+                  ng-options="opt as opt.name for opt in deprtment_arr"
+                   class=" form-control" ng-change="get_purchase_code_emp(2)">
+                <option style="display:block" value=""></option>
+              </select>
+              </div>
+            </div>
+            <div class="col-md-3" >
+              <label class="  control-label">Emp Type </label>
+              <div class=" ">
+               <select ng-model="searchKeyword_purch.employee_type"  
+                  ng-options="opt as opt.name for opt in emp_type_arr"
+                   class=" form-control" ng-change="get_purchase_code_emp(2)">
+                <option style="display:block" value=""></option>
+              </select>
+              </div>
+            </div>
+            <div class="col-md-2" >
+              <label class="  control-label"> </label>
+              <div style="margin-top:4px;">
+                <button type="button" class="btn btn-default" ng-click="searchKeyword_purch='';get_purchase_code_emp(2,1,77)"
+               ng-model="strict" >Clear</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12">
+      <!--paging options start-->
+      <div class="page-options" style="margin-top:5px">
+        <div class="col-xs-4">
+          <div class="form-group" >
+            <label class="col-md-6 show_record">Show Entries </label>
+            <div class="col-md-4">
+              <select ng-model="item_paging.pagination_limit"
+                ng-options="opt as opt.label for opt in pagination_arry"
+                  class="in-t-1"    ng-change="get_purchase_code_emp(2)"   >
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <div class="text-center total_paging_center" ng-if="selection_record_del.length > 0">{{total_paging_record}} </div>
+        </div>
+        <div class="col-xs-4">
+          <div class="text-right total_paging_record" ng-if="selection_record_del.length > 0">Total: {{total}}</div>
+        </div>
+      </div>
+      <!--paging options end-->
+    </div>
+        </div>
+     
+        <div class="row"  >
+          <div class="col-md-12">
+            <div class="panel panel-default"  >
+              <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;">
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered table-hover" ng-table="table.tableParams5"  id="data-table" show-filter="true">
+                    <thead>
+                      <tr class="bg-col"  ng-show="columnss.length > 0">
+                        <th  > <input type="checkbox"  	 ng-change="checkAll_del_list()"
+				ng-model="selectedAll_del"    id="selecctall" ng-true-value="'true'" ng-false-value="'false'"
+                style="      position: relative;    top: 3px;"/></th>
+                        <th ng-repeat="column in columnss"
+                       ng-if="column.title != 'Id' && column.title != 'Checked' "     >{{column.title}}</th>
+                      </tr>
+                    </thead>
+                    <tbody class="courser table-body"><!-- | filter:searchKeyword_purch:strict  track by $index-->
+                      <tr  ng-repeat="item in selection_record_del" ng-show="columnss.length > 0"
+
+                     > <!--ng-click="add_product_del_list(item)"-->
+                        <td ><input type="checkbox"
+                         ng-model="item.Selected_del"
+
+                          ng-click="checksingle_del_list_edit(item.id)"  class="check"
+                          id="selected__del{{item.id}}"  /></td>
+                        <td ng-repeat="column in columnss"   ng-hide="column.title == 'Id' || column.title == 'Checked'
+                        ">{{item[column.field]}}</td>
+                      </tr>
+                      <tr  ng-show="columnss.length == 0" >
+                        <td  >No Record found .</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-12"  ng-if="item_paging.total_pages > 1">
+            <div class="form-group" style="text-align: left;">
+              <ul class="pagination" style="margin: 0px !important;" ng-show="item_paging.total_pages > 1">
+              
+                <li ng-class="{'disabled': item_paging.cpage == 1}" class=""> <a ng-click="itemselectPage(item_paging.ppage); get_purchase_code_emp(2);" href="javascript: void(0);" class="">«</a> </li>
+                
+                <li ng-repeat="(key,value) in item_paging.pages" ng-class="{'active': value == item_paging.cpage}"> <a ng-click="itemselectPage(value); get_purchase_code_emp(2);" href="javascript: void(0);"><span ng-bind="value"></span></a> </li>
+                
+                <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}"> <a ng-click="itemselectPage(item_paging.npage); get_purchase_code_emp(2);" href="javascript: void(0);" >»</a> </li>
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="col-md-12 " >
+          <h4  class="pull-left" > Selected : <span   id="from_selected" style=" display:none;">0</span> <span  id="from_ch_selected" style=" display:none;">{{calculate_total_del_list()}}</span> </h4>
+
+            <button   class="btn btn_add pic_block_del_list " type="button"
+           ng-click="add_product_list(0)" ><i class="fa fa-check   fa_display"></i> Add</button>
+
+
+          <button type="button" class="btn btn-cancel" data-dismiss="modal" >Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

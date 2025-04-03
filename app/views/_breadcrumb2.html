@@ -1,0 +1,8 @@
+<div id="loading-bar-container"></div>
+<div ng-class="{'whirl no-overlay':showLoader}"></div>
+<ul class="breadcrumb">
+    <li ng-repeat="bc in breadcrumbs" ng-class="{'active':bc.isActive}">
+        <a ui-sref="{{bc.url}}" ui-sref-opts="{reload:true}" ng-class="{'ActiveLink':bc.url != '#'}" ng-if="!bc.isActive" ng-click="setCurrentSetupTab(bc);">{{bc.name}}</a> <!--(bc.tabIndex != undefined)? (currentSetupTab = bc.tabIndex): (currentSetupTab = 1) -->
+        <a ng-if="bc.isActive">{{bc.name}}</a>
+    </li>
+</ul>

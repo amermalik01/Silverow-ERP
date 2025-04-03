@@ -1,0 +1,192 @@
+<div class="row">
+
+    <div class="col-md-12 col-md-12">
+        <div class="widget" style="background:none;">
+            <!-- <div class="widget-header">
+            <div class="title">
+            Add Company General Information
+          </div>
+
+        </div> -->
+            <div class="widget-body animated fadeIn" style="background:none;">
+                <div class="panel-title2">Promotion</div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Name <span class="required">*</span></label>
+                        <div class="col-md-8">
+                            <input type="text" ng-model="rec.name" id="name" class="form-control"  ng-readonly ="check_readonly" required="1" tabindex="1"/>
+                            <input type="hidden" ng-model="rec.update_id" id="update_id" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-2">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Discount Type <span class="required">*</span></label>
+                        <div class="col-md-8">
+                            <select ng-model="rec.discount_type_id" tabindex="4"  ng-options="opt as opt.name for opt in arr_discount_type"   ng-readonly ="check_readonly" class="form-control" ng-change="setSymbol()"><option style="display:none" value=""></option></select>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div >
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Start Date <span class="required">*</span></label>
+                                <div class="col-md-8">
+                                    <input jqdatepicker class="2date-picker form-control" ng-model="rec.starting_date" ng-change="checkDate(rec.starting_date, rec.ending_date, 'starting_date')" required readonly >
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Discount <span class="required">*</span></label>
+                                <div class="col-md-8">
+                                    <div class="input-symbol">
+                                        <input type="text" ng-model="rec.discount" tabindex="5" id="discount" class="form-control" ng-readonly ="check_readonly" required="1">
+                                        <span ng-show="show_symbol">&#37;</span>
+                                        <ul class="parsley-errors-list filled" ng-show="rec.discount <= 0"><li class="parsley-required">Discount must be greater than zero!</li></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div >
+                    <div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">End Date<span class="required">*</span></label>
+                                <div class="col-md-8">
+                                    <input jqdatepicker class="2date-picker form-control" ng-model="rec.ending_date" ng-change="checkDate(rec.starting_date, rec.ending_date, 'ending_date')" required readonly >
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div>
+                    <div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-md-1 control-label" style="width: 14%;">Description</label>
+                                <div class="col-md-10" >
+                                    <textarea name="note" style="resize:none;" cols="160" tabindex="6" rows="4" id="note" ng-model="rec.description" class="form-control"    ng-readonly ="check_readonly" ng-change="showWordsLimits()" maxlength="500" ></textarea>
+                                    <span class="word-counter">{{wordsLength}}/500</span>
+                                </div>
+
+                                <input type="hidden" ng-model="rec.old_file">
+                                <input type="hidden" ng-model="rec.file_size">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-md-1 control-label" style="    width: 14%;">Upload File</label>
+                                <div class="col-md-4 ">
+
+                                    <div class="fileUpload btn btn_blue pull-left">
+                                        <span ng-show="check_files">Change File</span>
+                                        <span ng-show="!check_files">Select File</span>
+                                        <input id="uploadCrmPromotionFileBtn" tabindex="7" ng-disabled="check_readonly" type="file" ngf-select="onFileSelect($files)" name="file"  accept="image/*" class="upload" />
+                                    </div>
+                                    <em  style="font-size: 30px;float: left;margin: 2px 5px; display:block;" style="font-size: 30px !important;"class="fa fa-file-image-o" ng-if="check_files && !rec.id" ></em>
+
+                                    <a style="float: left;margin: 2px 5px;" ng-if="check_files && rec.id > 0" target="_blank" href="{{basePath + 'upload/sales/crm/' + files[0].file}}"> <em  style="font-size: 30px !important;"class="fa fa-file-image-o" ></em></a>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12"> 
+                        <div class="pull-right">
+
+
+
+                            <div class="dropdown ib" ng-show="rec.id > 0 && crm_promotiom_tab_module > 0">
+                                <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown"><i class="dte-ico"></i></button>
+                                <ul class="dropdown-menu dte animated fadeIn">
+                                    <span ng-click="set_document_internal(crm_promotiom_tab_module)"><i class="fa fa-file-text-o" aria-hidden="true"></i> Add Document</span>
+                                    <span><i class="fa fa-check" aria-hidden="true"></i> Add Task</span>
+                                    <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Compose Email</span>
+                                </ul>
+                            </div>
+
+
+
+
+                            <a id="prompt" ng-click="itemselectPage(1);
+                                addProducts(rec)" class="btn btn-default style="margin-top: 10px;" ng-if="rec.id > 0"><i class="fa fa-plus fa_display"></i> Add Item(s) / Service(s)</a>
+
+
+                            <button class="btn btn-submit" tabindex="12" type="submit" ng-show="!check_readonly"><i class="fa fa-check fa_display"></i> Save</button>
+
+                            <button class="btn btn_blue width_80" type="button" ng-click="showCrmPromotionEditForm()" ng-show="check_readonly" tabindex="14"><i class="fa fa-edit fa_display"></i> Edit</button>
+                            <button class="btn btn-cancel" tabindex="15" type="button" ng-click="showCrmPromotionListing()"><i class="fa fa-undo fa_display"></i> Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- <div ng-show="check_files">
+        <br/><br/><br/>
+
+        <table class="table table-bordered table-striped" id="comp_file_table">
+        <thead>
+        <tr>
+        <th width="80%">Name</th>
+        <!-- <th ng-show="uploader.isHTML5">Size</th> --
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="(key,file) in files">
+      <td>
+      <div class="form-group no-margin">
+      <span style="font-size:20px;" class="col-md-1" ng-bind-html='file.file | fileIcon'></span>&nbsp;
+      <div class="col-md-5">
+      <span ng-show="check_readonly">{{ file.file_title }}</span><input type="text" class="input-sm form-control" tabindex="8" ng-model="file.file_title" ng-show="!check_readonly">
+      </div>
+      </div>
+      </td>
+        <!-- <td nowrap="">{{ value.file |  }} MB</td> --
+
+<td nowrap="">
+<a target="_blank" ng-if="file.id" href="{{basePath+'upload/sales/crm/'+file.file}}" title="View" class="btn btn-info btn-xs"><em class="fa fa-eye"></em></a>
+
+<button type="button" ng-if="file.id" class="btn btn-info btn-xs" ng-click="delete(key,file.id)" title="Delete"><em class="fa fa-trash-o"></em></button>
+<button type="button" tabindex="11" ng-if="!file.id" class="btn btn-info btn-xs" ng-click="removeFile(key)" title="Delete"><em class="fa fa-trash-o"></em></button>
+
+        <!-- <a download="{{file.file}}" ng-if="file.id" tabindex="9" ng-href="{{basePath+'upload/sales/crm/'+file.file}}" class="btn btn-info btn-xs" title="Download"><em class="fa fa-download"></em></a>
+
+        <button type="button" tabindex="10" ng-if="file.id" class="btn btn-info btn-xs" ng-click="viewFile(file.id)" title="Preview" ><em class="fa fa-eye"></em></button>
+        <!-- <button type="button" ng-if="file.id" class="btn btn-info btn-xs" ng-click="deleteFile(key,file.id)" title="Delete"><em class="fa fa-trash-o"></em></button> --
+
+<button type="button" tabindex="11" ng-if="!file.id" class="btn btn-info btn-xs" ng-click="removeFile(key)" title="Delete"><em class="fa fa-trash-o"></em></button> --
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div> -->
+
+
+
+
+    </div>
+</div>

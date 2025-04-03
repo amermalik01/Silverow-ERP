@@ -1,0 +1,389 @@
+<style>
+    .makeBold td {
+        font-weight: bold !important;
+        color: black;
+        border-bottom: 1px solid #e8e8e8;
+    }
+
+    .boldFont {
+        font-weight: bold !important;
+        color: black;
+    }
+
+    .template-design .modal-body {
+        padding: 40px;
+    }
+</style>
+<div class="modal fade template-design"
+     id="trialBalncreportsModal">
+    <div class="modal-dialog modal-md"
+         style="width: 1000px !important; margin-top: 20px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}">
+                <htmlpageheader name="MyCustomHeader">
+                    <div class="reportHeading">
+                        <div class="reportHeading__left">
+                            <div class="reportHeading__left__reportname"
+                                 ng-if="printPdfVals.reportName == 'trialBalncReport'">Trial Balance - Summary</div>
+                            <div class="reportHeading__left__reportname"
+                                 ng-if="printPdfVals.reportName == 'trialBalncDetailReport'">Trial Balance - Detailed
+                            </div>
+
+                            <div class="reportHeading__left__reportname"
+                                 ng-if="printPdfVals.reportName == 'customertrialBalncReport'">Customer Trial Balance -
+                                Summary</div>
+
+                            <div class="reportHeading__left__reportname"
+                                 ng-if="printPdfVals.reportName == 'customerDetailtrialBalncReport'">Customer Trial
+                                Balance - Detailed</div>
+
+                            <div class="reportHeading__left__reportname"
+                                 ng-if="printPdfVals.reportName == 'suppliertrialBalncReport'">Supplier Trial Balance -
+                                Summary</div>
+
+                            <div class="reportHeading__left__reportname"
+                                 ng-if="printPdfVals.reportName == 'supplierDetailDetailtrialBalncReport'">Supplier
+                                Trial Balance - Detailed</div>
+
+                            <div class="reportHeading__left__reportfilter">
+                                From
+                                <span ng-if="!(printPdfVals.dateFrom.length > 0)">--</span>
+                                <span ng-if="printPdfVals.dateFrom.length > 0">{{printPdfVals.dateFrom}}</span>
+                                To {{printPdfVals.dateTo}}
+                            </div>
+                        </div>
+                        <div class="reportHeading__right">
+                            <img ng-src="{{imagePath+defaultLogo}}"
+                                 class="reportHeading__right__img "
+                                 ng-class="{'reportHeading__right__img_resized': company_logo_width >= 100 && company_logo_height >= 100 }">
+                            <div class="reportHeading__right__companyname">{{company_name}}</div>
+                        </div>
+                    </div>
+                </htmlpageheader>
+
+                <sethtmlpageheader name="MyCustomHeader"
+                                   page="ALL"
+                                   value="on"
+                                   show-this-page="1" />
+
+                <pagefooter name="MyFooter3"
+                            ng-if="printPdfVals.reportName == 'trialBalncReport'"
+                            content-right="{DATE j-m-Y}"
+                            content-center="Page {PAGENO} of {nb}"
+                            content-left="{{known_as}}"
+                            footer-style="color:#00000;font-size: 11px"
+                            footer-style-left="font-weight:bold;" />
+
+                <pagefooter name="MyFooter3"
+                            ng-if="printPdfVals.reportName == 'trialBalncDetailReport'"
+                            content-right="{DATE j-m-Y}"
+                            content-center="Page {PAGENO} of {nb}"
+                            content-left="{{known_as}}"
+                            footer-style="color:#00000;font-size: 11px"
+                            footer-style-left="font-weight:bold;" />
+
+                <setpagefooter name="MyFooter3"
+                               page="ALL"
+                               value="on"
+                               show-this-page="1" />
+                <!-- Summary Report -->
+                <style ng-if="toggleLandscape">
+                    @page {
+                        sheet-size: A4-L;
+                        margin: 5mm 5mm 5mm 5mm;
+                        header: html_MyCustomHeader;
+                        footer: MyFooter3;
+                    }
+                </style>
+                <table style="width: 100%; float: left;"
+                       ng-class="{'addMarginTop':!toggleLandscape}"
+                       ng-if="printPdfVals.reportName == 'trialBalncReport'"
+                       class="tabletopmargin report-spacing-table">
+                    <thead>
+                        <tr class="bg-col"
+                            style="    border-bottom: 1px solid #d4d4d4;">
+                            <th class="no"
+                                style="    width: 60px;">G/L No.</th>
+                            <th>Name</th>
+                            <!-- <th class="debit">Debit</th>
+                                <th class="credit">Credit</th> -->
+                            <th colspan="2"
+                                style="text-align: center;"
+                                class="solid-border-right"
+                                ng-if="printPdfVals.showOpenBalnc==true">Opening Balance</th>
+                            <th colspan="2"
+                                style="text-align: center;"
+                                class="solid-border-left"
+                                ng-class="{'solid-border-right':filterReport2.showOpenBalnc==true}">Selected Period
+                            </th>
+                            <th colspan="2"
+                                style="text-align: center;"
+                                class="solid-border-left"
+                                ng-if="printPdfVals.showOpenBalnc==true">Closing Balance</th>
+                        </tr>
+                        <tr class="bg-col"
+                            style="border-bottom: 1px solid #d4d4d4">
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                            <th ng-if="printPdfVals.showOpenBalnc==true"
+                                class="padding-num-right">Debit</th>
+                            <th ng-if="printPdfVals.showOpenBalnc==true"
+                                class="solid-border-right padding-num-right">
+                                Credit</th>
+                            <th class="solid-border-left padding-num-right">Debit</th>
+                            <th class="padding-num-right"
+                                ng-class="{'solid-border-right':filterReport2.showOpenBalnc==true}">Credit</th>
+                            <th ng-if="printPdfVals.showOpenBalnc==true"
+                                class="solid-border-left padding-num-right">
+                                Debit</th>
+                            <th ng-if="printPdfVals.showOpenBalnc==true"
+                                class="padding-num-right">Credit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="line in printPdfVals.reportsDataArr">
+                            <td class="no"
+                                ng-class="{'boldFont':line.typeID ==4}"><b>{{line.gl_no}}</b></td>
+                            <td class="desc">
+                                <span ng-if="line.typeID ==1 || line.typeID ==2">
+                                    {{line.categoryDisplayName}}
+                                </span>
+                                <span ng-if="line.typeID ==5">
+                                    <b>{{line.categoryDisplayName}}</b>
+                                </span>
+                                <span ng-if="line.typeID ==3">
+                                    {{line.categoryDisplayName}}
+                                </span>
+                                <span ng-if="line.typeID ==4">
+                                    <b>{{line.categoryDisplayName}}</b>
+                                </span>
+                            </td>
+                            <td ng-if="printPdfVals.showOpenBalnc==true"
+                                class="padding-num-right">
+                                <span ng-if="line.total_openBalnc >0 && line.total_openBalnc_type=='Debit'"
+                                      ng-class="{'boldFont':line.typeID ==4}">{{line.total_openBalnc| currency : "" :
+                                    decimal_range }}</span>
+                            </td>
+                            <td ng-if="printPdfVals.showOpenBalnc==true"
+                                class="solid-border-right padding-num-right">
+                                <span ng-if="line.total_openBalnc >0 && line.total_openBalnc_type=='Credit'"
+                                      ng-class="{'boldFont':line.typeID ==4}">{{line.total_openBalnc| currency : "" :
+                                    decimal_range }}</span>
+                            </td>
+
+                            <td class="solid-border-left padding-num-right">
+                                <span ng-if="line.total_balance>0 && line.total_balance_type=='Debit'"
+                                      ng-class="{'boldFont':line.typeID ==4}"> {{line.total_balance| currency : "" :
+                                    decimal_range }}</span>
+                            </td>
+                            <td class="padding-num-right"
+                                ng-class="{'solid-border-right':filterReport2.showOpenBalnc==true}">
+                                <span ng-if="line.total_balance>0 && line.total_balance_type=='Credit'"
+                                      ng-class="{'boldFont':line.typeID ==4}"> {{line.total_balance| currency : "" :
+                                    decimal_range }}</span>
+                            </td>
+
+                            <td ng-if="printPdfVals.showOpenBalnc==true"
+                                class="solid-border-left padding-num-right">
+                                <span ng-if="line.total_SelPeriodBalnc >0 && line.total_SelPeriodBalnc_type=='Debit'"
+                                      ng-class="{'boldFont':line.typeID ==4}">{{line.total_SelPeriodBalnc| currency :
+                                    "" : decimal_range }}</span>
+                            </td>
+                            <td ng-if="printPdfVals.showOpenBalnc==true"
+                                class="padding-num-right">
+                                <span ng-if="line.total_SelPeriodBalnc >0 && line.total_SelPeriodBalnc_type=='Credit'"
+                                      ng-class="{'boldFont':line.typeID ==4}">{{line.total_SelPeriodBalnc| currency :
+                                    "" : decimal_range }}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Detailed Report -->
+
+                <table style="width: 100%;float: left"
+                       ng-class="{'addMarginTop':!toggleLandscape}"
+                       ng-if="printPdfVals.reportName == 'trialBalncDetailReport'"
+                       class="tabletopmargin report-spacing-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 9%;">Posting Date</th>
+                            <th style="width: 5%;">G/L No.</th>
+                            <th style="width: 15%;">Name</th>
+                            <th style="width: 8%;">Doc. Type</th>
+                            <th style="width: 8%">Doc. No.</th>
+                            <th style="width: 8%">Source No.</th>
+                            <th style="width: 15%">Source Name</th>
+                            <th style="width: 9%;"
+                                class="rightAlign">Debit</th>
+                            <th style="width: 9%;"
+                                class="rightAlign">Credit</th>
+                            <th style="width: 9%;"
+                                class="rightAlign">Amount</th>
+                            <th style="width: 5%;" class="text-right">Entry No.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="formFields in printPdfVals.account_list"
+                            ng-class="{'makeBold':formFields.doctype == 'Closing Balance'}">
+                            <!--  || formFields.doctype == 'Opening Balance' -->
+                            <td>{{formFields.posting_date}}</td>
+                            <td>{{formFields.gl_account_no}}</td>
+                            <td>{{formFields.name}}</td>
+                            <td>
+                                <!-- {{formFields.docType}} -->
+                                <span ng-if="formFields.doctype == 'Opening Balance'"
+                                      style="font-size: 11px;">{{formFields.doctype}}</span>
+                                <span ng-if="formFields.doctype == 'Closing Balance'"
+                                      style="font-size: 11px;">{{formFields.doctype}}</span>
+                                <span
+                                      ng-if="formFields.docType != 'Closing Balance' && formFields.doctype != 'Opening Balance'">{{formFields.docType}}</span>
+                            </td>
+
+                            <td>{{formFields.invoice_code}}</td>
+                            <td>{{formFields.source_no}}</td>
+                            <td>{{formFields.source_name}}</td>
+
+                            <td class="rightAlign">
+                                <span ng-if="formFields.debit_amount != 0">
+                                    {{formFields.debit_amount| currency : "" : decimal_range }}
+                                </span>
+                            </td>
+                            <td class="rightAlign">
+                                <span ng-if="formFields.credit_amount !=0">
+                                    {{formFields.credit_amount| currency : "" : decimal_range }}
+                                </span>
+                            </td>
+                            <!-- <td>
+                                    <b ng-if="formFields.debit_amount > 0">
+                                        {{formFields.debit_amount| currency : "" : decimal_range }}
+                                    </b>
+                                    <b ng-if="formFields.credit_amount > 0">
+                                        -{{formFields.credit_amount| currency : "" : decimal_range }}
+                                    </b>
+                                </td> -->
+                            <td class="rightAlign">{{formFields.totalAmountBalance | currency : "" : decimal_range}}
+                            </td>
+                            <td class="text-right">{{formFields.entry_no}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Trial Balance -->
+                <table style="width: 100%;"
+                       ng-class="{'addMarginTop':!toggleLandscape}"
+                       class="tabletopmargin"
+                       ng-if="printPdfVals.reportName != 'trialBalncReport' && printPdfVals.reportName != 'trialBalncDetailReport'">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="column in printPdfVals.columns"
+                                ng-if=" column.title!= 'Id' && column.title!= 'Statusp' && 
+                                        column.title != 'Suppid' && column.title != 'Custid'">
+                                <span ng-if="column.title == 'Doctype'">Doc Type</span>
+                                <span ng-if="column.title == 'Invoice No'">Invoice No.</span>
+                                <span ng-if="column.title == 'Order No'">Order No.</span>
+                                <span ng-if="column.title == 'Entry No'">Entry No.</span>
+                                <span ng-if="column.title == 'No'">No.</span>
+                                <span ng-if="column.title == 'Cust No'">Cust No.</span>
+                                <span ng-if="column.title == 'Supp No'">Supp No.</span>
+                                <span ng-if="column.title == 'Postinggrp'">Posting Group</span>
+                                <span ng-if="column.title == 'Beginbalnc'">Begining balance</span>
+                                <span ng-if="column.title == 'Grand Total_converted'">Grand Total(LCY)</span>
+                                <span ng-if="column.title == 'Gl Account_code'">Gl Account</span>
+                                <span ng-if="column.title != 'No' && column.title != 'Cust No' && column.title != 'Supp No' && 
+                                             column.title != 'Postinggrp' &&  && column.title != 'Doctype' && column.title != 'Invoice No' && 
+                                             column.title != 'Order No' && column.title != 'Entry No' &&
+                                             column.title != 'Beginbalnc' && column.title !='Grand Total_converted' && 
+                                             column.title !='Gl Account_code'">{{column.title}}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="rec in printPdfVals.reportsDataArr"
+                            ng-if="printPdfVals.columns.length > 0">
+                            <td ng-repeat="column in printPdfVals.columns"
+                                ng-if=" column.title != 'Id' && column.title!= 'Statusp' && 
+                                        column.title != 'Suppid' && column.title != 'Custid'">
+                                <span ng-if="column.title != 'Balance' && column.title != 'Debit' && 
+                                             column.title != 'Credit' && column.title != 'Beginbalnc' && 
+                                             column.title !='Grand Total' && column.title !='Grand Total_converted' && 
+                                             column.title !='Remaining Amount'">{{rec[column.field]}}</span>
+                                <span ng-if="column.title == 'Balance' || column.title == 'Debit' || 
+                                             column.title == 'Credit' || column.title == 'Beginbalnc' || 
+                                             column.title =='Grand Total'  ||  column.title =='Grand Total_converted'  || 
+                                             column.title =='Remaining Amount'">{{rec[column.field]
+                                    | currency : "" : decimal_range }}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer"
+                 style="clear: both;">
+                <div class="pull-right">
+
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            ng-click="destroyPdfModal('trialBalncreportsModal')">Cancel</button>
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <!-- <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-disabled="generatingPDF"
+                       ng-click="generatePdf(printPdfVals.reportName)">
+                        <i class="fa fa-download"
+                           aria-hidden="true"
+                           style="color:#444444;"></i>
+                    </a>
+
+                    <a href="app/views/invoice_templates_pdf/{{printPdfVals.reportName}}.pdf"
+                       target="_blank"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       id="displayPdf"
+                       style="display:none">
+                        <i class="fa fa-download"
+                           aria-hidden="true"></i>
+                    </a>
+                    <span class="generatingPDF"
+                          ng-if="generatingPDF">
+                        <i class="fa-spin fa fa-spinner"></i>Generating PDF</span> -->
+                    <!-- jsreport download button -->
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-click="downloadReportTrialBalance(printPdfVals, 'S1xQep-bd4')"
+                       ng-if="!jsreportLoading && printPdfVals.reportName == 'trialBalncReport'">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-click="downloadReportTrialBalance(printPdfVals, 'rkxrqWEZ_E')"
+                       ng-if="!jsreportLoading && printPdfVals.reportName == 'trialBalncDetailReport'">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

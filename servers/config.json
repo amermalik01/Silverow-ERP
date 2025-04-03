@@ -1,0 +1,14 @@
+{
+  "silverow_login_URL": "http://62.253.222.154/dev/api/user/login",
+  "silverow_uploademail_URL": "http://62.253.222.154/dev/api/communication/mail/UploadEmailCompanyLess",
+  "silverow_uploadAttachment_URL": "http://62.253.222.154/dev/api/setup/attachments/attachments/uploadFile",
+  "silverow_getEmployeeEmails": "http://62.253.222.154/dev/api/communication/mail/getEmployeeEmails",
+  "silverow_getAllEmployeeEmails": "http://62.253.222.154/dev/api/communication/mail/getAllEmployeeEmails",
+  "silverow_getVirtualEmails": "http://62.253.222.154/dev/api/communication/mail/getVirtualEmailsWithConfiguration",
+  "silverow_getAllVirtualEmails": "http://62.253.222.154/dev/api/communication/mail/getAllVirtualEmailsWithConfiguration",
+  "silverow_getPrimaryConfiguration": "http://62.253.222.154/dev/api/communication/mail/getPrimaryConfiguration",
+  "silverow_username": "emailmaster@email.com",
+  "silverow_password": "Swift30x30!!",
+  "email_username": "silverow_pivet@outlook.com",
+  "email_password": "thetrust@321"
+}

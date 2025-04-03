@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="col-md-3 no-padding">
+        </div>
+        <div class="col-md-9">
+            <a id="prompta"
+               class="btn btn_add pull-right oval margin_bottom"
+               ng-if="addPriceTabPermission == 1"
+               ng-click="OpenPriceListForm()"><i class="fa fa-plus"></i></a>
+
+        </div>
+    </div>
+</div>
+<style>
+    .movedown {
+        margin-top: 23px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div ng-if="priceListTableData.data.ack "
+             style="margin-top: -29px;">
+            <div class="flexiTable"
+                 x-generate-table
+                 ng-class="{'movedown':addPriceTabPermission != 1}"
+                 x-data="priceListTableData.data"
+                 x-row-click="OpenPriceListForm(event, id, mode)"
+                 x-table-name="PriceList"
+                 x-filter-function="getPriceOfferList()"
+                 x-filter-object="searchKeyword_priceList">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="row">
+    <div class="col-md-12" style="margin-top: 8px;">
+        <div id="dt_example" class="example_alt_pagination">
+            <table class="table table-condensed table-striped table-hover table-bordered" id="data-table" show-filter="true"                        
+                ng-if="price_list_record_data.length > 0">
+                <thead>
+                <tr class="bg-col">
+                    <th>Price Offer Name</th>
+                    <th>Offered By</th>
+                    <th>Currency</th>
+                    <th>Created Date</th> 
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th style="width:7%;" class="ShowHideAction">Action</th>
+                </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr 
+                        ng-repeat="rec in price_list_record_data | filter:searchKeyword.search" 
+                        ng-if="price_list_record_data.length > 0">
+                        <td 
+                            ng-click="OpenPriceListForm(rec.id,1)">{{rec.name}}</td>
+                        <td 
+                            ng-click="OpenPriceListForm(rec.id,1)">{{rec.first_name}} {{rec.last_name}}</td>
+                        <td 
+                            ng-click="OpenPriceListForm(rec.id,1)">{{rec['Code']}}</td>
+                        <td 
+                            ng-click="OpenPriceListForm(rec.id,1)">{{ rec.created_date | date: dateFormats[defaultDateFormat]}}</td>
+                        <td 
+                            ng-click="OpenPriceListForm(rec.id,1)">{{ rec.Start_Date | date: dateFormats[defaultDateFormat]}}</td>
+                        <td 
+                            ng-click="OpenPriceListForm(rec.id,1)">{{ rec.End_Date | date: dateFormats[defaultDateFormat]}}</td>
+                        <td class="text-left ShowHideAction" style="width:7%;"
+                            ng-show="price_list_record_data.length > 0" >
+                            <a ng-class="{'dont-click':editPriceTabPermission == 0}" title="Edit" class="btn" style="line-height: 0;"
+                                ng-click="OpenPriceListForm(rec.id,0)"><i class="fa fa-edit"></i></a>
+                            <a title="Delete" ng-class="{'dont-click':deletePriceTabPermission == 0}"
+                                ng-click="deletePriceOffer(rec,0)">
+                                <i class="fa fa-times" aria-hidden="true" ></i>
+                            </a>                    
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="no-record"
+                ng-show="!price_list_record_data.length > 0" ></div> 
+        </div>
+    </div>
+</div>  -->

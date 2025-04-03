@@ -1,0 +1,265 @@
+<div>
+    <div ng-include="'app/views/_breadcrumb.html'"></div>
+    <style>
+        .hideAdd {
+            margin-top: 35px;
+        }
+        body {
+            background-image: url(app/css/report-BG.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding-bottom: 10px;
+            }
+    </style>
+    <div class="row">
+        <div class="col-md-12 col-md-12">
+            <!-- <div class="flexiTable" 
+                ng-class="{'hideAdd':!allowadd_srm}"  
+                x-generate-table 
+                x-data="tableData.data" 
+                x-table-name="SRM" 
+                x-filter-function="getsrm_list()"
+                x-filter-object="searchKeyword">
+            </div>  -->
+            <div class="a-content">
+                <div class="report-filter-panel " id="demo"><!-- collapse -->
+
+                    <!-- <div class="report-box">
+                        <b class="a-title a-title-relative"
+                        style="width: 120px">Select Customer(s)</b>
+                        <div title="{{SelcustomersTooltip}}"
+                            class="a-form-control" style="    width: 334px;">
+                            <div class="panel-info pi2"
+                                ng-click="selectCustomers()">
+                                <div class="panel-body"
+                                    style="background-color: #fff;">
+                                    <span ng-repeat="sp in customers track by $index">
+                                        <span ng-if="customers.length == 1">{{sp.title}}</span>
+                                        <span ng-if="customers.length > 1">{{sp.title}}
+                                            <span ng-if="$index < customers.length && $index!=0">;&nbsp;</span>
+                                        </span>
+                                    </span>
+                                    <aside></aside>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="report-box">
+                        <b class="a-title a-title-relative" style="width: 120px">Location From Type<span class="required">*</span></b>
+                        <div class="panel-info pi2 a-form-control" style="width: 334px;border: none !important;">
+                            <label ng-repeat="n in filterHaulierDatabase.locOptionsType" class="ib" style="font-weight: normal; margin-right: 15px;">
+                                <input type="radio" name="locOption" 
+                                    ng-model="filterHaulierDatabase.locOption" 
+                                    ng-change="changeHaulierDatabaseLocOptionFrom(filterHaulierDatabase.locOption.id)"
+                                    ng-value="n" />{{n.name}}
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="report-box">
+                        <b class="a-title a-title-relative" style="width: 120px">Location From <span class="required">*</span></b>
+
+                        <div class="pi2 a-form-control" style="width: 334px; min-height: 29px; white-space: nowrap; cursor: pointer; border-radius: 2px;" ng-if="filterHaulierDatabase.locOption.id == 1">
+                            <ui-select ng-model="filterHaulierDatabase.locFrom">
+                                <ui-select-match placeholder="Select Location">{{$select.selected.name +' - '+
+                                                        $select.selected.code +' - '+
+                                                        $select.selected.address}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="opt in filterHaulierDatabase.location_from | filter: $select.search">
+                                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                <small ng-bind-html="opt.code | highlight: $select.search"></small>
+                                <small ng-bind-html="opt.address | highlight: $select.search"></small> 
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+
+                        <div class="panel-info pi2 a-form-control" style="width: 334px;"
+                            ng-click="getHaulierLocSearch(1)"
+                            ng-if="filterHaulierDatabase.locOption.id == 2">
+                            <div class="panel-body" style="background-color: #fff;">
+                                <span ng-if="filterHaulierDatabase.haulierLoc_from_level1">
+                                    {{filterHaulierDatabase.haulierLoc_from_level1}} - {{filterHaulierDatabase.haulierLoc_from_level2}} - {{filterHaulierDatabase.haulierLoc_from_level3}}
+                                </span>
+                                <aside></aside>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="report-box">
+                        <b class="a-title a-title-relative" style="width: 120px">Location To Type<span class="required">*</span></b>
+                        <div class="panel-info pi2 a-form-control" style="width: 334px;border: none !important;">
+                            <label ng-repeat="n in filterHaulierDatabase.locOptionsType" class="ib" style="font-weight: normal; margin-right: 15px;">
+                                <input type="radio" name="locOptionTo" 
+                                    ng-model="filterHaulierDatabase.locOptionTo" 
+                                    ng-change="changeHaulierDatabaseLocOptionTo(filterHaulierDatabase.locOptionTo.id)"
+                                    ng-value="n" />{{n.name}}
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="report-box">
+                        <b class="a-title a-title-relative" style="width: 120px">Location To<span class="required">*</span></b>
+
+                        <div class="pi2 a-form-control" style="width: 334px; min-height: 29px; white-space: nowrap; cursor: pointer; border-radius: 2px;" 
+                            ng-if="filterHaulierDatabase.locOptionTo.id == 1">
+                            <ui-select ng-model="filterHaulierDatabase.locTo">
+                                <ui-select-match placeholder="Select Location">{{$select.selected.name +' - '+
+                                                        $select.selected.code +' - '+
+                                                        $select.selected.address}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="opt in filterHaulierDatabase.location_from | filter: $select.search">
+                                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                    <small ng-bind-html="opt.code | highlight: $select.search"></small>
+                                    <small ng-bind-html="opt.address | highlight: $select.search"></small> 
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+
+                        <div class="panel-info pi2 a-form-control" style="width: 334px;"
+                            ng-click="getHaulierLocSearch(2)"
+                            ng-if="filterHaulierDatabase.locOptionTo.id == 2">
+                            <!-- <div class="panel-body" style="background-color: #fff;">
+                                <span ng-if="filterHaulierDatabase.haulierLoc_to_level1">
+                                    {{filterHaulierDatabase.haulierLoc_to_level1}} - {{filterHaulierDatabase.haulierLoc_to_level2}} - {{filterHaulierDatabase.haulierLoc_to_level3}}
+                                </span>
+                                <aside></aside>
+                            </div> -->
+                            <div class="panel-info" ng-click="getHaulierLocSearch(2)">
+                                <div class="panel-body" style="background-color: white;">
+                                <span ng-repeat="sp in areasHaulierLocTo track by $index">
+                                    <span ng-if="areasHaulierLocTo.length == 1">{{sp.title}}</span>
+                                    <span ng-if="areasHaulierLocTo.length > 1">{{sp.title}}<span
+                                        ng-if="$index < areasHaulierLocTo.length && $index!=0">;&nbsp;</span></span>
+                                </span>
+                                <aside></aside>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="report-box">
+                        <b class="a-title a-title-relative" style="width: 120px">Shipping Method </b>
+                        <div class="pi2 a-form-control" style="width: 334px;">
+                            <ui-select ng-model="filterHaulierDatabase.haulierShippingMethod_Name">
+                                <ui-select-match placeholder="Select Shipping Method">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="opt in filterHaulierDatabase.haulierShippmentMethodsArray | filter: $select.search">
+                                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                    <div class="report-box">
+                        <b class="a-title a-title-relative" style="width: 120px">Qty</b>
+                        <div class="pi2 a-form-control" style="width: 334px;">
+                            <!-- <ui-select ng-model="filterHaulierDatabase.qty">
+                                <ui-select-match placeholder="Select Shipping Method">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="opt in filterHaulierDatabase.haulierShippmentMethodsArray | filter: $select.search">
+                                    <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select> -->
+                            <input type="number" ng-model="filterHaulierDatabase.qty" id="qty" class="form-control" placeholder="Qty"  />
+                        </div>
+                    </div>
+                </div>
+                <div class="a-label-container" style="margin-bottom: 20px;">
+
+                    <span>
+                        <!-- <b class="a-title">Date As at <span class="required"> *</span></b>
+                        <div class="input-symbol a-date">
+                            <input jqdatepicker
+                                    class="form-control"
+                                    id="dateTo"
+                                    readonly
+                                    ng-model="filterHaulierDatabase.dateTo"
+                                    style="background-color: white;">
+                            <span>
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div> -->
+                    </span>
+                    <div class="pull-right">
+                        <button class="btn report-generate no-margin"
+                                type="button"
+                                ng-click="getHaulierDatabaseListing(filterHaulierDatabase)">Generate</button><!--Report  -->
+                        <button class="btn report-clearfilter"
+                                type="button"
+                                ng-click="clearHaulierDatabaseListingFilter()">Clear Filter</button>
+                        <!-- <button class="btn report-default"
+                                type="button"
+                                ng-click="showPdfModal()"> Print Preview</button> -->
+                        <div class="dropdown report-excel">
+                        <button class="btn report-default dropdown-toggle"
+                                type="button"
+                                data-toggle="dropdown">Export As
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="showPdfModal('xlsx',filterHaulierDatabase)">Excel</a></li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="a-table">
+                <h5 class="a-report-title" ng-if="columns.length > 0">Haulier Database</h5>
+                <!-- <small class="a-report-date">As at {{filterHaulierDatabase.dateTo}}</small> -->
+                <table class="table table-condensed table-striped table-hover report-spacing" id="data-table">
+                    <thead>
+                        <tr class="bg-col">
+                            <th x-col="{{column.title}}" 
+                                ng-repeat="column in columns" 
+                                ng-if="column.title!= 'Id'" 
+                                ng-class="{'rightAlign':column.title == 'Qty' || column.title == 'Minprice' || column.title == 'Maxprice' || column.title == 'Avgprice'  }">
+                                <span ng-if="column.title == 'Supplierno'">SRM/Supplier No.</span>
+                                <span ng-if="column.title == 'Suppliername'">Name</span>
+                                <span ng-if="column.title == 'Suppliertelephone'">Telephone</span>
+                                <span ng-if="column.title == 'Hauliershippingmethod Name'">Shipping Method</span>
+                                <span ng-if="column.title == 'Location From'">From</span>
+                                <span ng-if="column.title == 'Location To'">To</span>
+                                <span ng-if="column.title == 'Minprice'">Min Price Paid</span>
+                                <span ng-if="column.title == 'Maxprice'">Max Price Paid</span>
+                                <span ng-if="column.title == 'Avgprice'">Average Price</span>
+
+                                <span ng-if="column.title != 'Supplierno' && column.title != 'Suppliername' && column.title != 'Suppliertelephone' && 
+                                             column.title != 'Location From' && column.title != 'Location To' && column.title != 'Minprice' && column.title != 'Maxprice' &&
+                                             column.title != 'Avgprice' && column.title != 'Hauliershippingmethod Name' ">{{column.title}}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr 
+                            ng-repeat="rec in haulierDatabaseRecords" 
+                            ng-if="columns.length > 0" 
+                            ng-class="{'makeBold':rec.vat_registernumber == 'Total'}">
+                            <td 
+                                ng-repeat="column in columns" 
+                                ng-if="column.title != 'Id'" 
+                                ng-class="{'rightAlign':column.title == 'Qty' || column.title == 'Minprice' || column.title == 'Maxprice' || column.title == 'Avgprice'  }">
+                                <span ng-if="column.title != 'Minprice' && column.title != 'Maxprice' && 
+                                             column.title != 'Avgprice'">{{rec[column.field]}}</span>
+
+                                <!-- && column.title != 'Qty' -->
+
+                                <!-- <span ng-if="(column.title == 'Minprice' || column.title == 'Maxprice' || 
+                                                column.title == 'Amount' || column.title == 'Total Value_of_supplies' || 
+                                                column.title == 'Stock Value' || column.title == 'Total Amount' || column.title == 'Unit Cost') && 
+                                                module !='ECSalesList'">{{rec[column.field] | currency : "" : decimal_range }}</span> -->
+
+                                <!-- <span ng-if="column.title == 'Qty'">{{rec[column.field] | numberNoDecimalsIfZeroFilter:2:'' }}</span> -->
+
+                                <span ng-if="column.title == 'Minprice' || column.title == 'Maxprice' || column.title == 'Avgprice'">{{rec[column.field] | currency : "" : decimal_range }} {{defaultCurrencyCode}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>         
+            
+        </div>
+    </div>
+    <div ng-include="'app/views/srm/_listingHaulierLoc.html'"></div>
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

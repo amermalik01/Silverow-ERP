@@ -1,0 +1,156 @@
+<div ng-controller="inventorySetupController as table">
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+  <div class="row" style="margin-bottom: 0 !important;">
+    <div class="col-md-12">
+      <div class="nav nav-tabs" style="padding:8px;">
+          <div class="col-md-5">
+            <div class="search-wrapper">
+              <input type="text" placeholder="Search in Inventory Setup" class="form-control" 
+              ng-model="rec.Serachkeyword" />
+              <i class="fa fa-search search-icon" aria-hidden="true"></i>
+            </div>
+          </div>
+
+          <!-- <label class="col-md-2 pr0" style="margin-top: 3px; color: black;">Select Inventory Setup:</label>
+          <label ng-repeat="n in inventoryCatType" class="col-md-2 pl0" style="margin-top: 3px;">
+            <input type="radio" name="cattype" 
+              ng-model="cattype" 
+              ng-disabled="vat_sales_type>0" 
+              ng-value="n"
+              ng-click="changeInventorySetupType(cattype)" />{{n.name}}
+          </label>  -->
+
+          <label class="col-md-2 pr0" style="margin-top: 3px; color: black;">&nbsp;</label>
+          <label ng-repeat="n in inventoryCatType" class="col-md-2 pl0" style="margin-top: 3px;">
+            <input type="radio" disabled name="cattype" 
+              ng-model="cattype"               
+              ng-value="n"/>{{n.name}}
+          </label>
+          
+          <div class="col-md-1">
+            <a id="prompt" ng-if="addMoreBtn" ui-sref="app.add-inventory-setup" class="btn btn_add pull-right">Add</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-md-12">
+      <div class="widget">
+        <div class="widget-body ">
+          <div id="dt_example" class="example_alt_pagination">
+            <table class="table table-condensed table-striped table-hover table-bordered" id="data-table" show-filter="true"
+              ng-table="table.tableParams5" 
+              ng-if="columns.length>0">
+              <thead>
+                <tr ng-if="columns.length>0">
+                  <td colspan="12" style="background: white;border: 0;text-align: center;font-weight: bold;font-size: 13px;padding: 9px 2px;">
+                      Sales Invoice & Credit Note
+                  </td>
+                </tr>
+                <tr class="bg-col">
+                  <th class="sortable sort-asc" 
+                    ng-repeat="column in columns" 
+                    ng-class="{'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),'sort-desc': !table.tableParams5.isSortBy(column.field, 'desc')}" 
+                    ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')">
+                    <span ng-if="column.title!='Recid' && column.title!='Cost Of_goods_sold' && column.title!='Sales Vat'">{{column.title}}</span>
+                    <span ng-if="column.title=='Cost Of_goods_sold'">Cost of Goods Sold</span>
+                    <span ng-if="column.title=='Sales Vat'">Sales VAT</span>
+                  </th>
+                  <th class="active-listing" style="width: 150px;">Action</th>
+                </tr>
+              </thead>
+              <tbody class="table-body courser ">
+                <tr ng-repeat="rec in mainRecords | filter:rec.Serachkeyword">
+                  <td ng-repeat="column in columns" sortable="column.title" ui-sref="app.view-inventory-setup({id:rec.recid})">                    
+                    <span ng-if="column.title!='Recid'">{{rec[column.field]}}</span>                   
+                  </td>
+                  <td class="active-listing ">
+                    <a ui-sref="app.view-inventory-setup({id:rec.recid})" class="btn btn-primary icon_square">
+                      <i class="fa fa-edit"></i>
+                    </a>
+                    <a ng-click="delete(rec.recid,rec,mainRecords)" class="btn btn-primary icon_square">
+                      <i class="fa fa-times"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="table table-condensed table-striped table-hover table-bordered" id="data-table" show-filter="true" style="margin-top: 12px;"
+              ng-table="table.tableParams5" 
+              ng-if="columns2.length>0" >
+              <thead>
+                <tr>
+                  <td colspan="12" style="background: white;border: 0;text-align: center;font-weight: bold;font-size: 13px;padding: 9px 2px;">
+                      Purchase Invoice & Debit Note
+                  </td>
+                </tr>
+                <tr class="bg-col">
+                  <th class="sortable sort-asc" 
+                    ng-repeat="column in columns2" 
+                    ng-class="{'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),'sort-desc': !table.tableParams5.isSortBy(column.field, 'desc')}" 
+                    ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')">
+                    <span ng-if="column.title!='Recid' && column.title!='Cost Of_goods_sold' && column.title!='Purchase Vat'">{{column.title}}</span>
+                    <span ng-if="column.title=='Cost Of_goods_sold'">Cost of Goods Sold</span>
+                    <span ng-if="column.title=='Purchase Vat'">Purchase VAT Account</span>
+                  </th>
+                  <th class="active-listing" style="width: 150px;">Action</th>
+                </tr>
+              </thead>
+              <tbody class="table-body courser ">
+                <tr ng-repeat="rec in mainRecords2 | filter:rec.Serachkeyword">
+                  <td ng-repeat="column in columns2" sortable="column.title" ui-sref="app.view-inventory-setup({id:rec.recid})">                    
+                    <span ng-if="column.title!='Recid'">{{rec[column.field]}}</span>                   
+                  </td>
+                  <td class="active-listing ">
+                    <a ui-sref="app.view-inventory-setup({id:rec.recid})" class="btn btn-primary icon_square">
+                      <i class="fa fa-edit"></i>
+                    </a>
+                    <a ng-click="delete(rec.recid,rec,mainRecords2)" class="btn btn-primary icon_square">
+                      <i class="fa fa-times"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+
+            <div class="row" style="margin-top: 12px; ">
+              <div class="col-lg-12 col-md-12">
+                <div class="widget animated fadeIn">
+                  <div class="widget-body nobg-widget-body" style="padding-top: 0px !important;">
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <b class="bit" style="background: white; border: 0; text-align: center; font-weight: bold; font-size: 13px; padding: 9px 2px; border-bottom: 1px solid #dddddd !important; margin-bottom: 20px;">VAT Settlement Account</b>
+                          <div class="col-md-8">
+                            <label class="col-md-3 control-label2">VAT Payable/Receivable<!-- <span class="required">*</span> --></label>
+                            <div class="col-md-5">
+                              <div class="input-symbol">
+                                <input type="text" class="form-control"
+                                  ng-disabled="vat_scheme_not_registered || check_readonly"
+                                  readonly style="    background: white;
+                                  cursor: pointer;"
+                                  ng-model="vat_lieability_receve_gl_account_code"
+                                  ng-click="getGLAccountCodeVAT_liabilty()"  />
+                                <span><i class="fa fa-external-link"></i></span><!-- required-->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div ng-include="'app/views/company/_finance_setting_gl_account_modal.html'"></div> -->
+  <div ng-include="'app/views/inventorySetup/_inventorySetupGL_account_modal.html'"></div>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

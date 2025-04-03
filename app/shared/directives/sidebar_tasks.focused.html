@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="col-md-12 form-horizontal"
+         style="padding-right: 0;">
+        <div class="form-group"
+             ng-show="focused.subject">
+            <label class="col-md-12">
+                <!-- <input type="checkbox"> -->
+                <h5 class="ib taskfullname">
+                    <b><span ng-if="focused.priority == 'high'"
+                              class="high"> !</span><span ng-if="focused.priority == 'low'"
+                              class="low"> &darr;</span>{{focused.subject}}</b>
+                    <div class="focusedStatus">
+                        {{focused.status == 1 ? 'Not Started' : (focused.status == 2 ? 'In Progress' : (focused.status == 3 ? 'Completed' : 'N/A'))}}
+                    </div>
+                </h5>
+            </label>
+        </div>
+        <div class="form-group"
+             ng-show="focused.datetime">
+            <label class="control-label col-md-2">Due Date</label>
+            <div class="col-md-10">
+                <div class="padtop5">{{focused.datetime * 1000| date:'dd/MM/yyyy h:mm a'}}</div>
+            </div>
+        </div>
+        <!-- <div class="form-group">
+            <label class="control-label col-md-2">Status</label>
+            <div class="col-md-10">
+                <div class="padtop5">{{focused.status == 1 ? 'Not Started' : (focused.status == 2 ? 'In Progress' : (focused.status == 3 ? 'Completed' : 'N/A'))}}</div>
+            </div>
+        </div> -->
+        <div ng-show="focused.reminder > 0 && focused.reminderUnit > 0"
+             class="form-group">
+            <label class="control-label col-md-2">Reminder</label>
+            <div class="col-md-10">
+                <div class="padtop5">
+                    {{focused.reminder}} {{focused.reminderUnit == 1 ? "Min(s)" :
+                    (focused.reminderUnit == 2 ? "Hour(s)" : (focused.reminderUnit == 3 ? "Day(s)" :
+                    (focused.reminderUnit == 4 ? "Week(s)" : "N/A")))}} before  {{focused.datetime * 1000| date:'dd/MM/yyyy h:mm a'}}
+                </div>
+            </div>
+        </div>
+        <div ng-show="focused.recurrence > 0 && focused.recurrenceUnit > 0"
+             class="form-group">
+            <label class="control-label col-md-2">Recurrence</label>
+            <div class="col-md-10">
+                <div class="padtop5">Every {{focused.recurrence}} {{focused.recurrenceUnit == 1 ? "Day(s)" :
+                (focused.recurrenceUnit == 2 ? "Week(s)" : (focused.recurrenceUnit == 3 ? "Month(s)" :
+                (focused.recurrenceUnit == 4 ? "Year(s)" : "N/A")))}} effective  {{focused.datetime * 1000| date:'dd/MM/yyyy h:mm a'}}</div>
+            </div>
+        </div>
+        <div ng-show="focused.module && focused.record"
+             class="form-group">
+            <label class="control-label col-md-2">Linked to</label>
+            <div class="col-md-8">
+                <div class="padtop5">
+                    <a class="tooltips_clss hilight ng-binding"
+                       href="#/app/{{focused.module == 'hr' ? 'hr_values' : focused.module}}/{{focused.record}}/edit"
+                       target="_blank">{{focused.linkedRecordName}}</a>
+                </div>
+            </div>
+        </div>
+        <div ng-show="focused.module"
+             class="form-group">
+            <label class="control-label col-md-2">Module</label>
+            <div class="col-md-8">
+                <div class="padtop5 text-uppercase">
+                    {{focused.module}}
+                </div>
+            </div>
+        </div>
+        <div class="form-group"
+             ng-show="focused.comments">
+            <div class="col-md-12">
+                <div class="padtop5" style="background: white;
+                        padding: 10px;
+                        border-radius: 3px;
+                        border: 1px solid gainsboro;
+                        min-height: 200px;overflow: auto;max-height: 70px;">
+                    {{focused.comments}}
+                </div>
+            </div>
+        </div>
+        <div class="pull-left"
+             ng-click="editThis(focused);"
+             ng-show="focused.id">
+            <b class="edit-notes"><i class="fa fa-edit"></i> Edit Task</b>
+        </div>
+
+        <!-- <div class="form-group"
+             ng-if="focused.assign_to.name">
+            <label class="control-label col-md-2">Assign To</label>
+            <div class="col-md-8"
+                 style=" margin-top: 6px;">
+                {{focused.assign_to.name}}
+            </div>
+        </div> -->
+    </div>
+</div>

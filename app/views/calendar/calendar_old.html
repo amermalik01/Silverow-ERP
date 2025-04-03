@@ -1,0 +1,60 @@
+<div ng-controller="CalendarController">
+<div class="row">
+      <div ng-include="'app/views/_breadcrumb.html'" class="col-lg-12"></div>
+   </div>
+
+            <div id="calendar">
+                <div id="calendar_wrap"  ng-init="changeMonthORYear(0);dayCalendar('', '', ''); weekCalendar('', ''); monthCalendar('', '');">
+                     <div class="title_bar">
+                         <a href="" ng-click="changeMonthORYear(-1)" ><div class="previous"> Prev </div></a>
+                         <a href="" ng-click="changeMonthORYear(1)"><div class="next"> Next </div></a>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="sub_head"> 
+                       <h2 class="month" ng-bind="selectedMonthYear"></h2>
+                    </div>
+                    <div >
+                        <a href="" ng-repeat="monthandyear in selectedYear" ng-click="changeMonth(monthandyear.monthandyear)" rel="day_view" class="cboxelement" title="monthandyear.title">
+                            <div class="event_day last_month">
+                                <div class="event_number" ng-class="" ng-bind="monthandyear.subTitle"></div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="calendar_event">
+
+                        <a href="" ng-click="openEvent(date.day, date.month, date.year)" rel="day_view" class="cboxelement" ng-repeat="date in lastMonthDates" title="{{date.day}} {{date.monthName}}">
+                            <div class="event_day last_month">
+                                <div class="event_heading" ng-bind="date.dayName"></div>
+                                <div class="event_count" ng-show="date.eventCount">
+                                    <span class="event" ng-bind="date.eventCount"></span>
+                                </div>
+                                <div class="event_number" ng-bind="date.day" ng-class="{today: date.today == 'yes'}"></div>
+                            </div>
+                        </a>
+                        <a href="" ng-click="openEvent(date.day, date.month, date.year)" rel="day_view" class="cboxelement" ng-repeat="date in selectedMonthDates" title="{{date.day}} {{date.monthName}}">
+                            <div class="event_day">
+                                <div class="event_heading" ng-bind="date.dayName"></div>
+                                <div class="event_count" ng-show="date.eventCount">
+                                    <span class="event" ng-bind="date.eventCount"></span>
+                                </div>
+                                <div class="event_number" ng-bind="date.day" ng-class="{today: date.today == 'yes'}"></div>
+                            </div>
+                        </a>
+                        <div ng-repeat="date in nextMonthDates">
+                            <a href="" title="{{date.day}} {{date.monthName}}" rel="day_view" class="cboxelement"></a>
+                            <div class="event_day next_month">
+                                <a href="" title="{{date.day}} {{date.monthName}}" ng-click="openEvent(date.day, date.month, date.year)" rel="day_view" class="cboxelement">
+                                    <div class="event_heading" ng-bind="date.dayName"></div>
+                                    <div class="event_count" ng-show="date.eventCount">
+                                        <span class="event" ng-bind="date.eventCount"></span>
+                                    </div>
+                                    <div class="event_number" ng-bind="date.day" ng-class="{today: date.today == 'yes'}"></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+</div>
+<div ng-include="'app/views/calendar/eventDialogTemplate.html'"></div>

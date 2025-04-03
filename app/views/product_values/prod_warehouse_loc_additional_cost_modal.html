@@ -1,0 +1,83 @@
+<style>
+    tbody.set-mar tr td {
+        padding: 10px !important;
+        border-left: 0px;
+    }
+</style>
+<div class="modal fade" id="prod_warehouse_loc_add_cost_modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"> {{popup_title}} Additional Costs Setup</h4>
+            </div>
+            <div class="modal-body">
+                <div class="widget" ng-show="warehouse_loc_add_cost_List_Show">
+                    <div class="panel panel-default pad15">
+                        <div class="panel-heading" style="padding-top: 0px;">
+                            <a id="prompt" ng-click="prod_warehouse_loc_add_cost_Form(warehouse_loc_id)"
+                               class="btn btn_add pull-right ">Add</a>
+                        </div>
+                    </div>
+                </div>
+                <div ng-include="'app/views/product_values/prod_warehouse_loc_add_cost_form.html'"
+                     ng-show="warehouse_loc_add_cost_FormShow"></div>
+
+                <div >
+                    <div id="dt_example" class="example_alt_pagination">
+                        <table class="table table-condensed table-striped table-hover table-bordered" id="data-table">
+                            <thead>
+                            <tr class="bg-col" ng-show="columns2.length > 0">
+                                <th ng-repeat="column in columns2"
+                                    ng-if="	column.title != 'Id'  "> {{column.title}}
+                                </th>
+                                <th style="width: 11%;">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-body courser ">
+                            <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+                            <tr ng-repeat="rec3 in prod_warehouse_loc_add_cost_data" ng-show="columns2.length > 0">
+                                <td ng-repeat="column in columns2" ng-if="column.title != 'Id'"
+                                    ng-click="edit_warehouse_loc_add_cost(rec3.id)" sortable="column.title">
+                                    {{rec3[column.field]}}
+                                </td>
+                                <td class="text-left " ng-show="columns2.length > 0">
+                                    <a ng-click="edit_warehouse_loc_add_cost(rec3.id)" title="Edit" class="btn ">
+                                        <i class="fa fa-edit"></i></a>
+                                    <a ng-click="delete_warehouse_loc_add_cost(rec3.id,$index,prod_warehouse_loc_add_cost_data)"
+                                       title="Delete"
+                                       class="btn ">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr ng-show="columns2.length == 0 && !showLoader">
+                                <td>No Record found against this entity! Please add.</td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="pull-left">
+                    <label class="control-label"> Total : </label>{{getTotal_additional_cost() | number:decimal_range}}&nbsp;{{rec2.currency.code}}&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label class="control-label">Unit of Measure : </label>{{rec2.dimension.title}}
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-submit" type="button" ng-show="!check_readonly"
+                            ng-click="add_warehouse_loc_add_cost(rec3)">Save
+                    </button>
+                    <button class="btn btn-edit" type="button" ng-click="gotoedit()"
+                            ng-show="check_readonly && bin_loc_add_cost_FormShow"><i class="fa fa-edit"></i> Edit
+                    </button>
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

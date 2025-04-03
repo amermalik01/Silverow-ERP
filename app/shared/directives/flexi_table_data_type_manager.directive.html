@@ -1,0 +1,101 @@
+<!-- If Value is Empty -->
+<span style="display: block; {{cellConf.data_type == 'number' ? 'text-align: right; padding-right: 10px;' : 'text-align: left;'}}"
+      ng-if="!cellConf.event && ((cellConf.data_type == 'string' || cellConf.data_type == 'drop_down' || cellConf.data_type == 'number' || cellConf.data_type == 'number2' || cellConf.data_type == 'numberWithCommaRightAlign' || cellConf.data_type == 'date') && (!cellData[cellConf.field_name] || cellData[cellConf.field_name].trim() == '')) || (cellConf.data_type == 'button' && !cellData[cellConf.field_name] && (!cellConf.condition || (cellConf.condition && !customEval(cellConf.condition))))">{{(cellConf.data_type != 'number' && cellConf.data_type != 'number2' && cellConf.data_type != 'numberWithCommaRightAlign') ? "-" : "&nbsp;"}}</span>
+
+
+<!-- Simple Text -->
+<span style="{{cellConf.data_type == 'number' ? 'text-align: right; padding-right: 10px' : 'text-align: left;'}}"
+      class=" {{cellConf.classes}}"
+      title="{{cellConf.data_type != 'number' ? (cellData[cellConf.field_name]) : (cellData[cellConf.field_name] | currency: '')}}"
+      ng-if="!cellConf.event && (cellConf.data_type != 'checkbox' && cellConf.data_type == 'string' || cellConf.data_type == 'drop_down' || cellConf.data_type == 'number') && cellData[cellConf.field_name] ">{{cellConf.data_type != 'number' ? (cellData[cellConf.field_name]) : (cellConf.round_to ? (cellData[cellConf.field_name] | numberNoDecimalsIfZeroFilter : (cellConf.round_to*1) : '') : (cellData[cellConf.field_name] | currency: ''))}}</span>
+
+<!-- Right align Text -->
+<span style="{{cellConf.data_type == 'number2' ? 'text-align: right; padding-right: 10px' : 'text-align: left;'}}" 
+      class=" {{cellConf.classes}}"
+      title="{{cellData[cellConf.field_name]}}"
+      ng-if="!cellConf.event && cellConf.data_type == 'number2' && cellData[cellConf.field_name] ">{{cellData[cellConf.field_name]}}</span>
+
+<!-- Comma Separted Numeric value without Center align -->
+<span style="{{cellConf.data_type == 'numberWithCommaRightAlign' ? 'text-align: right; padding-right: 10px' : 'text-align: left;'}}" class=" {{cellConf.classes}}"
+      title="{{cellConf.data_type != 'numberWithCommaRightAlign' ? (cellData[cellConf.field_name]) : (cellData[cellConf.field_name] |
+       numberNoDecimalsIfZeroFilter : 2 : '')}}" ng-if="!cellConf.event && cellConf.data_type == 'numberWithCommaRightAlign' && cellData[cellConf.field_name] ">{{cellConf.data_type != 'numberWithCommaRightAlign' ? (cellData[cellConf.field_name]) : (cellData[cellConf.field_name] | numberNoDecimalsIfZeroFilter : 2 : '')}}</span>
+
+<!-- Date in Unix -->
+<span class=" {{cellConf.classes}}"
+      style="display: block"
+      title="{{convert_unix_date_to_angular(cellData[cellConf.field_name])}}"
+      ng-if="cellConf.data_type == 'date' && cellData[cellConf.field_name] && cellData[cellConf.field_name].indexOf('/') == -1">
+    {{convert_unix_date_to_angular(cellData[cellConf.field_name])}}
+</span>
+
+<!-- Date pre formatted -->
+<span class=" {{cellConf.classes}}"
+      style="display: block"
+      title="{{cellData[cellConf.field_name]}}"
+      ng-if="cellConf.data_type == 'date' && cellData[cellConf.field_name] && cellData[cellConf.field_name].indexOf('/') > -1">
+    {{cellData[cellConf.field_name]}}
+</span>
+
+<!-- Checkbox -->
+<span class=" {{cellConf.classes}}"
+      title="{{cellConf.placeholder?cellData[cellConf.placeholder]:cellData[cellConf.field_name]}}"
+      x-value="{{cellData.remaining_amount}}"
+      ng-if="cellConf.data_type == 'checkbox'">
+      <span ng-if="!customEval(cellConf.condition)">-</span>
+    <input style="vertical-align: -2px;"
+           type="checkbox"
+           ng-if="cellConf.event.trigger=='ng-change' && customEval(cellConf.condition)"
+           ng-click="$event.stopPropagation()"
+           ng-change="eventManager(cellConf, cellData);"
+           ng-model="cellData[cellConf.field_name]" />
+    <input style="vertical-align: -2px;"
+           type="checkbox"
+           ng-if="cellConf.event.trigger=='ng-click' && customEval(cellConf.condition)"
+           ng-click="$event.stopPropagation(); eventManager(cellConf, cellData);"
+           ng-model="cellData[cellConf.field_name]" />
+</span>
+
+
+<!-- Button for Event -->
+<span title="" class=" {{cellConf.classes}}"
+      style="display: block"
+      ng-if="cellConf.event && cellConf.data_type != 'checkbox' && cellConf.data_type != 'numberWithCommaRightAlign' && customEval(cellConf.condition)">
+    <span ng-if="cellConf.htmlTemplate"
+          ng-bind-html="cellConf.htmlTemplate "
+          ng-click="$event.stopPropagation(); eventManager(cellConf, cellData);">
+    </span>
+    <span title="{{cellData[cellConf.field_name]}}" ng-if="cellData[cellConf.field_name] && cellConf.data_type != 'number'"
+          ng-click="$event.stopPropagation(); eventManager(cellConf, cellData);">
+        {{cellData[cellConf.field_name]}}
+    </span>
+    <span class="pull-right"
+    title="{{cellData[cellConf.field_name] | currency: ''}}"
+          ng-if="cellData[cellConf.field_name] && cellConf.data_type == 'number'"
+          ng-click="$event.stopPropagation(); eventManager(cellConf, cellData);">
+        {{cellData[cellConf.field_name] | currency: ''}}
+    </span>
+    <span ng-if="!cellData[cellConf.field_name] && !cellConf.htmlTemplate">
+        &nbsp;
+    </span>
+</span>
+
+<span class=" {{cellConf.classes}}" style="display: block" ng-if="cellConf.event && cellConf.data_type == 'numberWithCommaRightAlign' && customEval(cellConf.condition)">
+    <span ng-if="cellConf.htmlTemplate"
+          ng-bind-html="cellConf.htmlTemplate "
+          ng-click="$event.stopPropagation(); eventManager(cellConf, cellData);">
+    </span>
+<span ng-if="cellData[cellConf.field_name]" title="{{cellConf.data_type != 'numberWithCommaRightAlign' ? (cellData[cellConf.field_name]) : (cellData[cellConf.field_name] |
+      numberNoDecimalsIfZeroFilter : 2 : '')}}" ng-click="$event.stopPropagation(); eventManager(cellConf, cellData);">
+        <!-- {{cellData[cellConf.field_name]}} -->
+       {{cellConf.data_type != 'numberWithCommaRightAlign' ? (cellData[cellConf.field_name]) : (cellData[cellConf.field_name] |
+      numberNoDecimalsIfZeroFilter : 2 : '')}}
+    </span>
+<span ng-if="!cellData[cellConf.field_name] && !cellConf.htmlTemplate">
+        &nbsp;
+    </span>
+</span>
+<span class=" {{cellConf.classes}}"
+      style="display: block"
+      ng-if="cellConf.event && cellConf.data_type != 'checkbox' && (cellData[cellConf.field_name] || cellConf.htmlTemplate) && !customEval(cellConf.condition)">
+    <span>-</span>
+</span>

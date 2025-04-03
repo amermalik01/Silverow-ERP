@@ -1,0 +1,100 @@
+[
+    {
+        "title": "Posting Date",
+        "field_name": "posting_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "93",
+        "data_type": "date"
+    },
+    {
+        "title": "Invoice No.",
+        "field_name": "invoice_code",
+        "event": {
+            "name": "openInvoiceLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "85",
+        "data_type": "string"
+    },
+    {
+        "title": "Account No.",
+        "field_name": "account_no",
+        "event": {
+            "name": "openAccountLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "85",
+        "data_type": "string"
+    },
+    {
+        "title": "Account Name",
+        "field_name": "account_name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "string"
+    },
+    {
+        "title": "Unit Price",
+        "field_name": "unit_price",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Quantity",
+        "field_name": "qty",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Value",
+        "field_name": "sales",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "number"
+    },    
+    {
+        "title": "Profit",
+        "field_name": "profit",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "128",
+        "data_type": "number"
+    },
+    {
+        "title": "Profit Percentage",
+        "field_name": "profit_percentage",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "128",
+        "data_type": "number"
+    }
+    
+]

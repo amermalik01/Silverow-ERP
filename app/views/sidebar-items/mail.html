@@ -1,0 +1,24 @@
+<!-- Modal -->
+<div id="sidebar-mail" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body" ng-if="1">
+          
+            <div ng-init="moduleEmailData = {module_name:moduleTracker.name, recordId: moduleTracker.record}; getModuleEmails(1);">
+                v1: {{v1}}
+                {{moduleEmailData}}
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

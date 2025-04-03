@@ -1,0 +1,670 @@
+<style>
+  .marright label {
+    width: 25%;
+  }
+</style>
+
+<div>
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+  <form autocomplete="off"
+        class="form-horizontal no-margin"
+        role="form"
+        validate-form=""
+        novalidate="">
+    <div class="widget">
+      <div class="widget-body"
+           style="margin-top: 10px;">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-5">
+              <!--<div class="form-group">
+              <label class="col-md-4 control-label">Code<span class="required">*</span></label>
+              <div class="col-md-7">
+                <input ng-readonly="product_type" type="text" ng-model="rec.role_code"
+                                           required class="form-control"/>
+                <input type="hidden" ng-model="rec.code_type"/>
+                <input type="hidden" ng-model="rec.role_no"/>
+              </div>
+            </div>-->
+              <div class="form-group">
+                <label class="col-md-4 control-label"> Name
+                  <span class="required">*</span>
+                </label>
+                <div class="col-md-8">
+                  <input type="text"
+                         ng-model="rec.role"
+                         class="form-control"
+                         required="required"
+                         ng-readonly="check_permison_readonly" />
+                </div>
+              </div>
+              <!-- <div class="form-group">
+                <label class="col-md-4 control-label">Status
+                  <span class="required">*</span>
+                </label>
+                <div class="col-md-8">
+                  <select ng-model="rec.status" ng-options="opt as opt.label for opt in arr_status" class="select2me form-control" required="required"
+                    ng-disabled="check_permison_readonly" id="status">
+                  </select>
+                </div>
+              </div> -->
+            </div>
+            <div class="col-md-5 col-md-offset-2">
+              <!-- <div class="form-group">
+                <label class="col-md-4 control-label">Start Date
+                  <span class="required">*</span>
+                </label>
+                <div class="col-md-8">
+                  <input jqdatepicker class="2date-picker form-control " id="ck_sdate" ng-model="rec.start_date" ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_leave_sale_target')"
+                    required readonly ng-class="{'pickdate':!check_permison_readonly}">
+                  <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label">End Date </label>
+                <div class="col-md-8">
+                  <input jqdatepicker class="2date-picker form-control " id="ck_edate" ng-model="rec.end_date" ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg_leave_sale_target')"
+                    readonly="" ng-class="{'pickdate':!check_permison_readonly}">
+                  <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                  <span id="date_msg_leave_sale_target" style="color:#F00; display: none;"> End Date is earlier then Start Date</span>
+                </div>
+              </div> -->
+            </div>
+            <div class="col-md-12"
+                 style="    margin-top: 10px;">
+              <div class="pull-right"
+                   ng-if="urole == undefined">
+                <button class="btn btn-delete active-btns"
+                        type="button"
+                        ng-click="delete_role(rec.id)"
+                        ng-show="rec.id>0 && !check_permison_readonly">
+                  Delete</button>
+                <button class="btn btn-submit pic_block "
+                        type="submit"
+                        ng-click="update_mainrole();"
+                        ng-show="!check_permison_readonly">
+                  Save</button>
+                <button class="btn btn-edit"
+                        type="button"
+                        ng-click="showEditForm()"
+                        ng-show="check_permison_readonly">Edit</button>
+                <button class="btn btn-cancel"
+                        type="button"
+                        ui-sref="{{btnCancelUrl}}">
+                  <i class="fa fa-undo fa_display"></i> Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="row"
+       ng-if="urole>0"
+       style="margin-top: 11px;">
+    <div>
+
+      <!-- <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-3" ng-show="!show_tree">
+            <div class="input-symbol">
+              <input type="text" Placeholder="Search" class="form-control" ng-model="searchKeyword.search">
+              <span id="date_msg_4">
+                <i class="fa fa-search"></i>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-9" ng-show="uright_list">
+            <a class="btn btn_add pull-right" ng-click="showadd_uright_list()">Add</a>
+          </div>
+        </div>
+      </div> -->
+      <!-- <div class="col-md-12"
+           ng-show="uright_list">
+        <table class="table table-condensed table-striped table-hover table-bordered">
+          <thead>
+            <tr class="bg-col"
+                ng-show="urcolumns.length > 0">
+              <th ng-repeat="column in urcolumns"
+                  class="sortable sort-asc"
+                  ng-class="{ 'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),   'sort-desc': !table.tableParams5.isSortBy(column.field, 'desc')   }"
+                  ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"
+                  ng-if="column.title!= 'Id' && column.title!= 'Action'  && column.field != 'unit'"
+                  sortable="column.title">
+                {{column.title}} </th>
+              <th style="width: 11%;">Action</th>
+            </tr>
+          </thead>
+          <tbody class="table-body courser ">
+            <tr ng-repeat="rec2 in ur_record | orderBy:'order'"
+                ng-show="urcolumns.length > 0">
+              <td ng-repeat="column in urcolumns"
+                  sortable="column.title"
+                  ng-click="showedit_uright_list(rec2.id)"
+                  ng-if="column.title!= 'Id'">
+                {{rec2[column.field]}} </td>
+              <td>
+                <a title="Edit"
+                   ng-click="showedit_uright_list(rec2.id)"
+                   class="tooltips_cls btn ">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <a title="Delete"
+                   ng-click="delete_uright(rec2.id,$index,$data)"
+                   class="tooltips_cls btn ">
+                  <i class="fa fa-times"></i>
+                </a>
+              </td>
+            </tr>
+            <tr ng-show="urcolumns.length == 0"
+                style="text-align:center;">
+              <td> No Record found. Please click on Add New. </td>
+            </tr>
+          </tbody>
+        </table>
+      </div> -->
+
+      <div class="col-md-12">
+        <!-- <div ng-show="show_form">
+          <form autocomplete="off" class="form-horizontal no-margin" role="form" validate-form="" novalidate ng-submit="add_uright_form(rec_uright);">
+            <div class="widget">
+              <div class="widget-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="col-md-7">
+                      <input type="hidden" ng-model="rec_uright_form.update_id" />
+                      <input type="hidden" ng-model="rec_uright_form.id" />
+                      <div class="form-group">
+                        <label class="col-md-4 control-label "> Module</label>
+                        <div class="col-md-6 mod-name">
+                          <ui-select ng-model="rec_uright_form.module">
+                            <ui-select-match placeholder="Select Module">{{$select.selected.complete_name}}</ui-select-match>
+                            <ui-select-choices repeat="opt in rec_uright_one | filter: $select.search">
+                              <div ng-bind-html="opt.complete_name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                          </ui-select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-md-4 control-label ">Permissions </label>
+                        <div class="col-md-8 marright " style="    margin-top: 6px;">
+                          <label>
+                            <input type="checkbox" ng-model="rec_uright_form.module.allowuright_add" /> Add
+                          </label>
+
+                          <label>
+                            <input type="checkbox" ng-model="rec_uright_form.module.allowuright_edit" /> Edit
+                          </label>
+
+                          <label>
+                            <input type="checkbox" ng-model="rec_uright_form.module.allowuright_view" /> View
+                          </label>
+
+                          <label>
+                            <input type="checkbox" ng-model="rec_uright_form.module.allowuright_delete" /> Delete
+                          </label>
+
+                          <label>
+                            <input type="checkbox" ng-model="rec_uright_form.module.allowuright_approved"/> Approved
+                          </label>
+
+                          <label>
+                            <input type="checkbox" ng-model="rec_uright_form.module.allowuright_convert"/> Convert
+                          </label>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div ng-if="rec_uright_form.module.complete_name.split(' >').length == 3" class="modulename">
+                        <div>{{rec_uright_form.module.complete_name.split(' >')[0]}}</div>
+                        <div>
+                          <i class="fa fa-angle-right"></i>{{rec_uright_form.module.complete_name.split(' >')[1]}}</div>
+                        <div>
+                          <i class="fa fa-angle-right"></i>{{rec_uright_form.module.complete_name.split('>')[2]}}</div>
+                      </div>
+
+                      <div ng-if="rec_uright_form.module.complete_name.split(' >').length == 2" class="modulename">
+                        <div>{{rec_uright_form.module.complete_name.split(' >')[0]}}</div>
+                        <div style="padding-left: 16px;color:#000;">
+                          <i class="fa fa-angle-right"></i>{{rec_uright_form.module.complete_name.split(' >')[1]}}</div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="col-md-12">
+
+                    <div class="pull-right">
+                      <button class="btn btn-submit" type="submit"> Save</button>
+                      <button class="btn btn-cancel" type="button" ng-click="get_uright_list(urole)">
+                        <i class="fa fa-undo fa_display"></i> Cancel</button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div> -->
+        <div style="
+        background: #fff !important;
+    padding: 21px !important;
+    padding-top: 20px !important;
+    border-radius: 4px;
+    border: 1px solid !important;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5 !important;    padding-bottom: 10px !important;">
+
+          <div class="tab_name">
+            <!-- <input type="text" Placeholder="Search" class="form-control" ng-model="permissionSearch">
+               -->
+            <i class="fa fa-expand"
+               ng-if="!expandAll"
+               ng-click="switchExpand()"
+               title="Expand All"></i>
+            <i class="fa fa-compress"
+               ng-if="expandAll"
+               ng-click="switchExpand()"
+               title="Collapse All"></i>
+            Tab Name
+          </div>
+          <div class="permission_name">
+            Check All
+          </div>
+          <div class="permission_name"
+               ng-repeat="per_rec in permision_arry">
+            {{per_rec.name}}
+          </div>
+          <ul
+              class="rolesandper">
+            <!--	Level Zero   ng-click="check_nested($index)" -->
+            <!-- ng-hide="permissionSearch.length && !isSimilar(formFields,permissionSearch)"  -->
+            <div ng-repeat="formFields in rec_uright_tree"
+                 ng-if="formFields.parent_id==0 && formFields.type==0"
+                 class="per-line">
+              <div class="tab_name tab_name-title">
+
+                <i ng-class="expandAll?'fa-minus':'fa-plus'"
+                   class="fa fa-plus pls_mins_sign text-uppercase"
+                   id="pls_mins_sign_{{formFields.name}}_{{formFields.id}}"
+                   href=".demo_{{formFields.name}}_{{formFields.id}}"
+                   data-toggle="collapse">
+                </i>{{formFields.display_name}}
+              </div>
+
+              <input type="hidden"
+                     class=""
+                     ng-model="formFields.id"
+                     ng-checked="formFields.id" />
+
+              <div class="permission_name">
+                <input type="checkbox"
+                       ng-disabled="check_permison_readonly"
+                       ng-checked="getCheckStatus(formFields,1)"
+                       ng-click="checkAllPerms(formFields)" />
+              </div>
+
+              <div ng-repeat="per_rec_new in permision_arry "
+                   class="permission_name">
+
+
+                <input type="checkbox"
+                       ng-disabled="check_permison_readonly || !(formFields.valid_permissions.indexOf('1') > -1)"
+                       ng-model="formFields.allowuright_add"
+                       ng-click="performLinkedPermissions(formFields, 1)"
+                       id="selected_subs_{{formFields.name}}"
+                       ng-checked="formFields.allowuright_add"
+                       ng-if="per_rec_new.id==1"
+                       name="add" />
+
+
+                <input type="checkbox"
+                       ng-disabled="check_permison_readonly || !(formFields.valid_permissions.indexOf('2') > -1)"
+                       ng-model="formFields.allowuright_edit"
+                       ng-click="performLinkedPermissions(formFields, 2)"
+                       ng-checked="formFields.allowuright_edit"
+                       ng-if="per_rec_new.id==2"
+                       name="edit" />
+
+
+                <input type="checkbox"
+                       ng-disabled="check_permison_readonly || !(formFields.valid_permissions.indexOf('3') > -1)"
+                       ng-model="formFields.allowuright_view"
+                       ng-click="performLinkedPermissions(formFields, 3)"
+                       ng-checked="formFields.allowuright_view"
+                       ng-if="per_rec_new.id==3"
+                       name="view" />
+
+
+
+                <input type="checkbox"
+                       ng-disabled="check_permison_readonly || !(formFields.valid_permissions.indexOf('4') > -1)"
+                       ng-model="formFields.allowuright_delete"
+                       ng-click="performLinkedPermissions(formFields, 4)"
+                       ng-checked="formFields.allowuright_delete"
+                       ng-if="per_rec_new.id==4"
+                       name="delete" />
+
+
+                <input type="checkbox"
+                       ng-disabled="check_permison_readonly || !(formFields.valid_permissions.indexOf('5') > -1)"
+                       ng-model="formFields.allowuright_approved"
+                       ng-click="performLinkedPermissions(formFields, 5)"
+                       ng-checked="formFields.allowuright_approved"
+                       ng-if="per_rec_new.id==5"
+                       name="approved" />
+
+
+                <input type="checkbox"
+                       ng-disabled="check_permison_readonly || !(formFields.valid_permissions.indexOf('6') > -1)"
+                       ng-model="formFields.allowuright_convert"
+                       ng-click="performLinkedPermissions(formFields, 6)"
+                       ng-checked="formFields.allowuright_convert"
+                       ng-if="per_rec_new.id==6"
+                       name="convert" />
+
+                <input type="checkbox"
+                       ng-disabled="check_permison_readonly || !(formFields.valid_permissions.indexOf('7') > -1)"
+                       ng-model="formFields.allowuright_dispatch"
+                       ng-click="performLinkedPermissions(formFields, 7)"
+                       ng-checked="formFields.allowuright_dispatch"
+                       ng-if="per_rec_new.id==7"
+                       name="dispatch" />
+
+                <input type="checkbox"
+                       ng-disabled="check_permison_readonly || !(formFields.valid_permissions.indexOf('8') > -1)"
+                       ng-model="formFields.allowuright_post"
+                       ng-click="performLinkedPermissions(formFields, 8)"
+                       ng-checked="formFields.allowuright_post"
+                       ng-if="per_rec_new.id==8"
+                       name="post" />
+
+                <input type="checkbox"
+                       ng-disabled="check_permison_readonly || !(formFields.valid_permissions.indexOf('9') > -1)"
+                       ng-model="formFields.allowuright_receive"
+                       ng-click="performLinkedPermissions(formFields, 9)"
+                       ng-checked="formFields.allowuright_receive"
+                       ng-if="per_rec_new.id==9"
+                       name="receive" />
+
+              </div>
+              <div class="permission_name inherit">
+                <input ng-disabled="check_permison_readonly || !getCheckStatus(formFields)"
+                       type="button"
+                       class="btn btn-default2"
+                       value="Inherit"
+                       ng-click="doInherit(formFields.id)" />
+              </div>
+
+              <!-- Level One and Two-->
+              <div ng-class="{'in':expandAll}"
+                   class="collapse out demo_{{formFields.name}}_{{formFields.id}} whencollapse per-line"
+                   ng-repeat="formSelone in rec_uright_tree"
+                   ng-if="(formSelone.type==1  || formSelone.type==2 || formSelone.type==3) && formSelone.parent_id == formFields.id ">
+                <div ng-if="formSelone.type==1  || formSelone.type==2"
+                     class="tab_name tab_name-title"
+                     style="padding-left: 10px;">
+                  <i ng-class="expandAll?'fa-minus':'fa-plus'"
+                     class="fa fa-plus pls_mins_sign_one"
+                     href=".demo_{{formSelone.parent_id+'_'+formSelone.id+'_'+formSelone.parent_id}}"
+                     data-toggle="collapse"></i>{{formSelone.display_name}}
+                </div>
+                <div ng-if="formSelone.type==3"
+                     class="tab_name tab_name-title"
+                     style="padding-left: 30px;">
+                  {{formSelone.display_name}}
+                </div>
+                <span>
+                  <input type="hidden"
+                         class=""
+                         ng-model="formSelone.id"
+                         ng-checked="formSelone.id" />
+                  <!-- <div class="permission_name inherit">
+                    <input ng-if="formSelone.type!=3" type="button" class="btn btn-default2" value="Inherit" ng-click="doInherit(formSelone.id)" />
+                  </div> -->
+                  <div class="permission_name">
+                    <input type="checkbox"
+                           ng-disabled="check_permison_readonly"
+                           ng-checked="getCheckStatus(formSelone,1)"
+                           ng-click="checkAllPerms(formSelone)" />
+                  </div>
+                  <span ng-repeat="per_rec_new in permision_arry "
+                        class="permission_name">
+
+
+                    <input type="checkbox"
+                           ng-disabled="check_permison_readonly || !(formSelone.valid_permissions.indexOf('1') > -1)"
+                           ng-model="formSelone.allowuright_add"
+                           ng-click="performLinkedPermissions(formSelone, 1)"
+                           ng-checked="formSelone.allowuright_add"
+                           ng-if="per_rec_new.id==1"
+                           name="add" />
+
+
+                    <input type="checkbox"
+                           ng-disabled="check_permison_readonly || !(formSelone.valid_permissions.indexOf('2') > -1)"
+                           ng-model="formSelone.allowuright_edit"
+                           ng-click="performLinkedPermissions(formSelone, 2)"
+                           ng-checked="formSelone.allowuright_edit"
+                           ng-if="per_rec_new.id==2"
+                           name="edit" />
+
+
+                    <input type="checkbox"
+                           ng-disabled="check_permison_readonly || !(formSelone.valid_permissions.indexOf('3') > -1)"
+                           ng-model="formSelone.allowuright_view"
+                           ng-click="validateViewPerm(formSelone); performLinkedPermissions(formSelone, 3)"
+                           ng-checked="formSelone.allowuright_view"
+                           ng-if="per_rec_new.id==3"
+                           name="view" />
+
+
+                    <input type="checkbox"
+                           ng-disabled="check_permison_readonly || !(formSelone.valid_permissions.indexOf('4') > -1)"
+                           ng-model="formSelone.allowuright_delete"
+                           ng-click="performLinkedPermissions(formSelone, 4)"
+                           ng-checked="formSelone.allowuright_delete"
+                           ng-if="per_rec_new.id==4"
+                           name="delete" />
+
+
+                    <input type="checkbox"
+                           ng-disabled="check_permison_readonly || !(formSelone.valid_permissions.indexOf('5') > -1)"
+                           ng-model="formSelone.allowuright_approved"
+                           ng-click="performLinkedPermissions(formSelone, 5)"
+                           ng-checked="formSelone.allowuright_approved"
+                           ng-if="per_rec_new.id==5"
+                           name="approved" />
+
+
+                    <input type="checkbox"
+                           ng-disabled="check_permison_readonly || !(formSelone.valid_permissions.indexOf('6') > -1)"
+                           ng-model="formSelone.allowuright_convert"
+                           ng-click="performLinkedPermissions(formSelone, 6)"
+                           ng-checked="formSelone.allowuright_convert"
+                           ng-if="per_rec_new.id==6"
+                           name="convert" />
+
+                    <input type="checkbox"
+                           ng-disabled="check_permison_readonly || !(formSelone.valid_permissions.indexOf('7') > -1)"
+                           ng-model="formSelone.allowuright_dispatch"
+                           ng-click="performLinkedPermissions(formSelone, 7)"
+                           ng-checked="formSelone.allowuright_dispatch"
+                           ng-if="per_rec_new.id==7"
+                           name="dispatch" />
+
+                    <input type="checkbox"
+                           ng-disabled="check_permison_readonly || !(formSelone.valid_permissions.indexOf('8') > -1)"
+                           ng-model="formSelone.allowuright_post"
+                           ng-click="performLinkedPermissions(formSelone, 8)"
+                           ng-checked="formSelone.allowuright_post"
+                           ng-if="per_rec_new.id==8"
+                           name="post" />
+
+                    <input type="checkbox"
+                           ng-disabled="check_permison_readonly || !(formSelone.valid_permissions.indexOf('9') > -1)"
+                           ng-model="formSelone.allowuright_receive"
+                           ng-click="performLinkedPermissions(formSelone, 9)"
+                           ng-checked="formSelone.allowuright_receive"
+                           ng-if="per_rec_new.id==9"
+                           name="receive" />
+
+                  </span>
+                </span>
+                <div class="permission_name inherit">
+                  <input ng-disabled="check_permison_readonly || !getCheckStatus(formSelone)"
+                         ng-if="formSelone.type!=3"
+                         type="button"
+                         class="btn btn-default2"
+                         value="Inherit"
+                         ng-click="doInherit(formSelone.id)" />
+                </div>
+
+                <!-- Level Three tabs -->
+                <div ng-class="{'in':expandAll}"
+                     class="collapse whencollapse2 out demo_{{formSelone.parent_id+'_'+formSelone.id+'_'+formSelone.parent_id}}"
+                     ng-repeat="formSec in rec_uright_tree"
+                     ng-if="formSec.parent_id == formSelone.id && formSec.type==3 && formSelone.type!=3">
+                  <div class="tab_name tab_name-title"
+                       style="padding-left: 45px;">
+                    {{formSec.display_name}}
+                  </div>
+
+                  <span>
+                    <input type="hidden"
+                           class=""
+                           ng-model="formSec.id"
+                           ng-checked="formSec.id" />
+                    <div class="permission_name">
+                      <input type="checkbox"
+                             ng-disabled="check_permison_readonly"
+                             ng-checked="getCheckStatus(formSec,1)"
+                             ng-click="checkAllPerms(formSec)" />
+                    </div>
+                    <span ng-repeat="per_rec_new in permision_arry "
+                          class="permission_name">
+
+
+                      <input type="checkbox"
+                             ng-disabled="check_permison_readonly || !(formSec.valid_permissions.indexOf('1') > -1)"
+                             ng-model="formSec.allowuright_add"
+                             ng-click="performLinkedPermissions(formSec, 1)"
+                             ng-checked="formSec.allowuright_add"
+                             ng-if="per_rec_new.id==1"
+                             name="add" />
+
+
+                      <input type="checkbox"
+                             ng-disabled="check_permison_readonly || !(formSec.valid_permissions.indexOf('2') > -1)"
+                             ng-model="formSec.allowuright_edit"
+                             ng-click="performLinkedPermissions(formSec, 2)"
+                             ng-checked="formSec.allowuright_edit"
+                             ng-if="per_rec_new.id==2"
+                             name="edit" />
+
+
+                      <input type="checkbox"
+                             ng-disabled="check_permison_readonly || !(formSec.valid_permissions.indexOf('3') > -1)"
+                             ng-model="formSec.allowuright_view"
+                             ng-checked="formSec.allowuright_view"
+                             ng-if="per_rec_new.id==3"
+                             ng-click="validateViewPerm(formSec);performLinkedPermissions(formSec, 3)"
+                             name="view" />
+
+
+                      <input type="checkbox"
+                             ng-disabled="check_permison_readonly || !(formSec.valid_permissions.indexOf('4') > -1)"
+                             ng-model="formSec.allowuright_delete"
+                             ng-click="performLinkedPermissions(formSec, 4)"
+                             ng-checked="formSec.allowuright_delete"
+                             ng-if="per_rec_new.id==4"
+                             name="delete" />
+
+
+                      <input type="checkbox"
+                             ng-disabled="check_permison_readonly || !(formSec.valid_permissions.indexOf('5') > -1)"
+                             ng-model="formSec.allowuright_approved"
+                             ng-click="performLinkedPermissions(formSec, 5)"
+                             ng-checked="formSec.allowuright_approved"
+                             ng-if="per_rec_new.id==5"
+                             name="approved" />
+
+
+                      <input type="checkbox"
+                             ng-disabled="check_permison_readonly || !(formSec.valid_permissions.indexOf('6') > -1)"
+                             ng-model="formSec.allowuright_convert"
+                             ng-click="performLinkedPermissions(formSec, 6)"
+                             ng-checked="formSec.allowuright_convert"
+                             ng-if="per_rec_new.id==6"
+                             name="convert" />
+
+                      <input type="checkbox"
+                             ng-disabled="check_permison_readonly || !(formSec.valid_permissions.indexOf('7') > -1)"
+                             ng-model="formSec.allowuright_dispatch"
+                             ng-click="performLinkedPermissions(formSec, 7)"
+                             ng-checked="formSec.allowuright_dispatch"
+                             ng-if="per_rec_new.id==7"
+                             name="dispatch" />
+
+                      <input type="checkbox"
+                             ng-disabled="check_permison_readonly || !(formSec.valid_permissions.indexOf('8') > -1)"
+                             ng-model="formSec.allowuright_post"
+                             ng-click="performLinkedPermissions(formSec, 8)"
+                             ng-checked="formSec.allowuright_post"
+                             ng-if="per_rec_new.id==8"
+                             name="post" />
+
+                      <input type="checkbox"
+                             ng-disabled="check_permison_readonly || !(formSec.valid_permissions.indexOf('9') > -1)"
+                             ng-model="formSec.allowuright_receive"
+                             ng-click="performLinkedPermissions(formSec, 9)"
+                             ng-checked="formSec.allowuright_receive"
+                             ng-if="per_rec_new.id==9"
+                             name="receive" />
+
+                    </span>
+                  </span>
+                </div>
+                <!-- Level Three tabs  Finish-->
+              </div>
+              <!-- Level One and Two  Finish-->
+
+              <!-- Level Zero Finish-->
+            </div>
+          </ul>
+          <div class="row">
+            <div class="col-md-12"
+                 style="    margin-top: 50px;">
+              <div class="pull-right">
+                <button class="btn btn-delete active-btns"
+                        type="button"
+                        ng-click="delete_role(rec.id)"
+                        ng-show="rec.id>0 && !check_permison_readonly">
+                  Delete</button>
+                <button class="btn btn-submit"
+                        ng-show="!check_permison_readonly"
+                        type="button"
+                        ng-click="update_mainrole();"> Save</button>
+                <!-- <button class="btn btn-submit pic_block " type="submit" ng-click="update_mainrole();" ng-show="!check_permison_readonly">
+                  Save</button> -->
+                <button class="btn btn-edit"
+                        type="button"
+                        ng-click="showEditForm()"
+                        ng-show="check_permison_readonly">Edit</button>
+                <button class="btn btn-cancel"
+                        type="button"
+                        ui-sref="{{btnCancelUrl}}">
+                  <i class="fa fa-undo fa_display"></i> Cancel</button>
+
+                <!-- <button class="btn btn-cancel" type="button" ng-click="get_uright_list(urole)"> Cancel</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-include="'app/views/_confirm_modal.html'"></div>
+</div>

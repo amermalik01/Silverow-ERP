@@ -1,0 +1,234 @@
+<div class="row animated fadeIn">
+    <div class="col-md-12 col-md-12">
+        <div class="widget" style="background:none;">
+            <div class="widget-body pb0" style="background:none;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel-title2">Other Contacts</div>
+                        <!--<div ng-if="rec_contact.is_primary==1" class="warning-primary">
+                          <i class="fa fa-flag marks"></i>
+                          Primary Contact can be changed in General Tab
+                        </div> -->
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Primary</label> <!-- title="Once it is Primary, it cannot be unchecked. It can only be replaced by some other Primary Location" -->
+                                <div class="col-md-1 pl0" title="Once Primary is checked it cannot be unchecked. It can only be replaced by another Primary Location">
+                                    <div class="col-md-4" style="margin-top: 6px;">
+                                        <input type="checkbox" name="a" id="isprimary2" ng-model="rec_contact.is_primary" ng-disabled="check_contact_readonly || rec_contact.is_primary>0"
+                                            ng-checked="rec_contact.is_primary>0">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"> Name <span class="required">*</span></label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec_contact.contact_name" id="contact_name" class="form-control" ng-readonly="check_contact_readonly"
+                                        required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Job Title </label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec_contact.job_title" id="job_title" class="form-control" ng-readonly="check_contact_readonly"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Direct Line </label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec_contact.direct_line" id="direct_line" class="form-control" ng-readonly="check_contact_readonly"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Mobile</label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec_contact.mobile" id="mobile" class="form-control" ng-readonly="check_contact_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Telephone</label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec_contact.phone" id="phone" class="form-control" ng-readonly="check_contact_readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Fax </label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="rec_contact.fax" id="fax" class="form-control" ng-readonly="check_contact_readonly" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                    <label class="col-md-4 control-label">Email</label>
+                                    <div class="col-md-8">
+                                        <div class="input-symbol">
+                                            <input type="text" ng-model="rec_contact.email" id="email" class="form-control" ng-readonly="check_contact_readonly" data-parsley-type="email"
+                                                placeholder="e.g. myname@example.com" data-email-msg="Email format is not valid"
+                                            />
+                                            <!-- <span>
+                                                <a ng-if="rec_contact.email != undefined" href="mailto:{{rec_contact.email}}?Subject=silverow SRM&Body=silverow SRM">
+                                                    <i style=" color: #3693cf;" class="fa fa-external-link" aria-hidden="true"> </i>
+                                                </a>
+                                            </span> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" title="Prefered Method Of Communication">Pref.Method Of Comm.</label>
+                                <div class="col-md-8">
+                                    <ui-select ng-model="drp.pref_mthod_of_comm" ng-change="addNewPredefinedPopup(drp.pref_mthod_of_comm, 'PREFER_METHOD', 'Preferred Method Of Communication',drp)"
+                                        ng-disabled="check_contact_readonly" ng-class="{'not-click-allow':disableClass > 0}">>
+                                        <ui-select-match placeholder="Prefer Method Of Communication">{{$select.selected.title}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in arr_pref_method_comm | filter: $select.search">
+                                            <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Assign Location(s) </label>
+                                <!--'dont-click readonly':check_contact_readonly || rec_contact.is_primary==1}-->
+                                <div class="col-md-2   ">
+                                    <button style="    line-height: 18px;" class="btn btn-icon pull-right" type="button" ng-click="getAltLocation(1, rec_contact.showdata2)" ng-class="{'setshow3':rec_contact.showdata2>0}"
+                                        title="Total Record: {{rec_contact.showdata2}}" ng-disabled="check_contact_readonly">
+                                        <!--<i class="fa fa-map-marker" aria-hidden="true"></i>-->
+                                        <span ng-if="rec_contact.showdata2==0 || !rec_contact.showdata2>0">0</span>
+                                        <!--<span ng-show="!rec_loc.showdata2>0">0</span>-->
+                                        <span ng-if="rec_contact.showdata2>0">{{rec_contact.showdata2}}</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-group">
+                                <label class="col-md-4 control-label">Social Media 1</label>
+
+                                <div class="col-md-4 padr6">
+                                    <ui-select ng-model="rec_contact.socialmedia1" ng-disabled="check_contact_readonly || rec_contact.is_primary==1" ng-class="{'not-click-allow':disableClass > 0}">
+                                        <ui-select-match placeholder="Social Media">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in social_medias | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <input type="text" ng-model="rec_contact.socialmedia1_value" class="form-control" ng-readonly="check_contact_readonly || rec_contact.is_primary==1">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Social Media 2</label>
+
+                                <div class="col-md-4 padr6" padr6>
+                                    <ui-select ng-model="rec_contact.socialmedia2" ng-disabled="check_contact_readonly || rec_contact.is_primary==1" ng-class="{'not-click-allow':disableClass > 0}">
+                                        <ui-select-match placeholder="Social Media">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in social_medias | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <input type="text" ng-model="rec_contact.socialmedia2_value" class="form-control" ng-readonly="check_contact_readonly || rec_contact.is_primary==1">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Social Media 3</label>
+
+                                <div class="col-md-4 padr6">
+                                    <ui-select ng-model="rec_contact.socialmedia3" ng-disabled="check_contact_readonly || rec_contact.is_primary==1" ng-class="{'not-click-allow':disableClass > 0}">
+                                        <ui-select-match placeholder="Social Media">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in social_medias | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <input type="text" ng-model="rec_contact.socialmedia3_value" class="form-control" ng-readonly="check_contact_readonly || rec_contact.is_primary==1">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Social Media 4</label>
+
+                                <div class="col-md-4 padr6">
+                                    <ui-select ng-model="rec_contact.socialmedia4" ng-disabled="check_contact_readonly || rec_contact.is_primary==1" ng-class="{'not-click-allow':disableClass > 0}">
+                                        <ui-select-match placeholder="Social Media">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in social_medias | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <input type="text" ng-model="rec_contact.socialmedia4_value" class="form-control" ng-readonly="check_contact_readonly || rec_contact.is_primary==1">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Social Media 5</label>
+
+                                <div class="col-md-4 padr6">
+                                    <ui-select ng-model="rec_contact.socialmedia5" ng-disabled="check_contact_readonly || rec_contact.is_primary==1" ng-class="{'not-click-allow':disableClass > 0}">
+                                        <ui-select-match placeholder="Social Media">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in social_medias | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <input type="text" ng-model="rec_contact.socialmedia5_value" class="form-control" ng-readonly="check_contact_readonly || rec_contact.is_primary==1">
+                                </div>
+                            </div> -->
+                            <div class="form-group" ng-if="altContacFormShow" style="margin-bottom: 0 !important;">
+                                <label class="col-md-4 control-label">Social Media</label>
+                                <div class="col-md-8">
+                                    <x-dynamic-select lookup-table="social_medias_contact_form" fields="socialMediasContactArr" property-name="socialMediasContact" qty="{{qty}}"
+                                        default-option-index="{{defaultOption}}" read-only="check_contact_readonly">
+                                    </x-dynamic-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Contact Notes</label>
+
+                                <div class="col-md-8" style="position:relative;">
+                                    <textarea style="height:100px !important; resize:none;" ng-model="rec_contact.notes" id="booking_instructions"
+                                        class="form-control" ng-disabled="check_contact_readonly" maxlength="100" />
+                                    </textarea>
+                                    <!--<span class="word-counter">{{rec_contact.booking_instructions.length}}/100</span>-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12" style="margin-top:20px;">
+                            <div class="pull-right">
+
+                                <div class="dropdown ib" ng-show="rec_contact.id > 0 && srm_contact_tab > 0">
+                                    <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                        <i class="dte-ico"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dte animated fadeIn">
+                                        <span ng-click="set_document_internal(srm_contact_tab)">
+                                            <i class="fa fa-file-text-o" aria-hidden="true"></i> Add Document</span>
+                                        <span>
+                                            <i class="fa fa-check" aria-hidden="true"></i> Add Task</span>
+                                        <span>
+                                            <i class="fa fa-envelope-o" aria-hidden="true"></i> Compose Email</span>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-delete" type="button" ng-click="delete_contact(rec_contact.id)" ng-if="rec_contact.id > 0 && !check_contact_readonly && deleteContactPermission && rec_contact.is_primary != 1">Delete
+                                </button>
+                                <button class="btn btn-submit" type="submit" ng-show="!check_contact_readonly">Save
+                                </button>
+                                <button class="btn btn-edit" type="button" ng-click="showEditForm_contact()" ng-show="check_contact_readonly && editContactPermission  ">Edit
+                                </button>
+                                <button class="btn btn-cancel" type="button" ng-click="getAltContacts()">Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

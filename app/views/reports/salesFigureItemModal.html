@@ -1,0 +1,302 @@
+<style>
+    @media print {
+        table {
+            page-break-after: always !important;
+        }
+    }
+
+    .mystyle2 {
+        margin-bottom: 72px;
+    }
+</style>
+
+<div class="modal fade template-design"
+     id="salesFigureItemModal2">
+    <div class="modal-dialog modal-md"
+         style=" width: 24cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 2cm;">
+
+                <div ng-repeat="rec in printPdfVals.reportsDataArr track by $index"
+                    ng-if="printPdfVals.report_type == 1"
+                     style="clear: both;"
+                     class="mystyle2">
+
+                    <sethtmlpageheader name='MyCustomHeader{{$index}}'
+                                       page='ALL'
+                                       value='on'
+                                       show-this-page='1' />
+
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+                    <setpagefooter name='MyFooter3'
+                                   page='ALL'
+                                   value='on'
+                                   show-this-page='1' />
+
+                    <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter3;
+                        }
+                    </style>
+                    <htmlpageheader name='MyCustomHeader{{$index}}'>
+                        <div class='reportHeading'>
+                            <div class='reportHeading__left'>
+                                <div class='reportHeading__left__reportname'
+                                     style="margin-bottom: 12px;">
+                                    {{printPdfVals.reportTitle}}
+
+                                </div>
+                                <div class="font10">
+                                    <b>Item No. :</b>
+                                    <span>{{rec.item_code}}</span>
+                                </div>
+                                <div class="font10">
+                                    <b>Item Description :</b>
+                                    <span>{{rec.item_name}}</span>
+                                </div>
+                                <div class='reportHeading__left__reportfilter'
+                                     style="width: 100%;margin-bottom: 5px;">
+                                    From {{printPdfVals.dateFrom}} to {{printPdfVals.dateTo}}
+                                </div>
+                            </div>
+                            <div class='reportHeading__right'>
+                                <img ng-src='{{imagePath+defaultLogo}}'
+                                     class='reportHeading__right__img '
+                                     ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                                <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                            </div>
+                        </div>
+                    </htmlpageheader>
+
+
+                    <table style="width: 100%;" class="report-spacing-table">
+                        <thead>
+                            <tr>
+                                <th> Posting Date </th>
+                                <th> Doc. Type </th>
+                                <th> Doc. No. </th>
+                                <th> Cust. Name </th>
+                                <th> Salesperson </th>
+                                <th style="text-align: right"> Qty.</th>
+                                <th> U.O.M</th>
+                                <th style="text-align: right"> Unit Price </th>
+                                <th style="text-align: right"> Amount (LCY) </th>
+                                <th style="text-align: right"> Amount Incl. VAT (LCY) </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="inv in rec.invoices">
+                                <td> {{inv.posting_date}} </td>
+                                <td> {{inv.document_type}} </td>
+                                <td> {{inv.document_no}} </td>
+                                <td> {{inv.cust_name}} </td>
+                                <td> {{inv.sp_name}} </td>
+                                <td style="text-align: right"> {{inv.qty | numberNoDecimalsIfZeroFilter:2:''}} </td>
+                                <td> {{inv.uom}} </td>
+                                <td style="text-align: right"> {{inv.unit_price | currency:""}} </td>
+                                <td style="text-align: right"> {{inv.amount_ex_vat | currency:""}} </td>
+                                <td style="text-align: right"> {{inv.amount_in_vat | currency:""}} </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><b>Total</b></td>
+                                <td style="text-align: right;"><b>{{rec.total_qty | numberNoDecimalsIfZeroFilter:2:''}} </b></td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: right;"><b>{{rec.total_amount_ex_vat | currency:""}}</b</b> </td>
+                                             <td
+                                             style="text-align: right;">
+                                        <b>{{rec.total_amount_in_vat | currency:""}}</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="page-break-after: always;"
+                         ng-if="printPdfVals.total_records.length - 1 != $index">
+                    </div>
+                    <div style="height: 100px;"
+                         ng-if="printPdfVals.total_records.length - 1 != $index && toggleLandscape"></div>
+                </div>
+
+                <div class='reportHeading' ng-if="printPdfVals.report_type == 1">
+                    <div class='reportHeading__left'>
+                        <!-- <div class='reportHeading__left__reportname'
+                                style="margin-bottom: 12px;">
+                            Grand Total
+                        </div> -->
+                        <div class='reportHeading__left__reportname'
+                                style="margin-bottom: 12px;">
+                            {{printPdfVals.reportTitle}}
+
+                        </div>
+                        <div class="font10">
+                            <b>Grand Total</b>
+                        </div>
+                    </div>
+                    <div class='reportHeading__right'>
+                        <img ng-src='{{imagePath+defaultLogo}}'
+                                class='reportHeading__right__img '
+                                ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                        <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                    </div>
+                </div>
+
+                <table style="width:100%;"
+                       ng-if="printPdfVals.report_type == 1">
+                    <tr style="background-color: whitesmoke;">
+                        <td style="text-align: right;width:20%;"><b>Quantity</b></td>
+                        <td style="text-align: right;width:20%;"><b>Amount (Incl. VAT)</b></td>
+                        <td style="text-align: right;width:20%;"><b>Amount (Excl. VAT)</b></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;width:20%;">
+                            {{printPdfVals.grand_total_qty}}
+                        </td>
+                        <td style="text-align: right;width:20%;">
+                            {{printPdfVals.grand_total_amount_in_vat | currency:""}} {{defaultCurrencyCode}}
+                        </td>
+                        <td style="text-align: right;width:20%;">
+                            {{printPdfVals.grand_total_amount_ex_vat | currency:""}} {{defaultCurrencyCode}}
+                        </td>
+                    </tr>
+                </table>
+
+                <div ng-if="printPdfVals.report_type == 2"
+                     style="clear: both;margin-bottom: 72px;">
+
+                    <sethtmlpageheader name='MyCustomHeader'
+                                       page='ALL'
+                                       value='on'
+                                       show-this-page='1' />
+
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+                    <setpagefooter name='MyFooter3'
+                                   page='ALL'
+                                   value='on'
+                                   show-this-page='1' />
+
+                    <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter3;
+                        }
+                    </style>
+                    <div class='reportHeading'>
+                        <div class='reportHeading__left'>
+                            <div class='reportHeading__left__reportname'
+                                 style="margin-bottom: 12px;">{{printPdfVals.reportTitle}}</div>
+                            <div class='reportHeading__left__reportfilter'
+                                 style="width: 100%;margin-bottom: 5px;">
+                                From {{printPdfVals.dateFrom}} to {{printPdfVals.dateTo}}
+                            </div>
+                        </div>
+                        <div class='reportHeading__right'>
+                            <img ng-src='{{imagePath+defaultLogo}}'
+                                 class='reportHeading__right__img '
+                                 ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                        </div>
+                    </div>
+
+                    <div style="width: 70%;margin: 0 auto">
+                        <table style="width: 100%;margin-top: 33px;float: left;">
+                            <thead>
+                                <tr>
+                                    <th>Item No. </td>
+                                    <th>Item Name </th>
+                                    <th style="text-align: right">Quantity </th>
+                                    <th style="text-align: right">Sales (LCY)</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="rec in printPdfVals.reportsDataArr track by $index">
+                                    <td> {{rec.item_code}} </td>
+                                    <td> {{rec.item_name}} </td>
+                                    <td style="text-align: right"> {{rec.qty | numberNoDecimalsIfZeroFilter:2:''}} </td>
+                                    <td style="text-align: right"> {{rec.sum_amount_ex_vat | currency:""}}
+                                        {{defaultCurrencyCode}} </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align: right"><b>Total:</b></td>
+                                    <td style="text-align: right"><b>{{printPdfVals.total_qty | numberNoDecimalsIfZeroFilter:2:''}}</b></td>
+                                    <td style="text-align: right;"><b>{{printPdfVals.total_salesperson | currency:""}} {{defaultCurrencyCode}}</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div style="display: inline-block;height: 17px;width: 100%"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            ng-click="destroyPdfModal('salesFigureItemModal2')">Cancel</button>
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <!-- <a type="button"
+                       class="btn btn-default2"
+                       title="Generate PDF"
+                       ng-click="generatePdf(printPdfVals.reportName)">
+                        <i class="fa fa-download"
+                           aria-hidden="true"
+                           style="color:#444444;"></i>
+                    </a>
+                    <a href="app/views/invoice_templates_pdf/{{printPdfVals.reportName}}.pdf"
+                       target="_blank"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       id="displayPdf"
+                       style="display:none">
+                        <i class="fa fa-download"
+                           aria-hidden="true"></i>
+                    </a>
+                    <span class='generatingPDF'
+                          ng-if="generatingPDF">
+                        <i class='fa-spin fa fa-spinner'></i>Generating PDF</span> -->
+                    <!-- jsreport download button -->
+
+                    <a type="button"
+                       class="btn btn-default2"
+                       ng-if="!jsreportLoading"
+                       title="Download PDF"
+                       ng-click="downloadReportSalesFiguresBI(printPdfVals)">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

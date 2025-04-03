@@ -1,0 +1,185 @@
+[
+    
+    {
+        "title": "Invoice Date",
+        "field_name": "posting_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    },
+    {
+        "title": "Order Date",
+        "field_name": "order_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "date"
+    },
+    {
+        "title": "Document Type",
+        "field_name": "ttype",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "280",
+        "conditional_classes": " 'onHoldRed': value.disabled ",
+        "data_type": "string"
+    },
+    {
+        "title": "Document No.",
+        "field_name": "object_code",
+        "event": {
+            "name": "openDocumentLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.disabled ",
+        "data_type": "string"
+    },
+    {
+        "title": "Linked Doc. No.",
+        "field_name": "linked_so_po",
+        "event": {
+            "name": "openLinkedDocumentLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.disabled ",
+        "data_type": "string"
+    },    
+    {
+        "title": "Ship City",
+        "field_name": "linked_so_po_city",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "120",
+        "data_type": "string"
+    },
+    {
+        "title": "Source No.",
+        "field_name": "source_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.disabled ",
+        "data_type": "string"
+    },
+    {
+        "title": "Supp. Inv. No.(PO)",
+        "field_name": "suppInvoiceNo",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.disabled ",
+        "data_type": "string"
+    },
+    {
+        "title": "Name",
+        "field_name": "source_name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "200",
+        "conditional_classes": " 'onHoldRed': value.disabled ",
+        "data_type": "string"
+    },
+    {
+        "title": "Amount Excl. VAT",
+        "field_name": "amount_excl_vat",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.disabled ",
+        "data_type": "number"
+    },
+    {
+        "title": "Amount Incl. VAT",
+        "field_name": "amount_inc_vat",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.disabled ",
+        "data_type": "number"
+    },
+    {
+        "title": "Currency",
+        "field_name": "currency_code",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.disabled ",
+        "data_type": "string"
+    },
+    {
+        "title": "Reason",
+        "field_name": "reason",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.disabled ",
+        "data_type": "string"
+    },
+    {
+        "title": "Status",
+        "field_name": "statuss",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.disabled ",
+        "data_type": "string"
+    },
+    {
+        "title": "Comments",
+        "field_name": "comments",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "conditional_classes": " 'onHoldRed': value.disabled ",
+        "data_type": "string"
+    },
+    {
+        "title": "Action",
+        "field_name": "button3",
+        "event": {
+            "name": "CheckComments",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "htmlTemplate": "<i class=\"fa fa-external-link\"></i>",
+        "placeholder": "comments",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "120",
+        "conditional_classes": " 'onHoldRed': value.disabled ",
+        "data_type": "string"
+    }   
+]

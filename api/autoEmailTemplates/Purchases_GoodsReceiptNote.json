@@ -1,0 +1,9 @@
+{
+    "senderEmail": "",
+    "availablePlaceholders": {
+        "purchase_order_no": "order_code"
+    },
+    "fileName": "GRN.[[purchase_order_no]].[[current_company_id]].pdf",
+    "templateSubject": "abc",
+    "templateBody": "def"
+}

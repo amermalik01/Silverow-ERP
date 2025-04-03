@@ -1,0 +1,361 @@
+ <div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget"
+             style="background:none;">
+            <div class="widget-body"
+                 style="background:none;">
+                <div class="row animated fadeIn">
+                    <div class="col-md-12">
+                        <div class="panel-title2"> Task</div>
+
+
+                        <!-- <div class="col-md-4"
+                            ng-hide="addNote">
+                            <div class="input-symbol"
+                                style="display: inline">
+                                <input type="text"
+                                    tabindex="1"
+                                    ng-keydown="$event.keyCode === 13 && resetPageAndGetComments()"
+                                    ng-model="filterObject.multipleColumnSearch"
+                                    placeholder="Search"
+                                    class="form-control pull-left"
+                                    style="width: calc(100% - 89px);" />
+                                <i class="material-icons"
+                                ng-click="filterObject.multipleColumnSearch = '';clearFilterAndGetComments()"
+                                ng-if="filterObject.multipleColumnSearch">
+                                    clear
+                                </i>
+                            </div>
+                            <button ng-click="resetPageAndGetComments()"
+                                    tabindex="2"
+                                    class="btn btn-default2 btn-focus"
+                                    style="box-shadow: none;"
+                                    type="button"><i class="fa fa-search"></i>
+                            </button>
+                            <a ng-click=" showNoteAddForm()"
+                            class="pull-right btn btn_add2"
+                            tabindex="3">
+                                Add
+                            </a>
+                        </div> -->
+
+                        <div class="col-md-6">
+
+                            <div class="email-area">
+                                <b style="width: 50%;">Subject <span class="required">*</span></b>
+                                <div class="email-input">
+                                    <input required
+                                    ng-disabled="formDataTask.oldTask"
+                                        type="text"
+                                        class="form-control"
+                                        ng-readonly="check_crm_tasks_readonly"
+                                        ng-model="formDataTask.subject">
+                                </div>
+                            </div>
+
+                            <div class="email-area">
+                                <b style="width: 50%;">Priority</b>
+                                <div class="email-input">
+                                    <div data-toggle="buttons"
+                                        class="btn-group select-btn">
+                                        <label ng-disabled="formDataTask.oldTask"
+                                            ng-click="formDataTask.priority='high';"
+                                            class="btn btn-hl"
+                                            ng-class="{'active': formDataTask.priority == 'high'}">
+                                            <input type="radio"
+                                                name="options3"
+                                                autocomplete="off">! High</label>
+
+                                        <label ng-disabled="formDataTask.oldTask"
+                                            ng-click="formDataTask.priority='low';"
+                                            class="btn btn-hl"
+                                            ng-class="{'active': formDataTask.priority == 'low'}">
+                                            <input type="radio"
+                                                name="options1"
+                                                autocomplete="off">&darr;Low</label>
+
+                                        <label ng-disabled="formDataTask.oldTask"
+                                            ng-click="formDataTask.priority='';"
+                                            class="btn btn-hl"
+                                            ng-class="{'active': formDataTask.priority == ''}">
+                                            <input type="radio"
+                                                name="options2"
+                                                autocomplete="off">None</label>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="email-area"
+                                ng-show="uiselectHandler.selectedMainModule.sub_types && uiselectHandler.selectedRecord.id">
+                                <b style="width: 50%;">Sub record</b>
+                                <div class="email-input">
+                                    <select class="form-control"
+                                            ng-show="uiselectHandler.selectedMainModule.sub_types && uiselectHandler.selectedRecord.id"
+                                            ng-model="uiselectHandler.selectedSubModule"
+                                            ng-change="updateSubModule(uiselectHandler.selectedSubModule)"
+                                            ng-options="opt as opt.name for opt in uiselectHandler.selectedMainModule.sub_types">
+                                        <option value=""
+                                                disabled
+                                                selected>Select Sub Module</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="email-area">
+                                <b style="width: 50%;">Comments</b>
+                                <div class="email-input">
+                                    <textarea type="text"
+                                            class="form-control"
+                                            rows="4"
+                                            cols="30"
+                                            id="redactor_content"
+                                            style="resize: none; height: 80px;"
+                                            ng-disabled="check_crm_tasks_readonly"
+                                            ng-model="formDataTask.comments"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="email-area">
+                                <b style="width: 50%;">Due Date & Time <span class="required">*</span></b>
+                                <div class="email-input">
+                                    <input jqdatepicker
+                                        ng-disabled="formDataTask.oldTask"
+                                        required
+                                        ng-if="formDataTask.id == undefined"
+                                        class="2date-picker form-control startdate"
+                                        placeholder="dd/mm/yyyy"
+                                        id="ck_edate"
+                                        required
+                                        data-parsley-trigger="focusin focusout"
+                                        ng-readonly="check_crm_tasks_readonly"
+                                        ng-model="formDataTask.date">
+
+                                    <input jqdatepicker
+                                        ng-disabled="formDataTask.oldTask"
+                                        required
+                                        ng-if="formDataTask.id"
+                                        class="2date-picker form-control startdate"
+                                        placeholder="dd/mm/yyyy"
+                                        id="ck_edate"
+                                        required
+                                        data-parsley-trigger="focusin focusout"
+                                        ng-readonly="check_crm_tasks_readonly"
+                                        ng-model="formDataTask.tempDate">
+
+                                    <input jqtimepicker
+                                        ng-disabled="formDataTask.oldTask"
+                                        required 
+                                        readonly
+                                        
+                                        class="form-control enddate"
+                                        placeholder="--:--"
+                                        id="e_time2"
+                                        ng-model="formDataTask.time" /><!-- data-parsley-trigger="focusin focusout" -->
+                                </div>
+                            </div>
+                            <div class="email-area">
+                                <b style="width: 50%;padding: 0;margin-top: 1px;line-height: 14px;">Notification <small style="display: block;font-weight: normal;color: gray;">Reminder
+                                        before due time</small></b>
+                                <div class="email-input">
+                                    <div class="input-symbol">
+                                        <input ng-disabled="formDataTask.oldTask"
+                                            ng-model="formDataTask.reminder"
+                                            type="number"
+                                            class="form-control startdate">
+                                        <span ng-show="formDataTask.reminder > 0 && !formDataTask.oldTask"
+                                            style="cursor: pointer; left: 45%;top: 5px;color: gray;"
+                                            ng-click="formDataTask.reminder = 0;">X</span>
+                                    </div>
+                                    <select ng-disabled="formDataTask.oldTask"
+                                            ng-model="formDataTask.reminderUnit"
+                                            class="form-control enddate">
+                                        <option value="1">Min(s)</option>
+                                        <option value="2">Hour(s)</option>
+                                        <option value="3">Day(s)</option>
+                                        <option value="4">Week(s)</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="email-area">
+                                <b style="width: 50%;">Recurrence</b>
+                                <div class="email-input">
+                                    <div class="input-symbol">
+                                        <input ng-disabled="formDataTask.oldTask"
+                                            ng-model="formDataTask.recurrence"
+                                            type="number"
+                                            class="form-control startdate">
+                                        <span ng-show="formDataTask.recurrence > 0 && !formDataTask.oldTask"
+                                            style="cursor: pointer;left: 45%;top: 5px;color: gray;"
+                                            ng-click="formDataTask.recurrence = 0;">X</span>
+                                    </div>
+                                    <select ng-disabled="formDataTask.oldTask"
+                                            ng-model="formDataTask.recurrenceUnit"
+                                            class="form-control enddate">
+                                        <option value="1">Day(s)</option>
+                                        <option value="2">Week(s)</option>
+                                        <option value="3">Month(s)</option>
+                                        <option value="4">Year(s)</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- <div class="col-md-8 ipwe righttoleft"
+                            ng-hide="addNote || editMode"
+                            style="padding-left: 0;">
+                            <span style="   float: left;
+                                            display: block;
+                                            overflow: hidden;
+                                            white-space: nowrap;
+                                            text-overflow: ellipsis;
+                                            color: black;"><b ng-if="focused.subject">Subject:&nbsp</b><span
+                                    style="font-weight: normal">{{focused.subject}}</span></span>
+                            <span class="pull-right"
+                                ng-show="focused.subject"
+                                style="
+                                                
+                                                display: block;
+                                                overflow: hidden;
+                                                white-space: nowrap;
+                                                text-overflow: ellipsis;
+                                                text-align: right;">{{focused.receiver_name}} |
+                                {{focused.module_name}}</span>
+                        </div> -->
+                    </div>
+
+                    <div ng-class="{'whirl no-overlay':emailLoader.showEmailLoader}"></div> 
+                    <div class="col-md-4 righttoleft"
+                         ng-hide="addNote">
+                        <tabset class="modaltabs"
+                                style="    margin-top: -6px;">
+                            <tab active="bringingLimitedRecords"
+                                 ng-init="getComments()"
+                                 ng-click="getComments()"
+                                 ng-if="moduleTracker.module.record"
+                                 heading="{{moduleTracker.module.recordName}}">
+                                <div class="mydocs"
+                                     ng-click="updateFocusedNote(comment)"
+                                     class="{{file.fileType}}clr"
+                                     ng-repeat="comment in recod_coments"
+                                     ng-class="focused.id == comment.id?'highlightdoc':''">
+                                    <div class="mynotessubject">
+                                        <b>{{comment.receiver_name}}</b>
+                                    </div>
+                                    <div class="mynotesrecord">{{comment.subject}}</div>
+                                    <div class="mynotescomment">{{comment.description}}</div>
+                                    <div class="mynotesmodule">{{comment.module_name}}</div>
+                                    <div class="createdby"><b>{{comment.created_by_email}}</b> on
+                                        {{comment.date_created_without_seconds}}</div>
+                                </div>
+                            </tab>
+                            <tab ng-click="getComments(1)"
+                                 ng-if="!moduleTracker.module.record"
+                                 heading="All {{conditionalUpperCase(moduleTracker.module.name,3)}}">
+                                <div class="mydocs"
+                                     ng-click="updateFocusedNote(comment)"
+                                     class="{{file.fileType}}clr"
+                                     ng-repeat="comment in recod_coments"
+                                     ng-class="focused.id == comment.id?'highlightdoc':''">
+                                    <div class="mynotessubject">
+                                        <b>{{comment.receiver_name}} </b>
+                                    </div>
+                                    <div class="mynotesrecord">{{comment.subject}} </div>
+                                    <div class="mynotescomment">{{comment.description}}</div>
+                                    <div class="mynotesmodule">{{comment.module_name}}</div>
+                                    <div class="createdby"><b>{{comment.created_by_email}}</b> on
+                                        {{comment.date_created_without_seconds}}</div>
+                                </div>
+                            </tab>
+
+                        </tabset>
+                        <div class="text-center norecordmessage"
+                             ng-if="recod_coments.length == 0">
+                            <span class="mbri-edit2"></span>
+                            <div>No Notes found! Add one now!</div>
+                        </div>
+                        <div style="margin-top: 8px;">{{total || '0'}} Record(s)
+                        </div>
+                    </div>
+                    <div class="col-md-8 righttoleft"
+                         ng-show="focused.id && !addNote"
+                         style="padding-left: 0;">
+                        <div class="focusedcomments"
+                             ng-bind-html="formatComment(focused.description)"></div>
+                        <div class="cleafix">
+                            <div class="pull-left focusedcreated">
+                                by {{focused.created_by}} on {{focused.date_created}} | <b
+                                   ng-click="editThisNote(focused.id)"
+                                   class="edit-notes"><i class="fa fa-edit"></i> Edit Note</b>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 righttoleft"
+                         ng-show="addNote && !editMode">
+                    </div>
+                    <div class="col-md-8"></div>
+                    <div class="col-md-12 righttoleft"
+                         ng-show="addNote">
+                        <div class="email-area"
+                             ng-show="selectedNotesRecord.id || editMode">
+                            <b>Subject
+                                <span class="required">*</span>
+                            </b>
+                            <div class="email-input">
+                                <input type="text"
+                                       maxlength="100"
+                                       ng-model="coment_notes_data.subject"
+                                       ng-disabled="check_crm_tasks_readonly"
+                                       required
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div class="email-area"
+                             ng-show="selectedNotesRecord.id || editMode">
+                            <b>Comments
+                                <span class="required">*</span>
+                            </b>
+                            <div class="email-input">
+                                <textarea maxlength="1000"
+                                          name=""
+                                          id=""
+                                          cols="30"
+                                          rows="10"
+                                          class="form-control"
+                                          ng-model="coment_notes_data.description"
+                                          ng-disabled="check_crm_tasks_readonly"
+                                          required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <div class="pull-right">
+
+                                <button class="btn btn-delete" type="button"  ng-show="editMode" ng-click="deleteCRMtask(coment_notes_data.id)">Delete</button>
+
+                                <button class="btn btn-submit" type="submit" ng-show="!check_crm_tasks_readonly">Save</button>
+
+                                <button class="btn btn-edit" type="button" ng-click="showEditForm_Tasks()" ng-if="check_crm_tasks_readonly">Edit</button>
+
+                                <button class="btn btn-cancel" type="button" ng-click="clearNotesVarsCRM()">Cancel </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

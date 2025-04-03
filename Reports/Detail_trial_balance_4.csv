@@ -1,0 +1,1765 @@
+"Buland Ltd"
+"Trial Balance - Detailed"
+"From 01/10/2020 To 30/09/2021"
+
+"Posting Date","G/L Account No.","G/L Name","Doc. Type","Doc. No.","Source No.","Source Name",Debit,Credit,Amount,"Entry No."
+
+,1010,Goodwill,"Opening Balance",,,,,,0,
+,1010,Goodwill,"Closing Balance",,,,0,0,0,
+,1050,"Trade Mark","Opening Balance",,,,,,0,
+,1050,"Trade Mark","Closing Balance",,,,0,0,0,
+,1105,"Land & Buildings - Costs","Opening Balance",,,,,,0,
+,1105,"Land & Buildings - Costs","Closing Balance",,,,0,0,0,
+,1110,"Land & Buildings - Additions","Opening Balance",,,,,,0,
+14/12/2020,1110,"Land & Buildings - Additions",,GJ0057,1110,"Valuation Fee - Robin",434.95,,434.95,557
+14/12/2020,1110,"Land & Buildings - Additions",,GJ0057,1110,"Valuation Fee - Nighting",594.55,,1029.50,558
+22/01/2021,1110,"Land & Buildings - Additions",,PI0002,SUP0003,"Maher & Co.",920241.13,,921270.63,485
+22/01/2021,1110,"Land & Buildings - Additions",,PI0002,SUP0003,"Maher & Co.",308.00,,921578.63,486
+22/01/2021,1110,"Land & Buildings - Additions",,PI0002,SUP0003,"Maher & Co.",1800.00,,923378.63,487
+22/01/2021,1110,"Land & Buildings - Additions",,PI0002,SUP0003,"Maher & Co.",1799.20,,925177.83,488
+22/01/2021,1110,"Land & Buildings - Additions",,PI0002,SUP0003,"Maher & Co.",48600.00,,973777.83,489
+02/02/2021,1110,"Land & Buildings - Additions",,PI0001,SUP0003,"Maher & Co.",550000.00,,1523777.83,476
+02/02/2021,1110,"Land & Buildings - Additions",,PI0001,SUP0003,"Maher & Co.",3010.00,,1526787.83,477
+02/02/2021,1110,"Land & Buildings - Additions",,PI0001,SUP0003,"Maher & Co.",50.00,,1526837.83,478
+02/02/2021,1110,"Land & Buildings - Additions",,PI0001,SUP0003,"Maher & Co.",1800.00,,1528637.83,479
+02/02/2021,1110,"Land & Buildings - Additions",,PI0001,SUP0003,"Maher & Co.",72.00,,1528709.83,480
+02/02/2021,1110,"Land & Buildings - Additions",,PI0001,SUP0003,"Maher & Co.",19000.00,,1547709.83,481
+02/02/2021,1110,"Land & Buildings - Additions",,PI0001,SUP0003,"Maher & Co.",1460.30,,1549170.13,482
+,1110,"Land & Buildings - Additions","Closing Balance",,,,1549170.13,0,1549170.13,
+,1120,"Land & Buildings -  Disposals","Opening Balance",,,,,,0,
+,1120,"Land & Buildings -  Disposals","Closing Balance",,,,0,0,0,
+,1130,"Buildings - Accumulated Depreciation","Opening Balance",,,,,,0,
+,1130,"Buildings - Accumulated Depreciation","Closing Balance",,,,0,0,0,
+,1165,"Office Equipment and IT - Costs","Opening Balance",,,,,,0,
+,1165,"Office Equipment and IT - Costs","Closing Balance",,,,0,0,0,
+,1170,"Office Equipment and IT - Additions","Opening Balance",,,,,,0,
+,1170,"Office Equipment and IT - Additions","Closing Balance",,,,0,0,0,
+,1180,"Office Equipment and IT - Disposals","Opening Balance",,,,,,0,
+,1180,"Office Equipment and IT - Disposals","Closing Balance",,,,0,0,0,
+,1190,"Office Equipment and IT - Accumulated Depreciation","Opening Balance",,,,,,0,
+,1190,"Office Equipment and IT - Accumulated Depreciation","Closing Balance",,,,0,0,0,
+,1210,"Fixtures and Fittings - Costs","Opening Balance",,,,,,0,
+,1210,"Fixtures and Fittings - Costs","Closing Balance",,,,0,0,0,
+,1220,"Fixture and Fittings - Additions","Opening Balance",,,,,,0,
+,1220,"Fixture and Fittings - Additions","Closing Balance",,,,0,0,0,
+,1230,"Fixture and Fittings- Disposals","Opening Balance",,,,,,0,
+,1230,"Fixture and Fittings- Disposals","Closing Balance",,,,0,0,0,
+,1240,"Fixtures and Fittings - Accumulated Depreciation","Opening Balance",,,,,,0,
+,1240,"Fixtures and Fittings - Accumulated Depreciation","Closing Balance",,,,0,0,0,
+,1260,"Plant & Machinery - Costs","Opening Balance",,,,,,0,
+,1260,"Plant & Machinery - Costs","Closing Balance",,,,0,0,0,
+,1270,"Plant & Machinery - Additions","Opening Balance",,,,,,0,
+,1270,"Plant & Machinery - Additions","Closing Balance",,,,0,0,0,
+,1280,"Plant & Machinery - Disposals","Opening Balance",,,,,,0,
+,1280,"Plant & Machinery - Disposals","Closing Balance",,,,0,0,0,
+,1290,"Plant & Machiney - Accumulated Depreciation","Opening Balance",,,,,,0,
+,1290,"Plant & Machiney - Accumulated Depreciation","Closing Balance",,,,0,0,0,
+,1310,"Motor Vehicles - Costs","Opening Balance",,,,,,0,
+,1310,"Motor Vehicles - Costs","Closing Balance",,,,0,0,0,
+,1320,"Motor Vehicles - Additions","Opening Balance",,,,,,0,
+,1320,"Motor Vehicles - Additions","Closing Balance",,,,0,0,0,
+,1330,"Motor Vehicles - Disposals","Opening Balance",,,,,,0,
+,1330,"Motor Vehicles - Disposals","Closing Balance",,,,0,0,0,
+,1340,"Motor Vehicles - Accumulated Depreciation","Opening Balance",,,,,,0,
+,1340,"Motor Vehicles - Accumulated Depreciation","Closing Balance",,,,0,0,0,
+,1600,Stock,"Opening Balance",,,,,,0,
+,1600,Stock,"Closing Balance",,,,0,0,0,
+,1700,"Trade Receivables","Opening Balance",,,,,,0,
+,1700,"Trade Receivables","Closing Balance",,,,0,0,0,
+,1800,"Other Receivables","Opening Balance",,,,,,0,
+,1800,"Other Receivables","Closing Balance",,,,0,0,0,
+,1900,Prepayments,"Opening Balance",,,,,,0,
+,1900,Prepayments,"Closing Balance",,,,0,0,0,
+,2000,Cash,"Opening Balance",,,,,,0,
+29/03/2021,2000,Cash,,SJ0130,SUP0001,"Trade Point",,62.26,-62.26,2531
+30/03/2021,2000,Cash,,SJ0128,SUP0001,"Trade Point",,12.37,-74.63,2521
+,2000,Cash,"Closing Balance",,,,0,74.63,-74.63,
+,2100,"Bank - Coutts Account","Opening Balance",,,,,,0,
+24/11/2020,2100,"Bank - Coutts Account",,GJ0036,2100,"Bank - Current Account",,100.00,-100.00,327
+24/11/2020,2100,"Bank - Coutts Account",,GJ0057,2100,"Faster Payment - Correction",200.00,,100.00,559
+14/12/2020,2100,"Bank - Coutts Account",,GJ0050,2100,"Bank - Coutts Account",1000.00,,1100.00,453
+14/12/2020,2100,"Bank - Coutts Account",,GJ0050,2100,"Bank - Coutts Account",6000.00,,7100.00,454
+14/12/2020,2100,"Bank - Coutts Account",,GJ0057,1110,"Valuation Fee - Robin",,434.95,6665.05,560
+14/12/2020,2100,"Bank - Coutts Account",,GJ0057,1110,"Valuation Fee - Nighting",,594.55,6070.50,561
+16/12/2020,2100,"Bank - Coutts Account",,SJ0009,SUP0003,"Maher & Co.",,1000.00,5070.50,556
+31/12/2020,2100,"Bank - Coutts Account",,SJ0001,SUP0002,"Coutts & Co.",,120.35,4950.15,444
+04/01/2021,2100,"Bank - Coutts Account",,GJ0051,2100,"Life Insurnce",,97.18,4852.97,445
+04/01/2021,2100,"Bank - Coutts Account",,SJ0010,SUP0003,"Maher & Co.",,500.00,4352.97,564
+15/01/2021,2100,"Bank - Coutts Account",,SJ0190,SUP0003,"Maher & Co.",,500.00,3852.97,3645
+26/01/2021,2100,"Bank - Coutts Account",,GJ0051,2100,"Bank - Coutts Account",250000.00,,253852.97,446
+26/01/2021,2100,"Bank - Coutts Account",,GJ0051,2100,"Bank - Coutts Account",250000.00,,503852.97,447
+26/01/2021,2100,"Bank - Coutts Account",,SJ0011,SUP0003,"Maher & Co.",,320542.20,183310.77,572
+27/01/2021,2100,"Bank - Coutts Account",,GJ0051,2100,"Bank - Coutts Account",212000.00,,395310.77,448
+27/01/2021,2100,"Bank - Coutts Account",,SJ0011,SUP0003,"Maher & Co.",,241.13,395069.64,573
+27/01/2021,2100,"Bank - Coutts Account",,GJ0058,6112,"Nightingale - Mortgage Fee",,3255.00,391814.64,582
+03/02/2021,2100,"Bank - Coutts Account",,SJ0011,SUP0003,"Maher & Co.",,189927.30,201887.34,574
+05/02/2021,2100,"Bank - Coutts Account",,GJ0056,2100,"Bank - Coutts Account",,97.18,201790.16,527
+05/02/2021,2100,"Bank - Coutts Account",,GJ0058,6170,"Robin - Mortgage Fee",,1925.00,199865.16,581
+17/02/2021,2100,"Bank - Coutts Account",,SJ0004,SUP0001,"Maher & Co",,760.00,199105.16,474
+17/02/2021,2100,"Bank - Coutts Account",,SJ0011,SUP0003,"Maher & Co.",,760.00,198345.16,575
+17/02/2021,2100,"Bank - Coutts Account",,SJ0011,SUP0001,"Maher & Co. - correction",760.00,,199105.16,576
+17/02/2021,2100,"Bank - Coutts Account",,SJ0011,SUP0001,"Maher & Co. - correction",760.00,,199865.16,577
+17/02/2021,2100,"Bank - Coutts Account",,SJ0197,SUP0003,"Maher & Co.",,500.00,199365.16,3705
+17/02/2021,2100,"Bank - Coutts Account",,SJ0205,SUP0003,"Maher & Co.",,760.00,198605.16,3795
+17/02/2021,2100,"Bank - Coutts Account",,GJ0017,2510,"Trade Payables",500.00,,199105.16,3797
+25/02/2021,2100,"Bank - Coutts Account",,SJ0003,SUP0001,"The Under Floor Heating",,1690.42,197414.74,472
+25/02/2021,2100,"Bank - Coutts Account",,SJ0011,SUP0001,"Underfloor Heating - posted twice",1690.42,,199105.16,578
+25/02/2021,2100,"Bank - Coutts Account",,SJ0146,SUP0001,"Underfloor Heating",,1690.42,197414.74,3540
+01/03/2021,2100,"Bank - Coutts Account",,GJ0059,2100,"Nightingale - Mortgage Interest Payment",,1378.79,196035.95,583
+03/03/2021,2100,"Bank - Coutts Account",,SJ0133,SUP0001,"First Choice Fire",,120.00,195915.95,3520
+05/03/2021,2100,"Bank - Coutts Account",,GJ0055,8250,"Life Insurance",,97.18,195818.77,470
+05/03/2021,2100,"Bank - Coutts Account",,GJ0059,2100,"Robin - Mortgage Interest Payment",,815.39,195003.38,584
+05/03/2021,2100,"Bank - Coutts Account",,SJ0109,SUP0001,Purchase,,3000.00,192003.38,2426
+10/03/2021,2100,"Bank - Coutts Account",,SJ0194,SUP0001,"The Underfloor",,278.18,191725.20,3690
+12/03/2021,2100,"Bank - Coutts Account",,CJ0001,CUS0001,"Nightingale, Windsor",4038.00,,195763.20,613
+16/03/2021,2100,"Bank - Coutts Account",,SJ0007,SUP0001,Purchase,,9100.92,186662.28,549
+16/03/2021,2100,"Bank - Coutts Account",,SJ0008,SUP0001,Purchase,,320.00,186342.28,554
+19/03/2021,2100,"Bank - Coutts Account",,SJ0006,SUP0001,"E.L Warren",,785.90,185556.38,526
+19/03/2021,2100,"Bank - Coutts Account",,CJ0001,CUS0001,"Nightingale, Windsor",10000.00,,195556.38,609
+19/03/2021,2100,"Bank - Coutts Account",,CJ0001,CUS0001,"Nightingale, Windsor",10000.00,,205556.38,610
+19/03/2021,2100,"Bank - Coutts Account",,CJ0001,CUS0001,"Nightingale, Windsor",8500.00,,214056.38,611
+19/03/2021,2100,"Bank - Coutts Account",,CJ0001,CUS0001,"Nightingale, Windsor",10000.00,,224056.38,612
+22/03/2021,2100,"Bank - Coutts Account",,SJ0007,SUP0001,Purchase,,4507.32,219549.06,548
+23/03/2021,2100,"Bank - Coutts Account",,SJ0002,SUP0001,Purchase,,503.00,219046.06,510
+29/03/2021,2100,"Bank - Coutts Account",,SJ0007,SUP0001,Purchase,,4800.00,214246.06,547
+29/03/2021,2100,"Bank - Coutts Account",,GJ0059,2100,"Nightingale - Mortgage Interest Payment",,1378.79,212867.27,585
+01/04/2021,2100,"Bank - Coutts Account",,SJ0005,SUP0001,Purchase,,72.00,212795.27,524
+01/04/2021,2100,"Bank - Coutts Account",,SJ0116,SUP0001,Purchase,,72.00,212723.27,2461
+01/04/2021,2100,"Bank - Coutts Account",,GJ0067,SUP0001,"Purchase (CDN)",72.00,,212795.27,3647
+06/04/2021,2100,"Bank - Coutts Account",,GJ0060,2100,"Robin - Mortgage Interest Payment",,815.39,211979.88,691
+06/04/2021,2100,"Bank - Coutts Account",,SJ0115,SUP0001,Purchase,,97.18,211882.70,2456
+09/04/2021,2100,"Bank - Coutts Account",,SJ0113,SUP0001,Purchase,,5190.00,206692.70,2446
+16/04/2021,2100,"Bank - Coutts Account",,SJ0114,SUP0001,Purchase,,85.00,206607.70,2451
+19/04/2021,2100,"Bank - Coutts Account",,SJ0117,SUP0001,Purchase,,250.00,206357.70,2466
+27/04/2021,2100,"Bank - Coutts Account",,GJ0060,2100,"Nightingale - Mortgage Interest Payment",,1378.79,204978.91,690
+28/04/2021,2100,"Bank - Coutts Account",,SJ0106,SUP0001,"DC Renovations",,5504.90,199474.01,2399
+29/04/2021,2100,"Bank - Coutts Account",,GJ0016,8850,Dividend-SU,,1000.00,198474.01,3790
+30/04/2021,2100,"Bank - Coutts Account",,SJ0123,SUP0001,Envirofresh,,10.00,198464.01,2496
+02/05/2021,2100,"Bank - Coutts Account",,SJ0124,SUP0001,"Richmond Council",,593.88,197870.13,2501
+03/05/2021,2100,"Bank - Coutts Account",,SJ0016,SUP0001,Herath,,3600.00,194270.13,721
+03/05/2021,2100,"Bank - Coutts Account",,SJ0016,SUP0001,Herath,,3600.00,190670.13,722
+03/05/2021,2100,"Bank - Coutts Account",,GJ0073,SUP0001,Herath-Correction,3600.00,,194270.13,747
+05/05/2021,2100,"Bank - Coutts Account",,GJ0072,8250,"Life Insurance",,97.18,194172.95,740
+05/05/2021,2100,"Bank - Coutts Account",,GJ0072,6190,"Robin's - Mortgage Interest",,815.39,193357.56,741
+06/05/2021,2100,"Bank - Coutts Account",,SJ0017,SUP0001,"L Underwood",,2500.00,190857.56,727
+07/05/2021,2100,"Bank - Coutts Account",,GJ0066,2100,"Robin - Mortgage Interest Payment",,815.39,190042.17,953
+10/05/2021,2100,"Bank - Coutts Account",,GJ0104,8850,Dividend-SU,,10000.00,180042.17,1165
+13/05/2021,2100,"Bank - Coutts Account",,GJ0072,6105,"Nightingale Repair & Maintenance",,6.00,180036.17,742
+13/05/2021,2100,"Bank - Coutts Account",,GJ0072,SUP0001,"L&E Cleaning",,234.00,179802.17,745
+19/05/2021,2100,"Bank - Coutts Account",,SJ0125,SUP0001,"Ashmore Property Services",,198.00,179604.17,2506
+27/05/2021,2100,"Bank - Coutts Account",,GJ0072,6150,"Nightingale Mortgage Interest",,1378.79,178225.38,743
+30/05/2021,2100,"Bank - Coutts Account",,SJ0018,SUP0001,"DC Renovations",,3275.00,174950.38,735
+01/06/2021,2100,"Bank - Coutts Account",,SJ0126,SUP0001,"Concept Property Management",,125.00,174825.38,2511
+01/06/2021,2100,"Bank - Coutts Account",,GJ0013,2510,"Trade Payables",,125.00,174700.38,3767
+01/06/2021,2100,"Bank - Coutts Account",,GJ0020,2510,"Trade Payables",300.00,,175000.38,3803
+01/06/2021,2100,"Bank - Coutts Account",,GJ0021,2510,"Trade Payables",,50.00,174950.38,3811
+07/06/2021,2100,"Bank - Coutts Account",,GJ0066,2100,Insurance,,97.18,174853.20,954
+10/06/2021,2100,"Bank - Coutts Account",,SJ0147,SUP0001,CGL,,84.00,174769.20,3542
+16/06/2021,2100,"Bank - Coutts Account",,GJ0087,4011,"Rent Robin",,2250.00,172519.20,961
+16/06/2021,2100,"Bank - Coutts Account",,GJ0088,4011,"Rent Robin/correction",2250.00,,174769.20,963
+16/06/2021,2100,"Bank - Coutts Account",,GJ0088,CUS0002,"Robins, Richmond",2250.00,,177019.20,967
+16/06/2021,2100,"Bank - Coutts Account",,CJ0005,CUS0002,"Robins, Richmond",2250.00,,179269.20,971
+16/06/2021,2100,"Bank - Coutts Account",,GJ0103,4011,"Rent Robin",,2250.00,177019.20,1163
+23/06/2021,2100,"Bank - Coutts Account",,SJ0100,SUP0001,"Go Cardless",,7.20,177012.00,3522
+29/06/2021,2100,"Bank - Coutts Account",,GJ0066,2100,"Nightingale - Mortgage Interest Payment",,1378.79,175633.21,952
+30/06/2021,2100,"Bank - Coutts Account",,GJ0086,4850,"Bank Charges",133.65,,175766.86,959
+30/06/2021,2100,"Bank - Coutts Account",,GJ0012,4850,"Bank Charges",,133.65,175633.21,3765
+05/07/2021,2100,"Bank - Coutts Account",,GJ0092,2100,"Robin - Mortgage Interest Payment",,815.39,174817.82,1020
+05/07/2021,2100,"Bank - Coutts Account",,GJ0093,2100,"Bank - Coutts Account",,97.18,174720.64,1023
+13/07/2021,2100,"Bank - Coutts Account",,SJ0140,SUP0001,"Windmill Heating",,1218.00,173502.64,3528
+14/07/2021,2100,"Bank - Coutts Account",,SJ0141,SUP0001,"Concept Property Management",,125.00,173377.64,3530
+15/07/2021,2100,"Bank - Coutts Account",,CJ0006,CUS0002,"Robins, Richmond",2250.00,,175627.64,1041
+20/07/2021,2100,"Bank - Coutts Account",,SJ0138,SUP0001,"Go Cardless",,7.20,175620.44,3524
+27/07/2021,2100,"Bank - Coutts Account",,GJ0092,2100,"Nightingale - Mortgage Interest Payment",,1378.79,174241.65,1019
+05/08/2021,2100,"Bank - Coutts Account",,GJ0105,8250,"Life Insurance",,97.18,174144.47,1169
+05/08/2021,2100,"Bank - Coutts Account",,SJ0142,SUP0001,"HS Heating",,1510.07,172634.40,3532
+10/08/2021,2100,"Bank - Coutts Account",,GJ0105,3210,"Mortgage Robin's",,815.39,171819.01,1168
+10/08/2021,2100,"Bank - Coutts Account",,SJ0019,SUP0001,"unique Glazing",,1000.00,170819.01,1174
+16/08/2021,2100,"Bank - Coutts Account",,SJ0143,SUP0001,"British Gas",,158.49,170660.52,3534
+16/08/2021,2100,"Bank - Coutts Account",,CJ0017,CUS0002,"Robins, Richmond",2250.00,,172910.52,3652
+19/08/2021,2100,"Bank - Coutts Account",,SJ0195,SUP0001,"Go Cardless",,7.20,172903.32,3695
+27/08/2021,2100,"Bank - Coutts Account",,GJ0001,2100,"Nightingale - Mortgage Interest Payment",,1378.79,171524.53,3627
+31/08/2021,2100,"Bank - Coutts Account",,GJ0106,8700,"General Expenses",,8.65,171515.88,1176
+31/08/2021,2100,"Bank - Coutts Account",,GJ0014,8700,"General Expenses",8.65,,171524.53,3774
+02/09/2021,2100,"Bank - Coutts Account",,SJ0144,SUP0001,"Unique Glazing",,1000.00,170524.53,3536
+06/09/2021,2100,"Bank - Coutts Account",,GJ0001,2100,"Robin - Mortgage Interest Payment",,815.39,169709.14,3628
+06/09/2021,2100,"Bank - Coutts Account",,GJ0005,2100,"Bank - Coutts Account",,97.18,169611.96,3653
+15/09/2021,2100,"Bank - Coutts Account",,CJ0018,CUS0002,"Robins, Richmond",2250.00,,171861.96,3736
+16/09/2021,2100,"Bank - Coutts Account",,SJ0196,SUP0001,"Go Cardless",,7.20,171854.76,3700
+27/09/2021,2100,"Bank - Coutts Account",,GJ0002,2100,"Nightingale - Mortgage Interest Payment",,1378.79,170475.97,3631
+27/09/2021,2100,"Bank - Coutts Account",,SJ0204,SUP0001,Purchase,,12000.00,158475.97,3772
+30/09/2021,2100,"Bank - Coutts Account",,GJ0101,4850,"Bank Charges",,133.65,158342.32,1139
+,2100,"Bank - Coutts Account","Closing Balance",,,,783062.72,624720.4,158342.32,
+,2110,"Bank - Other acct.","Opening Balance",,,,,,0,
+,2110,"Bank - Other acct.","Closing Balance",,,,0,0,0,
+,2130,"Credit Card","Opening Balance",,,,,,0,
+31/10/2020,2130,"Credit Card",,SJ0037,SUP0001,Purchase,,38748.46,-38748.46,1507
+31/12/2020,2130,"Credit Card",,SJ0038,SUP0001,Purchase,,11759.29,-50507.75,1509
+05/03/2021,2130,"Credit Card",,SJ0131,SUP0001,Screfix,,79.98,-50587.73,3456
+06/03/2021,2130,"Credit Card",,SJ0108,SUP0001,Purchase,,168.00,-50755.73,2421
+07/03/2021,2130,"Credit Card",,SJ0132,SUP0001,Homebase,,66.57,-50822.30,3454
+14/03/2021,2130,"Credit Card",,SJ0118,SUP0001,Ikea,,136.25,-50958.55,2483
+17/03/2021,2130,"Credit Card",,SJ0233,SUP0001,"LONDON LANDBAY",,150.00,-51108.55,3968
+18/03/2021,2130,"Credit Card",,SJ0119,SUP0001,lights.co.uk,,306.30,-51414.85,2485
+24/03/2021,2130,"Credit Card",,SJ0149,SUP0001,Microsoft,,9.12,-51423.97,3544
+29/03/2021,2130,"Credit Card",,SJ0120,SUP0001,lights.co.uk,,28.80,-51452.77,2487
+29/03/2021,2130,"Credit Card",,SJ0150,SUP0001,Purchase,,14.99,-51467.76,3548
+02/04/2021,2130,"Credit Card",,SJ0121,SUP0001,Nespresso,,57.10,-51524.86,2489
+05/04/2021,2130,"Credit Card",,SJ0112,SUP0001,Purchase,,362.07,-51886.93,2444
+05/04/2021,2130,"Credit Card",,SJ0122,SUP0001,RBWM,,204.35,-52091.28,2491
+15/04/2021,2130,"Credit Card",,SJ0127,SUP0001,"Post Office",,44.62,-52135.90,2516
+17/04/2021,2130,"Credit Card",,SJ0151,SUP0001,Windsor,,99.50,-52235.40,3550
+20/04/2021,2130,"Credit Card",,SJ0152,SUP0001,"Top Works",,40.00,-52275.40,3552
+25/04/2021,2130,"Credit Card",,SJ0148,SUP0001,Microsoft,,9.12,-52284.52,3546
+26/04/2021,2130,"Credit Card",,SJ0153,SUP0001,Screwfix,,12.65,-52297.17,3554
+26/04/2021,2130,"Credit Card",,SJ0154,SUP0001,Screfix,,25.98,-52323.15,3556
+28/04/2021,2130,"Credit Card",,SJ0111,SUP0001,Purchase,,180.00,-52503.15,2436
+28/04/2021,2130,"Credit Card",,SJ0129,SUP0001,Shell,,61.30,-52564.45,2526
+29/04/2021,2130,"Credit Card",,SJ0110,SUP0001,Purchase,,368.99,-52933.44,2431
+02/05/2021,2130,"Credit Card",,SJ0207,SUP0001,Purchase,,6.00,-52939.44,3831
+03/05/2021,2130,"Credit Card",,SJ0155,SUP0001,Purchase,,126.38,-53065.82,3558
+08/05/2021,2130,"Credit Card",,SJ0156,SUP0001,Brewers,,39.85,-53105.67,3560
+10/05/2021,2130,"Credit Card",,SJ0206,SUP0001,"Chelsea T2 EU",,40.00,-53145.67,3836
+14/05/2021,2130,"Credit Card",,SJ0208,SUP0001,"TIMPSON LTD",,25.00,-53170.67,3841
+20/05/2021,2130,"Credit Card",,SJ0209,SUP0001,WICKES,,3.00,-53173.67,3846
+20/05/2021,2130,"Credit Card",,SJ0210,SUP0001,TIMPSON,,10.00,-53183.67,3851
+24/05/2021,2130,"Credit Card",,SJ0157,SUP0001,Microsoft,,18.24,-53201.91,3562
+24/05/2021,2130,"Credit Card",,SJ0211,SUP0001,"HM LAND REGISTRY",,3.00,-53204.91,3856
+25/05/2021,2130,"Credit Card",,SJ0212,SUP0001,WICKES,,10.20,-53215.11,3861
+29/05/2021,2130,"Credit Card",,SJ0213,SUP0001,"PING PONG JAM",,94.75,-53309.86,3866
+06/06/2021,2130,"Credit Card",,SJ0158,SUP0001,Wordery,,13.62,-53323.48,3564
+09/06/2021,2130,"Credit Card",,SJ0159,SUP0001,"B & Q",,31.90,-53355.38,3566
+09/06/2021,2130,"Credit Card",,SJ0160,SUP0001,"B & Q",,40.00,-53395.38,3568
+11/06/2021,2130,"Credit Card",,SJ0214,SUP0001,expresstest.co.uk,,59.00,-53454.38,3871
+20/06/2021,2130,"Credit Card",,SJ0161,SUP0001,Leonards,,150.00,-53604.38,3570
+23/06/2021,2130,"Credit Card",,SJ0215,SUP0001,"WINDSOR MEZE GRILL KITCHEN",,44.00,-53648.38,3876
+24/06/2021,2130,"Credit Card",,SJ0162,SUP0001,MIcrosoft,,13.68,-53662.06,3572
+26/06/2021,2130,"Credit Card",,SJ0163,SUP0001,Ebay,,6.99,-53669.05,3574
+26/06/2021,2130,"Credit Card",,SJ0164,SUP0001,Ebay,,14.06,-53683.11,3576
+28/06/2021,2130,"Credit Card",,SJ0165,SUP0001,Ebay,,2.99,-53686.10,3578
+28/06/2021,2130,"Credit Card",,SJ0166,SUP0001,Ebay,,7.69,-53693.79,3580
+28/06/2021,2130,"Credit Card",,SJ0167,SUP0001,Ebay,,10.98,-53704.77,3582
+30/06/2021,2130,"Credit Card",,SJ0168,SUP0001,LBHF,,65.00,-53769.77,3584
+30/06/2021,2130,"Credit Card",,SJ0169,SUP0001,"V Dhariwal",,339.85,-54109.62,3586
+02/07/2021,2130,"Credit Card",,SJ0216,SUP0001,INTEREST,,3.45,-54113.07,3881
+03/07/2021,2130,"Credit Card",,SJ0170,SUP0001,"Company House",,13.00,-54126.07,3588
+09/07/2021,2130,"Credit Card",,SJ0171,SUP0001,Brasserie,,6.24,-54132.31,3590
+10/07/2021,2130,"Credit Card",,SJ0172,SUP0001,"Chiasso Bravo",,267.80,-54400.11,3592
+14/07/2021,2130,"Credit Card",,SJ0173,SUP0001,"LONDON STANSTED AIRPOR",,109.00,-54509.11,3594
+15/07/2021,2130,"Credit Card",,SJ0174,SUP0001,"WAKEFIELD WOOLLEY EDGE NORTH MWS",,25.26,-54534.37,3596
+15/07/2021,2130,"Credit Card",,SJ0175,SUP0001,Shell,,79.87,-54614.24,3598
+17/07/2021,2130,"Credit Card",,SJ0176,SUP0001,"PASSPORT OFFICE",,49.00,-54663.24,3600
+24/07/2021,2130,"Credit Card",,SJ0177,SUP0001,Microsoft,,13.68,-54676.92,3602
+31/07/2021,2130,"Credit Card",,SJ0178,SUP0001,"LONDON PF CHANG",,88.05,-54764.97,3604
+03/08/2021,2130,"Credit Card",,SJ0179,SUP0001,SELCO,,6.61,-54771.58,3606
+07/08/2021,2130,"Credit Card",,SJ0032,SUP0001,BP,,93.55,-54865.13,1432
+08/08/2021,2130,"Credit Card",,SJ0180,SUP0001,"Pizza Express",,90.05,-54955.18,3608
+08/08/2021,2130,"Credit Card",,SJ0181,SUP0001,TFL,,15.00,-54970.18,3610
+16/08/2021,2130,"Credit Card",,SJ0182,SUP0001,"FARNHAM GIGGLING SQUID",,81.29,-55051.47,3612
+20/08/2021,2130,"Credit Card",,SJ0183,SUP0001,"0845 601 7074 ESURE MOTOR",,47.36,-55098.83,3614
+23/08/2021,2130,"Credit Card",,SJ0184,SUP0001,Toll,,7.00,-55105.83,3616
+23/08/2021,2130,"Credit Card",,SJ0185,SUP0001,"Hello Ventures B.V.",,16.55,-55122.38,3618
+23/08/2021,2130,"Credit Card",,SJ0186,SUP0001,"MANCHESTER AIRPORT",,235.50,-55357.88,3620
+24/08/2021,2130,"Credit Card",,SJ0187,SUP0001,Microsoft,,13.68,-55371.56,3622
+26/08/2021,2130,"Credit Card",,SJ0188,SUP0001,Purchase,,94.00,-55465.56,3624
+05/09/2021,2130,"Credit Card",,SJ0189,SUP0001,"123 REG",,57.56,-55523.12,3626
+15/09/2021,2130,"Credit Card",,SJ0031,SUP0001,"Silva Timber",,220.43,-55743.55,1412
+19/09/2021,2130,"Credit Card",,SJ0032,SUP0001,Ascot,,76.44,-55819.99,1431
+21/09/2021,2130,"Credit Card",,SJ0032,SUP0001,"Windsor traders",,45.53,-55865.52,1430
+27/09/2021,2130,"Credit Card",,SJ0031,SUP0001,Mfg,,39.00,-55904.52,1413
+30/09/2021,2130,"Credit Card",,GJ0107,8700,"Expenses Sep21",,515.70,-56420.22,1183
+,2130,"Credit Card","Closing Balance",,,,0,56420.22,-56420.22,
+,2140,"Empty (DO NOT USE)","Opening Balance",,,,,,0,
+,2140,"Empty (DO NOT USE)","Closing Balance",,,,0,0,0,
+,2510,"Trade Payables","Opening Balance",,,,,,-26227.75,
+01/10/2020,2510,"Trade Payables",,PI0400,SUP0001,AlMurad,,1000.00,-27227.75,2940
+01/10/2020,2510,"Trade Payables",,PI0401,SUP0001,Leaseplan,,100.00,-27327.75,2943
+01/10/2020,2510,"Trade Payables",,PI0402,SUP0001,"Post Office",,6.70,-27334.45,2946
+01/10/2020,2510,"Trade Payables",,PI0403,SUP0001,BP,,56.36,-27390.81,2949
+01/10/2020,2510,"Trade Payables",,PI0404,SUP0001,"Post Office",,6.70,-27397.51,2952
+02/10/2020,2510,"Trade Payables",,PI0396,SUP0001,Feya,,8.50,-27406.01,2928
+02/10/2020,2510,"Trade Payables",,PI0397,SUP0001,"C Wala",,7.00,-27413.01,2931
+02/10/2020,2510,"Trade Payables",,PI0398,SUP0001,"C Wala",,13.50,-27426.51,2934
+02/10/2020,2510,"Trade Payables",,PI0399,SUP0001,Mantl,,78.75,-27505.26,2937
+03/10/2020,2510,"Trade Payables",,PI0394,SUP0001,"C Wala",,24.65,-27529.91,2922
+03/10/2020,2510,"Trade Payables",,PI0395,SUP0001,"C Wala",,5.00,-27534.91,2925
+06/10/2020,2510,"Trade Payables",,PI0393,SUP0001,Dixons,,79.99,-27614.90,2919
+07/10/2020,2510,"Trade Payables",,PI0392,SUP0001,BP,,59.04,-27673.94,2916
+08/10/2020,2510,"Trade Payables",,PI0390,SUP0001,Selco,,56.08,-27730.02,2910
+08/10/2020,2510,"Trade Payables",,PI0391,SUP0001,Selco,,113.01,-27843.03,2913
+08/10/2020,2510,"Trade Payables",,PI0549,SUP0001,Skip,,210.00,-28053.03,3387
+10/10/2020,2510,"Trade Payables",,PI0385,SUP0001,Cosi,,3300.00,-31353.03,2895
+10/10/2020,2510,"Trade Payables",,PI0386,SUP0001,"C Wala",,17.80,-31370.83,2898
+11/10/2020,2510,"Trade Payables",,PI0384,SUP0001,Ivy,,148.84,-31519.67,2892
+12/10/2020,2510,"Trade Payables",,PI0383,SUP0001,eggfreecake,,29.99,-31549.66,2889
+12/10/2020,2510,"Trade Payables",,PI0387,SUP0001,Fego,,36.34,-31586.00,2901
+12/10/2020,2510,"Trade Payables",,PI0388,SUP0001,"Plumbers Point",,591.54,-32177.54,2904
+12/10/2020,2510,"Trade Payables",,PI0389,SUP0001,Anteplier,,80.50,-32258.04,2907
+12/10/2020,2510,"Trade Payables",,PI0550,SUP0001,"Al Murad",,300.00,-32558.04,3390
+12/10/2020,2510,"Trade Payables",,PI0551,SUP0001,"Plumbers Point",,591.54,-33149.58,3393
+12/10/2020,2510,"Trade Payables",,PI0586,SUP0001,"Plumbers Point",,181.57,-33331.15,3516
+13/10/2020,2510,"Trade Payables",,PI0552,SUP0001,Crowthorne,,35.50,-33366.65,3396
+13/10/2020,2510,"Trade Payables",,PI0553,SUP0001,"Two Rivers",,2.30,-33368.95,3399
+13/10/2020,2510,"Trade Payables",,PI0554,SUP0001,BP,,59.88,-33428.83,3402
+13/10/2020,2510,"Trade Payables",,PI0555,SUP0001,"Slough Bathroom",,11.68,-33440.51,3405
+14/10/2020,2510,"Trade Payables",,PI0556,SUP0001,"C Wala",,3.90,-33444.41,3408
+14/10/2020,2510,"Trade Payables",,PI0557,SUP0001,"Slough Bathroom",,1716.40,-35160.81,3411
+15/10/2020,2510,"Trade Payables",,PI0558,SUP0001,"Slough Bathroom",,1335.00,-36495.81,3414
+15/10/2020,2510,"Trade Payables",,PI0567,SUP0001,Wickes,,12.00,-36507.81,3441
+15/10/2020,2510,"Trade Payables",,PI0568,SUP0001,Wickes,,6.00,-36513.81,3444
+17/10/2020,2510,"Trade Payables",,PI0566,SUP0001,Mangal,,166.60,-36680.41,3438
+19/10/2020,2510,"Trade Payables",,PI0564,SUP0001,"Council Tax",,350.19,-37030.60,3432
+19/10/2020,2510,"Trade Payables",,PI0565,SUP0001,"Plumbers Point",,163.99,-37194.59,3435
+20/10/2020,2510,"Trade Payables",,PI0560,SUP0001,ProTilerTools,,61.97,-37256.56,3420
+20/10/2020,2510,"Trade Payables",,PI0561,SUP0001,"Topps Tiles",,32.62,-37289.18,3423
+20/10/2020,2510,"Trade Payables",,PI0562,SUP0001,ScrewFix,,10.49,-37299.67,3426
+20/10/2020,2510,"Trade Payables",,PI0563,SUP0001,"Real Trade",,16.99,-37316.66,3429
+21/10/2020,2510,"Trade Payables",,PI0457,SUP0001,"Emerald Door",,523.01,-37839.67,3111
+21/10/2020,2510,"Trade Payables",,PI0458,SUP0001,Fego,,47.70,-37887.37,3114
+21/10/2020,2510,"Trade Payables",,PI0459,SUP0001,Selco,,41.33,-37928.70,3117
+21/10/2020,2510,"Trade Payables",,PI0559,SUP0001,Howdens,,189.44,-38118.14,3417
+22/10/2020,2510,"Trade Payables",,PI0456,SUP0001,Monty,,13.45,-38131.59,3108
+24/10/2020,2510,"Trade Payables",,PI0454,SUP0001,"Topps Tiles",,225.78,-38357.37,3102
+24/10/2020,2510,"Trade Payables",,PI0455,SUP0001,"Topps Tiles",,25.17,-38382.54,3105
+25/10/2020,2510,"Trade Payables",,PI0453,SUP0001,Selco,,9.90,-38392.44,3099
+26/10/2020,2510,"Trade Payables",,PI0433,SUP0001,Wickes,,18.45,-38410.89,3039
+26/10/2020,2510,"Trade Payables",,PI0451,SUP0001,"Post Office",,2.45,-38413.34,3093
+26/10/2020,2510,"Trade Payables",,PI0452,SUP0001,"Post Office",,4.70,-38418.04,3096
+30/10/2020,2510,"Trade Payables",,PI0449,SUP0001,"GBK Staines",,52.50,-38470.54,3087
+30/10/2020,2510,"Trade Payables",,PI0450,SUP0001,"Windsor Heating",,2.30,-38472.84,3090
+31/10/2020,2510,"Trade Payables",,SJ0037,SUP0001,Purchase,38748.46,,275.62,1506
+02/11/2020,2510,"Trade Payables",,PI0448,SUP0001,Purchase,,21.22,254.40,3084
+03/11/2020,2510,"Trade Payables",,PI0447,SUP0001,"Windsor Heating",,56.07,198.33,3081
+04/11/2020,2510,"Trade Payables",,PI0446,SUP0001,Wickes,,21.22,177.11,3078
+05/11/2020,2510,"Trade Payables",,PI0444,SUP0001,"Windsor Heating",,48.44,128.67,3072
+05/11/2020,2510,"Trade Payables",,PI0445,SUP0001,"Splash Plumbing",,25.20,103.47,3075
+05/11/2020,2510,"Trade Payables",,PI0547,SUP0001,Shell,,57.12,46.35,3381
+05/11/2020,2510,"Trade Payables",,PI0548,SUP0001,Wickes,,11.71,34.64,3384
+05/11/2020,2510,"Trade Payables",,PI0578,SUP0001,"Windsor Heating",,8.75,25.89,3492
+07/11/2020,2510,"Trade Payables",,PI0544,SUP0001,Halford,,40.99,-15.10,3372
+07/11/2020,2510,"Trade Payables",,PI0545,SUP0001,"Windsor Heating",,42.93,-58.03,3375
+07/11/2020,2510,"Trade Payables",,PI0546,SUP0001,Sainsburys,,40.33,-98.36,3378
+12/11/2020,2510,"Trade Payables",,PI0542,SUP0001,Shell,,40.25,-138.61,3366
+12/11/2020,2510,"Trade Payables",,PI0543,SUP0001,"C Wala",,6.90,-145.51,3369
+14/11/2020,2510,"Trade Payables",,PI0541,SUP0001,Endeavour,,299.63,-445.14,3363
+17/11/2020,2510,"Trade Payables",,PI0238,SUP0001,Leaseplan,,15.00,-460.14,2406
+17/11/2020,2510,"Trade Payables",,PI0538,SUP0001,"Plumbers Point",,91.54,-551.68,3354
+17/11/2020,2510,"Trade Payables",,PI0539,SUP0001,"Plumbers Point",,124.49,-676.17,3357
+17/11/2020,2510,"Trade Payables",,PI0540,SUP0001,BP,,60.43,-736.60,3360
+18/11/2020,2510,"Trade Payables",,PI0536,SUP0001,"Langley Plumbing",,41.41,-778.01,3348
+18/11/2020,2510,"Trade Payables",,PI0537,SUP0001,"Langley Plumbing",,291.00,-1069.01,3351
+19/11/2020,2510,"Trade Payables",,PI0535,SUP0001,Wetrooms,,579.07,-1648.08,3345
+20/11/2020,2510,"Trade Payables",,PI0534,SUP0001,"Langley Plumbing",,10.99,-1659.07,3342
+23/11/2020,2510,"Trade Payables",,PI0530,SUP0001,Direct2Market,,2.90,-1661.97,3330
+23/11/2020,2510,"Trade Payables",,PI0531,SUP0001,"Topps Tiles",,116.99,-1778.96,3333
+23/11/2020,2510,"Trade Payables",,PI0532,SUP0001,"Topps Tiles",,266.25,-2045.21,3336
+23/11/2020,2510,"Trade Payables",,PI0533,SUP0001,"Post Office",,9.12,-2054.33,3339
+25/11/2020,2510,"Trade Payables",,PI0527,SUP0001,"Langley Plumbing",,25.50,-2079.83,3321
+25/11/2020,2510,"Trade Payables",,PI0528,SUP0001,"MC2 Tile",,439.55,-2519.38,3324
+25/11/2020,2510,"Trade Payables",,PI0529,SUP0001,XtremeAuto,,12.99,-2532.37,3327
+25/11/2020,2510,"Trade Payables",,PI0579,SUP0001,ProTilerTools,,71.96,-2604.33,3495
+26/11/2020,2510,"Trade Payables",,PI0516,SUP0001,EDC,,158.22,-2762.55,3288
+26/11/2020,2510,"Trade Payables",,PI0523,SUP0001,TLC,,402.48,-3165.03,3309
+26/11/2020,2510,"Trade Payables",,PI0524,SUP0001,TLC,,331.16,-3496.19,3312
+26/11/2020,2510,"Trade Payables",,PI0525,SUP0001,"MC2 Tiles",,125.61,-3621.80,3315
+26/11/2020,2510,"Trade Payables",,PI0526,SUP0001,TLC,,5.40,-3627.20,3318
+27/11/2020,2510,"Trade Payables",,PI0521,SUP0001,Apple,,949.00,-4576.20,3303
+27/11/2020,2510,"Trade Payables",,PI0522,SUP0001,Wickes,,28.20,-4604.40,3306
+28/11/2020,2510,"Trade Payables",,PI0518,SUP0001,Apple,,1662.60,-6267.00,3294
+28/11/2020,2510,"Trade Payables",,PI0519,SUP0001,"W London",,6.50,-6273.50,3297
+28/11/2020,2510,"Trade Payables",,PI0520,SUP0001,Rosa,,56.50,-6330.00,3300
+29/11/2020,2510,"Trade Payables",,PI0515,SUP0001,Currys,,119.00,-6449.00,3285
+30/11/2020,2510,"Trade Payables",,PI0510,SUP0001,Adlink,,141.00,-6590.00,3270
+30/11/2020,2510,"Trade Payables",,PI0511,SUP0001,TLC-Direct,,331.16,-6921.16,3273
+30/11/2020,2510,"Trade Payables",,PI0512,SUP0001,Adlink,,141.00,-7062.16,3276
+30/11/2020,2510,"Trade Payables",,PI0513,SUP0001,TLC,,4.75,-7066.91,3279
+30/11/2020,2510,"Trade Payables",,PI0514,SUP0001,Adlink,,123.62,-7190.53,3282
+02/12/2020,2510,"Trade Payables",,PI0509,SUP0001,Rontec,,79.43,-7269.96,3267
+04/12/2020,2510,"Trade Payables",,PI0508,SUP0001,Patara,,35.16,-7305.12,3264
+06/12/2020,2510,"Trade Payables",,PI0505,SUP0001,Apple,,1662.60,-8967.72,3255
+06/12/2020,2510,"Trade Payables",,PI0506,SUP0001,Apple,,949.00,-9916.72,3258
+06/12/2020,2510,"Trade Payables",,PI0507,SUP0001,Cote,,51.58,-9968.30,3261
+07/12/2020,2510,"Trade Payables",,PI0503,SUP0001,Leaseplan,,15.00,-9983.30,3249
+07/12/2020,2510,"Trade Payables",,PI0504,SUP0001,AlMurad,,5.00,-9988.30,3252
+08/12/2020,2510,"Trade Payables",,PI0502,SUP0001,"Companies House",,13.00,-10001.30,3246
+10/12/2020,2510,"Trade Payables",,PI0501,SUP0001,Newdays,,150.00,-10151.30,3243
+11/12/2020,2510,"Trade Payables",,PI0497,SUP0001,Wagamama,,32.65,-10183.95,3231
+11/12/2020,2510,"Trade Payables",,PI0499,SUP0001,"Topps Tiles",,466.58,-10650.53,3237
+11/12/2020,2510,"Trade Payables",,PI0500,SUP0001,"Topps Tiles",,88.17,-10738.70,3240
+13/12/2020,2510,"Trade Payables",,PI0498,SUP0001,Cote,,26.44,-10765.14,3234
+14/12/2020,2510,"Trade Payables",,PI0496,SUP0001,Bill's,,34.14,-10799.28,3228
+15/12/2020,2510,"Trade Payables",,PI0493,SUP0001,"Slough DT",,1.29,-10800.57,3219
+15/12/2020,2510,"Trade Payables",,PI0494,SUP0001,"Topps Tiles",,66.00,-10866.57,3222
+15/12/2020,2510,"Trade Payables",,PI0495,SUP0001,"Slough DT",,12.17,-10878.74,3225
+16/12/2020,2510,"Trade Payables",,SJ0009,SUP0003,"Maher & Co.",1000.00,,-9878.74,555
+17/12/2020,2510,"Trade Payables",,PI0491,SUP0001,"Datchet Green",,54.63,-9933.37,3213
+17/12/2020,2510,"Trade Payables",,PI0492,SUP0001,"Topps Tiles",,19.90,-9953.27,3216
+20/12/2020,2510,"Trade Payables",,PI0239,SUP0001,Zleep,,65.82,-10019.09,2409
+20/12/2020,2510,"Trade Payables",,PI0490,SUP0001,BP,,64.56,-10083.65,3210
+21/12/2020,2510,"Trade Payables",,PI0421,SUP0001,"City P",,5.86,-10089.51,3003
+21/12/2020,2510,"Trade Payables",,PI0422,SUP0001,BA,,16.00,-10105.51,3006
+21/12/2020,2510,"Trade Payables",,PI0423,SUP0001,Storesbaelts,,29.91,-10135.42,3009
+21/12/2020,2510,"Trade Payables",,PI0424,SUP0001,Lagkagehuset,,2.93,-10138.35,3012
+23/12/2020,2510,"Trade Payables",,PI0418,SUP0001,TLC,,7.19,-10145.54,2994
+23/12/2020,2510,"Trade Payables",,PI0419,SUP0001,Screwfix,,13.77,-10159.31,2997
+23/12/2020,2510,"Trade Payables",,PI0420,SUP0001,Brewers,,13.85,-10173.16,3000
+26/12/2020,2510,"Trade Payables",,PI0417,SUP0001,"Design Vintage",,55.95,-10229.11,2991
+29/12/2020,2510,"Trade Payables",,PI0413,SUP0001,B&Q,,10.00,-10239.11,2979
+29/12/2020,2510,"Trade Payables",,PI0414,SUP0001,B&Q,,10.00,-10249.11,2982
+29/12/2020,2510,"Trade Payables",,PI0415,SUP0001,Screwfix,,26.97,-10276.08,2985
+29/12/2020,2510,"Trade Payables",,PI0416,SUP0001,Brewers,,79.50,-10355.58,2988
+31/12/2020,2510,"Trade Payables",,SJ0038,SUP0001,Purchase,11759.29,,1403.71,1508
+03/01/2021,2510,"Trade Payables",,PI0517,SUP0001,"Credit Card Int",,65.07,1338.64,3291
+04/01/2021,2510,"Trade Payables",,SJ0010,SUP0003,"Maher & Co.",500.00,,1838.64,563
+05/01/2021,2510,"Trade Payables",,PI0489,SUP0001,Screwfix,,29.99,1808.65,3207
+05/01/2021,2510,"Trade Payables",,PI0580,SUP0001,Howdens-Correction,,92.98,1715.67,3498
+05/01/2021,2510,"Trade Payables",,PI0581,SUP0001,"Howden £46.49",,92.98,1622.69,3501
+09/01/2021,2510,"Trade Payables",,PI0582,SUP0001,"ScrewFix - Correction",,120.00,1502.69,3504
+09/01/2021,2510,"Trade Payables",,PI0583,SUP0001,"Wickes £60 correction",,120.00,1382.69,3507
+14/01/2021,2510,"Trade Payables",,PI0488,SUP0001,"MC Tiles",,74.60,1308.09,3204
+15/01/2021,2510,"Trade Payables",,PI0587,SUP0003,"Maher & Co.",,500.00,808.09,3641
+15/01/2021,2510,"Trade Payables",,SJ0190,SUP0003,"Maher & Co.",500.00,,1308.09,3644
+16/01/2021,2510,"Trade Payables",,PI0487,SUP0001,"Alan Hunter",,99.85,1208.24,3201
+18/01/2021,2510,"Trade Payables",,PI0486,SUP0001,"Axa Insurance",,381.74,826.50,3198
+19/01/2021,2510,"Trade Payables",,PI0484,SUP0001,"G. Certificate",,180.00,646.50,3192
+19/01/2021,2510,"Trade Payables",,PI0485,SUP0001,"ScrewFix £10 correction",,20.00,626.50,3195
+19/01/2021,2510,"Trade Payables",,PI0584,SUP0001,Screwfx-correction,,20.00,606.50,3510
+22/01/2021,2510,"Trade Payables",,PI0002,SUP0003,"Maher & Co.",,972748.33,-972141.83,484
+22/01/2021,2510,"Trade Payables",,PI0482,SUP0001,Amazon,,37.99,-972179.82,3186
+22/01/2021,2510,"Trade Payables",,PI0483,SUP0001,"Global Security",,182.40,-972362.22,3189
+26/01/2021,2510,"Trade Payables",,SJ0011,SUP0003,"Maher & Co.",320542.20,,-651820.02,565
+26/01/2021,2510,"Trade Payables",,SJ0012,SUP0003,"Maher & Co. - Nightingale",651000.00,,-820.02,590
+26/01/2021,2510,"Trade Payables",,PI0481,SUP0001,Msft,,18.24,-838.26,3183
+27/01/2021,2510,"Trade Payables",,SJ0011,SUP0003,"Maher & Co.",241.13,,-597.13,566
+29/01/2021,2510,"Trade Payables",,PI0480,SUP0001,Experian,,14.99,-612.12,3180
+31/01/2021,2510,"Trade Payables",,PI0478,SUP0001,"Levent Cengiz",,250.00,-862.12,3174
+31/01/2021,2510,"Trade Payables",,PI0479,SUP0001,PP,,49.40,-911.52,3177
+02/02/2021,2510,"Trade Payables",,PI0001,SUP0003,"Maher & Co.",,575392.30,-576303.82,475
+02/02/2021,2510,"Trade Payables",,PI0477,SUP0001,"Windsor Trader",,20.34,-576324.16,3171
+03/02/2021,2510,"Trade Payables",,SJ0011,SUP0003,"Maher & Co.",189927.30,,-386396.86,567
+04/02/2021,2510,"Trade Payables",,PI0476,SUP0001,"Gas Certificate",,180.00,-386576.86,3168
+05/02/2021,2510,"Trade Payables",,SJ0012,SUP0003,"Maher & Co - Robin",385000.00,,-1576.86,589
+06/02/2021,2510,"Trade Payables",,PI0472,SUP0001,WHSmith,,46.93,-1623.79,3156
+06/02/2021,2510,"Trade Payables",,PI0473,SUP0001,ScrewFix,,80.97,-1704.76,3159
+06/02/2021,2510,"Trade Payables",,PI0474,SUP0001,Esso,,83.97,-1788.73,3162
+06/02/2021,2510,"Trade Payables",,PI0475,SUP0001,ScrewFix,,59.34,-1848.07,3165
+10/02/2021,2510,"Trade Payables",,PI0471,SUP0001,"Patio Door Repair",,165.00,-2013.07,3153
+15/02/2021,2510,"Trade Payables",,PI0585,SUP0003,"Maher & Co.",,1260.00,-3273.07,3513
+17/02/2021,2510,"Trade Payables",,SJ0011,SUP0003,"Maher & Co.",760.00,,-2513.07,568
+17/02/2021,2510,"Trade Payables",,SJ0011,SUP0001,"Maher & Co. - correction",,760.00,-3273.07,569
+17/02/2021,2510,"Trade Payables",,SJ0011,SUP0001,"Maher & Co. - correction",,760.00,-4033.07,570
+17/02/2021,2510,"Trade Payables",,SJ0013,SUP0003,"Maher & Co.",,380.00,-4413.07,593
+17/02/2021,2510,"Trade Payables",,SJ0013,SUP0003,"Maher & Co.",,380.00,-4793.07,594
+17/02/2021,2510,"Trade Payables",,SJ0014,SUP0003,"Maher & Co.",,35.00,-4828.07,597
+17/02/2021,2510,"Trade Payables",,SJ0014,SUP0003,"Maher & Co.",,35.00,-4863.07,598
+17/02/2021,2510,"Trade Payables",,PI0594,SUP0003,"Maher & Co.",,500.00,-5363.07,3701
+17/02/2021,2510,"Trade Payables",,SJ0197,SUP0003,"Maher & Co.",500.00,,-4863.07,3704
+17/02/2021,2510,"Trade Payables",,PI0602,SUP0003,"Maher & Co.",,760.00,-5623.07,3791
+17/02/2021,2510,"Trade Payables",,SJ0205,SUP0003,"Maher & Co.",760.00,,-4863.07,3794
+17/02/2021,2510,"Trade Payables",,GJ0017,2510,"Trade Payables",,500.00,-5363.07,3796
+18/02/2021,2510,"Trade Payables",,PI0469,SUP0001,Howdens,,12.00,-5375.07,3147
+18/02/2021,2510,"Trade Payables",,PI0470,SUP0001,Costco,,216.53,-5591.60,3150
+19/02/2021,2510,"Trade Payables",,PI0468,SUP0001,"Royal Park",,5.60,-5597.20,3144
+24/02/2021,2510,"Trade Payables",,PI0467,SUP0001,Shell,,59.54,-5656.74,3141
+25/02/2021,2510,"Trade Payables",,SJ0011,SUP0001,"Underfloor Heating - posted twice",,1690.42,-7347.16,571
+25/02/2021,2510,"Trade Payables",,PI0466,SUP0001,MSFT,,9.12,-7356.28,3138
+25/02/2021,2510,"Trade Payables",,SJ0146,SUP0001,"Underfloor Heating",1690.42,,-5665.86,3539
+26/02/2021,2510,"Trade Payables",,PI0464,SUP0001,Herath,,948.00,-6613.86,3132
+26/02/2021,2510,"Trade Payables",,PI0465,SUP0001,"As if by Magic",,10.49,-6624.35,3135
+28/02/2021,2510,"Trade Payables",,PI0462,SUP0001,Experian,,14.99,-6639.34,3126
+28/02/2021,2510,"Trade Payables",,PI0463,SUP0001,Costa,,7.10,-6646.44,3129
+03/03/2021,2510,"Trade Payables",,PI0373,SUP0001,"UnderFloor Heating",,1690.42,-8336.86,2859
+03/03/2021,2510,"Trade Payables",,PI0570,SUP0001,"First Choice Fire Service",,120.00,-8456.86,3450
+03/03/2021,2510,"Trade Payables",,SJ0133,SUP0001,"First Choice Fire",120.00,,-8336.86,3519
+05/03/2021,2510,"Trade Payables",,PI0011,SUP0001,"DC Renovations",,3000.00,-11336.86,529
+05/03/2021,2510,"Trade Payables",,PDN0001,SUP0001,"DC Renovations",3000.00,,-8336.86,535
+05/03/2021,2510,"Trade Payables",,PI0242,SUP0001,"DC Renovations",,3000.00,-11336.86,2422
+05/03/2021,2510,"Trade Payables",,SJ0109,SUP0001,Purchase,3000.00,,-8336.86,2425
+05/03/2021,2510,"Trade Payables",,PI0371,SUP0001,"Esure Insurance",,922.40,-9259.26,2853
+05/03/2021,2510,"Trade Payables",,PI0372,SUP0001,Screwfix,,79.98,-9339.24,2856
+05/03/2021,2510,"Trade Payables",,SJ0131,SUP0001,Screfix,79.98,,-9259.26,3455
+06/03/2021,2510,"Trade Payables",,PI0241,SUP0001,"Weisz Locksmiths",,168.00,-9427.26,2415
+06/03/2021,2510,"Trade Payables",,SJ0108,SUP0001,Purchase,168.00,,-9259.26,2420
+07/03/2021,2510,"Trade Payables",,PI0005,SUP0001,Homebase,,66.00,-9325.26,503
+07/03/2021,2510,"Trade Payables",,SJ0132,SUP0001,Homebase,66.57,,-9258.69,3453
+08/03/2021,2510,"Trade Payables",,SJ0015,SUP0001,Strutt&parker,3500.00,,-5758.69,626
+09/03/2021,2510,"Trade Payables",,PI0016,SUP0001,Strutt&Parker,,4016.00,-9774.69,619
+10/03/2021,2510,"Trade Payables",,PI0240,SUP0001,"The Under Floor Heating",,278.18,-10052.87,2412
+10/03/2021,2510,"Trade Payables",,PI0591,SUP0001,"The Underfloor",,278.18,-10331.05,3686
+10/03/2021,2510,"Trade Payables",,SJ0194,SUP0001,"The Underfloor",278.18,,-10052.87,3689
+12/03/2021,2510,"Trade Payables",,PI0015,SUP0001,"Prime Inventories (Deborah)",,320.00,-10372.87,550
+14/03/2021,2510,"Trade Payables",,PI0251,SUP0001,Ikea,,136.25,-10509.12,2467
+14/03/2021,2510,"Trade Payables",,SJ0118,SUP0001,Ikea,136.25,,-10372.87,2482
+15/03/2021,2510,"Trade Payables",,PI0629,SUP0001,"EXPERIAN UK",,29.98,-10402.85,3958
+16/03/2021,2510,"Trade Payables",,PI0012,SUP0001,"DC Renovations",,9100.92,-19503.77,532
+16/03/2021,2510,"Trade Payables",,SJ0007,SUP0001,Purchase,9100.92,,-10402.85,546
+16/03/2021,2510,"Trade Payables",,SJ0008,SUP0001,Purchase,320.00,,-10082.85,553
+17/03/2021,2510,"Trade Payables",,SJ0233,SUP0001,"LONDON LANDBAY",150.00,,-9932.85,3967
+18/03/2021,2510,"Trade Payables",,PI0004,SUP0001,Purchase,,59.84,-9992.69,500
+18/03/2021,2510,"Trade Payables",,PI0252,SUP0001,lights.co.uk,,306.30,-10298.99,2470
+18/03/2021,2510,"Trade Payables",,SJ0119,SUP0001,lights.co.uk,306.30,,-9992.69,2484
+19/03/2021,2510,"Trade Payables",,PI0006,SUP0001,"British Gas",,43.51,-10036.20,506
+19/03/2021,2510,"Trade Payables",,PI0007,SUP0001,RBWM,,20.35,-10056.55,511
+19/03/2021,2510,"Trade Payables",,SJ0006,SUP0001,"E.L Warren",785.90,,-9270.65,525
+22/03/2021,2510,"Trade Payables",,PI0003,SUP0001,"Lukasz Builder",,503.00,-9773.65,491
+22/03/2021,2510,"Trade Payables",,PI0013,SUP0001,"DC Renovations",,4507.32,-14280.97,538
+22/03/2021,2510,"Trade Payables",,SJ0007,SUP0001,Purchase,4507.32,,-9773.65,545
+23/03/2021,2510,"Trade Payables",,SJ0002,SUP0001,Purchase,503.00,,-9270.65,509
+24/03/2021,2510,"Trade Payables",,SJ0149,SUP0001,Microsoft,9.12,,-9261.53,3543
+25/03/2021,2510,"Trade Payables",,PI0370,SUP0001,B&Q,,15.00,-9276.53,2850
+26/03/2021,2510,"Trade Payables",,PI0014,SUP0001,"DC Renovations",,4800.00,-14076.53,541
+28/03/2021,2510,"Trade Payables",,PI0009,SUP0001,Longacres,,41.53,-14118.06,517
+29/03/2021,2510,"Trade Payables",,SJ0007,SUP0001,Purchase,4800.00,,-9318.06,544
+29/03/2021,2510,"Trade Payables",,PI0253,SUP0001,lights.co.uk,,28.80,-9346.86,2473
+29/03/2021,2510,"Trade Payables",,SJ0120,SUP0001,lights.co.uk,28.80,,-9318.06,2486
+29/03/2021,2510,"Trade Payables",,PI0263,SUP0001,"Trade Point",,62.26,-9380.32,2527
+29/03/2021,2510,"Trade Payables",,SJ0130,SUP0001,"Trade Point",62.26,,-9318.06,2530
+29/03/2021,2510,"Trade Payables",,SJ0150,SUP0001,Purchase,14.99,,-9303.07,3547
+30/03/2021,2510,"Trade Payables",,PI0008,SUP0001,"Al Murad",,12.00,-9315.07,514
+30/03/2021,2510,"Trade Payables",,PI0261,SUP0001,"Trade Point",,12.37,-9327.44,2517
+30/03/2021,2510,"Trade Payables",,SJ0128,SUP0001,"Trade Point",12.37,,-9315.07,2520
+01/04/2021,2510,"Trade Payables",,PI0010,SUP0001,"CDN Services",,72.00,-9387.07,520
+01/04/2021,2510,"Trade Payables",,SJ0005,SUP0001,Purchase,72.00,,-9315.07,523
+01/04/2021,2510,"Trade Payables",,PI0249,SUP0001,CDN,,72.00,-9387.07,2457
+01/04/2021,2510,"Trade Payables",,SJ0116,SUP0001,Purchase,72.00,,-9315.07,2460
+01/04/2021,2510,"Trade Payables",,GJ0067,SUP0001,"Purchase (CDN)",,72.00,-9387.07,3646
+02/04/2021,2510,"Trade Payables",,PI0254,SUP0001,Nespresso,,57.10,-9444.17,2476
+02/04/2021,2510,"Trade Payables",,SJ0121,SUP0001,Nespresso,57.10,,-9387.07,2488
+05/04/2021,2510,"Trade Payables",,PI0245,SUP0001,"Simply Bus Insurance",,362.07,-9749.14,2437
+05/04/2021,2510,"Trade Payables",,SJ0112,SUP0001,Purchase,362.07,,-9387.07,2443
+05/04/2021,2510,"Trade Payables",,PI0255,SUP0001,RBWM,,204.35,-9591.42,2479
+05/04/2021,2510,"Trade Payables",,SJ0122,SUP0001,RBWM,204.35,,-9387.07,2490
+06/04/2021,2510,"Trade Payables",,PI0248,SUP0001,Guardian,,97.18,-9484.25,2452
+06/04/2021,2510,"Trade Payables",,SJ0115,SUP0001,Purchase,97.18,,-9387.07,2455
+09/04/2021,2510,"Trade Payables",,PI0246,SUP0001,"DC Renovations",,5190.00,-14577.07,2440
+09/04/2021,2510,"Trade Payables",,SJ0113,SUP0001,Purchase,5190.00,,-9387.07,2445
+15/04/2021,2510,"Trade Payables",,PI0260,SUP0001,"Post Office",,44.62,-9431.69,2512
+15/04/2021,2510,"Trade Payables",,SJ0127,SUP0001,"Post Office",44.62,,-9387.07,2515
+16/04/2021,2510,"Trade Payables",,PI0247,SUP0001,WeFixBoiler,,85.00,-9472.07,2447
+16/04/2021,2510,"Trade Payables",,SJ0114,SUP0001,Purchase,85.00,,-9387.07,2450
+17/04/2021,2510,"Trade Payables",,PI0368,SUP0001,Meze,,99.50,-9486.57,2844
+17/04/2021,2510,"Trade Payables",,PI0369,SUP0001,Topworktops,,235.00,-9721.57,2847
+17/04/2021,2510,"Trade Payables",,SJ0151,SUP0001,Windsor,99.50,,-9622.07,3549
+19/04/2021,2510,"Trade Payables",,PI0250,SUP0001,"Darren (Windows)",,250.00,-9872.07,2462
+19/04/2021,2510,"Trade Payables",,SJ0117,SUP0001,Purchase,250.00,,-9622.07,2465
+20/04/2021,2510,"Trade Payables",,PI0367,SUP0001,Topworktops,,40.00,-9662.07,2841
+20/04/2021,2510,"Trade Payables",,SJ0152,SUP0001,"Top Works",40.00,,-9622.07,3551
+23/04/2021,2510,"Trade Payables",,PI0366,SUP0001,Dobsons,,12.60,-9634.67,2838
+25/04/2021,2510,"Trade Payables",,PI0365,SUP0001,Microsoft,,9.12,-9643.79,2835
+25/04/2021,2510,"Trade Payables",,SJ0148,SUP0001,Microsoft,9.12,,-9634.67,3545
+26/04/2021,2510,"Trade Payables",,PI0361,SUP0001,Ikea,,413.95,-10048.62,2823
+26/04/2021,2510,"Trade Payables",,PI0362,SUP0001,ScrewFix,,25.98,-10074.60,2826
+26/04/2021,2510,"Trade Payables",,PI0363,SUP0001,ScrewFix,,12.65,-10087.25,2829
+26/04/2021,2510,"Trade Payables",,PI0364,SUP0001,Screwfix,,2.09,-10089.34,2832
+26/04/2021,2510,"Trade Payables",,PI0461,SUP0001,Ikea,,6.75,-10096.09,3123
+26/04/2021,2510,"Trade Payables",,SJ0153,SUP0001,Screwfix,12.65,,-10083.44,3553
+26/04/2021,2510,"Trade Payables",,SJ0154,SUP0001,Screfix,25.98,,-10057.46,3555
+28/04/2021,2510,"Trade Payables",,PI0235,SUP0001,"DC Renovations",,5504.90,-15562.36,2395
+28/04/2021,2510,"Trade Payables",,SJ0106,SUP0001,"DC Renovations",5504.90,,-10057.46,2398
+28/04/2021,2510,"Trade Payables",,PI0244,SUP0001,Currys,,180.00,-10237.46,2432
+28/04/2021,2510,"Trade Payables",,SJ0111,SUP0001,Purchase,180.00,,-10057.46,2435
+28/04/2021,2510,"Trade Payables",,PI0262,SUP0001,Shell,,61.30,-10118.76,2522
+28/04/2021,2510,"Trade Payables",,SJ0129,SUP0001,Shell,61.30,,-10057.46,2525
+29/04/2021,2510,"Trade Payables",,PI0243,SUP0001,Currys,,368.99,-10426.45,2427
+29/04/2021,2510,"Trade Payables",,SJ0110,SUP0001,Purchase,368.99,,-10057.46,2430
+29/04/2021,2510,"Trade Payables",,PI0460,SUP0001,"Companies House",,13.00,-10070.46,3120
+30/04/2021,2510,"Trade Payables",,PI0017,SUP0001,"Herath Associates",,3600.00,-13670.46,716
+30/04/2021,2510,"Trade Payables",,PI0256,SUP0001,Envirofresh,,10.00,-13680.46,2492
+30/04/2021,2510,"Trade Payables",,SJ0123,SUP0001,Envirofresh,10.00,,-13670.46,2495
+02/05/2021,2510,"Trade Payables",,PI0257,SUP0001,"Richmond Council",,593.88,-14264.34,2497
+02/05/2021,2510,"Trade Payables",,SJ0124,SUP0001,"Richmond Council",593.88,,-13670.46,2500
+02/05/2021,2510,"Trade Payables",,PI0359,SUP0001,"Companies House",,13.00,-13683.46,2817
+02/05/2021,2510,"Trade Payables",,PI0360,SUP0001,"Land Registry",,6.00,-13689.46,2820
+02/05/2021,2510,"Trade Payables",,PI0603,SUP0001,"HM LAND REGISTRY",,6.00,-13695.46,3827
+02/05/2021,2510,"Trade Payables",,SJ0207,SUP0001,Purchase,6.00,,-13689.46,3830
+03/05/2021,2510,"Trade Payables",,SJ0016,SUP0001,Herath,3600.00,,-10089.46,719
+03/05/2021,2510,"Trade Payables",,SJ0016,SUP0001,Herath,3600.00,,-6489.46,720
+03/05/2021,2510,"Trade Payables",,GJ0073,SUP0001,Herath-Correction,,3600.00,-10089.46,746
+03/05/2021,2510,"Trade Payables",,PI0357,SUP0001,B&Q,,126.38,-10215.84,2811
+03/05/2021,2510,"Trade Payables",,PI0358,SUP0001,Wickes,,3.00,-10218.84,2814
+03/05/2021,2510,"Trade Payables",,SJ0155,SUP0001,Purchase,126.38,,-10092.46,3557
+05/05/2021,2510,"Trade Payables",,PI0355,SUP0001,Ikea,,273.50,-10365.96,2805
+05/05/2021,2510,"Trade Payables",,PI0356,SUP0001,Ikea,,12.05,-10378.01,2808
+06/05/2021,2510,"Trade Payables",,PI0018,SUP0001,"L Underwood",,2500.00,-12878.01,723
+06/05/2021,2510,"Trade Payables",,SJ0017,SUP0001,"L Underwood",2500.00,,-10378.01,726
+08/05/2021,2510,"Trade Payables",,PI0350,SUP0001,Timpson,,10.00,-10388.01,2790
+08/05/2021,2510,"Trade Payables",,PI0351,SUP0001,Timpson,,25.00,-10413.01,2793
+08/05/2021,2510,"Trade Payables",,PI0352,SUP0001,"Ping Pong",,94.78,-10507.79,2796
+08/05/2021,2510,"Trade Payables",,PI0353,SUP0001,"Mountain Warehouse",,19.99,-10527.78,2799
+08/05/2021,2510,"Trade Payables",,PI0354,SUP0001,Brewers,,39.85,-10567.63,2802
+08/05/2021,2510,"Trade Payables",,SJ0156,SUP0001,Brewers,39.85,,-10527.78,3559
+09/05/2021,2510,"Trade Payables",,PI0348,SUP0001,T2,,40.00,-10567.78,2784
+09/05/2021,2510,"Trade Payables",,PI0349,SUP0001,123,,57.56,-10625.34,2787
+10/05/2021,2510,"Trade Payables",,PI0604,SUP0001,"Chelsea T2 EU",,40.00,-10665.34,3832
+10/05/2021,2510,"Trade Payables",,SJ0206,SUP0001,"Chelsea T2 EU",40.00,,-10625.34,3835
+13/05/2021,2510,"Trade Payables",,GJ0072,SUP0001,"L&E Cleaning",234.00,,-10391.34,744
+14/05/2021,2510,"Trade Payables",,PI0605,SUP0001,"TIMPSON LTD",,25.00,-10416.34,3837
+14/05/2021,2510,"Trade Payables",,SJ0208,SUP0001,"TIMPSON LTD",25.00,,-10391.34,3840
+18/05/2021,2510,"Trade Payables",,PI0258,SUP0001,"Ashmore Property Services",,198.00,-10589.34,2502
+19/05/2021,2510,"Trade Payables",,SJ0125,SUP0001,"Ashmore Property Services",198.00,,-10391.34,2505
+19/05/2021,2510,"Trade Payables",,PI0347,SUP0001,Chestertons,,84.00,-10475.34,2781
+20/05/2021,2510,"Trade Payables",,PI0606,SUP0001,WICKES,,3.00,-10478.34,3842
+20/05/2021,2510,"Trade Payables",,SJ0209,SUP0001,WICKES,3.00,,-10475.34,3845
+20/05/2021,2510,"Trade Payables",,PI0607,SUP0001,TIMPSON,,10.00,-10485.34,3847
+20/05/2021,2510,"Trade Payables",,SJ0210,SUP0001,TIMPSON,10.00,,-10475.34,3850
+21/05/2021,2510,"Trade Payables",,PI0346,SUP0001,Westfield,,8.50,-10483.84,2778
+22/05/2021,2510,"Trade Payables",,PI0345,SUP0001,Westfield,,9.50,-10493.34,2775
+24/05/2021,2510,"Trade Payables",,PI0315,SUP0001,"Land Registry",,3.00,-10496.34,2685
+24/05/2021,2510,"Trade Payables",,PI0340,SUP0001,Microsoft,,18.24,-10514.58,2760
+24/05/2021,2510,"Trade Payables",,PI0341,SUP0001,"Land Registry",,6.00,-10520.58,2763
+24/05/2021,2510,"Trade Payables",,SJ0157,SUP0001,Microsoft,18.24,,-10502.34,3561
+24/05/2021,2510,"Trade Payables",,PI0608,SUP0001,"HM LAND REGISTRY",,3.00,-10505.34,3852
+24/05/2021,2510,"Trade Payables",,SJ0211,SUP0001,"HM LAND REGISTRY",3.00,,-10502.34,3855
+25/05/2021,2510,"Trade Payables",,PI0609,SUP0001,WICKES,,10.20,-10512.54,3857
+25/05/2021,2510,"Trade Payables",,SJ0212,SUP0001,WICKES,10.20,,-10502.34,3860
+26/05/2021,2510,"Trade Payables",,PI0313,SUP0001,Shell,,65.10,-10567.44,2679
+28/05/2021,2510,"Trade Payables",,PI0312,SUP0001,"DC Renovation",,3275.00,-13842.44,2676
+29/05/2021,2510,"Trade Payables",,PI0311,SUP0001,Cartier,,290.00,-14132.44,2673
+29/05/2021,2510,"Trade Payables",,PI0610,SUP0001,"PING PONG JAM",,94.75,-14227.19,3862
+29/05/2021,2510,"Trade Payables",,SJ0213,SUP0001,"PING PONG JAM",94.75,,-14132.44,3865
+30/05/2021,2510,"Trade Payables",,SJ0018,SUP0001,"DC Renovations",3275.00,,-10857.44,734
+01/06/2021,2510,"Trade Payables",,PI0259,SUP0001,"Concept Property Management",,125.00,-10982.44,2507
+01/06/2021,2510,"Trade Payables",,SJ0126,SUP0001,"Concept Property Management",125.00,,-10857.44,2510
+01/06/2021,2510,"Trade Payables",,PI0308,SUP0001,Wordery,,13.62,-10871.06,2664
+01/06/2021,2510,"Trade Payables",,PI0309,SUP0001,Nando,,26.54,-10897.60,2667
+01/06/2021,2510,"Trade Payables",,PI0310,SUP0001,B&Q,,19.00,-10916.60,2670
+01/06/2021,2510,"Trade Payables",,GJ0013,2510,"Trade Payables",125.00,,-10791.60,3766
+01/06/2021,2510,"Trade Payables",,GJ0020,2510,"Trade Payables",,300.00,-11091.60,3802
+01/06/2021,2510,"Trade Payables",,GJ0021,2510,"Trade Payables",50.00,,-11041.60,3805
+06/06/2021,2510,"Trade Payables",,SJ0158,SUP0001,Wordery,13.62,,-11027.98,3563
+09/06/2021,2510,"Trade Payables",,PI0305,SUP0001,B&Q,,20.96,-11048.94,2655
+09/06/2021,2510,"Trade Payables",,PI0306,SUP0001,B&Q,,31.90,-11080.84,2658
+09/06/2021,2510,"Trade Payables",,PI0307,SUP0001,B&Q,,40.00,-11120.84,2661
+09/06/2021,2510,"Trade Payables",,SJ0159,SUP0001,"B & Q",31.90,,-11088.94,3565
+09/06/2021,2510,"Trade Payables",,SJ0160,SUP0001,"B & Q",40.00,,-11048.94,3567
+10/06/2021,2510,"Trade Payables",,SJ0147,SUP0001,CGL,84.00,,-10964.94,3541
+11/06/2021,2510,"Trade Payables",,PI0304,SUP0001,"The Rose",,73.25,-11038.19,2652
+11/06/2021,2510,"Trade Payables",,PI0337,SUP0001,Express,,59.00,-11097.19,2751
+11/06/2021,2510,"Trade Payables",,PI0338,SUP0001,B&Q,,31.90,-11129.09,2754
+11/06/2021,2510,"Trade Payables",,PI0339,SUP0001,B&Q,,20.96,-11150.05,2757
+11/06/2021,2510,"Trade Payables",,PI0611,SUP0001,expresstest.co.uk,,59.00,-11209.05,3867
+11/06/2021,2510,"Trade Payables",,SJ0214,SUP0001,expresstest.co.uk,59.00,,-11150.05,3870
+14/06/2021,2510,"Trade Payables",,PI0335,SUP0001,123-reg,,19.19,-11169.24,2745
+14/06/2021,2510,"Trade Payables",,PI0336,SUP0001,"Oven Doctor",,125.00,-11294.24,2748
+16/06/2021,2510,"Trade Payables",,PI0334,SUP0001,Harrods,,24.95,-11319.19,2742
+19/06/2021,2510,"Trade Payables",,PI0332,SUP0001,123-reg,,33.58,-11352.77,2736
+19/06/2021,2510,"Trade Payables",,PI0333,SUP0001,Ryman,,4.49,-11357.26,2739
+20/06/2021,2510,"Trade Payables",,PI0331,SUP0001,Outcome,,150.00,-11507.26,2733
+20/06/2021,2510,"Trade Payables",,SJ0161,SUP0001,Leonards,150.00,,-11357.26,3569
+22/06/2021,2510,"Trade Payables",,PI0344,SUP0001,Shopzu,,15.00,-11372.26,2772
+23/06/2021,2510,"Trade Payables",,PI0330,SUP0001,Environfresh,,7.20,-11379.46,2730
+23/06/2021,2510,"Trade Payables",,PI0342,SUP0001,"Meze Grill",,40.90,-11420.36,2766
+23/06/2021,2510,"Trade Payables",,PI0343,SUP0001,O2,,20.00,-11440.36,2769
+23/06/2021,2510,"Trade Payables",,SJ0100,SUP0001,"Go Cardless",7.20,,-11433.16,3521
+23/06/2021,2510,"Trade Payables",,PI0612,SUP0001,"WINDSOR MEZE GRILL KITCHEN",,44.00,-11477.16,3872
+23/06/2021,2510,"Trade Payables",,SJ0215,SUP0001,"WINDSOR MEZE GRILL KITCHEN",44.00,,-11433.16,3875
+24/06/2021,2510,"Trade Payables",,PI0329,SUP0001,Microsoft,,13.68,-11446.84,2727
+24/06/2021,2510,"Trade Payables",,SJ0162,SUP0001,MIcrosoft,13.68,,-11433.16,3571
+26/06/2021,2510,"Trade Payables",,PI0326,SUP0001,ebay,,14.06,-11447.22,2718
+26/06/2021,2510,"Trade Payables",,PI0327,SUP0001,ebay,,6.99,-11454.21,2721
+26/06/2021,2510,"Trade Payables",,PI0328,SUP0001,Runnymede,,38.23,-11492.44,2724
+26/06/2021,2510,"Trade Payables",,SJ0163,SUP0001,Ebay,6.99,,-11485.45,3573
+26/06/2021,2510,"Trade Payables",,SJ0164,SUP0001,Ebay,14.06,,-11471.39,3575
+28/06/2021,2510,"Trade Payables",,PI0321,SUP0001,ebay,,10.98,-11482.37,2703
+28/06/2021,2510,"Trade Payables",,PI0322,SUP0001,ebay,,7.69,-11490.06,2706
+28/06/2021,2510,"Trade Payables",,PI0323,SUP0001,ebay,,2.99,-11493.05,2709
+28/06/2021,2510,"Trade Payables",,PI0324,SUP0001,Read,,14.06,-11507.11,2712
+28/06/2021,2510,"Trade Payables",,PI0325,SUP0001,PostOffice,,8.65,-11515.76,2715
+28/06/2021,2510,"Trade Payables",,SJ0165,SUP0001,Ebay,2.99,,-11512.77,3577
+28/06/2021,2510,"Trade Payables",,SJ0166,SUP0001,Ebay,7.69,,-11505.08,3579
+28/06/2021,2510,"Trade Payables",,SJ0167,SUP0001,Ebay,10.98,,-11494.10,3581
+29/06/2021,2510,"Trade Payables",,PI0320,SUP0001,Monty,,19.75,-11513.85,2700
+30/06/2021,2510,"Trade Payables",,PI0317,SUP0001,123-reg,,71.99,-11585.84,2691
+30/06/2021,2510,"Trade Payables",,PI0318,SUP0001,H&F,,65.00,-11650.84,2694
+30/06/2021,2510,"Trade Payables",,PI0319,SUP0001,Brothers,,210.00,-11860.84,2697
+30/06/2021,2510,"Trade Payables",,SJ0168,SUP0001,LBHF,65.00,,-11795.84,3583
+30/06/2021,2510,"Trade Payables",,SJ0169,SUP0001,"V Dhariwal",339.85,,-11455.99,3585
+02/07/2021,2510,"Trade Payables",,PI0302,SUP0001,Skyway,,21.85,-11477.84,2646
+02/07/2021,2510,"Trade Payables",,PI0316,SUP0001,"The Rose",,65.90,-11543.74,2688
+02/07/2021,2510,"Trade Payables",,PI0613,SUP0001,INTEREST,,3.45,-11547.19,3877
+02/07/2021,2510,"Trade Payables",,SJ0216,SUP0001,INTEREST,3.45,,-11543.74,3880
+03/07/2021,2510,"Trade Payables",,PI0301,SUP0001,"Companies House",,13.00,-11556.74,2643
+03/07/2021,2510,"Trade Payables",,SJ0170,SUP0001,"Company House",13.00,,-11543.74,3587
+09/07/2021,2510,"Trade Payables",,PI0300,SUP0001,Cote,,6.24,-11549.98,2640
+09/07/2021,2510,"Trade Payables",,SJ0171,SUP0001,Brasserie,6.24,,-11543.74,3589
+10/07/2021,2510,"Trade Payables",,PI0299,SUP0001,Next,,267.80,-11811.54,2637
+10/07/2021,2510,"Trade Payables",,SJ0172,SUP0001,"Chiasso Bravo",267.80,,-11543.74,3591
+13/07/2021,2510,"Trade Payables",,PI0298,SUP0001,"Windmill Heating",,1218.00,-12761.74,2634
+13/07/2021,2510,"Trade Payables",,SJ0140,SUP0001,"Windmill Heating",1218.00,,-11543.74,3527
+14/07/2021,2510,"Trade Payables",,PI0296,SUP0001,Stansted,,109.00,-11652.74,2628
+14/07/2021,2510,"Trade Payables",,PI0297,SUP0001,"Concept Property",,125.00,-11777.74,2631
+14/07/2021,2510,"Trade Payables",,SJ0141,SUP0001,"Concept Property Management",125.00,,-11652.74,3529
+14/07/2021,2510,"Trade Payables",,SJ0173,SUP0001,"LONDON STANSTED AIRPOR",109.00,,-11543.74,3593
+15/07/2021,2510,"Trade Payables",,PI0294,SUP0001,Shell,,79.87,-11623.61,2622
+15/07/2021,2510,"Trade Payables",,PI0295,SUP0001,Woolley,,25.26,-11648.87,2625
+15/07/2021,2510,"Trade Payables",,SJ0174,SUP0001,"WAKEFIELD WOOLLEY EDGE NORTH MWS",25.26,,-11623.61,3595
+15/07/2021,2510,"Trade Payables",,SJ0175,SUP0001,Shell,79.87,,-11543.74,3597
+17/07/2021,2510,"Trade Payables",,PI0293,SUP0001,HMP,,49.00,-11592.74,2619
+17/07/2021,2510,"Trade Payables",,SJ0176,SUP0001,"PASSPORT OFFICE",49.00,,-11543.74,3599
+19/07/2021,2510,"Trade Payables",,PI0291,SUP0001,PostOffice,,6.85,-11550.59,2613
+19/07/2021,2510,"Trade Payables",,PI0292,SUP0001,PostOffice,,6.85,-11557.44,2616
+20/07/2021,2510,"Trade Payables",,PI0290,SUP0001,Environfresh,,7.20,-11564.64,2610
+20/07/2021,2510,"Trade Payables",,SJ0138,SUP0001,"Go Cardless",7.20,,-11557.44,3523
+24/07/2021,2510,"Trade Payables",,PI0289,SUP0001,Microsoft,,13.68,-11571.12,2607
+24/07/2021,2510,"Trade Payables",,SJ0177,SUP0001,Microsoft,13.68,,-11557.44,3601
+30/07/2021,2510,"Trade Payables",,PI0288,SUP0001,"V Dhariwal",,339.85,-11897.29,2604
+31/07/2021,2510,"Trade Payables",,PI0286,SUP0001,"PF Chang",,88.05,-11985.34,2598
+31/07/2021,2510,"Trade Payables",,PI0287,SUP0001,Camden,,65.00,-12050.34,2601
+31/07/2021,2510,"Trade Payables",,SJ0178,SUP0001,"LONDON PF CHANG",88.05,,-11962.29,3603
+01/08/2021,2510,"Trade Payables",,PI0285,SUP0001,"Gourmet B",,43.40,-12005.69,2595
+03/08/2021,2510,"Trade Payables",,PI0281,SUP0001,Selco,,6.61,-12012.30,2583
+03/08/2021,2510,"Trade Payables",,PI0282,SUP0001,Selco,,6.61,-12018.91,2586
+03/08/2021,2510,"Trade Payables",,SJ0179,SUP0001,SELCO,6.61,,-12012.30,3605
+05/08/2021,2510,"Trade Payables",,PI0280,SUP0001,"HS Heating",,1510.07,-13522.37,2580
+05/08/2021,2510,"Trade Payables",,SJ0142,SUP0001,"HS Heating",1510.07,,-12012.30,3531
+06/08/2021,2510,"Trade Payables",,PI0279,SUP0001,"British Gas",,158.49,-12170.79,2577
+07/08/2021,2510,"Trade Payables",,PI0067,SUP0001,"BP Express",,93.55,-12264.34,1421
+07/08/2021,2510,"Trade Payables",,SJ0032,SUP0001,BP,93.55,,-12170.79,1429
+08/08/2021,2510,"Trade Payables",,PI0278,SUP0001,123-reg,,47.97,-12218.76,2574
+08/08/2021,2510,"Trade Payables",,PI0283,SUP0001,TFL,,15.00,-12233.76,2589
+08/08/2021,2510,"Trade Payables",,PI0284,SUP0001,"Pizza Exp",,90.05,-12323.81,2592
+08/08/2021,2510,"Trade Payables",,SJ0180,SUP0001,"Pizza Express",90.05,,-12233.76,3607
+08/08/2021,2510,"Trade Payables",,SJ0181,SUP0001,TFL,15.00,,-12218.76,3609
+10/08/2021,2510,"Trade Payables",,PI0019,SUP0001,"Unique Glazing",,1000.00,-13218.76,1170
+10/08/2021,2510,"Trade Payables",,SJ0019,SUP0001,"unique Glazing",1000.00,,-12218.76,1173
+10/08/2021,2510,"Trade Payables",,PI0303,SUP0001,PostOffice,,10.20,-12228.96,2649
+16/08/2021,2510,"Trade Payables",,PI0277,SUP0001,"Giggling Sq",,81.29,-12310.25,2571
+16/08/2021,2510,"Trade Payables",,SJ0143,SUP0001,"British Gas",158.49,,-12151.76,3533
+16/08/2021,2510,"Trade Payables",,SJ0182,SUP0001,"FARNHAM GIGGLING SQUID",81.29,,-12070.47,3611
+19/08/2021,2510,"Trade Payables",,PI0276,SUP0001,"BP Wexham",,92.57,-12163.04,2568
+19/08/2021,2510,"Trade Payables",,PI0592,SUP0001,"Go Cardless",,7.20,-12170.24,3691
+19/08/2021,2510,"Trade Payables",,SJ0195,SUP0001,"Go Cardless",7.20,,-12163.04,3694
+20/08/2021,2510,"Trade Payables",,PI0275,SUP0001,Esure,,47.36,-12210.40,2565
+20/08/2021,2510,"Trade Payables",,SJ0183,SUP0001,"0845 601 7074 ESURE MOTOR",47.36,,-12163.04,3613
+23/08/2021,2510,"Trade Payables",,PI0271,SUP0001,Microsoft,,13.68,-12176.72,2553
+23/08/2021,2510,"Trade Payables",,PI0272,SUP0001,"Manchester Airport",,235.50,-12412.22,2556
+23/08/2021,2510,"Trade Payables",,PI0273,SUP0001,Hello,,16.55,-12428.77,2559
+23/08/2021,2510,"Trade Payables",,PI0274,SUP0001,Toll,,7.00,-12435.77,2562
+23/08/2021,2510,"Trade Payables",,SJ0184,SUP0001,Toll,7.00,,-12428.77,3615
+23/08/2021,2510,"Trade Payables",,SJ0185,SUP0001,"Hello Ventures B.V.",16.55,,-12412.22,3617
+23/08/2021,2510,"Trade Payables",,SJ0186,SUP0001,"MANCHESTER AIRPORT",235.50,,-12176.72,3619
+24/08/2021,2510,"Trade Payables",,PI0270,SUP0001,"Messe Friedrichshafen",,76.33,-12253.05,2550
+24/08/2021,2510,"Trade Payables",,SJ0187,SUP0001,Microsoft,13.68,,-12239.37,3621
+26/08/2021,2510,"Trade Payables",,PI0269,SUP0001,Gotrentalcars,,94.00,-12333.37,2547
+26/08/2021,2510,"Trade Payables",,SJ0188,SUP0001,Purchase,94.00,,-12239.37,3623
+02/09/2021,2510,"Trade Payables",,PI0268,SUP0001,"Unique Glazing",,1000.00,-13239.37,2544
+02/09/2021,2510,"Trade Payables",,SJ0144,SUP0001,"Unique Glazing",1000.00,,-12239.37,3535
+04/09/2021,2510,"Trade Payables",,PI0077,SUP0001,123-Reg,,53.96,-12293.33,1547
+05/09/2021,2510,"Trade Payables",,PI0030,SUP0001,123-reg,,57.56,-12350.89,1234
+05/09/2021,2510,"Trade Payables",,SJ0189,SUP0001,"123 REG",57.56,,-12293.33,3625
+09/09/2021,2510,"Trade Payables",,PI0031,SUP0001,123-reg,,53.97,-12347.30,1237
+15/09/2021,2510,"Trade Payables",,PI0064,SUP0001,"Silva Timber",,220.43,-12567.73,1404
+15/09/2021,2510,"Trade Payables",,SJ0031,SUP0001,"Silva Timber",220.43,,-12347.30,1410
+16/09/2021,2510,"Trade Payables",,PI0593,SUP0001,"Go Cardless",,7.20,-12354.50,3696
+16/09/2021,2510,"Trade Payables",,SJ0196,SUP0001,"Go Cardless",7.20,,-12347.30,3699
+19/09/2021,2510,"Trade Payables",,PI0066,SUP0001,Ascot,,76.44,-12423.74,1418
+19/09/2021,2510,"Trade Payables",,SJ0032,SUP0001,Ascot,76.44,,-12347.30,1428
+21/09/2021,2510,"Trade Payables",,PI0068,SUP0001,"Windsor Traders",,45.53,-12392.83,1424
+21/09/2021,2510,"Trade Payables",,SJ0032,SUP0001,"Windsor traders",45.53,,-12347.30,1427
+27/09/2021,2510,"Trade Payables",,PI0065,SUP0001,Mfg,,39.00,-12386.30,1407
+27/09/2021,2510,"Trade Payables",,SJ0031,SUP0001,Mfg,39.00,,-12347.30,1411
+27/09/2021,2510,"Trade Payables",,PI0601,SUP0001,"Waqas Ahmed",,12000.00,-24347.30,3768
+27/09/2021,2510,"Trade Payables",,SJ0204,SUP0001,Purchase,12000.00,,-12347.30,3771
+,2510,"Trade Payables","Closing Balance",,,,1681021.84,1667141.39,-12347.3,
+,2600,"Nightingale Deposit","Opening Balance",,,,,,0,
+08/03/2021,2600,"Nightingale Deposit",,SI0002,CUS0001,"Nightingale, Windsor",,4038.00,-4038.00,615
+08/03/2021,2600,"Nightingale Deposit",,CJ0002,CUS0001,"Nightingale, Windsor",3500.00,,-538.00,618
+08/03/2021,2600,"Nightingale Deposit",,CJ0003,CUS0001,"Nightingale, Windsor",,3500.00,-4038.00,623
+,2600,"Nightingale Deposit","Closing Balance",,,,3500,7538,-4038,
+,2610,"Robin Deposit","Opening Balance",,,,,,0,
+,2610,"Robin Deposit","Closing Balance",,,,0,0,0,
+,2615,"Wood Deposit","Opening Balance",,,,,,0,
+,2615,"Wood Deposit","Closing Balance",,,,0,0,0,
+,2620,"Kensington Deposit","Opening Balance",,,,,,0,
+,2620,"Kensington Deposit","Closing Balance",,,,0,0,0,
+,2650,Accruals,"Opening Balance",,,,,,0,
+,2650,Accruals,"Closing Balance",,,,0,0,0,
+,2670,"Suspense Account","Opening Balance",,,,,,0,
+08/03/2021,2670,"Suspense Account",,CJ0004,CUS0001,"Nightingale, Windsor",3500.00,,3500.00,625
+08/03/2021,2670,"Suspense Account",,SJ0015,SUP0001,Strutt&parker,,3500.00,0.00,627
+,2670,"Suspense Account","Closing Balance",,,,3500,3500,0,
+,2705,"VAT on Sales","Opening Balance",,,,,,0,
+,2705,"VAT on Sales","Closing Balance",,,,0,0,0,
+,2710,"VAT on Purchases","Opening Balance",,,,,,0,
+01/10/2020,2710,"VAT on Purchases",,PI0400,SUP0001,AlMurad,,,0.00,2942
+01/10/2020,2710,"VAT on Purchases",,PI0401,SUP0001,Leaseplan,,,0.00,2945
+01/10/2020,2710,"VAT on Purchases",,PI0402,SUP0001,"Post Office",,,0.00,2948
+01/10/2020,2710,"VAT on Purchases",,PI0403,SUP0001,BP,,,0.00,2951
+01/10/2020,2710,"VAT on Purchases",,PI0404,SUP0001,"Post Office",,,0.00,2954
+02/10/2020,2710,"VAT on Purchases",,PI0396,SUP0001,Feya,,,0.00,2930
+02/10/2020,2710,"VAT on Purchases",,PI0397,SUP0001,"C Wala",,,0.00,2933
+02/10/2020,2710,"VAT on Purchases",,PI0398,SUP0001,"C Wala",,,0.00,2936
+02/10/2020,2710,"VAT on Purchases",,PI0399,SUP0001,Mantl,,,0.00,2939
+03/10/2020,2710,"VAT on Purchases",,PI0394,SUP0001,"C Wala",,,0.00,2924
+03/10/2020,2710,"VAT on Purchases",,PI0395,SUP0001,"C Wala",,,0.00,2927
+06/10/2020,2710,"VAT on Purchases",,PI0393,SUP0001,Dixons,,,0.00,2921
+07/10/2020,2710,"VAT on Purchases",,PI0392,SUP0001,BP,,,0.00,2918
+08/10/2020,2710,"VAT on Purchases",,PI0390,SUP0001,Selco,,,0.00,2912
+08/10/2020,2710,"VAT on Purchases",,PI0391,SUP0001,Selco,,,0.00,2915
+08/10/2020,2710,"VAT on Purchases",,PI0549,SUP0001,Skip,,,0.00,3389
+10/10/2020,2710,"VAT on Purchases",,PI0385,SUP0001,Cosi,,,0.00,2897
+10/10/2020,2710,"VAT on Purchases",,PI0386,SUP0001,"C Wala",,,0.00,2900
+11/10/2020,2710,"VAT on Purchases",,PI0384,SUP0001,Ivy,,,0.00,2894
+12/10/2020,2710,"VAT on Purchases",,PI0383,SUP0001,eggfreecake,,,0.00,2891
+12/10/2020,2710,"VAT on Purchases",,PI0387,SUP0001,Fego,,,0.00,2903
+12/10/2020,2710,"VAT on Purchases",,PI0388,SUP0001,"Plumbers Point",,,0.00,2906
+12/10/2020,2710,"VAT on Purchases",,PI0389,SUP0001,Anteplier,,,0.00,2909
+12/10/2020,2710,"VAT on Purchases",,PI0550,SUP0001,"Al Murad",,,0.00,3392
+12/10/2020,2710,"VAT on Purchases",,PI0551,SUP0001,"Plumbers Point",,,0.00,3395
+12/10/2020,2710,"VAT on Purchases",,PI0586,SUP0001,"Plumbers Point",,,0.00,3518
+13/10/2020,2710,"VAT on Purchases",,PI0552,SUP0001,Crowthorne,,,0.00,3398
+13/10/2020,2710,"VAT on Purchases",,PI0553,SUP0001,"Two Rivers",,,0.00,3401
+13/10/2020,2710,"VAT on Purchases",,PI0554,SUP0001,BP,,,0.00,3404
+13/10/2020,2710,"VAT on Purchases",,PI0555,SUP0001,"Slough Bathroom",,,0.00,3407
+14/10/2020,2710,"VAT on Purchases",,PI0556,SUP0001,"C Wala",,,0.00,3410
+14/10/2020,2710,"VAT on Purchases",,PI0557,SUP0001,"Slough Bathroom",,,0.00,3413
+15/10/2020,2710,"VAT on Purchases",,PI0558,SUP0001,"Slough Bathroom",,,0.00,3416
+15/10/2020,2710,"VAT on Purchases",,PI0567,SUP0001,Wickes,,,0.00,3443
+15/10/2020,2710,"VAT on Purchases",,PI0568,SUP0001,Wickes,,,0.00,3446
+17/10/2020,2710,"VAT on Purchases",,PI0566,SUP0001,Mangal,,,0.00,3440
+19/10/2020,2710,"VAT on Purchases",,PI0564,SUP0001,"Council Tax",,,0.00,3434
+19/10/2020,2710,"VAT on Purchases",,PI0565,SUP0001,"Plumbers Point",,,0.00,3437
+20/10/2020,2710,"VAT on Purchases",,PI0560,SUP0001,ProTilerTools,,,0.00,3422
+20/10/2020,2710,"VAT on Purchases",,PI0561,SUP0001,"Topps Tiles",,,0.00,3425
+20/10/2020,2710,"VAT on Purchases",,PI0562,SUP0001,ScrewFix,,,0.00,3428
+20/10/2020,2710,"VAT on Purchases",,PI0563,SUP0001,"Real Trade",,,0.00,3431
+21/10/2020,2710,"VAT on Purchases",,PI0457,SUP0001,"Emerald Door",,,0.00,3113
+21/10/2020,2710,"VAT on Purchases",,PI0458,SUP0001,Fego,,,0.00,3116
+21/10/2020,2710,"VAT on Purchases",,PI0459,SUP0001,Selco,,,0.00,3119
+21/10/2020,2710,"VAT on Purchases",,PI0559,SUP0001,Howdens,,,0.00,3419
+22/10/2020,2710,"VAT on Purchases",,PI0456,SUP0001,Monty,,,0.00,3110
+24/10/2020,2710,"VAT on Purchases",,PI0454,SUP0001,"Topps Tiles",,,0.00,3104
+24/10/2020,2710,"VAT on Purchases",,PI0455,SUP0001,"Topps Tiles",,,0.00,3107
+25/10/2020,2710,"VAT on Purchases",,PI0453,SUP0001,Selco,,,0.00,3101
+26/10/2020,2710,"VAT on Purchases",,PI0433,SUP0001,Wickes,,,0.00,3041
+26/10/2020,2710,"VAT on Purchases",,PI0451,SUP0001,"Post Office",,,0.00,3095
+26/10/2020,2710,"VAT on Purchases",,PI0452,SUP0001,"Post Office",,,0.00,3098
+30/10/2020,2710,"VAT on Purchases",,PI0449,SUP0001,"GBK Staines",,,0.00,3089
+30/10/2020,2710,"VAT on Purchases",,PI0450,SUP0001,"Windsor Heating",,,0.00,3092
+02/11/2020,2710,"VAT on Purchases",,PI0448,SUP0001,Purchase,,,0.00,3086
+03/11/2020,2710,"VAT on Purchases",,PI0447,SUP0001,"Windsor Heating",,,0.00,3083
+04/11/2020,2710,"VAT on Purchases",,PI0446,SUP0001,Wickes,,,0.00,3080
+05/11/2020,2710,"VAT on Purchases",,PI0444,SUP0001,"Windsor Heating",,,0.00,3074
+05/11/2020,2710,"VAT on Purchases",,PI0445,SUP0001,"Splash Plumbing",,,0.00,3077
+05/11/2020,2710,"VAT on Purchases",,PI0547,SUP0001,Shell,,,0.00,3383
+05/11/2020,2710,"VAT on Purchases",,PI0548,SUP0001,Wickes,,,0.00,3386
+05/11/2020,2710,"VAT on Purchases",,PI0578,SUP0001,"Windsor Heating",,,0.00,3494
+07/11/2020,2710,"VAT on Purchases",,PI0544,SUP0001,Halford,,,0.00,3374
+07/11/2020,2710,"VAT on Purchases",,PI0545,SUP0001,"Windsor Heating",,,0.00,3377
+07/11/2020,2710,"VAT on Purchases",,PI0546,SUP0001,Sainsburys,,,0.00,3380
+12/11/2020,2710,"VAT on Purchases",,PI0542,SUP0001,Shell,,,0.00,3368
+12/11/2020,2710,"VAT on Purchases",,PI0543,SUP0001,"C Wala",,,0.00,3371
+14/11/2020,2710,"VAT on Purchases",,PI0541,SUP0001,Endeavour,,,0.00,3365
+17/11/2020,2710,"VAT on Purchases",,PI0238,SUP0001,Leaseplan,,,0.00,2408
+17/11/2020,2710,"VAT on Purchases",,PI0538,SUP0001,"Plumbers Point",,,0.00,3356
+17/11/2020,2710,"VAT on Purchases",,PI0539,SUP0001,"Plumbers Point",,,0.00,3359
+17/11/2020,2710,"VAT on Purchases",,PI0540,SUP0001,BP,,,0.00,3362
+18/11/2020,2710,"VAT on Purchases",,PI0536,SUP0001,"Langley Plumbing",,,0.00,3350
+18/11/2020,2710,"VAT on Purchases",,PI0537,SUP0001,"Langley Plumbing",,,0.00,3353
+19/11/2020,2710,"VAT on Purchases",,PI0535,SUP0001,Wetrooms,,,0.00,3347
+20/11/2020,2710,"VAT on Purchases",,PI0534,SUP0001,"Langley Plumbing",,,0.00,3344
+23/11/2020,2710,"VAT on Purchases",,PI0530,SUP0001,Direct2Market,,,0.00,3332
+23/11/2020,2710,"VAT on Purchases",,PI0531,SUP0001,"Topps Tiles",,,0.00,3335
+23/11/2020,2710,"VAT on Purchases",,PI0532,SUP0001,"Topps Tiles",,,0.00,3338
+23/11/2020,2710,"VAT on Purchases",,PI0533,SUP0001,"Post Office",,,0.00,3341
+25/11/2020,2710,"VAT on Purchases",,PI0527,SUP0001,"Langley Plumbing",,,0.00,3323
+25/11/2020,2710,"VAT on Purchases",,PI0528,SUP0001,"MC2 Tile",,,0.00,3326
+25/11/2020,2710,"VAT on Purchases",,PI0529,SUP0001,XtremeAuto,,,0.00,3329
+25/11/2020,2710,"VAT on Purchases",,PI0579,SUP0001,ProTilerTools,,,0.00,3497
+26/11/2020,2710,"VAT on Purchases",,PI0516,SUP0001,EDC,,,0.00,3290
+26/11/2020,2710,"VAT on Purchases",,PI0523,SUP0001,TLC,,,0.00,3311
+26/11/2020,2710,"VAT on Purchases",,PI0524,SUP0001,TLC,,,0.00,3314
+26/11/2020,2710,"VAT on Purchases",,PI0525,SUP0001,"MC2 Tiles",,,0.00,3317
+26/11/2020,2710,"VAT on Purchases",,PI0526,SUP0001,TLC,,,0.00,3320
+27/11/2020,2710,"VAT on Purchases",,PI0521,SUP0001,Apple,,,0.00,3305
+27/11/2020,2710,"VAT on Purchases",,PI0522,SUP0001,Wickes,,,0.00,3308
+28/11/2020,2710,"VAT on Purchases",,PI0518,SUP0001,Apple,,,0.00,3296
+28/11/2020,2710,"VAT on Purchases",,PI0519,SUP0001,"W London",,,0.00,3299
+28/11/2020,2710,"VAT on Purchases",,PI0520,SUP0001,Rosa,,,0.00,3302
+29/11/2020,2710,"VAT on Purchases",,PI0515,SUP0001,Currys,,,0.00,3287
+30/11/2020,2710,"VAT on Purchases",,PI0510,SUP0001,Adlink,,,0.00,3272
+30/11/2020,2710,"VAT on Purchases",,PI0511,SUP0001,TLC-Direct,,,0.00,3275
+30/11/2020,2710,"VAT on Purchases",,PI0512,SUP0001,Adlink,,,0.00,3278
+30/11/2020,2710,"VAT on Purchases",,PI0513,SUP0001,TLC,,,0.00,3281
+30/11/2020,2710,"VAT on Purchases",,PI0514,SUP0001,Adlink,,,0.00,3284
+02/12/2020,2710,"VAT on Purchases",,PI0509,SUP0001,Rontec,,,0.00,3269
+04/12/2020,2710,"VAT on Purchases",,PI0508,SUP0001,Patara,,,0.00,3266
+06/12/2020,2710,"VAT on Purchases",,PI0505,SUP0001,Apple,,,0.00,3257
+06/12/2020,2710,"VAT on Purchases",,PI0506,SUP0001,Apple,,,0.00,3260
+06/12/2020,2710,"VAT on Purchases",,PI0507,SUP0001,Cote,,,0.00,3263
+07/12/2020,2710,"VAT on Purchases",,PI0503,SUP0001,Leaseplan,,,0.00,3251
+07/12/2020,2710,"VAT on Purchases",,PI0504,SUP0001,AlMurad,,,0.00,3254
+08/12/2020,2710,"VAT on Purchases",,PI0502,SUP0001,"Companies House",,,0.00,3248
+10/12/2020,2710,"VAT on Purchases",,PI0501,SUP0001,Newdays,,,0.00,3245
+11/12/2020,2710,"VAT on Purchases",,PI0497,SUP0001,Wagamama,,,0.00,3233
+11/12/2020,2710,"VAT on Purchases",,PI0499,SUP0001,"Topps Tiles",,,0.00,3239
+11/12/2020,2710,"VAT on Purchases",,PI0500,SUP0001,"Topps Tiles",,,0.00,3242
+13/12/2020,2710,"VAT on Purchases",,PI0498,SUP0001,Cote,,,0.00,3236
+14/12/2020,2710,"VAT on Purchases",,PI0496,SUP0001,Bill's,,,0.00,3230
+15/12/2020,2710,"VAT on Purchases",,PI0493,SUP0001,"Slough DT",,,0.00,3221
+15/12/2020,2710,"VAT on Purchases",,PI0494,SUP0001,"Topps Tiles",,,0.00,3224
+15/12/2020,2710,"VAT on Purchases",,PI0495,SUP0001,"Slough DT",,,0.00,3227
+17/12/2020,2710,"VAT on Purchases",,PI0491,SUP0001,"Datchet Green",,,0.00,3215
+17/12/2020,2710,"VAT on Purchases",,PI0492,SUP0001,"Topps Tiles",,,0.00,3218
+20/12/2020,2710,"VAT on Purchases",,PI0239,SUP0001,Zleep,,,0.00,2411
+20/12/2020,2710,"VAT on Purchases",,PI0490,SUP0001,BP,,,0.00,3212
+21/12/2020,2710,"VAT on Purchases",,PI0421,SUP0001,"City P",,,0.00,3005
+21/12/2020,2710,"VAT on Purchases",,PI0422,SUP0001,BA,,,0.00,3008
+21/12/2020,2710,"VAT on Purchases",,PI0423,SUP0001,Storesbaelts,,,0.00,3011
+21/12/2020,2710,"VAT on Purchases",,PI0424,SUP0001,Lagkagehuset,,,0.00,3014
+23/12/2020,2710,"VAT on Purchases",,PI0418,SUP0001,TLC,,,0.00,2996
+23/12/2020,2710,"VAT on Purchases",,PI0419,SUP0001,Screwfix,,,0.00,2999
+23/12/2020,2710,"VAT on Purchases",,PI0420,SUP0001,Brewers,,,0.00,3002
+26/12/2020,2710,"VAT on Purchases",,PI0417,SUP0001,"Design Vintage",,,0.00,2993
+29/12/2020,2710,"VAT on Purchases",,PI0413,SUP0001,B&Q,,,0.00,2981
+29/12/2020,2710,"VAT on Purchases",,PI0414,SUP0001,B&Q,,,0.00,2984
+29/12/2020,2710,"VAT on Purchases",,PI0415,SUP0001,Screwfix,,,0.00,2987
+29/12/2020,2710,"VAT on Purchases",,PI0416,SUP0001,Brewers,,,0.00,2990
+03/01/2021,2710,"VAT on Purchases",,PI0517,SUP0001,"Credit Card Int",,,0.00,3293
+05/01/2021,2710,"VAT on Purchases",,PI0489,SUP0001,Screwfix,,,0.00,3209
+05/01/2021,2710,"VAT on Purchases",,PI0580,SUP0001,Howdens-Correction,,,0.00,3500
+05/01/2021,2710,"VAT on Purchases",,PI0581,SUP0001,"Howden £46.49",,,0.00,3503
+09/01/2021,2710,"VAT on Purchases",,PI0582,SUP0001,"ScrewFix - Correction",,,0.00,3506
+09/01/2021,2710,"VAT on Purchases",,PI0583,SUP0001,"Wickes £60 correction",,,0.00,3509
+14/01/2021,2710,"VAT on Purchases",,PI0488,SUP0001,"MC Tiles",,,0.00,3206
+15/01/2021,2710,"VAT on Purchases",,PI0587,SUP0003,"Maher & Co.",,,0.00,3643
+16/01/2021,2710,"VAT on Purchases",,PI0487,SUP0001,"Alan Hunter",,,0.00,3203
+18/01/2021,2710,"VAT on Purchases",,PI0486,SUP0001,"Axa Insurance",,,0.00,3200
+19/01/2021,2710,"VAT on Purchases",,PI0484,SUP0001,"G. Certificate",,,0.00,3194
+19/01/2021,2710,"VAT on Purchases",,PI0485,SUP0001,"ScrewFix £10 correction",,,0.00,3197
+19/01/2021,2710,"VAT on Purchases",,PI0584,SUP0001,Screwfx-correction,,,0.00,3512
+22/01/2021,2710,"VAT on Purchases",,PI0002,SUP0003,"Maher & Co.",,,0.00,490
+22/01/2021,2710,"VAT on Purchases",,PI0482,SUP0001,Amazon,,,0.00,3188
+22/01/2021,2710,"VAT on Purchases",,PI0483,SUP0001,"Global Security",,,0.00,3191
+26/01/2021,2710,"VAT on Purchases",,PI0481,SUP0001,Msft,,,0.00,3185
+29/01/2021,2710,"VAT on Purchases",,PI0480,SUP0001,Experian,,,0.00,3182
+31/01/2021,2710,"VAT on Purchases",,PI0478,SUP0001,"Levent Cengiz",,,0.00,3176
+31/01/2021,2710,"VAT on Purchases",,PI0479,SUP0001,PP,,,0.00,3179
+02/02/2021,2710,"VAT on Purchases",,PI0001,SUP0003,"Maher & Co.",,,0.00,483
+02/02/2021,2710,"VAT on Purchases",,PI0477,SUP0001,"Windsor Trader",,,0.00,3173
+04/02/2021,2710,"VAT on Purchases",,PI0476,SUP0001,"Gas Certificate",,,0.00,3170
+06/02/2021,2710,"VAT on Purchases",,PI0472,SUP0001,WHSmith,,,0.00,3158
+06/02/2021,2710,"VAT on Purchases",,PI0473,SUP0001,ScrewFix,,,0.00,3161
+06/02/2021,2710,"VAT on Purchases",,PI0474,SUP0001,Esso,,,0.00,3164
+06/02/2021,2710,"VAT on Purchases",,PI0475,SUP0001,ScrewFix,,,0.00,3167
+10/02/2021,2710,"VAT on Purchases",,PI0471,SUP0001,"Patio Door Repair",,,0.00,3155
+15/02/2021,2710,"VAT on Purchases",,PI0585,SUP0003,"Maher & Co.",,,0.00,3515
+17/02/2021,2710,"VAT on Purchases",,PI0594,SUP0003,"Maher & Co.",,,0.00,3703
+17/02/2021,2710,"VAT on Purchases",,PI0602,SUP0003,"Maher & Co.",,,0.00,3793
+18/02/2021,2710,"VAT on Purchases",,PI0469,SUP0001,Howdens,,,0.00,3149
+18/02/2021,2710,"VAT on Purchases",,PI0470,SUP0001,Costco,,,0.00,3152
+19/02/2021,2710,"VAT on Purchases",,PI0468,SUP0001,"Royal Park",,,0.00,3146
+24/02/2021,2710,"VAT on Purchases",,PI0467,SUP0001,Shell,,,0.00,3143
+25/02/2021,2710,"VAT on Purchases",,PI0466,SUP0001,MSFT,,,0.00,3140
+26/02/2021,2710,"VAT on Purchases",,PI0464,SUP0001,Herath,,,0.00,3134
+26/02/2021,2710,"VAT on Purchases",,PI0465,SUP0001,"As if by Magic",,,0.00,3137
+28/02/2021,2710,"VAT on Purchases",,PI0462,SUP0001,Experian,,,0.00,3128
+28/02/2021,2710,"VAT on Purchases",,PI0463,SUP0001,Costa,,,0.00,3131
+03/03/2021,2710,"VAT on Purchases",,PI0373,SUP0001,"UnderFloor Heating",,,0.00,2861
+03/03/2021,2710,"VAT on Purchases",,PI0570,SUP0001,"First Choice Fire Service",,,0.00,3452
+05/03/2021,2710,"VAT on Purchases",,PI0011,SUP0001,"DC Renovations",,,0.00,531
+05/03/2021,2710,"VAT on Purchases",,PDN0001,SUP0001,"DC Renovations",,,0.00,537
+05/03/2021,2710,"VAT on Purchases",,PI0242,SUP0001,"DC Renovations",,,0.00,2424
+05/03/2021,2710,"VAT on Purchases",,PI0371,SUP0001,"Esure Insurance",,,0.00,2855
+05/03/2021,2710,"VAT on Purchases",,PI0372,SUP0001,Screwfix,,,0.00,2858
+06/03/2021,2710,"VAT on Purchases",,PI0241,SUP0001,"Weisz Locksmiths",,,0.00,2417
+07/03/2021,2710,"VAT on Purchases",,PI0005,SUP0001,Homebase,,,0.00,505
+09/03/2021,2710,"VAT on Purchases",,PI0016,SUP0001,Strutt&Parker,,,0.00,621
+10/03/2021,2710,"VAT on Purchases",,PI0240,SUP0001,"The Under Floor Heating",,,0.00,2414
+10/03/2021,2710,"VAT on Purchases",,PI0591,SUP0001,"The Underfloor",,,0.00,3688
+12/03/2021,2710,"VAT on Purchases",,PI0015,SUP0001,"Prime Inventories (Deborah)",,,0.00,552
+14/03/2021,2710,"VAT on Purchases",,PI0251,SUP0001,Ikea,,,0.00,2469
+15/03/2021,2710,"VAT on Purchases",,PI0629,SUP0001,"EXPERIAN UK",,,0.00,3961
+16/03/2021,2710,"VAT on Purchases",,PI0012,SUP0001,"DC Renovations",,,0.00,534
+18/03/2021,2710,"VAT on Purchases",,PI0004,SUP0001,Purchase,,,0.00,502
+18/03/2021,2710,"VAT on Purchases",,PI0252,SUP0001,lights.co.uk,,,0.00,2472
+19/03/2021,2710,"VAT on Purchases",,PI0006,SUP0001,"British Gas",,,0.00,508
+19/03/2021,2710,"VAT on Purchases",,PI0007,SUP0001,RBWM,,,0.00,513
+22/03/2021,2710,"VAT on Purchases",,PI0003,SUP0001,"Lukasz Builder",,,0.00,499
+22/03/2021,2710,"VAT on Purchases",,PI0013,SUP0001,"DC Renovations",,,0.00,540
+25/03/2021,2710,"VAT on Purchases",,PI0370,SUP0001,B&Q,,,0.00,2852
+26/03/2021,2710,"VAT on Purchases",,PI0014,SUP0001,"DC Renovations",,,0.00,543
+28/03/2021,2710,"VAT on Purchases",,PI0009,SUP0001,Longacres,,,0.00,519
+29/03/2021,2710,"VAT on Purchases",,PI0253,SUP0001,lights.co.uk,,,0.00,2475
+29/03/2021,2710,"VAT on Purchases",,PI0263,SUP0001,"Trade Point",,,0.00,2529
+30/03/2021,2710,"VAT on Purchases",,PI0008,SUP0001,"Al Murad",,,0.00,516
+30/03/2021,2710,"VAT on Purchases",,PI0261,SUP0001,"Trade Point",,,0.00,2519
+01/04/2021,2710,"VAT on Purchases",,PI0010,SUP0001,"CDN Services",,,0.00,522
+01/04/2021,2710,"VAT on Purchases",,PI0249,SUP0001,CDN,,,0.00,2459
+02/04/2021,2710,"VAT on Purchases",,PI0254,SUP0001,Nespresso,,,0.00,2478
+05/04/2021,2710,"VAT on Purchases",,PI0245,SUP0001,"Simply Bus Insurance",,,0.00,2439
+05/04/2021,2710,"VAT on Purchases",,PI0255,SUP0001,RBWM,,,0.00,2481
+06/04/2021,2710,"VAT on Purchases",,PI0248,SUP0001,Guardian,,,0.00,2454
+09/04/2021,2710,"VAT on Purchases",,PI0246,SUP0001,"DC Renovations",,,0.00,2442
+15/04/2021,2710,"VAT on Purchases",,PI0260,SUP0001,"Post Office",,,0.00,2514
+16/04/2021,2710,"VAT on Purchases",,PI0247,SUP0001,WeFixBoiler,,,0.00,2449
+17/04/2021,2710,"VAT on Purchases",,PI0368,SUP0001,Meze,,,0.00,2846
+17/04/2021,2710,"VAT on Purchases",,PI0369,SUP0001,Topworktops,,,0.00,2849
+19/04/2021,2710,"VAT on Purchases",,PI0250,SUP0001,"Darren (Windows)",,,0.00,2464
+20/04/2021,2710,"VAT on Purchases",,PI0367,SUP0001,Topworktops,,,0.00,2843
+23/04/2021,2710,"VAT on Purchases",,PI0366,SUP0001,Dobsons,,,0.00,2840
+25/04/2021,2710,"VAT on Purchases",,PI0365,SUP0001,Microsoft,,,0.00,2837
+26/04/2021,2710,"VAT on Purchases",,PI0361,SUP0001,Ikea,,,0.00,2825
+26/04/2021,2710,"VAT on Purchases",,PI0362,SUP0001,ScrewFix,,,0.00,2828
+26/04/2021,2710,"VAT on Purchases",,PI0363,SUP0001,ScrewFix,,,0.00,2831
+26/04/2021,2710,"VAT on Purchases",,PI0364,SUP0001,Screwfix,,,0.00,2834
+26/04/2021,2710,"VAT on Purchases",,PI0461,SUP0001,Ikea,,,0.00,3125
+28/04/2021,2710,"VAT on Purchases",,PI0235,SUP0001,"DC Renovations",,,0.00,2397
+28/04/2021,2710,"VAT on Purchases",,PI0244,SUP0001,Currys,,,0.00,2434
+28/04/2021,2710,"VAT on Purchases",,PI0262,SUP0001,Shell,,,0.00,2524
+29/04/2021,2710,"VAT on Purchases",,PI0243,SUP0001,Currys,,,0.00,2429
+29/04/2021,2710,"VAT on Purchases",,PI0460,SUP0001,"Companies House",,,0.00,3122
+30/04/2021,2710,"VAT on Purchases",,PI0017,SUP0001,"Herath Associates",600.00,,600.00,718
+30/04/2021,2710,"VAT on Purchases",,PI0256,SUP0001,Envirofresh,,,600.00,2494
+02/05/2021,2710,"VAT on Purchases",,PI0257,SUP0001,"Richmond Council",,,600.00,2499
+02/05/2021,2710,"VAT on Purchases",,PI0359,SUP0001,"Companies House",,,600.00,2819
+02/05/2021,2710,"VAT on Purchases",,PI0360,SUP0001,"Land Registry",,,600.00,2822
+02/05/2021,2710,"VAT on Purchases",,PI0603,SUP0001,"HM LAND REGISTRY",,,600.00,3829
+03/05/2021,2710,"VAT on Purchases",,PI0357,SUP0001,B&Q,,,600.00,2813
+03/05/2021,2710,"VAT on Purchases",,PI0358,SUP0001,Wickes,,,600.00,2816
+05/05/2021,2710,"VAT on Purchases",,PI0355,SUP0001,Ikea,,,600.00,2807
+05/05/2021,2710,"VAT on Purchases",,PI0356,SUP0001,Ikea,,,600.00,2810
+06/05/2021,2710,"VAT on Purchases",,PI0018,SUP0001,"L Underwood",,,600.00,725
+08/05/2021,2710,"VAT on Purchases",,PI0350,SUP0001,Timpson,,,600.00,2792
+08/05/2021,2710,"VAT on Purchases",,PI0351,SUP0001,Timpson,,,600.00,2795
+08/05/2021,2710,"VAT on Purchases",,PI0352,SUP0001,"Ping Pong",,,600.00,2798
+08/05/2021,2710,"VAT on Purchases",,PI0353,SUP0001,"Mountain Warehouse",,,600.00,2801
+08/05/2021,2710,"VAT on Purchases",,PI0354,SUP0001,Brewers,,,600.00,2804
+09/05/2021,2710,"VAT on Purchases",,PI0348,SUP0001,T2,,,600.00,2786
+09/05/2021,2710,"VAT on Purchases",,PI0349,SUP0001,123,,,600.00,2789
+10/05/2021,2710,"VAT on Purchases",,PI0604,SUP0001,"Chelsea T2 EU",,,600.00,3834
+14/05/2021,2710,"VAT on Purchases",,PI0605,SUP0001,"TIMPSON LTD",,,600.00,3839
+18/05/2021,2710,"VAT on Purchases",,PI0258,SUP0001,"Ashmore Property Services",,,600.00,2504
+19/05/2021,2710,"VAT on Purchases",,PI0347,SUP0001,Chestertons,,,600.00,2783
+20/05/2021,2710,"VAT on Purchases",,PI0606,SUP0001,WICKES,,,600.00,3844
+20/05/2021,2710,"VAT on Purchases",,PI0607,SUP0001,TIMPSON,,,600.00,3849
+21/05/2021,2710,"VAT on Purchases",,PI0346,SUP0001,Westfield,,,600.00,2780
+22/05/2021,2710,"VAT on Purchases",,PI0345,SUP0001,Westfield,,,600.00,2777
+24/05/2021,2710,"VAT on Purchases",,PI0315,SUP0001,"Land Registry",,,600.00,2687
+24/05/2021,2710,"VAT on Purchases",,PI0340,SUP0001,Microsoft,,,600.00,2762
+24/05/2021,2710,"VAT on Purchases",,PI0341,SUP0001,"Land Registry",,,600.00,2765
+24/05/2021,2710,"VAT on Purchases",,PI0608,SUP0001,"HM LAND REGISTRY",,,600.00,3854
+25/05/2021,2710,"VAT on Purchases",,PI0609,SUP0001,WICKES,,,600.00,3859
+26/05/2021,2710,"VAT on Purchases",,PI0313,SUP0001,Shell,,,600.00,2681
+28/05/2021,2710,"VAT on Purchases",,PI0312,SUP0001,"DC Renovation",,,600.00,2678
+29/05/2021,2710,"VAT on Purchases",,PI0311,SUP0001,Cartier,,,600.00,2675
+29/05/2021,2710,"VAT on Purchases",,PI0610,SUP0001,"PING PONG JAM",,,600.00,3864
+01/06/2021,2710,"VAT on Purchases",,PI0259,SUP0001,"Concept Property Management",,,600.00,2509
+01/06/2021,2710,"VAT on Purchases",,PI0308,SUP0001,Wordery,,,600.00,2666
+01/06/2021,2710,"VAT on Purchases",,PI0309,SUP0001,Nando,,,600.00,2669
+01/06/2021,2710,"VAT on Purchases",,PI0310,SUP0001,B&Q,,,600.00,2672
+09/06/2021,2710,"VAT on Purchases",,PI0305,SUP0001,B&Q,,,600.00,2657
+09/06/2021,2710,"VAT on Purchases",,PI0306,SUP0001,B&Q,,,600.00,2660
+09/06/2021,2710,"VAT on Purchases",,PI0307,SUP0001,B&Q,,,600.00,2663
+11/06/2021,2710,"VAT on Purchases",,PI0304,SUP0001,"The Rose",,,600.00,2654
+11/06/2021,2710,"VAT on Purchases",,PI0337,SUP0001,Express,,,600.00,2753
+11/06/2021,2710,"VAT on Purchases",,PI0338,SUP0001,B&Q,,,600.00,2756
+11/06/2021,2710,"VAT on Purchases",,PI0339,SUP0001,B&Q,,,600.00,2759
+11/06/2021,2710,"VAT on Purchases",,PI0611,SUP0001,expresstest.co.uk,,,600.00,3869
+14/06/2021,2710,"VAT on Purchases",,PI0335,SUP0001,123-reg,,,600.00,2747
+14/06/2021,2710,"VAT on Purchases",,PI0336,SUP0001,"Oven Doctor",,,600.00,2750
+16/06/2021,2710,"VAT on Purchases",,PI0334,SUP0001,Harrods,,,600.00,2744
+19/06/2021,2710,"VAT on Purchases",,PI0332,SUP0001,123-reg,,,600.00,2738
+19/06/2021,2710,"VAT on Purchases",,PI0333,SUP0001,Ryman,,,600.00,2741
+20/06/2021,2710,"VAT on Purchases",,PI0331,SUP0001,Outcome,,,600.00,2735
+22/06/2021,2710,"VAT on Purchases",,PI0344,SUP0001,Shopzu,,,600.00,2774
+23/06/2021,2710,"VAT on Purchases",,PI0330,SUP0001,Environfresh,,,600.00,2732
+23/06/2021,2710,"VAT on Purchases",,PI0342,SUP0001,"Meze Grill",,,600.00,2768
+23/06/2021,2710,"VAT on Purchases",,PI0343,SUP0001,O2,,,600.00,2771
+23/06/2021,2710,"VAT on Purchases",,PI0612,SUP0001,"WINDSOR MEZE GRILL KITCHEN",,,600.00,3874
+24/06/2021,2710,"VAT on Purchases",,PI0329,SUP0001,Microsoft,,,600.00,2729
+26/06/2021,2710,"VAT on Purchases",,PI0326,SUP0001,ebay,,,600.00,2720
+26/06/2021,2710,"VAT on Purchases",,PI0327,SUP0001,ebay,,,600.00,2723
+26/06/2021,2710,"VAT on Purchases",,PI0328,SUP0001,Runnymede,,,600.00,2726
+28/06/2021,2710,"VAT on Purchases",,PI0321,SUP0001,ebay,,,600.00,2705
+28/06/2021,2710,"VAT on Purchases",,PI0322,SUP0001,ebay,,,600.00,2708
+28/06/2021,2710,"VAT on Purchases",,PI0323,SUP0001,ebay,,,600.00,2711
+28/06/2021,2710,"VAT on Purchases",,PI0324,SUP0001,Read,,,600.00,2714
+28/06/2021,2710,"VAT on Purchases",,PI0325,SUP0001,PostOffice,,,600.00,2717
+29/06/2021,2710,"VAT on Purchases",,PI0320,SUP0001,Monty,,,600.00,2702
+30/06/2021,2710,"VAT on Purchases",,PI0317,SUP0001,123-reg,,,600.00,2693
+30/06/2021,2710,"VAT on Purchases",,PI0318,SUP0001,H&F,,,600.00,2696
+30/06/2021,2710,"VAT on Purchases",,PI0319,SUP0001,Brothers,,,600.00,2699
+02/07/2021,2710,"VAT on Purchases",,PI0302,SUP0001,Skyway,,,600.00,2648
+02/07/2021,2710,"VAT on Purchases",,PI0316,SUP0001,"The Rose",,,600.00,2690
+02/07/2021,2710,"VAT on Purchases",,PI0613,SUP0001,INTEREST,,,600.00,3879
+03/07/2021,2710,"VAT on Purchases",,PI0301,SUP0001,"Companies House",,,600.00,2645
+09/07/2021,2710,"VAT on Purchases",,PI0300,SUP0001,Cote,,,600.00,2642
+10/07/2021,2710,"VAT on Purchases",,PI0299,SUP0001,Next,,,600.00,2639
+13/07/2021,2710,"VAT on Purchases",,PI0298,SUP0001,"Windmill Heating",,,600.00,2636
+14/07/2021,2710,"VAT on Purchases",,PI0296,SUP0001,Stansted,,,600.00,2630
+14/07/2021,2710,"VAT on Purchases",,PI0297,SUP0001,"Concept Property",,,600.00,2633
+15/07/2021,2710,"VAT on Purchases",,PI0294,SUP0001,Shell,,,600.00,2624
+15/07/2021,2710,"VAT on Purchases",,PI0295,SUP0001,Woolley,,,600.00,2627
+17/07/2021,2710,"VAT on Purchases",,PI0293,SUP0001,HMP,,,600.00,2621
+19/07/2021,2710,"VAT on Purchases",,PI0291,SUP0001,PostOffice,,,600.00,2615
+19/07/2021,2710,"VAT on Purchases",,PI0292,SUP0001,PostOffice,,,600.00,2618
+20/07/2021,2710,"VAT on Purchases",,PI0290,SUP0001,Environfresh,,,600.00,2612
+24/07/2021,2710,"VAT on Purchases",,PI0289,SUP0001,Microsoft,,,600.00,2609
+30/07/2021,2710,"VAT on Purchases",,PI0288,SUP0001,"V Dhariwal",,,600.00,2606
+31/07/2021,2710,"VAT on Purchases",,PI0286,SUP0001,"PF Chang",,,600.00,2600
+31/07/2021,2710,"VAT on Purchases",,PI0287,SUP0001,Camden,,,600.00,2603
+01/08/2021,2710,"VAT on Purchases",,PI0285,SUP0001,"Gourmet B",,,600.00,2597
+03/08/2021,2710,"VAT on Purchases",,PI0281,SUP0001,Selco,,,600.00,2585
+03/08/2021,2710,"VAT on Purchases",,PI0282,SUP0001,Selco,,,600.00,2588
+05/08/2021,2710,"VAT on Purchases",,PI0280,SUP0001,"HS Heating",,,600.00,2582
+06/08/2021,2710,"VAT on Purchases",,PI0279,SUP0001,"British Gas",,,600.00,2579
+07/08/2021,2710,"VAT on Purchases",,PI0067,SUP0001,"BP Express",,,600.00,1423
+08/08/2021,2710,"VAT on Purchases",,PI0278,SUP0001,123-reg,,,600.00,2576
+08/08/2021,2710,"VAT on Purchases",,PI0283,SUP0001,TFL,,,600.00,2591
+08/08/2021,2710,"VAT on Purchases",,PI0284,SUP0001,"Pizza Exp",,,600.00,2594
+10/08/2021,2710,"VAT on Purchases",,PI0019,SUP0001,"Unique Glazing",,,600.00,1172
+10/08/2021,2710,"VAT on Purchases",,PI0303,SUP0001,PostOffice,,,600.00,2651
+16/08/2021,2710,"VAT on Purchases",,PI0277,SUP0001,"Giggling Sq",,,600.00,2573
+19/08/2021,2710,"VAT on Purchases",,PI0276,SUP0001,"BP Wexham",,,600.00,2570
+19/08/2021,2710,"VAT on Purchases",,PI0592,SUP0001,"Go Cardless",,,600.00,3693
+20/08/2021,2710,"VAT on Purchases",,PI0275,SUP0001,Esure,,,600.00,2567
+23/08/2021,2710,"VAT on Purchases",,PI0271,SUP0001,Microsoft,,,600.00,2555
+23/08/2021,2710,"VAT on Purchases",,PI0272,SUP0001,"Manchester Airport",,,600.00,2558
+23/08/2021,2710,"VAT on Purchases",,PI0273,SUP0001,Hello,,,600.00,2561
+23/08/2021,2710,"VAT on Purchases",,PI0274,SUP0001,Toll,,,600.00,2564
+24/08/2021,2710,"VAT on Purchases",,PI0270,SUP0001,"Messe Friedrichshafen",12.72,,612.72,2552
+26/08/2021,2710,"VAT on Purchases",,PI0269,SUP0001,Gotrentalcars,,,612.72,2549
+02/09/2021,2710,"VAT on Purchases",,PI0268,SUP0001,"Unique Glazing",,,612.72,2546
+04/09/2021,2710,"VAT on Purchases",,PI0077,SUP0001,123-Reg,,,612.72,1549
+05/09/2021,2710,"VAT on Purchases",,PI0030,SUP0001,123-reg,,,612.72,1236
+09/09/2021,2710,"VAT on Purchases",,PI0031,SUP0001,123-reg,,,612.72,1239
+15/09/2021,2710,"VAT on Purchases",,PI0064,SUP0001,"Silva Timber",,,612.72,1406
+16/09/2021,2710,"VAT on Purchases",,PI0593,SUP0001,"Go Cardless",,,612.72,3698
+19/09/2021,2710,"VAT on Purchases",,PI0066,SUP0001,Ascot,,,612.72,1420
+21/09/2021,2710,"VAT on Purchases",,PI0068,SUP0001,"Windsor Traders",,,612.72,1426
+27/09/2021,2710,"VAT on Purchases",,PI0065,SUP0001,Mfg,,,612.72,1409
+27/09/2021,2710,"VAT on Purchases",,PI0601,SUP0001,"Waqas Ahmed",,,612.72,3770
+,2710,"VAT on Purchases","Closing Balance",,,,612.72,0,612.72,
+,2720,"Import VAT","Opening Balance",,,,,,0,
+,2720,"Import VAT","Closing Balance",,,,0,0,0,
+,2730,"VAT Bad Debt Relief","Opening Balance",,,,,,0,
+,2730,"VAT Bad Debt Relief","Closing Balance",,,,0,0,0,
+,2740,"VAT Payable / Receivable","Opening Balance",,,,,,0,
+,2740,"VAT Payable / Receivable","Closing Balance",,,,0,0,0,
+,2800,"Salary Control Account","Opening Balance",,,,,,0,
+,2800,"Salary Control Account","Closing Balance",,,,0,0,0,
+,2830,PAYE,"Opening Balance",,,,,,0,
+,2830,PAYE,"Closing Balance",,,,0,0,0,
+,2850,"Corporation Tax Payable to HMRC","Opening Balance",,,,,,0,
+,2850,"Corporation Tax Payable to HMRC","Closing Balance",,,,0,0,0,
+,2870,Pensions,"Opening Balance",,,,,,0,
+,2870,Pensions,"Closing Balance",,,,0,0,0,
+,3100,"Directors' Loans","Opening Balance",,,,,,0,
+24/11/2020,3100,"Directors' Loans",,GJ0036,2100,"Bank - Current Account",100.00,,100.00,328
+24/11/2020,3100,"Directors' Loans",,GJ0057,2100,"Faster Payment - Correction",,200.00,-100.00,562
+14/12/2020,3100,"Directors' Loans",,GJ0050,2100,"Bank - Coutts Account",,6000.00,-6100.00,456
+26/01/2021,3100,"Directors' Loans",,GJ0051,2100,"Bank - Coutts Account",,250000.00,-256100.00,450
+26/01/2021,3100,"Directors' Loans",,GJ0051,2100,"Bank - Coutts Account",,250000.00,-506100.00,451
+27/01/2021,3100,"Directors' Loans",,GJ0051,2100,"Bank - Coutts Account",,212000.00,-718100.00,452
+,3100,"Directors' Loans","Closing Balance",,,,100,718200,-718100,
+,3150,"Other Long Term Loans","Opening Balance",,,,,,0,
+,3150,"Other Long Term Loans","Closing Balance",,,,0,0,0,
+,3200,"Mortgage Nightingale","Opening Balance",,,,,,0,
+26/01/2021,3200,"Mortgage Nightingale",,SJ0012,SUP0003,"Maher & Co. - Nightingale",,651000.00,-651000.00,592
+,3200,"Mortgage Nightingale","Closing Balance",,,,0,651000,-651000,
+,3210,"Mortgage Robin's","Opening Balance",,,,,,0,
+05/02/2021,3210,"Mortgage Robin's",,SJ0012,SUP0003,"Maher & Co - Robin",,385000.00,-385000.00,591
+10/08/2021,3210,"Mortgage Robin's",,GJ0105,3210,"Mortgage Robin's",815.39,,-384184.61,1166
+,3210,"Mortgage Robin's","Closing Balance",,,,815.39,385000,-384184.61,
+,3220,"Mortgage Kensington","Opening Balance",,,,,,0,
+,3220,"Mortgage Kensington","Closing Balance",,,,0,0,0,
+,3510,"Share Capital","Opening Balance",,,,,,0,
+14/12/2020,3510,"Share Capital",,GJ0050,2100,"Bank - Coutts Account",,1000.00,-1000.00,455
+,3510,"Share Capital","Closing Balance",,,,0,1000,-1000,
+,3520,"Revaluation Reserve","Opening Balance",,,,,,0,
+,3520,"Revaluation Reserve","Closing Balance",,,,0,0,0,
+,3530,"Retained Earnings","Opening Balance",,,,,,0,
+,3530,"Retained Earnings","Closing Balance",,,,0,0,0,
+,3550,"Drawings - Equity","Opening Balance",,,,,,0,
+,3550,"Drawings - Equity","Closing Balance",,,,0,0,0,
+,4005,Income,"Opening Balance",,,,,,0,
+08/03/2021,4005,Income,,SI0001,CUS0001,"Nightingale, Windsor",42000.00,,42000.00,601
+08/03/2021,4005,Income,,SI0001,CUS0001,"Nightingale, Windsor",,,42000.00,603
+08/03/2021,4005,Income,,SI0002,CUS0001,"Nightingale, Windsor",4038.00,,46038.00,614
+08/03/2021,4005,Income,,SI0002,CUS0001,"Nightingale, Windsor",,,46038.00,616
+08/03/2021,4005,Income,,CJ0002,CUS0001,"Nightingale, Windsor",,3500.00,42538.00,617
+08/03/2021,4005,Income,,CJ0003,CUS0001,"Nightingale, Windsor",3500.00,,46038.00,622
+08/03/2021,4005,Income,,CJ0004,CUS0001,"Nightingale, Windsor",,3500.00,42538.00,624
+12/03/2021,4005,Income,,CJ0001,CUS0001,"Nightingale, Windsor",,4038.00,38500.00,608
+19/03/2021,4005,Income,,CJ0001,CUS0001,"Nightingale, Windsor",,10000.00,28500.00,604
+19/03/2021,4005,Income,,CJ0001,CUS0001,"Nightingale, Windsor",,10000.00,18500.00,605
+19/03/2021,4005,Income,,CJ0001,CUS0001,"Nightingale, Windsor",,8500.00,10000.00,606
+19/03/2021,4005,Income,,CJ0001,CUS0001,"Nightingale, Windsor",,10000.00,0.00,607
+16/06/2021,4005,Income,,GJ0088,CUS0002,"Robins, Richmond",,2250.00,-2250.00,964
+16/06/2021,4005,Income,,GJ0088,CUS0002,"Robins, Richmond",,2250.00,-4500.00,965
+16/06/2021,4005,Income,,GJ0089,CUS0002,"Robins, Richmond-Correction",2250.00,,-2250.00,968
+16/06/2021,4005,Income,,CJ0005,CUS0002,"Robins, Richmond",,2250.00,-4500.00,970
+16/06/2021,4005,Income,,SI0003,CUS0002,"Robins, Richmond",2250.00,,-2250.00,972
+16/06/2021,4005,Income,,SI0003,CUS0002,"Robins, Richmond",,,-2250.00,974
+16/06/2021,4005,Income,,GJ0090,CUS0002,"Robins, Richmond-Correction",2250.00,,0.00,975
+15/07/2021,4005,Income,,SI0004,CUS0002,"Robins, Richmond",2250.00,,2250.00,1037
+15/07/2021,4005,Income,,SI0004,CUS0002,"Robins, Richmond",,,2250.00,1039
+15/07/2021,4005,Income,,CJ0006,CUS0002,"Robins, Richmond",,2250.00,0.00,1040
+16/08/2021,4005,Income,,SI0015,CUS0002,"Robins, Richmond",2250.00,,2250.00,3648
+16/08/2021,4005,Income,,SI0015,CUS0002,"Robins, Richmond",,,2250.00,3650
+16/08/2021,4005,Income,,CJ0017,CUS0002,"Robins, Richmond",,2250.00,0.00,3651
+15/09/2021,4005,Income,,SI0016,CUS0002,"Robins, Richmond",2250.00,,2250.00,3732
+15/09/2021,4005,Income,,SI0016,CUS0002,"Robins, Richmond",,,2250.00,3734
+15/09/2021,4005,Income,,CJ0018,CUS0002,"Robins, Richmond",,2250.00,0.00,3735
+,4005,Income,"Closing Balance",,,,63038,63038,0,
+,4010,"Rent Nightingale","Opening Balance",,,,,,0,
+08/03/2021,4010,"Rent Nightingale",,SI0001,CUS0001,"Nightingale, Windsor",,42000.00,-42000.00,602
+16/06/2021,4010,"Rent Nightingale",,SI0003,CUS0002,"Robins, Richmond",,2250.00,-44250.00,973
+,4010,"Rent Nightingale","Closing Balance",,,,0,44250,-44250,
+,4011,"Rent Robins","Opening Balance",,,,,,0,
+16/06/2021,4011,"Rent Robins",,GJ0087,4011,"Rent Robin",2250.00,,2250.00,960
+16/06/2021,4011,"Rent Robins",,GJ0088,4011,"Rent Robin/correction",,2250.00,0.00,962
+16/06/2021,4011,"Rent Robins",,GJ0088,CUS0002,"Robins, Richmond",2250.00,,2250.00,966
+16/06/2021,4011,"Rent Robins",,GJ0089,CUS0002,"Robins, Richmond-Correction",,2250.00,0.00,969
+16/06/2021,4011,"Rent Robins",,GJ0090,CUS0002,"Robins, Richmond-Correction",,2250.00,-2250.00,976
+16/06/2021,4011,"Rent Robins",,GJ0103,4011,"Rent Robin",2250.00,,0.00,1162
+15/07/2021,4011,"Rent Robins",,SI0004,CUS0002,"Robins, Richmond",,2250.00,-2250.00,1038
+16/08/2021,4011,"Rent Robins",,SI0015,CUS0002,"Robins, Richmond",,2250.00,-4500.00,3649
+15/09/2021,4011,"Rent Robins",,SI0016,CUS0002,"Robins, Richmond",,2250.00,-6750.00,3733
+,4011,"Rent Robins","Closing Balance",,,,6750,13500,-6750,
+,4015,"Rent Wood","Opening Balance",,,,,,0,
+,4015,"Rent Wood","Closing Balance",,,,0,0,0,
+,4020,"Rent Kensington","Opening Balance",,,,,,0,
+,4020,"Rent Kensington","Closing Balance",,,,0,0,0,
+,4050,"Sales EU","Opening Balance",,,,,,0,
+,4050,"Sales EU","Closing Balance",,,,0,0,0,
+,4100,"Sales Outside EU","Opening Balance",,,,,,0,
+,4100,"Sales Outside EU","Closing Balance",,,,0,0,0,
+,4200,"Sales Discounts","Opening Balance",,,,,,0,
+,4200,"Sales Discounts","Closing Balance",,,,0,0,0,
+,4250,"Carriage on Sales","Opening Balance",,,,,,0,
+,4250,"Carriage on Sales","Closing Balance",,,,0,0,0,
+,4310,"Late Payment Charges","Opening Balance",,,,,,0,
+,4310,"Late Payment Charges","Closing Balance",,,,0,0,0,
+,4350,"Other income","Opening Balance",,,,,,0,
+,4350,"Other income","Closing Balance",,,,0,0,0,
+,4600,"Opening Stock","Opening Balance",,,,,,0,
+,4600,"Opening Stock","Closing Balance",,,,0,0,0,
+,4650,Purchases,"Opening Balance",,,,,,0,
+,4650,Purchases,"Closing Balance",,,,0,0,0,
+,4800,"Purchase Discounts","Opening Balance",,,,,,0,
+,4800,"Purchase Discounts","Closing Balance",,,,0,0,0,
+,4850,"Bank Charges","Opening Balance",,,,,,0,
+14/12/2020,4850,"Bank Charges",,GJ0028,SUP0002,"Coutts & Co.",120.35,,120.35,280
+30/06/2021,4850,"Bank Charges",,GJ0086,4850,"Bank Charges",,133.65,-13.30,958
+30/06/2021,4850,"Bank Charges",,GJ0012,4850,"Bank Charges",133.65,,120.35,3764
+30/09/2021,4850,"Bank Charges",,GJ0101,4850,"Bank Charges",133.65,,254.00,1138
+,4850,"Bank Charges","Closing Balance",,,,387.65,133.65,254,
+,4900,"Carriage on Purchases","Opening Balance",,,,,,0,
+,4900,"Carriage on Purchases","Closing Balance",,,,0,0,0,
+,4950,"Stock Damages","Opening Balance",,,,,,0,
+,4950,"Stock Damages","Closing Balance",,,,0,0,0,
+,5000,"Closing Stock","Opening Balance",,,,,,0,
+,5000,"Closing Stock","Closing Balance",,,,0,0,0,
+,5500,Marketing,"Opening Balance",,,,,,0,
+23/08/2021,5500,Marketing,,PI0273,SUP0001,Hello,16.55,,16.55,2560
+,5500,Marketing,"Closing Balance",,,,16.55,0,16.55,
+,6000,"Selling Cost","Opening Balance",,,,,,0,
+,6000,"Selling Cost","Closing Balance",,,,0,0,0,
+,6105,"Nightingale Repair & Maintenance","Opening Balance",,,,,,24568.42,
+01/10/2020,6105,"Nightingale Repair & Maintenance",,PI0400,SUP0001,AlMurad,1000.00,,25568.42,2941
+08/10/2020,6105,"Nightingale Repair & Maintenance",,PI0390,SUP0001,Selco,56.08,,25624.50,2911
+08/10/2020,6105,"Nightingale Repair & Maintenance",,PI0391,SUP0001,Selco,113.01,,25737.51,2914
+08/10/2020,6105,"Nightingale Repair & Maintenance",,PI0549,SUP0001,Skip,210.00,,25947.51,3388
+10/10/2020,6105,"Nightingale Repair & Maintenance",,PI0385,SUP0001,Cosi,3300.00,,29247.51,2896
+10/10/2020,6105,"Nightingale Repair & Maintenance",,PI0386,SUP0001,"C Wala",17.80,,29265.31,2899
+12/10/2020,6105,"Nightingale Repair & Maintenance",,PI0388,SUP0001,"Plumbers Point",591.54,,29856.85,2905
+12/10/2020,6105,"Nightingale Repair & Maintenance",,PI0550,SUP0001,"Al Murad",300.00,,30156.85,3391
+12/10/2020,6105,"Nightingale Repair & Maintenance",,PI0551,SUP0001,"Plumbers Point",591.54,,30748.39,3394
+12/10/2020,6105,"Nightingale Repair & Maintenance",,PI0586,SUP0001,"Plumbers Point",181.57,,30929.96,3517
+13/10/2020,6105,"Nightingale Repair & Maintenance",,PI0552,SUP0001,Crowthorne,35.50,,30965.46,3397
+13/10/2020,6105,"Nightingale Repair & Maintenance",,PI0555,SUP0001,"Slough Bathroom",11.68,,30977.14,3406
+15/10/2020,6105,"Nightingale Repair & Maintenance",,PI0558,SUP0001,"Slough Bathroom",1335.00,,32312.14,3415
+15/10/2020,6105,"Nightingale Repair & Maintenance",,PI0567,SUP0001,Wickes,12.00,,32324.14,3442
+15/10/2020,6105,"Nightingale Repair & Maintenance",,PI0568,SUP0001,Wickes,6.00,,32330.14,3445
+17/10/2020,6105,"Nightingale Repair & Maintenance",,PI0566,SUP0001,Mangal,166.60,,32496.74,3439
+19/10/2020,6105,"Nightingale Repair & Maintenance",,PI0565,SUP0001,"Plumbers Point",163.99,,32660.73,3436
+20/10/2020,6105,"Nightingale Repair & Maintenance",,PI0560,SUP0001,ProTilerTools,61.97,,32722.70,3421
+20/10/2020,6105,"Nightingale Repair & Maintenance",,PI0561,SUP0001,"Topps Tiles",32.62,,32755.32,3424
+20/10/2020,6105,"Nightingale Repair & Maintenance",,PI0562,SUP0001,ScrewFix,10.49,,32765.81,3427
+21/10/2020,6105,"Nightingale Repair & Maintenance",,PI0457,SUP0001,"Emerald Door",523.01,,33288.82,3112
+21/10/2020,6105,"Nightingale Repair & Maintenance",,PI0459,SUP0001,Selco,41.33,,33330.15,3118
+21/10/2020,6105,"Nightingale Repair & Maintenance",,PI0559,SUP0001,Howdens,189.44,,33519.59,3418
+24/10/2020,6105,"Nightingale Repair & Maintenance",,PI0454,SUP0001,"Topps Tiles",225.78,,33745.37,3103
+24/10/2020,6105,"Nightingale Repair & Maintenance",,PI0455,SUP0001,"Topps Tiles",25.17,,33770.54,3106
+25/10/2020,6105,"Nightingale Repair & Maintenance",,PI0453,SUP0001,Selco,9.90,,33780.44,3100
+26/10/2020,6105,"Nightingale Repair & Maintenance",,PI0433,SUP0001,Wickes,18.45,,33798.89,3040
+30/10/2020,6105,"Nightingale Repair & Maintenance",,PI0450,SUP0001,"Windsor Heating",2.30,,33801.19,3091
+02/11/2020,6105,"Nightingale Repair & Maintenance",,PI0448,SUP0001,Purchase,21.22,,33822.41,3085
+03/11/2020,6105,"Nightingale Repair & Maintenance",,PI0447,SUP0001,"Windsor Heating",56.07,,33878.48,3082
+04/11/2020,6105,"Nightingale Repair & Maintenance",,PI0446,SUP0001,Wickes,21.22,,33899.70,3079
+05/11/2020,6105,"Nightingale Repair & Maintenance",,PI0444,SUP0001,"Windsor Heating",48.44,,33948.14,3073
+05/11/2020,6105,"Nightingale Repair & Maintenance",,PI0445,SUP0001,"Splash Plumbing",25.20,,33973.34,3076
+05/11/2020,6105,"Nightingale Repair & Maintenance",,PI0548,SUP0001,Wickes,11.71,,33985.05,3385
+05/11/2020,6105,"Nightingale Repair & Maintenance",,PI0578,SUP0001,"Windsor Heating",8.75,,33993.80,3493
+07/11/2020,6105,"Nightingale Repair & Maintenance",,PI0545,SUP0001,"Windsor Heating",42.93,,34036.73,3376
+17/11/2020,6105,"Nightingale Repair & Maintenance",,PI0538,SUP0001,"Plumbers Point",91.54,,34128.27,3355
+17/11/2020,6105,"Nightingale Repair & Maintenance",,PI0539,SUP0001,"Plumbers Point",124.49,,34252.76,3358
+18/11/2020,6105,"Nightingale Repair & Maintenance",,PI0536,SUP0001,"Langley Plumbing",41.41,,34294.17,3349
+18/11/2020,6105,"Nightingale Repair & Maintenance",,PI0537,SUP0001,"Langley Plumbing",291.00,,34585.17,3352
+19/11/2020,6105,"Nightingale Repair & Maintenance",,PI0535,SUP0001,Wetrooms,579.07,,35164.24,3346
+20/11/2020,6105,"Nightingale Repair & Maintenance",,PI0534,SUP0001,"Langley Plumbing",10.99,,35175.23,3343
+23/11/2020,6105,"Nightingale Repair & Maintenance",,PI0530,SUP0001,Direct2Market,2.90,,35178.13,3331
+23/11/2020,6105,"Nightingale Repair & Maintenance",,PI0531,SUP0001,"Topps Tiles",116.99,,35295.12,3334
+23/11/2020,6105,"Nightingale Repair & Maintenance",,PI0532,SUP0001,"Topps Tiles",266.25,,35561.37,3337
+25/11/2020,6105,"Nightingale Repair & Maintenance",,PI0527,SUP0001,"Langley Plumbing",25.50,,35586.87,3322
+25/11/2020,6105,"Nightingale Repair & Maintenance",,PI0528,SUP0001,"MC2 Tile",439.55,,36026.42,3325
+25/11/2020,6105,"Nightingale Repair & Maintenance",,PI0579,SUP0001,ProTilerTools,71.96,,36098.38,3496
+26/11/2020,6105,"Nightingale Repair & Maintenance",,PI0516,SUP0001,EDC,158.22,,36256.60,3289
+26/11/2020,6105,"Nightingale Repair & Maintenance",,PI0523,SUP0001,TLC,402.48,,36659.08,3310
+26/11/2020,6105,"Nightingale Repair & Maintenance",,PI0524,SUP0001,TLC,331.16,,36990.24,3313
+26/11/2020,6105,"Nightingale Repair & Maintenance",,PI0525,SUP0001,"MC2 Tiles",125.61,,37115.85,3316
+26/11/2020,6105,"Nightingale Repair & Maintenance",,PI0526,SUP0001,TLC,5.40,,37121.25,3319
+27/11/2020,6105,"Nightingale Repair & Maintenance",,PI0522,SUP0001,Wickes,28.20,,37149.45,3307
+30/11/2020,6105,"Nightingale Repair & Maintenance",,PI0512,SUP0001,Adlink,141.00,,37290.45,3277
+30/11/2020,6105,"Nightingale Repair & Maintenance",,PI0513,SUP0001,TLC,4.75,,37295.20,3280
+30/11/2020,6105,"Nightingale Repair & Maintenance",,PI0514,SUP0001,Adlink,123.62,,37418.82,3283
+07/12/2020,6105,"Nightingale Repair & Maintenance",,PI0504,SUP0001,AlMurad,5.00,,37423.82,3253
+11/12/2020,6105,"Nightingale Repair & Maintenance",,PI0499,SUP0001,"Topps Tiles",466.58,,37890.40,3238
+11/12/2020,6105,"Nightingale Repair & Maintenance",,PI0500,SUP0001,"Topps Tiles",88.17,,37978.57,3241
+15/12/2020,6105,"Nightingale Repair & Maintenance",,PI0494,SUP0001,"Topps Tiles",66.00,,38044.57,3223
+17/12/2020,6105,"Nightingale Repair & Maintenance",,PI0492,SUP0001,"Topps Tiles",19.90,,38064.47,3217
+23/12/2020,6105,"Nightingale Repair & Maintenance",,PI0418,SUP0001,TLC,7.19,,38071.66,2995
+23/12/2020,6105,"Nightingale Repair & Maintenance",,PI0419,SUP0001,Screwfix,13.77,,38085.43,2998
+23/12/2020,6105,"Nightingale Repair & Maintenance",,PI0420,SUP0001,Brewers,13.85,,38099.28,3001
+29/12/2020,6105,"Nightingale Repair & Maintenance",,PI0414,SUP0001,B&Q,10.00,,38109.28,2983
+29/12/2020,6105,"Nightingale Repair & Maintenance",,PI0415,SUP0001,Screwfix,26.97,,38136.25,2986
+29/12/2020,6105,"Nightingale Repair & Maintenance",,PI0416,SUP0001,Brewers,79.50,,38215.75,2989
+05/01/2021,6105,"Nightingale Repair & Maintenance",,GJ0038,SUP0001,Howdens,,46.49,38169.26,334
+05/01/2021,6105,"Nightingale Repair & Maintenance",,PI0580,SUP0001,Howdens-Correction,92.98,,38262.24,3499
+09/01/2021,6105,"Nightingale Repair & Maintenance",,GJ0038,SUP0001,Wickes,,60.00,38202.24,333
+09/01/2021,6105,"Nightingale Repair & Maintenance",,PI0582,SUP0001,"ScrewFix - Correction",120.00,,38322.24,3505
+14/01/2021,6105,"Nightingale Repair & Maintenance",,PI0488,SUP0001,"MC Tiles",74.60,,38396.84,3205
+16/01/2021,6105,"Nightingale Repair & Maintenance",,PI0487,SUP0001,"Alan Hunter",99.85,,38496.69,3202
+19/01/2021,6105,"Nightingale Repair & Maintenance",,GJ0038,SUP0001,ScrewFix,,10.00,38486.69,332
+19/01/2021,6105,"Nightingale Repair & Maintenance",,PI0484,SUP0001,"G. Certificate",180.00,,38666.69,3193
+19/01/2021,6105,"Nightingale Repair & Maintenance",,PI0584,SUP0001,Screwfx-correction,20.00,,38686.69,3511
+22/01/2021,6105,"Nightingale Repair & Maintenance",,PI0483,SUP0001,"Global Security",182.40,,38869.09,3190
+02/02/2021,6105,"Nightingale Repair & Maintenance",,PI0477,SUP0001,"Windsor Trader",20.34,,38889.43,3172
+04/02/2021,6105,"Nightingale Repair & Maintenance",,PI0476,SUP0001,"Gas Certificate",180.00,,39069.43,3169
+06/02/2021,6105,"Nightingale Repair & Maintenance",,PI0472,SUP0001,WHSmith,46.93,,39116.36,3157
+10/02/2021,6105,"Nightingale Repair & Maintenance",,PI0471,SUP0001,"Patio Door Repair",165.00,,39281.36,3154
+18/02/2021,6105,"Nightingale Repair & Maintenance",,PI0469,SUP0001,Howdens,12.00,,39293.36,3148
+26/02/2021,6105,"Nightingale Repair & Maintenance",,PI0465,SUP0001,"As if by Magic",10.49,,39303.85,3136
+03/03/2021,6105,"Nightingale Repair & Maintenance",,PI0570,SUP0001,"First Choice Fire Service",120.00,,39423.85,3451
+05/03/2021,6105,"Nightingale Repair & Maintenance",,PI0372,SUP0001,Screwfix,79.98,,39503.83,2857
+06/03/2021,6105,"Nightingale Repair & Maintenance",,PI0241,SUP0001,"Weisz Locksmiths",168.00,,39671.83,2416
+07/03/2021,6105,"Nightingale Repair & Maintenance",,PI0005,SUP0001,Homebase,66.00,,39737.83,504
+12/03/2021,6105,"Nightingale Repair & Maintenance",,PI0015,SUP0001,"Prime Inventories (Deborah)",320.00,,40057.83,551
+14/03/2021,6105,"Nightingale Repair & Maintenance",,PI0251,SUP0001,Ikea,136.25,,40194.08,2468
+18/03/2021,6105,"Nightingale Repair & Maintenance",,PI0004,SUP0001,Purchase,59.84,,40253.92,501
+19/03/2021,6105,"Nightingale Repair & Maintenance",,PI0006,SUP0001,"British Gas",43.51,,40297.43,507
+19/03/2021,6105,"Nightingale Repair & Maintenance",,PI0007,SUP0001,RBWM,20.35,,40317.78,512
+22/03/2021,6105,"Nightingale Repair & Maintenance",,PI0003,SUP0001,"Lukasz Builder",131.50,,40449.28,492
+22/03/2021,6105,"Nightingale Repair & Maintenance",,PI0003,SUP0001,"Lukasz Builder",25.58,,40474.86,493
+22/03/2021,6105,"Nightingale Repair & Maintenance",,PI0003,SUP0001,"Lukasz Builder",16.12,,40490.98,494
+22/03/2021,6105,"Nightingale Repair & Maintenance",,PI0003,SUP0001,"Lukasz Builder",90.00,,40580.98,495
+22/03/2021,6105,"Nightingale Repair & Maintenance",,PI0003,SUP0001,"Lukasz Builder",158.46,,40739.44,496
+22/03/2021,6105,"Nightingale Repair & Maintenance",,PI0003,SUP0001,"Lukasz Builder",81.65,,40821.09,497
+22/03/2021,6105,"Nightingale Repair & Maintenance",,PI0003,SUP0001,"Lukasz Builder",,0.31,40820.78,498
+28/03/2021,6105,"Nightingale Repair & Maintenance",,PI0009,SUP0001,Longacres,41.53,,40862.31,518
+29/03/2021,6105,"Nightingale Repair & Maintenance",,PI0263,SUP0001,"Trade Point",62.26,,40924.57,2528
+30/03/2021,6105,"Nightingale Repair & Maintenance",,PI0008,SUP0001,"Al Murad",12.00,,40936.57,515
+30/03/2021,6105,"Nightingale Repair & Maintenance",,PI0261,SUP0001,"Trade Point",12.37,,40948.94,2518
+01/04/2021,6105,"Nightingale Repair & Maintenance",,PI0010,SUP0001,"CDN Services",72.00,,41020.94,521
+05/04/2021,6105,"Nightingale Repair & Maintenance",,PI0255,SUP0001,RBWM,204.35,,41225.29,2480
+16/04/2021,6105,"Nightingale Repair & Maintenance",,PI0247,SUP0001,WeFixBoiler,85.00,,41310.29,2448
+17/04/2021,6105,"Nightingale Repair & Maintenance",,PI0369,SUP0001,Topworktops,235.00,,41545.29,2848
+19/04/2021,6105,"Nightingale Repair & Maintenance",,PI0250,SUP0001,"Darren (Windows)",250.00,,41795.29,2463
+20/04/2021,6105,"Nightingale Repair & Maintenance",,PI0367,SUP0001,Topworktops,40.00,,41835.29,2842
+26/04/2021,6105,"Nightingale Repair & Maintenance",,PI0364,SUP0001,Screwfix,2.09,,41837.38,2833
+30/04/2021,6105,"Nightingale Repair & Maintenance",,PI0256,SUP0001,Envirofresh,10.00,,41847.38,2493
+06/05/2021,6105,"Nightingale Repair & Maintenance",,PI0018,SUP0001,"L Underwood",2500.00,,44347.38,724
+13/05/2021,6105,"Nightingale Repair & Maintenance",,GJ0072,6105,"Nightingale Repair & Maintenance",6.00,,44353.38,738
+11/06/2021,6105,"Nightingale Repair & Maintenance",,PI0338,SUP0001,B&Q,31.90,,44385.28,2755
+13/07/2021,6105,"Nightingale Repair & Maintenance",,PI0298,SUP0001,"Windmill Heating",1218.00,,45603.28,2635
+05/08/2021,6105,"Nightingale Repair & Maintenance",,PI0280,SUP0001,"HS Heating",1510.07,,47113.35,2581
+06/08/2021,6105,"Nightingale Repair & Maintenance",,PI0279,SUP0001,"British Gas",158.49,,47271.84,2578
+10/08/2021,6105,"Nightingale Repair & Maintenance",,PI0019,SUP0001,"Unique Glazing",1000.00,,48271.84,1171
+02/09/2021,6105,"Nightingale Repair & Maintenance",,PI0268,SUP0001,"Unique Glazing",1000.00,,49271.84,2545
+15/09/2021,6105,"Nightingale Repair & Maintenance",,PI0064,SUP0001,"Silva Timber",220.43,,49492.27,1405
+21/09/2021,6105,"Nightingale Repair & Maintenance",,PI0068,SUP0001,"Windsor Traders",45.53,,49537.80,1425
+27/09/2021,6105,"Nightingale Repair & Maintenance",,PI0065,SUP0001,Mfg,39.00,,49576.80,1408
+,6105,"Nightingale Repair & Maintenance","Closing Balance",,,,25125.184,116.8,49576.804,
+,6112,"Nightingale Legal & Professional","Opening Balance",,,,,,0,
+15/01/2021,6112,"Nightingale Legal & Professional",,PI0587,SUP0003,"Maher & Co.",500.00,,500.00,3642
+27/01/2021,6112,"Nightingale Legal & Professional",,GJ0058,6112,"Nightingale - Mortgage Fee",3255.00,,3755.00,580
+17/02/2021,6112,"Nightingale Legal & Professional",,SJ0013,SUP0003,"Maher & Co.",380.00,,4135.00,596
+17/02/2021,6112,"Nightingale Legal & Professional",,SJ0014,SUP0003,"Maher & Co.",35.00,,4170.00,600
+17/02/2021,6112,"Nightingale Legal & Professional",,PI0594,SUP0003,"Maher & Co.",500.00,,4670.00,3702
+17/02/2021,6112,"Nightingale Legal & Professional",,PI0602,SUP0003,"Maher & Co.",760.00,,5430.00,3792
+09/03/2021,6112,"Nightingale Legal & Professional",,PI0016,SUP0001,Strutt&Parker,4016.00,,9446.00,620
+,6112,"Nightingale Legal & Professional","Closing Balance",,,,9446,0,9446,
+,6120,"Nightingale Insurance","Opening Balance",,,,,,0,
+18/01/2021,6120,"Nightingale Insurance",,PI0486,SUP0001,"Axa Insurance",381.74,,381.74,3199
+,6120,"Nightingale Insurance","Closing Balance",,,,381.74,0,381.74,
+,6140,"Nightingale Service Breakdown","Opening Balance",,,,,,0,
+,6140,"Nightingale Service Breakdown","Closing Balance",,,,0,0,0,
+,6150,"Nightingale Mortgage Interest","Opening Balance",,,,,,0,
+01/03/2021,6150,"Nightingale Mortgage Interest",,GJ0059,2100,"Nightingale - Mortgage Interest Payment",1378.79,,1378.79,586
+29/03/2021,6150,"Nightingale Mortgage Interest",,GJ0059,2100,"Nightingale - Mortgage Interest Payment",1378.79,,2757.58,588
+27/04/2021,6150,"Nightingale Mortgage Interest",,GJ0060,2100,"Nightingale - Mortgage Interest Payment",1378.79,,4136.37,692
+27/05/2021,6150,"Nightingale Mortgage Interest",,GJ0072,6150,"Nightingale Mortgage Interest",1378.79,,5515.16,739
+29/06/2021,6150,"Nightingale Mortgage Interest",,GJ0066,2100,"Nightingale - Mortgage Interest Payment",1378.79,,6893.95,955
+27/07/2021,6150,"Nightingale Mortgage Interest",,GJ0092,2100,"Nightingale - Mortgage Interest Payment",1378.79,,8272.74,1021
+27/08/2021,6150,"Nightingale Mortgage Interest",,GJ0001,2100,"Nightingale - Mortgage Interest Payment",1378.79,,9651.53,3629
+27/09/2021,6150,"Nightingale Mortgage Interest",,GJ0002,2100,"Nightingale - Mortgage Interest Payment",1378.79,,11030.32,3633
+,6150,"Nightingale Mortgage Interest","Closing Balance",,,,11030.32,0,11030.32,
+,6165,"Robin's Repair & Maintenance","Opening Balance",,,,,,0,
+03/03/2021,6165,"Robin's Repair & Maintenance",,PI0373,SUP0001,"UnderFloor Heating",1690.42,,1690.42,2860
+05/03/2021,6165,"Robin's Repair & Maintenance",,PI0011,SUP0001,"DC Renovations",3000.00,,4690.42,530
+05/03/2021,6165,"Robin's Repair & Maintenance",,PDN0001,SUP0001,"DC Renovations",,3000.00,1690.42,536
+05/03/2021,6165,"Robin's Repair & Maintenance",,PI0242,SUP0001,"DC Renovations",3000.00,,4690.42,2423
+10/03/2021,6165,"Robin's Repair & Maintenance",,PI0240,SUP0001,"The Under Floor Heating",278.18,,4968.60,2413
+10/03/2021,6165,"Robin's Repair & Maintenance",,PI0591,SUP0001,"The Underfloor",278.18,,5246.78,3687
+16/03/2021,6165,"Robin's Repair & Maintenance",,PI0012,SUP0001,"DC Renovations",9100.92,,14347.70,533
+18/03/2021,6165,"Robin's Repair & Maintenance",,PI0252,SUP0001,lights.co.uk,306.30,,14654.00,2471
+22/03/2021,6165,"Robin's Repair & Maintenance",,PI0013,SUP0001,"DC Renovations",4507.32,,19161.32,539
+26/03/2021,6165,"Robin's Repair & Maintenance",,PI0014,SUP0001,"DC Renovations",4800.00,,23961.32,542
+29/03/2021,6165,"Robin's Repair & Maintenance",,PI0253,SUP0001,lights.co.uk,28.80,,23990.12,2474
+09/04/2021,6165,"Robin's Repair & Maintenance",,PI0246,SUP0001,"DC Renovations",5190.00,,29180.12,2441
+26/04/2021,6165,"Robin's Repair & Maintenance",,PI0361,SUP0001,Ikea,413.95,,29594.07,2824
+26/04/2021,6165,"Robin's Repair & Maintenance",,PI0362,SUP0001,ScrewFix,25.98,,29620.05,2827
+26/04/2021,6165,"Robin's Repair & Maintenance",,PI0363,SUP0001,ScrewFix,12.65,,29632.70,2830
+26/04/2021,6165,"Robin's Repair & Maintenance",,PI0461,SUP0001,Ikea,6.75,,29639.45,3124
+28/04/2021,6165,"Robin's Repair & Maintenance",,PI0235,SUP0001,"DC Renovations",5504.90,,35144.35,2396
+29/04/2021,6165,"Robin's Repair & Maintenance",,PI0243,SUP0001,Currys,368.99,,35513.34,2428
+02/05/2021,6165,"Robin's Repair & Maintenance",,PI0257,SUP0001,"Richmond Council",593.88,,36107.22,2498
+03/05/2021,6165,"Robin's Repair & Maintenance",,PI0357,SUP0001,B&Q,126.38,,36233.60,2812
+03/05/2021,6165,"Robin's Repair & Maintenance",,PI0358,SUP0001,Wickes,3.00,,36236.60,2815
+05/05/2021,6165,"Robin's Repair & Maintenance",,PI0355,SUP0001,Ikea,273.50,,36510.10,2806
+05/05/2021,6165,"Robin's Repair & Maintenance",,PI0356,SUP0001,Ikea,12.05,,36522.15,2809
+08/05/2021,6165,"Robin's Repair & Maintenance",,PI0350,SUP0001,Timpson,10.00,,36532.15,2791
+08/05/2021,6165,"Robin's Repair & Maintenance",,PI0351,SUP0001,Timpson,25.00,,36557.15,2794
+08/05/2021,6165,"Robin's Repair & Maintenance",,PI0353,SUP0001,"Mountain Warehouse",19.99,,36577.14,2800
+08/05/2021,6165,"Robin's Repair & Maintenance",,PI0354,SUP0001,Brewers,39.85,,36616.99,2803
+10/05/2021,6165,"Robin's Repair & Maintenance",,PI0604,SUP0001,"Chelsea T2 EU",40.00,,36656.99,3833
+14/05/2021,6165,"Robin's Repair & Maintenance",,PI0605,SUP0001,"TIMPSON LTD",25.00,,36681.99,3838
+18/05/2021,6165,"Robin's Repair & Maintenance",,PI0258,SUP0001,"Ashmore Property Services",198.00,,36879.99,2503
+20/05/2021,6165,"Robin's Repair & Maintenance",,PI0606,SUP0001,WICKES,3.00,,36882.99,3843
+20/05/2021,6165,"Robin's Repair & Maintenance",,PI0607,SUP0001,TIMPSON,10.00,,36892.99,3848
+25/05/2021,6165,"Robin's Repair & Maintenance",,PI0609,SUP0001,WICKES,10.20,,36903.19,3858
+28/05/2021,6165,"Robin's Repair & Maintenance",,PI0312,SUP0001,"DC Renovation",3275.00,,40178.19,2677
+11/06/2021,6165,"Robin's Repair & Maintenance",,PI0339,SUP0001,B&Q,20.96,,40199.15,2758
+11/06/2021,6165,"Robin's Repair & Maintenance",,PI0611,SUP0001,expresstest.co.uk,59.00,,40258.15,3868
+,6165,"Robin's Repair & Maintenance","Closing Balance",,,,43258.15,3000,40258.15,
+,6170,"Robin's Legal & Professional","Opening Balance",,,,,,0,
+05/02/2021,6170,"Robin's Legal & Professional",,GJ0058,6170,"Robin - Mortgage Fee",1925.00,,1925.00,579
+17/02/2021,6170,"Robin's Legal & Professional",,SJ0013,SUP0003,"Maher & Co.",380.00,,2305.00,595
+17/02/2021,6170,"Robin's Legal & Professional",,SJ0014,SUP0003,"Maher & Co.",35.00,,2340.00,599
+19/05/2021,6170,"Robin's Legal & Professional",,PI0347,SUP0001,Chestertons,84.00,,2424.00,2782
+01/06/2021,6170,"Robin's Legal & Professional",,PI0259,SUP0001,"Concept Property Management",125.00,,2549.00,2508
+14/07/2021,6170,"Robin's Legal & Professional",,PI0297,SUP0001,"Concept Property",125.00,,2674.00,2632
+,6170,"Robin's Legal & Professional","Closing Balance",,,,2674,0,2674,
+,6175,"Robin's Service Charge & Ground Rent","Opening Balance",,,,,,0,
+,6175,"Robin's Service Charge & Ground Rent","Closing Balance",,,,0,0,0,
+,6180,"Robin's Insurance","Opening Balance",,,,,,0,
+,6180,"Robin's Insurance","Closing Balance",,,,0,0,0,
+,6185,"Robin's Service Breakdown","Opening Balance",,,,,,0,
+,6185,"Robin's Service Breakdown","Closing Balance",,,,0,0,0,
+,6190,"Robin's - Mortgage Interest","Opening Balance",,,,,,0,
+05/03/2021,6190,"Robin's - Mortgage Interest",,GJ0059,2100,"Robin - Mortgage Interest Payment",815.39,,815.39,587
+06/04/2021,6190,"Robin's - Mortgage Interest",,GJ0060,2100,"Robin - Mortgage Interest Payment",815.39,,1630.78,693
+05/05/2021,6190,"Robin's - Mortgage Interest",,GJ0072,6190,"Robin's - Mortgage Interest",815.39,,2446.17,737
+07/05/2021,6190,"Robin's - Mortgage Interest",,GJ0066,2100,"Robin - Mortgage Interest Payment",815.39,,3261.56,956
+05/07/2021,6190,"Robin's - Mortgage Interest",,GJ0092,2100,"Robin - Mortgage Interest Payment",815.39,,4076.95,1022
+06/09/2021,6190,"Robin's - Mortgage Interest",,GJ0001,2100,"Robin - Mortgage Interest Payment",815.39,,4892.34,3630
+,6190,"Robin's - Mortgage Interest","Closing Balance",,,,4892.34,0,4892.34,
+,6210,"Wood's Repair & Maintenance","Opening Balance",,,,,,0,
+,6210,"Wood's Repair & Maintenance","Closing Balance",,,,0,0,0,
+,6215,"Wood's Legal & Professional","Opening Balance",,,,,,0,
+,6215,"Wood's Legal & Professional","Closing Balance",,,,0,0,0,
+,6220,"Wood's Insurance","Opening Balance",,,,,,0,
+,6220,"Wood's Insurance","Closing Balance",,,,0,0,0,
+,6225,"Wood's Service Breakdown","Opening Balance",,,,,,0,
+,6225,"Wood's Service Breakdown","Closing Balance",,,,0,0,0,
+,6230,"Wood - Mortgage Interest","Opening Balance",,,,,,0,
+,6230,"Wood - Mortgage Interest","Closing Balance",,,,0,0,0,
+,6310,"Kensington Repairs & Maintenance","Opening Balance",,,,,,0,
+,6310,"Kensington Repairs & Maintenance","Closing Balance",,,,0,0,0,
+,6315,"Kensington Legal & Professional","Opening Balance",,,,,,0,
+,6315,"Kensington Legal & Professional","Closing Balance",,,,0,0,0,
+,6320,"Kensington Insurance","Opening Balance",,,,,,0,
+,6320,"Kensington Insurance","Closing Balance",,,,0,0,0,
+,6325,"Kensington Service Breakdown","Opening Balance",,,,,,0,
+,6325,"Kensington Service Breakdown","Closing Balance",,,,0,0,0,
+,6330,"Kensingston - Mortgage Interest","Opening Balance",,,,,,0,
+,6330,"Kensingston - Mortgage Interest","Closing Balance",,,,0,0,0,
+,7000,Salaries,"Opening Balance",,,,,,0,
+,7000,Salaries,"Closing Balance",,,,0,0,0,
+,7100,"Directors' Salaries","Opening Balance",,,,,,0,
+,7100,"Directors' Salaries","Closing Balance",,,,0,0,0,
+,7200,"Employers NI Contributions","Opening Balance",,,,,,0,
+,7200,"Employers NI Contributions","Closing Balance",,,,0,0,0,
+,7250,"Employer's Pensions Contributions","Opening Balance",,,,,,0,
+,7250,"Employer's Pensions Contributions","Closing Balance",,,,0,0,0,
+,7300,"Other Deductions","Opening Balance",,,,,,0,
+,7300,"Other Deductions","Closing Balance",,,,0,0,0,
+,7350,"Statutory Sick Pay","Opening Balance",,,,,,0,
+,7350,"Statutory Sick Pay","Closing Balance",,,,0,0,0,
+,7400,"Statutory Maternity Pay","Opening Balance",,,,,,0,
+,7400,"Statutory Maternity Pay","Closing Balance",,,,0,0,0,
+,7450,"Statutory Paternity Pay","Opening Balance",,,,,,0,
+,7450,"Statutory Paternity Pay","Closing Balance",,,,0,0,0,
+,7500,"Statutory Adoption Pay","Opening Balance",,,,,,0,
+,7500,"Statutory Adoption Pay","Closing Balance",,,,0,0,0,
+,7550,"Recruitment Charges","Opening Balance",,,,,,0,
+,7550,"Recruitment Charges","Closing Balance",,,,0,0,0,
+,7600,"Rent & Rates","Opening Balance",,,,,,0,
+,7600,"Rent & Rates","Closing Balance",,,,0,0,0,
+,7650,"Repairs & Maintenance - Buildings","Opening Balance",,,,,,503.40999999999997,
+06/10/2020,7650,"Repairs & Maintenance - Buildings",,PI0393,SUP0001,Dixons,79.99,,583.40,2920
+,7650,"Repairs & Maintenance - Buildings","Closing Balance",,,,79.99,0,583.4,
+,7700,"Buildings Insurance","Opening Balance",,,,,,0,
+,7700,"Buildings Insurance","Closing Balance",,,,0,0,0,
+,7750,"Gas and electric","Opening Balance",,,,,,0,
+,7750,"Gas and electric","Closing Balance",,,,0,0,0,
+,7800,"Phone & Mobile","Opening Balance",,,,,,0,
+,7800,"Phone & Mobile","Closing Balance",,,,0,0,0,
+,7850,"Internet Charges","Opening Balance",,,,,,0,
+02/07/2021,7850,"Internet Charges",,PI0613,SUP0001,INTEREST,3.45,,3.45,3878
+,7850,"Internet Charges","Closing Balance",,,,3.45,0,3.45,
+,7900,"Motor Expenses","Opening Balance",,,,,,0,
+,7900,"Motor Expenses","Closing Balance",,,,0,0,0,
+,7950,"Motor Insurance","Opening Balance",,,,,,0,
+,7950,"Motor Insurance","Closing Balance",,,,0,0,0,
+,8000,"Travel & Entertainment","Opening Balance",,,,,,0,
+08/08/2021,8000,"Travel & Entertainment",,PI0283,SUP0001,TFL,15.00,,15.00,2590
+08/08/2021,8000,"Travel & Entertainment",,PI0284,SUP0001,"Pizza Exp",90.05,,105.05,2593
+16/08/2021,8000,"Travel & Entertainment",,PI0277,SUP0001,"Giggling Sq",81.29,,186.34,2572
+20/08/2021,8000,"Travel & Entertainment",,PI0275,SUP0001,Esure,47.36,,233.70,2566
+23/08/2021,8000,"Travel & Entertainment",,PI0272,SUP0001,"Manchester Airport",235.50,,469.20,2557
+23/08/2021,8000,"Travel & Entertainment",,PI0274,SUP0001,Toll,7.00,,476.20,2563
+24/08/2021,8000,"Travel & Entertainment",,PI0270,SUP0001,"Messe Friedrichshafen",63.61,,539.81,2551
+26/08/2021,8000,"Travel & Entertainment",,PI0269,SUP0001,Gotrentalcars,94.00,,633.81,2548
+,8000,"Travel & Entertainment","Closing Balance",,,,633.81,0,633.81,
+,8050,"Office Supplies","Opening Balance",,,,,,0,
+,8050,"Office Supplies","Closing Balance",,,,0,0,0,
+,8100,"Postage & Stationery","Opening Balance",,,,,,0,
+,8100,"Postage & Stationery","Closing Balance",,,,0,0,0,
+,8150,"Legal & Professional","Opening Balance",,,,,,0,
+15/02/2021,8150,"Legal & Professional",,PI0585,SUP0003,"Maher & Co.",1260.00,,1260.00,3514
+26/02/2021,8150,"Legal & Professional",,PI0464,SUP0001,Herath,948.00,,2208.00,3133
+30/04/2021,8150,"Legal & Professional",,PI0017,SUP0001,"Herath Associates",3000.00,,5208.00,717
+,8150,"Legal & Professional","Closing Balance",,,,5208,0,5208,
+,8200,"Trade Mark","Opening Balance",,,,,,82,
+,8200,"Trade Mark","Closing Balance",,,,0,0,82,
+,8250,"Life Insurance","Opening Balance",,,,,,0,
+04/01/2021,8250,"Life Insurance",,GJ0051,2100,"Life Insurnce",97.18,,97.18,449
+05/02/2021,8250,"Life Insurance",,GJ0056,2100,"Bank - Coutts Account",97.18,,194.36,528
+05/03/2021,8250,"Life Insurance",,GJ0055,8250,"Life Insurance",97.18,,291.54,469
+05/05/2021,8250,"Life Insurance",,GJ0072,8250,"Life Insurance",97.18,,388.72,736
+07/06/2021,8250,"Life Insurance",,GJ0066,2100,Insurance,97.18,,485.90,957
+05/07/2021,8250,"Life Insurance",,GJ0093,2100,"Bank - Coutts Account",97.18,,583.08,1024
+05/08/2021,8250,"Life Insurance",,GJ0105,8250,"Life Insurance",97.18,,680.26,1167
+06/09/2021,8250,"Life Insurance",,GJ0005,2100,"Bank - Coutts Account",97.18,,777.44,3654
+,8250,"Life Insurance","Closing Balance",,,,777.44,0,777.44,
+,8300,"Bad Debts","Opening Balance",,,,,,0,
+,8300,"Bad Debts","Closing Balance",,,,0,0,0,
+,8350,"Depreciation - Buildings","Opening Balance",,,,,,0,
+,8350,"Depreciation - Buildings","Closing Balance",,,,0,0,0,
+,8400,"Depreciation - Office Equipment","Opening Balance",,,,,,0,
+,8400,"Depreciation - Office Equipment","Closing Balance",,,,0,0,0,
+,8450,"Depreciation - Furniture & Fittings","Opening Balance",,,,,,0,
+,8450,"Depreciation - Furniture & Fittings","Closing Balance",,,,0,0,0,
+,8500,"Depreciation - Plant & Machinery","Opening Balance",,,,,,0,
+,8500,"Depreciation - Plant & Machinery","Closing Balance",,,,0,0,0,
+,8550,"Depreciation - Vehicles","Opening Balance",,,,,,0,
+,8550,"Depreciation - Vehicles","Closing Balance",,,,0,0,0,
+,8600,"(Profit) / Loss on Sales of Assets","Opening Balance",,,,,,0,
+,8600,"(Profit) / Loss on Sales of Assets","Closing Balance",,,,0,0,0,
+,8650,"Bad Debits","Opening Balance",,,,,,0,
+,8650,"Bad Debits","Closing Balance",,,,0,0,0,
+,8700,"General Expenses","Opening Balance",,,,,,1073.9199999999998,
+01/10/2020,8700,"General Expenses",,PI0401,SUP0001,Leaseplan,100.00,,1173.92,2944
+01/10/2020,8700,"General Expenses",,PI0402,SUP0001,"Post Office",6.70,,1180.62,2947
+01/10/2020,8700,"General Expenses",,PI0403,SUP0001,BP,56.36,,1236.98,2950
+01/10/2020,8700,"General Expenses",,PI0404,SUP0001,"Post Office",6.70,,1243.68,2953
+02/10/2020,8700,"General Expenses",,PI0396,SUP0001,Feya,8.50,,1252.18,2929
+02/10/2020,8700,"General Expenses",,PI0397,SUP0001,"C Wala",7.00,,1259.18,2932
+02/10/2020,8700,"General Expenses",,PI0398,SUP0001,"C Wala",13.50,,1272.68,2935
+02/10/2020,8700,"General Expenses",,PI0399,SUP0001,Mantl,78.75,,1351.43,2938
+03/10/2020,8700,"General Expenses",,PI0394,SUP0001,"C Wala",24.65,,1376.08,2923
+03/10/2020,8700,"General Expenses",,PI0395,SUP0001,"C Wala",5.00,,1381.08,2926
+07/10/2020,8700,"General Expenses",,PI0392,SUP0001,BP,59.04,,1440.12,2917
+11/10/2020,8700,"General Expenses",,PI0384,SUP0001,Ivy,148.84,,1588.96,2893
+12/10/2020,8700,"General Expenses",,PI0383,SUP0001,eggfreecake,29.99,,1618.95,2890
+12/10/2020,8700,"General Expenses",,PI0387,SUP0001,Fego,36.34,,1655.29,2902
+12/10/2020,8700,"General Expenses",,PI0389,SUP0001,Anteplier,80.50,,1735.79,2908
+13/10/2020,8700,"General Expenses",,PI0553,SUP0001,"Two Rivers",2.30,,1738.09,3400
+13/10/2020,8700,"General Expenses",,PI0554,SUP0001,BP,59.88,,1797.97,3403
+14/10/2020,8700,"General Expenses",,PI0556,SUP0001,"C Wala",3.90,,1801.87,3409
+14/10/2020,8700,"General Expenses",,PI0557,SUP0001,"Slough Bathroom",1716.40,,3518.27,3412
+19/10/2020,8700,"General Expenses",,PI0564,SUP0001,"Council Tax",350.19,,3868.46,3433
+20/10/2020,8700,"General Expenses",,PI0563,SUP0001,"Real Trade",16.99,,3885.45,3430
+21/10/2020,8700,"General Expenses",,PI0458,SUP0001,Fego,47.70,,3933.15,3115
+22/10/2020,8700,"General Expenses",,PI0456,SUP0001,Monty,13.45,,3946.60,3109
+26/10/2020,8700,"General Expenses",,PI0451,SUP0001,"Post Office",2.45,,3949.05,3094
+26/10/2020,8700,"General Expenses",,PI0452,SUP0001,"Post Office",4.70,,3953.75,3097
+30/10/2020,8700,"General Expenses",,PI0449,SUP0001,"GBK Staines",52.50,,4006.25,3088
+05/11/2020,8700,"General Expenses",,PI0547,SUP0001,Shell,57.12,,4063.37,3382
+07/11/2020,8700,"General Expenses",,PI0544,SUP0001,Halford,40.99,,4104.36,3373
+07/11/2020,8700,"General Expenses",,PI0546,SUP0001,Sainsburys,40.33,,4144.69,3379
+12/11/2020,8700,"General Expenses",,PI0542,SUP0001,Shell,40.25,,4184.94,3367
+12/11/2020,8700,"General Expenses",,PI0543,SUP0001,"C Wala",6.90,,4191.84,3370
+14/11/2020,8700,"General Expenses",,PI0541,SUP0001,Endeavour,299.63,,4491.47,3364
+17/11/2020,8700,"General Expenses",,PI0238,SUP0001,Leaseplan,15.00,,4506.47,2407
+17/11/2020,8700,"General Expenses",,PI0540,SUP0001,BP,60.43,,4566.90,3361
+23/11/2020,8700,"General Expenses",,PI0533,SUP0001,"Post Office",9.12,,4576.02,3340
+25/11/2020,8700,"General Expenses",,PI0529,SUP0001,XtremeAuto,12.99,,4589.01,3328
+27/11/2020,8700,"General Expenses",,PI0521,SUP0001,Apple,949.00,,5538.01,3304
+28/11/2020,8700,"General Expenses",,PI0518,SUP0001,Apple,1662.60,,7200.61,3295
+28/11/2020,8700,"General Expenses",,PI0519,SUP0001,"W London",6.50,,7207.11,3298
+28/11/2020,8700,"General Expenses",,PI0520,SUP0001,Rosa,56.50,,7263.61,3301
+29/11/2020,8700,"General Expenses",,PI0515,SUP0001,Currys,119.00,,7382.61,3286
+30/11/2020,8700,"General Expenses",,PI0510,SUP0001,Adlink,141.00,,7523.61,3271
+30/11/2020,8700,"General Expenses",,PI0511,SUP0001,TLC-Direct,331.16,,7854.77,3274
+02/12/2020,8700,"General Expenses",,PI0509,SUP0001,Rontec,79.43,,7934.20,3268
+04/12/2020,8700,"General Expenses",,PI0508,SUP0001,Patara,35.16,,7969.36,3265
+06/12/2020,8700,"General Expenses",,PI0505,SUP0001,Apple,1662.60,,9631.96,3256
+06/12/2020,8700,"General Expenses",,PI0506,SUP0001,Apple,949.00,,10580.96,3259
+06/12/2020,8700,"General Expenses",,PI0507,SUP0001,Cote,51.58,,10632.54,3262
+07/12/2020,8700,"General Expenses",,PI0503,SUP0001,Leaseplan,15.00,,10647.54,3250
+08/12/2020,8700,"General Expenses",,PI0502,SUP0001,"Companies House",13.00,,10660.54,3247
+10/12/2020,8700,"General Expenses",,PI0501,SUP0001,Newdays,150.00,,10810.54,3244
+11/12/2020,8700,"General Expenses",,PI0497,SUP0001,Wagamama,32.65,,10843.19,3232
+13/12/2020,8700,"General Expenses",,PI0498,SUP0001,Cote,26.44,,10869.63,3235
+14/12/2020,8700,"General Expenses",,PI0496,SUP0001,Bill's,34.14,,10903.77,3229
+15/12/2020,8700,"General Expenses",,PI0493,SUP0001,"Slough DT",1.29,,10905.06,3220
+15/12/2020,8700,"General Expenses",,PI0495,SUP0001,"Slough DT",12.17,,10917.23,3226
+17/12/2020,8700,"General Expenses",,PI0491,SUP0001,"Datchet Green",54.63,,10971.86,3214
+20/12/2020,8700,"General Expenses",,PI0239,SUP0001,Zleep,65.82,,11037.68,2410
+20/12/2020,8700,"General Expenses",,PI0490,SUP0001,BP,64.56,,11102.24,3211
+21/12/2020,8700,"General Expenses",,PI0421,SUP0001,"City P",5.86,,11108.10,3004
+21/12/2020,8700,"General Expenses",,PI0422,SUP0001,BA,16.00,,11124.10,3007
+21/12/2020,8700,"General Expenses",,PI0423,SUP0001,Storesbaelts,29.91,,11154.01,3010
+21/12/2020,8700,"General Expenses",,PI0424,SUP0001,Lagkagehuset,2.93,,11156.94,3013
+26/12/2020,8700,"General Expenses",,PI0417,SUP0001,"Design Vintage",55.95,,11212.89,2992
+29/12/2020,8700,"General Expenses",,PI0413,SUP0001,B&Q,10.00,,11222.89,2980
+03/01/2021,8700,"General Expenses",,PI0517,SUP0001,"Credit Card Int",65.07,,11287.96,3292
+05/01/2021,8700,"General Expenses",,PI0489,SUP0001,Screwfix,29.99,,11317.95,3208
+05/01/2021,8700,"General Expenses",,PI0581,SUP0001,"Howden £46.49",92.98,,11410.93,3502
+09/01/2021,8700,"General Expenses",,PI0583,SUP0001,"Wickes £60 correction",120.00,,11530.93,3508
+19/01/2021,8700,"General Expenses",,PI0485,SUP0001,"ScrewFix £10 correction",20.00,,11550.93,3196
+22/01/2021,8700,"General Expenses",,PI0482,SUP0001,Amazon,37.99,,11588.92,3187
+26/01/2021,8700,"General Expenses",,PI0481,SUP0001,Msft,18.24,,11607.16,3184
+29/01/2021,8700,"General Expenses",,PI0480,SUP0001,Experian,14.99,,11622.15,3181
+31/01/2021,8700,"General Expenses",,PI0478,SUP0001,"Levent Cengiz",250.00,,11872.15,3175
+31/01/2021,8700,"General Expenses",,PI0479,SUP0001,PP,49.40,,11921.55,3178
+06/02/2021,8700,"General Expenses",,PI0473,SUP0001,ScrewFix,80.97,,12002.52,3160
+06/02/2021,8700,"General Expenses",,PI0474,SUP0001,Esso,83.97,,12086.49,3163
+06/02/2021,8700,"General Expenses",,PI0475,SUP0001,ScrewFix,59.34,,12145.83,3166
+18/02/2021,8700,"General Expenses",,PI0470,SUP0001,Costco,216.53,,12362.36,3151
+19/02/2021,8700,"General Expenses",,PI0468,SUP0001,"Royal Park",5.60,,12367.96,3145
+24/02/2021,8700,"General Expenses",,PI0467,SUP0001,Shell,59.54,,12427.50,3142
+25/02/2021,8700,"General Expenses",,PI0466,SUP0001,MSFT,9.12,,12436.62,3139
+28/02/2021,8700,"General Expenses",,PI0462,SUP0001,Experian,14.99,,12451.61,3127
+28/02/2021,8700,"General Expenses",,PI0463,SUP0001,Costa,7.10,,12458.71,3130
+05/03/2021,8700,"General Expenses",,PI0371,SUP0001,"Esure Insurance",922.40,,13381.11,2854
+15/03/2021,8700,"General Expenses",,PI0629,SUP0001,"EXPERIAN UK",14.99,,13396.10,3959
+15/03/2021,8700,"General Expenses",,PI0629,SUP0001,"EXPERIAN UK",14.99,,13411.09,3960
+25/03/2021,8700,"General Expenses",,PI0370,SUP0001,B&Q,15.00,,13426.09,2851
+01/04/2021,8700,"General Expenses",,PI0249,SUP0001,CDN,72.00,,13498.09,2458
+02/04/2021,8700,"General Expenses",,PI0254,SUP0001,Nespresso,57.10,,13555.19,2477
+05/04/2021,8700,"General Expenses",,PI0245,SUP0001,"Simply Bus Insurance",362.07,,13917.26,2438
+06/04/2021,8700,"General Expenses",,PI0248,SUP0001,Guardian,97.18,,14014.44,2453
+15/04/2021,8700,"General Expenses",,PI0260,SUP0001,"Post Office",44.62,,14059.06,2513
+17/04/2021,8700,"General Expenses",,PI0368,SUP0001,Meze,99.50,,14158.56,2845
+23/04/2021,8700,"General Expenses",,PI0366,SUP0001,Dobsons,12.60,,14171.16,2839
+25/04/2021,8700,"General Expenses",,PI0365,SUP0001,Microsoft,9.12,,14180.28,2836
+28/04/2021,8700,"General Expenses",,PI0244,SUP0001,Currys,180.00,,14360.28,2433
+28/04/2021,8700,"General Expenses",,PI0262,SUP0001,Shell,61.30,,14421.58,2523
+29/04/2021,8700,"General Expenses",,PI0460,SUP0001,"Companies House",13.00,,14434.58,3121
+02/05/2021,8700,"General Expenses",,PI0359,SUP0001,"Companies House",13.00,,14447.58,2818
+02/05/2021,8700,"General Expenses",,PI0360,SUP0001,"Land Registry",6.00,,14453.58,2821
+02/05/2021,8700,"General Expenses",,PI0603,SUP0001,"HM LAND REGISTRY",6.00,,14459.58,3828
+08/05/2021,8700,"General Expenses",,PI0352,SUP0001,"Ping Pong",94.78,,14554.36,2797
+09/05/2021,8700,"General Expenses",,PI0348,SUP0001,T2,40.00,,14594.36,2785
+09/05/2021,8700,"General Expenses",,PI0349,SUP0001,123,57.56,,14651.92,2788
+21/05/2021,8700,"General Expenses",,PI0346,SUP0001,Westfield,8.50,,14660.42,2779
+22/05/2021,8700,"General Expenses",,PI0345,SUP0001,Westfield,9.50,,14669.92,2776
+24/05/2021,8700,"General Expenses",,PI0315,SUP0001,"Land Registry",3.00,,14672.92,2686
+24/05/2021,8700,"General Expenses",,PI0340,SUP0001,Microsoft,18.24,,14691.16,2761
+24/05/2021,8700,"General Expenses",,PI0341,SUP0001,"Land Registry",6.00,,14697.16,2764
+24/05/2021,8700,"General Expenses",,PI0608,SUP0001,"HM LAND REGISTRY",3.00,,14700.16,3853
+26/05/2021,8700,"General Expenses",,PI0313,SUP0001,Shell,65.10,,14765.26,2680
+29/05/2021,8700,"General Expenses",,PI0311,SUP0001,Cartier,290.00,,15055.26,2674
+29/05/2021,8700,"General Expenses",,PI0610,SUP0001,"PING PONG JAM",94.75,,15150.01,3863
+01/06/2021,8700,"General Expenses",,PI0308,SUP0001,Wordery,13.62,,15163.63,2665
+01/06/2021,8700,"General Expenses",,PI0309,SUP0001,Nando,26.54,,15190.17,2668
+01/06/2021,8700,"General Expenses",,PI0310,SUP0001,B&Q,19.00,,15209.17,2671
+09/06/2021,8700,"General Expenses",,PI0305,SUP0001,B&Q,20.96,,15230.13,2656
+09/06/2021,8700,"General Expenses",,PI0306,SUP0001,B&Q,31.90,,15262.03,2659
+09/06/2021,8700,"General Expenses",,PI0307,SUP0001,B&Q,40.00,,15302.03,2662
+11/06/2021,8700,"General Expenses",,PI0304,SUP0001,"The Rose",73.25,,15375.28,2653
+11/06/2021,8700,"General Expenses",,PI0337,SUP0001,Express,59.00,,15434.28,2752
+14/06/2021,8700,"General Expenses",,PI0335,SUP0001,123-reg,19.19,,15453.47,2746
+14/06/2021,8700,"General Expenses",,PI0336,SUP0001,"Oven Doctor",125.00,,15578.47,2749
+16/06/2021,8700,"General Expenses",,PI0334,SUP0001,Harrods,24.95,,15603.42,2743
+19/06/2021,8700,"General Expenses",,PI0332,SUP0001,123-reg,33.58,,15637.00,2737
+19/06/2021,8700,"General Expenses",,PI0333,SUP0001,Ryman,4.49,,15641.49,2740
+20/06/2021,8700,"General Expenses",,PI0331,SUP0001,Outcome,150.00,,15791.49,2734
+22/06/2021,8700,"General Expenses",,PI0344,SUP0001,Shopzu,15.00,,15806.49,2773
+23/06/2021,8700,"General Expenses",,PI0330,SUP0001,Environfresh,7.20,,15813.69,2731
+23/06/2021,8700,"General Expenses",,PI0342,SUP0001,"Meze Grill",40.90,,15854.59,2767
+23/06/2021,8700,"General Expenses",,PI0343,SUP0001,O2,20.00,,15874.59,2770
+23/06/2021,8700,"General Expenses",,PI0612,SUP0001,"WINDSOR MEZE GRILL KITCHEN",44.00,,15918.59,3873
+24/06/2021,8700,"General Expenses",,PI0329,SUP0001,Microsoft,13.68,,15932.27,2728
+26/06/2021,8700,"General Expenses",,PI0326,SUP0001,ebay,14.06,,15946.33,2719
+26/06/2021,8700,"General Expenses",,PI0327,SUP0001,ebay,6.99,,15953.32,2722
+26/06/2021,8700,"General Expenses",,PI0328,SUP0001,Runnymede,38.23,,15991.55,2725
+28/06/2021,8700,"General Expenses",,PI0321,SUP0001,ebay,10.98,,16002.53,2704
+28/06/2021,8700,"General Expenses",,PI0322,SUP0001,ebay,7.69,,16010.22,2707
+28/06/2021,8700,"General Expenses",,PI0323,SUP0001,ebay,2.99,,16013.21,2710
+28/06/2021,8700,"General Expenses",,PI0324,SUP0001,Read,14.06,,16027.27,2713
+28/06/2021,8700,"General Expenses",,PI0325,SUP0001,PostOffice,8.65,,16035.92,2716
+29/06/2021,8700,"General Expenses",,PI0320,SUP0001,Monty,19.75,,16055.67,2701
+30/06/2021,8700,"General Expenses",,PI0317,SUP0001,123-reg,71.99,,16127.66,2692
+30/06/2021,8700,"General Expenses",,PI0318,SUP0001,H&F,65.00,,16192.66,2695
+30/06/2021,8700,"General Expenses",,PI0319,SUP0001,Brothers,210.00,,16402.66,2698
+02/07/2021,8700,"General Expenses",,PI0302,SUP0001,Skyway,21.85,,16424.51,2647
+02/07/2021,8700,"General Expenses",,PI0316,SUP0001,"The Rose",65.90,,16490.41,2689
+03/07/2021,8700,"General Expenses",,PI0301,SUP0001,"Companies House",13.00,,16503.41,2644
+09/07/2021,8700,"General Expenses",,PI0300,SUP0001,Cote,6.24,,16509.65,2641
+10/07/2021,8700,"General Expenses",,PI0299,SUP0001,Next,267.80,,16777.45,2638
+14/07/2021,8700,"General Expenses",,PI0296,SUP0001,Stansted,109.00,,16886.45,2629
+15/07/2021,8700,"General Expenses",,PI0294,SUP0001,Shell,79.87,,16966.32,2623
+15/07/2021,8700,"General Expenses",,PI0295,SUP0001,Woolley,25.26,,16991.58,2626
+17/07/2021,8700,"General Expenses",,PI0293,SUP0001,HMP,49.00,,17040.58,2620
+19/07/2021,8700,"General Expenses",,PI0291,SUP0001,PostOffice,6.85,,17047.43,2614
+19/07/2021,8700,"General Expenses",,PI0292,SUP0001,PostOffice,6.85,,17054.28,2617
+20/07/2021,8700,"General Expenses",,PI0290,SUP0001,Environfresh,7.20,,17061.48,2611
+24/07/2021,8700,"General Expenses",,PI0289,SUP0001,Microsoft,13.68,,17075.16,2608
+30/07/2021,8700,"General Expenses",,PI0288,SUP0001,"V Dhariwal",339.85,,17415.01,2605
+31/07/2021,8700,"General Expenses",,PI0286,SUP0001,"PF Chang",88.05,,17503.06,2599
+31/07/2021,8700,"General Expenses",,PI0287,SUP0001,Camden,65.00,,17568.06,2602
+01/08/2021,8700,"General Expenses",,PI0285,SUP0001,"Gourmet B",43.40,,17611.46,2596
+03/08/2021,8700,"General Expenses",,PI0281,SUP0001,Selco,6.61,,17618.07,2584
+03/08/2021,8700,"General Expenses",,PI0282,SUP0001,Selco,6.61,,17624.68,2587
+07/08/2021,8700,"General Expenses",,PI0067,SUP0001,"BP Express",93.55,,17718.23,1422
+08/08/2021,8700,"General Expenses",,PI0278,SUP0001,123-reg,47.97,,17766.20,2575
+10/08/2021,8700,"General Expenses",,PI0303,SUP0001,PostOffice,10.20,,17776.40,2650
+19/08/2021,8700,"General Expenses",,PI0276,SUP0001,"BP Wexham",92.57,,17868.97,2569
+19/08/2021,8700,"General Expenses",,PI0592,SUP0001,"Go Cardless",7.20,,17876.17,3692
+23/08/2021,8700,"General Expenses",,PI0271,SUP0001,Microsoft,13.68,,17889.85,2554
+31/08/2021,8700,"General Expenses",,GJ0106,8700,"General Expenses",8.65,,17898.50,1175
+31/08/2021,8700,"General Expenses",,GJ0014,8700,"General Expenses",,8.65,17889.85,3773
+04/09/2021,8700,"General Expenses",,PI0077,SUP0001,123-Reg,53.96,,17943.81,1548
+05/09/2021,8700,"General Expenses",,PI0030,SUP0001,123-reg,57.56,,18001.37,1235
+09/09/2021,8700,"General Expenses",,PI0031,SUP0001,123-reg,53.97,,18055.34,1238
+16/09/2021,8700,"General Expenses",,PI0593,SUP0001,"Go Cardless",7.20,,18062.54,3697
+19/09/2021,8700,"General Expenses",,PI0066,SUP0001,Ascot,76.44,,18138.98,1419
+27/09/2021,8700,"General Expenses",,PI0601,SUP0001,"Waqas Ahmed",12000.00,,30138.98,3769
+30/09/2021,8700,"General Expenses",,GJ0107,8700,"Expenses Sep21",515.70,,30654.68,1182
+,8700,"General Expenses","Closing Balance",,,,29589.41,8.65,30654.68,
+,8850,Dividend-SU,"Opening Balance",,,,,,0,
+29/04/2021,8850,Dividend-SU,,GJ0016,8850,Dividend-SU,1000.00,,1000.00,3789
+10/05/2021,8850,Dividend-SU,,GJ0104,8850,Dividend-SU,10000.00,,11000.00,1164
+,8850,Dividend-SU,"Closing Balance",,,,11000,0,11000,
+,8900,"Opening Balances Control Account","Opening Balance",,,,,,0,
+,8900,"Opening Balances Control Account","Closing Balance",,,,0,0,0,
+,8950,Corrections,"Opening Balance",,,,,,0,
+,8950,Corrections,"Closing Balance",,,,0,0,0,
+,9996,"Corporation Tax","Opening Balance",,,,,,0,
+,9996,"Corporation Tax","Closing Balance",,,,0,0,0,

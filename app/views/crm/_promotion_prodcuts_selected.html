@@ -1,0 +1,73 @@
+<!-- Row starts -->
+<div class="row">
+
+    <div class="col-md-12 col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <span ng-if="rec.type != 2">Items</span>
+                    <span ng-if="rec.type == 2">Services</span>
+                </h3>
+            </div>
+            <div class="clearfix"></div>
+            <div class="panel-body">
+
+                <div id="dt_example" class="example_alt_pagination">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr class="bg-col">
+                            <!--
+                            <th check-all="check-all">
+                            <em class="fa icon-basket-loaded" title="Existed products in {{promotion_name}}"></em>
+                            </th>
+                            -->
+                            <th>Code</th>
+                            <th>Description</th>
+                            <th>Unit Price</th>
+                            <th>Discount Type</th>
+                            <th>Discount</th>
+                            <th>Discounted Price</th>
+                        </tr>
+                        <!--
+                        <tr>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                          <th ng-repeat="column in columnss" ng-show="column.visible" class="sortable">
+                          <input type="text" class="form-control" ng-model="MyCustomeFilters[column.title] "/>
+                          </th>
+                        </tr>
+                        -->
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="prod in prooduct_arr" ng-if="prod.chk == true">
+                            <!--<span ng-if="rec.type == 1">{{prod.item_code}}</span>-->
+                            <td><span><!--{{prod.code}}--> {{prod.product_code}}</span></td>
+                            <td> {{prod.description}}</td>
+                            <td> {{prod.standard_price}}</td>
+                            <td> {{rec_promo.discount_type_id.name}}</td>
+                            <td>
+                                <span ng-if="rec_promo.discount_type_id.name == 'Percentage'">
+                                    {{rec_promo.discount}} &#37;
+                                </span>
+                                <span ng-if="rec_promo.discount_type_id.name != 'Percentage'">
+                                    {{rec_promo.discount}}<span> {{drp.currency.code}} </span>
+                                </span>
+                            </td>
+                            <td>
+                                <span ng-if="rec_promo.discount_type_id.name == 'Percentage'">
+                                    {{prod.standard_price - (prod.standard_price * rec_promo.discount / 100)}}
+                                </span>
+                                <span ng-if="rec_promo.discount_type_id.name != 'Percentage'">
+                                    {{prod.standard_price - rec_promo.discount}}
+                                </span>
+                                <span> {{drp.currency.code}} </span>
+                            </td>
+                            <!-- ng-class="{'testclass':$index/2 == 0}" -->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

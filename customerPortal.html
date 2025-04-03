@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="navson">
+
+<head>
+
+      <style>
+            @media screen and (-ms-high-contrast: active),
+            (-ms-high-contrast: none) {
+                  input[type=range] {
+                        height: 20px !important;
+                        padding: 0 !important;
+                        line-height: 20px !important;
+                  }
+            }
+      </style>
+
+
+      <link rel="apple-touch-icon" sizes="180x180" href="app/img/apple-touch-icon.png">
+      <link rel="shortcut icon" href="app/img/favicon-16x16.ico" type="image/x-icon" />
+      <link rel="icon" href="app/img/favicon-16x16.ico" type="image/ico" />
+      <link rel="manifest" href="app/img/manifest.json">
+      <link rel="mask-icon" href="app/img/safari-pinned-tab.svg" color="#5bbad5">
+      <meta name="theme-color" content="#ffffff">
+      <meta http-equiv="cache-control" content="no-cache">
+      <meta http-equiv="expires" content="0">
+      <meta http-equiv="pragma" content="no-cache">
+      <meta http-equiv="CACHE-CONTROL" content="NO-CACHE, NO-STORE">
+      <meta http-equiv="X-UA-Compatible" content="IE=11" />
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+      <meta name="description" content="{{app.description}}">
+      <meta name="keywords" content="app, responsive, angular, bootstrap, dashboard, admin">
+      <title data-ng-bind="pageTitle()">Silverow</title>
+      <link rel="stylesheet" href="app/css/bootstrap.min.css">
+      <link rel="stylesheet" href="app/vendor/timepicker/include/ui-1.10.0/ui-lightness/jquery-ui-1.10.0.custom.min.css" type="text/css">
+      <!--  <link rel="stylesheet" href="app/css/app.css" data-ng-if="!app.layout.isRTL"> -->
+      <link rel="stylesheet" href="app/css/custom.css">
+      <link rel="stylesheet" href="app/css/summernote.css">
+      <link rel="stylesheet" href="app/vendor/timepicker/jquery.ui.timepicker.css">
+      <link rel="stylesheet" href="app/css/jquery-ui.css">
+      <link rel="stylesheet" href="app/css/select.css">
+      <link rel="stylesheet" href="app/css/new.css">
+      <link rel="stylesheet" href="app/css/media.css">
+      <link rel="stylesheet" href="app/css/mobirise/style.css">
+      <link rel="stylesheet" href="app/css/customerPortal.css">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Raleway:400,600" rel="stylesheet">
+      <!-- <link href="https://fonts.googleapis.com/css?family=PT+Sans:700" rel="stylesheet"> -->
+
+      <!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!--[if lt IE 9]>
+    <script src="app/js/html5shiv.js"></script>
+    <script src="app/js/respond.min.js"></script>
+    <![endif]-->
+
+      <!-- Style -->
+
+</head>
+
+<body class="layout-fixed aside-collapsed hidden-footer body-bg-color" data-ng-class="{  'layout-fixed' : app.layout.isFixed, 'aside-collapsed' : app.layout.isCollapsed, 'layout-boxed' : app.layout.isBoxed, 'layout-fs': app.useFullLayout, 'hidden-footer': app.hiddenFooter, 'layout-h': app.layout.horizontal, 'aside-float': app.layout.isFloat, 'body-bg-color':app.layout.isBodyColor}"
+      spellcheck="true">
+
+
+      <!-- <header ng-include="'app/views/partials/top-header.html'" class="navbar-fixed-top"></header> -->
+
+
+
+
+      <div class="navbar navbar-fixed-top silverbg navbar-default" role="navigation" id="gre">
+
+
+            <div class="container-fluid">
+                  <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+                        <a class="navbar-brand" ui-sref="app.dashboard()" style="color:white;">
+				<img src="app/img/silverow-svg.svg" /> </a>
+                        <div class="bubble-wrap" style="display:none;">
+                              <div class="bar first"></div>
+                              <div class="bar second"></div>
+                              <div class="bar third"></div>
+                        </div>
+
+                  </div>
+                  <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right adminprofile">
+                              <li class="someyourContainer">
+
+
+                                    <ul class="dropdown-menu multi-level add-quick tello" style="line-height: 27px;left: -142px;    padding-bottom: 7px !important;">
+
+                                          <!-- <script>
+                                                $(document).on('click', '.someyourContainer .dropdown-menu', function (e) {
+                                                      e.stopPropagation();
+                                                });
+                                          </script> -->
+
+                                          <div ng-show="showMoreoptions" class="showMoreoptions">
+
+                                          </div>
+                                          <div class="showLessoptions" style="    padding-top: 8px;" ng-hide="showMoreoptions  > 0" ng-class="{'animated slideInRight':showMoreoptions  > 0}">
+
+                                          </div>
+                                    </ul>
+                              </li>
+
+                              <li class="animateLogo">
+                                    <a class="dropdown-toggle circle-top-name"
+                                          data-toggle="dropdown"
+                                          style="padding-left: 11px !important;">
+                                          <div class="clearfix">
+                                                <div class="ib pull-left" style="padding-top: 10px;">
+                                                      <div  ng-if="!showLoader && company_name.length>0 " ng-class="{'centercompany':!(known_as.length>1)}"
+                                                            style="font-size: 16px">{{company_name}}</div>
+                                                      <!-- <div ng-if="!company_name" ng-class="{'centercompany':!(known_as.length>1)}"
+                                                            style="font-size: 16px">{{company_name}}</div> -->
+                                                </div>
+                                                <div class="pull-right ifnologo logo_media_ipad"
+                                                      ng-if="!company_logo_url">
+                                                      <i class="fa fa-building-o"
+                                                      style="    padding: 11px;
+                                                      font-size: 20px;"></i>
+                                                </div>
+                                                <div class="pull-right logo_media_ipad"
+                                                      ng-if="company_logo_url">
+                                                      <img class="img-circles"
+                                                            style="min-width: 66px;height: 40px;display: inline-block;"
+                                                            ng-style="{'background-image':'url('+ company_logo_url +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat','padding': '20px'}">
+                                                </div>
+                                          </div>
+                                    </a>
+                              </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar_media_ipad">
+
+                        </ul>
+                  </div>
+            </div>
+      </div>
+      <!-- Main Container start -->
+      <div class="container container_por_ipad" style="    margin-top: 45px;">
+            <!-- <div ng-include="'app/views/partials/left-sidebar.html'"></div> -->
+            <!-- <div ui-view="" onclick="hideOtherTabs('');" class="right-sidebar"></div> -->
+            <!-- <div class="left-sidebar">
+                  <ul class="stats">
+                        <li ui-sref="app.dashboard()">
+                              <span class="mbri-home"></span>
+                              <span class="left-tooltip">Home</span>
+                        </li>
+                        <li style="height: 44px;" class="noselect">
+                              <sidebar-notes></sidebar-notes>
+                              <span class="left-tooltip">Notes</span>
+                        </li>
+                        <li ng-controller="TaskController" style="height: 44px;" class="noselect">
+                              <span class="left-tooltip">Tasks</span>
+                              <sidebar-tasks name="Task" modules="sidebarModules" submit="addTask(formData)" delete="deleteTask(id)" get-records="tasks(q)"
+                                    add-template="app/shared/directives/sidebar_tasks.add.html" focused-template="app/shared/directives/sidebar_tasks.focused.html"></sidebar-tasks>
+                        </li>
+                        <li style="height: 44px;" class="noselect">
+                              <span class="left-tooltip">Email</span>
+                              <sidebar-email></sidebar-email>
+                        </li>
+                        <li style="height: 44px;" class="noselect">
+                              <div class="left-tooltip">Documents</div>
+                              <sidebar-attachment></sidebar-attachment>
+                        </li>
+                        <a ui-sref="app.setup" ng-show="setup_main" style="position: absolute;
+                                                                  border: 0;
+                                                                  left: 0;
+                                                                  right: 0;
+                                                                  bottom: 20px">
+                              <div class="left-tooltip">Setup</div>
+                              <span class="mbri-setting3"></span>
+                        </a>
+                        <div class="text-center" title="Updated on {{silverowVersionDate}}" style="position: absolute;
+                                          bottom: 6px;
+                                          left: 4px;
+                                          cursor: help;
+                                          color: #757575;">
+                              {{silverowVersionNumber}}
+                        </div> 
+                  </ul>
+            </div>-->
+
+
+            <!-- <script>
+                  $(".stats li:not(.noselect)").click(function () {
+                        $(".stats li").removeClass('selected');
+                        $(".stats a").removeClass('selected');
+                        $(this).addClass('selected');
+                  });
+
+                  $(".stats a:not(.noselect)").click(function () {
+                        $(".stats a").removeClass('selected');
+                        $(".stats li").removeClass('selected');
+                        $(this).addClass('selected');
+                  })
+                  $(".noselect").click(function () {
+                        $(".stats a").removeClass('selected');
+                        $(".stats li").removeClass('selected');
+                  });
+
+                  $(".btn").on("click", function (e) {
+                        $(".tooltip-styling").hide();
+                  });
+
+            </script> -->
+
+            <style>
+                  .modal .nav-tabs {
+                        display: block !important;
+                  }
+
+                  .right-sidebar {
+                        margin: 50px 0px 0 23px !important;
+                  }
+
+                  #customerStatementPDF a {
+                        /* margin-left: -60px !important; */
+                        width: 60px;
+                        border-radius: 4px;
+                        font-size: 11px !important;
+                        border-color: #c5c5c5;
+                        border-width: 1px;
+                        border-style: solid;
+                        font-weight: bold;
+                        color: #444444;
+                        background-color: white;
+                        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+                        display: inline-block;
+                        padding: 6px 12px;
+                        margin-bottom: 0;
+                        font-size: 14px;
+                        /* line-height: 1.42857143; */
+                        text-align: center;
+                        white-space: nowrap;
+                        vertical-align: middle;
+                        -ms-touch-action: manipulation;
+                        touch-action: manipulation;
+                        cursor: pointer;
+                        -webkit-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+                        background-image: none;
+                        /* border: 1px solid transparent; */
+                        line-height: 25px;
+                        height: 28px;
+                        position: fixed;
+                        right: 90px;
+                  }
+
+                  #customerStatementPDF .ib {
+                        margin-right: 90px !important;
+                  }
+
+                  #customerStatementPDF a:hover {
+                        border-color: #969696;
+                        color: #018fff;
+                        background-color: white;
+                  }
+
+                  #customerStatementPDF a::before {
+                        content: "Print";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        text-align: center;
+                  }
+
+                  #customerStatementPDF a i {
+                        opacity: 0;
+                        display: block;
+                  }
+
+                  .allReport li a.fave-report-desp {
+                        display: flex !important;
+                  }
+            </style>
+
+            <!-- <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container> -->
+
+            <div style="position: fixed;
+                  right: 0;
+                  padding: 5px !important;
+                  top: 50px;
+                  border-radius: 0;
+                  padding-left: 48px !important;
+                  background: white;
+                  border-bottom: 1px solid #cecece;
+                  left: 0;
+                  z-index: 7;">
+                  <span>&nbsp;</span>
+            </div>
+            <!-- <div ng-include="'app/views/_breadcrumb.html'"></div> -->
+
+            <div id="loading-bar-container"></div>
+            <!-- <div style="height:23px;"></div> -->
+
+            <div class="customerPortal allReport" style="margin-top: 50px;" ><!--   -->
+
+                  <!-- <div class="col-md-2"> -->
+                  <div class="left-sidebar" style="width: 10%;padding-top: 50px;" ng-if="(!hideCustPortal || hideHomeDetails) && !loginCustPortal" ng-controller="customerPortalController">
+
+                        
+
+                        <div class="s-box" style="border-radius: 0px;" ng-if="!hideCustPortal || hideHomeDetails" >
+                              <div class="s-content">
+                                    <li>
+                                          <a ui-sref="app.home()" class="fave-report-desp" style="padding-left: 10px !important;">
+                                                <img style="min-width: 10px;height: 10px;display: inline-block;"
+                                                            ng-style="{'background-image':'url('+ homeLogoUrl +')','background-size':'contain','background-repeat':'no-repeat','padding': '15px','margin-right': '10px'}">Home</a>
+                                    </li>   <!-- 'background-position':'center', -->
+                                    <li>
+                                          <a ui-sref="app.getCustomerStatementReport({module:'customerStatement'})" class="fave-report-desp" style="padding-left: 10px !important;">
+                                                <img style="min-width: 10px;height: 10px;display: inline-block;"
+                                                            ng-style="{'background-image':'url('+ invoiceLogoUrl +')','background-size':'contain','background-repeat':'no-repeat','padding': '15px','margin-right': '10px'}">Customer Statement</a>
+                                    </li><!-- 'background-repeat':'no-repeat','padding': '15px 20px'} -->
+                                    <li>
+                                          <a ui-sref="app.sale-invoice()" class="fave-report-desp" style="padding-left: 10px !important;">
+                                                <img style="min-width: 10px;height: 10px;display: inline-block;"
+                                                            ng-style="{'background-image':'url('+ statementLogoUrl +')','background-size':'contain','background-repeat':'no-repeat','padding': '15px','margin-right': '10px'}">Sales Invoices</a>
+                                    </li>
+                                    <li>
+                                          <a ui-sref="app.sale-return-invoice()" class="fave-report-desp" style="padding-left: 10px !important;">
+                                                <img style="min-width: 10px;height: 10px;display: inline-block;"
+                                                            ng-style="{'background-image':'url('+ statementLogoUrl +')','background-size':'contain','background-repeat':'no-repeat','padding': '15px','margin-right': '10px'}">Credit Notes</a>
+                                    </li>
+                                    <li>
+                                          <a ui-sref="app.sale-activity()" class="fave-report-desp" style="padding-left: 10px !important;">
+                                                <img style="min-width: 10px;height: 10px;display: inline-block;"
+                                                            ng-style="{'background-image':'url('+ activityLogoUrl +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat','padding': '15px','margin-right': '10px'}">Customer Activity</a>
+                                    </li>
+                              </div>
+                        </div>
+
+                        <div style="background-color: #232323;">
+
+                              <!-- <div style="text-align: center;">
+                                    <img ng-src='{{company_logo_url}}'
+                                          class='reportHeading__right__img ' style="margin-top: 10px;"
+                                          ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                              </div> -->
+                              <div class="s-content" style="color: #ffffff; font-size: 10px;padding: 20px 15px; position: absolute; bottom: 0; width:100%">
+                                    <!-- <li class="x-box" style="text-align: center;font-size: 16px;background-color: #232323;color: #ffffff;background: none;">{{company_name}}</li> -->
+                                    <li style="font-size: 16px; border-bottom: 1px dotted#ccc;padding-bottom: 5px;margin-bottom: 5px;">Address</li>
+                                    <li >{{address}}</li>
+                                    <li >{{address_2}}</li>
+                                    <li >{{county}}</li>
+                                    <li >{{city}}</li>
+                                    <li >{{postcode}}</li>
+                                    <li >{{telephone}}</li>
+                                    <li >{{fax}}</li>
+                              </div>
+                        </div>
+
+                  </div>
+
+                  <div class="col-md-10 col-md-offset-1 " ng-if="!hideCustPortal && !hideHomeDetails  && !loginCustPortal"><!-- -->
+                        <div class="col-md-12">
+                              <div class="s-box">
+                                    <div class="s-content">
+                                          <li class="x-box" ng-if="!showLoader && custName.length>0" style="text-align: center;font-size: 16px;">
+                                                {{custName}}({{custCode}}) - Customer Portal
+                                          </li><!-- custCode.length>0 -->
+                                          <li class="x-box" ng-if="custCode.length==0" style="text-align: center;font-size: 16px;">
+                                                Customer Portal
+                                          </li>
+                                    </div>
+                              </div>
+                        </div>
+
+                        
+
+                        <div class="col-md-6 ">
+                              <div class="s-box"><!-- pr0 style="border-right: none; border-radius: 5px 0px 0px 5px;" -->
+                                    <div class="s-content">
+                                          <li>
+                                                <a ui-sref="app.getCustomerStatementReport({module:'customerStatement'})" class="fave-report-desp">Customer Statement</a>
+                                                <!---393043  target="_blank" -->
+                                          </li>
+                                          <li>
+                                                <a ui-sref="app.sale-invoice()" class="fave-report-desp" ><!-- Posted -->Sales Invoices</a>
+                                          </li>
+                                    </div>
+                              </div>
+                        </div>
+
+                        <div class="col-md-6 ">
+                              <div class="s-box"><!-- pl0 style="border-left: none; border-radius: 0px 5px 5px 0px;" -->
+                                    <div class="s-content">
+                                          <li>
+                                                <a ui-sref="app.sale-return-invoice()" class="fave-report-desp"><!-- Posted -->Credit Notes</a>
+                                          </li>
+                                          <li>
+                                                <a ui-sref="app.sale-activity()" class="fave-report-desp">Customer Activity</a>
+                                          </li>
+                                    </div>
+                              </div>
+                        </div>
+
+                  </div>
+
+                  <!-- <div class="container container_por_ipad ng-scope"> -->
+                        <div class="right-sidebar" ng-if="hideCustPortal && !loginCustPortal">
+
+                              <div class="col-md-10 col-md-offset-1">
+                                    <div class="col-md-12">
+                                          <div class="s-box">
+                                                <div class="s-content">
+                                                      <li class="x-box" style="text-align: center;font-size: 16px;">
+                                                            {{CustomerPortalTitle}}
+                                                      </li>
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+                        </div>
+                  <!-- </div> -->
+                  
+            </div>
+            <!-- <div class="customerPortal allReport " ng-if="hideCustPortal" style="margin-top: 50px;">
+                  <div class="col-md-10 col-md-offset-1">
+                        <div class="col-md-12">
+                              <div class="s-box">
+                                    <div class="s-content">
+                                          <li class="x-box" style="text-align: center;font-size: 16px;">
+                                                {{CustomerPortalTitle}}
+                                          </li>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>  -->
+
+            <div class="customerPortal allReport " ng-if="loginCustPortal" style="margin-top: 50px;">
+                  <div class="col-md-10 col-md-offset-1">
+                        <div class="col-md-12">
+                              <div class="s-box">
+                                    <div class="s-content">
+                                          <li class="x-box" style="text-align: center;font-size: 16px;">
+                                                {{CustomerPortalTitle}}
+                                          </li>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+            <div data-ui-view="" data-autoscroll="false" class="wrapper" ng-if="!loginCustPortal"></div> 
+            <div ng-class="{'whirl no-overlay':showLoader}"></div>
+      </div>
+      </div>
+
+
+      <!-- </div> -->
+
+            
+      <!-- <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>  -->
+
+      <!-- Configrasion -->
+      <script src="app/js/base.js"></script>
+      <!-- <script src="app/js/app.js?v=123"></script> -->
+        <script src="app/js/appCustomerPortal.js?v=123"></script>  
+      <script src="app/js/services.js"></script>
+      <!-- <link rel="stylesheet" href="http://psergus.github.io/ngWYSIWYG/css/editor.css"/> -->
+      <script src="app/js/select.js"></script>
+      <script src="api/libraries/angular-modal-service-master/src/angular-modal-service.js"></script>
+       <script src="vendor/jsreport.min.js"></script> 
+
+      <!-- Chart.js -->
+      <!-- <script src="app/vendor/chart.js/dist/Chart.js"></script>
+      <script src="app/vendor/chart.js/dist/angular-chart.min.js"></script>
+      <script src="app/vendor/silverow/angular_extensions/merge.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+      <script src="app/js/chart.funnel.bundled.js"></script>
+      <script src="app/js/chartjs-plugin-labels.js"></script>  -->
+
+      <link href="vendor/angularjs-toaster/toaster.css" rel="stylesheet" />
+      <script src="vendor/angularjs-toaster/toaster.js"></script>
+
+      <!-- <script src="app/js/summernote.min.js"></script>
+      <script src="app/js/angular-summernote.min.js"></script> -->
+
+      <!-- Reports MODULES -->
+      <!-- <script src="app/views/reports/reports.js"></script> -->
+
+
+      <!-- Comunication MODULES  -->
+      <!-- <script src="app/views/calendar/calendar.js"></script> -->
+      <!-- Directive -->
+      <script src="app/js/math.js"></script>
+      <script src="app/shared/directives/flexi_table_options.directive.js"></script>
+      <script src="app/shared/directives/flexi_table_generator.directive.js"></script>
+      <script src="app/shared/directives/flexi_table_data_type_manager.directive.js"></script>
+      <script src="app/shared/directives/expression_eval.directive.js"></script>
+      <script src="app/shared/directives/dynamic_select.directive.js"></script>
+      <script src="app/shared/directives/flexi_select.directive.js"></script>
+      <script src="app/shared/directives/flexi_history.directive.js"></script>
+      <script src="app/shared/directives/item_uom_details.directive.js"></script>
+      <script src="app/shared/directives/price_offer.directive.js"></script>
+      <script src="app/shared/directives/flexi_stage.directive.js"></script>
+      <script src="app/shared/directives/validity.directive.js"></script>
+      <script src="app/shared/directives/upload_attachments.directive.js"></script>
+      <script src="app/shared/directives/view_attachments.directive.js"></script>
+      <script src="app/shared/directives/emailer.directive.js"></script>
+      <!-- <script src="app/shared/directives/emailPDFlink.directive.js"></script> -->
+      <script src="app/shared/directives/widgets.directive.js"></script>
+      <script src="app/shared/directives/roles.directive.js"></script>
+      <script src="app/shared/directives/pagination.directive.js"></script>
+
+
+      <!-- Test Directives -->
+      <script src="app/shared/directives/_modalFlexiTable/flexi_table_options.directive.js"></script>
+      <script src="app/shared/directives/_modalFlexiTable/flexi_table_generator.directive.js"></script>
+      <script src="app/shared/directives/_modalFlexiTable/flexi_table_data_type_manager.directive.js"></script>
+
+
+      <script src="app/js/angular-unsavedChanges/dist/unsavedChanges.js"></script>
+
+      <script src="vendor/ngDialog/js/ngDialog.min.js"></script>
+      <link rel="stylesheet" href="vendor/ngDialog/css/ngDialog.min.css">
+      <link rel="stylesheet" href="vendor/ngDialog/css/ngDialog-theme-default.min.css">
+
+      <!-- Customer Portal MODULES  -->
+      <!-- <script src="app/views/customerPortal/customerPortal.js"></script> -->
+      <!-- Last script file, no file should include below this -->
+
+
+      <!-- File Uploading -->
+      <script src="app/js/ng-file-upload-shim.js"></script>
+      <script src="app/js/ng-file-upload.js"></script>
+      <!--<script src="app/js/ng-infinite-scroll.min.js"></script> -->
+      <script src="app/js/angular-endless-scroll.js"></script>
+      <!--AngularJS Files   end-->
+
+
+
+      <!-- Attachments (by Ahmad) -->
+      <script src="app/views/attachments/attachments.js"></script>
+      <!-- End of Attachments (by Ahmad) -->
+
+      <!-- Module Emails (by Ahmad) -->
+      <script src="app/views/moduleEmails/moduleEmails.js"></script>
+      <!-- End of Module Emails (by Ahmad) -->
+
+      <!-- COMMENTS MODULE -->
+      <script src="app/views/comments/comments.js"></script>
+
+
+      <!-- JQuery Files-->
+      <script src="vendor/menu.js"></script>
+      <!--     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+      <script src="vendor/bootstrap.min.js"></script>
+
+      <script src="vendor/jquery.scrollUp.js"></script>
+      <script type="text/javascript" src="app/vendor/timepicker/include/ui-1.10.0/jquery.ui.position.min.js"></script>
+      <script src="app/vendor/timepicker/jquery.ui.timepicker.js"></script>
+      <script type="text/javascript" src="app/vendor/jquery-ui-draging.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+      <!--<script src="app/js/ng-infinite-scroll.min.js"></script>    'infinite-scroll'-->
+      <!--'dc.endlessScroll'-->
+      <!--<script   type="text/javascript" src="app/js/angular-endless-scroll.js"></script> -->
+      <!-- <script src="app/vendor/jquery-ui-v1.10.3.js"></script> -->
+      <!-- Just Gage
+      <script src="app/vendor/justgage/justgage.js"></script><script src="app/vendor/justgage/raphael.2.1.0.min.js"></script>
+      -->
+      <!-- Custom Jquery Js -->
+      <script src="app/js/custom_js.js?v=123"></script>
+      <script src="vendor/scrollsync.js"></script>
+
+
+      <!--Module Files
+      <script src="app/js/inculde_module.html" type="text/ng-template"></script>
+      <div ng-include="app/js/inculde_module.html" ></div>
+      <script type="text/html" src="app/js/inculde_module.html"></script>
+      <link   type="text/html" href="app/js/inculde_module.html">
+      <div w3-include-html="app/js/inculde_module.html"></div>-->
+      <input type="text" ng-value="dateFormats[defaultDateFormat]" id="date_format" ng-hide="1">
+
+      <!-- Left Sidebar Email -->
+      <script src="app/shared/directives/sidebar_email.directive.js"></script>
+
+      <!-- Left Sidebar Attachments -->
+      <script src="app/shared/directives/sidebar_attachment.directive.js"></script>
+
+      <!-- Left Sidebar Notes -->
+      <script src="app/shared/directives/sidebar_notes.directive.js"></script>
+
+      <!-- Left Sidebar Tasks -->
+      <script src="app/shared/directives/sidebar_tasks.directive.js"></script>
+
+      <script src="app/js/last_js.js"></script>
+
+      </body>
+
+
+
+</html>

@@ -1,0 +1,44 @@
+<div class="row">
+	<div class="col-lg-6">
+		<div class="form-group">
+  			<label class="col-sm-3 control-label"> Field Name<span class="required">*</span></label>
+  			<div class="col-sm-7">
+   <input type="text" ng-model="rec.name" id="col_name" name="col_name" class="form-control" tabindex="1" required ng-readonly="check_readonly" />
+  			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-6">
+		<div class="form-group">
+  			<label class="col-sm-3 control-label">Tab Name<span class="required">*</span></label>
+  			<div class="col-sm-7">
+  				<select ng-model="rec.get_tab_id" ng-options="opt as opt.name for opt in tab_name" class="select2me form-control" ng-disabled="check_readonly" required tabindex="1">  </select>
+            </div>
+		</div>
+	</div>
+</div>
+
+<!--<div class="row">
+	<div class="col-lg-6">
+		<div class="form-group">
+  			<label class="col-sm-3 control-label">Description</label>
+  			<div class="col-sm-7">
+    			<textarea name="rec.description" cols="160" rows="10" id="description" ng-model="rec.description" class="form-control" ng-readonly="check_readonly" tabindex="2"></textarea>
+  			</div>
+		</div>
+	</div>
+</div>-->
+
+
+<div class="row">
+	<div class="col-lg-6">
+		<div class="form-group">
+  			<label class="col-sm-3 control-label">Status<span class="required">*</span></label>
+  			<div class="col-sm-7">
+    			<select ng-model="rec.status" ng-options="opt as opt.label for opt in arr_status" class="select2me form-control" required="required" ng-disabled="check_readonly" id="status" tabindex="4" >  </select>
+  			</div>
+		</div>
+	</div>
+</div>

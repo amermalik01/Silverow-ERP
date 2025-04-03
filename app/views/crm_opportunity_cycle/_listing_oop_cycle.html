@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-12">
+        <!--    Add    permision for Company User /superadmin --> 
+        <a id="prompt" ng-if="addOppCyclePermission" ng-click="showOppCycleForm()" class="btn pull-right btn_add">Add New</a>
+    </div>
+</div>
+
+<div class="row"> 
+    <div class="col-md-12 col-md-12" >
+        <div class="widget">
+
+            <div class="widget-body1 ">
+                <div id="dt_example" class="example_alt_pagination" ng-controller="CrmOpportunityCycleController as table">
+                    <!-- <div class="panel-heading">
+                        <div class="panel-title">Alt. Contact Listing</div>
+                     </div>-->
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-striped table-hover table-bordered" id="data-table"
+                               ng-if="viewOppCyclePermission == 1"  >
+
+                            <thead>
+                                <tr class="bg-col" ng-show="columns.length > 0">
+                                    <th ng-repeat="column in columns"
+                                        ng-if="	column.title != 'Id'"> {{column.title}}
+                                    </th>
+                                    <th style="width: 11%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-body courser">
+                                <tr ng-repeat="rec in recoddata"  ng-show="columns.length > 0" >
+                                    <td ng-repeat="column in columns" ><span ng-class="{'dont-click':viewOppCyclePermission == 0}"  ng-click="detail(rec.id, rec.current_status)" >{{rec[column.field]}}</span> <span  >
+                                            <!--    Edit    permision for Company User /superadmin -->
+                                        </span></td>   <td>  <a  ng-click="editForm(rec.id, rec.current_status)" 
+                                                             ng-class="{'dont-click':editOppCyclePermission == 0}" title="Edit" class="btn"><i class="fa fa-edit"></i></a>
+                                        <!--    Delete    permision for Company User /superadmin -->
+                                        </span>  <a ng-click="delete(rec.id, $index, recoddata)" ng-if="deleteOppCyclePermission == 1" title="Delete" class="btn"><i class="fa fa-times"></i></a> </span></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

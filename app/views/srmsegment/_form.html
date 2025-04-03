@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-md-5">
+        <div class="col-md-12">
+          <div class="panel-title2">Segment</div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Name<span class="required">*</span></label>
+
+                    <div class="col-md-8">
+                        <input type="text" ng-model="rec.title" id="title" name="title" class="form-control"
+                               ng-readonly="check_readonly" required tabindex="1"/>
+
+                    </div>
+                </div>
+                <input type="hidden" name="segment_type" id="segment_type" ng-model="rec.segment_type" ng-init="rec.segment_type = 2" value="2"/>
+                <!--<div class="form-group">
+                    <label class="col-md-4 control-label">Description</label>
+
+                    <div class="col-md-8">
+
+                        <input type="text" ng-model="rec.description" id="description" name="description"
+                               class="form-control" ng-readonly="check_readonly" tabindex="1"/>
+
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>

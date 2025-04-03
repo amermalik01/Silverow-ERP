@@ -1,0 +1,230 @@
+<!-- <style>
+
+ .ui-select-dropdown {
+   opacity: 1;
+   margin-top: 0px !important;
+   border-top: 1px solid white;
+   margin-left: -1px;
+   margin-right: 0px;
+   padding: 10px !important;
+   border-radius: 0px;
+ }
+ .ui-select-bootstrap .ui-select-choices-row.active>span {
+    color: #fff;
+    text-decoration: none;
+    outline: 0;
+    background-color: #689fce;
+    border-radius: 2px;
+}
+    .select2 > .select2-choice.ui-select-match {
+        /* Because of the inclusion of Bootstrap */
+        height: 29px;
+    }
+    .ui-select-multiple.ui-select-bootstrap {
+    height: auto !important;
+    padding: 3px 3px 0 3px;
+}
+.ui-select-bootstrap input{
+  height: 27px !important;
+}
+  .ui-select-search {
+    display: inline-block;
+    width: 300px !important;
+}
+    .ui-select-multiple.ui-select-bootstrap .ui-select-match-item {
+        outline: 0;
+        margin: 0 3px 3px 0;
+        padding: 4px;
+        padding-right: 24px;
+        background: #f7f7f7;
+        border-radius: 4px;
+    }
+    .ui-select-multiple.ui-select-bootstrap .ui-select-match .close {
+    font-size: 1.6em;
+    line-height: 0.75;
+    font-size: 15px !important;
+    margin-top: 12px;
+}
+    .selectize-control > .selectize-dropdown {
+        top: 36px;
+    }
+    /* Some additional styling to demonstrate that append-to-body helps achieve the proper z-index layering. */
+    .select-box {
+        background: #fff;
+        position: relative;
+        z-index: 1;
+    }
+    .alert-info.positioned {
+        margin-top: 1em;
+        position: relative;
+        z-index: 10000; /* The select2 dropdown has a z-index of 9999 */
+    }
+</style> -->
+<div id="composeEmail"  ng-controller="EmailCompose" class="modal fade ng-cloak" role="dialog">
+    <div class="modal-dialog modal-lg" style="width:80%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Compose Email</h4>
+            </div>
+            <div class="modal-body" style="overflow:hidden;margin-left: -15px;margin-right: -15px;">
+                <form role="form" class="form-horizontal" id="composeForm">
+                  <div class="col-md-12" style="    margin-bottom: 4px;">
+                    <label class="col-lg-1 control-label pl0">From</label>
+                      <div class="col-lg-4">
+                            <select ng-model="mailRec.from" class="form-control">
+                                <option ng-repeat="rec in arrEmails" value="{{rec.signature}}">
+                                    {{rec.alias}}({{rec.email}})
+                                </option>
+                                <option selected disabled hidden value="" >
+                                    Select Email
+                                </option>
+                            </select>
+
+                      </div>
+                      <div class="col-md-4">
+                        <div class="mod-tag">{{EmailModuleName}} - {{tabtag}}</div>
+                        <div class="mod-tag">{{EmailAccountName}}</div>
+                      </div>
+                      <div class="col-md-3 pr0">
+                        <label class="save-check">
+                            <input type="checkbox" ng-checked="mailRec.isSave >0" ng-model="mailRec.isSave" />
+                            Save this Email
+                          </label>
+                        </div>
+                  </div>
+                    <div class="col-md-12 pr0">
+                      <label class="col-lg-1 control-label pl0">To</label>
+                      <div class="col-lg-11">
+
+                            <ui-select multiple tagging-tokens="SPACE|,|/"
+                                       ng-model="mailRec.to"
+                                       ng-disabled="disabled" >
+                                <ui-select-match>{{$item.first_name}}
+                                    &lt;{{$item.email}}&gt;</ui-select-match>
+                                <ui-select-choices
+                                        repeat="persons in person | propsFilter: {first_name: $select.search, email: $select.search}">
+                                    <div ng-if="persons.isTag"
+                                         ng-bind-html="persons.first_name + ' ' + $select.taggingLabel | highlight: $select.search"></div>
+                                    <div ng-if="!person.isTag"
+                                         ng-bind-html="persons.first_name| highlight: $select.search"></div>
+                                    <small>
+                                        email: {{persons.email}}
+
+                                    </small>
+                                </ui-select-choices>
+                            </ui-select>
+                           <!-- <p>Selected: </p>
+                            <pre>selectedPeople2 = {{mailRec.to | json}}</pre>-->
+                            <!--<input type="text" ng-model="mailRec.to" placeholder="Recipients" class="form-control nobo">-->
+                            <div class="ccbcc">
+                                <span data-toggle="collapse" data-target="#cc">Cc</span>
+                                <span data-toggle="collapse" data-target="#bcc">Bcc</span>
+                            </div>
+                        </div>
+                      </div>
+                    <div class="col-md-12 pr0">
+                    <div class=" collapse" id="cc">
+                        <label class="col-lg-1 control-label pl0">Cc</label>
+                        <div class="col-lg-11">
+                            <ui-select multiple tagging="tagTransform" tagging-tokens="SPACE|,|/"
+                                       ng-model="mailRec.cc"
+                                       ng-disable>{{$item.first_name}}
+                                    &lt;{{$item.email}}&gt;</ui-select-match>
+                                <ui-select-choices
+                                        repeat="persons in person | propsFilter: {first_name: $select.search, email: $select.search}">
+                                    <div ng-if="persons.isTag"
+                                         ng-bind-html="persons.first_name + ' ' + $select.taggingLabel | highlight: $select.search"></div>
+                                    <div ng-if="!person.isTag"
+                                         ng-bind-html="persons.first_name| highlight: $select.search"></div>
+                                    <small>
+                                        email: {{persons.email}}
+
+                                    </small>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 pr0">
+                    <div class=" collapse" id="bcc" style="margin-bottom:0px;">
+                        <label class="col-lg-1 control-label pl0">Bcc</label>
+                        <div class="col-lg-11">
+
+                            <ui-select multiple tagging="tagTransform" tagging-tokens="SPACE|,|/"
+                                       ng-model="mailRec.bcc"
+                                       ng-disabled="disabled" >
+                                <ui-select-match>{{$item.first_name}}
+                                    &lt;{{$item.email}}&gt;</ui-select-match>
+                                <ui-select-choices
+                                        repeat="persons in person | propsFilter: {first_name: $select.search, email: $select.search}">
+                                    <div ng-if="persons.isTag"
+                                         ng-bind-html="persons.first_name + ' ' + $select.taggingLabel | highlight: $select.search"></div>
+                                    <div ng-if="!person.isTag"
+                                         ng-bind-html="persons.first_name| highlight: $select.search"></div>
+                                    <small>
+                                        email: {{persons.email}}
+
+                                    </small>
+                                </ui-select-choices>
+                            </ui-select>
+                            <!--<input type="text" ng-model="mailRec.bcc" placeholder="Recipients"
+                                   class="form-control">-->
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 hrt"></div>
+                    <div class="col-md-12 pr0">
+                      <div class="col-md-1 pl0">
+                        <label class="control-label">Subject</label>
+                      </div>
+                      <div class="col-md-11 ">
+                            <input type="text" ng-model="mailRec.subject" id="inputPassword1"
+                                   class="form-control">
+                    </div>
+                    </div>
+                    <div >
+                        <div class="col-lg-12 no-padding" style="margin-top: -8px;padding: 16px !important;margin-bottom: -48px;">
+
+                          <summernote  config="options" class="summernotes" ng-model="mailRec.message"></summernote>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <!-- <div ng-click="getNewMailCount()" class="btn-blue" >CLick</div> data-dismiss="modal" -->
+                <button type="button" ng-click="send_email_internal(mailRec)" class="btn btn-submit pull-left"
+                        style="background: #4CAF50;color: white;">Send
+                </button>
+
+                <div class="fileUpload pull-left" ng-controller="MailAttachmentController">
+                    <div ng-show="attachment.length < 5 " class="fileUpload btn btn-link" style="padding: 0px 0px
+                    !important;">
+                        <form enctype="multipart/form-data" action="" method="post">
+                            <span class="ng-scope attach" title="Attachment"><i class="fa fa-paperclip"></i></span>
+                            <input type="file" ngf-select="uploadFiles($file)" name="file[]" multiple
+                                   accept=".gif, .jpg, .png, .doc, .docx,.pdf" class="upload" ngf-max-height="1000"
+                                   ngf-max-size="2MB">
+                            <input type="hidden" ng-model="mailAttachment.fileName"/>
+                            <input type="hidden" ng-model="mailAttachment.newFileName"/>
+                        </form>
+                    </div>
+                    <div ng-repeat="attachments in attachment" class="attached-files" title="{{attachments.fileName}}">
+                         <a ng-href="{{mailAttachmentPath}}{{attachments.newFileName}}"target="_blank">{{attachments.fileName}}</a>
+                        <div class="del-attach" ng-click="removeAttachment(attachments)"><i class="fa fa-close"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="pull-right">
+                    <a class="savedraft" title="Save as Draft" ng-click="saveDraft(mailRec)"><i
+                            class="fa fa-file-text-o"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

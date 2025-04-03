@@ -1,0 +1,481 @@
+<div id="" class="" role="main" ng-controller="MailController" ng-init="replyAll();getFolderMessageByParams('Rep All: ');
+            getSmartContacts();">
+    <style type="text/css">
+        ol.breadcrumb{margin-bottom: 5px !important;}
+
+        .selectize-control.contacts .selectize-input > div {
+            padding: 1px 10px;
+            font-size: 13px;
+            font-weight: normal;
+            -webkit-font-smoothing: auto;
+            color: #FFF;
+            /*text-shadow: 0 1px 0 rgba(8,32,65,0.2);*/
+            background: #88d2dd;
+            /*background: -moz-linear-gradient(top, #88d2dd 0%, #1d77f3 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#88d2dd), color-stop(100%,#1d77f3));
+            background: -webkit-linear-gradient(top,  #88d2dd 0%,#1d77f3 100%);
+            background: -o-linear-gradient(top,  #88d2dd 0%,#1d77f3 100%);
+            background: -ms-linear-gradient(top,  #88d2dd 0%,#1d77f3 100%);
+            background: linear-gradient(to bottom,  #88d2dd 0%,#1d77f3 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#88d2dd', endColorstr='#1d77f3',GradientType=0 );*/
+            border: 1px solid #88d2dd;
+            -webkit-border-radius: 999px;
+            -moz-border-radius: 999px;
+            border-radius: 999px;
+            /* -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+             -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+             box-shadow: 0 1px 1px rgba(0,0,0,0.15);*/
+        }
+        .selectize-control.contacts .selectize-input > div.active {
+            background: #88d2dd;
+            /* background: -moz-linear-gradient(top, #0059c7 0%, #0051c1 100%);
+             background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0059c7), color-stop(100%,#0051c1));
+             background: -webkit-linear-gradient(top,  #0059c7 0%,#0051c1 100%);
+             background: -o-linear-gradient(top,  #0059c7 0%,#0051c1 100%);
+             background: -ms-linear-gradient(top,  #0059c7 0%,#0051c1 100%);
+             background: linear-gradient(to bottom,  #0059c7 0%,#0051c1 100%);*/
+            border-color: #88d2dd;
+        }
+        .selectize-control.contacts .selectize-input > div .email {
+            opacity: 0.8;
+        }
+        .selectize-control.contacts .selectize-input > div .name + .email {
+            margin-left: 5px;
+        }
+        .selectize-control.contacts .selectize-input > div .email:before {
+            content: '<';
+        }
+        .selectize-control.contacts .selectize-input > div .email:after {
+            content: '>';
+        }
+        .selectize-control.contacts .selectize-dropdown .caption {
+            font-size: 12px;
+            display: block;
+            color: #000;
+        }
+        .selectize-dropdown-content .label{color: #000 !important;}
+    </style>
+    <div ng-include="'app/views/_breadcrumb.html'" class="col-lg-12 remove-left-pad remove-right-pad"></div>
+    <div class="row" ng-controller="MailAttachmentController">
+
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
+
+            <div class="panel-heading bg-grey margin_bottom email_nav_pad">
+                <h4 class="panel-title">
+                    <button class="btn btn-link no-padding-btn" type="button" data-original-title="" title="" ng-click="sendMail(mailAttachments);
+                                        mailAttachments = [];">Send</button>
+                    <div class="fileUpload btn btn-link" style="padding: 2px 0px !important;">
+                        <form enctype="multipart/form-data" action="" method="post">
+                            <span class="ng-scope"><!--<i class="fa fa-paperclip" style="color: #88d2dd !important;"></i>-->Attachment</span>
+                            <input type="file" ngf-select="uploadFiles($file)" name="file[]" multiple accept="image/*" class="upload" ngf-max-height="1000" ngf-max-size="2MB" ngf-max-files="20">
+                            <input type="hidden" ng-model="mailAttachment.fileName" />
+                            <input type="hidden" ng-model="mailAttachment.newFileName" />
+                        </form>
+                    </div>
+                    <button class="btn btn-link no-padding-btn" type="button" ng-click="showDivCC();" ng-show="showCC">CC</button>
+                    <button class="btn btn-link no-padding-btn" type="button" ng-click="showDivBCC();" ng-show="showBCC">BCC</button>
+                    <button class="btn btn-link no-padding-btn" type="button" data-original-title="" title="" ui-sref="app.folder({id:$stateParams.id,type:'INBOX'})">Cancel</button>
+                    <div class="col-md-1 no-padding pull-right" style="text-align: right; margin-top: -5px;">
+                        <button ui-sref="app.search({id:$stateParams.id,keyword:searchKeyword})" class="btn btn-info btn_blue margin_bottom" style="padding: 2px 5px; font-size: 13px;"><i class="fa fa-search" style="color: #FFF !important; font-size: 11px !important;"></i> Search</button>
+                    </div>
+                    <div class="col-md-2 no-padding pull-right">
+                        <input type="text" placeholder="Search" id="search" class="form-control search_f" style="line-height: 26px;" ng-model="searchKeyword" />
+                    </div>
+                </h4>
+            </div>
+
+            <div class="panel" id="wrapper">
+
+                <div class="" style="padding-bottom: 0px;">
+
+                    <div class="panel panel-default margin_bottom no-border">
+                        <input type="hidden" id="contacts123" value="{{contacts}}">
+                        <div class="">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group no-margin">
+                                        <!--<input type="text" placeholder="To" class="form-control sm-border-radius"ng-model="mail.mailTo">-->
+                                        <div class="demo" style="padding-top: 0px; padding-bottom: 0px;">
+                                            <div class="control-group">
+                                                <select id="select-to" class="contacts" placeholder="To" ng-model="mail.mailTo"></select>
+                                            </div>
+                                        </div>
+
+                                        <script type="text/javascript">
+                                                            setTimeout(function () {
+                                                                var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+                                                                        '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
+
+                                                                var formatName = function (item) {
+                                                                    return $.trim((item.first_name || '') + ' ' + (item.last_name || ''));
+                                                                };
+
+                                                                $('#select-to').selectize({
+                                                                    persist: false,
+                                                                    maxItems: null,
+                                                                    valueField: 'email',
+                                                                    labelField: 'name',
+                                                                    searchField: ['first_name', 'last_name', 'email'],
+                                                                    sortField: [
+                                                                        {field: 'first_name', direction: 'asc'},
+                                                                        {field: 'last_name', direction: 'asc'}
+                                                                    ],
+                                                                    options: $.parseJSON($('#contacts123').val()), //$('[ng-controller="MailController"]').scope().contacts,
+                                                                    render: {
+                                                                        item: function (item, escape) {
+                                                                            var name = formatName(item);
+                                                                            return '<div>' +
+                                                                                    (name ? '<span class="name">' + escape(name) + '</span>' : '') +
+                                                                                    (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+                                                                                    '</div>';
+                                                                        },
+                                                                        option: function (item, escape) {
+                                                                            var name = formatName(item);
+                                                                            var label = name || item.email;
+                                                                            var caption = name ? item.email : null;
+                                                                            return '<div>' +
+                                                                                    '<span class="label">' + escape(label) + '</span>' +
+                                                                                    (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+                                                                                    '</div>';
+                                                                        }
+                                                                    },
+                                                                    createFilter: function (input) {
+                                                                        var regexpA = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+                                                                        var regexpB = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+                                                                        return regexpA.test(input) || regexpB.test(input);
+                                                                    },
+                                                                    create: function (input) {
+                                                                        if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+                                                                            return {email: input};
+                                                                        }
+                                                                        var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+                                                                        if (match) {
+                                                                            var name = $.trim(match[1]);
+                                                                            var pos_space = name.indexOf(' ');
+                                                                            var first_name = name.substring(0, pos_space);
+                                                                            var last_name = name.substring(pos_space + 1);
+
+                                                                            return {
+                                                                                email: match[2],
+                                                                                first_name: first_name,
+                                                                                last_name: last_name
+                                                                            };
+                                                                        }
+                                                                        alert('Invalid email address.');
+                                                                        return false;
+                                                                    }
+                                                                });
+                                                            }, 1000);
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default margin_bottom no-border" ng-show="!showCC" ng-hide="showCC">
+                        <div class="">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group no-margin">
+                                        <!--<textarea placeholder="CC" class="form-control sm-border-radius custom_textarea" ng-model="mail.mailCC[0]" style="resize: none;" rows="1"></textarea>-->
+                                        <div class="demo" style="padding-top: 0px; padding-bottom: 0px;">
+                                            <div class="control-group">
+                                                <select id="select-cc" class="contacts" placeholder="CC" ng-model="mail.mailCC[0]"></select>
+                                            </div>
+                                        </div>
+
+                                        <script type="text/javascript">
+                                                            setTimeout(function () {
+                                                                var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+                                                                        '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
+
+                                                                var formatName = function (item) {
+                                                                    return $.trim((item.first_name || '') + ' ' + (item.last_name || ''));
+                                                                };
+
+                                                                $('#select-cc').selectize({
+                                                                    persist: false,
+                                                                    maxItems: null,
+                                                                    valueField: 'email',
+                                                                    labelField: 'name',
+                                                                    searchField: ['first_name', 'last_name', 'email'],
+                                                                    sortField: [
+                                                                        {field: 'first_name', direction: 'asc'},
+                                                                        {field: 'last_name', direction: 'asc'}
+                                                                    ],
+                                                                    options: $.parseJSON($('#contacts123').val()), //$('[ng-controller="MailController"]').scope().contacts,
+                                                                    render: {
+                                                                        item: function (item, escape) {
+                                                                            var name = formatName(item);
+                                                                            return '<div>' +
+                                                                                    (name ? '<span class="name">' + escape(name) + '</span>' : '') +
+                                                                                    (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+                                                                                    '</div>';
+                                                                        },
+                                                                        option: function (item, escape) {
+                                                                            var name = formatName(item);
+                                                                            var label = name || item.email;
+                                                                            var caption = name ? item.email : null;
+                                                                            return '<div>' +
+                                                                                    '<span class="label">' + escape(label) + '</span>' +
+                                                                                    (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+                                                                                    '</div>';
+                                                                        }
+                                                                    },
+                                                                    createFilter: function (input) {
+                                                                        var regexpA = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+                                                                        var regexpB = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+                                                                        return regexpA.test(input) || regexpB.test(input);
+                                                                    },
+                                                                    create: function (input) {
+                                                                        if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+                                                                            return {email: input};
+                                                                        }
+                                                                        var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+                                                                        if (match) {
+                                                                            var name = $.trim(match[1]);
+                                                                            var pos_space = name.indexOf(' ');
+                                                                            var first_name = name.substring(0, pos_space);
+                                                                            var last_name = name.substring(pos_space + 1);
+
+                                                                            return {
+                                                                                email: match[2],
+                                                                                first_name: first_name,
+                                                                                last_name: last_name
+                                                                            };
+                                                                        }
+                                                                        alert('Invalid email address.');
+                                                                        return false;
+                                                                    }
+                                                                });
+                                                            }, 1000);
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default margin_bottom no-border" ng-show="!showBCC" ng-hide="showBCC">
+                        <div class="">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group no-margin">
+                                        <!--<textarea placeholder="BCC" class="form-control sm-border-radius custom_textarea" ng-model="mail.mailBCC[0]" style="resize: none;" rows="1"></textarea>-->
+                                        <div class="demo" style="padding-top: 0px; padding-bottom: 0px;">
+                                            <div class="control-group">
+                                                <select id="select-bcc" class="contacts" placeholder="BCC" ng-model="mail.mailBCC[0]"></select>
+                                            </div>
+                                        </div>
+
+                                        <script type="text/javascript">
+                                                            setTimeout(function () {
+                                                                var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+                                                                        '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
+
+                                                                var formatName = function (item) {
+                                                                    return $.trim((item.first_name || '') + ' ' + (item.last_name || ''));
+                                                                };
+
+                                                                $('#select-bcc').selectize({
+                                                                    persist: false,
+                                                                    maxItems: null,
+                                                                    valueField: 'email',
+                                                                    labelField: 'name',
+                                                                    searchField: ['first_name', 'last_name', 'email'],
+                                                                    sortField: [
+                                                                        {field: 'first_name', direction: 'asc'},
+                                                                        {field: 'last_name', direction: 'asc'}
+                                                                    ],
+                                                                    options: $.parseJSON($('#contacts123').val()), //$('[ng-controller="MailController"]').scope().contacts,
+                                                                    render: {
+                                                                        item: function (item, escape) {
+                                                                            var name = formatName(item);
+                                                                            return '<div>' +
+                                                                                    (name ? '<span class="name">' + escape(name) + '</span>' : '') +
+                                                                                    (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+                                                                                    '</div>';
+                                                                        },
+                                                                        option: function (item, escape) {
+                                                                            var name = formatName(item);
+                                                                            var label = name || item.email;
+                                                                            var caption = name ? item.email : null;
+                                                                            return '<div>' +
+                                                                                    '<span class="label">' + escape(label) + '</span>' +
+                                                                                    (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+                                                                                    '</div>';
+                                                                        }
+                                                                    },
+                                                                    createFilter: function (input) {
+                                                                        var regexpA = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+                                                                        var regexpB = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+                                                                        return regexpA.test(input) || regexpB.test(input);
+                                                                    },
+                                                                    create: function (input) {
+                                                                        if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+                                                                            return {email: input};
+                                                                        }
+                                                                        var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+                                                                        if (match) {
+                                                                            var name = $.trim(match[1]);
+                                                                            var pos_space = name.indexOf(' ');
+                                                                            var first_name = name.substring(0, pos_space);
+                                                                            var last_name = name.substring(pos_space + 1);
+
+                                                                            return {
+                                                                                email: match[2],
+                                                                                first_name: first_name,
+                                                                                last_name: last_name
+                                                                            };
+                                                                        }
+                                                                        alert('Invalid email address.');
+                                                                        return false;
+                                                                    }
+                                                                });
+                                                            }, 1000);
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default margin_bottom no-border" style="display: none;">
+                        <div class="">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group no-margin">
+                                        <input type="hidden" placeholder="Subject" class="form-control sm-border-radius" ng-model="mail.mailSubject" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default margin_bottom no-border" ng-show="mailAttachments.length > 0" style="font-size: 14px; border: 1px solid #DDD !important; line-height: 28px; padding: 0px 7px; border-radius: 2px;height: 32px;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group no-margin">
+                                    <span>Attachment(s): </span>
+                                    <span ng-repeat="attachment in mailAttachments" style="margin-left: 5px;"> 
+                                        <a target="_blank" href="{{$rootScope.basePath}}upload/mail_attachments/{{attachment.newFileName}}">{{attachment.fileName}}<!--<em style="font-size: 30px !important;" class="fa fa-file-image-o"></em>--></a> 
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="" style="padding-top: 0px;" id="editorpanel">
+                    <textarea placeholder="" class="form-control mceEditor1" id="myarea" style="min-height: 500px; width: 100%;"></textarea>
+                    <div class="clearfix"></div>
+                    <div class="vertical_space"></div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!--<div class="pull-left" style="margin-bottom: 5px; padding: 0px; margin-bottom: 0px;">
+                                <div class="fileUpload btn btn_blue" style="float: left;"> 
+                                    <form enctype="multipart/form-data" action="" method="post">
+                                        <span class="ng-scope"><i class="fa fa-paperclip"></i></span>
+                                        <input type="file" ngf-select="uploadFiles($file)" name="file[]" multiple accept="image/*" class="upload" ngf-max-height="1000" ngf-max-size="2MB">
+                                        <input type="hidden" ng-model="mailAttachment.fileName" />
+                                        <input type="hidden" ng-model="mailAttachment.newFileName" />
+
+                                    </form>
+                                </div>
+                                <div class="" ng-show="mailAttachments" style="float: left; margin-left: 5px; padding-top: 3px;">
+                                    <span ng-repeat="attachment in mailAttachments" style="margin-left: 5px;"> 
+                                        <a target="_blank" href="{{$rootScope.basePath}}upload/mail_attachments/{{attachment.newFileName}}"><em style="font-size: 30px !important;" class="fa fa-file-image-o"></em></a> 
+                                    </span> 
+                                </div>
+                            </div>-->
+                            <div class="pull-right">
+                                <button class="btn btn-info btn_blue" type="button" ng-click="sendMail(mailAttachments);
+                                                    mailAttachments = [];"><i class="fa fa-check"></i> Send</button>
+                                <button type="button" class="btn default" data-dismiss="modal" ui-sref="app.folder({id:$stateParams.id,type:'INBOX'})"><i class="fa fa-undo"></i> Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+                setTimeout(function () {
+                    tinyMCE.init({
+                        // General options
+                        mode: "specific_textareas",
+                        editor_selector: "mceEditor1",
+                        theme: "advanced",
+                        plugins: "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave",
+                        // Theme options
+                        relative_urls: false,
+                        remove_script_host: false,
+                        document_base_url: "<?=WEB_PATH?>/",
+                        theme_advanced_buttons1: "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect,bullist,numlist,cut,copy,paste,link,unlink,forecolor,backcolor,",
+                        //theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+                        theme_advanced_buttons2: "",
+                        theme_advanced_buttons3: "",
+                        theme_advanced_buttons4: "",
+                        theme_advanced_toolbar_location: "top",
+                        theme_advanced_toolbar_align: "left",
+                        //theme_advanced_statusbar_location: "bottom",
+                        theme_advanced_resizing: true,
+                        // Example content CSS (should be your site CSS)
+                        content_css: "css/content.css",
+                        // Drop lists for link/image/media/template dialogs
+                        template_external_list_url: "lists/template_list.js",
+                        external_link_list_url: "lists/link_list.js",
+                        external_image_list_url: "lists/image_list.js",
+                        media_external_list_url: "lists/media_list.js",
+                        // Style formats
+                        /*
+                         formats : {
+                         alignleft : {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'left'},
+                         aligncenter : {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'center'}
+                         },
+                         style_formats : [
+                         {title : 'Test 1', selector : 'img', class : 'tablerow1'},
+                         {title : 'Test 2', selector : 'img', class : 'classTest'}
+                         ],
+                         */
+                        style_formats_merge: true,
+                        style_formats: [
+                            {
+                                title: 'Image Right',
+                                selector: 'img',
+                                classes: 'classTest'
+                            },
+                            {
+                                title: 'Image Left',
+                                selector: 'img',
+                                classes: 'classLeft'
+                            }
+                        ],
+                        // Replace values for the template plugin
+                        template_replace_values: {
+                            username: "Some User",
+                            staffid: "991234"
+                        }
+                    });
+                    var iframeid = $('#editorpanel iframe').attr('id');
+                    $("#" + iframeid).contents().find("#tinymce .mceLast .mceStatusbar").html('');
+                }, 50);</script>
+    <div class="modal fade" id="modalsendmail">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Mail Sent</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Mail has been sent successfully.</p>
+                </div>
+                <div class="modal-footer">
+                    <!--<button class="btn btn-sm btn-danger mr" data-dismiss="modal">OK</button>-->
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" >Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>

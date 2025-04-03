@@ -1,0 +1,93 @@
+<div class="row expenses_font">
+  <div class="col-md-12 col-md-12">
+    <div class="widget">
+      <div class="widget-body">
+        <div id="dt_example" class="example_alt_pagination">
+          <div class="table-responsive">
+            <table class="table table-condensed table-striped table-bordered pull-left">
+              <thead>
+                <tr>
+                  <th> Date of Travel </th>
+                  <th> Description </th>
+                  <th> Postcode From </th>
+                  <th> Postcode To </th>
+                  <th> Miles </th>
+                  <th> Actual Miles </th>
+                  <th> Comments </th>
+                  <th style="width: 1%;"> Action </th>
+                </tr>
+              </thead>
+              <tbody class="addclasshere">
+                <tr data-ng-repeat="fcd in arr_fuel_cost_deduction" ng-class="{'bg-red' : fcd.fmiles< fcd.factual_miles} ">
+                  <td style="width:9%"><span id="no-display{{$index}}" class="{{'new_button_' + fcd.fid}}">{{fcd.fdate_of_travel}} </span>
+                    <div class="{{'replace_button_' + fcd.fid}}">
+                      <input ng-model="fcd.fdate_of_travel" id="fdate_of_travel{{$index}}" jqdatepicker class="2date-picker form-control  {{'new_' + fcd.fid}}"
+                        readonly>
+                      <!-- <span class="fa fa-calendar  new_ca  form-control-feedback"></span>-->
+                    </div>
+                  </td>
+                  <td style="width:14%"><span id="no-display{{$index}}" class="{{'new_button_' + fcd.fid}}">{{fcd.fdescription}} </span>
+                    <div class="{{'replace_button_' + fcd.fid}}">
+                      <input id="description{{$index}}" type="text" ng-model="fcd.fdescription" class="form-control" />
+                    </div>
+                  </td>
+                  <td style="width:9%"><span id="no-display{{$index}}" class="{{'new_button_' + fcd.fid}}">{{fcd.fpostcodeFrom}} </span>
+                    <div class="{{'replace_button_' + fcd.fid}}">
+                      <input id="fpostcodeFrom{{$index}}" type="text" ng-model="fcd.fpostcodeFrom" class="form-control" />
+                    </div>
+                  </td>
+                  <td style="width:9%"><span id="no-display{{$index}}" class="{{'new_button_' + fcd.fid}}">{{fcd.fpostcodeTo}} </span>
+                    <div class="{{'replace_button_' + fcd.fid}}">
+                      <input id="fpostcodeTo{{$index}}" type="text" ng-model="fcd.fpostcodeTo" class="form-control" ng-change="getDistanceFromGoogleFcd({{$index}})"
+                      />
+                    </div>
+                  </td>
+                  <td style="width:10%"><span id="no-display{{$index}}" class="{{'new_button_' + fcd.fid}}">{{fcd.fmiles}} </span>
+                    <div class="{{'replace_button_' + fcd.fid}}">
+                      <input type="text" placeholder="0" id="fmiles{{$index}}" ng-model-options="{ updateOn: 'change' }" data-parsley-trigger="blur"
+                        ng-model="fcd.fmiles" class="form-control {{'new_' + fcd.fid}}" data-parsley-type="number" readonly>
+                    </div>
+                  </td>
+                  <td style="width:10%"><span id="no-display{{$index}}" class="{{'new_button_' + fcd.fid}}">{{fcd.factual_miles}} </span>
+                    <div class="{{'replace_button_' + fcd.fid}}">
+                      <input type="text" placeholder="0" id="factual_miles{{$index}}" data-parsley-trigger="blur" ng-model="fcd.factual_miles"
+                        class="form-control {{'new_' + fcd.fid}}" data-parsley-type="number" required>
+                    </div>
+                  </td>
+                  <td style="width:14%"><span id="no-display{{$index}}" class="{{'new_button_' + fcd.fid}}">{{fcd.fcomment}} </span>
+                    <div class="{{'replace_button_' + fcd.fid}}">
+                      <input id="fcomment{{$index}}" type="text" ng-model="fcd.fcomment" class="form-control" />
+                    </div>
+                  </td>
+                  <td><input type="hidden" ng-model="formData.deduction_id" />
+                    <input type="hidden" ng-model="fcd.fid" />
+                    <a title="Delete" ng-click="" class="tooltips_clss btn"><i class="fa fa-times"> </i></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9"></div>
+          <div class="col-md-3"> <span id="basic-addon1" class="grandtotal">GRAND TOTAL</span>
+            <!--   <input type="text" value="{{total_grand}}" ng-model="total_grand"  class="form-control" aria-describedby="basic-addon1" readonly="">-->
+
+            <input type="text" value="{{net_total_amount_fcd() | number:decimal_range}}" ng-model="total_grand_fcd" class="form-control bluecolr "
+              style="text-align: left;padding-left: 100px !important;color: white !important;" aria-describedby="basic-addon1"
+              readonly="">
+            <span class="place-gbp">{{defaultCurrencyCode}}</span> </div>
+        </div>
+      </div>
+      <div class="vertical_space"></div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="pull-right">
+            <button type="submit" class="btn btn-submit" ng-click="submitDeduction_all(fcd)"><i class="fa fa-check fa_display"></i> Save</button>
+            <a href="#">
+            <button type="button" class="btn btn-cancel"><i class="fa fa-undo fa_display"></i> Cancel</button>
+            </a> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

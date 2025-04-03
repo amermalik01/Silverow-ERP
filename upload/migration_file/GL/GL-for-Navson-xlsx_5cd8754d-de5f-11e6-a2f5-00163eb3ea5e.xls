@@ -1,0 +1,308 @@
+Code 	Name 	Parent Category	Sub-Category 	Account Type	Allow Posting	Sum of Ranges	VAT Rate	Transaction	 Error Status
+1020	Intangible Assets	1	2	3					Invalid Allow Posting ID
+1030	Goodwill - 1	1	2	1	1		7	3	Error in Database Query
+1040	Goodwill - 2	1	2	1	1		7	3	Error in Database Query
+1050	Goodwill - 3	1	2	1	1		7	3	Error in Database Query
+1090	Total Intangible Assets	1	2	2		1020;1090			Invalid Allow Posting ID
+1100	Tangible Assets	1	2	3					Invalid Allow Posting ID
+1110	Land & Buildings	1	2	3					Invalid Allow Posting ID
+1120	Land & Buildings	1	2	1	1		7	3	Error in Database Query
+1130	Property Revaluation	1	2	1	1		6	3	Error in Database Query
+1140	Additions	1	2	1	1		7	3	Error in Database Query
+1150	Disposals	1	2	1	1		7	3	Error in Database Query
+1160	Accum. Depreciation, Buildings	1	2	1	1		6	3	Error in Database Query
+1170	Total Land & Buildings	1	2	2		1110;1170			Invalid Allow Posting ID
+1180	Furniture and Fixtures	1	2	3					Invalid Allow Posting ID
+1190	Furniture and Fixtures	1	2	1	1		7	3	Error in Database Query
+1200	Additions	1	2	1	1		7	3	Error in Database Query
+1220	Disposals	1	2	1	1		7	3	Error in Database Query
+1230	Accum. Depreciation, Furniture	1	2	1	1		6	3	Error in Database Query
+1240	Total Furniture and Fixtures	1	2	2		1180;1240			Invalid Allow Posting ID
+1250	Office & IT Equipment	1	2	3					Invalid Allow Posting ID
+1260	Office & IT Equipment	1	2	1	1		7	3	Error in Database Query
+1270	Additions	1	2	1	1		7	3	Error in Database Query
+1280	Disposals	1	2	1	1		7	3	Error in Database Query
+1290	Accum. Depr., Office. Equip.	1	2	1	1		6	3	Error in Database Query
+1300	Total Office & IT Equipment	1	2	2		1250;1300			Invalid Allow Posting ID
+1500	Total Tangible Assets	1	2	2		1100;1500			Invalid Allow Posting ID
+1550	Total Fixed Assets	1	2	2		1020;1550			Invalid Allow Posting ID
+1610	Stock	1	3	3					Invalid Allow Posting ID
+1620	Opening Stock	1	3	1	1			3	Error in Database Query
+1650	Stock Adjust/Damages	1	3	1	1			3	Error in Database Query
+1670	Closing Stock	1	3	1	1			3	Error in Database Query
+1699	Total Stock	1	3	2		1610;1699			Invalid Allow Posting ID
+1700	Debtors	1	3	3					Invalid Allow Posting ID
+1710	Trade Debtors UK	1	3	1	1		7	3	Error in Database Query
+1720	Trade Debtors Overseas	1	3	1	1		8	3	Error in Database Query
+1730	Other Debtors	1	3	1	1		7	3	Error in Database Query
+1750	Total Debtors	1	3	2		1700;1750			Invalid Allow Posting ID
+1770	Prepayments	1	3	3					Invalid Allow Posting ID
+1790	Prepayments	1	3	1	1		7	3	Error in Database Query
+1799	Total Prepayments	1	3	2		1770;1799			Invalid Allow Posting ID
+1800	Liquid Assets	1	3	3					Invalid Allow Posting ID
+1810	Petty Cash	1	3	1	1		7	3	Error in Database Query
+1820	Natwest Current Account	1	3	1	1		7	3	Error in Database Query
+1830	Natwest Savings Account	1	3	1	1		7	3	Error in Database Query
+1840	Natwest Euro Account	1	3	1	1		7	3	Error in Database Query
+1850	Natwest USD Account	1	3	1	1		7	3	Error in Database Query
+1860	Currency Exchange Account	1	3	1	1		6	3	Error in Database Query
+1870	Lloyds Account	1	3	1	1		7	3	Error in Database Query
+1890	Total Liquid Assets	1	3	2		1800;1890			Invalid Allow Posting ID
+1999	Total Current Assets	1	3	2		1610;1999			Invalid Allow Posting ID
+2499	Total Assets	1		2		1000;2499			Invalid Allow Posting ID
+2520	Trade Creditors	4	8	3					Invalid Allow Posting ID
+2530	Trade Creditors UK	4	8	1	1		7	3	Error in Database Query
+2540	Trade Creditors Overseas	4	8	1	1		1	3	Error in Database Query
+2550	Other Creditors	4	8	1	1		7	3	Error in Database Query
+2560	Accruals	4	8	1	1		7	3	Error in Database Query
+2570	Lloyds Factoring	4	8	1	1		7	3	Error in Database Query
+2600	VAT	4	8	3					Invalid Allow Posting ID
+2610	Sales VAT 20%	4	8	1	1		7	3	Error in Database Query
+2620	Sales VAT EU 0%	4	8	1	1		2	3	Error in Database Query
+2630	Sales VAT Export 0%	4	8	1	1		8	3	Error in Database Query
+2640	VAT Bad Debt Relief Full VAT	4	8	1	1		7	3	Error in Database Query
+2650	Import VAT Full VAT	4	8	1	1		1	3	Error in Database Query
+2660	Purchase VAT 20%	4	8	1	1		7	3	Error in Database Query
+2670	Purchase VAT EU 0%	4	8	1	1		2	3	Error in Database Query
+2680	Purchase VAT Export 0%	4	8	1	1		8	3	Error in Database Query
+2690	VAT Liability / Receivable	4	8	1	1		6	3	Error in Database Query
+2699	Total VAT	4	8	2		2600;2699			Invalid Allow Posting ID
+2700	Personnel	4	8	3					Invalid Allow Posting ID
+2710	P.A.Y.E	4	8	1	1		6	3	Error in Database Query
+2720	NEST Pensions	4	8	1	1		6	3	Error in Database Query
+2740	Salary Control Account	4	8	1	1		6	3	Error in Database Query
+2760	Total Personnel	4	8	2		2700;2760			Invalid Allow Posting ID
+2990	Total Current Liabilities	4	8	2		2520;2990			Invalid Allow Posting ID
+2999	NET Current Assets /(NET Current Liabilities)			2					Invalid Parent Category ID
+3010	Directors Loans -NA	4	9	1	1		7	3	Error in Database Query
+3020	Directors Loans -SK	4	9	1	1		7	3	Error in Database Query
+3199	Total Long-term Liabilities	4	9	2		3010;3199			Invalid Allow Posting ID
+3200	Other Liabilities	4	9	3					Invalid Allow Posting ID
+3210	Dividends for the Fiscal Year	4	9	1	1		6	3	Error in Database Query
+3220	Corporation Taxe Payable	4	9	1	1		6	3	Error in Database Query
+3230	Suspense Account	4	9	1	1		7	3	Error in Database Query
+3299	Total Other Liabilities	4	9	2		3200;3299			Invalid Allow Posting ID
+3400	Total Liabilities	4		2		2520;3400			Invalid Allow Posting ID
+3499	NET Assets / (NET Liabilities)			2					Invalid Parent Category ID
+3500	Shareholders\' Equity	5	5	3					Invalid SUB Category ID
+3520	Share Capital	5	5	1	1		6	3	Invalid SUB Category ID
+3540	Revalutation Reserve	5	5	1	1		6	3	Invalid SUB Category ID
+3560	Retained Earnings	5	5	1	1		6	3	Invalid SUB Category ID
+3580	Net Profit for the Year	5	5	2			6		Invalid SUB Category ID
+3999	Total Shareholders\' Equity	5	5	2		3500;3999			Invalid SUB Category ID
+4020	Sales - UK	6	7	1	1		7	3	Error in Database Query
+4030	Sales - EU	6	7	1	1		2	3	Error in Database Query
+4050	Sales - Export	6	7	1	1		8	3	Error in Database Query
+4099	Total Sales	6	7	2		4020;4099			Invalid Allow Posting ID
+4400	Interest Income	6	10	3					Invalid Allow Posting ID
+4420	Interest on Bank Balances	6	10	1	1		6	3	Error in Database Query
+4440	Interest Income Recievables	6	10	1	1		6	3	Error in Database Query
+4460	Other Interest Recieved -Gross	6	10	1	1		6	3	Error in Database Query
+4480	Other Interest Recieved -Net	6	10	1	1		6	3	Error in Database Query
+4490	Total Interest Income	6	10	2		4400;4490			Invalid Allow Posting ID
+4499	Total Sales & Other Income	6		2					Invalid Allow Posting ID
+4500	Cost of Goods Sold	11		3					Invalid Allow Posting ID
+4510	Purchases	11	12	3					Invalid Allow Posting ID
+4520	Purchases - UK	11	12	1	1		7	3	Error in Database Query
+4530	Purchases - EU	11	12	1	1		2	3	Error in Database Query
+4540	Purchases - Export	11	12	1	1		8	3	Error in Database Query
+4599	Total Purchases	11		2		4510;4599			Invalid Allow Posting ID
+4600	Cost of Shipment	11		3					Invalid Allow Posting ID
+4620	Shipment - Non-EU (Imports)	11	12	1	1		8	3	Error in Database Query
+4640	Shipment - EU (Imports)	11	12	1	1		2	3	Error in Database Query
+4660	Road Haulage to Port (TR)	11	12	1	1		8	3	Error in Database Query
+4680	Pallet Cost - EU Imports	11	12	1	1		2	3	Error in Database Query
+4700	Shunting	11	12	1	1		7	3	Error in Database Query
+4720	Rail Shunting	11	12	1	1		7	3	Error in Database Query
+4740	RH&D (Devan)	11	12	1	1		7	3	Error in Database Query
+4760	Demurrage	11	12	1	1		7	3	Error in Database Query
+4780	Quay Rent	11	12	1	1		6	3	Error in Database Query
+4800	Customs Clearance	11	12	1	1		6	3	Error in Database Query
+4820	Import Duty	11	12	1	1		6	3	Error in Database Query
+4840	Damaged Stock In Transit	11	12	1	1		7	3	Error in Database Query
+4899	Total Cost of Shipment	11		2		4600;4899			Invalid Allow Posting ID
+4900	Stock	11		3					Invalid Allow Posting ID
+4910	Opening Stock	11	12	1	1		7	3	Error in Database Query
+4950	Closing Stock	11	12	1	1		7	3	Error in Database Query
+4999	Total Stock	11		2		4900;4999			Invalid Allow Posting ID
+5000	Cost of Distribution	11		3					Invalid Allow Posting ID
+5020	Inland Distribution	11	12	1	1		7	3	Code Number Not Exits in GL Category!
+5040	Pallet Storage	11	12	1	1		7	3	Code Number Not Exits in GL Category!
+5060	Other Warehouse Charges & PP	11	12	1	1		7	3	Code Number Not Exits in GL Category!
+5080	POD Charges	11	12	1	1		7	3	Code Number Not Exits in GL Category!
+5100	Pallet Cost	11	12	1	1		7	3	Code Number Not Exits in GL Category!
+5120	Shipment Exports	11	12	1	1		7	3	Code Number Not Exits in GL Category!
+5140	Warehouse Charges	11	12	1	1		7	3	Code Number Not Exits in GL Category!
+5160	Total Cost of Distribution	11	12	2		5000;5160			Invalid Allow Posting ID
+5199	Total Cost of Goods Sold	11		2		4500;5199			Invalid Allow Posting ID
+5200	Cost of Production	11		3					Invalid Allow Posting ID
+5210	Label Cost	11	12	1	1		7	3	Code Number Not Exits in GL Category!
+5250	Set-up Cost (Development Cost)	11	12	1	1		7	3	Code Number Not Exits in GL Category!
+5270	Packaging & Packaging Design	11	12	1	1		7	3	Code Number Not Exits in GL Category!
+5299	Total Cost of Production	11	12	2		5200;5299			Invalid Allow Posting ID
+5300	Operating Expenses	11		3					Invalid Allow Posting ID
+5320	Building Maintenance Expenses	11		3					Invalid Allow Posting ID
+5340	Cleaning	11	13	1	1		7	3	Error in Database Query
+5360	Electricity / Heating / Water	11	13	1	1		7	3	Error in Database Query
+5380	Repairs and Maintenance	11	13	1	1		7	3	Error in Database Query
+5400	Rent	11	13	1	1		6	3	Error in Database Query
+5420	Rates	11	13	1	1		6	3	Error in Database Query
+5440	Service Charge	11	13	1	1		7	3	Error in Database Query
+5460	Building Insurance	11	13	1	1		6	3	Error in Database Query
+5480	Internet	11	13	1	1		7	3	Error in Database Query
+5499	Total Bldg. Maint. Expenses	11	13	2		5320;5499			Invalid Allow Posting ID
+5500	Administrative Expenses	11	13	3					Invalid Allow Posting ID
+5520	Office Supplies	11	13	1	1		7	3	Error in Database Query
+5540	Printing/Stationary	11	13	1	1		7	3	Error in Database Query
+5560	Phone and Fax	11	13	1	1		7	3	Error in Database Query
+5580	Mobile	11	13	1	1		7	3	Error in Database Query
+5600	Postage	11	13	1	1		7	3	Error in Database Query
+5620	Product Liability Insurance	11	13	1	1		7	3	Error in Database Query
+5640	Environment Agency	11	13	1	1		7	3	Error in Database Query
+5660	Equipment Leasing/Rent/Service	11	13	1	1		7	3	Error in Database Query
+5699	Total Administrative Expenses	11	13	2		5500;5699			Invalid Allow Posting ID
+5700	IT Expenses	11	13	3					Invalid Allow Posting ID
+5720	Software	11	13	1	1		7	3	Error in Database Query
+5740	Domain Hosting & Registration	11	13	1	1		7	3	Error in Database Query
+5760	IT Consultant Services	11	13	1	1		7	3	Error in Database Query
+5780	Website Development	11	13	1	1		7	3	Error in Database Query
+5800	Misc IT Expenses	11	13	1	1		7	3	Error in Database Query
+5820	IT Hardware	11	13	1	1		7	3	Error in Database Query
+5899	Total IT Expenses	11	13	2		5700;5899			Invalid Allow Posting ID
+5900	Selling Expenses	11	13	3					Invalid Allow Posting ID
+5920	Listing Fees	11	13	1	1		7	3	Error in Database Query
+5940	Consultancy Charges	11	13	1	1		7	3	Error in Database Query
+5960	Customer Rebate	11	13	1	1		7	3	Error in Database Query
+5980	Membership/Subscription	11	13	1	1		7	3	Error in Database Query
+6000	Misc Sales Expense	11	13	1	1		7	3	Error in Database Query
+6020	Saka - POS	11	13	1	1		7	3	Error in Database Query
+6040	élan - POS	11	13	1	1		7	3	Error in Database Query
+6060	Mount Clear - POS	11	13	1	1		7	3	Error in Database Query
+6080	Peela - POS	11	13	1	1		7	3	Error in Database Query
+6100	Swift - POS	11	13	1	1		7	3	Error in Database Query
+6120	Bloom - POS	11	13	1	1		7	3	Error in Database Query
+6140	Delfini - POS	11	13	1	1		7	3	Error in Database Query
+6160	Saka - Customer Advert/Supt	11	13	1	1		7	3	Error in Database Query
+6180	élan - Customer Advert/Supt	11	13	1	1		7	3	Error in Database Query
+6200	Mount Clear - Customer Advert/Supt	11	13	1	1		7	3	Error in Database Query
+6220	Peela - Customer Advert/Supt	11	13	1	1		7	3	Error in Database Query
+6240	Swift - Customer Advert/Supt	11	13	1	1		7	3	Error in Database Query
+6260	Bloom - Customer Advert/Supt	11	13	1	1		7	3	Error in Database Query
+6280	Delfini - Customer Advert/Supt	11	13	1	1		7	3	Error in Database Query
+6300	Saka - Damaged Stock	11	13	1	1		7	3	Error in Database Query
+6320	élan - Damaged Stock	11	13	1	1		7	3	Error in Database Query
+6340	Mount Clear - Damaged Stock	11	13	1	1		7	3	Error in Database Query
+6360	Peela - Damaged Stock	11	13	1	1		7	3	Error in Database Query
+6380	Swift - Damaged Stock	11	13	1	1		7	3	Error in Database Query
+6400	Bloom - Damaged Stock	11	13	1	1		7	3	Error in Database Query
+6420	Delfini - Damaged Stock	11	13	1	1		7	3	Error in Database Query
+6500	Hotels	11	13	1	1		7	3	Error in Database Query
+6520	Entertainment - UK	11	13	1	1		6	3	Error in Database Query
+6540	Entertainment-O/seas	11	13	1	1		3	3	Error in Database Query
+6560	Travel and Subsistance - UK	11	13	1	1		7	3	Error in Database Query
+6580	Travel and Subsistance -O/seas	11	13	1	1		2	3	Error in Database Query
+6600	Saka Product Promotion	11	13	3					Invalid Allow Posting ID
+6620	Saka - Promo-330ml	11	13	1	1		7	3	Error in Database Query
+6640	Saka - Promo-330ml SP	11	13	1	1		7	3	Error in Database Query
+6660	Saka - Promo-500ml	11	13	1	1		7	3	Error in Database Query
+6680	Saka - Promo-500ml Multi	11	13	1	1		7	3	Error in Database Query
+6700	Saka - Promo-500ml SP Multi	11	13	1	1		7	3	Error in Database Query
+6720	Saka - Promo-1,5L	11	13	1	1		7	3	Error in Database Query
+6740	Saka - Promo-5L	11	13	1	1		7	3	Error in Database Query
+6760	Saka - Promo-Flavoured 500ml	11	13						Invalid Allow Posting ID
+6780	Saka - Promo-Flavoured 1,5L (unactive)	11	13						Invalid Allow Posting ID
+6899	Total Saka Product Promotion	11	13	2		6600;6899			Invalid Allow Posting ID
+6900	élan Product Promotion	11	13	3					Invalid Allow Posting ID
+6920	élan - PET Promo 500ml	11	13	1	1		7	3	Error in Database Query
+6940	élan - PET Promo 500ml SP	11	13	1	1		7	3	Error in Database Query
+6960	élan - PET Promo 1,5L	11	13	1	1		7	3	Error in Database Query
+6980	élan - Glass Promo-330ml	11	13	1	1		7	3	Error in Database Query
+7000	élan - Glass Promo-750ml	11	13	1	1		7	3	Error in Database Query
+7099	Total élan Product Promotion	11	13	2		6900;7099			Invalid Allow Posting ID
+7100	Mount Clear Product Promotion	11	13	3					Invalid Allow Posting ID
+7120	Mount Clear - Promo 500ml	11	13	1	1		6	3	Error in Database Query
+7140	Mount Clear - Promo 1,5L	11	13	1	1		6	3	Error in Database Query
+7199	Total Mount Clear Product Promotion	11	13	2		7100;7199			Invalid Allow Posting ID
+7200	Peela Product Promotion	11	13	3					Invalid Allow Posting ID
+7220	Peela - Promo	11	13	1	1		7	3	Error in Database Query
+7249	Total Peela Product Promotion	11	13	2		7200;7249			Invalid Allow Posting ID
+7250	Swift Product Promotion	11	13	3					Invalid Allow Posting ID
+7270	Swift - 30x30 Serviettes Promo	11	13	1	1		7	3	Error in Database Query
+7300	Swift - 40x40 Serviettes Promo	11	13	1	1		7	3	Error in Database Query
+7320	Swift - 33x33 Serviettes Promo	11	13	1	1		7	3	Error in Database Query
+7400	Swift - Centrefeed Prem Promo	11	13	1	1		7	3	Error in Database Query
+7420	Swift - Centrefeed Prof Promo	11	13	1	1		7	3	Error in Database Query
+7499	Total Swift Product Promotion	11	13	2		7250;7499			Invalid Allow Posting ID
+7500	Bloom Product Promotion	11	13	3					Invalid Allow Posting ID
+7520	Bloom - 2ply 4x10 Promo	11	13	1	1		7	3	Error in Database Query
+7540	Bloom - 3ply 9x5 Promo	11	13	1	1		7	3	Error in Database Query
+7699	Total Bloom Product Promotion	11	13	2		7500;7699			Invalid Allow Posting ID
+7700	Delfini Product Promotion	11	13	3					Invalid Allow Posting ID
+7750	Delfini - Promo	11	13	1	1		7	3	Error in Database Query
+7799	Total Delfini Product Promotion	11	13	2		7700;7799			Invalid Allow Posting ID
+8199	Total Selling Expenses	11	13	2		5900;8199			Invalid Allow Posting ID
+8200	Marketing Expenses	11	13	3					Invalid Allow Posting ID
+8220	TV&Cinema&Buses Advertising	11	13	1	1		7	3	Error in Database Query
+8240	Marketing Printing	11	13	1	1		7	3	Error in Database Query
+8260	Exhibitions & Events	11	13	1	1		7	3	Error in Database Query
+8280	PR	11	13	1	1		7	3	Error in Database Query
+8300	Design	11	13	1	1		7	3	Error in Database Query
+8320	Internet Marketing/Website	11	13	1	1		7	3	Error in Database Query
+8340	General Marketing (Misc)	11	13	1	1		7	3	Error in Database Query
+8360	Product Free Giveaways/Samples	11	13	1	1		7	3	Error in Database Query
+8380	Courier Expenses/PO Box	11	13	1	1		7	3	Error in Database Query
+8400	Sponsorship	11	13	1	1		7	3	Error in Database Query
+8420	Saka Mineral Water Advertising Marketing	11	13	1	1		7	3	Error in Database Query
+8699	Total Marketing Expenses	11	13	2		8200;8699			Invalid Allow Posting ID
+8700	Vehicle Expenses	11	13	3					Invalid Allow Posting ID
+8720	Fuel	11	13	1	1		7	3	Error in Database Query
+8740	Mileage	11	13	1	1		7	3	Error in Database Query
+8760	Motor Insurance	11	13	1	1		6	3	Error in Database Query
+8780	Road Tax	11	13	1	1		6	3	Error in Database Query
+8800	Repairs and Maintenance	11	13	1	1		7	3	Error in Database Query
+8820	Misc Motor Expenses	11	13	1	1		7	3	Error in Database Query
+8840	Parking & Tolls	11	13	1	1		7	3	Error in Database Query
+8860	Vehicle Tracking	11	13	1	1		7	3	Error in Database Query
+8880	Vehicle Leasing	11	13	1	1		7	3	Error in Database Query
+8899	Total Vehicle Expenses	11	13	2		8700;8899			Invalid Allow Posting ID
+8900	Other Operating Expenses	11	13	3					Invalid Allow Posting ID
+8920	Bad Debt Expenses	11	13	1	1		7	3	Error in Database Query
+8940	Debt Collection	11	13	1	1		7	3	Error in Database Query
+8960	Legal and Professional Service	11	13	1	1		7	3	Error in Database Query
+8980	Accountancy	11	13	1	1		7	3	Error in Database Query
+9000	Trade Mark	11	13	1	1		6	3	Error in Database Query
+9020	Miscellaneous	11	13	1	1		7	3	Error in Database Query
+9090	Total Other Operating Expenses	11	13	2		8900;9090			Invalid Allow Posting ID
+9099	Total Operating Expenses	11	13	2		5300;9099			Invalid Allow Posting ID
+9100	Personnel Expenses	11	13	3					Invalid Allow Posting ID
+9120	Salaries	11	13	1	1			3	Error in Database Query
+9140	Directors Rem	11	13	1	1			3	Error in Database Query
+9160	P11D	11	13	1	1		7	3	Error in Database Query
+9180	NEST Pensions	11	13	1	1			3	Error in Database Query
+9200	Life Insurance	11	13	1	1			3	Error in Database Query
+9220	Maternity &  Paternity Leave	11	13	1	1			3	Error in Database Query
+9240	Employers NIC	11	13	1	1			3	Error in Database Query
+9260	Recruitment Cost	11	13	1	1		7	3	Error in Database Query
+9280	Employer\'s Liability Insurance	11	13	1	1		7	3	Error in Database Query
+9300	Staff Welfare&Training	11	13	1	1		7	3	Error in Database Query
+9320	Redundancy Cost	11	13	1	1			3	Error in Database Query
+9399	Total Personnel Expenses	11	13	2		9100;9399			Invalid Allow Posting ID
+9400	Depreciation of Fixed Assets	11	13	3					Invalid Allow Posting ID
+9420	Depreciation, Building	11	13	1	1			3	Code Number Not Exits in GL Category!
+9440	Depreciation,Furniture&Fixt	11	13	1	1			3	Code Number Not Exits in GL Category!
+9460	Depreciation,Office Equipment	11	13	1	1			3	Code Number Not Exits in GL Category!
+9490	Profit/Loss Sale of Fixed Asst	11	13	1	1		7	3	Code Number Not Exits in GL Category!
+9400	Total Fixed Assets Depreciation	11	13	2		9400;9490			Invalid Allow Posting ID
+9450	Net Operating Profit		13	2					Invalid Parent Category ID
+9500	Interest/Finance Charges	11	13	3					Invalid Allow Posting ID
+9520	Bank Charges	11	13	1	1		6	3	Code Number Not Exits in GL Category!
+9540	Credit Card Fees	11	13	1	1		7	3	Code Number Not Exits in GL Category!
+9560	Factoring Charges	11	13	1	1		7	3	Code Number Not Exits in GL Category!
+9580	Exchange Rate Roundings	11	13	1	1			3	Code Number Not Exits in GL Category!
+9599	Total Interest/Finance Charges	11	13	2		9500;9599			Invalid Allow Posting ID
+9600	Unrealized FX (Gains) / Losses	11	13	1	1		6	3	Code Number Not Exits in GL Category!
+9620	Realized FX (Gains) / Losses	11	13	1	1		6	3	Code Number Not Exits in GL Category!
+9800	NET Profit BEFORE TAXES			2					Invalid Parent Category ID
+9820	Corporate Tax	11	13	1	1		6	3	Code Number Not Exits in GL Category!
+9850	Dividend Paid	11	13	1	1		6	3	Code Number Not Exits in GL Category!
+9999	NET Profit			2					Invalid Parent Category ID

@@ -1,0 +1,87 @@
+
+<div class="row"   >
+  <div class="col-lg-12 col-md-12">
+    <div class="widget" >
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Standard Item Price</h3>
+        </div>
+        <div class="clearfix"></div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-12 " >
+              <div class="col-lg-6 ">
+                <div class="form-group">
+                  <label class="col-lg-4 control-label ">Average Sales Price </label>
+                  <div class="col-lg-8">
+                    <div class="input-symbol">
+                      <input   readonly
+              type="text"   data-parsley-trigger="keyup"     placeholder="0"
+           		 ng-model="frmStdItemData.average_sale_price"     class="form-control input_text"    >
+                      <span>{{defaultCurrencyCode}}/{{prod_currency}} </span> </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-4 control-label ">Standard Sales Price </label>
+                  <div class="col-lg-8">
+                    <div class="input-symbol">
+                      <input ng-readonly="check_readonly" type="text" data-parsley-trigger="keyup" id="min_quantity" ng-model="frmStdItemData.standard_price" class="form-control input_text ng-valid ng-touched ng-dirty ng-valid-parse" data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/">
+                   
+            <span>{{defaultCurrencyCode}}/{{prod_currency}} </span> </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-4 control-label ">Minimum Price</label>
+                  <div class="col-lg-8">
+                    <div class="input-symbol">
+                      <input ng-readonly="check_readonly" type="text" data-parsley-trigger="keyup" id="min_quantity" ng-model="frmStdItemData.absolute_minimum_price" class="form-control input_text ng-valid ng-touched ng-dirty ng-valid-parse" data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value" data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,10}(?:\.\d{0,10})?$/">
+            <span>{{defaultCurrencyCode}}/{{prod_currency}} </span> </div>
+                  </div>
+                </div>
+                
+              </div>
+              <div class="col-lg-6 ">
+                <div class="form-group">
+                  <label class="col-lg-4 control-label ">Overall Margin </label>
+                  <div class="col-lg-5">
+                    <div class="input-symbol">
+                     
+                      <input   readonly
+              type="text"   data-parsley-trigger="keyup"     placeholder="0"
+               ng-model="frmStdItemData.overall_margin"     class="form-control input_text"    >
+                    </div>
+                  </div>
+                  <button class="btn btn-info btn_blue" type="button" 
+                                 ng-click="setMarginDate()"  ><i class="fa fa-edit"></i>Set Date</button>
+                </div>
+                
+                <div class="form-group">
+                  <label class="col-lg-4 control-label ">Margin Start Date</label>
+                  <div class="col-lg-8">
+                    <input type="text" readonly ng-model="frmStdItemData.start_date" class="form-control input_text" 
+            >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-4 control-label ">Margin End Date</label>
+                  <div class="col-lg-8">
+                  <input type="text" readonly ng-model="frmStdItemData.end_date" class="form-control input_text"            >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="hr_line2"></div>
+              <div class="pull-right">
+                <button class="btn btn-info btn_blue width_80  " type="submit" ng-show="perreadonly"><i class="fa fa-check   fa_display"></i> Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'app/views/sale_item_info/_margin_date_popup.html'"></div>

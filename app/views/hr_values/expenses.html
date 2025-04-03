@@ -1,0 +1,122 @@
+<div ng-include="'app/views/_breadcrumb2.html'"></div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="input-symbol">
+            <input type="text"
+                   Placeholder="Search"
+                   class="form-control"
+                   ng-model="searchKeyword">
+            <span id="date_msg_4"><i class="fa fa-search"></i></span>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <a id="prompt"
+           ng-if="formData.id && (allowaddhr_expenses==1 || userId == formData.id)"
+           ng-click="fnexpensesForm()"
+           class="btn btn_add pull-right"><i class="fa fa-plus fa_display"> </i> Add</a>
+    </div>
+</div>
+<style>
+.random123 .table>tbody>tr>td:nth-child(3),.random123 .table>tbody>tr>td:nth-child(4) {
+    text-align: right;
+}
+</style>
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div>
+            <div class="widget-body ">
+                <div ng-show="!expense_columns.length > 0"
+                     class="no-record"></div>
+                <div id="dt_example"
+                     class="example_alt_pagination"
+                     ng-show="expense_columns.length > 0">
+
+                    <!--    View    permision for Company User /superadmin -->
+                    <div class="table-responsive random123" >
+                        <table class="table table-condensed table-striped table-hover table-bordered"
+                               ng-if="allowviewhr_expenses==1 || userId == formData.id">
+                            <thead>
+                                <tr class="bg-col">
+                                    <th ng-repeat="column in expense_columns | filter:searchKeyword"
+                                        x-col="{{column.title}}"
+                                        ng-click="vm.tableParams.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"
+                                        ng-class="{'text-right':(column.title == 'Expense Amount' || column.title == 'Mileage Amount')}"
+                                        ng-if="column.title!= 'Id'"
+                                        sortable="column.title"
+                                        filter="{ column.title: 'text'}">
+                                        {{column.title}}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-body courser ">
+                                <span us-spinner="{radius:30, width:8, length: 16}"
+                                      spinner-key="spinner-1"></span>
+                                <tr ng-repeat="record in expenses | filter:searchKeyword">
+                                    <td ng-repeat="column in expense_columns "
+                                        x-col="{{record[column.field]}}"
+                                        ng-click="(allowviewhr_expenses==1 || userId == formData.id) && showexpensesEditForm(record.id)"
+                                        ng-if="column.title != 'Id'"
+                                        ng-class="{'text-right':(column.title == 'Expense Amount' || column.title == 'Mileage Amount'),
+                                                   'dont-click':(allowviewhr_expenses==0 && userId != formData.id)}">
+
+                                        <span ng-if="column.field != 'event_date' && column.field != 'total_amount'">
+                                            {{record[column.field]}}
+                                        </span>
+
+                                        <span ng-if="column.field == 'event_date'">
+                                            <span ng-if=" record[column.field] != 0 ">
+                                                {{convert_unix_date_to_angular(record[column.field])}}
+                                            </span>
+                                        </span>
+
+                                        <span ng-if="column.field == 'total_amount'">
+                                            {{record[column.field] | number:decimal_range}} {{defaultCurrencyCode}}
+                                        </span>
+                                    </td>
+
+
+                                    <td ng-show="expense_columns.length > 0"
+                                        class="ShowHideAction">
+                                        <!--    Edit    permision for Company User /superadmin -->
+                                        <a title="Edit"
+                                           ng-click="(allowviewhr_expenses==1 || userId == formData.id)  && showexpensesEditForm(record.id)"
+                                           ng-class="{'dont-click':allowviewhr_expenses==0}"
+                                           class="tooltips_clss btn"> <i class="fa fa-edit"> </i></a>
+                                        <!--    Delete    permision for Company User /superadmin -->
+
+                                        <a title="Delete"
+                                           ng-click="(allowviewhr_expenses==1 || userId == formData.id)  && deleteexpenses(record.id,$index)"
+                                           ng-if="allowdeletehr_expenses==1"
+                                           class="tooltips_clss btn"><i class="fa fa-times"> </i></a>
+                                    </td>
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group"
+                                 style="text-align: left;">
+                                <ul class="pagination"
+                                    style="margin: 0px !important;"
+                                    ng-show="item_paging.total_pages > 1">
+                                    <li ng-class="{'disabled': item_paging.cpage == 1}"
+                                        class=""><a ng-click="itemselectPage(item_paging.ppage); getexpenses();"
+                                           href="javascript: void(0);"
+                                           class="">«</a></li>
+                                    <li ng-repeat="(key,value) in item_paging.pages"
+                                        ng-class="{'active': value == item_paging.cpage}"><a
+                                           ng-click="itemselectPage(value); getexpenses();"
+                                           href="javascript: void(0);"><span ng-bind="value"></span></a></li>
+                                    <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}"><a
+                                           ng-click="itemselectPage(item_paging.npage); getexpenses();"
+                                           href="javascript: void(0);">»</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

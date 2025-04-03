@@ -1,0 +1,73 @@
+<div ng-controller="SalePromotionController as table">
+  <div ng-include="'app/views/_breadcrumb.html'" class="col-md-12"></div>
+  <div class="row" style="    margin-bottom: 0 !important;">
+    <div class="col-md-12">
+      <div class="nav nav-tabs">
+        <div class="col-sm-6">
+          <div class="search-wrapper">
+            <input type="text" ng-model="searchKeyword" placeholder="Search in Promotions" class="form-control" />
+            <!--,Salesperson(s)-->
+            <i class="fa fa-search search-icon" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <a ng-if="allowadd_sale_promotion_module" id="prompt" ui-sref="app.addSalePromotion" class="btn btn_add pull-right margin_bottom">Add</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Row starts -->
+  <div class="row">
+    <div class="col-md-12 col-md-12">
+      <div class="widget">
+        <div class="widget-body1 ">
+          <div id="dt_example" class="example_alt_pagination">
+
+            <!--  View permision for Company User /superadmin    "-->
+            <table class="table table-condensed table-striped table-hov er table-bordered" id="data-table" ng-table="table.tableParams5"
+              show-filter="true" ng-show="allowview_sale_promotion_module==1">
+              <thead class="fixit">
+                <tr class="bg-col">
+                  <th>Promotion No.</th>
+                  <th>Name</th>
+                  <th>Strategy Type</th>
+                  <th>Strategy</th>
+                  <th>G/L No.</th>
+                  <th>Discount Type</th>
+                  <th>Discount</th>
+                  <th>Currency</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                </tr>
+              </thead>
+              <tbody class="fixit">
+                <!-- <tr ng-repeat-start="rec in $data" ng-class="{'bg-white':$index % 2 == 1}"> -->
+                <tr ng-repeat="rec in promotion_list | filter:searchKeyword" ui-sref="app.editSalePromotion({id:rec.id})">
+                  <td> {{rec.promotion_code}} </td>
+                  <td> {{rec.promotion_name}} </td>
+                  <td> {{rec.strategy_type}} </td>
+                  <td> {{rec.strategy}} </td>
+                  <td> {{rec.promotion_gl_code}} </td>
+                  <td>
+                    <span ng-if="rec.discount_type == 1"> Percentage </span> 
+                    <span ng-if="rec.discount_type == 2"> Value </span> 
+                  </td>
+                  <td> {{rec.discount}} </td>
+                  <td> {{rec.currency_code}} </td>
+                  <td> {{rec.start_date}} </td>
+                  <td> {{rec.end_date}} </td>
+                </tr>
+                <tr ng-show="promotion_list.length == 0" style="text-align:center;">
+                    <td> No Record found. Please click on Add.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-include="'app/views/sale_item_info/_customer_popup3.html'"></div>
+  <!-- <div ng-include="'app/views/sale_promotion/_exlude_product_popup.html'"></div> -->
+  <div ng-include="'app/views/sale_promotion/_detail_popup.html'"></div>
+</div>

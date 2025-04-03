@@ -1,0 +1,213 @@
+<style>
+    .modal .nav-tabs {
+        display: block !important;
+    }
+
+    .right-sidebar {
+        margin: 50px 0px 0 23px !important;
+    }
+
+    /* #customerStatementPDF a {
+        width: 60px;
+        border-radius: 4px;
+        font-size: 11px !important;
+        border-color: #c5c5c5;
+        border-width: 1px;
+        border-style: solid;
+        font-weight: bold;
+        color: #444444;
+        background-color: white;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        line-height: 25px;
+        height: 28px;
+        position: fixed;
+        right: 90px;
+    } 
+    
+    #customerStatementPDF .ib {
+        margin-right: 90px !important;
+    }
+
+    #customerStatementPDF a:hover {
+        border-color: #969696;
+        color: #018fff;
+        background-color: white;
+    }
+
+    #customerStatementPDF a::before {
+        content: "Print";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+    }
+
+    #customerStatementPDF a i {
+        opacity: 0;
+        display: block;
+    } */
+
+    .allReport li a.fave-report-desp {
+        display: flex !important;
+        width: 100% !important;
+    }
+</style>
+
+
+<div style="position: fixed;
+            right: 0;
+            padding: 5px !important;
+            top: 50px;
+            border-radius: 0;
+            padding-left: 48px !important;
+            background: white;
+            border-bottom: 1px solid #cecece;
+            left: 0;
+            z-index: 7;">
+    <span>&nbsp;</span>
+</div>
+<div id="loading-bar-container"></div>
+
+<div class="customerPortal allReport" style="margin-top: 50px;" >
+
+    <div class="left-sidebar" style="width: 10%;padding-top: 50px;">
+        <!-- ng-controller="customerPortalController"  && !loginCustPortal-->
+        <!--  ng-if="(!hideCustPortal || hideHomeDetails)"  -->
+
+            
+
+            <div class="s-box" style="border-radius: 0px;" ><!-- ng-if="!hideCustPortal || hideHomeDetails"  -->
+                <div class="s-content">
+                        <li>
+                            <a ui-sref="app.customerPortal()" class="fave-report-desp" style="padding-left: 10px !important;">
+                                    <img style="min-width: 10px;height: 10px;display: inline-block;"
+                                                ng-style="{'background-image':'url('+ homeLogoUrl +')','background-size':'contain','background-repeat':'no-repeat','padding': '15px','margin-right': '10px'}">Home</a>
+                        </li> 
+                        <li>
+                            <a ui-sref="app.getCustomerStatementReport({module:'customerStatement'})" class="fave-report-desp" style="padding-left: 10px !important;">
+                                    <img style="min-width: 10px;height: 10px;display: inline-block;"
+                                                ng-style="{'background-image':'url('+ invoiceLogoUrl +')','background-size':'contain','background-repeat':'no-repeat','padding': '15px','margin-right': '10px'}">Customer Statement</a>
+                        </li>
+                        <li>
+                            <a ui-sref="app.sale-invoice-portal()" class="fave-report-desp" style="padding-left: 10px !important;">
+                                    <img style="min-width: 10px;height: 10px;display: inline-block;"
+                                                ng-style="{'background-image':'url('+ statementLogoUrl +')','background-size':'contain','background-repeat':'no-repeat','padding': '15px','margin-right': '10px'}">Sales Invoices</a>
+                        </li>
+                        <li>
+                            <a ui-sref="app.sale-return-invoice-portal()" class="fave-report-desp" style="padding-left: 10px !important;">
+                                    <img style="min-width: 10px;height: 10px;display: inline-block;"
+                                                ng-style="{'background-image':'url('+ statementLogoUrl +')','background-size':'contain','background-repeat':'no-repeat','padding': '15px','margin-right': '10px'}">Credit Notes</a>
+                        </li>
+                        <li>
+                            <a ui-sref="app.sale-activity-portal()" class="fave-report-desp" style="padding-left: 10px !important;">
+                                    <img style="min-width: 10px;height: 10px;display: inline-block;"
+                                                ng-style="{'background-image':'url('+ activityLogoUrl +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat','padding': '15px','margin-right': '10px'}">Customer Activity</a>
+                        </li>
+                        <li>
+                            <a ui-sref="app.price-list-portal()" class="fave-report-desp" style="padding-left: 10px !important;">
+                                    <img style="min-width: 10px;height: 10px;display: inline-block;"
+                                                ng-style="{'background-image':'url('+ priceLogoUrl +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat','padding': '15px','margin-right': '10px'}">Price List</a>
+                        </li>
+                </div>
+            </div>
+
+            <div style="background-color: #232323;">
+
+                
+                <div class="s-content" style="color: #ffffff; font-size: 10px;padding: 20px 15px; position: absolute; bottom: 0; overflow-wrap: break-word;width:100%">
+                        
+                        <li style="font-size: 16px; border-bottom: 1px dotted#ccc;padding-bottom: 5px;margin-bottom: 5px;">Address</li>
+                        <li >{{address}}</li>
+                        <li >{{address_2}}</li>
+                        <li >{{county}}</li>
+                        <li >{{city}}</li>
+                        <li >{{postcode}}</li>
+                        <li >{{telephone}}</li>
+                        <li >{{fax}}</li>
+                        <li ng-click="goToCompLink()" style="cursor: pointer; font-size: 15px;">{{compURL}}</li>
+                        <!-- <a href="{{compURL}}" target="_blank"> --><!-- </a> -->
+                </div>
+            </div>
+
+    </div>
+
+    <div class="col-md-10 col-md-offset-1 " ng-if="!hideCustPortal"><!-- && !hideHomeDetails && !loginCustPortal -->
+            <div class="col-md-12">
+                <div class="s-box">
+                        <div class="s-content">
+                            <li class="x-box" ng-if="!showLoader && custName.length>0" style="text-align: center;font-size: 16px;">
+                                    {{custName}}({{custCode}}) - Customer Portal
+                            </li>
+                            <li class="x-box" ng-if="custCode.length==0" style="text-align: center;font-size: 16px;">
+                                    Customer Portal
+                            </li>
+                        </div>
+                </div>
+            </div>
+
+            
+
+            <div class="col-md-6 ">
+                <div class="s-box">
+                        <div class="s-content">
+                            <li>
+                                    <a ui-sref="app.getCustomerStatementReport({module:'customerStatement'})" class="fave-report-desp">Customer Statement</a>
+                                    
+                            </li>
+                            <li>
+                                    <a ui-sref="app.sale-invoice-portal()" class="fave-report-desp" >Sales Invoices</a>
+                            </li>
+                            <li>
+                                    <a ui-sref="app.price-list-portal()" class="fave-report-desp" >Price List</a>
+                            </li>
+                        </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 ">
+                <div class="s-box">
+                        <div class="s-content">
+                            <li>
+                                    <a ui-sref="app.sale-return-invoice-portal()" class="fave-report-desp">Credit Notes</a>
+                            </li>
+                            <li>
+                                    <a ui-sref="app.sale-activity-portal()" class="fave-report-desp">Customer Activity</a>
+                            </li>
+                        </div>
+                </div>
+            </div>
+
+    </div>
+            <div  ng-if="hideCustPortal"><!--  && !loginCustPortal -->
+<!-- class="right-sidebar" -->
+                <div class="col-md-10 col-md-offset-1">
+                        <div class="col-md-12">
+                            <div class="s-box">
+                                    <div class="s-content">
+                                        <li class="x-box" style="text-align: center;font-size: 16px;">
+                                                {{CustomerPortalTitle}}
+                                        </li>
+                                    </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+    
+</div>

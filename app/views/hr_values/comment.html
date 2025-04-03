@@ -1,0 +1,90 @@
+
+<div class="row">
+    <div class="col-md-3">
+      <div class="input-symbol">
+          <input type="text" Placeholder="Search" class="form-control"
+                 ng-model="searchKeyword.search">
+          <span><i class="fa fa-search"></i></span>
+      </div>
+    </div>
+    <div class="col-md-9">
+        <a  class="btn btn_add pull-right" id="prompt" ng-click="show_add_comment_form()" >Add</a>
+    </div>
+</div>
+
+<!--<div class="row"   >
+  <div class="col-md-4"        ng-show="columns.length > 0">
+      <div class="form-group" >
+        <div class="input-symbol">
+          <input type="text" ng-model="Serachkeyword" placeholder="Search"
+              class="in-t-1 ng-pristine ng-valid ng-touched">
+          <span id="date_msg_4"> <i class="fa fa-search"></i></span>
+        </div>
+      </div>
+  </div>
+</div>-->
+  <div class="row">
+  <div class="col-md-12 col-md-12">
+    <div>
+      <div>
+        <div id="dt_example" class="example_alt_pagination"
+         ng-show="columns.length > 0">
+         <div class="table-responsive">
+          <table ng-table="vm.tableParams" class="table table-condensed table-striped table-hover table-bordered" id="data-table" show-filter="true" style="overflow: auto;">
+            <thead>
+              <!--<tr class="bg-col"   >
+                <th ng-repeat="column in columns"
+  class="sortable sort-asc" ng-class="{ 'sort-asc': vm.tableParams.isSortBy(column.field, 'asc'),   'sort-desc': !vm.tableParams.isSortBy(column.field, 'desc')   }"
+    ng-click="vm.tableParams.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"
+
+      ng-if="column.title!= 'Id'"  sortable="column.title" filter="{ column.title: 'text'}"
+      > {{column.title}} </th>
+                <th    style="width: 7%;">Action</th>
+              </tr>-->
+              <tr class="bg-col" >
+                <th     style="width: 10%;" >Created By</th>
+                <th     style="width: 10%;" >Date Created</th>
+                <th     style="width: 10%;" >Subject/ Title </th>
+                <th   style="width: 10%;"  >Comments</th>
+                <th    style="width: 1%;">Action</th>
+              </tr>
+            </thead>
+            <tbody class="courser table-body">
+            <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+            <tr
+            ng-repeat="record in recod_coments  | filter:searchKeyword.search" >
+              <td> {{currentUser | capitalize }} </td>
+              <!--<td ng-repeat="column in columns" ng-click="showEditFormComent(record.id)"
+                      ng-if="column.title != 'Id'   && column.title != 'Docupload' "  ><span ng-if="column.field != 'date_created'"> {{record[column.field]}}</span> <span ng-if="column.field == 'date_created'"> <span ng-if=" record[column.field] != 0 "> {{convert_unix_date_to_angular(record[column.field])}} </span></span></td>-->
+
+              <td  ng-click="showEditFormComent(record.id)"   > {{convert_unix_date_to_angular(record.date_created)}} </td>
+              <td  ng-click="showEditFormComent(record.id)"   > {{record.subject}} </td>
+              <td  ng-click="showEditFormComent(record.id)">
+                <span ng-bind-html="record.comments" class="limitdata"></span>
+              </td>
+              <td><a title="Delete" ng-click="delete_coment(record.id,$index,recod_coments)"
+                   class="tooltips_clss btn"><i class="fa fa-times"> </i></a> <span ng-repeat="i_image in record.docupload | mysplit:','" ng-if="i_image"> <a title="View"  target="_blank"  ng-if="i_image"
+              href="{{imagePath+i_image}}" download="{{i_image}}"
+              class="tooltips_clss btn"> <i class="fa fa-eye"> </i></a> </span></td>
+            </tr>
+                      <div ng-show="!recod_coments.length > 0" class="no-record">
+          </div>
+              </tbody>
+
+          </table>
+        </div>
+          <div class="col-md-12" >
+            <div class="form-group" style="text-align: left;">
+              <ul class="pagination" style="margin: 0px !important;" ng-show="item_paging.total_pages > 1">
+                <li ng-class="{'disabled': item_paging.cpage == 1}" class=""> <a ng-click="itemselectPage(item_paging.ppage); getComments();" href="javascript: void(0);" class="">«</a> </li>
+                <li ng-repeat="(key,value) in item_paging.pages" ng-class="{'active': value == item_paging.cpage}"> <a ng-click="itemselectPage(value); getComments();" href="javascript: void(0);"><span ng-bind="value"></span></a> </li>
+                <li ng-class="{'disabled': item_paging.cpage == item_paging.total_pages}"> <a ng-click="itemselectPage(item_paging.npage); getComments();" href="javascript: void(0);" >»</a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

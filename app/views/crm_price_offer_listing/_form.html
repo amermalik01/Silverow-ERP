@@ -1,0 +1,279 @@
+          <div class="row">
+
+<div class="col-lg-12 col-md-12">
+<div class="widget" style="background:none;">
+<!-- <div class="widget-header">
+  <div class="title">
+    Add Company General Information
+  </div>
+ 
+</div> -->
+<div class="widget-body" style="background:none;">          
+  <div class="row" >
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Offered By <span class="required">*</span></label>
+      <div class="col-lg-8">
+        <input type="text" ng-model="rec.offered_by" id="offered_by" class="form-control"  ng-disabled ="check_readonly" tabindex="1" ng-click="getOffer(formData)" required />
+        <input type="hidden" ng-model="rec.offered_by_id" id="offered_by_id" class="form-control" />
+        <input type="hidden" ng-model="rec.id" id="update_id" class="form-control" />
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Offer Method <span class="required">*</span></label>
+      <div class="col-lg-8">
+        <select ng-model="rec.offer_method_ids" ng-options="opt as opt.name for opt in arr_OfferMethod" class="select2me form-control" ng-change="addNewPredefinedPopup(rec.offer_method_ids,'OFFER_METHOD','Offer Method')"  ng-disabled ="check_readonly" required tabindex="5"><option style="display:none;" value=""></option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label"><span ng-show="rec.type != 2">Item Code</span><span ng-show="rec.type == 2">Service Code</span><span class="required">*</span></label>
+      <div class="col-lg-8">
+        <input type="text" ng-model="product_code" id="product_id" ng-click="getProduct()"  class="form-control"  ng-disabled ="check_readonly" required tabindex="2"/>
+        <input type="hidden" ng-model="rec.product_id" />
+      </div>
+    </div>
+  </div>
+ <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Start Date <span class="required">*</span></label>
+      <div class="col-lg-8">
+        <input jqdatepicker class="2date-picker form-control" ng-model="rec.offer_date" ng-change="checkDate(rec.offer_date,rec.offer_valid_date,'offer_date')" required readonly >
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">
+      <span ng-show="rec.type != 2">Item Description</span>
+        <span ng-show="rec.type == 2">Service Description</span>
+         </label>
+      <div class="col-lg-8">
+        <input type="text" ng-model="product_description" id="product_description" class="form-control"  readonly="readonly"  tabindex="3" />
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">End Date <span class="required">*</span></label>
+      <div class="col-lg-8">
+        <input jqdatepicker class="2date-picker form-control" ng-model="rec.offer_valid_date" ng-change="checkDate(rec.offer_date,rec.offer_valid_date,'offer_valid_date')" required readonly >
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="row">
+ <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">List Date</label>
+      <div class="col-lg-8">
+        <input readonly="readonly" type="text" class="form-control" ng-model="list_date">
+      </div>
+    </div>
+  </div>
+  </div>
+ <hr> 
+<div class="row">
+    <div class="col-lg-4">
+    <div class="form-group">
+      <label class="col-lg-6 control-label">Price<span class="required">*</span></label>
+      <div class="col-lg-6">
+        <input type="text" ng-model="rec.volume_1_price" id="volume_1_price" required class="form-control"  ng-readonly="check_readonly"  tabindex="4" />
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+  <div class="form-group">
+      <label class="col-lg-5 control-label">Unit Of Measure<span class="required">*</span></label>
+      <div class="col-lg-7">
+        <select ng-model="rec.unit_of_measure_1s" ng-options="opt as opt.name for opt in arr_unit_of_measure" class="select2me form-control" ng-disabled ="check_readonly" tabindex="4" required ><option style="display:none;" value=""></option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Volume 1<span class="required">*</span> </label>
+      <div class="col-lg-8">
+        <select ng-model="rec.volume_1s" ng-options="opt as opt.name for opt in arr_volume_1" class="select2me form-control" ng-change="onChange_vol_1(1,'sale')"  ng-disabled ="check_readonly" required tabindex="4"><option style="display:none;" value=""></option>
+        </select>
+      </div>
+    </div>
+  </div>
+  </div>
+<div class="row">
+    <div class="col-lg-4">
+    <div class="form-group">
+      <label class="col-lg-6 control-label">Price</label>
+      <div class="col-lg-6">
+        <input type="text" ng-model="rec.volume_2_price" id="volume_1_price" class="form-control"  ng-readonly="check_readonly"  tabindex="4" />
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+  <div class="form-group">
+      <label class="col-lg-5 control-label">Unit Of Measure</label>
+      <div class="col-lg-7">
+        <select ng-model="rec.unit_of_measure_2s" ng-options="opt as opt.name for opt in arr_unit_of_measure" class="select2me form-control"  ng-disabled ="check_readonly" tabindex="4" >
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Volume 2 </label>
+      <div class="col-lg-8">
+        <select ng-model="rec.volume_2s" ng-options="opt as opt.name for opt in arr_volume_2" class="select2me form-control" ng-change="onChange_vol_1(2,'sale')"  ng-disabled ="check_readonly" required tabindex="4">
+        </select>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+    <div class="form-group">
+      <label class="col-lg-6 control-label">Price</label>
+      <div class="col-lg-6">
+        <input type="text" ng-model="rec.volume_3_price" id="volume_1_price" class="form-control"  ng-readonly="check_readonly"  tabindex="4" />
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+  <div class="form-group">
+      <label class="col-lg-5 control-label">Unit Of Measure</label>
+      <div class="col-lg-7">
+        <select ng-model="rec.unit_of_measure_3s" ng-options="opt as opt.name for opt in arr_unit_of_measure" class="select2me form-control" ng-disabled ="check_readonly" tabindex="4" >
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Volume 3 </label>
+      <div class="col-lg-8">
+        <select ng-model="rec.volume_3s" ng-options="opt as opt.name for opt in arr_volume_3" class="select2me form-control" ng-change="onChange_vol_1(3,'sale')"  ng-disabled ="check_readonly" required tabindex="4">
+        </select>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+<!-- <div class="row">
+  <div class="col-lg-6">
+  <div class="form-group">
+      <label class="col-lg-4 control-label">Currency</label>
+      <div class="col-lg-8">
+        <select ng-model="rec.currency_ids" ng-options="opt as opt.name for opt in arr_currency" class="select2me form-control" ng-change="addNewCurrencyPopup()"  ng-disabled ="check_readonly" tabindex="4" >
+        </select>
+      </div>
+    </div>
+  </div>
+
+</div> 
+<div class="row">
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Volume 1 </label>
+      <div class="col-lg-4">
+        <select ng-model="rec.volume_1" ng-options="opt as opt.name for opt in arr_volume_1" class="select2me form-control"  ng-disabled ="check_readonly" required tabindex="4">
+        </select>
+      </div>
+      <label class="col-lg-1 control-label">Price</label>
+      <div class="col-lg-3">
+        <input type="text" ng-model="rec.volume_1_price" class="form-control"  ng-disabled ="check_readonly"  tabindex="4"/>
+      </div>
+  </div>
+</div>
+  <div class="col-lg-6">
+    <div class="form-group">
+      <div class="btn-group" data-toggle="buttons" >
+        <input ng-class="{'btn-info': isPalletSet, 'btn-default': !isPalletSet}" class="mb-sm btn" type="button" 
+                     value="Set Primary" ng-click="setPrimary(1,rec)" ng-disabled ="check_readonly" required />
+        <!-- <span class="lbl_currency">&nbsp;{{currency_code}}</span>  --
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Volume 2 </label>
+      <div class="col-lg-4">
+        <select ng-model="rec.volume_2" ng-options="opt as opt.name for opt in arr_volume_2" class="select2me form-control"  ng-disabled ="check_readonly" required tabindex="5"></select>
+      </div>
+      <label class="col-lg-1 control-label">Price</label>
+      <div class="col-lg-3">
+        <input type="text" ng-model="rec.volume_2_price"  class="form-control"  ng-disabled ="check_readonly"  tabindex="4"/>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="form-group">
+      <div class="btn-group" data-toggle="buttons" >
+        <input  ng-class="{'btn-info': isHalfSet, 'btn-default': !isHalfSet}" class="mb-sm btn btn-default" type="button" 
+                     value="Set Primary" ng-click="setPrimary(2,rec)" ng-disabled ="check_readonly"  />
+             <!-- <span class="lbl_currency">&nbsp;{{currency_code}}</span> -- 
+            </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label class="col-lg-4 control-label">Volume 3 </label>
+      <div class="col-lg-4">
+        <select ng-model="rec.volume_3" ng-options="opt as opt.name for opt in arr_volume_3" class="select2me form-control"  ng-disabled ="check_readonly" required tabindex="6"></select>
+      </div>
+      <label class="col-lg-1 control-label">Price</label>
+      <div class="col-lg-3">
+        <input type="text" ng-model="rec.volume_3_price" class="form-control"  ng-disabled ="check_readonly"  tabindex="4"/>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="form-group">
+      <div class="btn-group" data-toggle="buttons">
+        <input  ng-class="{'btn-info': isFullSet, 'btn-default': !isFullSet}" class="mb-sm btn btn-default" type="button" 
+                     value="Set Primary" ng-click="setPrimary(3,rec)" ng-disabled ="check_readonly"  />
+          <!-- <span class="lbl_currency">&nbsp;{{currency_code}}</span> --
+        <input type="hidden" name="hdn_primary" ng-model="rec.primary" id="hdn_primary" >
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Description </label>
+      <div class="col-lg-10" style="position:relative;">
+        <textarea name="note" cols="160" tabindex="6" rows="5" id="note" ng-model="rec.comment" class="form-control"    ng-readonly ="check_readonly" ng-change="showWordsLimits()" maxlength="500" ></textarea>  
+        <span class="word-counter">{{wordsLength}}/500</span>  
+      </div>
+      
+    </div>
+  </div>
+</div>-->
+<div class="row">
+    <div class="col-lg-12">
+      <div class="hr_line2"></div>
+          <div class="pull-right">
+          <button class="btn btn-info btn_blue" type="submit" ng-show="!check_readonly"><i class="fa fa-check"></i> Submit</button>
+          <button class="btn btn-info btn_blue" type="button" ng-click="showCrmPriceOfferListingEditForm()" ng-show="check_readonly"><i class="fa fa-edit"></i> Edit</button>
+          <button class="btn default" type="button" ng-click="showCrmPriceOfferListingListing()"><i class="fa fa-undo"></i> Cancel</button>
+          </div>
+    </div>
+    </div>
+</div>
+</div>
+</div>
+<div ng-include="'app/views/crm_price_offer_listing/_item_services_popup.html'"></div>
+

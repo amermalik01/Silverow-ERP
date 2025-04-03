@@ -1,0 +1,266 @@
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="row"><!--  animated fadeIn -->
+                    <div class="col-md-12">
+                        <div class="panel-title2">Competitors</div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Name <span class="required">*</span></label>
+                                <!-- Supplier -->
+                                <div class="col-md-8">
+                                    <!-- <input type="text" ng-model="arr_cmp.supplier_name" required class="form-control" ng-disabled="check_readonly_cmp"> -->
+                                    <ui-select required ng-model="arr_cmp.supplier_name" ng-disabled="check_readonly_cmp" >
+                                            <ui-select-match placeholder="Select Name">{{$select.selected.title}}
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="opt in competitorNamesArr | filter: $select.search">
+                                                <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                    <label class="col-md-4 control-label">Brand </label>
+    
+                                    <div class="col-md-8">
+                                        <!-- <input type="text" ng-model="arr_cmp.brand" id="brand" class="form-control" ng-disabled="check_readonly_cmp">  -->
+                                        <ui-select ng-model="arr_cmp.brand" ng-disabled="check_readonly_cmp" >
+                                                <ui-select-match placeholder="Select Brand">{{$select.selected.title}}
+                                                </ui-select-match>
+                                                <ui-select-choices repeat="opt in competitorBrandsArr | filter: $select.search">
+                                                    <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        <!-- <ui-select ng-model="arr_cmp.brand" ng-disabled="check_readonly_cmp">
+                                            <ui-select-match placeholder="Select Brand">{{$select.selected.name}}
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="opt in brandarray | filter: $select.search">
+                                                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select> -->
+                                    </div>
+                                </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Category </label>
+
+                                <div class="col-md-8">
+                                    <ui-select ng-model="arr_cmp.category" ng-disabled="check_readonly_cmp" >
+                                        <ui-select-match placeholder="Select Category">{{$select.selected.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in cat_prodcut_arr | filter: $select.search">
+                                            <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <!-- ng-change="updateBrandList(arr_cmp.category.id)" -->
+                                    
+                                    <!--<input type="text" class="form-control" ng-model="arr_cmp.category_name"
+                                               id="category_name"  ng-click="addCategory()"
+                                               ng-disabled="check_readonly_cmp" readonly />-->
+                                    <!-- <input type="hidden" ng-model="arr_cmp.category_id" id="category_id" class="form-control" />
+                                    <input type="hidden" ng-model="arr_cmp.category_type" id="category_type" class="form-control" /> -->
+                                    <input type="hidden" ng-model="arr_cmp.id" id="update_id" class="form-control" />
+
+                                    <!--<span><i class="fa fa-external-link" aria-hidden="true"></i></span>-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <!-- {{brand_prodcut_arr}} -->
+                                <label class="col-md-4 control-label">
+                                    <span ng-if="arr_cmp.category_type != 2">Item</span>
+                                    <!-- <span ng-if="arr_cmp.category_type == 2">Service</span> Name -->
+                                </label>
+
+                                <div class="col-md-4 padr6">
+                                    <!-- <input type="text" ng-model="arr_cmp.item_notes" id="item_notes" class="form-control" ng-disabled="check_readonly_cmp" /> -->
+                                    <ui-select ng-model="arr_cmp.item_notes" ng-disabled="check_readonly_cmp" >
+                                            <ui-select-match placeholder="Select Item">{{$select.selected.title}}
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="opt in competitorItemsArr | filter: $select.search">
+                                                <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <ui-select ng-model="drp.unit_id" ng-disabled="check_readonly_cmp">
+                                        <ui-select-match placeholder="Select U.O.M">{{$select.selected.title}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in uni_prooduct_arr | filter: $select.search">
+                                            <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select><!-- ng-change="addNewPopup(drp.unit_id, 'UNIT', 'Unit', drp)" -->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Purchase Price </label>
+
+                                <div class="col-md-8">
+                                    <div class="input-symbol">
+                                        <input  maxlength="9" type="number" min="0" step="0.1" id="price" class="form-control input_text"
+                                            ng-model="arr_cmp.price" 
+                                            ng-disabled="check_readonly_cmp"/>
+                                        <span>{{defaultCurrencyCode + '/' + drp.unit_id.title}}</span>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-4">
+                                    <div class="pure-checkbox mtop7">
+                                        <input type="checkbox" ng-model="arr_cmp.purchase_price_vat_chk" ng-disabled="check_readonly_cmp" id="purchase_price_vat_chk"
+                                            ng-checked="arr_cmp.purchase_price_vat_chk > 0">
+                                        <label for="purchase_price_vat_chk">Incl. VAT</label>
+                                    </div>
+                                </div> -->
+                                <!--{{arr_cmp.purchase_price_vat_chk}}-->
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"> Selling Price </label>
+
+                                <div class="col-md-8"><!-- Wholesale -->
+                                    <div class="input-symbol">
+                                        <input maxlength="9" type="number" min="0"  step="0.1" ng-model="arr_cmp.sale_price" id="sale_price" class="form-control input_text" ng-disabled="check_readonly_cmp"
+                                        />
+                                        <span>{{defaultCurrencyCode + '/' + drp.unit_id.title}}</span>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-4">
+                                    <div class="pure-checkbox mtop7">
+                                        <input type="checkbox" ng-model="arr_cmp.wholesale_price_vat_chk" ng-checked="arr_cmp.wholesale_price_vat_chk > 0" ng-disabled="check_readonly_cmp"
+                                            id="wholesale_price_vat_chk">
+                                        <label for="wholesale_price_vat_chk">Incl. VAT</label>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Purchase Volume </label>
+
+                                <div class="col-md-4 padr6">
+                                    <ui-select required ng-model="arr_cmp.volume" ng-disabled="check_readonly_cmp" >
+                                        <ui-select-match placeholder="Select Volume">{{$select.selected.title}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="opt in competitorVolumesArr | filter: $select.search">
+                                            <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+
+                                    <!-- <input type="number" class="form-control" ng-model="arr_cmp.volume" ng-disabled="check_readonly_cmp"  /> -->
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <ui-select ng-model="arr_cmp.vol_unit_id" ng-disabled="check_readonly_cmp" ng-change="addNewPopup(arr_cmp.vol_unit_id, 'UNIT', 'UNIT2', drp)">
+                                        <ui-select-match placeholder="Select U.O.M">{{$select.selected.title}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in uni_prooduct_arr | filter: $select.search">
+                                            <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Order Frequency<span class="required">*</span></label>
+
+                                <div class="col-md-4 padr6">
+                                    <!--<input type="text" ng-model="arr_cmp.order_frequency" id="order_frequency" class="form-control"
+                                                ng-disabled="check_readonly_cmp" />fixing this page-->
+                                    <input maxlength="9" ng-readonly="check_readonly_cmp" type="number" data-parsley-trigger="keyup" ng-model="arr_cmp.lead_time" class="form-control input_text"
+                                        data-parsley-minlength-message="Invalid Value" data-parsley-type-message="Invalid Value"
+                                        data-parsley-error-message="Invalid Value" data-parsley-pattern="/^(?=.*[1-9])\d{0,25}(?:\.\d{0,25})?$/"
+                                    />
+                                </div>
+                                <div class="col-md-4 padl6">
+                                    <ui-select ng-model="drp.lead_type" ng-disabled="check_readonly_cmp" ng-required='arr_cmp.lead_time.length>0'>
+                                        <ui-select-match placeholder="Frequency">{{$select.selected.title}}</ui-select-match>
+                                        <ui-select-choices repeat="opt in lead_types | filter: $select.search">
+                                            <div ng-bind-html="opt.title | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <!-- ng-change="addNewPopup(drp.lead_type, 'LEAD', 'Lead', drp)"-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Date</label>
+
+                                <div class="col-sm-8">
+                                    <input jqdatepicker class="2date-picker form-control dont-click" ng-model="arr_cmp.created_date" readonly="readonly" disabled="disabled">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Competitors Notes</label>
+
+                                <div class="col-md-8">
+                                    <textarea name="note" cols="160" rows="4" id="note" ng-model="arr_cmp.note" class="form-control" ng-readonly="check_readonly_cmp"
+                                        maxlength="500" style="resize:none;"></textarea>
+                                    <span class="word-counter">{{arr_cmp.note.length}}/500</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-md-1 control-label" style="width:14%;">Upload File</label>
+
+                                <div class="col-md-4 ">
+                                    <div class="fileUpload btn btn_blue pull-left"><span>Select File</span>
+                                        <input id="uploadBtn" type="file" ngf-select="onFileSelect($files)" name="file"
+                                               class="upload" ng-disabled="check_readonly_cmp"/>
+                                    </div>
+                                    <em style="font-size: 30px;float: left;margin: 2px 5px; display:block;"
+                                        style="font-size: 30px !important;" class="fa fa-file-image-o"
+                                        ng-if="check_files == 1"></em>
+
+                                    <a class="defaultimage" style="float: left;margin: 2px 5px;"
+                                       ng-if="check_files == 2" target="_blank">
+                                        <img src="{{basePath + 'upload/sales/crm/' + files[0].name}}" class="d1img"/>
+                                        <span class="animated fadeIn">
+                                            <img src="{{basePath + 'upload/sales/crm/' + files[0].name}}"/>
+                                        </span>
+                                    </a>
+
+                                </div>
+
+
+                                &lt;!&ndash;<a style="float: left;margin: 2px 5px;" ng-if="check_files == 2" target="_blank"
+                                   href="{{basePath + 'upload/sales/crm/' + files[0].name}}">
+                                    <em style="font-size: 30px !important;" class="fa fa-file-image-o"></em>
+                                </a>&ndash;&gt;
+                                &lt;!&ndash; isFileExist(basePath+'upload/sales/crm/',files[0].name) &ndash;&gt;
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                <div class="dropdown ib" ng-show="arr_cmp.id > 0 && cust_competetor_tab_module > 0">
+                                    <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                        <i class="dte-ico"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dte animated fadeIn">
+                                        <span ng-click="set_document_internal(cust_competetor_tab_module)">
+                                            <i class="fa fa-file-text-o" aria-hidden="true"></i> Add Document</span>
+                                        <span><i class="fa fa-check" aria-hidden="true"></i> Add Task</span>
+                                        <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Compose Email</span>
+                                    </ul>
+                                </div>
+                                <!-- <button class="btn btn-default2" type="button" ng-click="edit_cmp(arr_cmp.id,0,0)" >Clone
+                                </button> -->
+                                <button class="btn btn-delete" type="button" ng-click="delete_comp(arr_cmp.id)" ng-if="arr_cmp.id > 0 && !check_readonly_cmp && deleteCompetitorsPermission">Delete
+                                </button>
+                                <button class="btn btn-submit" type="submit" ng-show="!check_readonly_cmp">
+                                    <i class="fa fa-check fa_display"></i> Save
+                                </button>
+                                <button class="btn btn-edit" type="button" ng-click="showCrmCompEditForm()" ng-show="check_readonly_cmp && editCompetitorsPermission"><i class="fa fa-edit fa_display"></i> Edit
+                                </button>
+                                <button class="btn btn-cancel" type="button" ng-click="getCompetitor()">
+                                    <i class="fa fa-undo fa_display"></i> Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div ng-include="'app/views/crm/_item_services_popup_cmp.html'"></div> -->

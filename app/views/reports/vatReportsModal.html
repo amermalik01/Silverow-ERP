@@ -1,0 +1,354 @@
+<div class="modal fade template-design"
+     id="vatReportsModal">
+    <div class="modal-dialog modal-md"
+         style=" width: 950px;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 40px;">
+
+                <htmlpageheader name="MyCustomHeader">
+                    <div class="reportHeading">
+                        <div class="reportHeading__left">
+                            <div class="reportHeading__left__reportname"
+                                 ng-if="printPdfVals.reportType == 'summary'">VAT Report - Summary</div>
+                            <div class="reportHeading__left__reportname"
+                                 ng-if="printPdfVals.reportType == 'detail' && printPdfVals.reportTypeOpenEntries != 'detail'">
+                                VAT Report - Detailed</div>
+                            <div class="reportHeading__left__reportname"
+                                 ng-if="printPdfVals.reportTypeOpenEntries == 'detail'">VAT Report - Open Entries Before
+                                {{printPdfVals.dateTo}}</div>
+
+                            <div class="reportHeading__left__reportfilter"
+                                 ng-if="printPdfVals.reportTypeOpenEntries != 'detail'">
+                                <b> VAT Status:</b>
+                                <span ng-if="printPdfVals.vatEntriesStatusID == 1">Open</span>
+                                <span ng-if="printPdfVals.vatEntriesStatusID == 2">Close</span>
+                                <span
+                                      ng-if="printPdfVals.vatEntriesStatusID == 0 || printPdfVals.vatEntriesStatusID == 3">Open
+                                    & Close</span>
+                            </div>
+
+                            <div class="reportHeading__left__reportfilter"
+                                 style="    clear: both;"
+                                 ng-if="printPdfVals.reportTypeOpenEntries != 'detail'">
+                                From
+                                <span ng-if="!(printPdfVals.dateFrom.length > 0)">--</span>
+                                <span ng-if="printPdfVals.dateFrom.length > 0">{{printPdfVals.dateFrom}}</span> To
+                                {{printPdfVals.dateTo}}
+                            </div>
+                        </div>
+                        <div class="reportHeading__right">
+                            <img ng-src="{{imagePath+defaultLogo}}"
+                                 class="reportHeading__right__img "
+                                 ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            <div class="reportHeading__right__companyname">{{company_name}}</div>
+                        </div>
+                    </div>
+                </htmlpageheader>
+
+                <sethtmlpageheader name="MyCustomHeader"
+                                   page="ALL"
+                                   value="on"
+                                   show-this-page="1" />
+
+                <pagefooter name="MyFooter4"
+                            content-right="{DATE j-m-Y}"
+                            content-center="Page {PAGENO} of {nb}"
+                            content-left="{{known_as}}"
+                            footer-style="color:#00000;font-size: 11px"
+                            footer-style-left="font-weight:bold;" />
+
+                <setpagefooter name="MyFooter4"
+                               page="ALL"
+                               value="on"
+                               show-this-page="1" />
+
+                <div style="clear: both; margin: 0pt; padding: 0pt; "></div>
+                <style ng-if="toggleLandscape">
+                    @page {
+                        sheet-size: A4-L;
+                        margin: 5mm 5mm 5mm 5mm;
+                        header: html_MyCustomHeader;
+                        footer: MyFooter4;
+                    }
+                </style>
+                <!-- VAT Report Summary -->
+                <div>
+                    <table style="width: 100%;"
+                           ng-if="printPdfVals.reportType == 'summary'"
+                           class="tabletopmargin report-spacing-table">
+                        <thead>
+                            <th>Row No.</th>
+                            <th>Description</th>
+                            <th style="text-align: right"> Amount</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style=" width: 15%;">1.</td>
+                                <td>VAT due on sales and other outputs</td>
+                                <td style="text-align: right">
+                                    {{printPdfVals.p_VATonSale | currency : "" : decimal_range }}
+                                    {{defaultCurrencyCode}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="    width: 15%;">2.</td>
+                                <td>VAT due on acquisition from other EU Member States</td>
+                                <td style="text-align: right">
+                                    {{printPdfVals.p_VATonSaleEU | currency : "" : decimal_range }}
+                                    {{defaultCurrencyCode}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="    width: 15%;">3.</td>
+                                <td>Total VAT due</td>
+                                <td style="text-align: right">
+                                    {{printPdfVals.p_totalVATDue | currency : "" : decimal_range }}
+                                    {{defaultCurrencyCode}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="    width: 15%;">4.</td>
+                                <td>VAT reclaimed on purchases (incl. EU acquisitions)</td>
+                                <td style="text-align: right">
+                                    {{printPdfVals.p_VATonPurchase | currency : "" : decimal_range }}
+                                    {{defaultCurrencyCode}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="    width: 15%;">5.</td>
+                                <td>Net VAT to be paid (+) or to be reclaimed (-)</td>
+                                <td style="text-align: right">
+                                    {{printPdfVals.P_netVAT | currency : "" : decimal_range }} {{defaultCurrencyCode}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="    width: 15%;">6.</td>
+                                <td>Total value of sales excl. VAT, incl. Row 8</td>
+                                <td style="text-align: right">
+                                    {{printPdfVals.p_exclVATonSale | currency : "" : decimal_range }}
+                                    {{defaultCurrencyCode}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="    width: 15%;">7.</td>
+                                <td>Total value of purchases excl. VAT, incl. Row 9</td>
+                                <td style="text-align: right">
+                                    {{printPdfVals.p_exclVATonPurchase | currency : "" : decimal_range }}
+                                    {{defaultCurrencyCode}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="    width: 15%;">8.</td>
+                                <td>Total value of EU Sales</td>
+                                <td style="text-align: right">
+                                    {{printPdfVals.p_EUSale | currency : "" : decimal_range }} {{defaultCurrencyCode}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="    width: 15%;">9.</td>
+                                <td>Total value of EU Purchases</td>
+                                <td style="text-align: right">
+                                    {{printPdfVals.p_EUPurchase | currency : "" : decimal_range }}
+                                    {{defaultCurrencyCode}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- VAT Report Detailed -->
+                <table style="width: 100%"
+                       ng-if="printPdfVals.reportType == 'detail'"
+                       class="tabletopmargin report-spacing-table ">
+                    <thead>
+                        <tr class="bg-col">
+                            <th style="width: 16.66%">Posting Date</th>
+                            <th style="width: 16.66%">Document No.</th>
+                            <th style="width: 16.66%">Document Type</th>
+                            <th style="width: 16.66%">No.</th>
+                            <th style="width: 16.66%">Name</th>
+                            <th class="rightAlign"
+                                style="width: 16.66%">Amount</th>
+                            <th class="rightAlign"
+                                style="width: 16.66%">VAT Amount</th>
+                            <th class="rightAlign"
+                                style="width: 16.66%">Entry No.</th>
+                            <th ng-if="printPdfVals.vatEntriesStatusID==3"
+                                style="width: 16.66%">Posting Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="line in printPdfVals.reportsDataArr track by $index">
+                            <td ng-if="line.RecordType == 'Header'"><b>{{line.PostingGrp}}</b></td>
+                            <td ng-if="line.RecordType == 'Header'"><b>{{line.VATRate}}</b></td>
+                            <td ng-if="line.RecordType == 'Header'"><b>{{line.HeaderType}}</b></td>
+                            <td ng-if="line.RecordType == 'Header'"></td>
+                            <td ng-if="line.RecordType == 'Header'"></td>
+                            <td ng-if="line.RecordType == 'Header'"></td>
+                            <td ng-if="line.RecordType == 'Header'"></td>
+                            <td ng-if="line.RecordType == 'Header'"></td>
+                            <td ng-if="printPdfVals.vatEntriesStatusID==3 && line.RecordType == 'Header'"></td>
+
+                            <td ng-if="line.RecordType == 'Detail'">{{line.PostingDate}}</td>
+                            <td ng-if="line.RecordType == 'Detail'">{{line.DocumentNo}}</td>
+                            <td ng-if="line.RecordType == 'Detail'">{{line.DocumentType}}</td>
+                            <td ng-if="line.RecordType == 'Detail'">{{line.object_no}}</td>
+                            <td ng-if="line.RecordType == 'Detail'">{{line.object_name}}</td>
+                            <td ng-if="line.RecordType == 'Detail'"
+                                class="rightAlign">{{line.Base | currency : "" : decimal_range}} {{defaultCurrencyCode}}
+                            </td>
+                            <td ng-if="line.RecordType == 'Detail'"
+                                class="rightAlign">{{line.Amount | currency : "" : decimal_range}}
+                                {{defaultCurrencyCode}}</td>
+                            <td ng-if="line.RecordType == 'Detail'"
+                                class="rightAlign">{{line.transaction_id}}</td>
+                            <td ng-if="printPdfVals.vatEntriesStatusID==3 && line.RecordType == 'Detail'">
+                                <span ng-if="line.VatPosted == 0">Open</span>
+                                <span ng-if="line.VatPosted == 1">Close</span>
+                            </td>
+
+                            <td ng-if="line.RecordType == 'SumSalesPostingGroupVat'"></td>
+                            <td ng-if="line.RecordType == 'SumSalesPostingGroupVat'"></td>
+                            <td ng-if="line.RecordType == 'SumSalesPostingGroupVat'"></td>
+                            <td ng-if="line.RecordType == 'SumSalesPostingGroupVat'"></td>
+                            <td ng-if="line.RecordType == 'SumSalesPostingGroupVat'"><b>Total {{line.PostingGrp}}
+                                    {{line.VATRate}}
+                                    <!-- {{printPdfVals.asAtDate}} --></b></td>
+                            <td ng-if="line.RecordType == 'SumSalesPostingGroupVat'"
+                                class="rightAlign">
+                                <b>{{line.TotalBaseForPostingGroupandVat | currency : "" : decimal_range}}
+                                    {{defaultCurrencyCode}}</b></td>
+                            <td ng-if="line.RecordType == 'SumSalesPostingGroupVat'"
+                                class="rightAlign">
+                                <b>{{line.TotalAmountForPostingGroupandVat | currency : "" : decimal_range}}
+                                    {{defaultCurrencyCode}}</b></td>
+                            <td ng-if="line.RecordType == 'SumSalesPostingGroupVat'"></td>
+                            <td
+                                ng-if="printPdfVals.vatEntriesStatusID==3 && line.RecordType == 'SumSalesPostingGroupVat'">
+                            </td>
+
+                            <td ng-if="line.RecordType == 'TotalForSalesorPurchase'"></td>
+                            <td ng-if="line.RecordType == 'TotalForSalesorPurchase'"></td>
+                            <td ng-if="line.RecordType == 'TotalForSalesorPurchase'"></td>
+                            <td ng-if="line.RecordType == 'TotalForSalesorPurchase'"></td>
+                            <td ng-if="line.RecordType == 'TotalForSalesorPurchase'"><b>Total {{line.HeaderType}}</b>
+                            </td>
+                            <td ng-if="line.RecordType == 'TotalForSalesorPurchase'"
+                                class="rightAlign">
+                                <b>{{line.TotalBaseForPostingGroupandVat | currency : "" : decimal_range}}
+                                    {{defaultCurrencyCode}}
+                                </b></td>
+                            <td ng-if="line.RecordType == 'TotalForSalesorPurchase'"
+                                class="rightAlign">
+                                <b>{{line.TotalAmountForPostingGroupandVat | currency : "" : decimal_range}}
+                                    {{defaultCurrencyCode}}
+                                </b></td>
+                            <td ng-if="line.RecordType == 'TotalForSalesorPurchase'"></td>
+                            <td
+                                ng-if="printPdfVals.vatEntriesStatus.id==3 && line.RecordType == 'TotalForSalesorPurchase'">
+                            </td>
+
+                            <td ng-if="line.RecordType == 'VatDueOnAcqEU'"></td>
+                            <td ng-if="line.RecordType == 'VatDueOnAcqEU'"></td>
+                            <td ng-if="line.RecordType == 'VatDueOnAcqEU'"></td>
+                            <td ng-if="line.RecordType == 'VatDueOnAcqEU'"></td>
+                            <td ng-if="line.RecordType == 'VatDueOnAcqEU'"><b>VAT due on acquisition from other EU
+                                    member states (Box 2 figure)</b></td>
+                            <td ng-if="line.RecordType == 'VatDueOnAcqEU'"
+                                class="rightAlign">
+                                <b>{{line.TotalBaseForPostingGroupandVat | currency : "" : decimal_range}}
+                                    {{defaultCurrencyCode}}</b></td>
+                            <td ng-if="line.RecordType == 'VatDueOnAcqEU'"
+                                class="rightAlign">
+                                <b>{{line.TotalAmountForPostingGroupandVat | currency : "" : decimal_range}}
+                                    {{defaultCurrencyCode}}</b></td>
+                            <td ng-if="line.RecordType == 'VatDueOnAcqEU'"></td>
+                            <td ng-if="printPdfVals.vatEntriesStatus.id==3 && line.RecordType == 'VatDueOnAcqEU'"></td>
+
+                            <td ng-if="line.RecordType == 'NetVATPaidReclaimed'"></td>
+                            <td ng-if="line.RecordType == 'NetVATPaidReclaimed'"></td>
+                            <td ng-if="line.RecordType == 'NetVATPaidReclaimed'"></td>
+                            <td ng-if="line.RecordType == 'NetVATPaidReclaimed'"></td>
+                            <td ng-if="line.RecordType == 'NetVATPaidReclaimed'"><b>Net VAT to be paid (+) or to be
+                                    reclaimed (-)</b></td>
+                            <td ng-if="line.RecordType == 'NetVATPaidReclaimed'"></td>
+                            <td ng-if="line.RecordType == 'NetVATPaidReclaimed'"
+                                class="rightAlign">
+                                <b>{{line.TotalAmountForPostingGroupandVat | currency : "" : decimal_range}}
+                                    {{defaultCurrencyCode}}
+                                </b></td>
+                            <td ng-if="line.RecordType == 'NetVATPaidReclaimed'"></td>
+                            <td ng-if="filterReport.vatEntriesStatus.id==3 && line.RecordType == 'NetVATPaidReclaimed'">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            ng-click="destroyPdfModal('vatReportsModal')">Cancel</button>
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <!-- data-dismiss="modal" -->
+                    <!-- <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-disabled="generatingPDF"
+                       ng-click="generatePdf(printPdfVals.reportName)">
+                        <i class="fa fa-download"
+                           aria-hidden="true"
+                           style="color:#444444;"></i>
+                    </a>
+                    <a href="app/views/invoice_templates_pdf/{{printPdfVals.reportName}}.pdf"
+                       target="_blank"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       id="displayPdf"
+                       style="display:none">
+                        <i class="fa fa-download"
+                           aria-hidden="true"></i>
+                    </a>
+                    <span class='generatingPDF'
+                          ng-if="generatingPDF">
+                        <i class='fa-spin fa fa-spinner'></i>Generating PDF</span> -->
+                    <!-- jsreport download button -->
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-click="downloadReportVAT(printPdfVals, 'BJxk6b4Mu4')"
+                       ng-if="!jsreportLoading && printPdfVals.reportType == 'summary'">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-click="downloadReportVAT(printPdfVals, 'HJxKiGmfdV')"
+                       ng-if="!jsreportLoading && printPdfVals.reportType == 'detail'">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

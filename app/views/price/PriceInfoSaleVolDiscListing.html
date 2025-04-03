@@ -1,0 +1,69 @@
+<div style="display: inline-block; background: white; width: 100%; margin-top: 10px; border: 1px solid; border-color: #e5e6e9 #dfe0e4 #d0d1d5;">
+    <h3 class="panel-title2" style=" position: relative; top: 4px;"> Volume Discount </h3>
+
+    <div class="pull-right col-sm-2">
+        <a id="prompt" ng-click="PriceOffershowVolDiscForm()" class="btn btn_add pull-right " style="margin-top: -43px; position: relative;right: 11px;" ng-show="(PriceOffer_rec.id > 0 || isAdded)"> Add</a>
+
+        <a id="prompt" ng-click="ShowAddPriceError()" class="btn btn_add pull-right " style="margin-top: -43px; position: relative; right: 11px;" ng-show="!(PriceOffer_rec.id > 0 || isAdded)"> Add</a>
+        <!-- ng-show="(rec.id > 0 || isAdded) && isBtnVolNew" -->
+    </div>
+</div>
+<div class="row" ng-show="PriceOffer_volume_discdata.length > 0" style="margin-top: 15px;">
+    <div class="col-md-12">
+        <div class="col-md-3 pl0">
+            <div class="input-symbol">
+                <input type="text" ng-model="searchKeyword" placeholder="Search" class="in-t-1" />
+                <span id="date_msg_4">
+                    <i class="fa fa-search"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="dt_example" class="example_alt_pagination">
+    <div style="margin-top:10px;">
+        <table ng-table="tableParams5" class="table table-condensed table-striped table-hover table-bordered" ng-show="PriceOffer_volume_discdata.length > 0">
+            <thead>
+                <tr class="bg-col">
+                    <th>Volume Discount</th>
+                    <th>Price</th>
+                    <th>Discount Type</th>
+                    <th>Discount</th>
+                    <th>Discounted Price</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+                <tr ng-repeat="vol_disc in PriceOffer_volume_discdata | filter:searchKeyword">
+
+                    <td ng-click="editVolDiscPriceOffer(vol_disc.id,1)">{{vol_disc.volume}}</td>
+                    <!-- data-title="'Volume Discount'"-->
+                    <td ng-click="editVolDiscPriceOffer(vol_disc.id,1)">{{vol_disc.price | numberNoDecimalsIfZeroFilter:2:PriceOffer_rec.currencys.code}}</td>
+                    <td ng-click="editVolDiscPriceOffer(vol_disc.id,1)">{{vol_disc.discount_type}}</td>
+                    <td ng-click="editVolDiscPriceOffer(vol_disc.id,1)">
+                        <span ng-if="vol_disc.discount_type!='Value'">{{vol_disc.discount}}</span>
+                        <span ng-if="vol_disc.discount_type=='Value'">{{vol_disc.discount | numberNoDecimalsIfZeroFilter:2:''}}&nbsp;&nbsp;{{PriceOffer_rec.currencys.code}}</span>
+                    </td>
+                    <td ng-click="editVolDiscPriceOffer(vol_disc.id,1)">{{vol_disc.discounted_price | numberNoDecimalsIfZeroFilter:2:PriceOffer_rec.currencys.code}}
+                    </td>
+                    <td ng-click="editVolDiscPriceOffer(vol_disc.id,1)">{{convert_unix_date_to_angular(vol_disc.start_date)}}</td>
+                    <td ng-click="editVolDiscPriceOffer(vol_disc.id,1)">{{convert_unix_date_to_angular(vol_disc.end_date)}}</td>
+
+                    <td class="text-left ">
+                        <a title="Volume Discount History" ng-click="ShowVolDiscPriceHistory(vol_disc.id)" class="btn" ng-if="vol_disc.price_volume_history>0">
+                        <i class="fa fa-history" aria-hidden="true"></i>
+                    </a>
+                        <a ng-click="editVolDiscPriceOffer(vol_disc.id,0)" title="Edit" class="btn">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                        <a ng-click="DeletePriceVolume(vol_disc.id,$index,PriceOffer_volume_discdata)" title="Delete" class="btn">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

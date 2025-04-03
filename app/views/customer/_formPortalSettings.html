@@ -1,0 +1,132 @@
+<div ng-include="'app/views/_breadcrumb.html'"></div>
+<div class="row">
+    <div class="col-md-10">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-5 ">
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label "> Login Email
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="col-md-8">
+                                    <input type="email" required data-parsley-required="true" data-parsley-type="email" class="form-control"
+                                        ng-readonly="checkPortalFormReadonly" 
+                                        ng-model="recPortal.user_email" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label "> Password
+                                    <span class="required">*</span>
+                                </label>
+
+                                 <div class="col-md-8">
+                                    <input type="{{inputType}}" required class="form-control"
+                                        ng-readonly="checkPortalFormReadonly" 
+                                        ng-change="checkPassword()"
+                                        ng-model="recPortal.user_password" 
+                                        ng-focus="clearPassword();"
+                                        x-validity="regx.password"
+                                        data-parsley-error-message="The password should contain atleast 
+                                                                    1 Capital alphabet, 
+                                                                    1 Small alphabet, 
+                                                                    1 Numeric, 
+                                                                    1 Special Character and 
+                                                                    length must be atleast 8 Characters"/><!-- type="password"  -->
+
+                                    <span class="show_password" 
+                                        ng-mousedown="eye_symbol_close=1; inputType='text'" 
+                                        ng-mouseup="eye_symbol_close=0; inputType='password'"
+                                        ng-mouseleave="eye_symbol_close=0; inputType='password'">
+                                        
+                                        <i class="fa fa-eye f5" ng-show="eye_symbol_close==0 && !checkPortalFormReadonly" aria-hidden="true"> </i>
+                                        <i class="fa fa-eye-slash f5" ng-show="eye_symbol_close>0  && !checkPortalFormReadonly" aria-hidden="true"> </i>
+                                    </span>
+                                </div> 
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label ">Confirm Password  <span class="required"> *</span> </label>
+                                <div class="col-sm-8">
+                                  <div class="input-symbol">
+                                    <input 
+                                           ng-change="checkPassword()"
+                                           type="password"
+                                           ng-readonly="checkPortalFormReadonly"
+                                           ng-model="recPortal.confirm_password"
+                                           class="form-control" />
+                
+                                        <span class="fa fa-times-circle" aria-hidden="true" ng-if="!isPasswordConfirm && !checkPortalFormReadonly && isPasswordTouched"  style="color:red;font-size: 14px;"></span>
+                                           <span class="fa fa-check-circle" ng-if="isPasswordConfirm" style="color:green;font-size: 14px;" ></span>
+                                  </div>                
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label "> Customer Email(s)
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="col-md-8">
+                                    <input type="text" required class="form-control" id="custEmail" x-validity="regx.multiEmail" 
+                                        ng-readonly="checkPortalFormReadonly" 
+                                        ng-model="recPortal.custEmail"/>
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-group">
+                                <label class="col-md-4 control-label "> Send Portal Link
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-8 ">
+                                    <label class="control-label" 
+                                    style="width: 100%;
+                                    padding: 3.3px 8px;
+                                    border-radius: 2px;
+                                    background: #f4f7f7;
+                                    border: 1px solid #c5c5c5;
+                                    cursor: pointer;">
+                                        <input type="checkbox" 
+                                            ng-model="recPortal.allow_login" 
+                                            ng-true-value="'1'" 
+                                            ng-false-value="'0'" 
+                                            ng-disabled="checkPortalFormReadonly"
+                                        />
+                                    </label>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">                            
+                        </div>
+                    </div>
+
+                    <div class="col-md-12"><!--  style="margin-top: 23px;" -->
+                        <div class="col-md-12">
+
+                            <!-- <div class="pull-left">                                
+                            </div>  -->
+
+                            <div class="pull-right">
+                                <button class="btn btn-submit pic_block" ng-click="sendPortalLinkEmail(recPortal)" ng-if="!checkPortalFormReadonly">
+                                    <i class="fa fa-check fa_display"></i> Send Portal Link Email(s)
+                                </button>
+                                <button class="btn btn-submit pic_block" ng-click="updatePortalSettings(recPortal)" ng-if="!checkPortalFormReadonly">
+                                    <i class="fa fa-check fa_display"></i> Save
+                                </button>
+                                <button class="btn btn-edit" type="button" ng-click="showPortalSettingsForm()" ng-if="checkPortalFormReadonly">
+                                    <i class="fa fa-edit fa_display"></i> Edit
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

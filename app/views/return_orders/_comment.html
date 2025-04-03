@@ -1,0 +1,23 @@
+<form  name="company" ng-controller="OrderEditController" ng-submit="update(rec)" class="form-horizontal" role="form">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="col-md-8">
+            <textarea type="text" id="comment" ng-model="rec.comment" class="form-control" ng-readonly="check_readonly" placeholder="Comments" style="height:231px;width:1041px;" required="1"/></textarea>
+            <input type="text" id="order_id" ng-model="rec.id" class="form-control"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+    <div class="col-md-12 panel-footer">
+        <div class="form-group">
+      <label class="col-md-4 control-label">&nbsp;</label>
+          <div class="col-md-offset-2 col-md-10">
+             <button type="submit" class="btn btn-sm btn-success">Submit</button>&nbsp;
+             <button type="button" class="btn btn-sm btn-default">Cancel</button>
+          </div>
+      </div>
+   </div>
+</div>
+</form>

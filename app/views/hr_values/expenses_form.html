@@ -1,0 +1,214 @@
+<style>
+    .datepick-popup {
+        z-index: 2000 !important;
+        position: fixed;
+        left: 764.25px;
+        top: 96px;
+    }
+</style>
+<div ng-include="'app/views/_breadcrumb2.html'"></div>
+<div class="row">
+    <div class="col-md-10">
+        <div class="widget">
+            <div class="widget-body animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="panel-title2">Expenses Information</div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Expense No.</label>
+
+                                <div class="col-md-8">
+                                    <input readonly type="text" ng-model="expenseForm.event_code" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Employee No.</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="formData.user_code" readonly="readonly" class="form-control" />
+                                </div>
+                            </div>
+                            <!--   <select
+                            ng-model="expenseForm2.currency" ng-options="opt as opt.name for opt in currency_list_b"
+                            class="select2me form-control"  id="currency"  >
+                            </select>
+                            -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label  ">Employee Name</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" ng-value="formData.first_name + ' ' + formData.last_name" readonly="readonly" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label "> Name<span class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <input type="text"  required  ng-model="expenseForm.event_name" class="form-control" ng-disabled="check_expense_form_readonly"/>
+                                    <!-- ng-readonly="check_hrexpenses_readonly"  -->
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label class="col-md-4 control-label "> Description</label>
+
+                                <div class="col-md-8">
+                                    <textarea  maxlength="500" ng-model="expenseForm.event_description" class="form-control" ng-disabled="check_expense_form_readonly"></textarea>
+                                    
+                                </div>
+                            </div> -->
+                            <!--<div class="form-group">
+                            <label class="col-md-4 control-label  ">Employee Company</label>
+
+                            <div class="col-md-8">
+                            <input type="text" readonly="readonly" class="form-control"
+                            value=" {{company_name }}"/>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                            <label class="col-md-4 control-label ">Base Currency </label>
+                            <div class="col-md-8">
+                            <select       ng-model="expenseForm.basecurrency" ng-options="opt as opt.name for opt in currency_list"
+                            class="select2me form-control"  id="basecurrency"  >
+                            </select>
+                            </div>
+                            </div>-->
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Date<span class="required">*</span> </label>
+
+                                <div class="col-md-8">
+                                    <input jqdatepicker style="background-color: white;" class="2date-picker form-control " id="event_date" ng-disabled="check_expense_form_readonly" ng-model="expenseForm.event_date"
+                                        required readonly="">
+                                    <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                    <!--<p class="input-group">
+                                    <input   readonly="readonly"   type="text" class="form-control"  ng-model="expenseForm.event_date"
+
+                                    datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options"
+                                    is-open="datePicker.instances['event_date']"
+                                    close-text="Close"
+                                    data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/" />
+                                    <span class="input-group-btn">
+                                    <button type="button"  ng-disabled="check_hrexpenses_readonly"
+                                    class="btn btn-default" ng-click="datePicker.open($event, 'event_date')"><i class="fa fa-calendar"></i></button>
+                                    </span> </p>-->
+
+                                    <!--<p class="input-group">
+                                    <input   readonly="readonly"  type="text" class="form-control" ng-model="expenseForm.event_date"
+                                    id="event_date"
+                                    datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options"
+                                    is-open="datePicker.instances['event_date']"
+                                    close-text="Close"
+                                    data-parsley-pattern="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}|(?:(0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])[\- \/.](19|20)[0-9]{2})|[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])$/"
+                                    />
+                                    <span class="input-group-btn">
+                                    <button   type="button"   ng-disabled="check_hrexpenses_readonly"
+                                    class="btn btn-default" ng-click="datePicker.open($event, 'event_date')"><i class="fa fa-calendar"></i></button>
+                                    </span> </p>-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ">Status<span class="required">*</span></label>
+
+                                <div class="col-md-8">
+                                    <select disabled ng-model="expenseForm.expense_status" ng-options="opt as opt.name for opt in expense_status_list" class="select2me form-control"
+                                        required>
+                                        <option style="display:block" value=""></option>
+                                    </select>
+                                    <!--ng-disabled="check_hrexpenses_readonly" readonly="readonly"-->
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group">
+                                <label class="col-md-4 control-label ">Vehicle Type</label>
+
+                                <div class="col-md-8">
+                                    <select ng-disabled="expense_id>0" ng-model="expenseForm.vehicleType"
+                                            ng-options="opt as opt.name for opt in arr_vehicle_expense"
+                                            class="select2me form-control" required>
+                                        <option style="display:block" value="0"></option>
+                                    </select>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-if="!(expenseForm.id>0)">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <div class="pull-left">
+                                <!--   <button class="btn btn-info btn_blue"  type="button"ng-click="addNewChoice()">Add Details</button>-->
+                            </div>
+                            <div class="pull-right">
+
+                                <div class="dropdown ib" ng-show="expenseForm.id>0 &&  hr_expenses_module>0">
+                                    <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                        <i class="dte-ico"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dte animated fadeIn">
+                                        <span ng-click="set_document_internal(hr_expenses_module,'Add Expenses')"><i class="fa fa-file-text-o" aria-hidden="true"></i> Add Document</span>
+                                        <span><i class="fa fa-check" aria-hidden="true"></i> Add Task</span>
+                                        <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Compose Email</span>
+                                    </ul>
+                                </div>
+
+                                <button class="btn btn-submit" type="submit" ng-show="!check_hrexpenses_readonly"> Save</button>
+                                <button class="btn btn-edit" type="button" ng-click="showEditFormExpense()" ng-show="check_hrexpenses_readonly"> Edit</button>
+                                <button class="btn btn-cancel" type="button" ng-click="getexpenses()"> Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 padl6">
+        <div class="EmployeeInfo">
+            <div class="employee-label" ng-if="formData.user_id.label!='Administrator'" 
+            style="background-color:#71b9f3;">
+                <i class="fa fa-user-o" aria-hidden="true"></i> {{formData.user_id.label}} </div>
+
+            <div class="employee-label" ng-if="formData.user_id.label=='Administrator'"><i class="fa fa-cog" aria-hidden="true"></i> Admin</div>
+            <div ng-controller="DocUploadDocument_single">
+                <div class="fileUpload showupload">
+                    
+                    <span ng-if="!formData.emp_picture"><i class="fa fa-upload" aria-hidden="true"></i></span>
+                    <span ng-if="formData.emp_picture"><i class="fa fa-upload" aria-hidden="true" style="color:#2196F3"></i></span>
+
+                    <input  type="file" ngf-select="uploadFiles($file, $invalidFiles, 'employeeProfile')"
+                    name="file" class="upload" data-max-size="50" multiple accept=".png,.jpeg,.jpg"/>
+                    <input ng-readonly="check_hrvalues_readonly" type="hidden" ng-model="formData.emp_picture">
+                    <input ng-readonly="check_hrvalues_readonly" type="hidden" ng-init="formData.emp_picture = formData.emp_picture" ng-model="formData.emp_picture">
+                </div>
+            </div>
+
+            <i ng-if="!formData.emp_picture" class="material-icons" style="font-size: 81px;color: #dedede;">&#xE853;</i>
+
+            <div ng-if="formData.emp_picture" style="display:inline-block">
+                <img class="d1img" ng-style="{'background-image':'url('+ imagePath+formData.emp_picture +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat'}" />
+            </div>
+            
+
+            <span class="name">
+                {{formData.first_name + ' ' + formData.last_name}}
+            </span>
+            <span class="job">
+                {{formData.job_title}}
+            </span>
+            <span class="email">
+                <a href="mailto:{{formData.user_email}}">{{formData.user_email}}</a>
+            </span>
+            <span class="mobile" ng-if="formData.mobile_phone.length>0">
+                <i class="fa fa-mobile" aria-hidden="true"></i>
+                <div>{{formData.mobile_phone}}</div>
+            </span>
+            <span class="skype" ng-if="formData.skype_id.length>0">
+                <i class="fa fa-skype" aria-hidden="true"></i>
+                <div>{{formData.skype_id}}</div>
+            </span>
+        </div>
+    </div>
+</div>

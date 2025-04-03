@@ -1,0 +1,123 @@
+
+<div class="modal fade" id="model_his"   >
+ <div class="modal-dialog modal-lg"  ><!--modal-lg   style=" width:65% !important" -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">History </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="widget">
+              <div class="widget-body">
+                <div class="row">
+                  <div class="col-md-12 col-md-12">
+          			  <!--<div class="form-group"><a id="prompt"  class="btn btn-info btn_blue margin_bottom"><i class="fa fa-search"></i>Search</a>
+            <div class="col-sm-7">
+            <input type="text" Placeholder="Search" class="form-control ng-valid ng-dirty" ng-model="searchKeyword">
+            </div>
+            </div>--> 
+                    
+                    <div class="table-responsive">
+                    
+    <tabset> 
+    <tab heading="General Information" class="general_information"  >
+          <div >
+            <div class="vertical_space"></div>
+         		 <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr class="bg-col">
+                          <th ng-repeat="column in columns_general" >{{column.title}}</th>
+                        </tr>
+                      </thead>
+                      <tbody class="courser table-body">
+                        <tr     ng-repeat="rec in general  | filter: searchKeyword  "  >
+                          <td ng-repeat="column in columns_general" >{{rec[column.field]}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+          </div>
+          </tab> 
+          <tab heading="Contact Information" class="contact_setting"  >
+          <div >
+            <div class="vertical_space"></div>
+           		  <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr class="bg-col">
+                          <th ng-repeat="column in columns_contact" >{{column.title}}</th>
+                        </tr>
+                      </thead>
+                      <tbody class="courser table-body">
+                        <tr     ng-repeat="rec in contact  | filter: searchKeyword  "  >
+                          <td ng-repeat="column in columns_contact" >{{rec[column.field]}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+          </div>
+          </tab> <tab heading="Personal Information" class="personal_setting"  >
+          <div >
+            <div class="vertical_space"></div>
+          		  <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr class="bg-col">
+                          <th ng-repeat="column in columns_personal" >{{column.title}}</th>
+                        </tr>
+                      </thead>
+                      <tbody class="courser table-body">
+                        <tr     ng-repeat="rec in personal  | filter: searchKeyword  "  >
+                          <td ng-repeat="column in columns_personal" >{{rec[column.field]}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+          </div>
+          </tab> <tab heading="Salary  " class="salary_setting" >
+          <div >
+            <div class="vertical_space"></div>
+            	  <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr class="bg-col">
+                          <th ng-repeat="column in columns_salary" >{{column.title}}</th>
+                        </tr>
+                      </thead>
+                      <tbody class="courser table-body">
+                        <tr     ng-repeat="rec in salary  | filter: searchKeyword  "  >
+                          <td ng-repeat="column in columns_salary" >{{rec[column.field]}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+          </div>
+          </tab> <tab heading="Benefits" class="benifits_setting" >
+          <div >
+            <div class="vertical_space"></div>
+          		  <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr class="bg-col">
+                          <th ng-repeat="column in columns_benifit" >{{column.title}}</th>
+                        </tr>
+                      </thead>
+                      <tbody class="courser table-body">
+                        <tr     ng-repeat="rec in benifits  | filter: searchKeyword  "  >
+                          <td ng-repeat="column in columns_benifit" >{{rec[column.field]}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+          </div>
+          </tab> 
+        </tabset>
+                       </div>
+        
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn default width_80" data-dismiss="modal" >Cancel</button>
+      </div>
+    </div>
+    <!-- /.modal-content --> 
+  </div>
+</div>

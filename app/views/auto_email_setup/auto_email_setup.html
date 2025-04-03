@@ -1,0 +1,88 @@
+<div ng-include="'app/views/_breadcrumb.html'"
+     class="col-md-12">
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+
+<style>
+    .fixSummernote4 .note-editable{
+            height: 145px;
+    }
+</style>
+<div class="row">
+    <div style="
+    position: fixed;
+    top: 89px;
+    left: 53px;
+    width: 181px;">
+
+        <a ng-repeat="subModule in currentSubModules"
+           class="c-tabs-nav__link"
+           ng-class="{'isActive2':loadedJSON ==  getTrimmedName(subModule)}"
+           ng-click="getJSON(getTrimmedName(subModule)) ">
+            <span>{{subModule}}</span>
+        </a>
+    </div>
+    <div style="    background-color: white;
+    position: fixed;
+    right: 0;
+    top: 94px;
+    bottom: 0;
+    overflow: auto;
+    padding: 14px 22px;
+    left: 250px;
+    border-top-left-radius: 3px;">
+        <div ng-if="emailTemplate.availablePlaceholders">
+            <h5>
+                <b>Sender Email</b>
+            </h5>
+            <select ng-if="emailList.length"
+                    ng-model="emailTemplate.senderEmail"
+                    class="form-control"
+                    ng-disabled="autoEmailReadonly"
+                    style="    width: auto;">
+                <option value=""
+                        ng-selected="1"
+                        disabled>Select</option>
+                <option ng-selected="email.id == emailTemplate.senderEmail"
+                        ng-repeat="email in emailList"
+                        value="{{email.id}}">{{email.username}}</option>
+            </select>
+            <div ng-if="emailList.length == 0">Please configure Virtual Emails in Company Settings.</div>
+            <hr style="margin: 16px 0 16px 0"/>
+            <h5>
+                <b>Subject</b>
+            </h5>
+            <div class="fixSummernote1"
+            ondragstart="return false;" ondrop="return false;"
+                 ng-class="{'disable-el2':autoEmailReadonly}">
+                <summernote id="subjectLine"
+                            config="subjectOptions"
+                            ng-model="emailTemplate.templateSubject"></summernote>
+            </div>
+            <h5>
+                <b>Body</b>
+            </h5>
+            <div class="fixSummernote1 fixSummernote2 fixSummernote4"
+                 ng-class="{'disable-el2':autoEmailReadonly}">
+                <summernote id="bodyLine"
+                            config="bodyOptions"
+                            ng-model="emailTemplate.templateBody"></summernote>
+            </div>
+            <a class="btn  btn-cancel2 pull-right"
+               style="margin-top: 13px;margin-left: 5px;    width: 74px;"
+               type="button"
+               ng-click="selectEmailTab()"
+               href="#/app/setup">Cancel</a>
+            <a ng-if="autoEmailReadonly"
+               class="btn btn-edit pull-right"
+               style="margin-top: 13px;margin-left: 0;    width: 74px;"
+               type="button"
+               ng-click="toggleReadonly()">Edit</a>
+            <a ng-if="!autoEmailReadonly"
+               class="btn btn-submit2 pull-right"
+               style="margin-top: 13px;margin-left: 0;    width: 74px;"
+               type="button"
+               ng-click="saveJSON(activeModuleName)">Save</a>
+        </div>
+    </div>
+</div>

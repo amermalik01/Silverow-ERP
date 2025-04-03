@@ -1,0 +1,7 @@
+Location Name 	CRM Previous Code	Location Previous Code	Address Line 1	Address Line 2	City	County	Postcode	Country Code	Is Primary	Notes	Address Type - Billing	Address Type - Payment	Address Type - Delivery	Delivery Contact Code	Monday Start Time	Monday End Time	Monday Comments	Tuesday Start Time	Tuesday End Time	Tuesday Comments	Wednesday Start Time	Wednesday End Time	Wednesday Comments	Thursday Start Time	Thursday End Time	Thursday Comments	Friday Start Time	Friday End Time	Friday Comments	Saturday Start Time	Saturday End Time	Saturday Comments	Sunday Start Time	Sunday End Time	Sunday Comments	 Error Status
+Edinburgh1	CRM3003	LC00111	ABC	abc2	xyz123	Buckinghamshire	12345	TR	1	xyz123	1	1	1	CCCC20	0.333333333333	0.875	Open	0.333333333333	0.75	Open			Closed			Closed			Closed			Closed			Closed	
+York1	CRM3003	LC00211	ABC	abc3	xyz124	Cambridgeshire	12345	SE	0	xyz124	0	0	0																							
+Stirling1	CRM3003	LC00311	ABC	abc4	xyz125	Staffordshire	444		0	aaa	0	0	0																							
+Belfast1	CRM3003	LC00411	ABC	abc5	xyz126	Somerset	555		0	bbb	0	0	0																							
+Newry1	CRM3004	LC00511	ABC	abc6	xyz127	Nottinghamshire	66		0	ccc	1	1	1	CCCC60	0.375	0.916666666667	Open	0.375	0.916666666667	Closed	0.791666666667	0.875	Closed in the morning			Closed			Open All day			Closed	0.333333333333	0.375		
+Salford1	CRM3004	LC00611	ABC	abc7	xyz128		777		1	ddd	0	0	0																							

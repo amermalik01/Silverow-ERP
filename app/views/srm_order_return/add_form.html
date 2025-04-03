@@ -1,0 +1,17 @@
+
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div ng-include="'app/views/_breadcrumb.html'" ></div>
+<tabset >
+		<form autocomplete="off"class="form-horizontal no-margin small_fields" role="form" validate-form=""  novalidate="" ng-submit="add_general(rec)"  >
+				<div ng-include="'app/views/srm_order_return/_general.html'"  ></div>
+		</form>
+</tabset> 
+  
+<div class="clearfix" style="margin-top:40px;"></div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<div ng-include="'app/views/_listing_supplier_single.html'"></div>
+<div ng-include="'app/views/_listing_modal.html'"></div>
+<div ng-include="'app/views/srm_order/customer_model.html'"></div>
+<div class="clearfix" style="margin-top:40px;"></div>
+
+ 

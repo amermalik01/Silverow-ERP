@@ -1,0 +1,43 @@
+<!-- Order Customer -->
+<div class="modal fade"
+     id="hr_Modal_Left"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+
+  <div class="modal-dialog  modal-lg"
+       style="width: 94%; margin-top: 20px;"
+       dragable>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button"
+                class="close"
+                onclick="$('#hr_Modal_Left').modal('hide');">&times;</button>
+        <h4 class="modal-title">{{title}}</h4>
+      </div>
+      <div class="modal-body">
+       <div class="row"
+             style="    margin-bottom: 0px !important;">
+          <div class="col-md-12">
+            <div class="flexiTable"
+                 x-report-modal="'true'"
+                 x-generate-table
+                 x-data="hrTableData.data"
+                 x-controller-initiate
+                 x-forget-filters="true"
+                 x-table-name="EmployeeLeft"
+                 x-filter-function="getHRLeft()"
+                 x-row-click="confirm_hr(file)"
+                 x-filter-object="searchKeywordHr"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer"> 
+        <button type="button"
+                class="btn btn-cancel"
+                onclick="$('#hr_Modal_Left').modal('hide');">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div ng-controller="ApprovalsController as table">
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+
+  <button class="btn btn-submit"
+          ng-click="SendBulkApprove(1)"
+          style="float:right; margin-top:5px;"
+          type="button">Send for Approval
+  </button>
+  <button class="btn btn-delete active-btns"
+          style="float:right; margin-top:5px;"
+          type="button"
+          ng-click="SendBulkApprove(0)">Cancel
+  </button>
+  <div class="row">
+    <div class="col-md-12 col-md-12">
+      <div class="widget">
+        <div class="widget-body ">
+          <div id="dt_example"
+               class="example_alt_pagination  ">
+            <div>
+              <div class="flexiTable"
+                   x-generate-table
+                   x-controller-initiate
+                   x-data="tableData.data"
+                   x-table-name="AwaitingApprovals"
+                   x-filter-function="getAwaitingApprovals()"
+                   x-checked-records="selectedRecords_awaiting"
+                   x-filter-object="searchKeyword_awaiting"
+                   x-selected-record-preview="code_type"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+  
+<div ng-include="'app/views/approvals/_approval_comment.html'"></div>
+<div ng-include="'app/views/approvals/approvers_list.html'"></div>
+</div>

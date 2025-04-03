@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-lg-12" style="padding-left: 3px !important; padding-right: 3px !important;"> 
+    <!-- START panel-->
+    <div class="panel panel-default no-padding no-border no-margin">
+      <div class="modal-header">
+        <h4 class="modal-title"> {{title}}</h4>
+      </div>
+      <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;"> 
+        <!-- START table-responsive-->
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered table-hover no-margin">
+            <thead>
+              <tr class="bg-col">
+                <th><input type="checkbox" id="checkAll"
+                                           ng-model="selectedAll"   ng-true-value="'true'" ng-false-value="'false'"></th>
+                <th>Name</th>
+                <th>Job Title</th>
+              </tr>
+            </thead>
+            <tbody class="courser table-body">
+              <tr ng-repeat="item in items" >
+                <td><input type="checkbox"   ng-checked="item.chk"  ng-click="selectItem(item.id)" 
+                                           ng-model="item.Selected"     /></td>
+                <td>{{item.first_name}}</td>
+                <td>{{item.job_title}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- END table-responsive--> 
+      </div>
+      <div class="modal-footer">
+        <h4  class="pull-left"  style="float: left;"> selected : {{(items| filter: {chk: true}).length}} </h4>
+        <button class="btn btn_blue no-margin width_80" style="margin:10px;" type="button" ng-click="confirm()"><i class="fa fa-check fa_display"></i>Add</button>
+        <button class="btn default width_80" type="button" ng-click="closeThisDialog()"><i class="fa fa-undo fa_display"></i> Cancel</button>
+      </div>
+    </div>
+    <!-- END panel--> 
+  </div>
+</div>

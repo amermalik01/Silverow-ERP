@@ -1,0 +1,116 @@
+
+<div class="modal fade" id="groupInfoModal_detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" > 
+    <!--ng-init="get_region_list();get_segment_list();get_buyinggroup_list();" >-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{title}}</h4>
+      </div>
+      <div class="modal-body"> 
+        
+        <!-- Filter Start -->
+        <div class="row"> 
+          <!--<div class="col-md-4" >
+              <label class="  control-label">Search </label>
+              <div class=" ">
+                <div class="input-symbol">
+                  <input type="text"   
+                 Placeholder="Search"  class="form-control"ng-model="searchKeyword.$">
+                  <span  id="date_msg_4" > <i class="fa fa-search"></i></span> </div>
+              </div>
+            </div>-->
+          <div class="col-md-2"  >
+            <label class="  control-label">Filter </label>
+            <div class=" "> 
+              <!--  <select  ng-model="searchKeyword.region"     class=" form-control"    >
+                  <option style="display:block" value=""></option>
+                  <option ng-repeat="value in arr_filter" 
+                 value="{{value.name}}">{{value.name}} </option>
+                </select>-->
+              
+              <select ng-model="searchKeyword.normal_filter" 
+                  ng-options="opt as opt.name for opt in arr_filter"
+                   class="form-control"      >
+                <option style="display:block" value=""></option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-2" >
+            <label class="  control-label">Operator </label>
+            <div class=" ">
+              <select ng-model="searchKeyword.operator_filter" 
+                  ng-options="opt as opt.name for opt in arr_operator"
+                   class="form-control"      >
+                <option style="display:block" value=""></option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3" >
+            <label class="  control-label"> Search </label>
+            <div class=" ">
+              <input   type="text"   ng-model="searchKeyword.operator_search"    class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-2" >
+            <label class="  control-label">Logical </label>
+            <div class=" ">
+              <select ng-model="searchKeyword.logical_filter" 
+                  ng-options="opt as opt.name for opt in arr_logic_operator"
+                   class="form-control"      >
+                <option style="display:block" value=""></option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3" >
+            <label class="  control-label"> Search </label>
+            <div class=" ">
+              <input   type="text"   ng-model="searchKeyword.logical_search"    class="form-control" />
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-6" >
+              <label class="  control-label"> </label>
+              <div class=" ">
+                <button type="submit" class="btn btn-default"  ng-click="getcustomer_bucket()"  >Serach</button>
+                <button style="margin-left:10px;" type="button" class="btn btn-default" ng-click="searchKeyword='';"
+               ng-model="strict" >Clear</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Filter End -->
+        
+        <div class="clearfix" style="margin-top:40px;"></div >
+        <br />
+        <div class="col-md-12">
+          <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+            <div class="panel-body" style="  overflow-y: scroll;    max-height: 325px;">
+              <table class="table table-striped table-bordered table-hover" ng-if="columns.length > 0">
+                <thead>
+                  <tr class="bg-col">
+                    <th> <input type="checkbox" class="checkAll_Customer">
+                      &nbsp;</th>
+                    <th ng-repeat="column in columns"> {{column.title}} </th>
+                  </tr>
+                </thead>
+                <tbody class="courser table-body">
+                  <!--| filter:searchKeyword:strict -->
+                  <tr     ng-repeat="cust in arr_customer_all  track by $index  ">
+                    <td><input type="checkbox" ng-checked="cust.chk" ng-click="selectCustomer_bucket(cust)"></td>
+                    <td ng-repeat="column in columns">{{cust[column.field]}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer"> <span class="pull-left">Selected:&nbsp;{{(arr_customer_all | filter: {chk: true}).length}}</span>
+        <button  class="btn btn-info btn_blue" data-dismiss="modal" style="margin:10px;" type="button">Add</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

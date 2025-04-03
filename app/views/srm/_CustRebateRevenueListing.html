@@ -1,0 +1,77 @@
+<div class="nav nav-tabs">
+    <h3 class="panel-title2"> Revenue Rebate </h3>
+
+
+    <div class="pull-right col-sm-2">
+        <a id="prompt" ng-click="ShowVolRevenueRebate(0,2)" class="btn btn_add pull-right " style="    margin-top: -43px;
+    position: relative;
+    right: 11px;"
+           ng-show="(Rebate_rec.id > 0 || isAdded)"> Add</a>
+        <!-- ng-show="(rec.id > 0 || isAdded) && isBtnVolNew" -->
+    </div>
+</div>
+<div class="row" ng-show="RebateRevenueData.length > 0" style="margin-top: 15px;">
+    <div class="col-md-12">
+        <div class="col-md-3 pl0">
+            <div class="input-symbol">
+                <input type="text" ng-model="searchKeyword" placeholder="Search" class="in-t-1"/>
+                <span id="date_msg_4">
+                    <i class="fa fa-search"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="dt_example" class="example_alt_pagination"><!-- -->
+    <div style="margin-top:10px;">
+        <table ng-table="tableParams5" class="table table-condensed table-striped table-hover table-bordered"
+               ng-show="RebateRevenueData.length > 0">
+            <thead>
+            <tr class="bg-col">
+                <th>Revenue From<!--Detail--></th>
+                <th>Revenue To</th>
+                <th>Rebate Type</th>
+                <th>Rebate</th>
+                <!--<th>Start Date</th>
+                <th>End Date</th>-->
+                <th>Created Date</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody class="table-body">
+            <tr ng-repeat="revenue_rec in RebateRevenueData | filter:searchKeyword">
+
+                <!-- <td>{{revenue_rec.volume}}</td>-->
+                <!--<td>{{revenue_rec.volume_revenue_detail}}</td>-->
+                <td>{{revenue_rec.revenue_volume_from}}<span> {{drp.currency.code}} </span></td>
+                <td>{{revenue_rec.revenue_volume_to}}<span> {{drp.currency.code}} </span></td>
+                <td>
+                    <span ng-if="revenue_rec.rebate_type==1">Percentage</span>
+                    <span ng-if="revenue_rec.rebate_type==2">Value</span>
+                </td>
+                <td>
+                    <span ng-if="revenue_rec.rebate_type==1">{{revenue_rec.rebate}}</span>
+                    <span ng-if="revenue_rec.rebate_type==2">{{revenue_rec.rebate| numberNoDecimalsIfZeroFilter:2:''}} <span> {{drp.currency.code}} </span></span>
+                    <span ng-if="revenue_rec.rebate_type==1">&#37;</span>
+                </td>
+                <!--<td>{{convert_unix_date_to_angular(revenue_rec.start_date)}}</td>
+                <td>{{convert_unix_date_to_angular(revenue_rec.end_date)}}</td>-->
+                <td>{{revenue_rec.created_date}}</td>
+
+                <td class="text-left ">
+                    <a title="Revenue Rebate History" ng-click="ShowVolRevenueRebateHistory(revenue_rec.id,2)"
+                       class="btn" ng-if="revenue_rec.rebate_volume_revenue_history>0">
+                        <i class="fa fa-history" aria-hidden="true"></i>
+                    </a>
+                    <a ng-click="ShowVolRevenueRebate(revenue_rec.id,2)" title="Edit" class="btn">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <!--<a ng-click="delete(revenue_rec.id,$index,RebateRevenueData)" title="Delete" class="btn"><i
+                            class="fa fa-times"></i></a>-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

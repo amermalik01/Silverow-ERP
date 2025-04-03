@@ -1,0 +1,32 @@
+<div class="modal fade" id="_coveredAreaEmpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog  modal-lg" dragable style="    width: 80%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Select Employee(s)</h4>
+            </div>
+
+            <div class="modal-body">                
+                <div class="row" style="margin-bottom: 0px !important;">
+                    <div class="col-md-12">
+
+                        <div ng-if="moduleType == 'EmpAreaCovered' && tableDataArea.data.ack">
+                            <div class="flexiTable" 
+                                x-report-modal="'true'" x-generate-table x-data="tableDataArea.data" 
+                                 x-forget-filters="true" x-table-name="AreaCoveredEmpDetailModal" x-filter-function="selectAreaEmployees()" x-controller-initiate
+                                 x-row-click="addAreaEmp(file)"
+                                x-filter-object="searchKeywordEmpArea"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <!-- <button class="btn btn_add" type="button" ng-click="addSalepersons()">Add</button> -->
+                    <button type="button" class="btn btn-cancel" ng-click="clearAreaEmp()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

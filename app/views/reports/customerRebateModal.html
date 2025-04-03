@@ -1,0 +1,569 @@
+<style>
+    @media print {
+        table {
+            page-break-after: always !important;
+        }
+    }
+</style>
+
+<div class="modal fade template-design"
+     id="customerRebateModal">
+    <div class="modal-dialog modal-md"
+         style=" width: 24cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 2cm;">
+
+                <div ng-repeat="rec in printPdfVals.reportsDataArr track by $index"
+                     ng-if="printPdfVals.report_type == 'detail'"
+                     style="clear: both;margin-bottom: 72px;"><!-- {{$index}} -->
+
+                    <sethtmlpageheader name='MyCustomHeader'
+                                       page='ALL'
+                                       value='on'
+                                       show-this-page='1' />
+
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+
+                    <setpagefooter name='MyFooter3'
+                                   page='ALL'
+                                   value='on'
+                                   show-this-page='1' />
+
+                    <!-- <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter3;
+                        }
+                    </style> -->
+
+                    <htmlpageheader name='MyCustomHeader'>
+                        <div class='reportHeading'><!-- {{$index}} -->
+                            <div class='reportHeading__left'>
+                                <div class='reportHeading__left__reportname'
+                                     style="margin-bottom: 12px;">{{printPdfVals.reportTitle}}
+                                </div>
+                                <div class="font10">
+                                    <b ng-if="printPdfVals.module == 'Customer'">Customer No. : </b>
+                                    <b ng-if="printPdfVals.module == 'Supplier'">Supplier No. : </b>
+                                    <span ng-if="rec.custNo && printPdfVals.module == 'Customer'">{{rec.custNo}}</span>
+                                    <span ng-if="rec.suppNo && printPdfVals.module == 'Supplier'">{{rec.suppNo}}</span>
+                                </div>
+                                <div class="font10">
+                                    <b>Name : </b>
+                                    <span ng-if="rec.custName && printPdfVals.module == 'Customer'">{{rec.custName}}</span>
+                                    <span ng-if="rec.suppName && printPdfVals.module == 'Supplier'">{{rec.suppName}}</span>
+                                </div>
+                                <div class="font10">
+                                    <b>Rebate Rate : </b>
+                                    <span ng-if="rec.rebate">{{rec.rebate}}<span ng-if="rec.rebatePriceType == 1">%</span></span>
+                                </div>
+                                <div class='reportHeading__left__reportfilter'
+                                     style="width: 100%;margin-bottom: 5px;">
+                                    From {{printPdfVals.dateFrom}} to {{printPdfVals.dateTo}}
+                                </div>
+                            </div>
+                            <div class='reportHeading__right'>
+                                <img ng-src='{{imagePath+defaultLogo}}'
+                                     class='reportHeading__right__img '
+                                     ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                                <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                            </div>
+                        </div>
+                    </htmlpageheader>
+
+                    <div style="display: inline-block;height: 17px;width: 100%"></div>
+                    <h4 ng-if="rec.saleInvoice.invoices.length > 0"
+                        style=" margin: 0;
+                                margin-bottom: 10px;
+                                font-size: 16px;
+                                font-weight: bold">
+                        Sale Invoices </h4>
+                    <table style="width: 100%;"
+                           ng-if="rec.saleInvoice.invoices.length > 0">
+                        <thead>
+                            <tr>
+                                <th> Posting Date</th>
+                                <th> Document Type </th>
+                                <th> Document No. </th>
+                                <th style="text-align: right;"> Rebate Rate</th>
+                                <th style="text-align: right;"> Sales</th>
+                                <th style="text-align: right;"> Rebate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="inv in rec.saleInvoice.invoices">
+                                <td>{{inv.posting_date}}</td>
+                                <!-- <td ng-if="!(printPdfVals.reportOrderByID == '2')">{{inv.order_date}}</td> -->
+                                <td> {{inv.document_type}} </td>
+                                <td> {{inv.document_no}} </td>
+                                <td style="text-align: right;"> 
+                                    <span ng-if="inv.rebate && inv.rebatePriceType == 1">{{inv.rebate}}%</span>
+                                    <span ng-if="inv.rebate && inv.rebatePriceType == 2">{{inv.rebate}}</span>
+                                </td>
+                                <td style="text-align: right;"> {{inv.amount_ex_vat | currency:""}} </td>
+                                <td style="text-align: right;"> {{inv.rebPrice| currency:""}} </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: right;"><b>Total Sale Invoices</b></td>
+                                <td style="text-align: right;"><b>{{rec.saleInvoice.total_amount_ex_vat |
+                                        currency:""}}</b></td>
+                                <td style="text-align: right;">
+                                    <b>{{rec.saleInvoice.total_commission | currency:""}}</b>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h4 ng-if="rec.creditNote.invoices.length > 0"
+                        style=" margin: 0;
+                                margin-bottom: 10px;
+                                font-size: 16px;
+                                font-weight: bold">
+                        Posted Credit Notes </h4>
+                    <table style="width: 100%;"
+                           ng-if="rec.creditNote.invoices.length > 0">
+                        <thead>
+                            <tr>
+                                <th> Posting Date</th>
+                                <th> Document Type </th>
+                                <th> Document No. </th>
+                                <th style="text-align: right;"> Rebate Rate</th>
+                                <th style="text-align: right;"> Sales </th>
+                                <th style="text-align: right;"> Rebate </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="inv in rec.creditNote.invoices">
+                                <td>{{inv.posting_date}}</td>
+                                <td> {{inv.document_type}} </td>
+                                <td> {{inv.document_no}} </td>
+                                <td style="text-align: right;"> 
+                                    <span ng-if="inv.rebate && inv.rebatePriceType == 1">{{inv.rebate}}%</span>
+                                    <span ng-if="inv.rebate && inv.rebatePriceType == 2">{{inv.rebate}}</span>
+                                </td>
+                                <td style="text-align: right;"> {{inv.amount_ex_vat | currency:""}} </td>
+                                <td style="text-align: right;"> {{inv.rebPrice | currency:""}} </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: right;"><b>Total Posted Credit Notes</b></td>
+                                <td style="text-align: right;"><b>{{rec.creditNote.total_amount_ex_vat |
+                                        currency:""}}</b></td>
+                                <td style="text-align: right;">
+                                    <b>{{rec.creditNote.total_commission | currency:""}}</b>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 ng-if="rec.purchaseInvoice.invoices.length > 0"
+                        style=" margin: 0;
+                                margin-bottom: 10px;
+                                font-size: 16px;
+                                font-weight: bold">
+                        Purchase Invoices </h4>
+                    <table style="width: 100%;"
+                           ng-if="rec.purchaseInvoice.invoices.length > 0">
+                        <thead>
+                            <tr>
+                                <th> Posting Date</th>
+                                <th> Document Type </th>
+                                <th> Document No. </th>
+                                <th style="text-align: right;"> Rebate Rate</th>
+                                <th style="text-align: right;"> Purchase </th>
+                                <th style="text-align: right;"> Rebate </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="inv in rec.purchaseInvoice.invoices">
+                                <td>{{inv.posting_date}}</td>
+                                <td> {{inv.document_type}} </td>
+                                <td> {{inv.document_no}} </td>
+                                <td style="text-align: right;"> 
+                                    <span ng-if="inv.rebate && inv.rebatePriceType == 1">{{inv.rebate}}%</span>
+                                    <span ng-if="inv.rebate && inv.rebatePriceType == 2">{{inv.rebate}}</span>
+                                </td>
+                                <td style="text-align: right;"> {{inv.amount_ex_vat | currency:""}} </td>
+                                <td style="text-align: right;"> {{inv.rebPrice | currency:""}} </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: right;"><b>Total Purchase Invoices</b></td>
+                                <td style="text-align: right;"><b>{{rec.purchaseInvoice.total_amount_ex_vat |
+                                        currency:""}}</b></td>
+                                <td style="text-align: right;">
+                                    <b>{{rec.purchaseInvoice.total_commission | currency:""}}</b>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 ng-if="rec.debitNote.invoices.length > 0"
+                        style=" margin: 0;
+                                margin-bottom: 10px;
+                                font-size: 16px;
+                                font-weight: bold">
+                        Posted Debit Notes </h4>
+                    <table style="width: 100%;"
+                           ng-if="rec.debitNote.invoices.length > 0">
+                        <thead>
+                            <tr>
+                                <th> Posting Date</th>
+                                <th> Document Type </th>
+                                <th> Document No. </th>
+                                <th style="text-align: right;"> Rebate Rate</th>
+                                <th style="text-align: right;"> Purchase </th>
+                                <th style="text-align: right;"> Rebate </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="inv in rec.debitNote.invoices">
+                                <td>{{inv.posting_date}}</td>
+                                <td> {{inv.document_type}} </td>
+                                <td> {{inv.document_no}} </td>
+                                <td style="text-align: right;"> 
+                                    <span ng-if="inv.rebate && inv.rebatePriceType == 1">{{inv.rebate}}%</span>
+                                    <span ng-if="inv.rebate && inv.rebatePriceType == 2">{{inv.rebate}}</span>
+                                </td>
+                                <td style="text-align: right;"> {{inv.amount_ex_vat | currency:""}} </td>
+                                <td style="text-align: right;"> {{inv.rebPrice | currency:""}} </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: right;"><b>Total Purchase Invoices</b></td>
+                                <td style="text-align: right;"><b>{{rec.debitNote.total_amount_ex_vat |
+                                        currency:""}}</b></td>
+                                <td style="text-align: right;">
+                                    <b>{{rec.debitNote.total_commission | currency:""}}</b>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <b style="font-size: 14px;margin-bottom: 6px;display: block;"
+                        ng-if="printPdfVals.module == 'Customer'">Total For {{rec.custName}}</b>
+                    
+                    <b style="font-size: 14px;margin-bottom: 6px;display: block;"
+                        ng-if="printPdfVals.module == 'Supplier'">Total For {{rec.suppName}}</b>
+
+                    <table style="width:100%;" ng-if="printPdfVals.module == 'Customer'">
+                        <tr style="background-color: whitesmoke;">
+                            <td style="text-align: right;width:20%;"><b>Sale Invoices</b></td>
+                            <td style="text-align: right;width:20%;"><b>Posted Credit Notes</b></td>
+                            <td style="text-align: right;width:20%;"><b>Purchase Invoices</b></td>
+                            <td style="text-align: right;width:20%;"><b>Total</b></td>
+                            <td style="text-align: right;width:20%;"><b>Rebate</b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;width:20%;">
+                                <span
+                                      ng-if="rec.saleInvoice.invoices.length > 0">{{rec.saleInvoice.total_amount_ex_vat | currency:""}}
+                                    {{defaultCurrencyCode}}</span>
+                                <span ng-if="!(rec.saleInvoice.invoices.length > 0)">0.00 {{defaultCurrencyCode}}</span>
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                <span
+                                      ng-if="rec.creditNote.invoices.length > 0">{{rec.creditNote.total_amount_ex_vat | currency:""}}
+                                    {{defaultCurrencyCode}}</span>
+                                <span ng-if="!(rec.creditNote.invoices.length > 0)">0.00 {{defaultCurrencyCode}}</span>
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                <span
+                                      ng-if="rec.purchaseInvoice.invoices.length > 0">{{rec.purchaseInvoice.total_amount_ex_vat | currency:""}}
+                                    {{defaultCurrencyCode}}</span>
+                                <span ng-if="!(rec.purchaseInvoice.invoices.length > 0)">0.00 {{defaultCurrencyCode}}</span>
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{rec.saleInvoice.total_amount_ex_vat + 
+                                  rec.creditNote.total_amount_ex_vat +
+                                  rec.purchaseInvoice.total_amount_ex_vat | currency:""}}
+                                {{defaultCurrencyCode}}
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{rec.saleInvoice.total_commission +
+                                  rec.creditNote.total_commission +
+                                  rec.purchaseInvoice.total_commission | currency:""}}
+                                {{defaultCurrencyCode}}
+                            </td>
+                        </tr>
+                    </table> 
+
+                    <table style="width:100%;" ng-if="printPdfVals.module == 'Supplier'">
+                        <tr style="background-color: whitesmoke;">
+                            <td style="text-align: right;width:20%;"><b>Purchase Invoices</b></td>
+                            <td style="text-align: right;width:20%;"><b>Posted Debit Notes</b></td>
+                            <td style="text-align: right;width:20%;"><b>Total</b></td>
+                            <td style="text-align: right;width:20%;"><b>Rebate</b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;width:20%;">
+                                <span
+                                      ng-if="rec.purchaseInvoice.invoices.length > 0">{{rec.purchaseInvoice.total_amount_ex_vat | currency:""}}
+                                    {{defaultCurrencyCode}}</span>
+                                <span ng-if="!(rec.purchaseInvoice.invoices.length > 0)">0.00 {{defaultCurrencyCode}}</span>
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                <span
+                                      ng-if="rec.debitNote.invoices.length > 0">{{rec.debitNote.total_amount_ex_vat | currency:""}}
+                                    {{defaultCurrencyCode}}</span>
+                                <span ng-if="!(rec.debitNote.invoices.length > 0)">0.00 {{defaultCurrencyCode}}</span>
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{rec.purchaseInvoice.total_amount_ex_vat + rec.debitNote.total_amount_ex_vat | currency:""}}
+                                {{defaultCurrencyCode}}
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{rec.purchaseInvoice.total_commission +
+                                  rec.debitNote.total_commission | currency:""}}
+                                {{defaultCurrencyCode}}
+                            </td>
+                        </tr>
+                    </table> 
+
+                    <!-- <div style="page-break-after: always;"
+                         ng-if="printPdfVals.total_records.length - 1 != $index">
+                    </div>
+                    <div style="height: 100px;"
+                         ng-if="printPdfVals.total_records.length - 1 != $index && toggleLandscape">
+                    </div> -->
+                </div>
+
+                <div ng-if="printPdfVals.report_type == 'detail'">
+
+                    <b style="font-size: 14px;margin-bottom: 6px;display: block;">Grand Total</b>
+                    <table style="width:100%;" ng-if="printPdfVals.module == 'Customer'">
+                        <tr style="background-color: whitesmoke;">
+                            <td style="text-align: right;width:20%;"><b>Sale Invoices</b></td>
+                            <td style="text-align: right;width:20%;"><b>Posted Credit Notes</b></td>
+                            <td style="text-align: right;width:20%;"><b>Purchase Invoices</b></td>
+                            <td style="text-align: right;width:20%;"><b>Total</b></td>
+                            <td style="text-align: right;width:20%;"><b>Rebate</b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;width:20%;">
+                                {{printPdfVals.saleInvoice_grand_total_amount_ex_vat | currency:""}} {{defaultCurrencyCode}}
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{printPdfVals.creditNote_grand_total_amount_ex_vat | currency:""}} {{defaultCurrencyCode}}
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{printPdfVals.purchaseInvoice_grand_total_amount_ex_vat | currency:""}} {{defaultCurrencyCode}}
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{printPdfVals.saleInvoice_grand_total_amount_ex_vat +
+                                  printPdfVals.creditNote_grand_total_amount_ex_vat +
+                                  printPdfVals.purchaseInvoice_grand_total_amount_ex_vat | currency:""}} {{defaultCurrencyCode}}
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{printPdfVals.saleInvoice_grand_total_commission +
+                                  printPdfVals.creditNote_grand_total_commission + 
+                                  printPdfVals.purchaseInvoice_grand_total_commission | currency:""}}
+                                {{defaultCurrencyCode}}
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table style="width:100%;" ng-if="printPdfVals.module == 'Supplier'">
+                        <tr style="background-color: whitesmoke;">
+                            <td style="text-align: right;width:20%;"><b>Purchase Invoices</b></td>
+                            <td style="text-align: right;width:20%;"><b>Posted Debit Notes</b></td>
+                            <td style="text-align: right;width:20%;"><b>Total</b></td>
+                            <td style="text-align: right;width:20%;"><b>Rebate</b></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;width:20%;">
+                                {{printPdfVals.purchaseInvoice_grand_total_amount_ex_vat | currency:""}} {{defaultCurrencyCode}}
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{printPdfVals.debitNote_grand_total_amount_ex_vat | currency:""}} {{defaultCurrencyCode}}
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{printPdfVals.purchaseInvoice_grand_total_amount_ex_vat + printPdfVals.debitNote_grand_total_amount_ex_vat | currency:""}} {{defaultCurrencyCode}}
+                            </td>
+                            <td style="text-align: right;width:20%;">
+                                {{ printPdfVals.purchaseInvoice_grand_total_commission + printPdfVals.debitNote_grand_total_commission | currency:""}}
+                                {{defaultCurrencyCode}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div ng-if="printPdfVals.report_type == 'summary'"
+                     style="clear: both;margin-bottom: 72px;">
+
+                    <sethtmlpageheader name='MyCustomHeader'
+                                       page='ALL'
+                                       value='on'
+                                       show-this-page='1' />
+
+                    <pagefooter name='MyFooter3'
+                                content-right='{DATE j-m-Y}'
+                                content-center='Page {PAGENO} of {nb}'
+                                content-left='{{known_as}}'
+                                footer-style='color:#00000;font-size: 11px'
+                                footer-style-left='font-weight:bold;' />
+                    <setpagefooter name='MyFooter3'
+                                   page='ALL'
+                                   value='on'
+                                   show-this-page='1' />
+
+                    <!-- <style ng-if="toggleLandscape">
+                        @page {
+                            sheet-size: A4-L;
+                            margin: 5mm 5mm 5mm 5mm;
+                            header: html_MyCustomHeader;
+                            footer: MyFooter3;
+                        }
+                    </style> -->
+                    <div class='reportHeading'>
+                        <div class='reportHeading__left'>
+                            <div class='reportHeading__left__reportname'
+                                 style="margin-bottom: 12px;">{{printPdfVals.reportTitle}}</div>
+                            <div class='reportHeading__left__reportfilter'
+                                 style="width: 100%;margin-bottom: 5px;">
+                                Rebate Type : {{printPdfVals.rebateType}}
+                            </div>
+                            <div class='reportHeading__left__reportfilter'
+                                 style="width: 100%;margin-bottom: 5px;">
+                                From {{printPdfVals.dateFrom}} to {{printPdfVals.dateTo}}
+                            </div>
+                        </div>
+                        <div class='reportHeading__right'>
+                            <img ng-src='{{imagePath+defaultLogo}}'
+                                 class='reportHeading__right__img '
+                                 ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                        </div>
+                    </div>
+
+                    <div style="width: 85%;margin: 0 auto">
+                        <table style="width: 100%;margin-top: 33px;float: left;">
+                            <thead>
+                                <tr>
+                                    <th ng-repeat="column in printPdfVals.columns"
+                                        ng-if="column.title != 'Nettotal'"
+                                        x-col={{column.title}}
+                                        ng-class="{'rightAlign':  column.title == 'Orderitemprice' || column.title == 'Rebateprice'}">
+                                        <span ng-if="column.title == 'Custno' && printPdfVals.module == 'Customer'">Customer No.</span>
+                                        <span ng-if="column.title == 'Custno' && printPdfVals.module == 'CRM'">CRM No.</span>
+                                        <span ng-if="column.title == 'Suppno' && printPdfVals.module == 'Supplier'">Supplier No.</span>
+                                        <span ng-if="column.title == 'Itemcode'">Item No.</span>
+                                        <span ng-if="column.title == 'Rebstartdate'">Start Date</span>
+                                        <span ng-if="column.title == 'Rebenddate'">End Date</span> 
+                                        <span ng-if="column.title == 'Itemdesc'">Description</span>
+                                        <!-- <span ng-if="column.title == 'Recordtype'">Rebate Type</span> column.title != 'Recordtype' &&  -->
+                                        <!-- <span ng-if="column.title == 'Rebatepricetype'">Price Type</span> -->
+                                        
+                                        <span ng-if="column.title == 'Custname' || column.title == 'Suppname' ">Name</span>
+                                        <span ng-if="column.title == 'Rebateprice'">Rebate Amount</span>
+                                        <span ng-if="column.title == 'Orderitemprice'">Revenue Amount<!-- Order Amount --></span>
+                                        <span ng-if="column.title == 'Deductpoamount'">PO Amount</span>
+                                        <span ng-if="column.title == 'Rebatefrom'">Qty. Upto</span>
+                                        <span
+                                            ng-if="column.title != 'Custno' && column.title != 'Suppno' && column.title != 'Custname' && 
+                                                    column.title != 'Itemcode' && column.title != 'Itemdesc' && column.title != 'Deductpoamount' && 
+                                                    column.title != 'Rebstartdate' && column.title != 'Rebenddate' && 
+                                                    column.title != 'Orderitemprice' && column.title != 'Rebatefrom' && column.title != 'Suppname' &&
+                                                    column.title != 'Rebateprice' && column.title != 'Rebatepricetype'">{{column.title}}</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="rec in printPdfVals.reportsDataArr track by $index" ng-class="{'makeBold':rec['custName'] == 'Grand Total'}">
+                                    <td ng-repeat="column in printPdfVals.columns"
+                                        ng-if="column.title != 'Nettotal'"
+                                        ng-class="{'rightAlign': column.title == 'Orderitemprice' || column.title == 'Rebateprice'  || column.title == 'Deductpoamount'}">
+                                        <!-- ,'makeBold':rec[column.field] == 'Grand Total' -->
+                                        <span
+                                            ng-if=" column.title != 'Orderitemprice' && column.title != 'Rebateprice' && 
+                                                    column.title != 'Rebate' && column.title != 'Rebatepricetype' && column.title != 'Deductpoamount'">
+                                            {{rec[column.field]}}
+                                        </span>
+                                        <span
+                                            ng-if="column.title == 'Rebate' && rec['rebatePriceType'] == 1 && rec[column.field]">
+                                            {{rec[column.field]}}%
+                                        </span>
+                                        <span
+                                            ng-if="column.title == 'Rebate' && rec['rebatePriceType'] == 2">
+                                            {{rec[column.field]}}
+                                        </span>
+                                        <!-- column.title != ''  -->
+                                        <span ng-if="column.title == 'Orderitemprice' || column.title == 'Rebateprice' || column.title == 'Deductpoamount'">
+                                            {{rec[column.field] | currency : "" : decimal_range }}
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="display: inline-block;height: 17px;width: 100%"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            ng-click="destroyPdfModal('customerRebateModal')">Cancel</button>
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <!-- jsreport download button-->
+                    <a type="button"
+                       class="btn btn-default2"
+                       ng-if="!jsreportLoading && printPdfVals.module == 'Customer'"
+                       title="Download PDF"
+                       ng-click="downloadReportCustomerRebate(printPdfVals)">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       class="btn btn-default2"
+                       ng-if="!jsreportLoading && printPdfVals.module == 'CRM'"
+                       title="Download PDF"
+                       ng-click="downloadReportCRMRebate(printPdfVals)">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       class="btn btn-default2"
+                       ng-if="!jsreportLoading && printPdfVals.module == 'Supplier'"
+                       title="Download PDF"
+                       ng-click="downloadReportSupplierRebate(printPdfVals)">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

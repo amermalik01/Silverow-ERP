@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="navson">
+<head>
+
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="description" content="{{app.description}}">
+   <meta name="keywords" content="app, responsive, angular, bootstrap, dashboard, admin">
+   <title data-ng-bind="pageTitle()"> Navson</title>
+   <link rel="stylesheet" href="app/css/bootstrap.min.css">
+   <!-- <link rel="stylesheet" href="app/css/app.css" data-ng-if="!app.layout.isRTL"> -->
+   <link rel="stylesheet" href="app/css/new.css">
+   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,600,600italic,700,400italic' rel='stylesheet' type='text/css'>
+   <link rel="stylesheet" href="app/css/custom.css">
+
+
+
+<!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="app/js/html5shiv.js"></script>
+      <script src="app/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body data-ng-class="{ 'layout-fixed' : app.layout.isFixed, 'aside-collapsed' : app.layout.isCollapsed, 'layout-boxed' : app.layout.isBoxed, 'layout-fs': app.useFullLayout, 'hidden-footer': app.hiddenFooter, 'layout-h': app.layout.horizontal, 'aside-float': app.layout.isFloat, 'body-bg-color':app.layout.isBodyColor}">
+<div data-ui-view="" data-autoscroll="false" class="wrapper"></div>
+
+<!--AngularJS Files--> 
+<script src="app/js/base.js"></script> 
+<script src="app/js/app.js"></script> 
+
+<!-- SETUP MODULES -->
+<script src="app/views/company/company.js"></script>
+<script src="app/views/currency/currency.js"></script>
+<script src="app/views/company_info/company_info.js"></script>
+<!-- <script src="app/views/bank/bank.js"></script> -->
+<script src="app/views/modules_codes/modules_codes.js"></script>
+<script src="app/views/modules_filters/filter.js"></script>
+<script src="app/views/coverage_areas/coverage.js"></script>
+<script src="app/views/shipping_measurment/shipping-measurment.js"></script>
+<script src="app/views/predefines/predefines.js"></script>
+<script src="app/views/cause_of_inactivity/cause_of_inactivity.js"></script>
+<script src="app/views/job_title/job_title.js"></script>
+<script src="app/views/department/department.js"></script>
+<!-- <script src="app/views/vat_setup/vat_setup.js"></script> -->
+<script src="app/views/posting_setup/posting_setup.js"></script>
+<script src="app/views/shipment_methods/shipment_methods.js"></script>
+<script src="app/views/payment_methods/payment_methods.js"></script>
+<script src="app/views/payment_terms/payment_terms.js"></script>
+<script src="app/views/finance_charges/finance_charges.js"></script>
+<script src="app/views/insurance_charges/insurance_charges.js"></script>
+<script src="app/views/sales_pipeline_target/sales_pipeline_target.js"></script>
+<!--<script src="app/views/crm_tabs/crm_tabs.js"></script>
+-->
+
+<!-- CRM MODULES --> 
+<!--<script src="app/views/crm/crm.js"></script>-->
+
+<!-- STOCK MODULES --> 
+<script src="app/views/category/category.js"></script> 
+<script src="app/views/brands/brands.js"></script> 
+<script src="app/views/units_of_measure/units_of_measure.js"></script> 
+<script src="app/views/cat_units_of_measure/cat_units_of_measure.js"></script> 
+<script src="app/js/services.js"></script> 
+<script src="app/views/product_tabs/product_tabs.js"></script> 
+<script src="app/views/product_tabs_col/product_tabs_col.js"></script> 
+<script src="app/views/product_values/product_values.js"></script> 
+<script src="app/views/hr_tabs/hr_tabs.js"></script> 
+<script src="app/views/hr_tabs_col/hr_tabs_col.js"></script> 
+<script src="app/views/hr_values/hr_values.js"></script> 
+<!-- File Uploading --> 
+<script src="app/js/ng-file-upload-shim.js"></script> 
+<script src="app/js/ng-file-upload.js"></script> 
+
+<!-- JQuery Files--> 
+<!-- <script src="app/vendor/jquery.js"></script> --> 
+<script src="app/vendor/bootstrap.min.js"></script> 
+<script src="app/vendor/jquery.scrollUp.js"></script> 
+
+<!-- jQuery UI JS --> 
+<!-- <script src="app/vendor/jquery-ui-v1.10.3.js"></script> --> 
+
+<!-- Just Gage 
+<script src="app/vendor/justgage/justgage.js"></script>
+<script src="app/vendor/justgage/raphael.2.1.0.min.js"></script>
+--> 
+<!-- Custom JS --> 
+<script src="app/vendor/menu.js"></script> 
+<!--<script src="app/vendor/custom-index2.js"></script>--> 
+
+<script type="text/javascript">
+
+$(document).on('click','#cssmenu ul li',function(){
+    $("#cssmenu ul li").removeClass('active');
+    $(this).addClass('active');
+});
+
+  function load_rainloop(){
+      $.ajax({
+        method: "POST",
+        url: "http://navson.com/navson/rainloop/?/Ajax/&q[]=/0/",
+        /*
+        data: { Email: "sajid@navsonsoftware.com", Login: "", Password: "ToroRoso14/", Language: "", AdditionalCode: "", AdditionalCodeSignMe: "0", SignMe: "0", Action: "Login", XToken: "slimRow560d6ea6245b918c7fc3e177a"}
+        */
+        data: { Email: "waqar@rawaccounts.com", Login: "", Password: "gpcWA2015", Language: "", AdditionalCode: "", AdditionalCodeSignMe: "0", SignMe: "0", Action: "Login", XToken: "slimRow560d6ea6245b918c7fc3e177a"}
+      })
+      .done(function( msg ) {
+        window.location = "http://navson.com/navson/rainloop/index.php";
+        //document.getElementById("rs_div").innerHTML = msg;
+      });
+    }
+  //ScrollUp
+  $(function () {
+    $.scrollUp({
+      scrollName: 'scrollUp', // Element ID
+      topDistance: '300', // Distance from top before showing element (px)
+      topSpeed: 300, // Speed back to top (ms)
+      animation: 'fade', // Fade, slide, none
+      animationInSpeed: 400, // Animation in speed (ms)
+      animationOutSpeed: 400, // Animation out speed (ms)
+      scrollText: 'Top', // Text for element
+      activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+    });
+  });
+</script>
+</body>
+</html>

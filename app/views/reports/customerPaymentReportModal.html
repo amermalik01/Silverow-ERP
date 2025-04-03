@@ -1,0 +1,163 @@
+<div class="modal fade template-design"
+     id="customerPaymentReportsModal">
+    <div class="modal-dialog modal-md"
+         style=" width: 24cm;margin-top: 11px;">
+        <div class="modal-content">
+            <div class="modal-body"
+                 id="{{printPdfVals.reportName}}"
+                 style="max-height: 80vh;overflow: auto;padding: 2cm;">
+
+                <htmlpageheader name='MyCustomHeader'>
+                    <div class='reportHeading'>
+                        <div class='reportHeading__left'>
+                            <div class='reportHeading__left__reportname'>Payments and Refunds from Customers</div>
+                            <div class='reportHeading__left__reportfilter'>
+                                From
+                                <span ng-if='!(printPdfVals.dateFrom.length > 0)'>--</span>
+                                <span ng-if='printPdfVals.dateFrom.length > 0'>{{printPdfVals.dateFrom}}</span>
+                                To {{printPdfVals.dateTo}}
+                            </div>
+                        </div>
+                        <div class='reportHeading__right'>
+                            <img ng-src='{{imagePath+defaultLogo}}'
+                                 class='reportHeading__right__img '
+                                 ng-class="{'reportHeading__right__img_resized': company_logo_height >= 100 }">
+                            <div class='reportHeading__right__companyname'>{{company_name}}</div>
+                        </div>
+                    </div>
+                </htmlpageheader>
+                <sethtmlpageheader name='MyCustomHeader'
+                                   page='ALL'
+                                   value='on'
+                                   show-this-page='1' />
+                <pagefooter name='MyFooter3'
+                            content-right='{DATE j-m-Y}'
+                            content-center='Page {PAGENO} of {nb}'
+                            content-left='{{known_as}}'
+                            footer-style='color:#00000;font-size: 11px'
+                            footer-style-left='font-weight:bold;' />
+                <setpagefooter name='MyFooter3'
+                               page='ALL'
+                               value='on'
+                               show-this-page='1' />
+                <style ng-if="toggleLandscape">
+                    @page {
+                        sheet-size: A4-L;
+                        margin: 5mm 5mm 5mm 5mm;
+                        header: html_MyCustomHeader;
+                        footer: MyFooter3;
+                    }
+                </style>
+                <div style="clear: both; margin: 0pt; padding: 0pt; "></div>
+
+                <!-- Unposted Sale Order -->
+                <table style="width: 100%"
+                       class="mytable1234 report-spacing-table">
+                    <thead>
+                        <tr>
+                            <th ng-class="{'rightAlign': column.title == 'Amount' || column.title == 'Amount In_lcy' || column.title == 'Remaining Amount', 
+                                           'centerAlign': column.title == 'Finance' || column.title == 'Insurance' }"
+                                ng-repeat="column in printPdfVals.columns"
+                                ng-if="column.title!= 'Id' && column.title!= 'Invlink' && column.title != 'Module' &&  column.title!= 'Invlinkid' && column.title != 'Link'">
+                                <span ng-if="column.title == 'Custno'">Customer No.</span>
+                                <span ng-if="column.title == 'Invoice No.'">Doc. No.</span>
+                                <span ng-if="column.title == 'Doctype'">Doc. Type</span>
+                                <span ng-if="column.title == 'Amount In_lcy'">Amount (LCY)</span>
+                                <span
+                                      ng-if="column.title != 'Custno' && column.title != 'Amount In_lcy' && column.title != 'Invoice No.' &&  column.title != 'Doctype'">{{column.title}}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="rec in printPdfVals.reportsDataArr"
+                            ng-class="{'makeBold padTopBot': rec.Custno == '' && rec.Customer_name == ''}">
+                            <td ng-repeat="column in printPdfVals.columns"
+                                ng-if="column.title != 'Id'"
+                                ng-class="{'rightAlign': column.title == 'Amount' || column.title == 'Amount In_lcy' || column.title == 'Remaining Amount', 
+                                           'centerAlign': column.title == 'Finance','centerAlign': column.title == 'Finance' || column.title == 'Insurance' }">
+                                <span
+                                      ng-if="column.title != 'Amount' && column.title != 'Amount In_lcy' && column.title != 'Remaining Amount' && column.title != 'Finance' && column.title != 'Insurance' ">
+                                    {{rec[column.field]}}</span>
+
+                                <span class="fa"
+                                      ng-if="(column.title == 'Finance' || column.title == 'Insurance') && rec[column.field] == 'Yes' "
+                                      style="color:black;font-size: 7px;">&#xf111;</span>
+
+                                <span
+                                      ng-if="(column.title == 'Amount' || column.title == 'Amount In_lcy' || column.title == 'Remaining Amount') && (rec[column.field]!='') && column.title != 'Customer Finance'">{{rec[column.field]
+                                    | currency : "" : decimal_range }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><b>Total</b></td>
+                            <td style="text-align: right"><b>{{printPdfVals.reportSummary.payments -
+                                    printPdfVals.reportSummary.refund | currency : "" : decimal_range}} </b></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel pull-right "
+                            ng-click="destroyPdfModal('customerPaymentReportsModal')">Cancel</button>
+                    <label class="ib"
+                           style="margin-right: 4px;">
+                        <input type="checkbox"
+                               ng-change="updatePageOrientation(toggleLandscape)"
+                               ng-model="toggleLandscape">Print in Landscape Orientation
+                    </label>
+                    <!-- data-dismiss="modal" -->
+<!-- 
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-disabled="generatingPDF"
+                       ng-click="generatePdf(printPdfVals.reportName)">
+                        <i class="fa fa-download"
+                           aria-hidden="true"
+                           style="color:#444444;"></i>
+                    </a>
+                    <a href="app/views/invoice_templates_pdf/{{printPdfVals.reportName}}.pdf"
+                       target="_blank"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       id="displayPdf"
+                       style="display:none">
+                        <i class="fa fa-download"
+                           aria-hidden="true"></i>
+                    </a>
+                    <span class='generatingPDF'
+                          ng-if="generatingPDF">
+                        <i class='fa-spin fa fa-spinner'></i>Generating PDF</span> -->
+
+                    <!-- jsreport download button -->
+
+                    <a type="button"
+                       class="btn btn-default2"
+                       title="Download PDF"
+                       ng-if="!jsreportLoading"
+                       ng-click="downloadReportPaymentNRefundFCustomer(printPdfVals)">
+                        <i class="fa fa-cloud-download"
+                           aria-hidden="true"
+                           style="color: #3ea756;"></i>
+                    </a>
+                    <a type="button"
+                       ng-if="jsreportLoading"
+                       class="btn btn-default2"
+                       title="Downloading PDF">
+                        <i class='fa-spin fa fa-spinner'></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,164 @@
+<style>
+    tbody.set-mar tr td {
+        padding: 10px !important;
+        border-left: 0px;
+    }
+</style>
+<div class="modal fade"
+     id="storageLocAddCostModal">
+    <div class="modal-dialog modal-lg"
+         dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"> Additional Costs Setup</h4>
+            </div>
+            <div class="modal-body"
+                 style="min-height: 150px;">
+                <div style="background:none;">
+                    <div class="vertical_space"></div>
+                    <div class="row form-horizontal">
+                        <div class="">
+                            <div class="col-md-3">
+                                <label class="control-label">Title <span class="required">*</span></label>
+                                <select required
+                                        class="form-control"
+                                        ng-model="rec3.title"
+                                        ng-disabled="check_readonly"
+                                        ng-options="opt as opt.title for opt in additional_cost_title"
+                                        ng-change="onChange_additional_cost_title()">
+                                    <option value=""
+                                            disabled
+                                            selected>Select Title</option>
+                                </select>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="control-label">Comments </label>
+                                <input type="text"
+                                       ng-model="rec3.description"
+                                       ng-readonly="check_readonly"
+                                       class="form-control"
+                                       maxlength="100" />
+                            </div>
+                            <div class="col-md-1">
+                                <label class="control-label ">&nbsp;</label>
+                                <button class="btn btn_add2 pull-right "
+                                        type="button"
+                                        ng-click="addStorageLocAddCost(rec3)"
+                                        ng-if="!(rec3.id>0)"
+                                        ng-disabled="check_readonly">
+                                    <i class="fa fa-plus fa_display"></i> Add
+                                </button>
+                                <button class="btn btn-submit2 pull-right "
+                                        type="button"
+                                        ng-click="addStorageLocAddCost(rec3)"
+                                        ng-if="rec3.id>0"
+                                        ng-disabled="check_readonly">
+                                    <i class="fa fa-plus fa_display"></i> Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row"
+                         ng-if="columns2.length > 0">
+                        <div class="col-md-12 ">
+                            <div>
+                                <div>
+                                    <div>
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead class="fixit">
+                                                <tr class="bg-col"
+                                                    ng-show="columns2.length > 0">
+                                                    <th ng-repeat="column in columns2"
+                                                        ng-if="	column.title != 'Id'  "> {{column.title}}
+                                                    </th>
+                                                    <th style="width: 11%; text-align: center !important;"
+                                                        ng-if="!check_readonly">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="fixit">
+                                                <tr ng-repeat="rec3 in bin_loc_add_cost_data"
+                                                    ng-show="columns2.length > 0">
+                                                    <td ng-repeat="column in columns2"
+                                                        ng-if="column.title != 'Id'"
+                                                        ng-click="editStorageLocAddCost(rec3.id)"
+                                                        sortable="column.title">
+                                                        {{rec3[column.field]}}
+                                                    </td>
+                                                    <td style="text-align: center !important;width: 11%;"
+                                                        ng-if="!check_readonly">
+                                                        <a ng-click="editStorageLocAddCost(rec3.id)"
+                                                           title="Edit"
+                                                           class="btn ">
+                                                            <i class="fa fa-edit"></i></a>
+                                                        <a ng-click="delete_bin_loc_add_cost(rec3.id,$index,bin_loc_add_cost_data)"
+                                                           title="Delete"
+                                                           class="btn ">
+                                                            <i class="fa fa-times"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="!columns2.length > 0"
+                         class="no-record"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button"
+                            class="btn btn-cancel"
+                            data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+            <div ng-include="'app/views/warehouse/add_additional_cost_title_modal.html'"></div>
+        </div>
+    </div>
+</div>
+<div class="modal fade"
+     id="bin_loc_add_cost_modal">
+    <div class="modal-dialog modal-lg"
+         dragable>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"> Additional Costs Setup</h4><!-- {{popup_title}} -->
+            </div>
+            <div class="modal-body"
+                 style="min-height: 150px;">
+                <div ng-include="'app/views/warehouse/bin_loc_add_cost_form.html'"></div>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button class="btn btn-submit2"
+                            type="button"
+                            ng-show="!check_readonly"
+                            ng-click="addStorageLocAddCost(rec3)">Save
+                    </button>
+                    <button class="btn btn-edit"
+                            type="button"
+                            ng-click="gotoedit()"
+                            ng-show="check_readonly && bin_loc_add_cost_FormShow"><i class="fa fa-edit"></i> Edit
+                    </button>
+                    <button type="button"
+                            class="btn btn-cancel"
+                            data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

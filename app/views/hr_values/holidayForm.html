@@ -1,0 +1,423 @@
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div ng-class="{'whirl no-overlay':showLoader}"></div>
+<div class="row"
+     style="margin-top: 42px;">
+  <div class="col-md-12 col-md-12">
+    <div class="bs-example bs-example-tabs"
+         data-example-id="togglable-tabs">
+         <div>
+            <tabset>
+                <tab heading="Holidays"
+                    class="general_information">
+
+                    <form autocomplete="off"
+                        class="form-horizontal no-margin"
+                        role="form"
+                        name="addForm"
+                        >
+
+                        <div ng-include="'app/views/_breadcrumb2.html'"></div>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="widget">
+                                    <div class="widget-body animated fadeIn">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="panel-title2">Holidays</div>
+                                                <div class="col-md-5">
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label ">Holiday No.</label>
+
+                                                        <div class="col-md-8">
+                                                            <input readonly
+                                                                type="text"
+                                                                ng-model="formData.holiday_code"
+                                                                class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label ">Employee No. </label>
+
+                                                        <div class="col-md-8">
+                                                            <input type="text"
+                                                                ng-model="formData.empCode"
+                                                                readonly="readonly"
+                                                                class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label  ">Employee Name</label>
+
+                                                        <div class="col-md-8">
+                                                            <input type="text"
+                                                                ng-value="formData.empName"
+                                                                readonly="readonly"
+                                                                class="form-control" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label">Holiday Year<span class="required">*</span></label>
+
+                                                        <div class="col-md-8">
+                                                            <ui-select ng-disabled="holidayReadOnly"
+                                                                ng-model="formData.holidayYear"
+                                                                ng-change="holidayYearUpdate(formData.holidayYear.id)">
+                                                                <ui-select-match placeholder="Select Year">{{$select.selected.name}}</ui-select-match>
+                                                                <ui-select-choices repeat="opt in holidayYearType | filter: $select.search">
+                                                                <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                                                </ui-select-choices>
+                                                            </ui-select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label ">Holiday Type</label>
+                                                        <div class="col-md-8"
+                                                            style="margin-top: 4px;padding-right: 0;font-size: 10.5px;">
+                                                            <label style="font-weight: normal;margin-right: 3px;"
+                                                                class="cursorPointer">
+                                                                <input type="radio"
+                                                                    name="leave_type"
+                                                                    ng-model="formData.holiday_nature"
+                                                                    value="1"
+                                                                    ng-disabled="holidayReadOnly || (holiday_id > 0 && formData.holidayStatus == 2 && holiday_approval_req > 0)"
+                                                                    ng-click="showHolidayType(1);">
+                                                                Annual Leave
+                                                            </label>
+                                                            <label style="font-weight: normal;margin-right: 3px;"
+                                                                class="cursorPointer">
+                                                                <input type="radio"
+                                                                    name="leave_type"
+                                                                    ng-model="formData.holiday_nature"
+                                                                    value="2"
+                                                                    ng-disabled="holidayReadOnly || (holiday_id > 0 && formData.holidayStatus == 2 && holiday_approval_req > 0)"
+                                                                    ng-click="showHolidayType(2);"
+                                                                    ng-readonly="holidayReadOnly">
+                                                                Sick Leave
+                                                            </label>
+                                                            <label style="font-weight: normal"
+                                                                class="cursorPointer">
+                                                                <input type="radio"
+                                                                    name="leave_type"
+                                                                    ng-model="formData.holiday_nature"
+                                                                    value="3"
+                                                                    ng-disabled="holidayReadOnly || (holiday_id > 0 && formData.holidayStatus == 2 && holiday_approval_req > 0)"
+                                                                    ng-click="showHolidayType(3);"
+                                                                    ng-readonly="holidayReadOnly">
+                                                                Other Leave
+                                                            </label>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="form-group"
+                                                        ng-if="EntitledHolidays">
+                                                        <label class="col-md-4 control-label ">Entitled Annual Leave </label>
+
+                                                        <div class="col-md-8">
+                                                            <input type="text"
+                                                                class="form-control"
+                                                                ng-model="formData.entitle_holiday"
+                                                                readonly />
+
+                                                            <span class="place-gbp3">Days</span>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="form-group"
+                                                        ng-if="AvailedHolidays">
+                                                        <label class="col-md-4 control-label ">Availed / Booked</label>
+                                                        <div class="col-md-8">
+                                                            <input type="text"
+                                                                readonly="readonly"
+                                                                ng-if="formData.holidayYear.id!= 2"
+                                                                ng-value="((formData.holidayStatus!=3)?(formData.holiday_used - tempHolidayBooked):formData.holiday_used)"
+                                                                class="form-control">
+                                                            <input type="text"
+                                                                readonly="readonly"
+                                                                ng-if="formData.holidayYear.id== 2"
+                                                                ng-value="0"
+                                                                class="form-control">
+                                                            <span class="place-gbp3">Days</span>
+                                                        </div>
+                                                    </div>                           
+                                                </div>
+                                                <div class="col-md-5 col-md-offset-2">
+
+                                                    <div class="form-group"
+                                                        ng-if="holidayRangeStart && holidayRangeEnd">
+                                                        <label class="col-md-4 control-label ">Date <span class="required">*</span>
+                                                        </label>
+
+                                                        <div class="col-md-4 padr6">
+                                                            <div class="from_date">
+                                                                <div class="from_date_title">From:</div>
+                                                                <input jqdatepicker
+                                                                    x-min-date="{{holidayRangeStart}}"
+                                                                    x-max-date="{{holidayRangeEnd}}"
+                                                                    class="2date-picker form-control "
+                                                                    id="holiday_date_from"
+                                                                    ng-model="formData.holiday_date_from"
+                                                                    ng-class="{'pickdate':!holidayReadOnly}"
+                                                                    ng-change="testdate_by_id('holiday_date_from','holiday_date_to','date_msg_holiday');"
+                                                                    required
+                                                                    readonly>
+                                                                <!-- ng-disabled="holidayReadOnly" -->
+                                                                <span class="fa fa-calendar  new_ca  form-control-feedback"
+                                                                    style="right: -24px;"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4 padl6">
+                                                            <div class="to_date">
+                                                                <div class="to_date_title">To:</div>
+                                                                <input jqdatepicker
+                                                                    x-min-date="{{holidayRangeStart}}"
+                                                                    x-max-date="{{holidayRangeEnd}}"
+                                                                    class="2date-picker form-control "
+                                                                    id="holiday_date_to"
+                                                                    ng-model="formData.holiday_date_to"
+                                                                    ng-class="{'pickdate':!holidayReadOnly}"
+                                                                    ng-change="testdate_by_id('holiday_date_from','holiday_date_to','date_msg_holiday');"
+                                                                    required
+                                                                    readonly="">
+                                                                <span class="fa fa-calendar  new_ca  form-control-feedback"></span>
+                                                            </div>
+                                                            <span id="date_msg_holiday"
+                                                                style="color:#F00; display: none;">Leave Date To is earlier then Leave
+                                                                Date From</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label"
+                                                            title="Number of Days">No. of Days<span class="required">*</span></label>
+
+                                                        <div class="col-md-8">
+                                                            <input type="number"
+                                                                step="0.01"
+                                                                ng-readonly="holidayReadOnly || (formData.holiday_nature==1 && (formData.entitle_holiday - formData.holiday_used - (-tempHolidayBooked)) == 0)"
+                                                                ng-model="formData.holiday_num_days"
+                                                                class="form-control"
+                                                                max="{{formData.holiday_nature==1?(formData.entitle_holiday - formData.holiday_used - (-tempHolidayBooked)):999}}"
+                                                                min="0"
+                                                                
+                                                                required>
+                                                            <span class="place-gbp3">Days</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group"
+                                                        ng-if="remainingHolidays">
+
+                                                        <label class="col-md-4 control-label ">Remaining Annual Leave</label>
+
+                                                        <div class="col-md-8">
+                                                            <input type="text" readonly="readonly" class="form-control"
+                                                                ng-value="formData.holiday_nature=='1'?(formData.entitle_holiday - formData.holiday_used - formData.holiday_num_days - (-tempHolidayBooked)):(formData.entitle_holiday - formData.holiday_used)"
+                                                                ng-if="formData.holiday_code!='' && formData.holidayYear.id!= 2">
+
+                                                            <input type="text" readonly="readonly" class="form-control"
+                                                                ng-if="formData.holiday_code=='' && formData.holidayYear.id!= 2" 
+                                                                ng-value="formData.holiday_nature=='1'?(formData.entitle_holiday - totalAvailed - formData.holiday_num_days - totalBooked): (formData.entitle_holiday - formData.holiday_used)">
+                                                            
+                                                            <input type="text" readonly="readonly" class="form-control"
+                                                                ng-value="formData.holiday_nature=='1'?(formData.entitle_holiday - nextYeartotalHoliday - formData.holiday_num_days):(formData.entitle_holiday - formData.holiday_used)"
+                                                                ng-if="formData.holiday_code && formData.holidayYear.id == 2">
+                                                            
+                                                            <input type="text" readonly="readonly" class="form-control"
+                                                                ng-if="!formData.holiday_code && formData.holidayYear.id == 2" 
+                                                                ng-value="formData.holiday_nature=='1'?(formData.entitle_holiday - nextYeartotalHoliday):(formData.entitle_holiday -  formData.holiday_used)">
+
+                                                            <span class="place-gbp3">Days</span>
+                                                        </div><!-- #{{nextYeartotalHoliday}}##{{formData.holiday_num_days}}# -->
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label ">Notes</label>
+
+                                                        <div class="col-md-8">
+                                                            <!--<textarea ng-model="formData.holiday_description" class="form-control"></textarea>-->
+                                                            <input class="form-control"
+                                                                ng-readonly="holidayReadOnly"
+                                                                ng-model="formData.holiday_description"
+                                                                maxlength="100">
+                                                        </div>
+                                                        <!--<label class="col-md-2 control-label">{{formData.holiday_description.length}}/100 </label>-->
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label ">Status </label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control"
+                                                                   ng-disabled="1"
+                                                                   value="In Progress"
+                                                                   ng-if="formData.holidayStatus == 0 && formData.approvalProcess == 0">
+                                                            <input class="form-control"
+                                                                    ng-disabled="1"
+                                                                    value="Queued for Approval"
+                                                                    ng-if="formData.holidayStatus == 0 && formData.approvalProcess == 1">
+                                                            <input class="form-control"
+                                                                   ng-disabled="1"
+                                                                   value="Awaiting Approval"
+                                                                   ng-if="formData.holidayStatus == 1">
+                                                            <input class="form-control"
+                                                                   ng-disabled="1"
+                                                                   value="Approved"
+                                                                   ng-if="formData.holidayStatus == 2">
+                                                            <input class="form-control"
+                                                                   ng-disabled="1"
+                                                                   value="Disapproved"
+                                                                   ng-if="formData.holidayStatus == 3">
+                                                            <input class="form-control"
+                                                                   ng-disabled="1"
+                                                                   value="Queued For Cancellation"
+                                                                   ng-if="formData.holidayStatus == 4">
+                                                            <input class="form-control"
+                                                                   ng-disabled="1"
+                                                                   value="Awaiting Cancellation"
+                                                                   ng-if="formData.holidayStatus == 5"> 
+                                                            <input class="form-control"
+                                                                   ng-disabled="1"
+                                                                   value="Cancelled"
+                                                                   ng-if="formData.holidayStatus == 6">      
+                                                        </div>
+                                                        <!--<label class="col-md-2 control-label">{{formData.holiday_description.length}}/100 </label>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-12">
+                                                    <div class="pull-left">
+                                                    </div>
+                                                    <div class="pull-right">
+                                                        <div class="dropdown ib"
+                                                            ng-show="formData.id>0 &&  hr_holidays_module>0">
+                                                            <button class="dte-btn dropdown-toggle"
+                                                                    type="button"
+                                                                    data-toggle="dropdown"><i class="dte-ico"></i></button>
+                                                            <ul class="dropdown-menu dte animated fadeIn">
+                                                                <span
+                                                                    ng-click="set_document_internal(hr_holidays_module,' - Holidays Information')"><i
+                                                                    class="fa fa-file-text-o"
+                                                                    aria-hidden="true"></i> Add Document</span>
+                                                                <span><i class="fa fa-check"
+                                                                    aria-hidden="true"></i> Add Task</span>
+                                                                <span><i class="fa fa-envelope-o"
+                                                                    aria-hidden="true"></i> Compose Email</span>
+                                                            </ul>
+                                                        </div>
+                                                        
+                                                        <a class="btn btn-default2"
+                                                            ng-click="GetApprovalStatus(holiday_id, 6)"
+                                                            ng-if="holiday_id > 0 && holiday_approval_req > 0">Approval History</a>
+                                                        <!-- <a class="btn btn-default2"
+                                                            ng-disabled="formData.holidayStatus == 1 "
+                                                            ng-if="holiday_id > 0 && formData.holidayStatus != 2 && holiday_approval_req > 0"
+                                                            ng-click="sendForApproval(holiday_id, formData.holiday_code)"
+                                                            type="button">Queue for Approval</a> -->
+                                                        <!-- ng-disabled="!holidayReadOnly" || !holidayReadOnly-->
+                                                        <!-- <button class="btn btn-submit"
+                                                                type="submit"
+                                                                ng-show="!holidayReadOnly"> Save
+                                                        </button>
+                                                        <button class="btn btn-edit"
+                                                                type="button"
+                                                                ng-click="showEditFormHoliday()"
+                                                                ng-show="holidayReadOnly && !editNotAllowed"> Edit
+                                                        </button>
+                                                        <button class="btn btn-cancel"
+                                                                type="button"
+                                                                ng-click="getHoliday()"><i class="fa fa-undo fa_display"></i> Cancel
+                                                        </button>  -->
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 padl6">
+                                <div class="EmployeeInfo">
+                                    <div class="employee-label"
+                                        ng-if="formData.user_id.label!='Administrator'"
+                                        style="background-color:#71b9f3;">
+                                        <i class="fa fa-user-o"
+                                        aria-hidden="true"></i> {{formData.user_id.label}} </div>
+
+                                    <div class="employee-label"
+                                        ng-if="formData.user_id.label=='Administrator'"><i class="fa fa-cog"
+                                        aria-hidden="true"></i> Admin</div>
+                                    <div ng-controller="DocUploadDocument_single">
+                                        <div class="fileUpload showupload">
+
+                                            <span ng-if="!formData.emp_picture"><i class="fa fa-upload"
+                                                aria-hidden="true"></i></span>
+                                            <span ng-if="formData.emp_picture"><i class="fa fa-upload"
+                                                aria-hidden="true"
+                                                style="color:#2196F3"></i></span>
+
+                                            <input ng-disabled="check_hrvalues_readonly"
+                                                type="file"
+                                                ngf-select="uploadFiles($file, $invalidFiles, 'employeeProfile')"
+                                                name="file"
+                                                class="upload"
+                                                data-max-size="50"
+                                                multiple
+                                                accept=".png,.jpeg,.jpg" />
+
+                                            <input ng-readonly="check_hrvalues_readonly"
+                                                type="hidden"
+                                                ng-model="formData.emp_picture">
+                                            <input ng-readonly="check_hrvalues_readonly"
+                                                type="hidden"
+                                                ng-init="formData.emp_picture = formData.emp_picture"
+                                                ng-model="formData.emp_picture">
+                                        </div>
+
+                                    </div>
+                                    <i ng-if="!formData.emp_picture"
+                                    class="material-icons"
+                                    style="font-size: 81px;color: #dedede;">&#xE853;</i>
+
+                                    <div ng-if="formData.emp_picture"
+                                        style="display:inline-block">
+                                        <img class="d1img"
+                                            ng-style="{'background-image':'url('+ imagePath+formData.emp_picture +')','background-size':'contain','background-position':'center','background-repeat':'no-repeat'}" />
+                                    </div>
+                                    <span class="name">
+                                        {{formData.first_name + ' ' + formData.last_name}}
+                                    </span>
+                                    <span class="job">
+                                        {{formData.job_title}}
+                                    </span>
+                                    <span class="email">
+                                        <a href="mailto:{{formData.user_email}}">{{formData.user_email}}</a>
+                                    </span>
+                                    <span class="mobile"
+                                        ng-if="formData.mobile_phone.length>0">
+                                        <i class="fa fa-mobile"
+                                        aria-hidden="true"></i>
+                                        <div>{{formData.mobile_phone}}</div>
+                                    </span>
+                                    <span class="skype"
+                                        ng-if="formData.skype_id.length>0">
+                                        <i class="fa fa-skype"
+                                        aria-hidden="true"></i>
+                                        <div>{{formData.skype_id}}</div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    
+                </tab>
+            </tabset>
+            <div ng-include="'app/views/_approvals_history.html'"></div>
+        </div>      
+    </div>
+  </div>
+</div>

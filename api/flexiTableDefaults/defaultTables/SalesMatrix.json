@@ -1,0 +1,254 @@
+[
+    {
+        "title": "Customer No.",
+        "field_name": "customer_no",
+        "event": {
+            "name": "openCustomerLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "100",
+        "data_type": "string"
+    },
+    {
+        "title": "Name",
+        "field_name": "customer_name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Primary Salesperson",
+        "field_name": "saleperson",
+        "visible": "1",
+        "pinned": "0",
+        "db_table": "sr_sel_emp_sale_dept",
+        "db_field": "name",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Segment",
+        "field_name": "segment",
+        "db_table": "crm_segment",
+        "db_where": " segment_type = 1 ",
+        "db_field": "title",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Territory",
+        "field_name": "territory",
+        "db_table": "crm_region",
+        "db_where": " status = 1 AND region_type IN (1, 12)",
+        "db_field": "title",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Buying Group",
+        "field_name": "buying_group",
+        "db_table": "crm_buying_group",
+        "db_where": " crm_buying_group_type = 1 ",
+        "db_field": "title",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Posting Group",
+        "field_name": "posting_group",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "string"
+    },
+    {
+        "title": "Orders",
+        "field_name": "orders_value",
+        "classes": "tooltips_clsshilight padright10",
+        "event": {
+            "name": "show_sales_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:4",
+                "title:Orders"
+            ]
+        },
+        "headerTotal": true,
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "number"
+    },
+    {
+        "title": "Quotes",
+        "field_name": "quotes_value",
+        "classes": "tooltips_clsshilight padright10",
+        "event": {
+            "name": "show_sales_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:5",
+                "title:Quotes"
+            ]
+        },
+        "headerTotal": true,
+        "visible": "0",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Revenue - YTD",
+        "field_name": "current_year_revenue",
+        "classes": "tooltips_clsshilight padright10",
+        "event": {
+            "name": "show_sales_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:1",
+                "title:Revenue - YTD"
+            ]
+        },
+        "headerTotal": true,
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "number"
+    },
+    {
+        "title": "Profit - YTD",
+        "field_name": "current_year_profit",
+        "headerTotal": true,
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "150",
+        "data_type": "number"
+    },
+    {
+        "title": "Profit % - YTD",
+        "field_name": "current_year_profit_percentage",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Revenue - Selected Period",
+        "field_name": "selected_period_revenue",
+        "classes": "tooltips_clsshilight padright10",
+        "event": {
+            "name": "show_sales_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:2",
+                "title:Revenue - Selected Period"
+            ]
+        },
+        "visible": "1",
+        "custom_classes": "highlightColBoth",
+        "custom_classesHeader": "highlightTh",
+        "headerTotal": true,
+        "pinned": "0",
+        "color": "#fffbdb",
+        "width": "180",
+        "data_type": "number"
+    },
+    {
+        "title": "Profit - Selected Period",
+        "field_name": "selected_period_profit",
+        "custom_classes": "highlightColBoth",
+        "custom_classesHeader": "highlightTh",
+        "headerTotal": true,
+        "visible": "1",
+        "pinned": "0",
+        "color": "#fffbdb",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Profit % - Selected Period",
+        "field_name": "selected_period_profit_percentage",
+        "visible": "1",
+        "custom_classes": "highlightColBoth",
+        "custom_classesHeader": "highlightTh",
+        "pinned": "0",
+        "color": "#fffbdb",
+        "width": "170",
+        "data_type": "number"
+    },
+    {
+        "title": "Revenue - Prior Period",
+        "field_name": "selected_period_previous_revenue",
+        "classes": "tooltips_clsshilight padright10",
+        "custom_classes": "highlightColBoth2",
+        "custom_classesHeader": "highlightTh",
+        "event": {
+            "name": "show_sales_matrix_detail",
+            "trigger": "ng-click",
+            "params": [
+                "index",
+                "type:3",
+                "title:Revenue - Prior Period"
+            ]
+        },
+        "headerTotal": true,
+        "visible": "0",
+        "pinned": "0",
+        "color": "#f1f9ff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Profit - Prior Period",
+        "custom_classes": "highlightColBoth2",
+        "custom_classesHeader": "highlightTh",
+        "field_name": "selected_period_previous_profit",
+        "visible": "0",
+        "headerTotal": true,
+        "pinned": "0",
+        "color": "#f1f9ff",
+        "width": "0",
+        "data_type": "number"
+    },
+    {
+        "title": "Profit % - Prior Period",
+        "custom_classes": "highlightColBoth2",
+        "custom_classesHeader": "highlightTh",
+        "field_name": "selected_period_previous_percentage",
+        "visible": "0",
+        "pinned": "0",
+        "color": "#f1f9ff",
+        "width": "0",
+        "data_type": "number"
+    }
+    
+]

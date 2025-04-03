@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label class="col-lg-4 control-label">Tab Name<span class="required">*</span></label>
+            <div class="col-lg-8">
+                <input type="text" ng-model="rec.name" id="name" name="name" class="form-control" tabindex="1" required ng-readonly="check_readonly" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label class="col-lg-4 control-label">Module<span class="required">*</span></label>
+            <div class="col-lg-8">
+                <select ng-model="rec.tab_module_id" ng-options="opt as opt.module_title for opt in arr_modules" class="select2me form-control" ng-disabled="check_readonly" required tabindex="1"><option style="display:none" value=""></option>  </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label class="col-lg-4 control-label">Status<span class="required">*</span></label>
+            <div class="col-lg-8">
+                <select ng-model="rec.status" ng-options="opt as opt.label for opt in arr_status" class="select2me form-control" required="required" ng-disabled="check_readonly" id="status" tabindex="4" ><option style="display:none" value=""></option>  </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-show="show_default">
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="userName">Is Default</label>
+            <div class="col-sm-8">
+                <div data-toggle="buttons" class="btn-group">
+                    <label class="btn btn-primary" ng-class="{'active':is_defaults == 1}"  ng-click='setDefault(1);'><input type="radio" name="is_defualt"  autocomplete="off">YES</label>
+                    <label class="btn btn-primary" ng-class="{'active':is_defaults == 0}"  ng-click='setDefault(0);'><input type="radio" name="is_defualt"  autocomplete="off">NO</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

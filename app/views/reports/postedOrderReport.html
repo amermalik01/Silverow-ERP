@@ -1,0 +1,226 @@
+<div ng-controller="PostedOrderReportController as table">
+  <div ng-include="'app/views/_breadcrumb.html'"></div>
+  <style>
+    body {
+      background-image: url(app/css/report-BG.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      padding-bottom: 10px;
+    }
+  </style>
+  <div class="a-content">
+    <div class="a-label-container">
+      <b class="a-title" style="width: 120px">Date <span class="required"> *</span></b>
+      <div class="input-symbol a-date">
+        <input jqdatepicker
+               class="form-control"
+               id="dateFrom"
+               readonly
+               placeholder="From"
+               ng-model="filterReport.dateFrom"
+               style="background-color: white;">
+        <span><i class="fa fa-calendar"></i></span>
+      </div>
+      <div class="input-symbol a-date">
+        <input jqdatepicker
+               class="form-control"
+               id="dateTo"
+               placeholder="To"
+               readonly
+               ng-model="filterReport.dateTo"
+               style="background-color: white;">
+        <span><i class="fa fa-calendar"></i></span>
+      </div>
+
+      <b class="ib a-margin-left add-filter collapsed"
+         data-toggle="collapse"
+         data-target="#demo">Add Filter(s)</b>
+
+      <div class="pull-right">
+        <button class="btn report-generate no-margin"
+                type="button"
+                ng-click="generateReport()">Generate Report</button>
+        <button class="btn report-clearfilter"
+                type="button"
+                ng-click="clearReport()">Clear Filter</button>
+        <button class="btn report-default"
+                type="button"
+                ng-click="showPdfModal()"> Print Preview</button>
+        <div class="dropdown report-excel">
+          <button class="btn report-default dropdown-toggle"
+                  type="button"
+                  data-toggle="dropdown">Export As
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a ng-click="showPdfModal('xlsx')">Excel</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="report-filter-panel collapse in"
+         id="demo">
+
+      <div class="report-box"
+           style="    margin-bottom: -2px;">
+        <b class="a-title a-title-relative"
+           style="width: 120px">Select Customer(s)</b>
+        <div title="{{SelcustomersTooltip}}"
+             class="a-form-control" style="width: 334px">
+          <div class="panel-info pi2"
+               ng-click="clearFiltersAndSelectCustomer()"><!-- selectCustomers() -->
+            <div class="panel-body"
+                 style="background-color: #fff;">
+              <span ng-repeat="sp in customers track by $index">
+                <span ng-if="customers.length == 1">{{sp.title}}</span>
+                <span ng-if="customers.length > 1">{{sp.title}}<span
+                        ng-if="$index < customers.length && $index!=0">;&nbsp;</span></span>
+              </span>
+              <aside></aside>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-box">
+        <b class="a-title"
+           style="width: 120px">Document Type</b>
+        <select class="select2me form-control a-date"
+                ng-model="filterReport.docType"
+                ng-options="opt as opt.title for opt in docTypeArr">
+          <option value=""
+                  disabled
+                  selected>Select Document Type</option>
+        </select>
+      </div>
+
+      <div class="report-box">
+        <b class="a-title"
+           style="width: 120px">Finance</b>
+        <select class="select2me form-control a-date"
+                ng-model="filterReport.finance"
+                ng-options="opt as opt.title for opt in financeArr">
+          <option value=""
+                  disabled
+                  selected>Select Finance</option>
+        </select>
+      </div>
+
+      <div class="report-box">
+        <b class="a-title"
+           style="width: 120px">Insurance</b>
+        <select class="select2me form-control a-date"
+                ng-model="filterReport.insurance"
+                ng-options="opt as opt.title for opt in insuranceArr">
+          <option value=""
+                  disabled
+                  selected>Select Insurance</option>
+        </select>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="a-table"
+       ng-if="columns.length > 0">
+    <h5 class="a-report-title">{{reportTitle}}</h5>
+    <small ng-if="filterReport.dateFrom"
+           class="a-report-date">From {{filterReport.dateFrom}} to {{filterReport.dateTo}}
+    </small>
+    <table class="table table-condensed table-striped table-hover report-spacing"
+           id="data-table">
+      <thead class="fixit">
+        <tr class="bg-col">
+          <th
+              x-col={{column.title}}
+              ng-repeat="column in columns"
+              ng-class="{'rightAlign': column.title == 'Amount(LCY)' || column.title == 'Amount Incl. VAT(LCY)',
+                                      'centerAlign': column.title == 'Finance' || column.title == 'Insurance'}"
+              ng-if="column.title!= 'Id'">
+            <span ng-if="column.title == 'Requested Delivery_date'">Req. Delivery Date</span>
+            <!-- <span ng-if="column.title == 'Amount Incl. Vat'">Amount Incl. VAT</span> -->
+            <span ng-if="column.title == 'Cust Order_no'">Cust Order No.</span>
+            <span ng-if="column.title == 'Sale Order_no'">Sale Order No.</span>
+            <span ng-if="column.title == 'Amount Incl_vat'">Amount Incl. VAT(LCY)</span>
+            <span ng-if="column.title == 'Amount Excl_vat'">Amount(LCY)</span>
+            <span ng-if="column.title == 'Vat Amount'">VAT Amount</span>
+
+            <span
+                  ng-if="column.title != 'Vat Amount' && column.title != 'Amount Excl_vat' &&  column.title != 'Rank' &&
+                                     column.title != 'Requested Delivery_date' && column.title != 'Cust Order_no' &&
+                                     column.title != 'Sale Order_no' && column.title != 'Amount Incl_vat'">{{column.title}}</span>
+
+          </th>
+        </tr>
+      </thead>
+      <tbody class="fixit">
+        <tr ng-repeat="rec in reportsDataArr | filter: searchKeyword.search"
+            ng-class="{'makeBold2': rec.posting_date == '' || rec.customer_name == ''}"
+            ng-if="columns.length > 0">
+          <td ng-repeat="column in columns"
+              ng-class="{'rightAlign': column.title == 'Amount(LCY)' || column.title == 'Amount Incl. VAT(LCY)',
+                                    'centerAlign': column.title == 'Finance' || column.title == 'Insurance'}">
+            <span
+                  ng-if="column.title != 'Amount(LCY)'  && column.title != 'Amount Incl. VAT(LCY)' && column.title != 'Rank' &&  column.title != 'Finance' && column.title != 'Insurance'">{{rec[column.field]}}</span>
+            <span
+                  ng-if="column.title == 'Amount(LCY)' || column.title == 'Amount Incl. VAT(LCY)'">{{rec[column.field]
+                          | currency : "" : decimal_range }}</span>
+                          <!--  && column.title != 'Finance' && column.title != 'Insurance' -->
+            <!-- <span ng-if="(column.title == 'Finance' || column.title == 'Insurance')">{{rec[column.field]==1
+                          ? 'Yes' : ''}}</span> -->
+
+            <span class="fa"
+                  ng-if="(column.title == 'Finance' || column.title == 'Insurance') && rec[column.field] == '1' "
+                  style="color:black;font-size: 7px;">&#xf111;</span>
+
+            <!-- <span ng-if="rec[column.field]=='Total Sale Invoice(LCY)' || rec[column.field]=='Total Credit Note(LCY)'"><b>{{rec[column.field]}}</b></span> -->
+          </td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><b>Total</b></td>
+
+          <td style="font-weight: bold;text-align: right">{{reportsDataArr.total.SaleInvoice_vat_excl -
+                        reportsDataArr.total.CreditNote_vat_excl | currency : "" :
+                        decimal_range}}</td>
+          <td style="font-weight: bold;text-align: right">{{reportsDataArr.total.SaleInvoice_vat_incl -
+                        reportsDataArr.total.CreditNote_vat_incl | currency : "" : decimal_range}} </td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr style="text-align:center;"
+            ng-show="columns.length == 0">
+          <td> No Record found. Please click on Add</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+
+  <div class="row">
+    <!-- <div class="col-md-12">
+      <div class="nav nav-tabs" style="padding:8px;">
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="col-md-6">
+             <label class="col-md-8  control-label">As of {{filterReport.upToDate}}</label>
+            <label class="col-md-8  control-label">{{company_name}}</label> 
+            <label class="col-md-8  control-label">All amounts are in LCY</label>
+          </div> 
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+  <!-- <div ng-include="'app/views/reports/_listingCustomerModal.html'"></div> -->
+  <div ng-include="'app/views/reports/_listingCustomerDetailModal.html'"></div>
+  <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

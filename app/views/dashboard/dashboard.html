@@ -1,0 +1,54 @@
+<div ng-controller="DashboardController">
+	<div class="dashboardheader">
+		<h5 class="no-margins pull-left"  ng-if="userForPortal !=1">
+			<div ng-hide="allowReorder || removeFromDashboard">
+				<b>Welcome back {{preferredName | trim}}!</b>
+				<!--data-target="#versionHistory"-->
+				<!-- <a class="hilight cursorPointer" data-toggle="modal" >{{silverowVersionNumber}} - {{silverowVersionDate}}</a> -->
+									
+			</div>
+			
+			<b ng-if="allowReorder"
+			   ng-hide="removeFromDashboard"
+			   class="animated fadeIn">Reorder Widgets</b>
+			<b ng-if="removeFromDashboard"
+			   ng-hide="allowReorder"
+			   class="animated fadeIn">Remove Widgets from dashboard</b>
+		</h5>
+
+		<div ng-include="'app/views/dashboard/dashboard_options.html'" ng-if="userForPortal!=1"></div>
+
+
+		<div class="pull-right animated fadeIn removeback">
+			<a class="btn btn-submit2"
+			   ng-click="saveWidgetPos(); reorderWidget();"
+			   ng-if="allowReorder"
+			   ng-hide="removeFromDashboard">Save</a>
+			<a class="btn btn-submit2"
+			   ng-click="removeWidget();"
+			   ng-if="removeFromDashboard"
+			   ng-hide="allowReorder">Save</a>
+		</div>
+	</div>
+
+	<div id="simpleList"
+	     ng-class="{'reorderMode':allowReorder}">
+		<widgets widgets="activeWidgets"
+		         chart-data="oppoCycleData"
+		         chart-label="oppoCyclelabels"></widgets>
+	</div>
+
+	<span ng-if="activeWidgets.length == 0"
+	      style="width: 58%;display: block;text-align: center;margin: 75px auto;">
+		<i class="material-icons"
+		   style="font-size: 200px;color: #c3c3c3;">
+			dashboard
+		</i>
+		<h3 style="color: #c3c3c3;">No widgets found! Add one now!</h3>
+	</span>
+
+	<div ng-include="'app/views/dashboard/widget_setup_modal.html'"></div>
+	<div ng-include="'app/views/dashboard/version_history.html'"></div>
+	<div ng-include="'app/views/dashboard/widget_options.html'"></div>
+	<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+</div>

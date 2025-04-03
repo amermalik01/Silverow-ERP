@@ -1,0 +1,243 @@
+<div class="modal fade"
+
+     id="submittedVATOtherMeansModal">
+
+  <div class="modal-dialog  modal-lg">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <button type="button"
+
+                class="close"
+
+                data-dismiss="modal">&times;</button>
+
+        <h4 class="modal-title">
+
+          VAT Returns Through Other Means
+
+        </h4>
+
+      </div>
+
+      <div class="modal-body" style="max-height: 80vh;overflow: auto;">
+
+
+
+        <div class="row text-center" ng-if="!showVATReturns">
+
+          <div class="col-md-12">
+
+            <div class="" style="width: 100%;"><!-- a-content -->
+
+              <div class="a-label-container">
+
+
+
+                <div class="col-md-12" style="margin-top: 18px;">
+
+                    <label ng-repeat="n in printPdfVals.VATReturnsName"
+
+                        class="ib saveAsDesign"
+
+                        ng-click="chkVATReturnsOption(n)"
+
+                        style="font-weight: normal; width: 100%; text-align: left; margin: 5px; background-color: #e7e7e7; ">
+
+                        <div>
+
+                            {{n.name}}
+
+                        </div>
+
+                    </label> 
+
+                </div>
+
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="row text-center" ng-if="showVATReturns">
+
+          <div class="col-md-12 template-design ">
+
+              <button type="button"
+
+                class="btn btn-submit width_80 "
+
+                ng-click="backToVATReturnListing()" style="float:left">Back</button>
+
+            <!-- VAT Report Detailed -->
+
+              <div class="a-label-container">
+
+
+
+                <div style="margin-top: 18px;">
+
+                    <label class="ib saveAsDesign"
+
+                        style="font-weight: normal; width: 100%; text-align: left; margin: 10px 0px; ">
+
+                        <div>
+
+                            {{printPdfVals.VATReturnName.name}}
+
+                        </div>
+
+                    </label> 
+
+                </div>
+
+
+
+              </div>
+
+                <table style="width: 100%"
+
+                       class="tabletopmargin report-spacing-table ">
+
+                    <thead>
+
+                        <tr class="bg-col">
+
+                            <th>Posting Date</th>
+
+                            <th>Document No.</th>
+
+                            <th>Document Type</th>
+
+                            <th>No.</th>
+
+                            <th>Name</th>
+
+                            <th class="rightAlign">Amount</th>
+
+                            <th class="rightAlign">VAT Amount</th>
+
+                            <th class="rightAlign">Entry No.</th>
+
+                            <!-- <th ng-if="printPdfVals.vatEntriesStatusID==3"
+
+                                style="width: 14%">Posting Status</th> -->
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr ng-repeat="line in printPdfVals.VATReturnsEntries track by $index">
+
+
+
+                            <td style="padding: 9px 9px; padding-top: 5px; padding-bottom: 5px; text-align: left;">{{line.PostingDate}}</td>
+
+                            <td style="padding: 9px 9px; padding-top: 5px; padding-bottom: 5px; text-align: left;">{{line.DocumentNo}}</td>
+
+                            <td style="padding: 9px 9px; padding-top: 5px; padding-bottom: 5px; text-align: left;">{{line.DocumentType}}</td>
+
+                            <td style="padding: 9px 9px; padding-top: 5px; padding-bottom: 5px; text-align: left;">{{line.object_no}}</td>
+
+                            <td style="padding: 9px 9px; padding-top: 5px; padding-bottom: 5px; text-align: left;">{{line.object_name}}</td>
+
+                            <td class="rightAlign" style="padding: 9px 9px; padding-top: 5px; padding-bottom: 5px;">{{line.Base | currency : "" : decimal_range}} {{defaultCurrencyCode}}</td>
+
+                            <td class="rightAlign" style="padding: 9px 9px; padding-top: 5px; padding-bottom: 5px;">{{line.Amount | currency : "" : decimal_range}} {{defaultCurrencyCode}}</td>
+
+                            <td class="rightAlign" style="padding: 9px 9px; padding-top: 5px; padding-bottom: 5px;">{{line.transaction_id}}</td>
+
+                            
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+      <div class="modal-footer">
+
+        <div class="pull-right">
+
+
+
+          <label class="ib"
+
+                style="margin-right: 4px;">
+
+            <input type="checkbox"
+
+                    ng-change="updatePageOrientation(toggleLandscape)"
+
+                    ng-model="toggleLandscape">Print in Landscape Orientation
+
+          </label>
+
+
+
+          <a type="button"
+
+              class="btn btn-default2"
+
+              title="Download PDF"
+
+              ng-click="downloadReportVAT(printPdfVals, 'r1l50yzr6r')"
+
+              ng-if="!jsreportLoading">
+
+              <i class="fa fa-cloud-download"
+
+                  aria-hidden="true"
+
+                  style="color: #3ea756;"></i>
+
+          </a>
+
+
+
+          <a type="button"
+
+              ng-if="jsreportLoading"
+
+              class="btn btn-default2"
+
+              title="Downloading PDF">
+
+              <i class='fa-spin fa fa-spinner'></i>
+
+          </a>
+
+          <button type="button"
+
+                  class="btn btn-cancel width_80"
+
+                  data-dismiss="modal">Cancel</button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

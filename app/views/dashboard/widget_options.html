@@ -1,0 +1,95 @@
+<div id="widgetOptions"
+     class="modal fade"
+     role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button"
+					class="close"
+					data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Widget Options</h4>
+			</div>
+			<div class="modal-body"
+			     style="min-height: 111px !important;">
+				<div class="col-md-12 no-padding form-horizontal">
+					<div class="col-md-4 padl6 padr6">
+						<label class="control-label2">Year</label>
+						<select class="form-control"
+							ng-model="options.year"
+							ng-options="year for year in widgetYears"
+							ng-change="emptyCurrent();">
+						</select>
+					</div>
+					<div class="col-md-2 text-center">
+						<label class="control-label2">Year only</label>
+						<div>
+							<input type="checkbox"
+							       ng-model="options.yearOnly"
+							       title="Check if you only want to see a yearly spread"
+							       ng-change="setPeriod('year'); emptyCurrent();">
+						</div>
+					</div>
+					<div class="col-md-3 padl6 padr6">
+						<label class="control-label2">Quarter</label>
+						<select class="form-control"
+							ng-model="options.quarters"
+							ng-options="q.value as q.label for q in quarters"
+							ng-change="setPeriod('quarter'); emptyCurrent();">
+						</select>
+					</div>
+					<div class="col-md-3 padl6 padr6">
+						<label class="control-label2">Month</label>
+						<select class="form-control"
+							ng-model="options.months"
+							ng-options="m.value as m.month for m in months"
+							ng-change="setPeriod('month'); emptyCurrent();">
+						</select>
+					</div>
+				</div>
+				<div style="display: inline-block;position: absolute;left: 15px;bottom: -36px;">
+					<div class="col-md-4 no-padding"
+					     style="margin: 10px 0 0 3px;">
+						<label>Current Period</label>
+					</div>
+					<div class="col-md-12 no-padding"
+					     style="margin: 0px 0 0 3px;">
+						<span style="margin-right: 10px;">
+							<label style="font-weight: normal;">
+								<input type="radio"
+								       name="currentPeriod"
+								       value="0"
+								       ng-model="options.current"
+								       ng-click="setDefaultPeriod('year')" />Year</label>
+						</span>
+						<span style="margin-right: 10px;">
+							<label style="font-weight: normal;">
+								<input type="radio"
+								       name="currentPeriod"
+								       value="1"
+								       ng-model="options.current"
+								       ng-click="setDefaultPeriod('quarter')" />Quarter</label>
+						</span>
+						<span style="margin-right: 10px;">
+							<label style="font-weight: normal;">
+								<input type="radio"
+								       name="currentPeriod"
+								       value="2"
+								       ng-model="options.current"
+								       ng-click="setDefaultPeriod('month')" />Month</label>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer clearfix">
+				<button type="button"
+					class="btn btn-submit2"
+					ng-click="updateWidgetContents();">Save</button>
+				<!-- <button type="button"
+				        class="btn btn-default2"
+				        ng-click="defaultWidgetOptions();">Default</button> -->
+				<button type="button"
+					class="btn btn-default"
+					data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>

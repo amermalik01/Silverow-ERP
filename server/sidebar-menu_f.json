@@ -1,0 +1,105 @@
+[
+  {
+    "text": "Menu Heading",
+    "heading": "true",
+    "translate": "sidebar.heading.HEADER"
+  },
+  {
+    "text": "",
+    "sref": "app.dashboard",
+    "icon": "icon-home",
+    "translate": "sidebar.nav.DASHBOARD"
+  },
+   {
+    "text": "",
+    "sref": "#",
+    "icon": "icon-users",
+    "submenu": [
+         { "text": "", 
+            "sref": "app.roles", 
+            "translate": "sidebar.nav.hr-menu.ROLES" 
+          }
+    ],
+    "translate": "sidebar.nav.HR"
+  },
+  {
+    "text": "",
+    "sref": "#",
+    "icon": "icon-target",
+    "submenu": [
+           { "text": "", 
+              "sref": "app.brands", 
+              "translate": "sidebar.nav.stock-menu.BRAND" 
+           },
+           { "text": "", 
+              "sref": "app.category", 
+              "translate": "sidebar.nav.stock-menu.CATEGORY" 
+            },
+          	{ "text": "", 
+              "sref": "app.units_of_measure", 
+              "translate": "sidebar.nav.stock-menu.UNITS_OF_MEASURE" 
+            },
+			{ "text": "", 
+              "sref": "app.cat_units_of_measure", 
+              "translate": "sidebar.nav.stock-menu.CAT_UNITS_OF_MEASURE" 
+            },
+			{ "text": "", 
+              "sref": "app.product_tabs", 
+              "translate": "sidebar.nav.stock-menu.PRODUCT_TABS" 
+            }
+          ],
+          "translate": "sidebar.nav.STOCK"
+  },
+   {
+    "text": "",
+    "sref": "#",
+    "icon": "icon-settings",
+    "submenu": [
+         { 
+            "text": "", 
+            "sref": "#",
+            "submenu": [
+                    { 
+                      "text": "",
+                      "sref": "app.company", 
+                      "translate": "sidebar.nav.setup-general-menu.COMPANY"
+                    },
+                    { 
+                      "text": "",
+                      "sref": "app.bank", 
+                      "translate": "sidebar.nav.setup-general-menu.BANK"
+                    },
+                    { 
+                      "text": "",
+                      "sref": "app.modules-codes", 
+                      "translate": "sidebar.nav.setup-general-menu.MODULES_CODES"
+                    },
+                    { 
+                      "text": "",
+                      "sref": "app.currency", 
+                      "translate": "sidebar.nav.setup-general-menu.CURRENCY"
+                    }
+              ],
+               "translate": "sidebar.nav.setup-menu.GENERAL"
+
+          },
+          { 
+            "text": "", 
+            "sref": "#",
+            "submenu": [
+                    { 
+                      "text": "",
+                      "sref": "app.coverage-areas", 
+                      "translate": "sidebar.nav.setup-supplier-menu.COVERAGE_AREAS"
+                    }
+                    
+              ],
+               "translate": "sidebar.nav.setup-menu.SUPPLIER"
+
+          }
+    ],
+    "translate": "sidebar.nav.SETUP"
+  }
+
+  
+]

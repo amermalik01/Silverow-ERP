@@ -1,0 +1,309 @@
+<div class="row">
+    <div class="col-md-12" style="margin-bottom: 9px;">
+        <b style=" font-size: 14px;">Add a new Task</b>
+    </div>
+    <div class="col-md-6">
+        <div class="email-area">
+            <b style="width: 50%;">Subject <span class="required">*</span></b>
+            <div class="email-input">
+                <input required
+                ng-disabled="formData.oldTask"
+                       type="text"
+                       class="form-control"
+                       ng-readonly="check_task_readonly"
+                       ng-model="formData.subject">
+            </div>
+        </div>
+        <!-- <div class="email-area">
+            <b style="width: 50%;">Assign To</b>
+            <div class="email-input">
+                <ui-select ng-model="formData.assign_to" ng-change="updateEmployee(formData.assign_to)">
+                    <ui-select-match placeholder="Select Employee Name">{{$select.selected.name}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="opt in allEmployees | filter: $select.search">
+                        <div ng-bind-html="opt.name| highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div> -->
+        <div class="email-area">
+            <b style="width: 50%;">Related to</b>
+            <div class="email-input">
+                <select class="form-control"
+                        ng-disabled="formData.oldTask"
+                        ng-model="uiselectHandler.selectedMainModule"
+                        ng-change="updateMainModule(uiselectHandler.selectedMainModule)"
+                        ng-options="opt as opt.name for opt in modules"
+                        ng-class="{'makespace2':mainModuleRecords.length}" style="float:left; width:25%;">
+                    <option value=""
+                            disabled
+                            selected>Module</option>
+                </select>
+
+                <!-- <ui-select ng-disabled="formData.oldTask"
+                           ng-model="uiselectHandler.selectedRecord"
+                           ng-change="updateRecord(uiselectHandler.selectedRecord)"
+                           ng-if="mainModuleRecords.length && uiselectHandler.selectedMainModule.val!='customer' && uiselectHandler.selectedMainModule.val!='crm'  && uiselectHandler.selectedMainModule.val!='supplier'   && uiselectHandler.selectedMainModule.val!='srm'"
+                           ng-class="{'makespace':mainModuleRecords.length}">
+                    <ui-select-match placeholder="Link this task to">{{$select.selected.name}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="opt in mainModuleRecords | filter: $select.search">
+                        <div ng-bind-html="opt.name| highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select> -->
+                <div class="makespace" ng-if="uiselectHandler.selectedMainModule.val=='customer'">
+                    <div class="input-symbol"
+                        ng-class="{'dont-click':check_so_readonly}">
+                        <input type="text"
+                            ng-class="{'white_bg':!check_so_readonly}"
+                            required
+                            id="sell_to_cust_no"
+                            class="form-control"
+                            ng-model="formData.sell_to_cust_no"
+                            ng-click="getCustomerLeftSide(1)"
+                            readonly />
+                        <span><i class="fa fa-external-link"></i></span>
+                    </div>
+                </div>
+                <div class="makespace" ng-if="uiselectHandler.selectedMainModule.val=='crm'">
+                    <div class="input-symbol"
+                        ng-class="{'dont-click':check_so_readonly}">
+                        <input type="text"
+                            ng-class="{'white_bg':!check_so_readonly}"
+                            required
+                            id="sell_to_cust_no"
+                            class="form-control"
+                            ng-model="formData.sell_to_cust_no"
+                            ng-click="getCrmLeftSide(1)"
+                            readonly />
+                        <span><i class="fa fa-external-link"></i></span>
+                    </div>
+                </div>
+                <div class="makespace" ng-if="uiselectHandler.selectedMainModule.val=='supplier'">
+                    <div class="input-symbol"
+                                 ng-class="{'dont-click':check_srm_readonly}"
+                                 ng-click="getSupplierLeft(1);">
+                                <input type="text"
+                                       id="sell_to_cust_no"
+                                       class="form-control"
+                                       required
+                                       ng-model="formData.sell_to_cust_no"
+                                       ng-class="{'white_bg':!check_srm_readonly}"
+                                       readonly />
+                                <span><i class="fa fa-external-link"></i></span>
+                            </div>
+                </div>
+                <div class="makespace" ng-if="uiselectHandler.selectedMainModule.val=='srm'">
+                    <div class="input-symbol"
+                                 ng-class="{'dont-click':check_srm_readonly}"
+                                 ng-click="getSRMLeft(1);">
+                                <input type="text"
+                                       id="sell_to_cust_no"
+                                       class="form-control"
+                                       required
+                                       ng-model="formData.sell_to_cust_no"
+                                       ng-class="{'white_bg':!check_srm_readonly}"
+                                       readonly />
+                                <span><i class="fa fa-external-link"></i></span>
+                            </div>
+                </div>
+
+                <div class="makespace" ng-if="uiselectHandler.selectedMainModule.val=='hr'">
+                    <div class="input-symbol"
+                                 ng-class="{'dont-click':check_srm_readonly}"
+                                 ng-click="getHRLeft(1);">
+                                <input type="text"
+                                       id="sell_to_cust_no"
+                                       class="form-control"
+                                       required
+                                       ng-model="formData.sell_to_cust_no"
+                                       ng-class="{'white_bg':!check_srm_readonly}"
+                                       readonly />
+                                <span><i class="fa fa-external-link"></i></span>
+                            </div>
+                </div>
+            </div>
+        </div>
+        <div class="email-area">
+            <b style="width: 50%;">Status</b>
+            <div class="email-input">
+                <select ng-model="formData.status"
+                        ng-disabled="formData.oldTask"
+                        class="form-control">
+                    <option value="1"
+                            selected>Not Started</option>
+                    <option value="2">In Progress</option>
+                    <option value="3">Completed</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="email-area">
+            <b style="width: 50%;">Priority</b>
+            <div class="email-input">
+                <div data-toggle="buttons"
+                     class="btn-group select-btn">
+                    <label ng-disabled="formData.oldTask"
+                           ng-click="formData.priority='high';"
+                           class="btn btn-hl"
+                           ng-class="{'active': formData.priority == 'high'}">
+                        <input type="radio"
+                               name="options3"
+                               autocomplete="off">! High</label>
+
+                    <label ng-disabled="formData.oldTask"
+                           ng-click="formData.priority='low';"
+                           class="btn btn-hl"
+                           ng-class="{'active': formData.priority == 'low'}">
+                        <input type="radio"
+                               name="options1"
+                               autocomplete="off">&darr;Low</label>
+
+                    <label ng-disabled="formData.oldTask"
+                           ng-click="formData.priority='';"
+                           class="btn btn-hl"
+                           ng-class="{'active': formData.priority == ''}">
+                        <input type="radio"
+                               name="options2"
+                               autocomplete="off">None</label>
+
+                </div>
+            </div>
+        </div>
+        <div class="email-area"
+             ng-show="uiselectHandler.selectedMainModule.sub_types && uiselectHandler.selectedRecord.id">
+            <b style="width: 50%;">Sub record</b>
+            <div class="email-input">
+                <select class="form-control"
+                        ng-show="uiselectHandler.selectedMainModule.sub_types && uiselectHandler.selectedRecord.id"
+                        ng-model="uiselectHandler.selectedSubModule"
+                        ng-change="updateSubModule(uiselectHandler.selectedSubModule)"
+                        ng-options="opt as opt.name for opt in uiselectHandler.selectedMainModule.sub_types">
+                    <option value=""
+                            disabled
+                            selected>Select Sub Module</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="email-area">
+            <b style="width: 50%;">Comments</b>
+            <div class="email-input">
+                <textarea type="text"
+                          class="form-control"
+                          rows="4"
+                          cols="30"
+                          id="redactor_content"
+                          style="resize: none; height: 80px;"
+                          ng-disabled="check_task_readonly"
+                          ng-model="formData.comments"></textarea>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="col-md-6">
+        <!-- <div class="email-area">
+            <b style="width: 50%;">Start Date</b>
+            <div class="email-input">
+                <input jqdatepicker required class="2date-picker form-control startdate" placeholder="dd/mm/yyyy" id="ck_sdate" ng-readonly="check_task_readonly"
+                    ng-model="formData.t_date" ng-change="testdate_by_id('ck_sdate','ck_edate','date_msg');taskStartDate(formData.t_date)">
+                <input jqtimepicker required class="form-control enddate" placeholder="--:--" id="t_time" ng-readonly="check_task_readonly"
+                    ng-model="formData.t_time" />
+            </div>
+        </div> -->
+        <div class="email-area">
+            <b style="width: 50%;">Due Date & Time <span class="required">*</span></b>
+            <div class="email-input">
+                <input jqdatepicker
+                       ng-disabled="formData.oldTask"
+                       required
+                       ng-if="formData.id == undefined"
+                       class="2date-picker form-control startdate"
+                       placeholder="dd/mm/yyyy"
+                       id="ck_edate"
+                       required
+                       data-parsley-trigger="focusin focusout"
+                       ng-readonly="check_task_readonly"
+                       ng-model="formData.date">
+
+                <input jqdatepicker
+                       ng-disabled="formData.oldTask"
+                       required
+                       ng-if="formData.id"
+                       class="2date-picker form-control startdate"
+                       placeholder="dd/mm/yyyy"
+                       id="ck_edate"
+                       required
+                       data-parsley-trigger="focusin focusout"
+                       ng-readonly="check_task_readonly"
+                       ng-model="formData.tempDate">
+
+                <input jqtimepicker
+                       ng-disabled="formData.oldTask"
+                       required 
+                       readonly
+                       
+                       class="form-control enddate"
+                       placeholder="--:--"
+                       id="e_time2"
+                       ng-model="formData.time" /><!-- data-parsley-trigger="focusin focusout" -->
+            </div>
+        </div>
+        <div class="email-area">
+            <b style="width: 50%;padding: 0;margin-top: 1px;line-height: 14px;">Notification <small style="display: block;font-weight: normal;color: gray;">Reminder
+                    before due time</small></b>
+            <div class="email-input">
+                <div class="input-symbol">
+                    <input ng-disabled="formData.oldTask"
+                           ng-model="formData.reminder"
+                           type="number"
+                           class="form-control startdate">
+                    <span ng-show="formData.reminder > 0 && !formData.oldTask"
+                          style="cursor: pointer; left: 45%;top: 5px;color: gray;"
+                          ng-click="formData.reminder = 0;">X</span>
+                </div>
+                <select ng-disabled="formData.oldTask"
+                        ng-model="formData.reminderUnit"
+                        class="form-control enddate">
+                    <option value="1">Min(s)</option>
+                    <option value="2">Hour(s)</option>
+                    <option value="3">Day(s)</option>
+                    <option value="4">Week(s)</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="email-area">
+            <b style="width: 50%;">Recurrence</b>
+            <div class="email-input">
+                <div class="input-symbol">
+                    <input ng-disabled="formData.oldTask"
+                           ng-model="formData.recurrence"
+                           type="number"
+                           class="form-control startdate">
+                    <span ng-show="formData.recurrence > 0 && !formData.oldTask"
+                          style="cursor: pointer;left: 45%;top: 5px;color: gray;"
+                          ng-click="formData.recurrence = 0;">X</span>
+                </div>
+                <select ng-disabled="formData.oldTask"
+                        ng-model="formData.recurrenceUnit"
+                        class="form-control enddate">
+                    <option value="1">Day(s)</option>
+                    <option value="2">Week(s)</option>
+                    <option value="3">Month(s)</option>
+                    <option value="4">Year(s)</option>
+                </select>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div ng-include="'app/shared/directives/_customer_popup_modal.html'"></div>
+<div ng-include="'app/shared/directives/_crm_popup_modal.html'"></div>
+<div ng-include="'app/shared/directives/_supplier_popup_modal.html'"></div>
+<div ng-include="'app/shared/directives/_srm_popup_modal.html'"></div>
+<div ng-include="'app/shared/directives/_hr_popup_modal.html'"></div>

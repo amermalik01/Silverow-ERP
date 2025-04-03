@@ -1,0 +1,78 @@
+<div class="example_alt_pagination">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="input-symbol">
+                <input type="text" ng-model="SerachkeywordPromo" placeholder="Search" class="in-t-1"/>
+                <!-- <input type="submit"  style="display:none"   />-->
+                <span id="date_msg_4">
+                    <i class="fa fa-search"></i>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <a ng-if="allowadd_crm_promotiom_tab || allowadd_cust_promotion_tab" id="prompt"
+               ng-click="showCrmPromotionForm()" class="btn btn_add pull-right">Add</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-md-12">
+            <div class="widget">
+                <div class="widget-body1 ">
+                    <div id="dt_example" class="example_alt_pagination">
+
+                        <!--    View    permision for Company User /superadmin -->
+
+                        <table class="table table-condensed table-striped table-hover table-bordered" id="data-table"
+                               ng-if="allowview_sale_promotion_module == 1 || allowview_cust_promotion_tab == 1">
+                            <thead>
+                            <tr class="bg-col" ng-show="columns_promo.length > 0">
+                                <th ng-repeat="column in columns_promo"
+                                    ng-if="column.title != 'Id' && column.title != 'Action' && column.title != 'Type'">
+                                    {{column.title}}
+                                </th>
+                                <th style="width: 8%; text-align:center !important;">Action</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="rec in record_data_promo| filter: SerachkeywordPromo"
+                                ng-click="editForm(rec.id)">
+                                <!--    View    permision for Company User /superadmin -->
+                                <td ng-repeat="column in columns_promo" ng-click="editForm_promo(rec.id,1)">
+                                    <span ng-if="column.field != 'Action' && column.field != 'Start_Date' && column.field != 'End_Date'"
+                                          ng-class="{'dont-click':allowview_sale_promotion_module == 0 ,'dont-click':allowview_cust_promotion_tab == 0}">
+                                        {{rec[column.field]}}
+                                    </span>
+                                    <span ng-if="column.field == 'Start_Date' || column.field == 'End_Date'">{{rec[column.field]| date: dateFormats[defaultDateFormat]}}</span>
+                                </td>
+                                <td ng-show="columns_promo.length > 0" class="active-listing2"
+                                    style="width: 8%; text-align:center !important;">
+
+                                    <!--   Edit    permision for Company User /superadmin -->
+                                    <!--    Edit    permision for Company User /superadmin -->
+                                    <a title="Edit" ng-click="editForm_promo(rec.id,0)" class="btn"
+                                       ng-class="{'dont-click':allowedit_sale_promotion_module == 0, 'dont-click':allowedit_cust_promotion_tab == 0}">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+
+                                    <!--    Delete   permision for Company User /superadmin -->
+                                    <a title="Delete" ng-click="delete_promo(rec.id, $index, record_data_promo)"
+                                       class="btn"
+                                       ng-if="allowdelete_sale_promotion_module == 1 || allowdelete_cust_promotion_tab == 1">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                    </span>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                            <div ng-show="!columns_promo.length > 0" class="no-record">
+                                </div>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

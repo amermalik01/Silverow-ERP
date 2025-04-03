@@ -1,0 +1,324 @@
+<style>
+  .datepick-popup {
+    z-index: 2000 !important;
+    position: fixed;
+    left: 764.25px;
+    top: 96px;
+  }
+</style>
+
+<div class="row">
+  <div class="col-md-12">
+    <form autocomplete="off"
+          class="form-horizontal no-margin"
+          role="form"
+          validate-form=""
+          novalidate=""
+          ng-submit="submitMail()">
+      <div class="widget">
+        <div class="widget-body">
+          <input type="hidden"
+                 ng-model="mailFormData.id">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel-title2">Mail Configurations</div>
+              <div class="col-md-5">
+                <!-- <div class="form-group">
+                  <label class="col-sm-4 control-label ">Alias<span class="required">*</span></label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="mailFormData.alias" data-parsley-required="true" ng-readonly="editmailFlag"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label ">Email<span class="required">*</span></label>
+                  <div class="col-sm-8">
+                    <input type="text" ng-model="mailFormData.username"  class="form-control" data-parsley-type="email" data-parsley-required="true" ng-readonly="editmailFlag"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label ">Password<span class="required">*</span></label>
+                  <div class="col-sm-8">
+                    <input type="password" class="form-control"  ng-model="mailFormData.password" data-parsley-required="true" ng-readonly="editmailFlag"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label ">Confirm Password<span class="required">*</span></label>
+                  <div class="col-sm-8">
+                    <input type="password" class="form-control"  id="cpassword" data-parsley-required="true" ng-readonly="editmailFlag"/>
+                  </div>
+                </div> -->
+                <div class="form-group">
+                  <label class="col-sm-4 control-label "> Primary
+                  </label>
+                  <div class="col-sm-8">
+                    <input ng-readonly="editmailFlag"
+                           ng-model="mailFormData.primaryConfiguration"
+                           type="checkbox"
+                           style="margin-top: 10px;" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label  ">Domain
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-sm-8">
+                    <div style="position: relative;">
+                      <span style="position: absolute;
+                                  z-index: 9;
+                                  color: #929292;
+                                  padding: 5px 0px 2px 6px;">@</span>
+                      <input type="text"
+                             style="padding-left: 17px;"
+                             ng-model="mailFormData.mailDomain"
+                             class="form-control"
+                             data-parsley-required="true"
+                             ng-readonly="editmailFlag" />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label  ">IMAP Server
+                  </label>
+                  <div class="col-sm-8">
+                    <input type="text"
+                           ng-model="mailFormData.imapServer"
+                           class="form-control"
+                           data-parsley-required="true"
+                           ng-readonly="editmailFlag" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label "> IMAP Port
+                  </label>
+                  <div class="col-sm-8">
+                    <input type="text"
+                           ng-model="mailFormData.imapPort"
+                           class="form-control"
+                           data-parsley-required="true"
+                           ng-readonly="editmailFlag" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label  ">IMAP SSL
+                  </label>
+                  <div class="col-sm-8">
+                    <select class="form-control"
+                            ng-model="mailFormData.imapSSL"
+                            data-parsley-required="true"
+                            ng-readonly="editmailFlag">
+                      <option value=""
+                              disabled
+                              selected>Select</option>
+                      <option value="On">On</option>
+                      <option value="Off">Off</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label "> IMAP SPA
+                  </label>
+                  <div class="col-sm-8">
+                    <select ng-model="mailFormData.imapSPA"
+                            class="form-control"
+                            data-parsley-required="true"
+                            ng-readonly="editmailFlag">
+                      <option value=""
+                              disabled
+                              selected>Select</option>
+                      <option value="On">On</option>
+                      <option value="Off">Off</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label ">POP3 Server </label>
+                  <div class="col-sm-8">
+                    <input type="text"
+                           class="form-control"
+                           ng-model="mailFormData.pop3Server"
+                           ng-readonly="editmailFlag" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5 col-md-offset-2">
+                <div class="form-group">
+                  <label class="col-sm-4 control-label "> POP3 Port</label>
+                  <div class="col-sm-8">
+                    <input type="text"
+                           ng-model="mailFormData.pop3Port"
+                           class="form-control"
+                           ng-readonly="editmailFlag" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label ">POP3 SSL </label>
+                  <div class="col-sm-8">
+                    <select class="form-control"
+                            ng-model="mailFormData.pop3SSL"
+                            ng-readonly="editmailFlag">
+                      <option value=""
+                              disabled
+                              selected>Select</option>
+                      <option value="On">On</option>
+                      <option value="Off">Off</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label "> POP3 SPA</label>
+                  <div class="col-sm-8">
+                    <select ng-model="mailFormData.pop3SPA"
+                            class="form-control"
+                            ng-readonly="editmailFlag">
+                      <option value=""
+                              disabled
+                              selected>Select</option>
+                      <option value="On">On</option>
+                      <option value="Off">Off</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label ">SMTP Server </label>
+                  <div class="col-sm-8">
+                    <input type="text"
+                           class="form-control"
+                           ng-model="mailFormData.smtpServer"
+                           ng-readonly="editmailFlag" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label "> SMTP Port</label>
+                  <div class="col-sm-8">
+                    <input type="text"
+                           ng-model="mailFormData.smtpPort"
+                           class="form-control"
+                           ng-readonly="editmailFlag" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label ">SMTP SSL </label>
+                  <div class="col-sm-8">
+                    <select class="form-control"
+                            ng-model="mailFormData.smtpSSL"
+                            ng-readonly="editmailFlag">
+                      <option value=""
+                              disabled
+                              selected>Select</option>
+                      <option value="On">On</option>
+                      <option value="Off">Off</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label "> SMTP SPA</label>
+                  <div class="col-sm-8">
+                    <select ng-model="mailFormData.smtpSPA"
+                            class="form-control"
+                            ng-readonly="editmailFlag">
+                      <option value=""
+                              disabled
+                              selected>Select</option>
+                      <option value="On">On</option>
+                      <option value="Off">Off</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label ">SMTP Auth </label>
+                  <div class="col-sm-8">
+                    <select class="form-control"
+                            ng-model="mailFormData.smtpAuth"
+                            ng-readonly="editmailFlag">
+                      <option value=""
+                              disabled
+                              selected>Select</option>
+                      <option value="On">On</option>
+                      <option value="Off">Off</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12"
+                     style="    margin-top: 35px;">
+                  <div class="col-md-12">
+                    <div class="pull-right">
+                      <div class="dropdown ib"
+                           ng-show="mailFormData.id>0 &&  hr_mail_module>0">
+                        <button class="dte-btn dropdown-toggle"
+                                type="button"
+                                data-toggle="dropdown">
+                          <i class="dte-ico"></i>
+                        </button>
+                        <ul class="dropdown-menu dte animated fadeIn">
+                          <span ng-click="set_document_internal(hr_mail_module)">
+                            <i class="fa fa-file-text-o"
+                               aria-hidden="true"></i> Add Document</span>
+                          <span>
+                            <i class="fa fa-check"
+                               aria-hidden="true"></i> Add Task</span>
+                          <span>
+                            <i class="fa fa-envelope-o"
+                               aria-hidden="true"></i> Compose Email</span>
+                        </ul>
+                      </div>
+
+                      <button class="btn btn-submit"
+                              type="submit"
+                              ng-show="addmailFlag">Save</button>
+                      <button class="btn btn-edit ng-hide"
+                              type="button"
+                              ng-show="editmailFlag"
+                              ng-click="enableEditMailForm();"> Edit</button>
+                      <button class="btn btn-cancel"
+                              type="button"
+                              ng-click="getMailConfigurations()">Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- <div class="col-md-2 padl6">
+    <div class="EmployeeInfo">
+        <div ng-controller="DocUploadDocument_single">
+            <div class="fileUpload showupload">
+                <span ng-if="!formData.emp_picture"><i class="fa fa-upload" aria-hidden="true"></i></span>
+                <span ng-if="formData.emp_picture"><i class="fa fa-upload" aria-hidden="true" style="color:#2196F3"></i></span>
+                <input type="file" ngf-select="uploadFiles($file, $invalidFiles, 'employeeProfile')" name="file"
+                    accept="image/*" class="upload" data-max-size="50" />
+                <input ng-readonly="check_hrvalues_readonly" type="hidden" ng-model="formData.emp_picture">
+                <input ng-readonly="check_hrvalues_readonly" type="hidden" ng-init="formData.emp_picture = formData.emp_picture" ng-model="formData.emp_picture">
+            </div>
+
+            <i ng-if="!formData.emp_picture" class="material-icons" style="font-size: 81px;
+                color: #dedede;">&#xE853;</i>
+        </div>
+        <div ng-if="formData.emp_picture" style="display:inline-block">
+            <img ng-src="{{imagePath+formData.emp_picture}}" class="d1img" />
+        </div>
+        <span class="name">
+            {{formData.first_name + ' ' + formData.last_name}}
+        </span>
+        <span class="job">
+            {{formData.job_title}}
+        </span>
+        <span class="email">
+            <a href="mailto:{{formData.user_email}}">{{formData.user_email}}</a>
+        </span>
+        <span class="mobile" ng-if="formData.mobile_phone.length>0">
+            <i class="fa fa-mobile" aria-hidden="true"></i>
+            <div>{{formData.mobile_phone}}</div>
+        </span>
+        <span class="skype" ng-if="formData.skype_id.length>0">
+            <i class="fa fa-skype" aria-hidden="true"></i>
+            <div>{{formData.skype_id}}</div>
+        </span>
+    </div>
+</div> -->
+</div>

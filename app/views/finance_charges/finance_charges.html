@@ -1,0 +1,76 @@
+<div ng-controller="FinanceChargesController as table">
+    <div>
+      <div ng-include="'app/views/_breadcrumb.html'" class="col-md-12"></div>
+  </div>
+  <div class="row" style="margin-bottom: 0 !important;">
+      <div class="col-md-12">
+        <div class="nav nav-tabs" style="padding:8px;">
+            <div class="col-md-6">
+              <div class="search-wrapper">
+                  <input type="text" Placeholder="Search in Finance Charges" class="form-control"ng-model="searchKeyword">
+                <i class="fa fa-search search-icon" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="col-md-6">
+                <a id="prompt" ui-sref="app.add-finance-charges" class="btn btn_add pull-right"> Add</a>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Row starts -->
+  <div class="row">
+
+    <div class="col-md-12 col-md-12" >
+      <div class="widget">
+        <!-- <div class="widget-header">
+          <div class="title">
+            Finance Charges
+          </div>
+          </div> -->
+        <div class="widget-body ">
+            <div id="dt_example" class="example_alt_pagination">
+    <table ng-table="table.tableParams5" class="table table-condensed table-striped table-hover table-bordered" id="data-table" show-filter="true" ng-show="columns.length > 0">
+      <thead class="fixit">
+        <tr class="bg-col" ng-show="columns.length > 0">
+          <th ng-repeat="column in columns"
+                    class="sortable sort-asc" ng-class="{
+                    'sort-asc': table.tableParams5.isSortBy(column.field, 'asc'),
+                    'sort-desc': !table.tableParams5.isSortBy(column.field, 'desc')
+                  }"
+                    ng-click="table.tableParams5.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"> {{column.title}} </th>
+                <th   class="active-listing"  style="width: 7%;">Action</th>
+        </tr>
+
+
+      </thead>
+     <!--  <tr >
+          <td ng-repeat="column in columns"
+                    ng-show="column.visible"
+                    class="sortable"
+                        > <input type="text" class="form-control"
+                           ng-model="MyCustomeFilters[column.field] "/>
+          </td>
+        </tr> -->
+        <tbody class="fixit">
+        <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+        <tr ng-repeat="rec in $data  | filter:searchKeyword " ng-show="columns.length > 0">
+          <td ng-repeat="column in columns"  sortable="column.title" ui-sref="app.view-finance-charges({id:rec.id})"> <span ng-if="column.field != 'Charge'">{{rec[column.field]}}</span>
+            <span ng-if="column.field == 'Charge'">{{rec[column.field] | number:decimal_range}}<span>&#37;</span></span>%</td>
+
+          <td  class="active-listing" >
+
+            <a ui-sref="app.edit-finance-charges({id:rec.id})" title="Edit" class="btn btn-primary icon_square"><i class="fa fa-edit"></i></a>
+            <a ng-click="delete(rec.id,$index,$data)" title="Delete" class="btn btn-primary icon_square"><i class="fa fa-times"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>

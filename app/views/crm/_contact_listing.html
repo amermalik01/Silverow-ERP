@@ -1,0 +1,97 @@
+<div class="row">
+    <div class="col-md-3">
+        <div class="input-symbol">
+            <input type="text"
+                   ng-model="Serachkeywordcon"
+                   placeholder="Search"
+                   class="in-t-1" />
+            <span id="date_msg_4"> <i class="fa fa-search"></i></span></div>
+    </div>
+    <div class="col-md-9">
+        <a id="prompt"
+           ng-click="edit_contact_form()"
+           class="btn btn_add pull-right"
+           ng-if="addContactPermission">Add</a>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body1 ">
+                <div id="dt_example"
+                     class="example_alt_pagination">
+                    <div class="table-responsive">
+                        <!--    View    permision for Company User /superadmin -->
+
+                        <table class="table table-condensed table-striped table-hover table-bordered"
+                               id="data-table"
+                               ng-show="allowview_crm_contact_tab == 1 || allowview_cust_contact_tab == 1"
+                               ng-if="columns_contact.length > 0">
+
+                            <thead class="fixit">
+                                <tr class="bg-col"
+                                    ng-show="columns_contact.length > 0">
+                                    <th ng-repeat="column in columns_contact"
+                                        ng-if="column.title != 'Id' && column.field != 'is_primary' && column.field != 'pref_method_of_communication' && column.field != 'fax' && column.title != 'Notescontact'">
+                                        <!--{{column.title}}-->
+                                        <span ng-if="column.title == 'Phone'">Telephone</span>
+                                        <span ng-if="column.title == 'Notes'">Contact Notes</span>
+                                        <span
+                                              ng-if="column.title != 'Phone' && column.title != 'Notes'">{{column.title}}</span>
+                                    </th>
+                                    <th style="width: 8%; text-align:center !important;"
+                                        class="ShowHideAction">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="fixit">
+                                <tr ng-repeat="recc in record_data_contact| filter:Serachkeywordcon"
+                                    ng-show="columns_contact.length > 0"
+                                    ng-class="{'isPrimary':recc.is_primary == 1}">
+                                    <td ng-repeat="column in columns_contact"
+                                        ng-click="edit_contact_form(recc.id,1)"
+                                        ng-if="column.title != 'Id' && column.field != 'is_primary' && column.field != 'pref_method_of_communication' && column.field != 'fax'  && column.title != 'Notescontact'">
+                                        <span ng-if="recc.is_primary == 1  && column.field == 'name' "
+                                              class="isPrimaryLabel"></i>Primary</span>
+                                        <span ng-class="{'dont-click':viewContactPermission == 0}" ng-if="column.title != 'Notes'">{{recc[column.field]}}</span>
+                                        
+                                        <span ng-if="column.title == 'Notes'"
+                                              title="{{recc[column.field]}}"
+                                              style="width: 80%;
+                                                        overflow: hidden;
+                                                        white-space: nowrap;
+                                                        text-overflow: ellipsis;
+                                                        display: block;"> {{recc[column.field]}}</span>
+                                    </td>
+                                    <!-- ng-click="edit_contact_form(recc.id)" -->
+                                    <td style="width: 8%; text-align:center !important;"
+                                        class="ShowHideAction">
+                                        <a ng-click="edit_contact_form(recc.id,0)"
+                                           title="Edit"
+                                           class="btn"
+                                           ng-class="{'dont-click':editContactPermission == 0}">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <!--    Delete    permision for Company User /superadmin -->
+                                        <!--</span>-->
+                                        <a ng-if="recc.is_primary != 1"
+                                           ng-click="delete_contact(recc.id, $index, record_data_contact)"
+                                           title="Delete"
+                                           class="btn"
+                                           ng-class="{'dont-click':deleteContactPermission == 0}">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                        <!--</span>-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <div ng-show="!columns_contact.length > 0"
+                                 class="no-record"></div>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

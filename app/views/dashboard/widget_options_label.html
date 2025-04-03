@@ -1,0 +1,4 @@
+    <b ng-click="openWidgetOptions(widget.id);" ng-if="!widget.quarters && !widget.months && !widget.years">Select Period</b>
+    <span ng-click="openWidgetOptions(widget.id);" ng-if="widget.quarters > 0" >Q{{widget.quarters}}</span>
+    <span ng-click="openWidgetOptions(widget.id);" ng-if="widget.months">{{months[widget.months - 1].month}}</span>
+    <span ng-click="openWidgetOptions(widget.id);">{{widget.years}}</span>

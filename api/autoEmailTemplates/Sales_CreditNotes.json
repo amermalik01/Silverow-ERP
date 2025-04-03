@@ -1,0 +1,9 @@
+{
+    "senderEmail": "",
+    "availablePlaceholders": {
+        "credit_note_no": "return_order_code"
+    },
+    "fileName": "CN.[[credit_note_no]].[[current_company_id]].pdf",
+    "templateSubject": "",
+    "templateBody": ""
+}

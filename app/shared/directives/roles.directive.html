@@ -1,0 +1,59 @@
+<div class="widget-body2"
+     style="margin-top: 8px;padding-bottom: 0 !important;">
+    <div ng-class="{'whirl no-overlay':showLoader}"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-condensed table-striped table-hover table-bordered">
+                    <thead class="fixit">
+                        <tr>
+                            <th style="width: 200px;white-space: nowrap;vertical-align: middle;"
+                                ng-if="module == 1">Widget Name </th>
+                            <th style="width: 200px;white-space: nowrap;vertical-align: middle;"
+                                ng-if="module == 2">Report Name </th>
+                            <th ng-repeat="role in roles"
+                                style="vertical-align: middle;"
+                                å
+                                title="{{role.role}}"
+                                class="text-center checkboxShow">
+                                <input type="checkbox"
+                                       class="checkboxHide"
+                                       ng-model="chckAll"
+                                       ng-click="CheckAll(role.id,chckAll)"
+                                       ng-disabled="readonly"><span>{{role.role}}</span></th>
+                        </tr>
+                    </thead>
+                    <tbody class="fixit">
+                        <tr ng-repeat="widget in array">
+                            <td style="width: 200px;white-space: nowrap;vertical-align: middle;" title="{{widget.title}}">{{widget.title}}</td>
+                            <td ng-repeat="wd in widget.roles"
+                                class="text-center">
+                                <input type="checkbox"
+                                       ng-disabled="readonly"
+                                       ng-model="wd.permission">
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <a type="button"
+               style="float: right;    margin-top: 9px;margin-bottom: 9px;"
+               class="btn btn-cancel2"
+               ui-serf="app.setup"
+               href="#/app/setup">Cancel</a>
+            <a type="button"
+               style="float: right;    margin-top: 9px;margin-bottom: 9px;"
+               class="btn btn-edit"
+               ng-if="readonly"
+               ng-click="showEditForm()">Edit</a>
+
+            <a type="button"
+               style="float: right;    margin-top: 9px;margin-bottom: 9px;"
+               class="btn btn-submit2"
+               ng-click="saveWidgetRoles();"
+               ng-if="!readonly">Save</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div ng-include="'app/views/_breadcrumb.html'" class="{{class}}"></div>
+
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<div class="row">
+
+	<div class="col-lg-12 col-md-12">
+		<div class="widget">
+			<div class="widget-body">
+				<div ng-include="formUrl()"></div>
+			</div>
+		</div>
+
+
+		<div ng-include="'app/views/_listing_modal.html'"></div>
+		<div ng-include="'app/views/_confirm_modal.html'" class="{{class}}"></div>
+		<div ng-include="'app/views/_listing_modal_2.html'"></div>
+	</div>
+</div>

@@ -1,0 +1,27 @@
+Array
+(
+    [(B2) Contact Previous Code *] => "Con001" already exist agains this acc id "4158"
+    [(B3) Contact Previous Code *] => "Con001" already exist agains this acc id "4159"
+    [(B4) Contact Previous Code *] => "Con001" already exist agains this acc id "4160"
+    [(B5) Contact Previous Code *] => "Con001" already exist agains this acc id "4161"
+    [(B6) Contact Previous Code *] => "Con001" already exist agains this acc id "4162"
+    [(B7) Contact Previous Code *] => "Con001" already exist agains this acc id "4163"
+    [(B8) Contact Previous Code *] => "Con001" already exist agains this acc id "4164"
+    [(B9) Contact Previous Code *] => "Con001" already exist agains this acc id "4165"
+    [(B10) Contact Previous Code *] => "Con001" already exist agains this acc id "4166"
+    [(B11) Contact Previous Code *] => "Con001" already exist agains this acc id "4167"
+    [(B12) Contact Previous Code *] => "Con001" already exist agains this acc id "4168"
+    [(B13) Contact Previous Code *] => "Con001" already exist agains this acc id "4169"
+    [(B14) Contact Previous Code *] => "Con001" already exist agains this acc id "4170"
+    [(B15) Contact Previous Code *] => "Con001" already exist agains this acc id "4171"
+    [(B16) Contact Previous Code *] => "Con001" already exist agains this acc id "4172"
+    [(B17) Contact Previous Code *] => "Con001" already exist agains this acc id "4173"
+    [(B18) Contact Previous Code *] => "Con001" already exist agains this acc id "4174"
+    [(B19) Contact Previous Code *] => "Con001" already exist agains this acc id "4175"
+    [(B20) Contact Previous Code *] => "Con001" already exist agains this acc id "4176"
+    [(B21) Contact Previous Code *] => "Con001" already exist agains this acc id "4177"
+    [(B22) Contact Previous Code *] => "Con001" already exist agains this acc id "4178"
+    [(B23) Contact Previous Code *] => "Con001" already exist agains this acc id "4179"
+    [(B24) Contact Previous Code *] => "Con001" already exist agains this acc id "4180"
+)
+

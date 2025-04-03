@@ -1,0 +1,39 @@
+
+<div class="modal fade" id="model_brand"   >
+  <div class="modal-dialog"   >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close"  ng-click="reload_popup(3,'model_brand')" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add Brand </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="widget">
+              <div class="widget-body">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label ">Brand Name <span class="required">*</span></label>
+                      <div class="col-sm-7">
+                        <input  ng-readonly="check_sub_readonly" required id="brandname"  type="text" 
+                        ng-model="formData3.brandname"  class="form-control" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-info btn_blue" type="submit" ng-show="perreadonly"><i class="fa fa-check"></i> Submit</button>
+        <button class="btn btn-info btn_blue" type="button" ng-click="showEditForm()"
+     		ng-show="check_hrvalues_readonly"><i class="fa fa-edit"></i> Edit</button>
+        <button type="button" class="btn btn-default"  ng-click="reload_popup(3,'model_brand')"  >Cancel</button>
+      </div>
+    </div>
+    <!-- /. tdata-dismiss="modal" --> 
+  </div>
+</div>

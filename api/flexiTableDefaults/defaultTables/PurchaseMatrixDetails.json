@@ -1,0 +1,67 @@
+[
+    {
+        "title": "Posting Date",
+        "field_name": "posting_date",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "93",
+        "data_type": "date"
+    },
+    {
+        "title": "Invoice No.",
+        "field_name": "invoice_code",
+        "event": {
+            "name": "openInvoiceLink",
+            "trigger": "ng-click",
+            "params": [
+                "index"
+            ]
+        },
+        "classes": "tooltips_clsshilight pull-left",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "84",
+        "data_type": "string"
+    },
+    {
+        "title": "Supplier No.",
+        "field_name": "supplier_no",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "91",
+        "data_type": "string"
+    },
+    {
+        "title": "Supplier Name",
+        "field_name": "supplier_name",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "string"
+    },
+    {
+        "title": "Purchaser",
+        "field_name": "purchaser",
+        "visible": "1",
+        "pinned": "0",
+        "db_table": "sr_sel_emp_sale_dept",
+        "db_field": "name",
+        "color": "#ffffff",
+        "width": "180",
+        "data_type": "drop_down"
+    },
+    {
+        "title": "Order Value",
+        "field_name": "revenue",
+        "visible": "1",
+        "pinned": "0",
+        "color": "#ffffff",
+        "width": "120",
+        "data_type": "number"
+    }
+    
+]

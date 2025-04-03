@@ -1,0 +1,37 @@
+
+<div class="modal fade" id="modal_method2"   >
+  <div class="modal-dialog"   >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="reload_popup(3,'modal_method2')" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add Method </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="widget">
+              <div class="widget-body">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label "> Name <span class="required">*</span></label>
+                      <div class="col-sm-7">
+                        <input  ng-readonly="check_readonly" required id="name"  type="text" 
+                        ng-model="formData6.name"  class="form-control" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn_blue width_80" type="submit"  ><i class="fa fa-check fa_display"></i> Submit</button>
+        <button type="button" class="btn default width_80" ng-click="reload_popup(3,'modal_method2')" >Cancel</button>
+      </div>
+    </div>
+    <!-- /.modal-content --> 
+  </div>
+</div>

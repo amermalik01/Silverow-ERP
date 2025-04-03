@@ -1,0 +1,302 @@
+<div class="d-wi3" style="    margin-left: 2%;    padding: 17px;">
+<div class="row">
+      <div class="col-xs-2">
+        <div class="contact-picture">
+          <div ng-if=" formData.photo !='' "   ng-class="{  'whirl no-overlay':showLoader21}">
+            <img ng-src="{{imagePath+formData.photo}}" style="position:absolute;display:none;">
+            <i class="material-icons">&#xE851;</i>
+        </div>
+        </div>
+      </div>
+      <div class="col-sm-10">
+        <div class="row" >
+        <div class="col-md-4 padr6">
+          <input type="text" ng-readonly="check_contact_readonly"  required class="form-control bold-text" ng-model="formData.fname" placeholder="First Name">
+        </div>
+        <div class="col-md-4 padl6">
+            <input type="text" class="form-control bold-text" ng-readonly="check_contact_readonly" ng-model="formData.lname" placeholder="Last Name">
+        </div>
+        </div>
+        <div class="row" style="margin-top:-9px;">
+        <div class="col-md-4 padr6" >
+          <input type="text" class="form-control" ng-readonly="check_contact_readonly" ng-model="formData.knownas" placeholder="Known As">
+        </div>
+        <div class="col-md-4 padl6">
+          <select class="form-control" ng-readonly="check_contact_readonly" ng-model="formData.saveas" id="saveasid">
+            <option value="" style="display: none;"></option>
+            <option value="{{formData.fname}}" ng-show="formData.fname != ''">{{formData.fname}}</option>
+            <option value="{{formData.lname}}" ng-show="formData.lname != ''" >{{formData.lname}}</option>
+            <option value="{{formData.fname + ' ' + formData.lname}}" ng-show="formData.fname != '' && formData.lname != ''">{{formData.fname + ' ' + formData.lname}}</option>
+            <option value="{{formData.organisation}}" ng-show="formData.organisation != ''">{{formData.organisation}}</option>
+            <option value="{{formData.fname + ' ' + formData.lname + ' - ' + formData.organisation}}" ng-show="formData.fname != '' && formData.lname != '' && formData.organisation != ''">{{formData.fname + ' ' + formData.lname + ' - ' + formData.organisation}}</option>
+          </select>
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="col-md-4">
+          <div class="fileUpload" ng-show="!check_contact_readonly">
+            <div  ng-controller="DocUploadDocument_single" >
+              <div class="fileUpload"  > <span style="color: #3693cf;">Upload</span>
+                <input  type="file" ng-select="uploadFiles($file, $invalidFiles)" name="file" accept=".gif, .jpg, .png, .doc, .docx,.pdf"    multiple class="upload" ngf-max-size="2MB"  />
+                <input type="hidden"  ng-model="formData.FileType">
+                <input type="hidden"  ng-model="formData.photo">
+                <input type="hidden" ng-model="photo" />
+                <input type="hidden"  ng-init="formData.photo = formData.photo"     ng-model="formData.photo">
+                <span ng-show="image_error" style="color:#F00">Error in files uploading Please check Size and Format JPG, Word or PDF</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        </div>
+      </div>
+</div>
+
+<div class="show-scroll">
+<div class="contact-li">
+
+  <div class="row no-b-mar">
+    <div class="col-md-12">
+      <div class="col-md-3">
+        <div class="left-info-contact">
+          <i class="fa fa-briefcase" aria-hidden="true"></i>
+          <div class="c-title">
+            Job details
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="row no-b-mar">
+          <div class="col-md-5">
+            <input type="text" class="form-control" ng-readonly="check_contact_readonly" ng-model="formData.jobtitle" placeholder="Job Title">
+          </div>
+          <div class="col-md-5">
+                        <input type="text" class="form-control" ng-readonly="check_contact_readonly" ng-model="formData.organisation" placeholder="Company Name">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="contact-li no-border-top">
+
+  <div class="row no-b-mar">
+    <div class="col-md-12">
+      <div class="col-md-3">
+        <div class="left-info-contact">
+<i class="fa fa-envelope" aria-hidden="true"></i>
+          <div class="c-title">
+            Email
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="row no-b-mar">
+          <div class="col-md-5" title="">
+            <select class="form-control" ng-model="formData.mailType[0]" ng-readonly="check_contact_readonly">
+              <option value="" disabled selected>Email type</option>
+              <option value="1" selected="Selected">Email</option>
+              <option value="2">Work Email</option>
+              <option value="3">Home Email</option>
+              <option value="4">Others</option>
+            </select>
+          </div>
+
+          <div class="col-md-5 col-xs-10">
+              <input type="text" ng-model="formData.mail[0]" class="form-control" ng-readonly="check_contact_readonly" placeholder="Email Address">
+          </div>
+          <div class="col-md-2 col-xs-2">
+              <a href="javascript: void(0);" ng-show="!check_contact_readonly" class="circle-icon2"><i class="fa fa-plus" ng-click="addMail();"ng-show="formData.mail.length < 5"></i></a>
+          </div>
+               <div class="col-md-12" style="margin-top:3px;"></div>
+          <div class="animated fadeIn" ng-repeat="mail in formData.mail track by $index" ng-if="$index > 0">
+
+            <div class="col-md-5">
+              <select class="form-control" ng-model="formData.mailType[$index]" ng-readonly="check_contact_readonly">
+                <option value="" disabled selected>Email type</option>
+                <option value="1" selected="Selected">Email</option>
+                <option value="2">Work Email</option>
+                <option value="3">Home Email</option>
+                <option value="4">Others</option>
+              </select>
+            </div>
+            <div class="col-md-5 col-xs-10">
+              <input type="text" ng-model="formData.mail[$index]" class="form-control" ng-readonly="check_contact_readonly" placeholder="Email Address">
+            </div>
+            <div class="col-md-2 col-xs-2"> <a href="javascript: void(0);" ng-show="!check_contact_readonly" class="circle-icon2"><i class="fa fa-minus" ng-click="removeMail($index);"></i></a> </div>
+            <div class="col-md-12"  style="margin-top:3px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="contact-li no-border-top">
+
+  <div class="row no-b-mar">
+    <div class="col-md-12">
+      <div class="col-md-3">
+        <div class="left-info-contact">
+<i class="fa fa-phone" aria-hidden="true"></i>
+          <div class="c-title">
+            Contact
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="row no-b-mar">
+          <div class="col-md-5" title="">
+            <select  class="form-control" ng-model="formData.phoneType[0]" ng-readonly="check_contact_readonly">
+              <option value="" disabled selected>Select</option>
+              <option value="1" selected="Selected">Mobile</option>
+              <option value="2">Direct Line</option>
+              <option value="3">Landline</option>
+            </select>
+          </div>
+
+          <div class="col-md-5 col-xs-10"  ">
+              <input type="text" ng-model="formData.phone[0]" class="form-control" ng-readonly="check_contact_readonly" placeholder="Contact Number">
+          </div>
+          <div class="col-md-2 col-xs-2"  ">
+              <a href="javascript: void(0);" ng-show="!check_contact_readonly" class="circle-icon2"><i class="fa fa-plus" ng-click="addPhone();" ng-show="formData.phone.length < 5"></i></a>
+          </div>
+          <div class="col-md-12" style="margin-top:3px;"></div>
+          <div class="animated fadeIn" ng-repeat="phone in formData.phone track by $index" ng-if="$index > 0">
+
+            <div class="col-md-5">
+              <select class="form-control" ng-model="formData.phoneType[$index]" ng-readonly="check_contact_readonly">
+                <option value="" disabled selected>Select</option>
+                <option value="1" selected="Selected">Mobile</option>
+                <option value="2">Direct Line</option>
+                <option value="3">Landline</option>
+              </select>
+            </div>
+            <div class="col-md-5 col-xs-10">
+              <input type="text" ng-model="formData.phone[$index]" class="form-control" ng-readonly="check_contact_readonly" placeholder="Contact Number">
+            </div>
+            <div class="col-md-2 col-xs-2"> <a href="javascript: void(0);" ng-show="!check_contact_readonly" class="circle-icon2"><i class="fa fa-minus" ng-click="removePhone($index);"></i></a>  </div>
+            <div class="col-md-12"  style="margin-top:3px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contact-li no-border-top">
+
+  <div class="row no-b-mar">
+    <div class="col-md-12">
+      <div class="col-md-3">
+        <div class="left-info-contact">
+<i class="fa fa-map-marker" aria-hidden="true"></i>
+          <div class="c-title">
+            Address
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="row no-b-mar">
+          <div class="col-md-5">
+              <input type="text"  class="form-control" ng-readonly="check_contact_readonly" ng-model="formData.address1" placeholder="Address">
+          </div>
+          <div class="col-md-5 ">
+              <input type="text" class="form-control" ng-readonly="check_contact_readonly" ng-model="formData.address2" placeholder="Address 2">
+          </div>
+          <div class="col-md-12" style="margin-top:3px;"></div>
+          <div class="col-md-5">
+            <input type="text" class="form-control" ng-readonly="check_contact_readonly" ng-model="formData.city" placeholder="City">
+          </div>
+          <div class="col-md-5">
+            <input type="text" class="form-control" ng-readonly="check_contact_readonly" ng-model="formData.county" placeholder="County">
+          </div>
+                    <div class="col-md-12" style="margin-top:3px;"></div>
+          <div class="col-md-5">
+            <input type="text" class="form-control" ng-readonly="check_contact_readonly" ng-model="formData.postcode" placeholder="Postal Code">
+          </div>
+          <div class="col-md-5">
+            <select ng-model="formData.country" class="form-control">
+              <option disabled selected value="">Country</option>
+              <option value="0" selected="selected" label="United Kingdom">United Kingdom</option>
+              <option value="1" label="Pakistan">Pakistan</option>
+              <option value="2" label="Saudi Arabia">Saudi Arabia</option>
+              <option value="3" label="Egypt">Egypt</option>
+              <option value="4" label="Turkey">Turkey</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="contact-li no-border-top">
+
+  <div class="row no-b-mar">
+    <div class="col-md-12">
+      <div class="col-md-3">
+        <div class="left-info-contact">
+<i class="fa fa-users" aria-hidden="true"></i>
+          <div class="c-title">
+            Social Profile
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="row no-b-mar">
+          <div class="col-md-5">
+            <input type="text" class="form-control" ng-readonly="check_contact_readonly" ng-model="formData.skypeid" placeholder="Skype">
+            <span class="fa fa-skype  new_ca  form-control-feedback" style="    color: #2196F3;"></span>
+          </div>
+          <div class="col-md-5">
+                <input type="text" class="form-control" ng-readonly="check_contact_readonly" ng-model="formData.linkedinid"  placeholder="LinkedIn">
+                <span class="fa fa-linkedin  new_ca  form-control-feedback" style="    color: #317492;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="contact-li no-border-top">
+
+  <div class="row no-b-mar">
+    <div class="col-md-12">
+      <div class="col-md-3">
+        <div class="left-info-contact">
+<i class="fa fa-sticky-note" aria-hidden="true"></i>
+          <div class="c-title">
+            Notes
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="row no-b-mar">
+          <div class="col-md-10">
+            <textarea rows="4" cols="50" class="form-control" ng-readonly="check_contact_readonly" ng-model="formData.notes" placeholder="Notes"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+<div class="col-md-12" style="margin-top:10px;">
+  <p class="pull-right">
+    <button class="btn btn-submit" type="button" ng-show="add_submit" ng-click="addContact();"><i class="fa fa-check fa_display"></i> Save</button>
+    <button class="btn btn-submit" type="button" ng-show="edit_submit" ng-click="editContact();"><i class="fa fa-check fa_display"></i> Save</button>
+    <button class="btn btn-edit" type="button" ng-click="showEditForm()" ng-show="check_contact_readonly"><i class="fa fa-edit fa_display"></i> Edit</button>
+    <button ng-click="showAddForm()" class="btn btn-cancel" type="button"><i class="fa fa-undo fa_display"></i> Cancel</button>
+    <span ng-show="check_contact_readonly"> <a ng-click="showDeleteModal();"
+                                                             class="btn btn-delete"><i class="fa fa-trash fa_display"></i>Delete</a> </span> </p>
+</div>
+</div>
+</div>
+
+</div>

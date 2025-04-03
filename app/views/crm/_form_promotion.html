@@ -1,0 +1,179 @@
+<div class="row">
+    <div class="col-md-12 col-md-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="">
+                    <div class="panel-title2">Promotion</div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Name <span class="required">*</span></label>
+
+                            <div class="col-md-8">
+                                <input type="text" ng-model="rec_promo.name" id="name" class="form-control"
+                                       ng-readonly="check_readonly_promo" required="1"/>
+                                <input type="hidden" ng-model="rec_promo.update_id" id="update_id"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Start Date <span class="required">*</span></label>
+
+                            <div class="col-md-8">
+                                <input jqdatepicker placeholder="dd/mm/yyyy" class="form-control" ng-model="rec_promo.starting_date"
+                                       ng-change="checkDate(rec_promo.starting_date, rec_promo.ending_date, 'starting_date')"
+                                       ng-disabled="check_readonly_promo" required readonly ng-class="{'pickdate':!check_readonly_promo}"     >
+                                <span class="fa fa-calendar new_ca form-control-feedback" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">End Date<span class="required">*</span></label>
+
+                            <div class="col-md-8">
+                                <input jqdatepicker  placeholder="dd/mm/yyyy" class="form-control" ng-model="rec_promo.ending_date"
+                                       ng-change="checkDate(rec_promo.starting_date, rec_promo.ending_date, 'ending_date')"
+                                       ng-disabled="check_readonly_promo" required readonly ng-class="{'pickdate':!check_readonly_promo}" >
+                                <span class="fa fa-calendar new_ca form-control-feedback" aria-hidden="true"></span>
+                            </div>
+                        </div>
+
+                        <!-- Not in use as more any more start-->
+
+
+                        <!--<div class="form-group">
+                            <label class="col-md-4 control-label">Upload Image<span
+                                    class="required">*</span></label>
+
+                            <div class="col-md-8" ng-controller="DocUploadDocument_single">
+
+                                <div class="fileUpload btn btn_blue col-md-7"><span ng-if="!formData.emp_picture">Select File</span>
+                                    <span ng-if="formData.emp_picture">Select File</span>
+                                    <input ng-disabled="check_hrvalues_readonly" type="file"
+                                           ngf-select="uploadFiles($file, $invalidFiles)" name="file"
+                                           multiple accept="image/*" class="upload" data-max-size="2048"/>
+                                    <input ng-readonly="check_hrvalues_readonly" type="hidden"
+                                           ng-model="formData.emp_picture">
+                                    <input ng-readonly="check_hrvalues_readonly" type="hidden"
+                                           ng-init="formData.emp_picture = formData.emp_picture"
+                                           ng-model="formData.emp_picture">
+                                </div>
+                                <div class="form-group col-md-5" ng-if="formData.emp_picture"
+                                     style="display:inline-block">
+                                    <div class="col-md-8">
+                                        <a class="defaultimage">
+                                            <img src="{{imagePath+formData.emp_picture}}" class="d1img"/>
+                                            <span class="animated fadeIn">
+                                                <img src="{{imagePath+formData.emp_picture}}"/>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+
+
+                        <!-- Not in use as more any more end-->
+                        <!-- ngf-max-height="1000" ngf-max-size="1MB"-->
+                        <!--<input type="hidden" name="old_logo" ng-init="old_logo = general.logo"
+                               ng-model="general.old_logo">-->
+                        <!--<a target="_blank" href="{{imagePath+formData.emp_picture}}"><em style="font-size: 30px !important;" class="fa fa-file-image-o"></em></a>-->
+                        <!--<div ng-if="general.logo " style="display:inline-block"><a class="defaultimage">
+                            <img src="{{imagePath+general.logo}}" class="d1img"/> <span
+                                class="animated fadeIn"> <img src="{{imagePath+general.logo}}"/> </span>
+                        </a></div>-->
+                        <!--<div class="form-group">-->
+                        <!--<label class="col-md-4 control-label">Upload File</label>-->
+                        <!--<div class="col-md-8 ">-->
+                        <!--<div class="fileUpload btn btn_blue pull-left">-->
+                        <!--<span ng-show="check_files">Change File</span>-->
+                        <!--<span ng-show="!check_files">Select File</span>-->
+                        <!--<input id="uploadCrmPromotionFileBtn" ng-disabled="check_readonly_promo" type="file" ngf-select="onFileSelect($files)" name="file" accept="image/*" class="upload" />-->
+                        <!--</div>-->
+                        <!--<em style="font-size: 30px;float: left;margin: 2px 5px; display:block;" style="font-size: 30px !important;" class="fa fa-file-image-o" ng-if="check_files && !rec_promo.id"></em>-->
+
+                        <!--<a style="float: left;margin: 2px 5px;" ng-if="check_files && rec_promo.id > 0" target="_blank" href="{{basePath + 'upload/sales/crm/' + files[0].file}}"> <em style="font-size: 30px !important;" class="fa fa-file-image-o"></em></a>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                    <div class="col-md-5 col-md-offset-2">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Discount Type </label>
+
+                            <div class="col-md-8">
+                                <ui-select ng-model="rec_promo.discount_type_id" ng-disabled="check_readonly_promo" ng-readonly="check_readonly_promo" >
+                                    <ui-select-match placeholder="Select Discount Type">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="opt in arr2_discount_type | filter: $select.search">
+                                        <div ng-bind-html="opt.name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Discount </label>
+
+                            <div class="col-md-8">
+                                <div class="input-symbol">
+                                    <input type="text" ng-model="rec_promo.discount" class="form-control"
+                                           data-parsley-trigger="keyup" data-parsley-minlength-message="Invalid Value"
+                                           data-parsley-type-message="Invalid Value"
+                                           data-parsley-error-message="Invalid Value" pattern="[0-9]+([\.,][0-9]+)*"
+                                           ng-disabled="check_readonly_promo" ng-readonly="check_readonly_promo"/>
+                                    <!-- ng-show="show_symbol"ng-change="setSymbol()"-->
+                                    <span ng-if="rec_promo.discount_type_id.id == '1'">&#37;</span>
+                                    <ul class="parsley-errors-list filled" ng-show="rec_promo.discount <= 0">
+                                        <li class="parsley-required">Discount must be greater than zero!</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Notes</label>
+
+                            <div class="col-md-8">
+                                <textarea name="note" style="resize:none;height:116px !important;" cols="160" rows="4"
+                                          id="note" ng-model="rec_promo.description" class="form-control"
+                                          ng-readonly="check_readonly_promo" ng-change="showWordsLimits()"
+                                          maxlength="500"></textarea>
+                                <span class="word-counter"><!--{{wordsLength}}-->{{rec_promo.description.length}}/500</span>
+                            </div>
+
+                            <input type="hidden" ng-model="rec_promo.old_file">
+                            <input type="hidden" ng-model="rec_promo.file_size">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="    margin-top: 26px;">
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                <div class="dropdown ib" ng-show="rec_promo.id > 0 && crm_promotiom_tab_module > 0">
+                                    <button class="dte-btn dropdown-toggle" type="button" data-toggle="dropdown"><i
+                                            class="dte-ico"></i></button>
+                                    <ul class="dropdown-menu dte animated fadeIn">
+                                        <span ng-click="set_document_internal(crm_promotiom_tab_module)"><i
+                                                class="fa fa-file-text-o" aria-hidden="true"></i> Add Document</span>
+                                        <span><i class="fa fa-check" aria-hidden="true"></i> Add Task</span>
+                                        <span><i class="fa fa-envelope-o" aria-hidden="true"></i> Compose Email</span>
+                                    </ul>
+                                </div>
+                                <a id="prompt" ng-click=" addProducts_promo(0)"
+                                   class="btn btn-default2" ng-if="rec_promo.id > 0"><!--itemselectPage(1);  -->
+                                    <i class="fa fa-plus fa_display"></i> Add Item(s) / Service(s)
+                                </a>
+                                <button class="btn btn-submit" type="submit" ng-show="!check_readonly_promo">
+                                    <i class="fa fa-check fa_display"></i> Save
+                                </button>
+                                <button class="btn btn-edit" type="button" ng-click="showCrmPromotionreadonly()"
+                                        ng-show="check_readonly_promo">
+                                    <i class="fa fa-edit fa_display"></i> Edit
+                                </button>
+                                <button class="btn btn-cancel" type="button" ng-click="getPromotion()">
+                                    <i class="fa fa-undo fa_display"></i> Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

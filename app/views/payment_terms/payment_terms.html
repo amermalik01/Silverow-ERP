@@ -1,0 +1,74 @@
+<div ng-controller="PaymentTermsController as table">
+  <div>
+      <div ng-include="'app/views/_breadcrumb.html'" class="col-md-12"></div>
+  </div>
+
+  <div class="row" style="margin-bottom: 0 !important;">
+      <div class="col-md-12">
+        <div class="nav nav-tabs" style="padding:8px;">
+            <div class="col-md-11">
+              <div class="search-wrapper">
+                  <input type="text" Placeholder="Search in Payment Terms" class="form-control"ng-model="searchKeyword">
+                <i class="fa fa-search search-icon" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="col-md-1">
+                <a id="prompt" ui-sref="app.add-payment-terms" class="btn btn_add pull-right ">Add</a>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Row starts -->
+  <div class="row">
+
+    <div class="col-md-12 col-md-12" >
+      <div class="widget">
+        <!-- <div class="widget-header">
+          <div class="title">
+            Payment Terms
+          </div>
+          </div> -->
+        <div class="widget-body ">
+            <div id="dt_example" class="example_alt_pagination">
+    <table ng-table="table.tableParams5" class="table table-condensed table-striped table-hover table-bordered" id="data-table" show-filter="true" ng-show="columns.length > 0">
+      <thead class="fixit">
+        <tr class="bg-col" ng-show="columns.length > 0">
+          <th ng-repeat="column in columns"> 
+                    <span ng-if="column.title != 'Description'" >{{column.title}} </span>
+                    <span ng-if="column.title == 'Description'" >Name</span></th>
+                <th  class="active-listing" style="width: 7%;">Action</th>
+        </tr>
+
+
+      </thead>
+     <!--  <tr >
+          <td ng-repeat="column in columns"
+                    ng-show="column.visible"
+                    class="sortable"
+                        > <input type="text" class="form-control"
+                           ng-model="MyCustomeFilters[column.field] "/>
+          </td>
+        </tr> -->
+        <tbody class="fixit">
+        <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+        <tr ng-repeat="rec in $data | filter:searchKeyword" ng-show="columns.length > 0">
+          <td ng-repeat="column in columns"  sortable="column.title" ui-sref="app.view-payment-terms({id:rec.id})"> {{rec[column.field]}} </td>
+
+          <td  class="active-listing" >
+
+            <a ui-sref="app.edit-payment-terms({id:rec.id})" title="Edit" class="btn btn-primary icon_square"><i class="fa fa-edit"></i></a>
+            <a ng-click="delete(rec.id,$index,$data)" title="Delete" class="btn btn-primary icon_square"><i class="fa fa-times"></i></a>
+          </td>
+        </tr>
+        <div ng-show="!columns.length > 0" class="no-record"></div>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div ng-include="'app/views/_confirm_modal.html'"></div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
